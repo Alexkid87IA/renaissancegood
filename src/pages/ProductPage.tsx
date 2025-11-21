@@ -1,40 +1,175 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { getProduct } from '../lib/shopify';
 import ProductSidebar from '../components/product/ProductSidebar';
 import ProductImageSection from '../components/product/ProductImageSection';
 import ProductCraftSection from '../components/product/ProductCraftSection';
 import ProductBottomBar from '../components/product/ProductBottomBar';
 
+// Interface pour les produits Shopify
+interface ShopifyProduct {
+  id: string;
+  title: string;
+  handle: string;
+  description: string;
+  availableForSale: boolean;
+  priceRange: {
+    minVariantPrice: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
+  images: {
+    edges: Array<{
+      node: {
+        url: string;
+        altText: string | null;
+      };
+    }>;
+  };
+  variants: {
+    edges: Array<{
+      node: {
+        id: string;
+        title: string;
+        priceV2: {
+          amount: string;
+          currencyCode: string;
+        };
+        availableForSale: boolean;
+        selectedOptions: Array<{
+          name: string;
+          value: string;
+        }>;
+      };
+    }>;
+  };
+}
+
+// Interface pour le produit formaté utilisé par les composants
+interface Product {
+  id: string;
+  name: string;
+  collection: string;
+  badge?: string;
+  price: string;
+  frame: string;
+  lens: string;
+  colors: Array<{ name: string }>;
+  dimensions: {
+    lens: string;
+    bridge: string;
+    temple: string;
+  };
+  description: string;
+  images: string[];
+}
+
 export default function ProductPage() {
-  const { id } = useParams();
+  const { id } = useParams(); // 'id' est en fait le 'handle' du produit
+  const navigate = useNavigate();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
 
-  const product = {
-    id: '10103H-I',
-    name: '10103H-I',
-    collection: 'OPTICAL | HERITAGE',
-    badge: 'NEW RELEASE',
-    price: '€755,00',
-    frame: 'Palladium White - Matte Black',
-    lens: 'Clear Lens',
-    colors: [
-      { name: 'Palladium White - Matte Black' },
-      { name: 'Black Gold' },
-      { name: 'Silver' },
-      { name: 'Titanium' },
-      { name: 'Bronze' },
-    ],
-    dimensions: {
-      lens: '51mm',
-      bridge: '20mm',
-      temple: '145mm'
-    },
-    description: 'Fabriquée à la main dans notre atelier du Jura, chaque monture Héritage incarne le savoir-faire français transmis de génération en génération. Les lignes épurées et le trident gravé symbolisent la force et l\'équilibre, créant une pièce intemporelle qui traverse les époques.'
-  };
+  // Charger le produit depuis Shopify
+  useEffect(() => {
+    async function loadProduct() {
+      if (!id) {
+        setError('Produit non trouvé');
+        setLoading(false);
+        return;
+      }
+
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Récupérer le produit depuis Shopify avec son handle
+        const shopifyProduct: ShopifyProduct = await getProduct(id);
+
+        if (!shopifyProduct) {
+          setError('Produit non trouvé');
+          setLoading(false);
+          return;
+        }
+
+        // Extraire les variantes (couleurs) disponibles
+        const colors = shopifyProduct.variants.edges.map(edge => ({
+          name: edge.node.title
+        }));
+
+        // Extraire les images
+        const images = shopifyProduct.images.edges.map(edge => edge.node.url);
+
+        // Formater le produit pour les composants
+        const formattedProduct: Product = {
+          id: shopifyProduct.id,
+          name: shopifyProduct.title,
+          collection: 'OPTICAL', // Par défaut - peut être enrichi avec des tags
+          badge: undefined, // Peut être enrichi avec des metafields
+          price: `€${parseFloat(shopifyProduct.priceRange.minVariantPrice.amount).toFixed(2)}`,
+          frame: colors[0]?.name || 'Default',
+          lens: 'Clear Lens', // Par défaut - peut être enrichi
+          colors: colors,
+          dimensions: {
+            lens: '51mm', // Par défaut - peut être enrichi avec des metafields
+            bridge: '20mm',
+            temple: '145mm'
+          },
+          description: shopifyProduct.description || 'Découvrez ce modèle unique de la collection Renaissance.',
+          images: images
+        };
+
+        setProduct(formattedProduct);
+      } catch (err) {
+        console.error('Erreur lors du chargement du produit:', err);
+        setError('Impossible de charger le produit. Veuillez réessayer.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadProduct();
+  }, [id]);
+
+  // Affichage pendant le chargement
+  if (loading) {
+    return (
+      <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-dark-text mb-6"></div>
+          <p className="font-sans text-dark-text/60 text-sm tracking-wider uppercase">
+            Chargement du produit...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Affichage en cas d'erreur
+  if (error || !product) {
+    return (
+      <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="text-center max-w-md px-8">
+          <p className="font-sans text-dark-text text-sm tracking-wider uppercase mb-6">
+            {error || 'Produit non trouvé'}
+          </p>
+          <button
+            onClick={() => navigate('/collections/heritage')}
+            className="font-sans text-xs tracking-wider uppercase border border-dark-text px-6 py-3 hover:bg-dark-text hover:text-white transition-colors"
+          >
+            Retour aux collections
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white min-h-screen">
@@ -48,26 +183,40 @@ export default function ProductPage() {
 
         {/* Scrolling Content */}
         <div className="flex-1">
-          <ProductImageSection
-            imageUrl="https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt="Hero view"
-            backgroundColor="bg-neutral-50"
-            zIndex={10}
-          />
-
-          <ProductImageSection
-            imageUrl="https://images.pexels.com/photos/947885/pexels-photo-947885.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt="Front view"
-            backgroundColor="bg-white"
-            zIndex={20}
-          />
-
-          <ProductImageSection
-            imageUrl="https://images.pexels.com/photos/1382559/pexels-photo-1382559.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt="Side view detail"
-            backgroundColor="bg-neutral-100"
-            zIndex={30}
-          />
+          {/* Afficher les images du produit */}
+          {product.images && product.images.length > 0 ? (
+            <>
+              {product.images.map((imageUrl, index) => (
+                <ProductImageSection
+                  key={index}
+                  imageUrl={imageUrl}
+                  alt={`${product.name} - vue ${index + 1}`}
+                  backgroundColor={
+                    index % 3 === 0 ? 'bg-neutral-50' : 
+                    index % 3 === 1 ? 'bg-white' : 
+                    'bg-neutral-100'
+                  }
+                  zIndex={10 + index * 10}
+                />
+              ))}
+            </>
+          ) : (
+            // Images par défaut si pas d'images disponibles
+            <>
+              <ProductImageSection
+                imageUrl="https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt="Hero view"
+                backgroundColor="bg-neutral-50"
+                zIndex={10}
+              />
+              <ProductImageSection
+                imageUrl="https://images.pexels.com/photos/947885/pexels-photo-947885.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt="Front view"
+                backgroundColor="bg-white"
+                zIndex={20}
+              />
+            </>
+          )}
 
           <ProductCraftSection />
         </div>

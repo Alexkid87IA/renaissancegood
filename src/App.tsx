@@ -9,6 +9,7 @@ import VersaillesCollectionPage from './pages/VersaillesCollectionPage';
 import ProductPage from './pages/ProductPage';
 import HistoirePage from './pages/HistoirePage';
 import CartPage from './pages/CartPage';
+import ShopPage from './pages/ShopPage';
 
 function AppContent() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function AppContent() {
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/histoire" element={<HistoirePage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/shop" element={<ShopPage />} />
           </Routes>
         </main>
         <div className={`relative z-10 ${isProductPage ? 'ml-0 lg:ml-[340px] laptop:ml-[380px] xl:ml-[480px]' : ''}`}>

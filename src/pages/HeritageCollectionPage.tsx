@@ -1,6 +1,30 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { getProductsByCollection } from '../lib/shopify';
+
+// Interface adaptée pour les produits Shopify
+interface ShopifyProduct {
+  id: string;
+  title: string;
+  handle: string;
+  description: string;
+  availableForSale: boolean;
+  priceRange: {
+    minVariantPrice: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
+  images: {
+    edges: Array<{
+      node: {
+        url: string;
+        altText: string | null;
+      };
+    }>;
+  };
+}
 
 interface Product {
   id: string;
@@ -11,89 +35,9 @@ interface Product {
   images: string[];
   badge?: string;
   gridPosition: string;
+  price: string;
+  handle: string;
 }
-
-const heritageProducts: Product[] = [
-  {
-    id: 'h1',
-    name: 'H2031',
-    category: 'OPTICAL | TITAN',
-    material: 'Titane',
-    shape: 'Rond',
-    images: [
-      'https://images.pexels.com/photos/947885/pexels-photo-947885.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1200'
-    ],
-    badge: 'SIGNATURE',
-    gridPosition: 'col-span-8 row-span-2'
-  },
-  {
-    id: 'h2',
-    name: 'H3166',
-    category: 'OPTICAL | ESSENTIAL',
-    material: 'Métal',
-    shape: 'Ovale',
-    images: [
-      'https://images.pexels.com/photos/1619690/pexels-photo-1619690.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1200'
-    ],
-    gridPosition: 'col-span-4 row-span-2'
-  },
-  {
-    id: 'h3',
-    name: 'H2945',
-    category: 'OPTICAL | ESSENTIAL',
-    material: 'Métal',
-    shape: 'Ovale',
-    images: [
-      'https://images.pexels.com/photos/1382559/pexels-photo-1382559.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/947885/pexels-photo-947885.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1200'
-    ],
-    gridPosition: 'col-span-5 row-span-1'
-  },
-  {
-    id: 'h4',
-    name: 'H4287',
-    category: 'OPTICAL | CLASSIC',
-    material: 'Acétate',
-    shape: 'Carré',
-    images: [
-      'https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1200'
-    ],
-    gridPosition: 'col-span-7 row-span-1'
-  },
-  {
-    id: 'h5',
-    name: 'H5893',
-    category: 'OPTICAL | TITAN',
-    material: 'Titane',
-    shape: 'Rond',
-    images: [
-      'https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/1382559/pexels-photo-1382559.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/947885/pexels-photo-947885.jpeg?auto=compress&cs=tinysrgb&w=1200'
-    ],
-    badge: 'NEW RELEASE',
-    gridPosition: 'col-span-6 row-span-2'
-  },
-  {
-    id: 'h6',
-    name: 'H6124',
-    category: 'OPTICAL | ESSENTIAL',
-    material: 'Acétate',
-    shape: 'Ovale',
-    images: [
-      'https://images.pexels.com/photos/1619690/pexels-photo-1619690.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg?auto=compress&cs=tinysrgb&w=1200'
-    ],
-    gridPosition: 'col-span-6 row-span-2'
-  }
-];
 
 interface FilterOption {
   label: string;
@@ -112,6 +56,20 @@ const shapes: FilterOption[] = [
   { label: 'Rond', value: 'Rond' },
   { label: 'Ovale', value: 'Ovale' },
   { label: 'Carré', value: 'Carré' }
+];
+
+// Positions de grille pour les produits (répétitif)
+const gridPositions = [
+  'col-span-8 row-span-2',
+  'col-span-4 row-span-2',
+  'col-span-5 row-span-1',
+  'col-span-7 row-span-1',
+  'col-span-6 row-span-2',
+  'col-span-6 row-span-2',
+  'col-span-8 row-span-1',
+  'col-span-4 row-span-1',
+  'col-span-5 row-span-2',
+  'col-span-7 row-span-2'
 ];
 
 function FilterSelect({
@@ -165,7 +123,7 @@ function ProductCard({ product }: { product: Product }) {
       transition={{ duration: 0.6 }}
     >
       <Link
-        to={`/product/${product.id}`}
+        to={`/product/${product.handle}`}
         className="relative w-full h-full block cursor-pointer"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -194,6 +152,7 @@ function ProductCard({ product }: { product: Product }) {
               <button
                 key={index}
                 onClick={(e) => {
+                  e.preventDefault();
                   e.stopPropagation();
                   setCurrentImageIndex(index);
                 }}
@@ -212,8 +171,7 @@ function ProductCard({ product }: { product: Product }) {
                     strokeWidth="2"
                     className="w-full h-full p-1"
                   >
-                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                    <circle cx="12" cy="13" r="4" />
+                    <circle cx="12" cy="12" r="10" />
                   </svg>
                 )}
               </button>
@@ -221,13 +179,22 @@ function ProductCard({ product }: { product: Product }) {
           </div>
         )}
 
-        <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm px-6 py-4 border border-dark-text/10">
-          <p className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text/70 uppercase mb-2">
-            {product.category}
-          </p>
-          <h3 className="font-display text-4xl font-bold tracking-tight text-dark-text leading-none">
-            {product.name}
-          </h3>
+        <div className="absolute inset-0 bg-dark-text/0 group-hover:bg-dark-text/5 transition-colors duration-500" />
+
+        <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <div className="bg-white/90 backdrop-blur-sm px-6 py-3 border border-dark-text/10">
+            <p className="font-sans text-[10px] tracking-[0.3em] font-bold text-dark-text">
+              VOIR DÉTAILS
+            </p>
+          </div>
+        </div>
+
+        <div className="absolute bottom-6 right-6">
+          <div className="bg-white/95 backdrop-blur-sm px-6 py-3 border border-dark-text/10">
+            <p className="font-sans text-xs text-dark-text/60 mb-1">{product.category}</p>
+            <p className="font-display text-2xl font-bold text-dark-text">{product.name}</p>
+            <p className="font-sans text-sm text-dark-text/70 mt-2">{product.price}</p>
+          </div>
         </div>
       </Link>
     </motion.div>
@@ -240,16 +207,54 @@ export default function HeritageCollectionPage() {
     target: heroRef,
     offset: ["start start", "end start"]
   });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   const [selectedMaterial, setSelectedMaterial] = useState('all');
   const [selectedShape, setSelectedShape] = useState('all');
-  const [filteredProducts, setFilteredProducts] = useState(heritageProducts);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
+  // Charger les produits depuis Shopify au montage du composant
   useEffect(() => {
-    let filtered = heritageProducts;
+    async function loadProducts() {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        // Récupérer les produits de la collection HERITAGE
+        const shopifyProducts = await getProductsByCollection('HERITAGE');
+        
+        // Transformer les produits Shopify en format utilisé par le composant
+        const transformedProducts: Product[] = shopifyProducts.map((product: ShopifyProduct, index: number) => ({
+          id: product.id,
+          name: product.title,
+          handle: product.handle,
+          category: 'OPTICAL', // Par défaut, peut être enrichi avec des tags Shopify
+          material: 'Métal', // Par défaut, peut être enrichi avec des metafields
+          shape: 'Rond', // Par défaut, peut être enrichi avec des metafields
+          images: product.images.edges.map(edge => edge.node.url),
+          price: `${product.priceRange.minVariantPrice.amount} ${product.priceRange.minVariantPrice.currencyCode}`,
+          gridPosition: gridPositions[index % gridPositions.length]
+        }));
+        
+        setProducts(transformedProducts);
+        setFilteredProducts(transformedProducts);
+      } catch (err) {
+        console.error('Erreur lors du chargement des produits:', err);
+        setError('Impossible de charger les produits. Veuillez réessayer.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadProducts();
+  }, []);
+
+  // Filtrer les produits selon les critères sélectionnés
+  useEffect(() => {
+    let filtered = products;
 
     if (selectedMaterial !== 'all') {
       filtered = filtered.filter(p => p.material === selectedMaterial);
@@ -259,7 +264,7 @@ export default function HeritageCollectionPage() {
     }
 
     setFilteredProducts(filtered);
-  }, [selectedMaterial, selectedShape]);
+  }, [selectedMaterial, selectedShape, products]);
 
   return (
     <div className="bg-beige">
@@ -313,7 +318,7 @@ export default function HeritageCollectionPage() {
               <div className="space-y-8">
                 <div className="flex items-baseline gap-4">
                   <p className="font-display text-5xl font-bold text-dark-text">
-                    {heritageProducts.length}
+                    {loading ? '...' : products.length}
                   </p>
                   <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text/40 uppercase">
                     Modèles
@@ -364,7 +369,7 @@ export default function HeritageCollectionPage() {
                   # PRODUCTS
                 </p>
                 <p className="font-display text-5xl font-bold text-dark-text leading-none">
-                  {filteredProducts.length}
+                  {loading ? '...' : filteredProducts.length}
                 </p>
               </div>
 
@@ -400,18 +405,45 @@ export default function HeritageCollectionPage() {
         </div>
 
         <div className="max-w-[1800px] mx-auto px-8 laptop:px-12 py-10 laptop:py-12">
-          <div className="grid grid-cols-12 auto-rows-[280px] laptop:auto-rows-[320px] xl:auto-rows-[350px] gap-3 laptop:gap-4">
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-
-          {filteredProducts.length === 0 && (
+          {loading && (
             <div className="text-center py-32">
-              <p className="font-sans text-dark-text/40 text-sm tracking-wider uppercase">
-                No products match your filters
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-dark-text"></div>
+              <p className="font-sans text-dark-text/60 text-sm tracking-wider uppercase mt-6">
+                Chargement des produits...
               </p>
             </div>
+          )}
+
+          {error && (
+            <div className="text-center py-32">
+              <p className="font-sans text-red-600 text-sm tracking-wider uppercase mb-4">
+                {error}
+              </p>
+              <button
+                onClick={() => window.location.reload()}
+                className="font-sans text-xs tracking-wider uppercase border border-dark-text px-6 py-3 hover:bg-dark-text hover:text-white transition-colors"
+              >
+                Réessayer
+              </button>
+            </div>
+          )}
+
+          {!loading && !error && (
+            <>
+              <div className="grid grid-cols-12 auto-rows-[280px] laptop:auto-rows-[320px] xl:auto-rows-[350px] gap-3 laptop:gap-4">
+                {filteredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+
+              {filteredProducts.length === 0 && (
+                <div className="text-center py-32">
+                  <p className="font-sans text-dark-text/40 text-sm tracking-wider uppercase">
+                    No products match your filters
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
 
