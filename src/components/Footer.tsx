@@ -165,7 +165,7 @@ export default function Footer() {
             </ul>
           </motion.div>
 
-          {/* La Maison */}
+          {/* Le Magazine */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -173,9 +173,14 @@ export default function Footer() {
             viewport={{ once: true }}
           >
             <h4 className="font-sans text-[10px] tracking-[0.3em] mb-5 font-bold text-dark-text uppercase">
-              La Maison
+              Le Magazine
             </h4>
             <ul className="space-y-3">
+              <li>
+                <Link to="/blog" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-sm font-light block">
+                  Tous les Articles
+                </Link>
+              </li>
               <li>
                 <Link to="/histoire" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-sm font-light block">
                   Notre Histoire
@@ -194,11 +199,6 @@ export default function Footer() {
               <li>
                 <Link to="/symboles" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-sm font-light block">
                   Les 5 Symboles
-                </Link>
-              </li>
-              <li>
-                <Link to="/ambassadeurs" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-sm font-light block">
-                  Ambassadeurs
                 </Link>
               </li>
             </ul>

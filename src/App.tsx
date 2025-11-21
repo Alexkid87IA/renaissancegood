@@ -12,6 +12,8 @@ import ProductPage from './pages/ProductPage';
 import HistoirePage from './pages/HistoirePage';
 import CartPage from './pages/CartPage';
 import ShopPage from './pages/ShopPage';
+import BlogPage from './pages/BlogPage';
+import BlogArticlePage from './pages/BlogArticlePage';
 
 function AppContent() {
   const location = useLocation();
@@ -32,6 +34,8 @@ function AppContent() {
             <Route path="/histoire" element={<HistoirePage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/shop" element={<ShopPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:handle" element={<BlogArticlePage />} />
           </Routes>
         </main>
         <div className={`relative z-10 ${isProductPage ? 'ml-0 lg:ml-[340px] laptop:ml-[380px] xl:ml-[480px]' : ''}`}>

@@ -533,3 +533,130 @@ export async function getCart(cartId: string) {
   const { data } = await response.json();
   return data.cart;
 }
+
+// ===== FONCTIONS POUR LE BLOG =====
+
+// Récupérer tous les articles du blog
+export async function getBlogPosts(blogHandle: string = 'actualites') {
+  const response = await fetch(getStorefrontApiUrl(), {
+    method: 'POST',
+    headers: getPublicTokenHeaders(),
+    body: JSON.stringify({
+      query: `
+        {
+          blog(handle: "${blogHandle}") {
+            articles(first: 50, sortKey: PUBLISHED_AT, reverse: true) {
+              edges {
+                node {
+                  id
+                  title
+                  handle
+                  excerpt
+                  excerptHtml
+                  contentHtml
+                  image {
+                    url
+                    altText
+                  }
+                  publishedAt
+                  author {
+                    name
+                  }
+                  tags
+                }
+              }
+            }
+          }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  
+  if (!data.blog) {
+    return [];
+  }
+  
+  return data.blog.articles.edges.map((edge: any) => edge.node);
+}
+
+// Récupérer un article spécifique par son handle
+export async function getBlogPostByHandle(blogHandle: string = 'actualites', articleHandle: string) {
+  const response = await fetch(getStorefrontApiUrl(), {
+    method: 'POST',
+    headers: getPublicTokenHeaders(),
+    body: JSON.stringify({
+      query: `
+        {
+          blog(handle: "${blogHandle}") {
+            articleByHandle(handle: "${articleHandle}") {
+              id
+              title
+              handle
+              excerpt
+              excerptHtml
+              contentHtml
+              image {
+                url
+                altText
+              }
+              publishedAt
+              author {
+                name
+              }
+              tags
+            }
+          }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  
+  if (!data.blog || !data.blog.articleByHandle) {
+    return null;
+  }
+  
+  return data.blog.articleByHandle;
+}
+
+// Récupérer les articles récents (pour suggestions)
+export async function getRecentBlogPosts(blogHandle: string = 'actualites', limit: number = 3) {
+  const response = await fetch(getStorefrontApiUrl(), {
+    method: 'POST',
+    headers: getPublicTokenHeaders(),
+    body: JSON.stringify({
+      query: `
+        {
+          blog(handle: "${blogHandle}") {
+            articles(first: ${limit}, sortKey: PUBLISHED_AT, reverse: true) {
+              edges {
+                node {
+                  id
+                  title
+                  handle
+                  excerpt
+                  image {
+                    url
+                    altText
+                  }
+                  publishedAt
+                }
+              }
+            }
+          }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  
+  if (!data.blog) {
+    return [];
+  }
+  
+  return data.blog.articles.edges.map((edge: any) => edge.node);
+}
