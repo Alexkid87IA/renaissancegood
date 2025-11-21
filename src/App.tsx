@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { CartProvider } from './contexts/CartContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import MobileWarning from './components/MobileWarning';
+import CartDrawer from './components/CartDrawer';
 import HomePage from './pages/HomePage';
 import CollectionsPage from './pages/CollectionsPage';
 import HeritageCollectionPage from './pages/HeritageCollectionPage';
@@ -43,7 +45,10 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <AppContent />
+      <CartProvider>
+        <AppContent />
+        <CartDrawer />
+      </CartProvider>
     </Router>
   );
 }

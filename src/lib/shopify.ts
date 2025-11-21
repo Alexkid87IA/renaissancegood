@@ -23,6 +23,7 @@ export async function getProducts() {
                 title
                 handle
                 description
+                descriptionHtml
                 availableForSale
                 priceRange {
                   minVariantPrice {
@@ -82,6 +83,7 @@ export async function getProduct(handle: string) {
             title
             handle
             description
+            descriptionHtml
             availableForSale
             priceRange {
               minVariantPrice {
@@ -141,6 +143,7 @@ export async function getProductsByCollection(collectionHandle: string) {
                   title
                   handle
                   description
+                  descriptionHtml
                   availableForSale
                   priceRange {
                     minVariantPrice {
@@ -190,4 +193,343 @@ export async function getProductsByCollection(collectionHandle: string) {
     .filter((product: any) => product.availableForSale);
   
   return products;
+}
+
+// ===== FONCTIONS DE GESTION DU PANIER =====
+
+// Créer un nouveau panier
+export async function createCart() {
+  const response = await fetch(getStorefrontApiUrl(), {
+    method: 'POST',
+    headers: getPublicTokenHeaders(),
+    body: JSON.stringify({
+      query: `
+        mutation {
+          cartCreate {
+            cart {
+              id
+              checkoutUrl
+              lines(first: 10) {
+                edges {
+                  node {
+                    id
+                    quantity
+                    merchandise {
+                      ... on ProductVariant {
+                        id
+                        title
+                        priceV2 {
+                          amount
+                          currencyCode
+                        }
+                        product {
+                          id
+                          title
+                          handle
+                          images(first: 1) {
+                            edges {
+                              node {
+                                url
+                                altText
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              cost {
+                totalAmount {
+                  amount
+                  currencyCode
+                }
+                subtotalAmount {
+                  amount
+                  currencyCode
+                }
+              }
+            }
+          }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  return data.cartCreate.cart;
+}
+
+// Ajouter un article au panier
+export async function addToCart(cartId: string, variantId: string, quantity: number = 1) {
+  const response = await fetch(getStorefrontApiUrl(), {
+    method: 'POST',
+    headers: getPublicTokenHeaders(),
+    body: JSON.stringify({
+      query: `
+        mutation {
+          cartLinesAdd(
+            cartId: "${cartId}"
+            lines: [
+              {
+                merchandiseId: "${variantId}"
+                quantity: ${quantity}
+              }
+            ]
+          ) {
+            cart {
+              id
+              checkoutUrl
+              lines(first: 50) {
+                edges {
+                  node {
+                    id
+                    quantity
+                    merchandise {
+                      ... on ProductVariant {
+                        id
+                        title
+                        priceV2 {
+                          amount
+                          currencyCode
+                        }
+                        product {
+                          id
+                          title
+                          handle
+                          images(first: 1) {
+                            edges {
+                              node {
+                                url
+                                altText
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              cost {
+                totalAmount {
+                  amount
+                  currencyCode
+                }
+                subtotalAmount {
+                  amount
+                  currencyCode
+                }
+              }
+            }
+          }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  return data.cartLinesAdd.cart;
+}
+
+// Mettre à jour la quantité d'un article dans le panier
+export async function updateCartItem(cartId: string, lineId: string, quantity: number) {
+  const response = await fetch(getStorefrontApiUrl(), {
+    method: 'POST',
+    headers: getPublicTokenHeaders(),
+    body: JSON.stringify({
+      query: `
+        mutation {
+          cartLinesUpdate(
+            cartId: "${cartId}"
+            lines: [
+              {
+                id: "${lineId}"
+                quantity: ${quantity}
+              }
+            ]
+          ) {
+            cart {
+              id
+              checkoutUrl
+              lines(first: 50) {
+                edges {
+                  node {
+                    id
+                    quantity
+                    merchandise {
+                      ... on ProductVariant {
+                        id
+                        title
+                        priceV2 {
+                          amount
+                          currencyCode
+                        }
+                        product {
+                          id
+                          title
+                          handle
+                          images(first: 1) {
+                            edges {
+                              node {
+                                url
+                                altText
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              cost {
+                totalAmount {
+                  amount
+                  currencyCode
+                }
+                subtotalAmount {
+                  amount
+                  currencyCode
+                }
+              }
+            }
+          }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  return data.cartLinesUpdate.cart;
+}
+
+// Supprimer un article du panier
+export async function removeFromCart(cartId: string, lineId: string) {
+  const response = await fetch(getStorefrontApiUrl(), {
+    method: 'POST',
+    headers: getPublicTokenHeaders(),
+    body: JSON.stringify({
+      query: `
+        mutation {
+          cartLinesRemove(
+            cartId: "${cartId}"
+            lineIds: ["${lineId}"]
+          ) {
+            cart {
+              id
+              checkoutUrl
+              lines(first: 50) {
+                edges {
+                  node {
+                    id
+                    quantity
+                    merchandise {
+                      ... on ProductVariant {
+                        id
+                        title
+                        priceV2 {
+                          amount
+                          currencyCode
+                        }
+                        product {
+                          id
+                          title
+                          handle
+                          images(first: 1) {
+                            edges {
+                              node {
+                                url
+                                altText
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              cost {
+                totalAmount {
+                  amount
+                  currencyCode
+                }
+                subtotalAmount {
+                  amount
+                  currencyCode
+                }
+              }
+            }
+          }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  return data.cartLinesRemove.cart;
+}
+
+// Récupérer le panier existant
+export async function getCart(cartId: string) {
+  const response = await fetch(getStorefrontApiUrl(), {
+    method: 'POST',
+    headers: getPublicTokenHeaders(),
+    body: JSON.stringify({
+      query: `
+        {
+          cart(id: "${cartId}") {
+            id
+            checkoutUrl
+            lines(first: 50) {
+              edges {
+                node {
+                  id
+                  quantity
+                  merchandise {
+                    ... on ProductVariant {
+                      id
+                      title
+                      priceV2 {
+                        amount
+                        currencyCode
+                      }
+                      product {
+                        id
+                        title
+                        handle
+                        images(first: 1) {
+                          edges {
+                            node {
+                              url
+                              altText
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            cost {
+              totalAmount {
+                amount
+                currencyCode
+              }
+              subtotalAmount {
+                amount
+                currencyCode
+              }
+            }
+          }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  return data.cart;
 }

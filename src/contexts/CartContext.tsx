@@ -1,107 +1,179 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createCart, addToCart as addToCartAPI, updateCartItem, removeFromCart as removeFromCartAPI, getCart } from '../lib/shopify';
 
-interface CartItem {
+// Types pour le panier
+interface CartLine {
   id: string;
-  product_id: string;
-  product_name: string;
-  product_collection: string;
-  selected_frame: string;
-  selected_lens: string;
-  selected_color: string;
-  color_index: number;
-  price: string;
   quantity: number;
-  image_url: string;
+  merchandise: {
+    id: string;
+    title: string;
+    priceV2: {
+      amount: string;
+      currencyCode: string;
+    };
+    product: {
+      id: string;
+      title: string;
+      handle: string;
+      images: {
+        edges: Array<{
+          node: {
+            url: string;
+            altText: string | null;
+          };
+        }>;
+      };
+    };
+  };
+}
+
+interface Cart {
+  id: string;
+  checkoutUrl: string;
+  lines: {
+    edges: Array<{
+      node: CartLine;
+    }>;
+  };
+  cost: {
+    totalAmount: {
+      amount: string;
+      currencyCode: string;
+    };
+    subtotalAmount: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
 }
 
 interface CartContextType {
-  cartItems: CartItem[];
-  addToCart: (item: Omit<CartItem, 'id' | 'quantity'>) => void;
-  removeFromCart: (itemId: string) => void;
-  updateQuantity: (itemId: string, quantity: number) => void;
-  clearCart: () => void;
-  cartCount: number;
-  cartTotal: number;
+  cart: Cart | null;
+  isLoading: boolean;
+  isCartOpen: boolean;
+  itemCount: number;
+  addToCart: (variantId: string, quantity?: number) => Promise<void>;
+  updateQuantity: (lineId: string, quantity: number) => Promise<void>;
+  removeItem: (lineId: string) => Promise<void>;
+  openCart: () => void;
+  closeCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export function CartProvider({ children }: { children: ReactNode }) {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+const CART_ID_KEY = 'renaissance_cart_id';
 
+export function CartProvider({ children }: { children: ReactNode }) {
+  const [cart, setCart] = useState<Cart | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  // Calculer le nombre total d'articles
+  const itemCount = cart?.lines.edges.reduce((total, { node }) => total + node.quantity, 0) || 0;
+
+  // Charger le panier au démarrage
   useEffect(() => {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      setCartItems(JSON.parse(storedCart));
-    }
+    const loadCart = async () => {
+      const savedCartId = localStorage.getItem(CART_ID_KEY);
+      
+      if (savedCartId) {
+        try {
+          const existingCart = await getCart(savedCartId);
+          if (existingCart) {
+            setCart(existingCart);
+            return;
+          }
+        } catch (error) {
+          console.error('Erreur lors du chargement du panier:', error);
+          localStorage.removeItem(CART_ID_KEY);
+        }
+      }
+      
+      // Créer un nouveau panier si nécessaire
+      try {
+        const newCart = await createCart();
+        setCart(newCart);
+        localStorage.setItem(CART_ID_KEY, newCart.id);
+      } catch (error) {
+        console.error('Erreur lors de la création du panier:', error);
+      }
+    };
+
+    loadCart();
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-  }, [cartItems]);
+  // Ajouter au panier
+  const addToCart = async (variantId: string, quantity: number = 1) => {
+    setIsLoading(true);
+    try {
+      let currentCart = cart;
 
-  const addToCart = (item: Omit<CartItem, 'id' | 'quantity'>) => {
-    const existingItemIndex = cartItems.findIndex(
-      cartItem =>
-        cartItem.product_id === item.product_id &&
-        cartItem.selected_frame === item.selected_frame &&
-        cartItem.selected_lens === item.selected_lens &&
-        cartItem.selected_color === item.selected_color
-    );
+      // Créer un panier si nécessaire
+      if (!currentCart) {
+        currentCart = await createCart();
+        localStorage.setItem(CART_ID_KEY, currentCart.id);
+      }
 
-    if (existingItemIndex > -1) {
-      const updatedCart = [...cartItems];
-      updatedCart[existingItemIndex].quantity += 1;
-      setCartItems(updatedCart);
-    } else {
-      const newItem: CartItem = {
-        ...item,
-        id: `${item.product_id}-${Date.now()}`,
-        quantity: 1,
-      };
-      setCartItems([...cartItems, newItem]);
+      // Ajouter l'article
+      const updatedCart = await addToCartAPI(currentCart.id, variantId, quantity);
+      setCart(updatedCart);
+      setIsCartOpen(true); // Ouvrir le panier après ajout
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout au panier:', error);
+      alert('Impossible d\'ajouter l\'article au panier. Veuillez réessayer.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const removeFromCart = (itemId: string) => {
-    setCartItems(cartItems.filter(item => item.id !== itemId));
-  };
-
-  const updateQuantity = (itemId: string, quantity: number) => {
-    if (quantity < 1) {
-      removeFromCart(itemId);
-      return;
+  // Mettre à jour la quantité
+  const updateQuantity = async (lineId: string, quantity: number) => {
+    if (!cart) return;
+    
+    setIsLoading(true);
+    try {
+      const updatedCart = await updateCartItem(cart.id, lineId, quantity);
+      setCart(updatedCart);
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour:', error);
+      alert('Impossible de mettre à jour la quantité. Veuillez réessayer.');
+    } finally {
+      setIsLoading(false);
     }
-
-    setCartItems(
-      cartItems.map(item =>
-        item.id === itemId ? { ...item, quantity } : item
-      )
-    );
   };
 
-  const clearCart = () => {
-    setCartItems([]);
-    localStorage.removeItem('cart');
+  // Supprimer un article
+  const removeItem = async (lineId: string) => {
+    if (!cart) return;
+    
+    setIsLoading(true);
+    try {
+      const updatedCart = await removeFromCartAPI(cart.id, lineId);
+      setCart(updatedCart);
+    } catch (error) {
+      console.error('Erreur lors de la suppression:', error);
+      alert('Impossible de supprimer l\'article. Veuillez réessayer.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-
-  const cartTotal = cartItems.reduce((total, item) => {
-    const price = parseFloat(item.price.replace('€', '').replace(',', ''));
-    return total + price * item.quantity;
-  }, 0);
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
 
   return (
     <CartContext.Provider
       value={{
-        cartItems,
+        cart,
+        isLoading,
+        isCartOpen,
+        itemCount,
         addToCart,
-        removeFromCart,
         updateQuantity,
-        clearCart,
-        cartCount,
-        cartTotal,
+        removeItem,
+        openCart,
+        closeCart,
       }}
     >
       {children}
@@ -109,10 +181,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   );
 }
 
+// Hook personnalisé pour utiliser le panier
 export function useCart() {
   const context = useContext(CartContext);
   if (context === undefined) {
-    throw new Error('useCart must be used within a CartProvider');
+    throw new Error('useCart doit être utilisé à l\'intérieur d\'un CartProvider');
   }
   return context;
 }

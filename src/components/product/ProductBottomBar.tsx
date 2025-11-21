@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useCart } from '../../contexts/CartContext';
 
+interface Variant {
+  id: string;
+  title: string;
+  price: string;
+  availableForSale: boolean;
+}
+
 interface Product {
   id: string;
   name: string;
@@ -9,6 +16,7 @@ interface Product {
   frame: string;
   lens: string;
   colors: { name: string }[];
+  variants: Variant[];
 }
 
 interface ProductBottomBarProps {
@@ -19,7 +27,7 @@ interface ProductBottomBarProps {
 export default function ProductBottomBar({ product, selectedColorIndex }: ProductBottomBarProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [addedToCart, setAddedToCart] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, isLoading } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,24 +48,27 @@ export default function ProductBottomBar({ product, selectedColorIndex }: Produc
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleAddToCart = () => {
-    addToCart({
-      product_id: product.id,
-      product_name: product.name,
-      product_collection: product.collection,
-      selected_frame: product.frame,
-      selected_lens: product.lens,
-      selected_color: product.colors[selectedColorIndex].name,
-      color_index: selectedColorIndex,
-      price: product.price,
-      image_url: 'https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    });
+  const handleAddToCart = async () => {
+    // Récupérer le variant ID de la variante sélectionnée
+    const selectedVariant = product.variants[selectedColorIndex];
+    
+    if (!selectedVariant || !selectedVariant.availableForSale) {
+      alert('Ce produit n\'est pas disponible');
+      return;
+    }
 
-    setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2000);
+    try {
+      await addToCart(selectedVariant.id);
+      setAddedToCart(true);
+      setTimeout(() => setAddedToCart(false), 2000);
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout au panier:', error);
+    }
   };
 
   if (!isVisible) return null;
+
+  const selectedVariant = product.variants[selectedColorIndex];
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-dark-text/10 z-[60] shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
@@ -89,18 +100,19 @@ export default function ProductBottomBar({ product, selectedColorIndex }: Produc
         <div className="flex items-center gap-3 lg:gap-4">
           <div className="text-right">
             <p className="font-sans text-xl lg:text-2xl font-semibold text-dark-text">
-              {product.price}
+              {selectedVariant?.price || product.price}
             </p>
           </div>
           <button
             onClick={handleAddToCart}
+            disabled={isLoading || !selectedVariant?.availableForSale}
             className={`px-6 lg:px-10 py-3 lg:py-4 font-sans text-[10px] tracking-[0.3em] font-bold transition-all duration-200 whitespace-nowrap ${
               addedToCart
                 ? 'bg-green-600 text-white'
                 : 'bg-dark-text text-white hover:bg-dark-text/90'
-            }`}
+            } disabled:opacity-50 disabled:cursor-not-allowed`}
           >
-            {addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER AU PANIER'}
+            {isLoading ? 'AJOUT...' : addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER AU PANIER'}
           </button>
         </div>
       </div>

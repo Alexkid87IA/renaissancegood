@@ -5,6 +5,7 @@ import ProductSidebar from '../components/product/ProductSidebar';
 import ProductImageSection from '../components/product/ProductImageSection';
 import ProductCraftSection from '../components/product/ProductCraftSection';
 import ProductBottomBar from '../components/product/ProductBottomBar';
+import ProductImageNavigation from '../components/product/ProductImageNavigation';
 
 // Interface pour les produits Shopify
 interface ShopifyProduct {
@@ -12,6 +13,7 @@ interface ShopifyProduct {
   title: string;
   handle: string;
   description: string;
+  descriptionHtml: string;
   availableForSale: boolean;
   priceRange: {
     minVariantPrice: {
@@ -46,6 +48,14 @@ interface ShopifyProduct {
   };
 }
 
+// Interface pour les variantes
+interface Variant {
+  id: string;
+  title: string;
+  price: string;
+  availableForSale: boolean;
+}
+
 // Interface pour le produit formaté utilisé par les composants
 interface Product {
   id: string;
@@ -62,7 +72,9 @@ interface Product {
     temple: string;
   };
   description: string;
+  descriptionHtml?: string;
   images: string[];
+  variants: Variant[];
 }
 
 export default function ProductPage() {
@@ -99,10 +111,16 @@ export default function ProductPage() {
           return;
         }
 
-        // Extraire les variantes (couleurs) disponibles
-        const colors = shopifyProduct.variants.edges.map(edge => ({
-          name: edge.node.title
+        // Extraire les variantes avec leurs IDs Shopify
+        const variants: Variant[] = shopifyProduct.variants.edges.map(edge => ({
+          id: edge.node.id,
+          title: edge.node.title,
+          price: `€${parseFloat(edge.node.priceV2.amount).toFixed(2)}`,
+          availableForSale: edge.node.availableForSale
         }));
+
+        // Extraire les noms pour l'affichage (couleurs/variantes)
+        const colors = variants.map(v => ({ name: v.title }));
 
         // Extraire les images
         const images = shopifyProduct.images.edges.map(edge => edge.node.url);
@@ -112,7 +130,7 @@ export default function ProductPage() {
           id: shopifyProduct.id,
           name: shopifyProduct.title,
           collection: 'OPTICAL', // Par défaut - peut être enrichi avec des tags
-          badge: undefined, // Peut être enrichi avec des metafields
+          badge: 'NEW RELEASE', // Par défaut - peut être enrichi avec des metafields
           price: `€${parseFloat(shopifyProduct.priceRange.minVariantPrice.amount).toFixed(2)}`,
           frame: colors[0]?.name || 'Default',
           lens: 'Clear Lens', // Par défaut - peut être enrichi
@@ -123,7 +141,9 @@ export default function ProductPage() {
             temple: '145mm'
           },
           description: shopifyProduct.description || 'Découvrez ce modèle unique de la collection Renaissance.',
-          images: images
+          descriptionHtml: shopifyProduct.descriptionHtml || shopifyProduct.description,
+          images: images,
+          variants: variants
         };
 
         setProduct(formattedProduct);
@@ -173,7 +193,7 @@ export default function ProductPage() {
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="relative flex pb-64">
+      <div className="relative flex pb-24">
         {/* Fixed Sidebar */}
         <ProductSidebar
           product={product}
@@ -181,40 +201,57 @@ export default function ProductPage() {
           onColorChange={setSelectedColorIndex}
         />
 
+        {/* Image Navigation avec Thumbnails */}
+        {product.images && product.images.length > 0 && (
+          <ProductImageNavigation 
+            images={product.images} 
+            productName={product.name}
+          />
+        )}
+
         {/* Scrolling Content */}
         <div className="flex-1">
           {/* Afficher les images du produit */}
           {product.images && product.images.length > 0 ? (
             <>
               {product.images.map((imageUrl, index) => (
-                <ProductImageSection
+                <div 
                   key={index}
-                  imageUrl={imageUrl}
-                  alt={`${product.name} - vue ${index + 1}`}
-                  backgroundColor={
-                    index % 3 === 0 ? 'bg-neutral-50' : 
-                    index % 3 === 1 ? 'bg-white' : 
-                    'bg-neutral-100'
-                  }
-                  zIndex={10 + index * 10}
-                />
+                  data-image-section
+                  data-image-index={index}
+                >
+                  <ProductImageSection
+                    imageUrl={imageUrl}
+                    alt={`${product.name} - vue ${index + 1}`}
+                    backgroundColor={
+                      index % 3 === 0 ? 'bg-neutral-50' : 
+                      index % 3 === 1 ? 'bg-white' : 
+                      'bg-neutral-100'
+                    }
+                    zIndex={10 + index * 10}
+                  />
+                </div>
               ))}
             </>
           ) : (
             // Images par défaut si pas d'images disponibles
             <>
-              <ProductImageSection
-                imageUrl="https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt="Hero view"
-                backgroundColor="bg-neutral-50"
-                zIndex={10}
-              />
-              <ProductImageSection
-                imageUrl="https://images.pexels.com/photos/947885/pexels-photo-947885.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt="Front view"
-                backgroundColor="bg-white"
-                zIndex={20}
-              />
+              <div data-image-section data-image-index={0}>
+                <ProductImageSection
+                  imageUrl="https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  alt="Hero view"
+                  backgroundColor="bg-neutral-50"
+                  zIndex={10}
+                />
+              </div>
+              <div data-image-section data-image-index={1}>
+                <ProductImageSection
+                  imageUrl="https://images.pexels.com/photos/947885/pexels-photo-947885.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  alt="Front view"
+                  backgroundColor="bg-white"
+                  zIndex={20}
+                />
+              </div>
             </>
           )}
 

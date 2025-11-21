@@ -3,11 +3,18 @@ import { useState } from 'react';
 import { Minus } from 'lucide-react';
 import { useCart } from '../../contexts/CartContext';
 
+interface Variant {
+  id: string;
+  title: string;
+  price: string;
+  availableForSale: boolean;
+}
+
 interface Product {
   id: string;
   name: string;
   collection: string;
-  badge: string;
+  badge?: string;
   price: string;
   frame: string;
   lens: string;
@@ -18,6 +25,8 @@ interface Product {
     temple: string;
   };
   description: string;
+  descriptionHtml?: string;
+  variants: Variant[];
 }
 
 interface ProductSidebarProps {
@@ -28,25 +37,25 @@ interface ProductSidebarProps {
 
 export default function ProductSidebar({ product, selectedColorIndex, onColorChange }: ProductSidebarProps) {
   const [showDimensions, setShowDimensions] = useState(false);
-  const [showDescription, setShowDescription] = useState(false);
+  const [showDescription, setShowDescription] = useState(true);
   const [addedToCart, setAddedToCart] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, isLoading } = useCart();
 
-  const handleAddToCart = () => {
-    addToCart({
-      product_id: product.id,
-      product_name: product.name,
-      product_collection: product.collection,
-      selected_frame: product.frame,
-      selected_lens: product.lens,
-      selected_color: product.colors[selectedColorIndex].name,
-      color_index: selectedColorIndex,
-      price: product.price,
-      image_url: 'https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    });
+  const handleAddToCart = async () => {
+    const selectedVariant = product.variants[selectedColorIndex];
+    
+    if (!selectedVariant || !selectedVariant.availableForSale) {
+      alert('Ce produit n\'est pas disponible');
+      return;
+    }
 
-    setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2000);
+    try {
+      await addToCart(selectedVariant.id);
+      setAddedToCart(true);
+      setTimeout(() => setAddedToCart(false), 2000);
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout au panier:', error);
+    }
   };
 
   return (
@@ -54,20 +63,19 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
       <div className="p-8 laptop:p-10 xl:p-12">
         {/* Product Header */}
         <div className="mb-10">
-          <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text/50 uppercase mb-3">
-            {product.collection}
-          </p>
           <h1 className="font-display text-4xl laptop:text-5xl xl:text-6xl font-bold text-dark-text mb-4 leading-[0.95]">
             {product.name}
           </h1>
-          <div className="inline-block border border-dark-text px-3 py-1.5">
-            <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text">
-              {product.badge}
-            </span>
-          </div>
+          {product.badge && (
+            <div className="inline-block border border-dark-text px-3 py-1.5">
+              <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text">
+                {product.badge}
+              </span>
+            </div>
+          )}
         </div>
 
-        {/* Color Selection */}
+        {/* Color Selection - DÉPLACÉE AVANT LA DESCRIPTION */}
         <div className="mb-8 pb-8 border-b border-dark-text/10">
           <div className="flex items-center justify-between mb-4">
             <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
@@ -81,10 +89,15 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
               <button
                 key={index}
                 onClick={() => onColorChange(index)}
+                disabled={!product.variants[index]?.availableForSale}
                 className={`aspect-square border-2 rounded-sm transition-all duration-200 hover:scale-105 ${
                   selectedColorIndex === index
                     ? 'border-dark-text shadow-md'
                     : 'border-dark-text/20 hover:border-dark-text/40'
+                } ${
+                  !product.variants[index]?.availableForSale
+                    ? 'opacity-30 cursor-not-allowed'
+                    : ''
                 }`}
                 title={color.name}
               >
@@ -98,6 +111,41 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
               </button>
             ))}
           </div>
+        </div>
+
+        {/* Description - APRÈS LA SÉLECTION DE COULEUR */}
+        <div className="mb-8 pb-8 border-b border-dark-text/10">
+          <button
+            onClick={() => setShowDescription(!showDescription)}
+            className="w-full flex items-center justify-between mb-4 group"
+          >
+            <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
+              DESCRIPTION
+            </span>
+            <motion.div
+              animate={{ rotate: showDescription ? 0 : 90 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Minus className="w-4 h-4 text-dark-text" />
+            </motion.div>
+          </button>
+
+          <AnimatePresence>
+            {showDescription && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden"
+              >
+                <div 
+                  className="font-sans text-sm text-dark-text/70 leading-[1.8] space-y-4 description-content"
+                  dangerouslySetInnerHTML={{ __html: product.descriptionHtml || product.description }}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Frame & Lens Info */}
@@ -163,59 +211,58 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
           </AnimatePresence>
         </div>
 
-        {/* Description */}
-        <div className="mb-8">
-          <button
-            onClick={() => setShowDescription(!showDescription)}
-            className="w-full flex items-center justify-between mb-4 group"
-          >
-            <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
-              DESCRIPTION
-            </span>
-            <motion.div
-              animate={{ rotate: showDescription ? 0 : 90 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Minus className="w-4 h-4 text-dark-text" />
-            </motion.div>
-          </button>
-
-          <AnimatePresence>
-            {showDescription && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="overflow-hidden"
-              >
-                <p className="font-sans text-sm text-dark-text/70 leading-[1.7]">
-                  {product.description}
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
         {/* Price & Buy Button */}
         <div className="grid grid-cols-2 gap-3 pt-4">
           <div className="border border-dark-text/20 flex items-center justify-center">
             <span className="font-sans text-lg font-semibold text-dark-text">
-              {product.price}
+              {product.variants[selectedColorIndex]?.price || product.price}
             </span>
           </div>
           <button
             onClick={handleAddToCart}
+            disabled={isLoading || !product.variants[selectedColorIndex]?.availableForSale}
             className={`px-6 py-4 font-sans text-[10px] tracking-[0.3em] font-bold transition-all duration-200 ${
               addedToCart
                 ? 'bg-green-600 text-white'
                 : 'bg-dark-text text-white hover:bg-dark-text/90'
-            }`}
+            } disabled:opacity-50 disabled:cursor-not-allowed`}
           >
-            {addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER'}
+            {isLoading ? 'AJOUT...' : addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER'}
           </button>
         </div>
       </div>
+
+      {/* Style pour la description HTML */}
+      <style>{`
+        .description-content p {
+          margin-bottom: 1rem;
+        }
+        
+        .description-content p:last-child {
+          margin-bottom: 0;
+        }
+        
+        .description-content strong,
+        .description-content b {
+          font-weight: 600;
+          color: rgb(26, 26, 26);
+        }
+        
+        .description-content ul {
+          list-style-type: disc;
+          padding-left: 1.25rem;
+          margin: 0.75rem 0;
+        }
+        
+        .description-content li {
+          margin-bottom: 0.5rem;
+          line-height: 1.6;
+        }
+        
+        .description-content li strong {
+          font-weight: 600;
+        }
+      `}</style>
     </div>
   );
 }

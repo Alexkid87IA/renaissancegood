@@ -2,6 +2,38 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
+import { getProductsByCollection } from '../lib/shopify';
+
+// Interface pour les produits Shopify
+interface ShopifyProduct {
+  id: string;
+  title: string;
+  handle: string;
+  description: string;
+  priceRange: {
+    minVariantPrice: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
+  images: {
+    edges: Array<{
+      node: {
+        url: string;
+        altText: string | null;
+      };
+    }>;
+  };
+}
+
+// Interface pour les produits du menu
+interface MenuProduct {
+  name: string;
+  image: string;
+  description: string;
+  price: string;
+  handle: string;
+}
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -10,7 +42,13 @@ export default function Header() {
   const [languageOpen, setLanguageOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('FR');
   const [opticiensOpen, setOpticiensOpen] = useState(false);
-  const { cartCount } = useCart();
+  const { itemCount } = useCart();
+
+  // États pour stocker les produits des collections
+  const [versaillesCollection, setVersaillesCollection] = useState<MenuProduct[]>([]);
+  const [heritageCollection, setHeritageCollection] = useState<MenuProduct[]>([]);
+  const [isisCollection, setIsisCollection] = useState<MenuProduct[]>([]);
+  const [loadingProducts, setLoadingProducts] = useState(true);
 
   const languages = [
     { code: 'FR', label: 'Français' },
@@ -29,68 +67,64 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const versaillesCollection = [
-    {
-      name: "Versailles Or",
-      image: "https://renaissanceeyewear.fr/cdn/shop/files/Renaissance_L_50_Cc1.jpg?v=1741186050&width=2547",
-      description: "Plaqué or 24 carats",
-      price: "€1,295"
-    },
-    {
-      name: "Versailles Royale",
-      image: "https://renaissanceeyewear.fr/cdn/shop/files/XII_12_C3-2.jpg?v=1741187974&width=2423",
-      description: "Édition limitée",
-      price: "€1,495"
-    },
-    {
-      name: "Versailles Classique",
-      image: "https://renaissanceeyewear.fr/cdn/shop/files/XXXXII_42_C3-2.jpg?v=1741187118&width=2656",
-      description: "Intemporelle",
-      price: "€895"
-    }
-  ];
+  // Charger les produits depuis Shopify au montage du composant
+  useEffect(() => {
+    async function fetchAllCollections() {
+      try {
+        setLoadingProducts(true);
 
-  const isisCollection = [
-    {
-      name: "Isis Émeraude",
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&h=800&fit=crop&q=90",
-      description: "Vert profond",
-      price: "€995"
-    },
-    {
-      name: "Isis Saphir",
-      image: "https://images.unsplash.com/photo-1509695507497-903c140c43b0?w=800&h=800&fit=crop&q=90",
-      description: "Bleu nuit",
-      price: "€995"
-    },
-    {
-      name: "Isis Ambre",
-      image: "https://images.unsplash.com/photo-1580651315530-3e9369de8e19?w=800&h=800&fit=crop&q=90",
-      description: "Havane lumineux",
-      price: "€995"
-    }
-  ];
+        // Charger les 3 collections en parallèle
+        const [versaillesData, heritageData, isisData] = await Promise.all([
+          getProductsByCollection('versailles'),
+          getProductsByCollection('heritage'),
+          getProductsByCollection('isis')
+        ]);
 
-  const heritageCollection = [
-    {
-      name: "Héritage 1920",
-      image: "https://renaissanceeyewear.fr/cdn/shop/files/PhotoRoom-20240325_172853.png?v=1711630142&width=2000",
-      description: "Art Déco",
-      price: "€1,195"
-    },
-    {
-      name: "Héritage Parisien",
-      image: "https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=5760",
-      description: "Esprit Rive Gauche",
-      price: "€1,095"
-    },
-    {
-      name: "Héritage Atelier",
-      image: "https://renaissanceeyewear.fr/cdn/shop/files/PhotoRoom-20240325_173929.png?v=1711631509&width=2000",
-      description: "Fait main",
-      price: "€1,295"
+        // Transformer les produits Versailles
+        const versaillesProducts = versaillesData.slice(0, 3).map((product: ShopifyProduct) => ({
+          name: product.title,
+          image: product.images.edges[0]?.node.url || '',
+          description: product.description.substring(0, 50) || 'Édition limitée',
+          price: `€${parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0)}`,
+          handle: product.handle
+        }));
+
+        // Transformer les produits Heritage
+        const heritageProducts = heritageData.slice(0, 3).map((product: ShopifyProduct) => ({
+          name: product.title,
+          image: product.images.edges[0]?.node.url || '',
+          description: product.description.substring(0, 50) || 'Fait main',
+          price: `€${parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0)}`,
+          handle: product.handle
+        }));
+
+        // Transformer les produits Isis
+        const isisProducts = isisData.slice(0, 3).map((product: ShopifyProduct) => ({
+          name: product.title,
+          image: product.images.edges[0]?.node.url || '',
+          description: product.description.substring(0, 50) || 'Collection Isis',
+          price: `€${parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0)}`,
+          handle: product.handle
+        }));
+
+        setVersaillesCollection(versaillesProducts);
+        setHeritageCollection(heritageProducts);
+        setIsisCollection(isisProducts);
+
+      } catch (error) {
+        console.error('Erreur lors du chargement des collections:', error);
+        
+        // En cas d'erreur, utiliser des données de fallback vides
+        setVersaillesCollection([]);
+        setHeritageCollection([]);
+        setIsisCollection([]);
+      } finally {
+        setLoadingProducts(false);
+      }
     }
-  ];
+
+    fetchAllCollections();
+  }, []);
 
   return (
     <>
@@ -181,42 +215,29 @@ export default function Header() {
                       transition={{ duration: 0.2 }}
                       className="absolute top-full right-0 mt-3 bg-white shadow-xl border border-dark-text/5 overflow-hidden w-[380px] p-8"
                     >
-                      <h3 className="font-serif text-2xl text-dark-text mb-4 leading-tight">
-                        Renaissance partout<br/>en France
-                      </h3>
-                      <p className="font-sans text-dark-text/60 text-sm leading-relaxed mb-6 font-light">
-                        Nos collections sont distribuées chez plus de 200 opticiens partenaires.
-                        Essayez nos montures et bénéficiez de conseils personnalisés.
+                      <p className="font-sans text-xs tracking-wider uppercase text-dark-text/60 mb-4">
+                        Réseau de 200+ opticiens
                       </p>
-
-                      <div className="mb-6 pb-6 border-b border-bronze/15">
-                        <div className="flex items-baseline gap-2 mb-2">
-                          <span className="font-serif text-3xl text-bronze">200+</span>
-                        </div>
-                        <p className="font-sans text-dark-text/50 text-xs leading-relaxed font-light">
-                          Opticiens partenaires à votre service
-                        </p>
-                      </div>
-
-                      <motion.a
-                        href="#store-locator"
-                        whileHover={{ x: 4 }}
-                        className="inline-flex items-center gap-3 font-sans text-[10px] tracking-[0.3em] text-dark-text uppercase font-light group"
-                      >
-                        TROUVER L'OPTICIEN LE PLUS PROCHE
-                        <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
-                      </motion.a>
+                      <p className="font-serif text-2xl text-dark-text mb-6">
+                        Trouvez votre opticien Renaissance
+                      </p>
+                      <Link to="/store-locator">
+                        <button className="w-full bg-dark-text text-white py-3 font-sans text-xs tracking-widest uppercase hover:bg-bronze transition-colors">
+                          Localisateur
+                        </button>
+                      </Link>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
 
               {/* Language Selector */}
-              <div className="relative">
-                <button
-                  onClick={() => setLanguageOpen(!languageOpen)}
-                  className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase"
-                >
+              <div
+                className="relative"
+                onMouseEnter={() => setLanguageOpen(true)}
+                onMouseLeave={() => setLanguageOpen(false)}
+              >
+                <button className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase">
                   {currentLang}
                 </button>
                 <AnimatePresence>
@@ -226,7 +247,7 @@ export default function Header() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full right-0 mt-3 bg-white shadow-xl border border-dark-text/5 overflow-hidden min-w-[120px]"
+                      className="absolute top-full right-0 mt-3 bg-white shadow-xl border border-dark-text/5 overflow-hidden min-w-[140px]"
                     >
                       {languages.map((lang) => (
                         <button
@@ -235,13 +256,13 @@ export default function Header() {
                             setCurrentLang(lang.code);
                             setLanguageOpen(false);
                           }}
-                          className={`block w-full text-left px-5 py-2.5 font-sans text-[10px] tracking-[0.15em] font-light transition-colors duration-200 ${
+                          className={`w-full text-left px-5 py-3 font-sans text-xs tracking-wider transition-colors ${
                             currentLang === lang.code
-                              ? 'bg-dark-text text-white'
-                              : 'text-dark-text/70 hover:bg-beige'
+                              ? 'bg-bronze text-white'
+                              : 'text-dark-text hover:bg-beige'
                           }`}
                         >
-                          {lang.code}
+                          {lang.label}
                         </button>
                       ))}
                     </motion.div>
@@ -249,31 +270,29 @@ export default function Header() {
                 </AnimatePresence>
               </div>
 
-              {/* Icons minimalistes */}
-              <button className="w-[15px] laptop:w-[16px] xl:w-[17px] 2xl:w-[18px] h-[15px] laptop:h-[16px] xl:h-[17px] 2xl:h-[18px] flex items-center justify-center group">
-                <svg className="w-full h-full stroke-dark-text/60 group-hover:stroke-dark-text transition-colors duration-300" fill="none" strokeWidth="1.2" viewBox="0 0 24 24">
-                  <circle cx="11" cy="11" r="8"/>
-                  <path d="M21 21l-4.35-4.35"/>
+              {/* Search Icon */}
+              <button className="text-dark-text hover:text-bronze transition-colors duration-300">
+                <svg className="w-4 h-4 laptop:w-[18px] laptop:h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </button>
 
-              <Link to="/cart" className="w-[15px] laptop:w-[16px] xl:w-[17px] 2xl:w-[18px] h-[15px] laptop:h-[16px] xl:h-[17px] 2xl:h-[18px] flex items-center justify-center group relative">
-                <svg className="w-full h-full stroke-dark-text/60 group-hover:stroke-dark-text transition-colors duration-300" fill="none" strokeWidth="1.2" viewBox="0 0 24 24">
-                  <circle cx="9" cy="21" r="1"/>
-                  <circle cx="20" cy="21" r="1"/>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              {/* Cart */}
+              <Link to="/cart" className="relative text-dark-text hover:text-bronze transition-colors duration-300">
+                <svg className="w-4 h-4 laptop:w-[18px] laptop:h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
-                {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-bronze text-white text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
-                    {cartCount}
+                {itemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-bronze text-white text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                    {itemCount}
                   </span>
                 )}
               </Link>
 
-              <button className="w-[15px] laptop:w-[16px] xl:w-[17px] 2xl:w-[18px] h-[15px] laptop:h-[16px] xl:h-[17px] 2xl:h-[18px] flex items-center justify-center group">
-                <svg className="w-full h-full stroke-dark-text/60 group-hover:stroke-dark-text transition-colors duration-300" fill="none" strokeWidth="1.2" viewBox="0 0 24 24">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
+              {/* User Icon */}
+              <button className="text-dark-text hover:text-bronze transition-colors duration-300">
+                <svg className="w-4 h-4 laptop:w-[18px] laptop:h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </button>
             </div>
@@ -281,13 +300,17 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden"
+              className="lg:hidden text-dark-text focus:outline-none"
             >
-              <div className="w-5 h-4 flex flex-col justify-between">
-                <span className={`w-full h-[1px] bg-dark-text transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-[7px]' : ''}`}/>
-                <span className={`w-full h-[1px] bg-dark-text transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}/>
-                <span className={`w-full h-[1px] bg-dark-text transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`}/>
-              </div>
+              {mobileMenuOpen ? (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
@@ -312,64 +335,79 @@ export default function Header() {
               className="bg-white border-t border-dark-text/5"
             >
               <div className="max-w-[1600px] mx-auto px-8 md:px-12 lg:px-12 laptop:px-14 py-8 md:py-10 lg:py-12 laptop:py-14">
-                <div className="grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-8 lg:gap-10 laptop:gap-12 xl:gap-16">
-                  
-                  {/* 3 paires */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-6 lg:gap-8 laptop:gap-8">
-                    {versaillesCollection.map((item, index) => (
-                      <Link
-                        key={item.name}
-                        to={`/product/${item.name.toLowerCase().replace(/\s/g, '-')}`}
-                        onClick={() => setActiveMenu(null)}
-                      >
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: index * 0.08 }}
-                          className="group cursor-pointer"
-                        >
-                        <div className="aspect-video mb-5 overflow-hidden bg-beige">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                          />
-                        </div>
-                        <h3 className="font-serif text-sm tracking-[0.12em] text-dark-text mb-2 uppercase">
-                          {item.name}
-                        </h3>
-                        <p className="font-sans text-xs text-dark-text/50 mb-2.5 font-light">{item.description}</p>
-                        <p className="font-sans text-sm text-dark-text font-light">{item.price}</p>
-                        </motion.div>
-                      </Link>
-                    ))}
-                  </div>
-
-                  {/* CTA */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.25 }}
-                    className="flex flex-col justify-center lg:pl-8 lg:border-l border-bronze/15"
-                  >
-                    <h3 className="font-serif text-2xl md:text-3xl text-dark-text mb-4 md:mb-6 leading-[1.2]">
-                      La splendeur<br/>de Versailles
-                    </h3>
-                    <p className="font-sans text-dark-text/60 text-sm leading-relaxed mb-6 md:mb-10 font-light">
-                      Inspirée par l'opulence du château, chaque monture capture l'essence du luxe à la française. 
-                      Or 24 carats et finitions artisanales d'exception.
+                {loadingProducts ? (
+                  <div className="text-center py-12">
+                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-dark-text"></div>
+                    <p className="font-sans text-dark-text/60 text-xs tracking-wider uppercase mt-4">
+                      Chargement...
                     </p>
-                    <Link to="/collections/versailles">
-                      <motion.button
-                        whileHover={{ x: 4 }}
-                        className="inline-flex items-center gap-3 font-sans text-[10px] tracking-[0.3em] text-dark-text uppercase font-light group"
-                      >
-                        EXPLORER LA COLLECTION
-                        <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
-                      </motion.button>
-                    </Link>
-                  </motion.div>
-                </div>
+                  </div>
+                ) : versaillesCollection.length === 0 ? (
+                  <div className="text-center py-12">
+                    <p className="font-sans text-dark-text/60 text-sm tracking-wider uppercase">
+                      Aucun produit disponible
+                    </p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-8 lg:gap-10 laptop:gap-12 xl:gap-16">
+                    
+                    {/* 3 paires */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-6 lg:gap-8 laptop:gap-8">
+                      {versaillesCollection.map((item, index) => (
+                        <Link
+                          key={item.handle}
+                          to={`/product/${item.handle}`}
+                          onClick={() => setActiveMenu(null)}
+                        >
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.08 }}
+                            className="group cursor-pointer"
+                          >
+                          <div className="aspect-video mb-5 overflow-hidden bg-beige">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                          </div>
+                          <h3 className="font-serif text-sm tracking-[0.12em] text-dark-text mb-2 uppercase">
+                            {item.name}
+                          </h3>
+                          <p className="font-sans text-xs text-dark-text/50 mb-2.5 font-light">{item.description}</p>
+                          <p className="font-sans text-sm text-dark-text font-light">{item.price}</p>
+                          </motion.div>
+                        </Link>
+                      ))}
+                    </div>
+
+                    {/* CTA */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.25 }}
+                      className="flex flex-col justify-center lg:pl-8 lg:border-l border-bronze/15"
+                    >
+                      <h3 className="font-serif text-2xl md:text-3xl text-dark-text mb-4 md:mb-6 leading-[1.2]">
+                        La splendeur<br/>de Versailles
+                      </h3>
+                      <p className="font-sans text-dark-text/60 text-sm leading-relaxed mb-6 md:mb-10 font-light">
+                        Inspirée par l'opulence du château, chaque monture capture l'essence du luxe à la française. 
+                        Or 24 carats et finitions artisanales d'exception.
+                      </p>
+                      <Link to="/collections/versailles">
+                        <motion.button
+                          whileHover={{ x: 4 }}
+                          className="inline-flex items-center gap-3 font-sans text-[10px] tracking-[0.3em] text-dark-text uppercase font-light group"
+                        >
+                          EXPLORER LA COLLECTION
+                          <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
+                        </motion.button>
+                      </Link>
+                    </motion.div>
+                  </div>
+                )}
               </div>
             </motion.div>
           </motion.div>
@@ -428,64 +466,79 @@ export default function Header() {
               className="bg-white border-t border-dark-text/5"
             >
               <div className="max-w-[1600px] mx-auto px-8 md:px-12 lg:px-12 laptop:px-14 py-8 md:py-10 lg:py-12 laptop:py-14">
-                <div className="grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-8 lg:gap-10 laptop:gap-12 xl:gap-16">
-                  
-                  {/* 3 paires */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-6 lg:gap-8 laptop:gap-8">
-                    {heritageCollection.map((item, index) => (
-                      <Link
-                        key={item.name}
-                        to={`/product/${item.name.toLowerCase().replace(/\s/g, '-')}`}
-                        onClick={() => setActiveMenu(null)}
-                      >
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: index * 0.08 }}
-                          className="group cursor-pointer"
-                        >
-                        <div className="aspect-video mb-5 overflow-hidden bg-beige">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                          />
-                        </div>
-                        <h3 className="font-serif text-sm tracking-[0.12em] text-dark-text mb-2 uppercase">
-                          {item.name}
-                        </h3>
-                        <p className="font-sans text-xs text-dark-text/50 mb-2.5 font-light">{item.description}</p>
-                        <p className="font-sans text-sm text-dark-text font-light">{item.price}</p>
-                        </motion.div>
-                      </Link>
-                    ))}
-                  </div>
-
-                  {/* CTA */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.25 }}
-                    className="flex flex-col justify-center lg:pl-8 lg:border-l border-bronze/15"
-                  >
-                    <h3 className="font-serif text-2xl md:text-3xl text-dark-text mb-4 md:mb-6 leading-[1.2]">
-                      Un siècle<br/>de savoir-faire
-                    </h3>
-                    <p className="font-sans text-dark-text/60 text-sm leading-relaxed mb-6 md:mb-10 font-light">
-                      Chaque monture perpétue l'excellence artisanale parisienne.
-                      Des créations intemporelles façonnées dans nos ateliers.
+                {loadingProducts ? (
+                  <div className="text-center py-12">
+                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-dark-text"></div>
+                    <p className="font-sans text-dark-text/60 text-xs tracking-wider uppercase mt-4">
+                      Chargement...
                     </p>
-                    <Link to="/collections/heritage">
-                      <motion.button
-                        whileHover={{ x: 4 }}
-                        className="inline-flex items-center gap-3 font-sans text-[10px] tracking-[0.3em] text-dark-text uppercase font-light group"
-                      >
-                        EXPLORER LA COLLECTION
-                        <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
-                      </motion.button>
-                    </Link>
-                  </motion.div>
-                </div>
+                  </div>
+                ) : heritageCollection.length === 0 ? (
+                  <div className="text-center py-12">
+                    <p className="font-sans text-dark-text/60 text-sm tracking-wider uppercase">
+                      Aucun produit disponible
+                    </p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-8 lg:gap-10 laptop:gap-12 xl:gap-16">
+                    
+                    {/* 3 paires */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-6 lg:gap-8 laptop:gap-8">
+                      {heritageCollection.map((item, index) => (
+                        <Link
+                          key={item.handle}
+                          to={`/product/${item.handle}`}
+                          onClick={() => setActiveMenu(null)}
+                        >
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.08 }}
+                            className="group cursor-pointer"
+                          >
+                          <div className="aspect-video mb-5 overflow-hidden bg-beige">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                          </div>
+                          <h3 className="font-serif text-sm tracking-[0.12em] text-dark-text mb-2 uppercase">
+                            {item.name}
+                          </h3>
+                          <p className="font-sans text-xs text-dark-text/50 mb-2.5 font-light">{item.description}</p>
+                          <p className="font-sans text-sm text-dark-text font-light">{item.price}</p>
+                          </motion.div>
+                        </Link>
+                      ))}
+                    </div>
+
+                    {/* CTA */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.25 }}
+                      className="flex flex-col justify-center lg:pl-8 lg:border-l border-bronze/15"
+                    >
+                      <h3 className="font-serif text-2xl md:text-3xl text-dark-text mb-4 md:mb-6 leading-[1.2]">
+                        Un siècle<br/>de savoir-faire
+                      </h3>
+                      <p className="font-sans text-dark-text/60 text-sm leading-relaxed mb-6 md:mb-10 font-light">
+                        Chaque monture perpétue l'excellence artisanale parisienne.
+                        Des créations intemporelles façonnées dans nos ateliers.
+                      </p>
+                      <Link to="/collections/heritage">
+                        <motion.button
+                          whileHover={{ x: 4 }}
+                          className="inline-flex items-center gap-3 font-sans text-[10px] tracking-[0.3em] text-dark-text uppercase font-light group"
+                        >
+                          EXPLORER LA COLLECTION
+                          <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
+                        </motion.button>
+                      </Link>
+                    </motion.div>
+                  </div>
+                )}
               </div>
             </motion.div>
           </motion.div>
