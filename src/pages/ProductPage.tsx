@@ -6,6 +6,7 @@ import ProductImageSection from '../components/product/ProductImageSection';
 import ProductCraftSection from '../components/product/ProductCraftSection';
 import ProductBottomBar from '../components/product/ProductBottomBar';
 import ProductImageNavigation from '../components/product/ProductImageNavigation';
+import RelatedProducts from '../components/product/RelatedProducts';
 
 // Interface pour les produits Shopify
 interface ShopifyProduct {
@@ -193,6 +194,7 @@ export default function ProductPage() {
 
   return (
     <div className="bg-white min-h-screen">
+      {/* Structure principale avec sidebar fixe */}
       <div className="relative flex pb-24">
         {/* Fixed Sidebar */}
         <ProductSidebar
@@ -258,6 +260,9 @@ export default function ProductPage() {
           <ProductCraftSection />
         </div>
       </div>
+
+      {/* Section "Vous aimerez peut-être" - PLEINE LARGEUR (après la sidebar) */}
+      <RelatedProducts currentProductId={product.id} limit={4} />
 
       <ProductBottomBar product={product} selectedColorIndex={selectedColorIndex} />
     </div>
