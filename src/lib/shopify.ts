@@ -63,6 +63,9 @@ export async function getProducts() {
   const { data } = await response.json();
   
   // Filtrer seulement les produits disponibles à la vente
+  // Note : Les produits archivés dans Shopify doivent être dépubliés du canal "Headless"
+  // pour ne pas apparaître ici. Si un produit archivé apparaît, vérifier dans Shopify
+  // que le canal "Headless" ou "Storefront API" est bien décoché.
   const products = data.products.edges
     .map((edge: any) => edge.node)
     .filter((product: any) => product.availableForSale);
