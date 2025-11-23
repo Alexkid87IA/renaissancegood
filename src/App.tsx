@@ -11,11 +11,19 @@ import VersaillesCollectionPage from './pages/VersaillesCollectionPage';
 import ProductPage from './pages/ProductPage';
 import HistoirePage from './pages/HistoirePage';
 import CartPage from './pages/CartPage';
-import CheckoutPage from './pages/CheckoutPage';
 import ShopPage from './pages/ShopPage';
 import BlogPage from './pages/BlogPage';
 import BlogArticlePage from './pages/BlogArticlePage';
 import StoreLocatorPage from './pages/StoreLocatorPage';
+
+// Pages légales
+import ConfidentialitePage from './pages/ConfidentialitePage';
+import RemboursementPage from './pages/RemboursementPage';
+import ExpeditionPage from './pages/ExpeditionPage';
+import ConditionsUtilisationPage from './pages/ConditionsUtilisationPage';
+import CookiesPage from './pages/CookiesPage';
+import CGVPage from './pages/CGVPage';
+import MentionsLegalesPage from './pages/MentionsLegalesPage';
 
 function AppContent() {
   const location = useLocation();
@@ -28,6 +36,7 @@ function AppContent() {
         <Header />
         <main className="relative">
           <Routes>
+            {/* Pages principales */}
             <Route path="/" element={<HomePage />} />
             <Route path="/collections" element={<CollectionsPage />} />
             <Route path="/collections/heritage" element={<HeritageCollectionPage />} />
@@ -35,12 +44,20 @@ function AppContent() {
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/histoire" element={<HistoirePage />} />
             <Route path="/cart" element={<CartPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:handle" element={<BlogArticlePage />} />
             <Route path="/opticiens" element={<StoreLocatorPage />} />
             <Route path="/store-locator" element={<StoreLocatorPage />} />
+            
+            {/* Pages légales */}
+            <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
+            <Route path="/confidentialite" element={<ConfidentialitePage />} />
+            <Route path="/cgv" element={<CGVPage />} />
+            <Route path="/cookies" element={<CookiesPage />} />
+            <Route path="/remboursement" element={<RemboursementPage />} />
+            <Route path="/expedition" element={<ExpeditionPage />} />
+            <Route path="/conditions-utilisation" element={<ConditionsUtilisationPage />} />
           </Routes>
         </main>
         <div className={`relative z-10 ${isProductPage ? 'ml-0 lg:ml-[340px] laptop:ml-[380px] xl:ml-[480px]' : ''}`}>

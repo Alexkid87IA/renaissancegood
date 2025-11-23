@@ -316,8 +316,17 @@ export default function Footer() {
               <Link to="/cgv" className="font-sans text-dark-text/50 hover:text-bronze text-xs transition-colors font-light tracking-wider">
                 CGV
               </Link>
+              <Link to="/remboursement" className="font-sans text-dark-text/50 hover:text-bronze text-xs transition-colors font-light tracking-wider">
+                Retours
+              </Link>
+              <Link to="/expedition" className="font-sans text-dark-text/50 hover:text-bronze text-xs transition-colors font-light tracking-wider">
+                Expédition
+              </Link>
               <Link to="/cookies" className="font-sans text-dark-text/50 hover:text-bronze text-xs transition-colors font-light tracking-wider">
                 Cookies
+              </Link>
+              <Link to="/conditions-utilisation" className="font-sans text-dark-text/50 hover:text-bronze text-xs transition-colors font-light tracking-wider">
+                Conditions
               </Link>
             </motion.div>
           </div>
