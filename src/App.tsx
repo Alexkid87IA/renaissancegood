@@ -11,6 +11,7 @@ import VersaillesCollectionPage from './pages/VersaillesCollectionPage';
 import ProductPage from './pages/ProductPage';
 import HistoirePage from './pages/HistoirePage';
 import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
 import ShopPage from './pages/ShopPage';
 import BlogPage from './pages/BlogPage';
 import BlogArticlePage from './pages/BlogArticlePage';
@@ -34,6 +35,7 @@ function AppContent() {
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/histoire" element={<HistoirePage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:handle" element={<BlogArticlePage />} />

@@ -240,13 +240,14 @@ export default function CartDrawer() {
 
                 {/* Boutons d'action */}
                 <div className="space-y-3">
-                  {/* Bouton Checkout */}
-                  <a
-                    href={cart.checkoutUrl}
+                  {/* Bouton Checkout - MODIFICATION ICI */}
+                  <Link
+                    to="/checkout"
+                    onClick={closeCart}
                     className="block w-full bg-dark-text text-white text-center font-sans text-[10px] tracking-[0.3em] uppercase py-4 hover:bg-bronze transition-all duration-300"
                   >
                     FINALISER LA COMMANDE
-                  </a>
+                  </Link>
 
                   {/* Bouton Voir le panier complet */}
                   <Link

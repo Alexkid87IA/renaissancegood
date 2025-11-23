@@ -221,14 +221,13 @@ export default function CartPage() {
                   </span>
                 </div>
 
-                {cart && (
-                  <a
-                    href={cart.checkoutUrl}
-                    className="block w-full bg-dark-text text-white py-5 px-6 text-center font-sans text-[10px] tracking-[0.3em] font-bold hover:bg-bronze transition-all duration-300 mb-4"
-                  >
-                    FINALISER LA COMMANDE
-                  </a>
-                )}
+                {/* MODIFICATION ICI : Bouton redirige vers /checkout au lieu de cart.checkoutUrl */}
+                <Link
+                  to="/checkout"
+                  className="block w-full bg-dark-text text-white py-5 px-6 text-center font-sans text-[10px] tracking-[0.3em] font-bold hover:bg-bronze transition-all duration-300 mb-4"
+                >
+                  FINALISER LA COMMANDE
+                </Link>
 
                 <Link
                   to="/collections/heritage"
@@ -365,9 +364,7 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
             className="relative group/image flex-1 min-h-[300px] lg:min-h-[400px] flex items-center justify-center overflow-hidden"
           >
             {loadingImages ? (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-8 h-8 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
-              </div>
+              <div className="w-8 h-8 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
             ) : (
               <AnimatePresence mode="wait">
                 {allProductImages.map((img, i) => i === currentImageIndex && (
