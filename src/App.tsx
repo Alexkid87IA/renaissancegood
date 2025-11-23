@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import MobileWarning from './components/MobileWarning';
 import CartDrawer from './components/CartDrawer';
+import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
 import CollectionsPage from './pages/CollectionsPage';
 import HeritageCollectionPage from './pages/HeritageCollectionPage';
@@ -71,6 +72,7 @@ function AppContent() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <CartProvider>
         <AppContent />
         <CartDrawer />
