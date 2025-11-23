@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+
+// Import des nouvelles sections redesignées
 import HeroHistoireSection from '../components/histoire/HeroHistoireSection';
 import FondateursSection from '../components/histoire/FondateursSection';
 import SavoirFaireSection from '../components/histoire/SavoirFaireSection';
@@ -9,12 +11,13 @@ import SignatureSection from '../components/histoire/SignatureSection';
 import EngagementSection from '../components/histoire/EngagementSection';
 
 export default function HistoirePage() {
+  // Scroll to top au chargement
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="bg-beige">
+    <div className="bg-beige relative">
       <HeroHistoireSection />
       <FondateursSection />
       <SavoirFaireSection />
@@ -23,6 +26,7 @@ export default function HistoirePage() {
       <CollectionsThemesSection />
       <SignatureSection />
       <EngagementSection />
+      <div className="h-screen bg-beige" />
     </div>
   );
 }

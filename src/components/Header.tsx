@@ -143,33 +143,33 @@ export default function Header() {
             
             {/* LEFT NAVIGATION */}
             <nav className="hidden lg:flex items-center gap-3 laptop:gap-4 xl:gap-6 2xl:gap-10 flex-1">
-              <a
-                href="#heritage"
+              <Link
+                to="/collections/heritage"
                 onMouseEnter={() => setActiveMenu('heritage')}
                 className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase"
               >
                 HÉRITAGE
-              </a>
-              <a
-                href="#versailles"
+              </Link>
+              <Link
+                to="/collections/versailles"
                 onMouseEnter={() => setActiveMenu('versailles')}
                 className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase"
               >
                 VERSAILLES
-              </a>
-              <a
-                href="#isis"
+              </Link>
+              <Link
+                to="/collections/isis"
                 onMouseEnter={() => setActiveMenu('isis')}
                 className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase"
               >
                 ISIS
-              </a>
-              <a
-                href="#histoire"
+              </Link>
+              <Link
+                to="/histoire"
                 className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase"
               >
                 HISTOIRE
-              </a>
+              </Link>
             </nav>
 
             {/* CENTER LOGO */}
@@ -557,18 +557,18 @@ export default function Header() {
           >
             <div className="flex flex-col h-full pt-20 sm:pt-24 px-6 sm:px-8 pb-8">
               <nav className="flex flex-col space-y-5 sm:space-y-6">
-                <a href="#heritage" onClick={() => setMobileMenuOpen(false)} className="font-serif text-lg sm:text-xl text-dark-text uppercase">
+                <Link to="/collections/heritage" onClick={() => setMobileMenuOpen(false)} className="font-serif text-lg sm:text-xl text-dark-text uppercase">
                   Héritage
-                </a>
-                <a href="#versailles" onClick={() => setMobileMenuOpen(false)} className="font-serif text-lg sm:text-xl text-dark-text uppercase">
+                </Link>
+                <Link to="/collections/versailles" onClick={() => setMobileMenuOpen(false)} className="font-serif text-lg sm:text-xl text-dark-text uppercase">
                   Versailles
-                </a>
-                <a href="#isis" onClick={() => setMobileMenuOpen(false)} className="font-serif text-lg sm:text-xl text-dark-text uppercase">
+                </Link>
+                <Link to="/collections/isis" onClick={() => setMobileMenuOpen(false)} className="font-serif text-lg sm:text-xl text-dark-text uppercase">
                   Isis
-                </a>
-                <a href="#histoire" onClick={() => setMobileMenuOpen(false)} className="font-serif text-lg sm:text-xl text-dark-text uppercase">
+                </Link>
+                <Link to="/histoire" onClick={() => setMobileMenuOpen(false)} className="font-serif text-lg sm:text-xl text-dark-text uppercase">
                   Histoire
-                </a>
+                </Link>
               </nav>
             </div>
           </motion.div>
