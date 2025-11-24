@@ -1,25 +1,24 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { Crown, Sparkles, Leaf, Globe } from 'lucide-react';
 
 const pillars = [
   {
-    icon: Crown,
+    number: '01',
     title: 'Héritage Historique',
     description: 'Inspirées des symboles de la royauté française, nos collections célèbrent l\'excellence d\'un patrimoine unique.'
   },
   {
-    icon: Sparkles,
+    number: '02',
     title: 'Savoir-Faire Franco-Coréen',
     description: 'L\'alliance du design parisien et de la précision coréenne pour une qualité d\'exécution irréprochable.'
   },
   {
-    icon: Globe,
+    number: '03',
     title: 'Matériaux d\'Exception',
     description: 'Acétate Mazzucchelli, acier inoxydable haut grade et finitions premium pour des lunettes qui traversent le temps.'
   },
   {
-    icon: Leaf,
+    number: '04',
     title: 'Engagement Durable',
     description: 'Contre la fast fashion, nous créons des pièces pensées pour durer, avec transparence et responsabilité.'
   }
@@ -72,7 +71,7 @@ export default function ExcellenceSection() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1 mb-12">
               {pillars.map((pillar, index) => (
                 <motion.div
                   key={pillar.title}
@@ -80,24 +79,23 @@ export default function ExcellenceSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group"
+                  className="group relative overflow-hidden"
                 >
-                  <div className="relative h-full">
-                    <div className="absolute inset-0 border border-dark-text/10 group-hover:border-bronze/30 transition-colors duration-500" />
-                    <div className="relative p-8 md:p-10 flex flex-col h-full">
-                      <div className="mb-6">
-                        <div className="w-12 h-12 flex items-center justify-center mb-6 relative">
-                          <div className="absolute inset-0 bg-bronze/5 rotate-45 group-hover:bg-bronze/10 transition-colors duration-500" />
-                          <pillar.icon className="w-6 h-6 text-bronze relative z-10" strokeWidth={1.5} />
-                        </div>
-                        <h3 className="font-sans text-dark-text text-sm tracking-[0.2em] uppercase font-bold mb-4 leading-tight">
-                          {pillar.title}
-                        </h3>
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-beige/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                  <div className="relative p-10 md:p-12 lg:p-14 flex flex-col h-full border-r border-dark-text/5 last:border-r-0">
+                    <div className="mb-8">
+                      <div className="font-display text-7xl md:text-8xl text-bronze/10 mb-6 leading-none group-hover:text-bronze/20 transition-colors duration-700">
+                        {pillar.number}
                       </div>
-                      <p className="font-sans text-dark-text/70 text-sm leading-[1.7] font-light">
-                        {pillar.description}
-                      </p>
+                      <div className="w-12 h-px bg-bronze/30 mb-6 group-hover:w-24 transition-all duration-700" />
+                      <h3 className="font-sans text-dark-text text-[11px] tracking-[0.25em] uppercase font-bold mb-4 leading-tight">
+                        {pillar.title}
+                      </h3>
                     </div>
+                    <p className="font-sans text-dark-text/60 text-sm leading-[1.8] font-light">
+                      {pillar.description}
+                    </p>
                   </div>
                 </motion.div>
               ))}
