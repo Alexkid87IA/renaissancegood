@@ -17,7 +17,7 @@ import BlogPage from './pages/BlogPage';
 import BlogArticlePage from './pages/BlogArticlePage';
 import StoreLocatorPage from './pages/StoreLocatorPage';
 
-// Pages légales
+// Pages légales et service client
 import ConfidentialitePage from './pages/ConfidentialitePage';
 import RemboursementPage from './pages/RemboursementPage';
 import ExpeditionPage from './pages/ExpeditionPage';
@@ -25,6 +25,13 @@ import ConditionsUtilisationPage from './pages/ConditionsUtilisationPage';
 import CookiesPage from './pages/CookiesPage';
 import CGVPage from './pages/CGVPage';
 import MentionsLegalesPage from './pages/MentionsLegalesPage';
+import FAQPage from './pages/FAQPage';
+import ContactPage from './pages/ContactPage';
+import GarantiePage from './pages/GarantiePage';
+import GuideTaillesPage from './pages/GuideTaillesPage';
+import ManifestePage from './pages/ManifestePage';
+import SavoirFairePage from './pages/SavoirFairePage';
+import SymbolesPage from './pages/SymbolesPage';
 
 function AppContent() {
   const location = useLocation();
@@ -51,6 +58,19 @@ function AppContent() {
             <Route path="/opticiens" element={<StoreLocatorPage />} />
             <Route path="/store-locator" element={<StoreLocatorPage />} />
             
+            {/* Pages service client */}
+            <Route path="/faq" element={<FAQPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/garantie" element={<GarantiePage />} />
+            <Route path="/guide-tailles" element={<GuideTaillesPage />} />
+            <Route path="/livraison" element={<ExpeditionPage />} />
+
+            {/* Pages magazine/histoire */}
+            <Route path="/manifeste" element={<ManifestePage />} />
+            <Route path="/manifesto" element={<ManifestePage />} />
+            <Route path="/savoir-faire" element={<SavoirFairePage />} />
+            <Route path="/symboles" element={<SymbolesPage />} />
+
             {/* Pages légales */}
             <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
             <Route path="/confidentialite" element={<ConfidentialitePage />} />
