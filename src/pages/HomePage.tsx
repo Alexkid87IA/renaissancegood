@@ -1,5 +1,4 @@
 import HeroSection from '../components/HeroSection';
-import ExcellenceSection from '../components/ExcellenceSection';
 import CollectionHeritage from '../components/CollectionHeritage';
 import CollectionVersailles from '../components/CollectionVersailles';
 import CollectionIsis from '../components/CollectionIsis';
@@ -13,7 +12,6 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <ExcellenceSection />
       <CollectionHeritage />
       <CollectionVersailles />
       <CollectionIsis />
