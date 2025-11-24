@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getProducts } from '../lib/shopify';
 
@@ -25,22 +25,6 @@ interface Product {
   tags?: string[];
 }
 
-// Générer une position de grille ÉQUILIBRÉE (pas trop grand, pas trop petit)
-function getGridPosition(index: number): string {
-  const patterns = [
-    'col-span-8 row-span-2',  // Grand horizontal (66%)
-    'col-span-4 row-span-2',  // Moyen vertical (33%)
-    'col-span-6 row-span-1',  // Moyen horizontal (50%)
-    'col-span-6 row-span-1',  // Moyen horizontal (50%)
-    'col-span-5 row-span-2',  // Moyen+ (42%)
-    'col-span-7 row-span-2',  // Large vertical (58%)
-    'col-span-4 row-span-1',  // Petit horizontal (33%)
-    'col-span-8 row-span-1',  // Large horizontal (66%)
-    'col-span-6 row-span-2',  // Moyen carré (50%)
-    'col-span-6 row-span-2',  // Moyen carré (50%)
-  ];
-  return patterns[index % patterns.length];
-}
 
 // Composant FilterSelect pour les filtres
 function FilterSelect({
@@ -81,116 +65,100 @@ function FilterSelect({
   );
 }
 
-// Composant ProductCard avec le nouveau design amélioré
+// Composant ProductCard - Design cohérent avec les pages collections
 function ProductCard({ product, index }: { product: Product; index: number }) {
-  const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Extraire toutes les images du produit
   const productImages = product.images.edges.map(edge => edge.node.url);
   const currentImage = productImages[currentImageIndex] || productImages[0];
-  
-  // Prix formaté
   const price = parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0);
-  
-  // Catégorie (tu peux utiliser les tags Shopify)
-  const category = product.tags?.[0] || 'OPTICAL | ESSENTIAL';
-  
-  // Position dans la grille (ÉQUILIBRÉE)
-  const gridPosition = getGridPosition(index);
+  const category = product.tags?.includes('Solaire') ? 'SOLAIRE' : 'OPTICAL';
 
   return (
     <motion.div
-      className={`group relative cursor-pointer bg-white border border-dark-text/10 overflow-hidden ${gridPosition}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6 }}
-      onClick={() => navigate(`/product/${product.handle}`)}
+      className="group relative bg-white overflow-hidden col-span-full sm:col-span-1 md:col-span-6"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5 }}
     >
-      <div className="relative w-full h-full">
-        {/* Image du produit */}
-        <motion.img
-          key={currentImageIndex}
-          src={currentImage}
-          alt={product.title}
-          className="w-full h-full object-cover"
-          initial={{ scale: 1 }}
-          animate={{ scale: isHovered ? 1.05 : 1 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        />
+      <Link
+        to={`/product/${product.handle}`}
+        className="block cursor-pointer"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden bg-beige/20">
+          <motion.img
+            key={currentImageIndex}
+            src={currentImage}
+            alt={product.title}
+            className="w-full h-full object-cover"
+            initial={{ scale: 1 }}
+            animate={{ scale: isHovered ? 1.05 : 1 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          />
 
-        {/* Badge "NEW" discret */}
-        {index < 2 && (
-          <div className="absolute top-4 left-4 bg-dark-text/90 backdrop-blur-sm px-3 py-1.5 z-10">
-            <span className="font-sans text-[7px] tracking-[0.3em] font-bold text-white">
-              NEW RELEASE
-            </span>
-          </div>
-        )}
-
-        {/* Miniatures - Toujours visibles en haut à gauche */}
-        {productImages.length > 1 && (
-          <div className="absolute top-4 left-4 flex gap-2 z-20">
-            {productImages.map((imgUrl, imgIndex) => (
-              <button
-                key={imgIndex}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setCurrentImageIndex(imgIndex);
-                }}
-                aria-label={`View image ${imgIndex + 1}`}
-                className={`w-10 h-10 border-2 transition-all overflow-hidden backdrop-blur-sm ${
-                  currentImageIndex === imgIndex
-                    ? 'border-white ring-2 ring-white/50'
-                    : 'border-white/60 hover:border-white opacity-70 hover:opacity-100'
-                }`}
-              >
-                <img
-                  src={imgUrl}
-                  alt={`View ${imgIndex + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </button>
-            ))}
-          </div>
-        )}
-
-        {/* Overlay au hover - En bas uniquement */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-          transition={{ duration: 0.3 }}
-          className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/80 to-transparent p-6 pt-12 z-10"
-        >
-          <div className="space-y-2">
-            <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-white/70 uppercase">
-              {category}
-            </p>
-            <h3 className="font-display text-xl laptop:text-2xl font-light text-white tracking-tight leading-tight">
-              {product.title}
-            </h3>
-            <div className="flex items-center justify-between pt-2">
-              <p className="font-sans text-lg text-white tracking-wide">
-                €{price}
-              </p>
-              <span className="font-sans text-[9px] tracking-[0.3em] uppercase text-white border border-white/40 px-4 py-2 hover:bg-white hover:text-dark-text transition-colors">
-                Voir le détail
+          {index < 2 && (
+            <div className="absolute top-4 left-4 bg-dark-text px-4 py-2">
+              <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-white">
+                NEW RELEASE
               </span>
             </div>
+          )}
+
+          {productImages.length > 1 && (
+            <div className="absolute bottom-4 left-4 flex gap-2">
+              {productImages.map((_, imgIndex) => (
+                <button
+                  key={imgIndex}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setCurrentImageIndex(imgIndex);
+                  }}
+                  aria-label={`View image ${imgIndex + 1}`}
+                  className={`h-2 rounded-full transition-all ${
+                    currentImageIndex === imgIndex
+                      ? 'bg-dark-text w-6'
+                      : 'bg-dark-text/30 w-2'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="p-5 sm:p-6 bg-white">
+          <div className="flex items-start justify-between mb-3">
+            <div className="flex-1">
+              <p className="font-sans text-[9px] tracking-[0.25em] text-dark-text/50 uppercase mb-2">
+                {category}
+              </p>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-dark-text leading-tight mb-1">
+                {product.title}
+              </h3>
+            </div>
           </div>
-        </motion.div>
-      </div>
+
+          <div className="flex items-center justify-between pt-3 border-t border-dark-text/5">
+            <p className="font-sans text-base sm:text-lg font-semibold text-dark-text">
+              €{price}
+            </p>
+            <div className="text-dark-text/40 group-hover:text-dark-text group-hover:translate-x-1 transition-all">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </Link>
     </motion.div>
   );
 }
 
 export default function ShopPage() {
-  const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -346,7 +314,7 @@ export default function ShopPage() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-12 auto-rows-[280px] laptop:auto-rows-[320px] xl:auto-rows-[350px] gap-3 laptop:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-4 sm:gap-6 md:gap-4">
             {filteredProducts.map((product, index) => (
               <ProductCard key={product.id} product={product} index={index} />
             ))}
