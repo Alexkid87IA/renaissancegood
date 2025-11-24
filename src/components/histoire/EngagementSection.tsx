@@ -18,7 +18,7 @@ export default function EngagementSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[8] bg-beige overflow-hidden"
+      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[9] bg-beige overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -43,7 +43,7 @@ export default function EngagementSection() {
         <div className="relative z-10 pt-8 md:pt-12 px-6 md:px-12 lg:px-16">
           <div className="max-w-[1800px] mx-auto flex items-start justify-between">
             <div className="flex items-center gap-3">
-              <span className="font-sans text-bronze text-sm font-bold tracking-[0.4em] uppercase">08</span>
+              <span className="font-sans text-bronze text-sm font-bold tracking-[0.4em] uppercase">09</span>
               <div className="w-8 h-px bg-bronze/30" />
               <span className="font-sans text-dark-text/40 text-xs font-medium tracking-[0.3em] uppercase">L'Engagement</span>
             </div>
@@ -114,9 +114,9 @@ export default function EngagementSection() {
           <div className="max-w-[1800px] mx-auto border-t border-dark-text/10 pt-5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <span className="font-sans text-dark-text text-xl md:text-2xl font-light">08</span>
+                <span className="font-sans text-dark-text text-xl md:text-2xl font-light">09</span>
                 <span className="font-sans text-dark-text/30 text-sm">/</span>
-                <span className="font-sans text-dark-text/40 text-sm">08</span>
+                <span className="font-sans text-dark-text/40 text-sm">09</span>
               </div>
               <div className="flex flex-col items-center gap-2">
                 <div className="w-px h-12 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
