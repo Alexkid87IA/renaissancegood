@@ -38,15 +38,15 @@ export default function SymbolesSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const isInView = useInView(sectionRef, { 
-    once: false,
+    once: true,
     amount: 0.1,
-    margin: "0px 0px -10% 0px"
+    margin: "0px 0px -20% 0px"
   });
   
   return (
     <section
       ref={sectionRef}
-      className="h-screen sticky top-0 z-40 bg-beige overflow-hidden"
+      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[4] bg-beige overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
