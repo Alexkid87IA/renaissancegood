@@ -37,7 +37,7 @@ interface ProductSidebarProps {
 
 export default function ProductSidebar({ product, selectedColorIndex, onColorChange }: ProductSidebarProps) {
   const [showDimensions, setShowDimensions] = useState(false);
-  const [showDescription, setShowDescription] = useState(true);
+  const [showDescription, setShowDescription] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
   const { addToCart, isLoading } = useCart();
 
@@ -77,23 +77,25 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
 
         {/* Color Selection - DÉPLACÉE AVANT LA DESCRIPTION */}
         <div className="mb-8 pb-8 border-b border-dark-text/10">
-          <div className="flex items-center justify-between mb-4">
-            <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
+          <div className="flex items-center justify-between mb-6">
+            <span className="font-sans text-[11px] tracking-[0.25em] font-bold text-dark-text uppercase">
               SELECT COLOR
             </span>
-            <Minus className="w-4 h-4 text-dark-text" />
+            <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/60">
+              {product.colors[selectedColorIndex]?.name || ''}
+            </span>
           </div>
 
-          <div className="grid grid-cols-4 laptop:grid-cols-5 gap-2 laptop:gap-3">
+          <div className="grid grid-cols-4 laptop:grid-cols-5 gap-3 laptop:gap-4">
             {product.colors.map((color, index) => (
               <button
                 key={index}
                 onClick={() => onColorChange(index)}
                 disabled={!product.variants[index]?.availableForSale}
-                className={`aspect-square border-2 rounded-sm transition-all duration-200 hover:scale-105 ${
+                className={`aspect-square border-2 transition-all duration-300 hover:scale-105 relative ${
                   selectedColorIndex === index
-                    ? 'border-dark-text shadow-md'
-                    : 'border-dark-text/20 hover:border-dark-text/40'
+                    ? 'border-dark-text shadow-lg bg-dark-text/5'
+                    : 'border-dark-text/20 hover:border-dark-text/50'
                 } ${
                   !product.variants[index]?.availableForSale
                     ? 'opacity-30 cursor-not-allowed'
@@ -108,6 +110,9 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
                     <line x1="38" y1="25" x2="62" y2="25" stroke="currentColor" strokeWidth="2" />
                   </svg>
                 </div>
+                {selectedColorIndex === index && (
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-dark-text" />
+                )}
               </button>
             ))}
           </div>
