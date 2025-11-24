@@ -19,7 +19,7 @@ export default function CollectionVersailles() {
       className="h-screen sticky top-0 z-20"
     >
       <div className="h-full bg-beige flex flex-col-reverse md:flex-row">
-        <div className="w-full md:w-1/2 h-64 md:h-full">
+        <div className="w-full md:w-1/2 h-[50vh] sm:h-64 md:h-full">
           <img
             src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=1200&q=80"
             alt="Collection Versailles - Fleur de Lys"
@@ -27,23 +27,23 @@ export default function CollectionVersailles() {
           />
         </div>
 
-        <div className="w-full md:w-1/2 flex items-center justify-center p-12 md:p-16 lg:p-20 laptop:p-20">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20">
           <div className="max-w-2xl">
-            <h3 className="font-display text-6xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold mb-8 tracking-[-0.03em] leading-[0.9]">
+            <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 tracking-[-0.03em] leading-[0.9]">
               COLLECTION<br />VERSAILLES
             </h3>
-            <div className="inline-block mb-12">
-              <p className="font-sans text-bronze text-[10px] md:text-xs tracking-[0.3em] font-bold uppercase">
+            <div className="inline-block mb-8 sm:mb-12">
+              <p className="font-sans text-bronze text-[9px] sm:text-[10px] md:text-xs tracking-[0.3em] font-bold uppercase">
                 Symbole : Fleur de Lys
               </p>
               <div className="h-px bg-bronze/20 mt-3" />
             </div>
-            <p className="font-sans text-dark-text/70 text-lg md:text-xl laptop:text-xl xl:text-2xl leading-[1.75] mb-12 laptop:mb-14 xl:mb-16 font-light">
+            <p className="font-sans text-dark-text/70 text-base sm:text-lg md:text-xl laptop:text-xl xl:text-2xl leading-[1.75] mb-8 sm:mb-12 laptop:mb-14 xl:mb-16 font-light">
               L'essence même de la royauté française. Chaque détail évoque la splendeur
               du Château de Versailles et l'héritage de nos rois.
             </p>
             <Link to="/collections/versailles">
-              <button className="border-2 border-dark-text/80 px-10 laptop:px-12 py-4 laptop:py-5 font-sans text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige hover:border-dark-text transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
+              <button className="border-2 border-dark-text/80 px-8 sm:px-10 laptop:px-12 py-3.5 sm:py-4 laptop:py-5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige hover:border-dark-text transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
                 DÉCOUVRIR
               </button>
             </Link>
