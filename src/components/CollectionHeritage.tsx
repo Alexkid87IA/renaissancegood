@@ -18,8 +18,8 @@ export default function CollectionHeritage() {
       style={{ scale, opacity }}
       className="h-screen sticky top-0 z-30"
     >
-      <div className="h-full bg-beige flex flex-col md:flex-row">
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20">
+      <div className="h-full bg-beige flex flex-col md:flex-row px-6 md:px-0">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20 md:ml-6">
           <div className="max-w-2xl">
             <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 tracking-[-0.03em] leading-[0.9]">
               COLLECTION HÉRITAGE
@@ -42,7 +42,7 @@ export default function CollectionHeritage() {
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 h-[50vh] sm:h-64 md:h-full">
+        <div className="w-full md:w-1/2 h-[50vh] sm:h-64 md:h-full md:mr-6">
           <img
             src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=5760"
             alt="Collection Héritage - Trident"

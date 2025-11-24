@@ -23,9 +23,9 @@ export default function TryInStoreSection() {
       <div className="relative h-full overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-beige/10 to-beige/20" />
 
-        <div className="relative h-full grid grid-cols-1 lg:grid-cols-2">
+        <div className="relative h-full grid grid-cols-1 lg:grid-cols-2 px-6 md:px-0">
 
-          <div className="flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 lg:px-16 py-20 lg:py-12">
+          <div className="flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 lg:px-16 py-20 lg:py-12 md:ml-6">
             <div className="max-w-xl w-full">
 
               <motion.div
@@ -103,7 +103,7 @@ export default function TryInStoreSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative h-full"
+            className="relative h-full md:mr-6"
           >
             <MapComponent
               stores={opticiansData}

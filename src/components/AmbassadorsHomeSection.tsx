@@ -54,7 +54,7 @@ export default function AmbassadorsHomeSection() {
       <div className="relative h-full overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-beige via-beige to-white/30" />
 
-        <div className="relative h-full flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 lg:px-16 py-20">
+        <div className="relative h-full flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 lg:px-16 py-20 md:mx-6">
           <div className="max-w-[1800px] w-full">
 
             <motion.div

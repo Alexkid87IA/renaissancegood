@@ -20,7 +20,7 @@ export default function HistoireSection() {
       id="histoire"
     >
       <div className="relative h-full overflow-hidden">
-        <div className="relative h-full flex flex-col items-center justify-center text-center px-6 sm:px-8 py-20">
+        <div className="relative h-full flex flex-col items-center justify-center text-center px-6 sm:px-8 md:mx-6 py-20">
           <div className="space-y-4 sm:space-y-6 mb-12 sm:mb-20">
             <h3 className="font-display text-3xl sm:text-4xl md:text-7xl lg:text-8xl laptop:text-8xl xl:text-[9rem] font-bold text-white tracking-[-0.04em] leading-[0.9]">
               UN MOT OUBLIÉ.

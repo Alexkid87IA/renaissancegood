@@ -17,8 +17,8 @@ export default function CollectionIsis() {
       style={{ scale, opacity }}
       className="h-screen sticky top-0 z-50"
     >
-      <div className="h-full bg-beige flex flex-col md:flex-row">
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20">
+      <div className="h-full bg-beige flex flex-col md:flex-row px-6 md:px-0">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20 md:ml-6">
           <div className="max-w-2xl">
             <div className="mb-6 sm:mb-8">
               <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold tracking-[-0.03em] leading-[0.9] mb-4 sm:mb-6">
@@ -44,7 +44,7 @@ export default function CollectionIsis() {
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 h-[50vh] sm:h-64 md:h-full">
+        <div className="w-full md:w-1/2 h-[50vh] sm:h-64 md:h-full md:mr-6">
           <img
             src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=1200&q=80"
             alt="Collection Isis - Egyptian inspiration"

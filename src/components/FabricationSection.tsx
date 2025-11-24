@@ -34,7 +34,7 @@ export default function FabricationSection() {
 
         <div className="absolute inset-0 bg-gradient-to-r from-dark-text/95 via-dark-text/80 to-dark-text/65" />
 
-        <div className="relative min-h-screen laptop:h-full flex items-center px-6 sm:px-8 md:px-12 lg:px-16 laptop:px-20 max-w-[1920px] mx-auto py-20 laptop:py-0">
+        <div className="relative min-h-screen laptop:h-full flex items-center px-6 sm:px-8 md:px-12 lg:px-16 laptop:px-20 max-w-[1920px] mx-auto py-20 laptop:py-0 md:ml-6">
           <div className="max-w-3xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
