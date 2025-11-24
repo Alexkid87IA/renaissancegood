@@ -233,7 +233,7 @@ function ProductCard({ product }: { product: Product }) {
 
   return (
     <motion.div
-      className={`group relative cursor-pointer bg-white border border-dark-text/10 overflow-hidden ${product.gridPosition}`}
+      className={`group relative cursor-pointer bg-white border border-dark-text/10 overflow-hidden col-span-6 sm:col-span-4 ${product.gridPosition.replace('col-span-', 'md:col-span-')}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       initial={{ opacity: 0 }}
@@ -254,15 +254,15 @@ function ProductCard({ product }: { product: Product }) {
           />
 
           {product.badge && (
-            <div className="absolute top-6 left-6 bg-dark-text border border-dark-text px-4 py-2">
-              <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-white">
+            <div className="absolute top-3 sm:top-4 md:top-6 left-3 sm:left-4 md:left-6 bg-dark-text border border-dark-text px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2">
+              <span className="font-sans text-[7px] sm:text-[8px] tracking-[0.3em] font-bold text-white">
                 {product.badge}
               </span>
             </div>
           )}
 
           {product.images.length > 1 && (
-            <div className="absolute bottom-6 left-6 flex gap-2">
+            <div className="absolute bottom-3 sm:bottom-4 md:bottom-6 left-3 sm:left-4 md:left-6 flex gap-1.5 sm:gap-2">
               {product.images.map((_, index) => (
                 <button
                   key={index}
@@ -272,7 +272,7 @@ function ProductCard({ product }: { product: Product }) {
                     setCurrentImageIndex(index);
                   }}
                   aria-label={`View image ${index + 1}`}
-                  className={`w-6 h-6 border transition-all ${
+                  className={`w-5 h-5 sm:w-6 sm:h-6 border transition-all ${
                     currentImageIndex === index
                       ? 'border-dark-text bg-dark-text'
                       : 'border-dark-text/40 bg-white/90 hover:border-dark-text hover:bg-white'
@@ -295,11 +295,11 @@ function ProductCard({ product }: { product: Product }) {
             </div>
           )}
 
-          <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm px-6 py-4 border border-dark-text/10">
-            <p className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text/70 uppercase mb-2">
+          <div className="absolute top-3 sm:top-4 md:top-6 right-3 sm:right-4 md:right-6 bg-white/95 backdrop-blur-sm px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 border border-dark-text/10">
+            <p className="font-sans text-[7px] sm:text-[8px] tracking-[0.3em] font-bold text-dark-text/70 uppercase mb-1 sm:mb-2">
               {product.category}
             </p>
-            <h3 className="font-display text-4xl font-bold tracking-tight text-dark-text leading-none">
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-dark-text leading-none">
               {product.name}
             </h3>
           </div>
@@ -346,13 +346,13 @@ export default function CollectionsPage() {
   return (
     <div className="min-h-screen bg-beige">
       <div className="border-b border-dark-text/10 bg-white sticky top-20 z-30">
-        <div className="max-w-[1800px] mx-auto px-8 laptop:px-12 py-6 laptop:py-8">
-          <div className="grid grid-cols-6 gap-3 md:gap-6 laptop:gap-8 xl:gap-12">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-4 sm:py-6 laptop:py-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6 laptop:gap-8 xl:gap-12">
             <div className="col-span-1 flex flex-col justify-end">
-              <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-3">
+              <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3">
                 # RESULTS
               </p>
-              <p className="font-display text-4xl laptop:text-5xl font-bold text-dark-text leading-none">
+              <p className="font-display text-2xl sm:text-3xl md:text-4xl laptop:text-5xl font-bold text-dark-text leading-none">
                 {filteredProducts.length}
               </p>
             </div>
@@ -395,8 +395,8 @@ export default function CollectionsPage() {
         </div>
       </div>
 
-      <div className="max-w-[1800px] mx-auto px-8 laptop:px-12 py-10 laptop:py-12">
-        <div className="grid grid-cols-12 auto-rows-[280px] laptop:auto-rows-[320px] xl:auto-rows-[350px] gap-3 laptop:gap-4">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-6 sm:py-8 md:py-10 laptop:py-12">
+        <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 auto-rows-[200px] sm:auto-rows-[240px] md:auto-rows-[280px] laptop:auto-rows-[320px] xl:auto-rows-[350px] gap-2 sm:gap-3 laptop:gap-4">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

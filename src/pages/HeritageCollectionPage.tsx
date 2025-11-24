@@ -116,7 +116,7 @@ function ProductCard({ product }: { product: Product }) {
 
   return (
     <motion.div
-      className={`group relative bg-white border border-dark-text/10 overflow-hidden ${product.gridPosition}`}
+      className={`group relative bg-white border border-dark-text/10 overflow-hidden col-span-6 sm:col-span-4 ${product.gridPosition.replace('col-span-', 'md:col-span-')}`}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -139,15 +139,15 @@ function ProductCard({ product }: { product: Product }) {
         />
 
         {product.badge && (
-          <div className="absolute top-6 left-6 bg-dark-text border border-dark-text px-4 py-2">
-            <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-white">
+          <div className="absolute top-3 sm:top-4 md:top-6 left-3 sm:left-4 md:left-6 bg-dark-text border border-dark-text px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2">
+            <span className="font-sans text-[7px] sm:text-[8px] tracking-[0.3em] font-bold text-white">
               {product.badge}
             </span>
           </div>
         )}
 
         {product.images.length > 1 && (
-          <div className="absolute bottom-6 left-6 flex gap-2">
+          <div className="absolute bottom-3 sm:bottom-4 md:bottom-6 left-3 sm:left-4 md:left-6 flex gap-1.5 sm:gap-2">
             {product.images.map((_, index) => (
               <button
                 key={index}
@@ -157,7 +157,7 @@ function ProductCard({ product }: { product: Product }) {
                   setCurrentImageIndex(index);
                 }}
                 aria-label={`View image ${index + 1}`}
-                className={`w-6 h-6 border transition-all ${
+                className={`w-5 h-5 sm:w-6 sm:h-6 border transition-all ${
                   currentImageIndex === index
                     ? 'border-dark-text bg-dark-text'
                     : 'border-dark-text/40 bg-white/90 hover:border-dark-text hover:bg-white'
@@ -181,19 +181,19 @@ function ProductCard({ product }: { product: Product }) {
 
         <div className="absolute inset-0 bg-dark-text/0 group-hover:bg-dark-text/5 transition-colors duration-500" />
 
-        <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="bg-white/90 backdrop-blur-sm px-6 py-3 border border-dark-text/10">
-            <p className="font-sans text-[10px] tracking-[0.3em] font-bold text-dark-text">
+        <div className="absolute top-3 sm:top-4 md:top-6 right-3 sm:right-4 md:right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden md:block">
+          <div className="bg-white/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 border border-dark-text/10">
+            <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.3em] font-bold text-dark-text">
               VOIR DÉTAILS
             </p>
           </div>
         </div>
 
-        <div className="absolute bottom-6 right-6">
-          <div className="bg-white/95 backdrop-blur-sm px-6 py-3 border border-dark-text/10">
-            <p className="font-sans text-xs text-dark-text/60 mb-1">{product.category}</p>
-            <p className="font-display text-2xl font-bold text-dark-text">{product.name}</p>
-            <p className="font-sans text-sm text-dark-text/70 mt-2">{product.price}</p>
+        <div className="absolute bottom-3 sm:bottom-4 md:bottom-6 right-3 sm:right-4 md:right-6">
+          <div className="bg-white/95 backdrop-blur-sm px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 border border-dark-text/10">
+            <p className="font-sans text-[9px] sm:text-[10px] md:text-xs text-dark-text/60 mb-0.5 sm:mb-1">{product.category}</p>
+            <p className="font-display text-lg sm:text-xl md:text-2xl font-bold text-dark-text">{product.name}</p>
+            <p className="font-sans text-xs sm:text-sm text-dark-text/70 mt-1 sm:mt-2">{product.price}</p>
           </div>
         </div>
       </Link>
@@ -268,10 +268,10 @@ export default function HeritageCollectionPage() {
 
   return (
     <div className="bg-beige">
-      <div className="relative h-screen overflow-hidden flex">
+      <div className="relative h-screen overflow-hidden flex flex-col md:flex-row">
         <motion.div
           ref={heroRef}
-          className="relative w-2/3 h-full"
+          className="relative w-full md:w-2/3 h-1/2 md:h-full"
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
@@ -288,12 +288,12 @@ export default function HeritageCollectionPage() {
         </motion.div>
 
         <motion.div
-          className="relative w-1/3 h-full bg-beige flex items-center"
+          className="relative w-full md:w-1/3 h-1/2 md:h-full bg-beige flex items-center"
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
         >
-          <div className="px-16 py-12">
+          <div className="px-6 sm:px-10 md:px-12 lg:px-16 py-8 sm:py-12">
             <motion.div
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -303,35 +303,35 @@ export default function HeritageCollectionPage() {
                 Collection
               </p>
 
-              <h1 className="font-display text-7xl font-bold text-dark-text tracking-[-0.04em] leading-[0.9] mb-12">
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-dark-text tracking-[-0.04em] leading-[0.9] mb-8 sm:mb-12">
                 HÉRITAGE
               </h1>
 
-              <div className="space-y-8 mb-16">
+              <div className="space-y-6 sm:space-y-8 mb-10 sm:mb-16">
                 <div className="h-px bg-dark-text/10" />
-                <p className="font-sans text-dark-text/70 text-lg leading-[1.8] font-light">
+                <p className="font-sans text-dark-text/70 text-sm sm:text-base md:text-lg leading-[1.8] font-light">
                   Tradition, puissance et élégance. Le savoir-faire français transmis de génération en génération.
                 </p>
                 <div className="h-px bg-dark-text/10" />
               </div>
 
-              <div className="space-y-8">
-                <div className="flex items-baseline gap-4">
-                  <p className="font-display text-5xl font-bold text-dark-text">
+              <div className="space-y-6 sm:space-y-8">
+                <div className="flex items-baseline gap-3 sm:gap-4">
+                  <p className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-dark-text">
                     {loading ? '...' : products.length}
                   </p>
                   <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text/40 uppercase">
                     Modèles
                   </p>
                 </div>
-                <div className="flex items-baseline gap-4">
-                  <p className="font-display text-5xl font-bold text-dark-text">3</p>
+                <div className="flex items-baseline gap-3 sm:gap-4">
+                  <p className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-dark-text">3</p>
                   <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text/40 uppercase">
                     Matériaux
                   </p>
                 </div>
-                <div className="flex items-baseline gap-4">
-                  <p className="font-display text-5xl font-bold text-dark-text">FR</p>
+                <div className="flex items-baseline gap-3 sm:gap-4">
+                  <p className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-dark-text">FR</p>
                   <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text/40 uppercase">
                     Origine
                   </p>
@@ -342,7 +342,7 @@ export default function HeritageCollectionPage() {
         </motion.div>
 
         <motion.div
-          className="absolute bottom-16 left-1/3 -translate-x-1/2"
+          className="absolute bottom-8 md:bottom-16 left-1/2 md:left-1/3 -translate-x-1/2 hidden sm:block"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.2 }}
@@ -355,20 +355,20 @@ export default function HeritageCollectionPage() {
             <p className="font-sans text-[8px] tracking-[0.4em] font-bold text-dark-text/40 uppercase">
               Découvrir
             </p>
-            <div className="w-[1px] h-20 bg-gradient-to-b from-dark-text/30 to-transparent" />
+            <div className="w-[1px] h-12 md:h-20 bg-gradient-to-b from-dark-text/30 to-transparent" />
           </motion.div>
         </motion.div>
       </div>
 
       <div className="relative z-20 bg-beige pt-20">
         <div className="border-b border-dark-text/10 bg-white sticky top-20 z-40 shadow-sm">
-          <div className="max-w-[1800px] mx-auto px-8 laptop:px-12 py-6 laptop:py-8">
-            <div className="grid grid-cols-2 md:grid-cols-3 laptop:grid-cols-5 gap-6 laptop:gap-8 xl:gap-12">
-              <div className="col-span-2 md:col-span-1 flex flex-col justify-end">
-                <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-3">
+          <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-4 sm:py-6 laptop:py-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 laptop:grid-cols-5 gap-3 sm:gap-4 md:gap-6 laptop:gap-8 xl:gap-12">
+              <div className="col-span-1 flex flex-col justify-end">
+                <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3">
                   # PRODUCTS
                 </p>
-                <p className="font-display text-5xl font-bold text-dark-text leading-none">
+                <p className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-dark-text leading-none">
                   {loading ? '...' : filteredProducts.length}
                 </p>
               </div>
@@ -404,7 +404,7 @@ export default function HeritageCollectionPage() {
           </div>
         </div>
 
-        <div className="max-w-[1800px] mx-auto px-8 laptop:px-12 py-10 laptop:py-12">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-6 sm:py-8 md:py-10 laptop:py-12">
           {loading && (
             <div className="text-center py-32">
               <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-dark-text"></div>
@@ -430,7 +430,7 @@ export default function HeritageCollectionPage() {
 
           {!loading && !error && (
             <>
-              <div className="grid grid-cols-12 auto-rows-[280px] laptop:auto-rows-[320px] xl:auto-rows-[350px] gap-3 laptop:gap-4">
+              <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 auto-rows-[200px] sm:auto-rows-[240px] md:auto-rows-[280px] laptop:auto-rows-[320px] xl:auto-rows-[350px] gap-2 sm:gap-3 laptop:gap-4">
                 {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
@@ -447,8 +447,8 @@ export default function HeritageCollectionPage() {
           )}
         </div>
 
-        <section className="relative py-32 bg-dark-text text-white">
-          <div className="max-w-[1400px] mx-auto px-12">
+        <section className="relative py-16 sm:py-24 md:py-32 bg-dark-text text-white">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-12">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -459,10 +459,10 @@ export default function HeritageCollectionPage() {
               <p className="font-sans text-[9px] tracking-[0.5em] font-bold text-white/40 uppercase mb-8">
                 Visite Atelier
               </p>
-              <h2 className="font-display text-7xl font-bold mb-12 leading-[1.1]">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-8 sm:mb-12 leading-[1.1]">
                 Découvrez Notre Atelier
               </h2>
-              <p className="font-sans text-white/70 text-xl leading-[1.9] font-light max-w-3xl mx-auto">
+              <p className="font-sans text-white/70 text-base sm:text-lg md:text-xl leading-[1.9] font-light max-w-3xl mx-auto">
                 Plongez dans l'univers de la création artisanale et découvrez les gestes qui perpétuent notre héritage.
               </p>
             </motion.div>
