@@ -74,28 +74,28 @@ export default function RelatedProducts({ currentProductId, limit = 4 }: Related
   }
 
   return (
-    <section className="py-24 laptop:py-32 bg-white border-t border-dark-text/10 ml-0 lg:ml-[400px] xl:ml-[480px]">
-      <div className="max-w-[1400px] mx-auto px-8 laptop:px-16">
+    <section className="py-16 sm:py-20 md:py-24 laptop:py-32 bg-white border-t border-dark-text/10 ml-0 lg:ml-[400px] xl:ml-[480px]">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-16">
         {/* Titre de la section - Style Renaissance */}
-        <div className="mb-20 text-center">
+        <div className="mb-10 sm:mb-12 md:mb-16 lg:mb-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-display text-4xl laptop:text-5xl xl:text-6xl font-light text-dark-text mb-4 tracking-tight">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl laptop:text-5xl xl:text-6xl font-light text-dark-text mb-3 sm:mb-4 tracking-tight">
               Vous aimerez peut-être
             </h2>
-            <div className="w-12 h-[1px] bg-bronze mx-auto mb-6"></div>
-            <p className="font-sans text-xs text-dark-text/50 tracking-[0.2em] uppercase">
+            <div className="w-10 sm:w-12 h-[1px] bg-bronze mx-auto mb-4 sm:mb-6"></div>
+            <p className="font-sans text-[10px] sm:text-xs text-dark-text/50 tracking-[0.2em] uppercase">
               Découvrez notre sélection
             </p>
           </motion.div>
         </div>
 
         {/* Grille de produits - Design épuré et luxueux */}
-        <div className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4 gap-8 laptop:gap-10 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 laptop:grid-cols-4 gap-4 sm:gap-6 md:gap-8 laptop:gap-10 mb-12 sm:mb-16">
           {products.map((product, index) => {
             const imageUrl = product.images.edges[0]?.node.url;
             const price = parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0);
@@ -113,12 +113,12 @@ export default function RelatedProducts({ currentProductId, limit = 4 }: Related
                 {/* Container de la carte */}
                 <div className="relative overflow-hidden">
                   {/* Image du produit - Ratio 16:10 adapté aux lunettes */}
-                  <div className="aspect-[16/10] bg-neutral-50/50 mb-6 overflow-hidden relative border border-dark-text/5">
+                  <div className="aspect-[16/10] bg-neutral-50/50 mb-3 sm:mb-4 md:mb-6 overflow-hidden relative border border-dark-text/5">
                     {imageUrl ? (
                       <img
                         src={imageUrl}
                         alt={product.title}
-                        className="w-full h-full object-contain p-6 transition-all duration-700 group-hover:scale-110 group-hover:p-4"
+                        className="w-full h-full object-contain p-3 sm:p-4 md:p-6 transition-all duration-700 group-hover:scale-110 group-hover:p-2 sm:group-hover:p-3 md:group-hover:p-4"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
@@ -138,22 +138,22 @@ export default function RelatedProducts({ currentProductId, limit = 4 }: Related
                   </div>
 
                   {/* Informations du produit - Typographie élégante */}
-                  <div className="space-y-2 px-1">
+                  <div className="space-y-1.5 sm:space-y-2 px-0.5 sm:px-1">
                     {/* Nom du produit */}
-                    <h3 className="font-display text-xl laptop:text-2xl font-light text-dark-text group-hover:text-bronze transition-colors duration-300 tracking-tight leading-tight">
+                    <h3 className="font-display text-base sm:text-lg md:text-xl laptop:text-2xl font-light text-dark-text group-hover:text-bronze transition-colors duration-300 tracking-tight leading-tight">
                       {product.title}
                     </h3>
                     
                     {/* Prix avec divider */}
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-[1px] bg-dark-text/20 group-hover:bg-bronze group-hover:w-12 transition-all duration-300" />
-                      <p className="font-sans text-sm text-dark-text/70 tracking-wide">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="w-6 sm:w-8 h-[1px] bg-dark-text/20 group-hover:bg-bronze group-hover:w-10 sm:group-hover:w-12 transition-all duration-300" />
+                      <p className="font-sans text-xs sm:text-sm text-dark-text/70 tracking-wide">
                         €{price}
                       </p>
                     </div>
 
-                    {/* Call to action subtil qui apparaît au hover */}
-                    <div className="overflow-hidden">
+                    {/* Call to action subtil qui apparaît au hover - Masqué sur mobile */}
+                    <div className="overflow-hidden hidden sm:block">
                       <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 0, y: 10 }}

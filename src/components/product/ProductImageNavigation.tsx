@@ -88,10 +88,10 @@ export default function ProductImageNavigation({ images, productName }: ProductI
         animate={{ opacity: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 bg-white/90 hover:bg-white backdrop-blur-md rounded-full shadow-xl flex items-center justify-center border border-dark-text/10 transition-all"
+        className="fixed left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white/90 hover:bg-white backdrop-blur-md rounded-full shadow-xl flex items-center justify-center border border-dark-text/10 transition-all"
         title="Image précédente (←)"
       >
-        <ChevronLeft className="w-6 h-6 md:w-7 md:h-7 text-dark-text" />
+        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-dark-text" />
       </motion.button>
 
       <motion.button
@@ -100,10 +100,10 @@ export default function ProductImageNavigation({ images, productName }: ProductI
         animate={{ opacity: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 bg-white/90 hover:bg-white backdrop-blur-md rounded-full shadow-xl flex items-center justify-center border border-dark-text/10 transition-all"
+        className="fixed right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white/90 hover:bg-white backdrop-blur-md rounded-full shadow-xl flex items-center justify-center border border-dark-text/10 transition-all"
         title="Image suivante (→)"
       >
-        <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-dark-text" />
+        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-dark-text" />
       </motion.button>
 
       {/* Navigation principale avec thumbnails - Au-dessus de la barre de prix */}
@@ -111,7 +111,7 @@ export default function ProductImageNavigation({ images, productName }: ProductI
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.6 }}
-        className="fixed bottom-32 left-1/2 -translate-x-1/2 z-50"
+        className="fixed bottom-20 sm:bottom-24 md:bottom-32 left-1/2 -translate-x-1/2 z-50 max-w-[calc(100vw-1rem)] sm:max-w-none"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >

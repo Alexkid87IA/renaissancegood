@@ -216,19 +216,30 @@ export default function ProductPage() {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Structure principale avec sidebar fixe */}
-      <div className="relative flex pb-24">
-        {/* Fixed Sidebar */}
+      {/* Sidebar mobile - en haut */}
+      <div className="lg:hidden">
         <ProductSidebar
           product={product}
           selectedColorIndex={selectedColorIndex}
           onColorChange={setSelectedColorIndex}
         />
+      </div>
+
+      {/* Structure principale avec sidebar fixe sur desktop */}
+      <div className="relative lg:flex pb-24">
+        {/* Fixed Sidebar - Desktop uniquement */}
+        <div className="hidden lg:block">
+          <ProductSidebar
+            product={product}
+            selectedColorIndex={selectedColorIndex}
+            onColorChange={setSelectedColorIndex}
+          />
+        </div>
 
         {/* Image Navigation avec Thumbnails */}
         {product.images && product.images.length > 0 && (
-          <ProductImageNavigation 
-            images={product.images} 
+          <ProductImageNavigation
+            images={product.images}
             productName={product.name}
           />
         )}

@@ -59,11 +59,11 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
   };
 
   return (
-    <div className="w-[340px] laptop:w-[380px] xl:w-[480px] bg-white border-r border-dark-text/10 fixed left-0 top-20 bottom-0 overflow-y-auto z-50 hidden lg:block">
-      <div className="p-8 laptop:p-10 xl:p-12">
+    <div className="w-full lg:w-[340px] laptop:w-[380px] xl:w-[480px] bg-white lg:border-r border-dark-text/10 lg:fixed lg:left-0 lg:top-20 lg:bottom-0 overflow-y-auto z-50">
+      <div className="p-4 sm:p-6 lg:p-8 laptop:p-10 xl:p-12">
         {/* Product Header */}
-        <div className="mb-10">
-          <h1 className="font-display text-4xl laptop:text-5xl xl:text-6xl font-bold text-dark-text mb-4 leading-[0.95]">
+        <div className="mb-6 lg:mb-10">
+          <h1 className="font-display text-3xl sm:text-4xl laptop:text-5xl xl:text-6xl font-bold text-dark-text mb-3 lg:mb-4 leading-[0.95]">
             {product.name}
           </h1>
           {product.badge && (
@@ -76,8 +76,8 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
         </div>
 
         {/* Color Selection - DÉPLACÉE AVANT LA DESCRIPTION */}
-        <div className="mb-8 pb-8 border-b border-dark-text/10">
-          <div className="flex items-center justify-between mb-6">
+        <div className="mb-6 lg:mb-8 pb-6 lg:pb-8 border-b border-dark-text/10">
+          <div className="flex items-center justify-between mb-4 lg:mb-6">
             <span className="font-sans text-[11px] tracking-[0.25em] font-bold text-dark-text uppercase">
               SELECT COLOR
             </span>
@@ -86,7 +86,7 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
             </span>
           </div>
 
-          <div className="grid grid-cols-4 laptop:grid-cols-5 gap-3 laptop:gap-4">
+          <div className="grid grid-cols-4 sm:grid-cols-5 laptop:grid-cols-5 gap-2 sm:gap-3 laptop:gap-4">
             {product.colors.map((color, index) => (
               <button
                 key={index}
@@ -119,7 +119,7 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
         </div>
 
         {/* Description - APRÈS LA SÉLECTION DE COULEUR */}
-        <div className="mb-8 pb-8 border-b border-dark-text/10">
+        <div className="mb-6 lg:mb-8 pb-6 lg:pb-8 border-b border-dark-text/10">
           <button
             onClick={() => setShowDescription(!showDescription)}
             className="w-full flex items-center justify-between mb-4 group"
@@ -154,7 +154,7 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
         </div>
 
         {/* Frame & Lens Info */}
-        <div className="mb-8 pb-8 border-b border-dark-text/10 space-y-4">
+        <div className="mb-6 lg:mb-8 pb-6 lg:pb-8 border-b border-dark-text/10 space-y-3 lg:space-y-4">
           <div>
             <span className="font-sans text-[10px] tracking-[0.15em] font-bold text-dark-text uppercase block mb-1">
               FRAME
@@ -174,7 +174,7 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
         </div>
 
         {/* Dimensions */}
-        <div className="mb-8 pb-8 border-b border-dark-text/10">
+        <div className="mb-6 lg:mb-8 pb-6 lg:pb-8 border-b border-dark-text/10">
           <button
             onClick={() => setShowDimensions(!showDimensions)}
             className="w-full flex items-center justify-between mb-4 group"
@@ -216,8 +216,8 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
           </AnimatePresence>
         </div>
 
-        {/* Price & Buy Button */}
-        <div className="grid grid-cols-2 gap-3 pt-4">
+        {/* Price & Buy Button - Caché sur mobile car présent dans BottomBar */}
+        <div className="hidden lg:grid grid-cols-2 gap-3 pt-4">
           <div className="border border-dark-text/20 flex items-center justify-center">
             <span className="font-sans text-lg font-semibold text-dark-text">
               {product.variants[selectedColorIndex]?.price || product.price}
