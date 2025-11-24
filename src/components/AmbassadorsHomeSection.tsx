@@ -68,10 +68,10 @@ export default function AmbassadorsHomeSection() {
                 Ambassadeurs
               </p>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-6">
-                ILS PORTENT<br />RENAISSANCE.
+                NOS<br />AMBASSADEURS
               </h2>
               <p className="font-sans text-dark-text/60 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-                Des visages qui incarnent l'élégance française et l'excellence à travers le monde.
+                Des personnalités qui incarnent l'excellence et l'élégance intemporelle de Renaissance.
               </p>
             </motion.div>
 
