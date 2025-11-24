@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { CartProvider } from './contexts/CartContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import MobileWarning from './components/MobileWarning';
 import CartDrawer from './components/CartDrawer';
 import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
@@ -33,7 +32,6 @@ function AppContent() {
 
   return (
     <>
-      <MobileWarning />
       <div className="relative bg-beige">
         <Header />
         <main className="relative">
