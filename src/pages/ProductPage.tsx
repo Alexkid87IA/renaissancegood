@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getProduct } from '../lib/shopify';
+import { useDeviceType } from '../hooks/useDeviceType';
 import ProductSidebar from '../components/product/ProductSidebar';
 import ProductImageSection from '../components/product/ProductImageSection';
 import ProductCraftSection from '../components/product/ProductCraftSection';
 import ProductBottomBar from '../components/product/ProductBottomBar';
 import ProductImageNavigation from '../components/product/ProductImageNavigation';
 import RelatedProducts from '../components/product/RelatedProducts';
+import ProductPageMobile from '../components/mobile/ProductPageMobile';
 
 // Interface pour les produits Shopify
 interface ShopifyProduct {
@@ -81,6 +83,7 @@ interface Product {
 export default function ProductPage() {
   const { id } = useParams(); // 'id' est en fait le 'handle' du produit
   const navigate = useNavigate();
+  const { isMobile } = useDeviceType();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -214,27 +217,20 @@ export default function ProductPage() {
     );
   }
 
+  if (isMobile) {
+    return <ProductPageMobile product={product} />;
+  }
+
   return (
     <div className="bg-white min-h-screen">
-      {/* Sidebar mobile - en haut */}
-      <div className="lg:hidden">
+      {/* Structure principale avec sidebar fixe sur desktop */}
+      <div className="relative lg:flex pb-24">
+        {/* Fixed Sidebar - Desktop uniquement */}
         <ProductSidebar
           product={product}
           selectedColorIndex={selectedColorIndex}
           onColorChange={setSelectedColorIndex}
         />
-      </div>
-
-      {/* Structure principale avec sidebar fixe sur desktop */}
-      <div className="relative lg:flex pb-24">
-        {/* Fixed Sidebar - Desktop uniquement */}
-        <div className="hidden lg:block">
-          <ProductSidebar
-            product={product}
-            selectedColorIndex={selectedColorIndex}
-            onColorChange={setSelectedColorIndex}
-          />
-        </div>
 
         {/* Image Navigation avec Thumbnails */}
         {product.images && product.images.length > 0 && (
