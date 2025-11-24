@@ -233,7 +233,7 @@ function ProductCard({ product }: { product: Product }) {
 
   return (
     <motion.div
-      className={`group relative cursor-pointer bg-white border border-dark-text/10 overflow-hidden col-span-6 sm:col-span-4 ${product.gridPosition.replace('col-span-', 'md:col-span-')}`}
+      className="group relative cursor-pointer bg-white border border-dark-text/10 overflow-hidden col-span-1 sm:col-span-4 md:col-span-6"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       initial={{ opacity: 0 }}
@@ -409,7 +409,7 @@ export default function CollectionsPage() {
       </div>
 
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-6 sm:py-8 md:py-10 laptop:py-12">
-        <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 auto-rows-[200px] sm:auto-rows-[240px] md:auto-rows-[280px] laptop:auto-rows-[320px] xl:auto-rows-[350px] gap-2 sm:gap-3 laptop:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-8 md:grid-cols-12 auto-rows-[280px] sm:auto-rows-[320px] md:auto-rows-[350px] laptop:auto-rows-[400px] xl:auto-rows-[450px] gap-2 sm:gap-3 laptop:gap-4">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

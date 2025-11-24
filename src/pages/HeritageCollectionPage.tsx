@@ -116,7 +116,7 @@ function ProductCard({ product }: { product: Product }) {
 
   return (
     <motion.div
-      className={`group relative bg-white border border-dark-text/10 overflow-hidden col-span-6 sm:col-span-4 ${product.gridPosition.replace('col-span-', 'md:col-span-')}`}
+      className="group relative bg-white border border-dark-text/10 overflow-hidden col-span-1 sm:col-span-4 md:col-span-6"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -443,7 +443,7 @@ export default function HeritageCollectionPage() {
 
           {!loading && !error && (
             <>
-              <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 auto-rows-[200px] sm:auto-rows-[240px] md:auto-rows-[280px] laptop:auto-rows-[320px] xl:auto-rows-[350px] gap-2 sm:gap-3 laptop:gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-8 md:grid-cols-12 auto-rows-[280px] sm:auto-rows-[320px] md:auto-rows-[350px] laptop:auto-rows-[400px] xl:auto-rows-[450px] gap-2 sm:gap-3 laptop:gap-4">
                 {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
