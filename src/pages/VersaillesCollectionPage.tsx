@@ -86,14 +86,14 @@ function FilterSelect({
 }) {
   return (
     <div className="relative">
-      <label className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3 block">
+      <label className="font-sans text-[8px] tracking-[0.25em] font-bold text-dark-text uppercase mb-1.5 md:mb-2 block">
         {label}
       </label>
       <div className="relative">
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-transparent border-b-2 border-dark-text/20 pb-2 sm:pb-2.5 font-sans text-xs sm:text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6"
+          className="w-full bg-transparent border-b-2 border-dark-text/20 pb-1.5 md:pb-2 font-sans text-xs text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6"
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
@@ -199,6 +199,7 @@ function ProductCard({ product }: { product: Product }) {
 
 export default function VersaillesCollectionPage() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const filtersRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
@@ -211,6 +212,8 @@ export default function VersaillesCollectionPage() {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [hideFilters, setHideFilters] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   // Charger les produits depuis Shopify au montage du composant
   useEffect(() => {
@@ -247,6 +250,29 @@ export default function VersaillesCollectionPage() {
 
     loadProducts();
   }, []);
+
+  // Gérer le masquage des filtres au scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Sur desktop seulement, masquer les filtres au scroll vers le bas
+      if (window.innerWidth >= 768) {
+        if (currentScrollY > lastScrollY && currentScrollY > 200) {
+          setHideFilters(true);
+        } else if (currentScrollY < lastScrollY) {
+          setHideFilters(false);
+        }
+      } else {
+        setHideFilters(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   // Filtrer les produits selon les critères sélectionnés
   useEffect(() => {
@@ -357,15 +383,21 @@ export default function VersaillesCollectionPage() {
       </div>
 
       <div className="relative z-20 bg-beige pt-20">
-        <div className="border-b border-dark-text/10 bg-white sticky top-20 z-40 shadow-sm">
-          <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-4 sm:py-6 laptop:py-8">
-            <div className="flex flex-col gap-6">
+        <motion.div
+          ref={filtersRef}
+          className="border-b border-dark-text/10 bg-white sticky top-20 z-40 shadow-sm"
+          initial={{ y: 0 }}
+          animate={{ y: hideFilters ? -200 : 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-3 sm:py-4 md:py-6">
+            <div className="flex flex-col gap-3 md:gap-5">
               <div className="flex items-center justify-between">
                 <div className="flex flex-col">
-                  <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1.5 sm:mb-2">
+                  <p className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1">
                     # PRODUCTS
                   </p>
-                  <p className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-dark-text leading-none">
+                  <p className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-dark-text leading-none">
                     {loading ? '...' : filteredProducts.length}
                   </p>
                 </div>
@@ -376,7 +408,7 @@ export default function VersaillesCollectionPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
                 <div className="hidden md:block">
                   <FilterSelect
                     label="COLLECTION"
@@ -411,7 +443,7 @@ export default function VersaillesCollectionPage() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-6 sm:py-8 md:py-10 laptop:py-12">
           {loading && (
