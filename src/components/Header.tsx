@@ -297,21 +297,36 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden text-dark-text focus:outline-none"
-            >
-              {mobileMenuOpen ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+            {/* Mobile Cart & Menu */}
+            <div className="lg:hidden flex items-center gap-4">
+              {/* Cart Icon Mobile */}
+              <Link to="/cart" className="relative text-dark-text">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
-              ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
+                {itemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-bronze text-white text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                    {itemCount}
+                  </span>
+                )}
+              </Link>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="text-dark-text focus:outline-none"
+              >
+                {mobileMenuOpen ? (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </motion.header>
@@ -553,22 +568,105 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-y-0 right-0 z-40 w-full bg-white lg:hidden"
+            className="fixed inset-y-0 right-0 z-40 w-full bg-white lg:hidden overflow-y-auto"
           >
-            <div className="flex flex-col h-full pt-20 sm:pt-24 px-6 sm:px-8 pb-8">
-              <nav className="flex flex-col space-y-5 sm:space-y-6">
-                <Link to="/collections/heritage" onClick={() => setMobileMenuOpen(false)} className="font-serif text-lg sm:text-xl text-dark-text uppercase">
-                  Héritage
-                </Link>
-                <Link to="/collections/versailles" onClick={() => setMobileMenuOpen(false)} className="font-serif text-lg sm:text-xl text-dark-text uppercase">
-                  Versailles
-                </Link>
-                <Link to="/collections/isis" onClick={() => setMobileMenuOpen(false)} className="font-serif text-lg sm:text-xl text-dark-text uppercase">
-                  Isis
-                </Link>
-                <Link to="/histoire" onClick={() => setMobileMenuOpen(false)} className="font-serif text-lg sm:text-xl text-dark-text uppercase">
-                  Histoire
-                </Link>
+            <div className="flex flex-col min-h-full pt-20 sm:pt-24 px-6 sm:px-8 pb-12">
+              <nav className="flex flex-col space-y-8">
+                {/* Collections Section */}
+                <div className="space-y-4">
+                  <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-dark-text/50 font-bold">
+                    Collections
+                  </p>
+                  <Link
+                    to="/collections/heritage"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block font-display text-2xl text-dark-text tracking-tight"
+                  >
+                    Héritage
+                  </Link>
+                  <Link
+                    to="/collections/versailles"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block font-display text-2xl text-dark-text tracking-tight"
+                  >
+                    Versailles
+                  </Link>
+                  <Link
+                    to="/collections/isis"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block font-display text-2xl text-dark-text tracking-tight"
+                  >
+                    Isis
+                  </Link>
+                </div>
+
+                {/* Maison Section */}
+                <div className="space-y-4">
+                  <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-dark-text/50 font-bold">
+                    La Maison
+                  </p>
+                  <Link
+                    to="/histoire"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block font-display text-2xl text-dark-text tracking-tight"
+                  >
+                    Histoire
+                  </Link>
+                  <Link
+                    to="/store-locator"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block font-display text-2xl text-dark-text tracking-tight"
+                  >
+                    Nos Opticiens
+                  </Link>
+                </div>
+
+                {/* Divider */}
+                <div className="border-t border-dark-text/10 pt-6 mt-8">
+                  {/* Account & Support */}
+                  <div className="space-y-3">
+                    <Link
+                      to="/cart"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between py-3 text-dark-text"
+                    >
+                      <span className="font-sans text-sm tracking-wide">Mon Panier</span>
+                      {itemCount > 0 && (
+                        <span className="bg-bronze text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                          {itemCount}
+                        </span>
+                      )}
+                    </Link>
+                    <button className="flex items-center justify-between w-full py-3 text-dark-text">
+                      <span className="font-sans text-sm tracking-wide">Mon Compte</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Language Selector Mobile */}
+                  <div className="mt-6 pt-6 border-t border-dark-text/10">
+                    <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-dark-text/50 font-bold mb-3">
+                      Langue
+                    </p>
+                    <div className="grid grid-cols-3 gap-2">
+                      {languages.map((lang) => (
+                        <button
+                          key={lang.code}
+                          onClick={() => setCurrentLang(lang.code)}
+                          className={`py-2 px-3 text-center border transition-colors ${
+                            currentLang === lang.code
+                              ? 'border-dark-text bg-dark-text text-white'
+                              : 'border-dark-text/20 text-dark-text'
+                          }`}
+                        >
+                          <span className="font-sans text-xs tracking-wider">{lang.code}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </nav>
             </div>
           </motion.div>
