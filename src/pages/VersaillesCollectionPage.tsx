@@ -214,6 +214,7 @@ export default function VersaillesCollectionPage() {
   const [error, setError] = useState<string | null>(null);
   const [hideFilters, setHideFilters] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   // Charger les produits depuis Shopify au montage du composant
   useEffect(() => {
@@ -390,8 +391,8 @@ export default function VersaillesCollectionPage() {
           animate={{ y: hideFilters ? -200 : 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-          <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-3 sm:py-4 md:py-6">
-            <div className="flex flex-col gap-3 md:gap-5">
+          <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12">
+            <div className="py-3 md:py-6">
               <div className="flex items-center justify-between">
                 <div className="flex flex-col">
                   <p className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1">
@@ -401,14 +402,25 @@ export default function VersaillesCollectionPage() {
                     {loading ? '...' : filteredProducts.length}
                   </p>
                 </div>
-                <div className="md:hidden">
-                  <p className="font-sans text-[8px] tracking-[0.25em] font-bold text-dark-text/50 uppercase">
-                    Versailles
-                  </p>
+                <div className="flex items-center gap-3">
+                  <div className="md:hidden">
+                    <p className="font-sans text-[8px] tracking-[0.25em] font-bold text-dark-text/50 uppercase">
+                      Versailles
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowMobileFilters(true)}
+                    className="md:hidden flex items-center gap-2 px-4 py-2 bg-dark-text text-white"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path d="M3 4h18M3 12h18M3 20h18" />
+                    </svg>
+                    <span className="font-sans text-[10px] tracking-[0.2em] font-bold">FILTRES</span>
+                  </button>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+              <div className="hidden md:grid md:grid-cols-4 gap-4 mt-5">
                 <div className="hidden md:block">
                   <FilterSelect
                     label="COLLECTION"
@@ -444,6 +456,79 @@ export default function VersaillesCollectionPage() {
             </div>
           </div>
         </motion.div>
+
+        {showMobileFilters && (
+          <>
+            <div
+              className="fixed inset-0 bg-dark-text/50 z-50 md:hidden"
+              onClick={() => setShowMobileFilters(false)}
+            />
+            <motion.div
+              className="fixed inset-x-0 bottom-0 bg-white z-50 md:hidden rounded-t-2xl shadow-2xl"
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="font-sans text-sm tracking-[0.2em] font-bold text-dark-text uppercase">
+                    Filtres
+                  </h3>
+                  <button
+                    onClick={() => setShowMobileFilters(false)}
+                    className="p-2"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+
+                <div className="space-y-6">
+                  <FilterSelect
+                    label="MATERIAL"
+                    options={materials}
+                    value={selectedMaterial}
+                    onChange={setSelectedMaterial}
+                  />
+
+                  <FilterSelect
+                    label="SHAPE"
+                    options={shapes}
+                    value={selectedShape}
+                    onChange={setSelectedShape}
+                  />
+
+                  <FilterSelect
+                    label="LENS"
+                    options={[{ label: 'All', value: 'all' }]}
+                    value="all"
+                    onChange={() => {}}
+                  />
+                </div>
+
+                <div className="mt-8 flex gap-3">
+                  <button
+                    onClick={() => {
+                      setSelectedMaterial('all');
+                      setSelectedShape('all');
+                    }}
+                    className="flex-1 px-6 py-3 border-2 border-dark-text/20 font-sans text-xs tracking-[0.2em] font-bold text-dark-text uppercase"
+                  >
+                    Réinitialiser
+                  </button>
+                  <button
+                    onClick={() => setShowMobileFilters(false)}
+                    className="flex-1 px-6 py-3 bg-dark-text text-white font-sans text-xs tracking-[0.2em] font-bold uppercase"
+                  >
+                    Appliquer
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
 
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-6 sm:py-8 md:py-10 laptop:py-12">
           {loading && (
