@@ -18,7 +18,7 @@ export default function SignatureSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[7] bg-dark-text overflow-hidden"
+      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[3] bg-dark-text overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}

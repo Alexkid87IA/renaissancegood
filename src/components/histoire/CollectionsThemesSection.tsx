@@ -37,7 +37,7 @@ export default function CollectionsThemesSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[6] bg-beige overflow-hidden"
+      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[4] bg-beige overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}

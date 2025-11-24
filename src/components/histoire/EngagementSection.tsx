@@ -18,7 +18,7 @@ export default function EngagementSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[9] bg-beige overflow-hidden"
+      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[1] bg-beige overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
