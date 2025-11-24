@@ -21,7 +21,7 @@ export default function CollectionVersailles() {
       <div className="h-full bg-beige flex flex-col-reverse md:flex-row">
         <div className="w-full md:w-1/2 h-[50vh] sm:h-64 md:h-full">
           <img
-            src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=1200&q=80"
+            src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=2687"
             alt="Collection Versailles - Fleur de Lys"
             className="w-full h-full object-cover"
           />

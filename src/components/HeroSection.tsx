@@ -18,15 +18,11 @@ export default function HeroSection() {
       className="h-screen sticky top-0 z-10"
     >
       <div className="relative h-full overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        <img
+          src="https://renaissanceeyewear.fr/cdn/shop/files/PLV_1.jpg?v=1708709809&width=1440"
+          alt="Hero Background"
           className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761870063/f62464b8-898e-4611-ad4e-9d06c5f2282b_aw4x0c.mp4" type="video/mp4" />
-        </video>
+        />
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <img
             src="https://res.cloudinary.com/dwt7u0azs/image/upload/v1761869118/544a79bc-362a-4590-b886-c24fe1289595_oxdko3.png"
