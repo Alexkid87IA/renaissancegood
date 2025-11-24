@@ -23,7 +23,7 @@ export default function CollectionVersailles() {
           <img
             src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=2687"
             alt="Collection Versailles - Fleur de Lys"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
         </div>
 

@@ -46,7 +46,7 @@ export default function CollectionHeritage() {
           <img
             src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=5760"
             alt="Collection Héritage - Trident"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
         </div>
       </div>
