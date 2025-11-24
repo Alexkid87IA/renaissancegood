@@ -16,7 +16,7 @@ export default function CollectionVersailles() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="h-screen sticky top-0 z-20"
+      className="h-screen sticky top-0 z-40"
     >
       <div className="h-full bg-beige flex flex-col-reverse md:flex-row">
         <div className="w-full md:w-1/2 h-[50vh] sm:h-64 md:h-full">

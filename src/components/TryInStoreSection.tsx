@@ -25,7 +25,7 @@ export default function TryInStoreSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-screen laptop:h-screen sticky top-0 z-45 bg-white"
+      className="min-h-screen laptop:h-screen sticky top-0 z-80 bg-white"
     >
       <div className="relative h-full overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-beige/10 to-beige/20" />
