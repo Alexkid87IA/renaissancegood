@@ -86,6 +86,28 @@ export default function ProductPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Fonction pour naviguer vers une image spécifique
+  const scrollToImage = (index: number) => {
+    const imageElement = document.querySelector(`[data-image-index="${index}"]`);
+    if (imageElement) {
+      imageElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  };
+
+  // Fonctions de navigation pour le swipe
+  const handleSwipeLeft = (currentIndex: number) => {
+    const nextIndex = currentIndex < (product?.images.length || 0) - 1 ? currentIndex + 1 : 0;
+    scrollToImage(nextIndex);
+  };
+
+  const handleSwipeRight = (currentIndex: number) => {
+    const prevIndex = currentIndex > 0 ? currentIndex - 1 : (product?.images.length || 0) - 1;
+    scrollToImage(prevIndex);
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
@@ -217,7 +239,7 @@ export default function ProductPage() {
           {product.images && product.images.length > 0 ? (
             <>
               {product.images.map((imageUrl, index) => (
-                <div 
+                <div
                   key={index}
                   data-image-section
                   data-image-index={index}
@@ -226,11 +248,13 @@ export default function ProductPage() {
                     imageUrl={imageUrl}
                     alt={`${product.name} - vue ${index + 1}`}
                     backgroundColor={
-                      index % 3 === 0 ? 'bg-neutral-50' : 
-                      index % 3 === 1 ? 'bg-white' : 
+                      index % 3 === 0 ? 'bg-neutral-50' :
+                      index % 3 === 1 ? 'bg-white' :
                       'bg-neutral-100'
                     }
                     zIndex={10 + index * 10}
+                    onSwipeLeft={() => handleSwipeLeft(index)}
+                    onSwipeRight={() => handleSwipeRight(index)}
                   />
                 </div>
               ))}

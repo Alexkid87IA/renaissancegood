@@ -81,7 +81,32 @@ export default function ProductImageNavigation({ images, productName }: ProductI
 
   return (
     <>
-      {/* Navigation principale - Au-dessus de la barre de prix */}
+      {/* Boutons de navigation overlay sur les côtés (desktop et mobile) */}
+      <motion.button
+        onClick={goToPrevious}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="fixed left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 bg-white/90 hover:bg-white backdrop-blur-md rounded-full shadow-xl flex items-center justify-center border border-dark-text/10 transition-all"
+        title="Image précédente (←)"
+      >
+        <ChevronLeft className="w-6 h-6 md:w-7 md:h-7 text-dark-text" />
+      </motion.button>
+
+      <motion.button
+        onClick={goToNext}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="fixed right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 bg-white/90 hover:bg-white backdrop-blur-md rounded-full shadow-xl flex items-center justify-center border border-dark-text/10 transition-all"
+        title="Image suivante (→)"
+      >
+        <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-dark-text" />
+      </motion.button>
+
+      {/* Navigation principale avec thumbnails - Au-dessus de la barre de prix */}
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -93,23 +118,23 @@ export default function ProductImageNavigation({ images, productName }: ProductI
         <div className="relative">
           {/* Container principal */}
           <div className="bg-beige/95 backdrop-blur-md border border-bronze/20 rounded-full shadow-2xl">
-            <div className="flex items-center gap-1 px-3 py-2">
-              {/* Bouton Précédent */}
+            <div className="flex items-center gap-1 px-2 md:px-3 py-2">
+              {/* Bouton Précédent - masqué sur mobile car il y a les boutons overlay */}
               <motion.button
                 onClick={goToPrevious}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-8 h-8 flex items-center justify-center rounded-full bg-white/40 hover:bg-white/60 transition-all duration-200 group"
+                className="hidden sm:flex w-8 h-8 items-center justify-center rounded-full bg-white/40 hover:bg-white/60 transition-all duration-200 group"
                 title="Image précédente (←)"
               >
                 <ChevronLeft className="w-4 h-4 text-dark-text group-hover:text-bronze transition-colors" />
               </motion.button>
 
               {/* Séparateur */}
-              <div className="w-px h-6 bg-bronze/30 mx-1" />
+              <div className="hidden sm:block w-px h-6 bg-bronze/30 mx-1" />
 
               {/* Thumbnails */}
-              <div className="flex items-center gap-2 px-2">
+              <div className="flex items-center gap-1.5 md:gap-2 px-1 md:px-2">
                 {images.map((imageUrl, index) => (
                   <motion.button
                     key={index}
@@ -121,7 +146,7 @@ export default function ProductImageNavigation({ images, productName }: ProductI
                   >
                     {/* Thumbnail */}
                     <div
-                      className={`relative w-12 h-12 rounded-lg overflow-hidden transition-all duration-300 ${
+                      className={`relative w-10 h-10 md:w-12 md:h-12 rounded-lg overflow-hidden transition-all duration-300 ${
                         activeIndex === index
                           ? 'ring-2 ring-bronze shadow-lg'
                           : 'ring-1 ring-dark-text/10 opacity-40 hover:opacity-70'
@@ -147,32 +172,32 @@ export default function ProductImageNavigation({ images, productName }: ProductI
               </div>
 
               {/* Séparateur */}
-              <div className="w-px h-6 bg-bronze/30 mx-1" />
+              <div className="hidden sm:block w-px h-6 bg-bronze/30 mx-1" />
 
-              {/* Bouton Suivant */}
+              {/* Bouton Suivant - masqué sur mobile car il y a les boutons overlay */}
               <motion.button
                 onClick={goToNext}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-8 h-8 flex items-center justify-center rounded-full bg-white/40 hover:bg-white/60 transition-all duration-200 group"
+                className="hidden sm:flex w-8 h-8 items-center justify-center rounded-full bg-white/40 hover:bg-white/60 transition-all duration-200 group"
                 title="Image suivante (→)"
               >
                 <ChevronRight className="w-4 h-4 text-dark-text group-hover:text-bronze transition-colors" />
               </motion.button>
 
               {/* Séparateur */}
-              <div className="w-px h-6 bg-bronze/30 mx-1" />
+              <div className="hidden sm:block w-px h-6 bg-bronze/30 mx-1" />
 
               {/* Compteur */}
-              <div className="px-3">
+              <div className="px-2 md:px-3">
                 <motion.p
                   key={activeIndex}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="font-sans text-xs tracking-[0.15em] text-dark-text font-semibold"
+                  className="font-sans text-[10px] md:text-xs tracking-[0.15em] text-dark-text font-semibold"
                 >
                   {String(activeIndex + 1).padStart(2, '0')}
-                  <span className="text-dark-text/40 mx-1">/</span>
+                  <span className="text-dark-text/40 mx-0.5 md:mx-1">/</span>
                   {String(images.length).padStart(2, '0')}
                 </motion.p>
               </div>
