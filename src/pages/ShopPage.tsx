@@ -132,9 +132,9 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           </div>
         )}
 
-        {/* Miniatures - Masquées au hover pour éviter la superposition */}
-        {productImages.length > 1 && !isHovered && (
-          <div className="absolute bottom-4 left-4 flex gap-2 z-10">
+        {/* Miniatures - Toujours visibles en haut à gauche */}
+        {productImages.length > 1 && (
+          <div className="absolute top-4 left-4 flex gap-2 z-20">
             {productImages.map((imgUrl, imgIndex) => (
               <button
                 key={imgIndex}
@@ -144,7 +144,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                   setCurrentImageIndex(imgIndex);
                 }}
                 aria-label={`View image ${imgIndex + 1}`}
-                className={`w-10 h-10 border-2 transition-all overflow-hidden ${
+                className={`w-10 h-10 border-2 transition-all overflow-hidden backdrop-blur-sm ${
                   currentImageIndex === imgIndex
                     ? 'border-white ring-2 ring-white/50'
                     : 'border-white/60 hover:border-white opacity-70 hover:opacity-100'
@@ -160,22 +160,22 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           </div>
         )}
 
-        {/* Overlay au hover - Design impeccable */}
+        {/* Overlay au hover - En bas uniquement */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isHovered ? 1 : 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
           transition={{ duration: 0.3 }}
-          className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col justify-end p-6"
+          className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/80 to-transparent p-6 pt-12 z-10"
         >
-          <div className="space-y-3">
+          <div className="space-y-2">
             <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-white/70 uppercase">
               {category}
             </p>
-            <h3 className="font-display text-2xl laptop:text-3xl font-light text-white tracking-tight leading-tight">
+            <h3 className="font-display text-xl laptop:text-2xl font-light text-white tracking-tight leading-tight">
               {product.title}
             </h3>
             <div className="flex items-center justify-between pt-2">
-              <p className="font-sans text-xl text-white tracking-wide">
+              <p className="font-sans text-lg text-white tracking-wide">
                 €{price}
               </p>
               <span className="font-sans text-[9px] tracking-[0.3em] uppercase text-white border border-white/40 px-4 py-2 hover:bg-white hover:text-dark-text transition-colors">
