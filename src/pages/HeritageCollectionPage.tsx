@@ -85,14 +85,14 @@ function FilterSelect({
 }) {
   return (
     <div className="relative">
-      <label className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-3 block">
+      <label className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3 block">
         {label}
       </label>
       <div className="relative">
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-transparent border-b-2 border-dark-text/20 pb-2 font-sans text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer"
+          className="w-full bg-transparent border-b-2 border-dark-text/20 pb-2 sm:pb-2.5 font-sans text-xs sm:text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6"
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
@@ -100,8 +100,8 @@ function FilterSelect({
             </option>
           ))}
         </select>
-        <div className="absolute right-0 bottom-3 pointer-events-none">
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+        <div className="absolute right-0 bottom-2 sm:bottom-3 pointer-events-none">
+          <svg width="8" height="5" viewBox="0 0 10 6" fill="none" className="sm:w-[10px] sm:h-[6px]">
             <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" />
           </svg>
         </div>
@@ -363,43 +363,56 @@ export default function HeritageCollectionPage() {
       <div className="relative z-20 bg-beige pt-20">
         <div className="border-b border-dark-text/10 bg-white sticky top-20 z-40 shadow-sm">
           <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-4 sm:py-6 laptop:py-8">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 laptop:grid-cols-5 gap-3 sm:gap-4 md:gap-6 laptop:gap-8 xl:gap-12">
-              <div className="col-span-1 flex flex-col justify-end">
-                <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3">
-                  # PRODUCTS
-                </p>
-                <p className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-dark-text leading-none">
-                  {loading ? '...' : filteredProducts.length}
-                </p>
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col">
+                  <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1.5 sm:mb-2">
+                    # PRODUCTS
+                  </p>
+                  <p className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-dark-text leading-none">
+                    {loading ? '...' : filteredProducts.length}
+                  </p>
+                </div>
+                <div className="md:hidden">
+                  <p className="font-sans text-[8px] tracking-[0.25em] font-bold text-dark-text/50 uppercase">
+                    Heritage
+                  </p>
+                </div>
               </div>
 
-              <FilterSelect
-                label="COLLECTION"
-                options={[{ label: 'Heritage', value: 'heritage' }]}
-                value="heritage"
-                onChange={() => {}}
-              />
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                <div className="hidden md:block">
+                  <FilterSelect
+                    label="COLLECTION"
+                    options={[{ label: 'Heritage', value: 'heritage' }]}
+                    value="heritage"
+                    onChange={() => {}}
+                  />
+                </div>
 
-              <FilterSelect
-                label="MATERIAL"
-                options={materials}
-                value={selectedMaterial}
-                onChange={setSelectedMaterial}
-              />
+                <FilterSelect
+                  label="MATERIAL"
+                  options={materials}
+                  value={selectedMaterial}
+                  onChange={setSelectedMaterial}
+                />
 
-              <FilterSelect
-                label="SHAPE"
-                options={shapes}
-                value={selectedShape}
-                onChange={setSelectedShape}
-              />
+                <FilterSelect
+                  label="SHAPE"
+                  options={shapes}
+                  value={selectedShape}
+                  onChange={setSelectedShape}
+                />
 
-              <FilterSelect
-                label="LENS"
-                options={[{ label: 'All', value: 'all' }]}
-                value="all"
-                onChange={() => {}}
-              />
+                <div className="col-span-2 md:col-span-1">
+                  <FilterSelect
+                    label="LENS"
+                    options={[{ label: 'All', value: 'all' }]}
+                    value="all"
+                    onChange={() => {}}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
