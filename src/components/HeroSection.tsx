@@ -15,7 +15,7 @@ export default function HeroSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="h-screen sticky top-0 z-[100]"
+      className="h-screen sticky top-0 z-10"
     >
       <div className="relative h-full overflow-hidden">
         <video

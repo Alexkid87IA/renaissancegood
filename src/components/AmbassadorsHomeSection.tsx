@@ -49,7 +49,7 @@ export default function AmbassadorsHomeSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-screen laptop:h-screen sticky top-0 z-[50] bg-beige"
+      className="min-h-screen laptop:h-screen sticky top-0 z-60 bg-beige"
     >
       <div className="relative h-full overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-beige via-beige to-white/30" />

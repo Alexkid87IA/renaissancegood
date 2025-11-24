@@ -39,7 +39,7 @@ export default function ExcellenceSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-screen laptop:h-screen sticky top-0 z-[90] bg-white"
+      className="min-h-screen laptop:h-screen sticky top-0 z-20 bg-white"
     >
       <div className="relative h-full overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-beige/5 to-beige/10" />
