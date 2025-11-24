@@ -148,7 +148,7 @@ export default function Header() {
                 to="/shop"
                 className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase"
               >
-                COLLECTION
+                SHOP
               </Link>
               <Link
                 to="/collections/heritage"
