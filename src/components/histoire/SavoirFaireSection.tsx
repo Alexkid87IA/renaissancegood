@@ -62,8 +62,8 @@ export default function SavoirFaireSection() {
         <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 md:px-12 lg:px-16 py-8 overflow-y-auto scrollbar-hide">
           <div className="max-w-[1800px] mx-auto w-full">
 
-            <div className="mb-6 md:mb-10">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3 md:mb-4" style={{ color: '#FFFFFF' }}>
+            <div className="mb-6 md:mb-10 pt-2 md:pt-4">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[1.05] mb-3 md:mb-4" style={{ color: '#FFFFFF' }}>
                 LA MAÎTRISE<br />CORÉENNE.
               </h2>
               <p className="font-sans text-base md:text-lg lg:text-xl text-white/70 font-light leading-[1.6] max-w-2xl">
