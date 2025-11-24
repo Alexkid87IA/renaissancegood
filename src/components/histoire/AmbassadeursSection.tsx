@@ -35,7 +35,7 @@ const ambassadors = [
 
 export default function AmbassadeursSection() {
   return (
-    <section className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[2] bg-white overflow-hidden">
+    <section className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[7] bg-white overflow-hidden">
       <div className="h-full w-full relative flex flex-col">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-beige/10" />
 
