@@ -38,7 +38,7 @@ export default function ExcellenceSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="h-screen sticky top-0 z-20 bg-white"
+      className="h-screen relative z-20 bg-white"
     >
       <div className="h-full flex flex-col md:flex-row px-6 md:px-0">
         <div className="w-full md:w-1/2 h-[50vh] md:h-full relative overflow-hidden group md:ml-6">
