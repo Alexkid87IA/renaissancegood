@@ -42,6 +42,7 @@ export default function Header() {
   const [languageOpen, setLanguageOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('FR');
   const [opticiensOpen, setOpticiensOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { itemCount } = useCart();
 
   // États pour stocker les produits des collections
@@ -271,7 +272,10 @@ export default function Header() {
               </div>
 
               {/* Search Icon */}
-              <button className="text-dark-text hover:text-bronze transition-colors duration-300">
+              <button
+                onClick={() => setSearchOpen(!searchOpen)}
+                className="text-dark-text hover:text-bronze transition-colors duration-300"
+              >
                 <svg className="w-4 h-4 laptop:w-[18px] laptop:h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
@@ -669,6 +673,144 @@ export default function Header() {
                 </div>
               </nav>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Search Bar Overlay */}
+      <AnimatePresence>
+        {searchOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-[64px] sm:top-[72px] md:top-[80px] left-0 right-0 z-[90]"
+            onClick={() => setSearchOpen(false)}
+          >
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-white border-t border-b border-dark-text/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-6 sm:py-8">
+                <div className="flex flex-col gap-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex flex-col">
+                      <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1.5 sm:mb-2">
+                        RECHERCHE
+                      </p>
+                      <p className="font-sans text-dark-text/60 text-xs">
+                        Trouvez votre monture idéale
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setSearchOpen(false)}
+                      className="text-dark-text/60 hover:text-dark-text transition-colors"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                    <div className="relative">
+                      <label className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3 block">
+                        COLLECTION
+                      </label>
+                      <div className="relative">
+                        <select className="w-full bg-transparent border-b-2 border-dark-text/20 pb-2 sm:pb-2.5 font-sans text-xs sm:text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6">
+                          <option value="all">All</option>
+                          <option value="heritage">Heritage</option>
+                          <option value="versailles">Versailles</option>
+                          <option value="isis">Isis</option>
+                        </select>
+                        <div className="absolute right-0 bottom-2 sm:bottom-3 pointer-events-none">
+                          <svg width="8" height="5" viewBox="0 0 10 6" fill="none" className="sm:w-[10px] sm:h-[6px]">
+                            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="relative">
+                      <label className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3 block">
+                        MATERIAL
+                      </label>
+                      <div className="relative">
+                        <select className="w-full bg-transparent border-b-2 border-dark-text/20 pb-2 sm:pb-2.5 font-sans text-xs sm:text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6">
+                          <option value="all">All</option>
+                          <option value="acetate">Acétate</option>
+                          <option value="metal">Métal</option>
+                          <option value="titanium">Titane</option>
+                        </select>
+                        <div className="absolute right-0 bottom-2 sm:bottom-3 pointer-events-none">
+                          <svg width="8" height="5" viewBox="0 0 10 6" fill="none" className="sm:w-[10px] sm:h-[6px]">
+                            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="relative">
+                      <label className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3 block">
+                        SHAPE
+                      </label>
+                      <div className="relative">
+                        <select className="w-full bg-transparent border-b-2 border-dark-text/20 pb-2 sm:pb-2.5 font-sans text-xs sm:text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6">
+                          <option value="all">All</option>
+                          <option value="round">Rond</option>
+                          <option value="oval">Ovale</option>
+                          <option value="square">Carré</option>
+                          <option value="hexagonal">Hexagonal</option>
+                          <option value="butterfly">Papillon</option>
+                        </select>
+                        <div className="absolute right-0 bottom-2 sm:bottom-3 pointer-events-none">
+                          <svg width="8" height="5" viewBox="0 0 10 6" fill="none" className="sm:w-[10px] sm:h-[6px]">
+                            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="relative">
+                      <label className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3 block">
+                        LENS
+                      </label>
+                      <div className="relative">
+                        <select className="w-full bg-transparent border-b-2 border-dark-text/20 pb-2 sm:pb-2.5 font-sans text-xs sm:text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6">
+                          <option value="all">All</option>
+                        </select>
+                        <div className="absolute right-0 bottom-2 sm:bottom-3 pointer-events-none">
+                          <svg width="8" height="5" viewBox="0 0 10 6" fill="none" className="sm:w-[10px] sm:h-[6px]">
+                            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-dark-text/10 flex items-center justify-between">
+                    <p className="font-sans text-dark-text/60 text-xs">
+                      Utilisez les filtres pour affiner votre recherche
+                    </p>
+                    <Link to="/collections" onClick={() => setSearchOpen(false)}>
+                      <motion.button
+                        whileHover={{ x: 4 }}
+                        className="inline-flex items-center gap-3 font-sans text-[10px] tracking-[0.3em] text-dark-text uppercase font-medium group"
+                      >
+                        VOIR TOUS LES PRODUITS
+                        <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      </motion.button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
