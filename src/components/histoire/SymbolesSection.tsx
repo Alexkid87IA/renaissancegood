@@ -100,42 +100,58 @@ export default function SymbolesSection() {
             {/* LEFT SIDE - Navigation verticale */}
             <div className="lg:w-1/4 flex lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0">
               {symbols.map((symbol, index) => (
-                <button
+                <motion.button
                   key={symbol.name}
                   onClick={() => setActiveIndex(index)}
-                  className={`flex-shrink-0 lg:flex-shrink group transition-all duration-500 ${
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  className={`flex-shrink-0 lg:flex-shrink group transition-all duration-500 relative ${
                     activeIndex === index ? '' : 'opacity-40 hover:opacity-70'
                   }`}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <div className="flex items-center gap-4">
-                    {/* Numéro */}
-                    <div className={`w-12 h-12 border flex items-center justify-center transition-all duration-500 ${
-                      activeIndex === index 
-                        ? 'border-bronze bg-bronze/5' 
-                        : 'border-dark-text/10'
+                  {/* Indicateur actif */}
+                  {activeIndex === index && (
+                    <motion.div
+                      layoutId="activeSymbol"
+                      className="absolute inset-0 border-2 border-bronze bg-bronze/5"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+
+                  <div className="flex items-center gap-4 relative z-10 p-3">
+                    {/* Numéro avec bordure dorée */}
+                    <div className={`w-14 h-14 border-2 flex items-center justify-center transition-all duration-500 relative overflow-hidden ${
+                      activeIndex === index
+                        ? 'border-bronze'
+                        : 'border-dark-text/10 group-hover:border-bronze/50'
                     }`}>
-                      <span className={`font-sans text-lg font-bold transition-colors duration-500 ${
-                        activeIndex === index ? 'text-bronze' : 'text-dark-text/30'
+                      <span className={`font-sans text-xl font-bold transition-colors duration-500 relative z-10 ${
+                        activeIndex === index ? 'text-bronze' : 'text-dark-text/30 group-hover:text-bronze/70'
                       }`}>
                         {index + 1}
                       </span>
+                      {/* Effet de remplissage au survol */}
+                      <div className="absolute inset-0 bg-bronze/10 scale-0 group-hover:scale-100 transition-transform duration-500" />
                     </div>
-                    
+
                     {/* Texte */}
                     <div className="text-left hidden lg:block">
-                      <p className={`font-sans text-xs tracking-[0.2em] uppercase mb-1 transition-colors duration-500 ${
-                        activeIndex === index ? 'text-bronze' : 'text-dark-text/40'
+                      <p className={`font-sans text-xs tracking-[0.3em] uppercase mb-1.5 transition-colors duration-500 ${
+                        activeIndex === index ? 'text-bronze font-bold' : 'text-dark-text/40 group-hover:text-bronze/70'
                       }`}>
                         {symbol.subtitle}
                       </p>
-                      <p className={`font-display text-xl font-bold transition-colors duration-500 ${
-                        activeIndex === index ? 'text-dark-text' : 'text-dark-text/50'
+                      <p className={`font-display text-2xl font-bold transition-colors duration-500 leading-tight ${
+                        activeIndex === index ? 'text-dark-text' : 'text-dark-text/50 group-hover:text-dark-text/70'
                       }`}>
                         {symbol.name}
                       </p>
                     </div>
                   </div>
-                </button>
+                </motion.button>
               ))}
             </div>
 
@@ -147,30 +163,69 @@ export default function SymbolesSection() {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeIndex}
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 1.1, y: -20 }}
-                    transition={{ 
-                      duration: 0.7, 
+                    initial={{ opacity: 0, scale: 0.9, rotateY: -20 }}
+                    animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                    exit={{ opacity: 0, scale: 1.1, rotateY: 20 }}
+                    transition={{
+                      duration: 0.8,
                       ease: [0.22, 1, 0.36, 1]
                     }}
                     className="relative w-full max-w-lg aspect-square"
                   >
-                    {/* Cadre décoratif extérieur */}
-                    <div className="absolute -inset-8 border border-bronze/10" />
-                    
-                    {/* Container image */}
-                    <div className="relative w-full h-full border-2 border-bronze/30 bg-white/5 overflow-hidden">
-                      <img 
-                        src={symbols[activeIndex].image} 
-                        alt={symbols[activeIndex].name}
-                        className="w-full h-full object-cover"
+                    {/* Cadre décoratif extérieur animé */}
+                    <motion.div
+                      className="absolute -inset-8 border-2 border-bronze/20"
+                      animate={{
+                        scale: [1, 1.02, 1],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+
+                    {/* Container image avec effets */}
+                    <div className="relative w-full h-full border-4 border-bronze/40 bg-gradient-to-br from-white/10 to-bronze/5 overflow-hidden group">
+                      {/* Effet de lumière qui traverse */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                        animate={{ x: ["-100%", "200%"] }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          repeatDelay: 2,
+                          ease: "easeInOut"
+                        }}
                       />
+
+                      <img
+                        src={symbols[activeIndex].image}
+                        alt={symbols[activeIndex].name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+
+                      {/* Overlay dégradé pour plus de profondeur */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 via-transparent to-transparent" />
                     </div>
 
-                    {/* Petit accent en coin */}
-                    <div className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-bronze" />
-                    <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-bronze" />
+                    {/* Coins décoratifs plus imposants */}
+                    <motion.div
+                      className="absolute -top-3 -left-3 w-8 h-8 border-t-4 border-l-4 border-bronze"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.3, duration: 0.5 }}
+                    />
+                    <motion.div
+                      className="absolute -bottom-3 -right-3 w-8 h-8 border-b-4 border-r-4 border-bronze"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.3, duration: 0.5 }}
+                    />
+
+                    {/* Petits accents aux autres coins */}
+                    <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-bronze/50" />
+                    <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-bronze/50" />
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -201,29 +256,55 @@ export default function SymbolesSection() {
                       </span>
                     </div>
 
-                    {/* Nom */}
-                    <h3 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark-text font-bold leading-[0.95]">
+                    {/* Nom avec effet de révélation */}
+                    <motion.h3
+                      className="font-display text-5xl md:text-6xl lg:text-7xl text-dark-text font-bold leading-[1.05] mb-2"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2, duration: 0.6 }}
+                    >
                       {symbols[activeIndex].name}
-                    </h3>
+                    </motion.h3>
 
-                    {/* Sous-titre */}
-                    <p className="font-sans text-bronze text-sm tracking-[0.3em] uppercase">
-                      {symbols[activeIndex].subtitle}
-                    </p>
+                    {/* Sous-titre avec ligne décorative */}
+                    <motion.div
+                      className="flex items-center gap-4 mb-6"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3, duration: 0.6 }}
+                    >
+                      <div className="h-px w-12 bg-gradient-to-r from-bronze to-transparent" />
+                      <p className="font-sans text-bronze text-base tracking-[0.35em] uppercase font-bold">
+                        {symbols[activeIndex].subtitle}
+                      </p>
+                    </motion.div>
 
-                    {/* Description */}
-                    <div className="border-l-2 border-bronze/30 pl-6">
-                      <p className="font-sans text-lg md:text-xl text-dark-text/80 font-light leading-[1.7]">
+                    {/* Description avec bordure dorée imposante */}
+                    <motion.div
+                      className="border-l-4 border-bronze pl-6 py-4 bg-gradient-to-r from-bronze/5 to-transparent"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4, duration: 0.6 }}
+                    >
+                      <p className="font-sans text-xl md:text-2xl text-dark-text/90 font-light leading-[1.75]">
                         {symbols[activeIndex].description}
                       </p>
-                    </div>
+                    </motion.div>
 
-                    {/* Citation */}
-                    <div className="pt-4 border-t border-dark-text/10">
-                      <p className="font-sans text-dark-text/50 text-sm italic">
-                        Chaque symbole est gravé dans le métal. Une promesse éternelle.
-                      </p>
-                    </div>
+                    {/* Citation avec effet premium */}
+                    <motion.div
+                      className="pt-6 mt-6 border-t-2 border-bronze/20"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.5, duration: 0.6 }}
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="w-1 h-12 bg-gradient-to-b from-bronze via-bronze/50 to-transparent flex-shrink-0" />
+                        <p className="font-sans text-dark-text/70 text-base md:text-lg italic leading-relaxed">
+                          Chaque symbole est gravé au laser dans le métal. Une promesse éternelle qui traverse les générations.
+                        </p>
+                      </div>
+                    </motion.div>
                   </motion.div>
                 </AnimatePresence>
               </div>
