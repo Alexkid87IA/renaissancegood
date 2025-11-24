@@ -145,6 +145,12 @@ export default function Header() {
             {/* LEFT NAVIGATION */}
             <nav className="hidden lg:flex items-center gap-3 laptop:gap-4 xl:gap-6 2xl:gap-10 flex-1">
               <Link
+                to="/shop"
+                className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase"
+              >
+                COLLECTION
+              </Link>
+              <Link
                 to="/collections/heritage"
                 onMouseEnter={() => setActiveMenu('heritage')}
                 className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase"

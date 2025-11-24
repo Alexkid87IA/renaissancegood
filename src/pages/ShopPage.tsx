@@ -161,29 +161,27 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           </div>
         )}
 
-        {/* Overlay minimaliste par défaut (juste le titre en bas) */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
-          <h3 className="font-display text-xl laptop:text-2xl font-light text-white tracking-tight leading-tight">
-            {product.title}
-          </h3>
-        </div>
-
-        {/* Overlay complet qui apparaît au HOVER */}
+        {/* Overlay qui s'affiche au hover - Design homogène avec les collections */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
-          className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm px-6 py-4 border border-dark-text/10 shadow-lg"
+          transition={{ duration: 0.4 }}
+          className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-6"
         >
-          <p className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text/70 uppercase mb-2">
+          <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-white/70 uppercase mb-2">
             {category}
           </p>
-          <h3 className="font-display text-2xl laptop:text-3xl font-bold tracking-tight text-dark-text leading-none mb-2">
+          <h3 className="font-display text-2xl laptop:text-3xl font-light text-white tracking-tight leading-tight mb-3">
             {product.title}
           </h3>
-          <p className="font-sans text-sm text-dark-text/70 tracking-wide">
-            €{price}
-          </p>
+          <div className="flex items-center justify-between">
+            <p className="font-sans text-lg text-white tracking-wide">
+              €{price}
+            </p>
+            <span className="font-sans text-[8px] tracking-[0.3em] uppercase text-white/80 border border-white/30 px-4 py-2">
+              Voir le détail
+            </span>
+          </div>
         </motion.div>
       </div>
     </motion.div>
