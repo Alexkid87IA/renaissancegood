@@ -26,7 +26,6 @@ export default function HistoirePage() {
       <CollectionsThemesSection />
       <SignatureSection />
       <EngagementSection />
-      <div className="h-screen bg-beige" />
     </div>
   );
 }
