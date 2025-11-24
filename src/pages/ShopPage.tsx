@@ -165,11 +165,32 @@ export default function ShopPage() {
   const [selectedType, setSelectedType] = useState('all');
   const [selectedCollection, setSelectedCollection] = useState('all');
   const [selectedMaterial, setSelectedMaterial] = useState('all');
+  const [hideFilters, setHideFilters] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   // Scroll vers le haut au chargement
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Gérer le masquage des filtres au scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Masquer les filtres au scroll vers le bas
+      if (currentScrollY > lastScrollY && currentScrollY > 200) {
+        setHideFilters(true);
+      } else if (currentScrollY < lastScrollY) {
+        setHideFilters(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   // Charger les produits
   useEffect(() => {
@@ -231,7 +252,12 @@ export default function ShopPage() {
   return (
     <div className="min-h-screen bg-beige">
       {/* Barre de filtres sticky en haut */}
-      <div className="border-b border-dark-text/10 bg-white sticky top-20 z-30">
+      <motion.div
+        className="border-b border-dark-text/10 bg-white sticky top-20 z-30 shadow-sm"
+        initial={{ y: 0 }}
+        animate={{ y: hideFilters ? -200 : 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
         <div className="max-w-[1800px] mx-auto px-8 laptop:px-12 py-6 laptop:py-8">
           <div className="grid grid-cols-6 gap-3 md:gap-6 laptop:gap-8 xl:gap-12">
             {/* Compteur de résultats */}
@@ -300,7 +326,7 @@ export default function ShopPage() {
             />
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Grille de produits masonry */}
       <div className="max-w-[1800px] mx-auto px-8 laptop:px-12 py-10 laptop:py-12">
