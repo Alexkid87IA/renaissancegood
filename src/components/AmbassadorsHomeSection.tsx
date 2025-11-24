@@ -19,30 +19,30 @@ export default function AmbassadorsHomeSection() {
       className="h-screen sticky top-0 z-[60]"
     >
       <div className="relative h-full overflow-hidden bg-black">
-        <div className="relative h-full flex items-center">
-          <div className="w-full grid lg:grid-cols-12 gap-0 h-full">
+        <div className="relative h-full flex items-center max-w-[2000px] mx-auto px-8 lg:px-12">
+          <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 h-full items-center">
 
-            <div className="lg:col-span-5 flex flex-col justify-center px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 py-16 lg:py-0">
+            <div className="flex flex-col justify-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <p className="font-sans text-[#8B7355] text-[9px] tracking-[0.35em] uppercase mb-8 font-bold">
+                <p className="font-sans text-[#8B7355] text-[9px] tracking-[0.35em] uppercase mb-6 font-bold">
                   AMBASSADEURS
                 </p>
 
-                <h2 className="font-serif text-6xl md:text-7xl lg:text-8xl font-normal text-white tracking-tight leading-[0.9] mb-8">
+                <h2 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[0.85] mb-8">
                   ILS PORTENT<br />
-                  RENAISSANCE
+                  RENAISSANCE.
                 </h2>
 
-                <p className="font-sans text-white/50 text-base md:text-lg leading-[1.8] mb-12 max-w-md">
+                <p className="font-sans text-white/50 text-base md:text-lg leading-[1.7] mb-10 max-w-lg">
                   Artistes, créateurs, visionnaires. Découvrez ceux qui incarnent l'excellence française et partagent nos valeurs d'élégance intemporelle.
                 </p>
 
-                <div className="space-y-6 mb-12">
+                <div className="space-y-5 mb-10">
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -105,14 +105,14 @@ export default function AmbassadorsHomeSection() {
               </motion.div>
             </div>
 
-            <div className="lg:col-span-7 relative h-full hidden lg:block">
-              <div className="absolute inset-0 grid grid-cols-8 grid-rows-6 gap-1">
+            <div className="relative h-[80vh] hidden lg:block">
+              <div className="h-full grid grid-cols-3 grid-rows-2 gap-2">
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="col-span-4 row-span-3 group relative overflow-hidden"
+                  className="col-span-2 row-span-1 group relative overflow-hidden"
                 >
                   <img
                     src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1200"
@@ -127,7 +127,7 @@ export default function AmbassadorsHomeSection() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="col-span-2 row-span-2 group relative overflow-hidden"
+                  className="col-span-1 row-span-1 group relative overflow-hidden"
                 >
                   <img
                     src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=800"
@@ -142,7 +142,7 @@ export default function AmbassadorsHomeSection() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="col-span-2 row-span-2 group relative overflow-hidden"
+                  className="col-span-1 row-span-1 group relative overflow-hidden"
                 >
                   <img
                     src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=800"
@@ -157,37 +157,7 @@ export default function AmbassadorsHomeSection() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="col-span-2 row-span-2 group relative overflow-hidden"
-                >
-                  <img
-                    src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=800"
-                    alt="Renaissance Product"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500" />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="col-span-2 row-span-2 group relative overflow-hidden"
-                >
-                  <img
-                    src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=800"
-                    alt="Renaissance Product"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500" />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  className="col-span-4 row-span-3 group relative overflow-hidden"
+                  className="col-span-2 row-span-1 group relative overflow-hidden"
                 >
                   <img
                     src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1200"
