@@ -20,10 +20,10 @@ export default function HistoirePage() {
   return (
     <div className="bg-beige relative">
       <HeroHistoireSection />
-      <ValeursSection />
       <FondateursSection />
       <SavoirFaireSection />
       <SymbolesSection />
+      <ValeursSection />
       <CollectionsThemesSection />
       <SignatureSection />
       <AmbassadeursSection />
