@@ -110,6 +110,9 @@ export default function TryInStoreSection() {
               selectedStore={null}
               onSelectStore={() => {}}
               userLocation={null}
+              initialCenter={[2.5, 46.5]}
+              initialZoom={5.5}
+              disableAutoBounds={true}
             />
           </motion.div>
 
