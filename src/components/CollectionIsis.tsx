@@ -15,7 +15,7 @@ export default function CollectionIsis() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="h-screen sticky top-0 z-50"
+      className="h-screen sticky top-0 z-[60]"
     >
       <div className="h-full bg-beige flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20">
