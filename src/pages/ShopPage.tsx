@@ -119,22 +119,22 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           alt={product.title}
           className="w-full h-full object-cover"
           initial={{ scale: 1 }}
-          animate={{ scale: isHovered ? 1.03 : 1 }}
+          animate={{ scale: isHovered ? 1.05 : 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         />
 
-        {/* Badge "NEW" plus discret et plus petit */}
+        {/* Badge "NEW" discret */}
         {index < 2 && (
-          <div className="absolute top-4 left-4 bg-dark-text/90 backdrop-blur-sm px-3 py-1.5">
+          <div className="absolute top-4 left-4 bg-dark-text/90 backdrop-blur-sm px-3 py-1.5 z-10">
             <span className="font-sans text-[7px] tracking-[0.3em] font-bold text-white">
               NEW RELEASE
             </span>
           </div>
         )}
 
-        {/* Vraies miniatures des images (au lieu d'icônes) */}
-        {productImages.length > 1 && (
-          <div className="absolute bottom-4 left-4 flex gap-2">
+        {/* Miniatures - Masquées au hover pour éviter la superposition */}
+        {productImages.length > 1 && !isHovered && (
+          <div className="absolute bottom-4 left-4 flex gap-2 z-10">
             {productImages.map((imgUrl, imgIndex) => (
               <button
                 key={imgIndex}
@@ -144,13 +144,12 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                   setCurrentImageIndex(imgIndex);
                 }}
                 aria-label={`View image ${imgIndex + 1}`}
-                className={`w-12 h-12 border-2 transition-all overflow-hidden ${
+                className={`w-10 h-10 border-2 transition-all overflow-hidden ${
                   currentImageIndex === imgIndex
-                    ? 'border-dark-text ring-2 ring-dark-text/30'
-                    : 'border-white/80 hover:border-dark-text opacity-80 hover:opacity-100'
+                    ? 'border-white ring-2 ring-white/50'
+                    : 'border-white/60 hover:border-white opacity-70 hover:opacity-100'
                 }`}
               >
-                {/* Afficher la vraie miniature de l'image */}
                 <img
                   src={imgUrl}
                   alt={`View ${imgIndex + 1}`}
@@ -161,26 +160,28 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           </div>
         )}
 
-        {/* Overlay qui s'affiche au hover - Design homogène avec les collections */}
+        {/* Overlay au hover - Design impeccable */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
-          transition={{ duration: 0.4 }}
-          className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-6"
+          transition={{ duration: 0.3 }}
+          className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col justify-end p-6"
         >
-          <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-white/70 uppercase mb-2">
-            {category}
-          </p>
-          <h3 className="font-display text-2xl laptop:text-3xl font-light text-white tracking-tight leading-tight mb-3">
-            {product.title}
-          </h3>
-          <div className="flex items-center justify-between">
-            <p className="font-sans text-lg text-white tracking-wide">
-              €{price}
+          <div className="space-y-3">
+            <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-white/70 uppercase">
+              {category}
             </p>
-            <span className="font-sans text-[8px] tracking-[0.3em] uppercase text-white/80 border border-white/30 px-4 py-2">
-              Voir le détail
-            </span>
+            <h3 className="font-display text-2xl laptop:text-3xl font-light text-white tracking-tight leading-tight">
+              {product.title}
+            </h3>
+            <div className="flex items-center justify-between pt-2">
+              <p className="font-sans text-xl text-white tracking-wide">
+                €{price}
+              </p>
+              <span className="font-sans text-[9px] tracking-[0.3em] uppercase text-white border border-white/40 px-4 py-2 hover:bg-white hover:text-dark-text transition-colors">
+                Voir le détail
+              </span>
+            </div>
           </div>
         </motion.div>
       </div>
