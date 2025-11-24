@@ -41,13 +41,13 @@ export default function AmbassadorsHomeSection() {
               className="text-center mb-16 md:mb-20 lg:mb-24"
             >
               <p className="font-sans text-bronze text-[10px] tracking-[0.3em] uppercase mb-6 font-bold">
-                Nos Ambassadeurs
+                Ambassadeurs
               </p>
               <h2 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-[-0.03em] leading-[0.9] mb-8">
-                REJOIGNEZ<br />LA FAMILLE.
+                ILS PORTENT<br />RENAISSANCE.
               </h2>
               <p className="font-sans text-white/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light">
-                Suivez l'univers Renaissance et découvrez nos ambassadeurs qui incarnent l'excellence française.
+                Découvrez l'univers de ceux qui incarnent l'excellence et l'élégance intemporelle.
               </p>
             </motion.div>
 
@@ -89,7 +89,7 @@ export default function AmbassadorsHomeSection() {
               >
                 <button className="flex items-center gap-4 border-2 border-white/40 bg-white/5 backdrop-blur-sm text-white px-10 md:px-12 py-5 md:py-6 font-sans text-[10px] tracking-[0.25em] font-bold hover:bg-white hover:text-dark-text hover:border-white transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
                   <Instagram className="w-5 h-5 group-hover:rotate-12 transition-transform duration-500" />
-                  SUIVEZ-NOUS SUR INSTAGRAM
+                  SUIVRE L'UNIVERS RENAISSANCE
                 </button>
               </a>
 
