@@ -33,7 +33,7 @@ export default function SymbolesHomeSection() {
   const navigate = useNavigate();
 
   return (
-    <section className="py-20 lg:py-32 bg-white">
+    <section className="relative z-[95] py-20 lg:py-32 bg-white">
       <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
 
         <motion.div
