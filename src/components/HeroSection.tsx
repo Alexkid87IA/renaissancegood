@@ -31,6 +31,20 @@ export default function HeroSection() {
           className="absolute inset-0 w-full h-full object-cover lg:hidden"
         />
 
+        <div className="absolute left-8 bottom-8 hidden lg:block max-w-xl">
+          <p className="text-white/90 text-xs tracking-[0.2em] uppercase font-sans mb-2">Nouvelle Collection</p>
+          <h1 className="text-white text-5xl font-serif mb-4">L'excellence française</h1>
+          <p className="text-white/80 text-sm mb-6 leading-relaxed">
+            Des montures d'exception, conçues et fabriquées en France avec un savoir-faire artisanal unique.
+          </p>
+          <button
+            onClick={() => navigate('/shop')}
+            className="border-2 border-white px-8 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-white hover:text-dark-text transition-colors"
+          >
+            Découvrir la collection
+          </button>
+        </div>
+
         <div className="absolute inset-x-0 bottom-0 lg:hidden">
           <div className="bg-white pt-6 pb-8 px-6">
             <div className="flex flex-col gap-3">
