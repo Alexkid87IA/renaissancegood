@@ -29,10 +29,6 @@ export default function AmbassadorsHomeSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <p className="font-sans text-[#8B7355] text-[9px] tracking-[0.35em] uppercase mb-6 lg:mb-8 font-bold">
-                  AMBASSADEURS
-                </p>
-
                 <h2 className="font-display text-4xl md:text-6xl lg:text-8xl font-bold text-white tracking-tight leading-[0.85] mb-6 lg:mb-8">
                   ILS PORTENT<br />
                   RENAISSANCE.
