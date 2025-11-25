@@ -40,14 +40,14 @@ function FilterSelect({
 }) {
   return (
     <div className="relative">
-      <label className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-3 block">
+      <label className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3 block">
         {label}
       </label>
       <div className="relative">
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-transparent border-b-2 border-dark-text/20 pb-2 font-sans text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer"
+          className="w-full bg-transparent border-b-2 border-dark-text/20 pb-1.5 sm:pb-2 font-sans text-xs sm:text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6"
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
@@ -55,8 +55,8 @@ function FilterSelect({
             </option>
           ))}
         </select>
-        <div className="absolute right-0 bottom-3 pointer-events-none">
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+        <div className="absolute right-0 bottom-2 sm:bottom-3 pointer-events-none">
+          <svg width="8" height="5" viewBox="0 0 10 6" fill="none" className="sm:w-[10px] sm:h-[6px]">
             <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" />
           </svg>
         </div>
@@ -253,77 +253,87 @@ export default function ShopPage() {
     <div className="min-h-screen bg-beige">
       {/* Barre de filtres sticky en haut */}
       <motion.div
-        className="border-b border-dark-text/10 bg-white sticky top-20 z-30 shadow-sm"
+        className="border-b border-dark-text/10 bg-white sticky top-16 sm:top-20 z-30 shadow-sm"
         initial={{ y: 0 }}
         animate={{ y: hideFilters ? -200 : 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        <div className="max-w-[1800px] mx-auto px-8 laptop:px-12 py-6 laptop:py-8">
-          <div className="grid grid-cols-6 gap-3 md:gap-6 laptop:gap-8 xl:gap-12">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-8 laptop:px-12 py-4 sm:py-6 laptop:py-8">
+          <div className="grid grid-cols-12 gap-2 sm:gap-3 md:gap-6 laptop:gap-8 xl:gap-12">
             {/* Compteur de résultats */}
-            <div className="col-span-1 flex flex-col justify-end">
-              <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-3">
+            <div className="col-span-6 sm:col-span-4 md:col-span-2 flex flex-col justify-end">
+              <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3">
                 # RESULTS
               </p>
-              <p className="font-display text-4xl laptop:text-5xl font-bold text-dark-text leading-none">
+              <p className="font-display text-2xl sm:text-3xl md:text-4xl laptop:text-5xl font-bold text-dark-text leading-none">
                 {filteredProducts.length}
               </p>
             </div>
 
-            {/* Filtres */}
-            <FilterSelect
-              label="TYPE"
-              options={[
-                { label: 'All', value: 'all' },
-                { label: 'Optical', value: 'optical' },
-                { label: 'Sun', value: 'sun' }
-              ]}
-              value={selectedType}
-              onChange={setSelectedType}
-            />
+            {/* Filtres - cachés sur petit mobile, 2 par ligne sur mobile moyen, tous visible sur desktop */}
+            <div className="col-span-6 sm:col-span-4 md:col-span-2">
+              <FilterSelect
+                label="TYPE"
+                options={[
+                  { label: 'All', value: 'all' },
+                  { label: 'Optical', value: 'optical' },
+                  { label: 'Sun', value: 'sun' }
+                ]}
+                value={selectedType}
+                onChange={setSelectedType}
+              />
+            </div>
 
-            <FilterSelect
-              label="COLLECTION"
-              options={[
-                { label: 'All', value: 'all' },
-                { label: 'Heritage', value: 'heritage' },
-                { label: 'Versailles', value: 'versailles' },
-                { label: 'Isis', value: 'isis' }
-              ]}
-              value={selectedCollection}
-              onChange={setSelectedCollection}
-            />
+            <div className="col-span-6 sm:col-span-4 md:col-span-2">
+              <FilterSelect
+                label="COLLECTION"
+                options={[
+                  { label: 'All', value: 'all' },
+                  { label: 'Heritage', value: 'heritage' },
+                  { label: 'Versailles', value: 'versailles' },
+                  { label: 'Isis', value: 'isis' }
+                ]}
+                value={selectedCollection}
+                onChange={setSelectedCollection}
+              />
+            </div>
 
-            <FilterSelect
-              label="MATERIAL"
-              options={[
-                { label: 'All', value: 'all' },
-                { label: 'Acétate', value: 'acetate' },
-                { label: 'Métal', value: 'metal' },
-                { label: 'Titane', value: 'titanium' }
-              ]}
-              value={selectedMaterial}
-              onChange={setSelectedMaterial}
-            />
+            <div className="col-span-6 sm:col-span-4 md:col-span-2">
+              <FilterSelect
+                label="MATERIAL"
+                options={[
+                  { label: 'All', value: 'all' },
+                  { label: 'Acétate', value: 'acetate' },
+                  { label: 'Métal', value: 'metal' },
+                  { label: 'Titane', value: 'titanium' }
+                ]}
+                value={selectedMaterial}
+                onChange={setSelectedMaterial}
+              />
+            </div>
 
-            <FilterSelect
-              label="SHAPE"
-              options={[
-                { label: 'All', value: 'all' },
-                { label: 'Rond', value: 'round' },
-                { label: 'Ovale', value: 'oval' },
-                { label: 'Carré', value: 'square' }
-              ]}
-              value="all"
-              onChange={() => {}}
-            />
+            <div className="col-span-6 sm:col-span-4 md:col-span-2 hidden md:block">
+              <FilterSelect
+                label="SHAPE"
+                options={[
+                  { label: 'All', value: 'all' },
+                  { label: 'Rond', value: 'round' },
+                  { label: 'Ovale', value: 'oval' },
+                  { label: 'Carré', value: 'square' }
+                ]}
+                value="all"
+                onChange={() => {}}
+              />
+            </div>
 
-            <FilterSelect
-              label="LENS"
-              options={[{ label: 'All', value: 'all' }]}
-              value="all"
-              onChange={() => {}}
-            />
+            <div className="col-span-6 sm:col-span-4 md:col-span-2 hidden md:block">
+              <FilterSelect
+                label="LENS"
+                options={[{ label: 'All', value: 'all' }]}
+                value="all"
+                onChange={() => {}}
+              />
+            </div>
           </div>
         </div>
       </motion.div>
