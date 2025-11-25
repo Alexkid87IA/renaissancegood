@@ -16,7 +16,7 @@ export default function AmbassadorsHomeSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale: scale, opacity: opacity }}
-      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[60] py-16 lg:py-0"
+      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[70] py-16 lg:py-0"
     >
       <div className="relative h-full overflow-hidden bg-black">
         <div className="relative h-full flex items-center max-w-[2000px] mx-auto px-6 md:px-8 lg:px-12">
