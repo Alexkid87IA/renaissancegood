@@ -31,19 +31,22 @@ export default function HeroSection() {
           className="absolute inset-0 w-full h-full object-cover lg:hidden"
         />
 
-        <div className="absolute inset-x-0 bottom-0 lg:hidden flex flex-col gap-3 p-6 pb-8">
-          <button
-            onClick={() => navigate('/store-locator')}
-            className="w-full bg-white/95 backdrop-blur-sm px-6 py-4 font-sans text-xs tracking-[0.2em] uppercase text-dark-text font-bold hover:bg-white transition-colors"
-          >
-            Un opticien proche de chez vous
-          </button>
-          <button
-            onClick={() => navigate('/shop')}
-            className="w-full bg-dark-text px-6 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-dark-text/90 transition-colors"
-          >
-            Acheter maintenant
-          </button>
+        <div className="absolute inset-x-0 bottom-0 lg:hidden">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+          <div className="relative flex flex-col gap-3 p-6 pb-8">
+            <button
+              onClick={() => navigate('/store-locator')}
+              className="w-full bg-white/95 backdrop-blur-sm px-6 py-4 font-sans text-xs tracking-[0.2em] uppercase text-dark-text font-bold hover:bg-white transition-colors"
+            >
+              Un opticien proche de chez vous
+            </button>
+            <button
+              onClick={() => navigate('/shop')}
+              className="w-full bg-dark-text px-6 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-dark-text/90 transition-colors"
+            >
+              Acheter maintenant
+            </button>
+          </div>
         </div>
       </div>
     </motion.section>
