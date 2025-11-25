@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { getProductsByCollection } from '../lib/shopify';
 
-// Interface pour les produits Shopify
 interface ShopifyProduct {
   id: string;
   title: string;
@@ -26,7 +25,6 @@ interface ShopifyProduct {
   };
 }
 
-// Interface pour les produits du menu
 interface MenuProduct {
   name: string;
   image: string;
@@ -45,7 +43,6 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const { itemCount } = useCart();
 
-  // États pour stocker les produits des collections
   const [versaillesCollection, setVersaillesCollection] = useState<MenuProduct[]>([]);
   const [heritageCollection, setHeritageCollection] = useState<MenuProduct[]>([]);
   const [isisCollection, setIsisCollection] = useState<MenuProduct[]>([]);
@@ -69,20 +66,17 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Charger les produits depuis Shopify au montage du composant
   useEffect(() => {
     async function fetchAllCollections() {
       try {
         setLoadingProducts(true);
 
-        // Charger les 3 collections en parallèle
         const [versaillesData, heritageData, isisData] = await Promise.all([
           getProductsByCollection('versailles'),
           getProductsByCollection('heritage'),
           getProductsByCollection('isis')
         ]);
 
-        // Transformer les produits Versailles
         const versaillesProducts = versaillesData.slice(0, 3).map((product: ShopifyProduct) => ({
           name: product.title,
           image: product.images.edges[0]?.node.url || '',
@@ -91,7 +85,6 @@ export default function Header() {
           handle: product.handle
         }));
 
-        // Transformer les produits Heritage
         const heritageProducts = heritageData.slice(0, 3).map((product: ShopifyProduct) => ({
           name: product.title,
           image: product.images.edges[0]?.node.url || '',
@@ -100,7 +93,6 @@ export default function Header() {
           handle: product.handle
         }));
 
-        // Transformer les produits Isis
         const isisProducts = isisData.slice(0, 3).map((product: ShopifyProduct) => ({
           name: product.title,
           image: product.images.edges[0]?.node.url || '',
@@ -115,8 +107,6 @@ export default function Header() {
 
       } catch (error) {
         console.error('Erreur lors du chargement des collections:', error);
-        
-        // En cas d'erreur, utiliser des données de fallback vides
         setVersaillesCollection([]);
         setHeritageCollection([]);
         setIsisCollection([]);
@@ -141,9 +131,8 @@ export default function Header() {
         }`}
       >
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 laptop:px-14 xl:px-20">
-          <div className="flex items-center justify-between h-16 sm:h-18 md:h-20">
+          <div className="flex items-center justify-between h-14 sm:h-14 md:h-16">
             
-            {/* LEFT NAVIGATION */}
             <nav className="hidden lg:flex items-center gap-3 laptop:gap-4 xl:gap-6 2xl:gap-10 flex-1">
               <Link
                 to="/shop"
@@ -180,7 +169,6 @@ export default function Header() {
               </Link>
             </nav>
 
-            {/* CENTER LOGO */}
             <div className="flex-shrink-0 mx-2 sm:mx-4 md:mx-6 lg:mx-8">
               <Link to="/">
                 <motion.div
@@ -194,16 +182,14 @@ export default function Header() {
                   <img
                     src="https://res.cloudinary.com/dwt7u0azs/image/upload/v1761868999/RENAISSANCE_TRANSPARENT_bbe5d805-70e6-4344-856b-1d8534ad9056_ujgcyh.webp"
                     alt="Renaissance Paris"
-                    className="h-24 sm:h-28 md:h-32 lg:h-32 laptop:h-32 xl:h-40 w-auto object-contain"
+                    className="h-20 sm:h-24 md:h-28 lg:h-28 laptop:h-28 xl:h-32 w-auto object-contain"
                   />
                 </motion.div>
               </Link>
             </div>
 
-            {/* RIGHT SECTION */}
             <div className="hidden lg:flex items-center gap-3 laptop:gap-4 xl:gap-6 2xl:gap-10 flex-1 justify-end">
 
-              {/* Opticiens */}
               <div
                 className="relative"
                 onMouseEnter={() => setOpticiensOpen(true)}
@@ -239,7 +225,6 @@ export default function Header() {
                 </AnimatePresence>
               </div>
 
-              {/* Language Selector */}
               <div
                 className="relative"
                 onMouseEnter={() => setLanguageOpen(true)}
@@ -278,7 +263,6 @@ export default function Header() {
                 </AnimatePresence>
               </div>
 
-              {/* Search Icon */}
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
                 className="text-dark-text hover:text-bronze transition-colors duration-300"
@@ -288,7 +272,6 @@ export default function Header() {
                 </svg>
               </button>
 
-              {/* Cart */}
               <Link to="/cart" className="relative text-dark-text hover:text-bronze transition-colors duration-300">
                 <svg className="w-4 h-4 laptop:w-[18px] laptop:h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -300,7 +283,6 @@ export default function Header() {
                 )}
               </Link>
 
-              {/* User Icon */}
               <button className="text-dark-text hover:text-bronze transition-colors duration-300">
                 <svg className="w-4 h-4 laptop:w-[18px] laptop:h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -308,9 +290,7 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Mobile Cart & Menu */}
             <div className="lg:hidden flex items-center gap-4">
-              {/* Cart Icon Mobile */}
               <Link to="/cart" className="relative text-dark-text">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -322,7 +302,6 @@ export default function Header() {
                 )}
               </Link>
 
-              {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="text-dark-text focus:outline-none"
@@ -350,7 +329,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[64px] sm:top-[72px] md:top-[80px] left-0 right-0 z-[90]"
+            className="fixed top-[56px] sm:top-[56px] md:top-[64px] left-0 right-0 z-[90]"
             onMouseLeave={() => setActiveMenu(null)}
           >
             <motion.div
@@ -376,8 +355,6 @@ export default function Header() {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-8 lg:gap-10 laptop:gap-12 xl:gap-16">
-                    
-                    {/* 3 paires */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-6 lg:gap-8 laptop:gap-8">
                       {versaillesCollection.map((item, index) => (
                         <Link
@@ -408,7 +385,6 @@ export default function Header() {
                       ))}
                     </div>
 
-                    {/* CTA */}
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -440,7 +416,7 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      {/* Mega Menu - Isis - BIENTÔT DISPONIBLE */}
+      {/* Mega Menu - Isis */}
       <AnimatePresence>
         {activeMenu === 'isis' && (
           <motion.div
@@ -448,7 +424,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[64px] sm:top-[72px] md:top-[80px] left-0 right-0 z-[90]"
+            className="fixed top-[56px] sm:top-[56px] md:top-[64px] left-0 right-0 z-[90]"
             onMouseLeave={() => setActiveMenu(null)}
           >
             <motion.div
@@ -481,7 +457,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[64px] sm:top-[72px] md:top-[80px] left-0 right-0 z-[90]"
+            className="fixed top-[56px] sm:top-[56px] md:top-[64px] left-0 right-0 z-[90]"
             onMouseLeave={() => setActiveMenu(null)}
           >
             <motion.div
@@ -507,8 +483,6 @@ export default function Header() {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-8 lg:gap-10 laptop:gap-12 xl:gap-16">
-                    
-                    {/* 3 paires */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-6 lg:gap-8 laptop:gap-8">
                       {heritageCollection.map((item, index) => (
                         <Link
@@ -539,7 +513,6 @@ export default function Header() {
                       ))}
                     </div>
 
-                    {/* CTA */}
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -583,7 +556,6 @@ export default function Header() {
           >
             <div className="flex flex-col min-h-full pt-20 sm:pt-24 px-6 sm:px-8 pb-12">
               <nav className="flex flex-col space-y-8">
-                {/* Boutique */}
                 <div className="space-y-4">
                   <Link
                     to="/shop"
@@ -594,7 +566,6 @@ export default function Header() {
                   </Link>
                 </div>
 
-                {/* Collections Section */}
                 <div className="space-y-4">
                   <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-dark-text/50 font-bold">
                     Collections
@@ -622,7 +593,6 @@ export default function Header() {
                   </Link>
                 </div>
 
-                {/* Maison Section */}
                 <div className="space-y-4">
                   <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-dark-text/50 font-bold">
                     La Maison
@@ -643,9 +613,7 @@ export default function Header() {
                   </Link>
                 </div>
 
-                {/* Divider */}
                 <div className="border-t border-dark-text/10 pt-6 mt-8">
-                  {/* Account & Support */}
                   <div className="space-y-3">
                     <Link
                       to="/cart"
@@ -667,7 +635,6 @@ export default function Header() {
                     </button>
                   </div>
 
-                  {/* Language Selector Mobile */}
                   <div className="mt-6 pt-6 border-t border-dark-text/10">
                     <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-dark-text/50 font-bold mb-3">
                       Langue
@@ -703,7 +670,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[64px] sm:top-[72px] md:top-[80px] left-0 right-0 z-[90]"
+            className="fixed top-[56px] sm:top-[56px] md:top-[64px] left-0 right-0 z-[90]"
             onClick={() => setSearchOpen(false)}
           >
             <motion.div

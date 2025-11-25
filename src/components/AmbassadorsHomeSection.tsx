@@ -1,135 +1,126 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { Instagram } from 'lucide-react';
 
+const celebrities = [
+  {
+    name: 'SDM',
+    role: 'Artiste',
+    model: 'Héritage XXXVIII',
+    image: 'https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=800',
+  },
+  {
+    name: 'Artiste 2',
+    role: 'Acteur',
+    model: 'Versailles I',
+    image: 'https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=800',
+  },
+  {
+    name: 'Artiste 3',
+    role: 'Créateur',
+    model: 'Héritage XXXXIV',
+    image: 'https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=800',
+  },
+  {
+    name: 'Artiste 4',
+    role: 'Musicien',
+    model: 'Versailles II',
+    image: 'https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=800',
+  }
+];
+
 export default function AmbassadorsHomeSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
-
   return (
-    <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity }}
-      className="h-screen sticky top-0 z-[60]"
-    >
-      <div className="relative h-full overflow-hidden bg-black">
-        <div className="relative h-full flex items-center max-w-[2000px] mx-auto px-6 laptop:px-10 lg:px-12 py-20 lg:py-0">
-          <div className="w-full">
+    <section className="h-screen sticky top-0 z-[60] bg-[#0a0a0a] flex flex-col">
+      
+      {/* Header */}
+      <div className="pt-20 md:pt-24 lg:pt-28 px-5 md:px-10 lg:px-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center"
+        >
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[0.9]">
+            ILS PORTENT{' '}
+            <span className="text-bronze">RENAISSANCE.</span>
+          </h2>
+        </motion.div>
+      </div>
 
-            <div className="text-center mb-8 laptop:mb-12 lg:mb-16 lg:mt-20">
+      {/* Grid - Prend l'espace restant */}
+      <div className="flex-1 flex items-center px-5 md:px-10 lg:px-16 py-8 md:py-12">
+        <div className="w-full max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-5">
+            {celebrities.map((celeb, index) => (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative aspect-[3/4] overflow-hidden bg-[#111]"
               >
-                <h2 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold text-white tracking-[-0.03em] leading-[0.9] mb-5 laptop:mb-6 lg:mb-8">
-                  ILS PORTENT<br />
-                  RENAISSANCE.
-                </h2>
-
-                <p className="font-sans text-white/50 text-sm laptop:text-base leading-[1.7] max-w-2xl mx-auto">
-                  Artistes, créateurs, visionnaires. Découvrez ceux qui incarnent l'excellence française.
-                </p>
-              </motion.div>
-            </div>
-
-            <div className="grid grid-cols-2 laptop:grid-cols-3 lg:grid-cols-4 gap-3 laptop:gap-4 lg:gap-4 mb-8 laptop:mb-12 lg:mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="aspect-[3/4] group relative overflow-hidden"
-              >
+                {/* Image */}
                 <img
-                  src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=800"
-                  alt="Renaissance Ambassador"
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                  src={celeb.image}
+                  alt={celeb.name}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-500" />
+                
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+
+                {/* Border */}
+                <div className="absolute inset-0 border border-white/10 group-hover:border-bronze/50 transition-colors duration-500" />
+
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
+                  <p className="font-sans text-bronze/80 text-[8px] md:text-[9px] tracking-[0.2em] uppercase mb-1">
+                    {celeb.model}
+                  </p>
+                  <h3 className="font-display text-lg md:text-xl lg:text-2xl text-white font-bold leading-tight">
+                    {celeb.name}
+                  </h3>
+                  <p className="font-sans text-white/50 text-xs md:text-sm">
+                    {celeb.role}
+                  </p>
+                </div>
+
+                {/* Top accent */}
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-bronze scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="aspect-[3/4] group relative overflow-hidden"
-              >
-                <img
-                  src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=800"
-                  alt="Renaissance Product"
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-500" />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="aspect-[3/4] group relative overflow-hidden"
-              >
-                <img
-                  src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=800"
-                  alt="Renaissance Product"
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-500" />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="aspect-[3/4] group relative overflow-hidden laptop:hidden lg:block"
-              >
-                <img
-                  src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=800"
-                  alt="Renaissance Ambassador"
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-500" />
-              </motion.div>
-            </div>
-
-            <div className="text-center">
-              <a
-                href="https://www.instagram.com/renaissanceeyewear"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-block"
-              >
-                <motion.button
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="relative flex items-center gap-3 border border-white/10 text-white px-6 laptop:px-7 lg:px-8 py-3 laptop:py-3.5 lg:py-4 font-sans text-[9px] laptop:text-[10px] tracking-[0.3em] font-bold overflow-hidden hover:border-white/30 transition-all duration-300 mx-auto"
-                >
-                  <span className="absolute inset-0 bg-white/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
-                  <Instagram className="w-4 h-4 relative z-10" />
-                  <span className="relative z-10">SUIVRE L'UNIVERS RENAISSANCE</span>
-                </motion.button>
-              </a>
-
-              <p className="font-sans text-white/20 text-[10px] laptop:text-xs tracking-wider mt-3 laptop:mt-4">
-                @renaissanceeyewear
-              </p>
-            </div>
-
+            ))}
           </div>
         </div>
       </div>
-    </motion.section>
+
+      {/* Footer CTA */}
+      <div className="pb-8 md:pb-12 lg:pb-16 px-5 md:px-10 lg:px-16">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+        >
+          <a
+            href="https://www.instagram.com/renaissanceeyewear"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 border border-white/20 hover:border-bronze/50 px-5 py-3 transition-all duration-300"
+          >
+            <Instagram className="w-4 h-4 text-white/60 group-hover:text-bronze transition-colors" />
+            <span className="font-sans text-white text-[10px] tracking-[0.2em] uppercase">
+              @renaissanceeyewear
+            </span>
+          </a>
+          
+          <span className="font-sans text-white/30 text-xs hidden sm:block">
+            Rejoignez le mouvement
+          </span>
+        </motion.div>
+      </div>
+    </section>
   );
 }
