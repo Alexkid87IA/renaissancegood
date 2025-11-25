@@ -16,13 +16,13 @@ export default function AmbassadorsHomeSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-screen lg:h-screen sticky top-0 z-[60] py-20 lg:py-0"
+      className="h-screen sticky top-0 z-[60]"
     >
       <div className="relative h-full overflow-hidden bg-black">
-        <div className="relative h-full flex items-center max-w-[2000px] mx-auto px-6 laptop:px-10 lg:px-12">
+        <div className="relative h-full flex items-center max-w-[2000px] mx-auto px-6 laptop:px-10 lg:px-12 py-20 lg:py-0">
           <div className="w-full">
 
-            <div className="text-center mb-10 laptop:mb-12 lg:mb-16 mt-16 laptop:mt-12 lg:mt-20">
+            <div className="text-center mb-8 laptop:mb-12 lg:mb-16 lg:mt-20">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export default function AmbassadorsHomeSection() {
               </motion.div>
             </div>
 
-            <div className="grid grid-cols-2 laptop:grid-cols-3 lg:grid-cols-4 gap-3 laptop:gap-4 lg:gap-4 mb-10 laptop:mb-12 lg:mb-16">
+            <div className="grid grid-cols-2 laptop:grid-cols-3 lg:grid-cols-4 gap-3 laptop:gap-4 lg:gap-4 mb-8 laptop:mb-12 lg:mb-16">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
