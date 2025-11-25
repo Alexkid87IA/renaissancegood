@@ -21,7 +21,7 @@ export default function HeroSection() {
     >
       <div className="relative h-full overflow-hidden">
         <img
-          src="https://renaissanceeyewear.fr/cdn/shop/files/PLV_1.jpg?v=1708709809&width=1440"
+          src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764032916/Gemini_Generated_Image_8ftsgv8ftsgv8fts_rqnxed.png"
           alt="Hero Background"
           className="absolute inset-0 w-full h-full object-cover hidden lg:block"
         />
