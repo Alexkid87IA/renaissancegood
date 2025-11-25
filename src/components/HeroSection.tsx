@@ -40,10 +40,10 @@ export default function HeroSection() {
             Des montures d'exception, conçues et fabriquées en France avec un savoir-faire artisanal unique.
           </p>
           <button
-            onClick={() => navigate('/shop')}
+            onClick={() => navigate('/collections')}
             className="border-2 border-white px-8 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-white hover:text-dark-text transition-colors"
           >
-            Découvrir la collection
+            Découvrir les collections
           </button>
         </div>
 
