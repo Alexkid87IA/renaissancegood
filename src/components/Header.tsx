@@ -64,6 +64,7 @@ export default function Header() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -135,7 +136,7 @@ export default function Header() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
           scrolled
-            ? 'bg-white/98 backdrop-blur-xl shadow-sm'
+            ? 'bg-white backdrop-blur-xl shadow-sm'
             : 'bg-white/95 backdrop-blur-md'
         }`}
       >
