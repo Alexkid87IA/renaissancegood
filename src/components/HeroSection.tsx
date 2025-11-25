@@ -27,7 +27,7 @@ export default function HeroSection() {
             className="absolute inset-0 w-full h-full object-cover hidden lg:block"
           />
           <img
-            src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1440"
+            src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764096301/unnamed_6_vh8f2v.jpg"
             alt="Hero Background Mobile"
             className="absolute inset-0 w-full h-full object-cover lg:hidden"
           />
@@ -57,7 +57,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="relative lg:absolute lg:inset-x-0 lg:bottom-0 bg-white pt-48 pb-6 px-6 lg:hidden">
+        <div className="relative lg:absolute lg:inset-x-0 lg:bottom-0 bg-white pt-36 pb-6 px-6 lg:hidden">
           <div className="flex flex-col gap-3">
             <button
               onClick={() => navigate('/store-locator')}
