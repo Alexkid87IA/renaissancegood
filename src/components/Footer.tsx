@@ -125,7 +125,7 @@ export default function Footer() {
         </div>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-1 laptop:grid-cols-4 gap-8 laptop:gap-10 mb-6 laptop:mb-12">
+        <div className="flex flex-wrap justify-center laptop:justify-between gap-8 laptop:gap-10 mb-6 laptop:mb-12">
           {/* Boutique */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
