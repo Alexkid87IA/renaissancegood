@@ -41,21 +41,21 @@ export default function SymbolesHomeSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 lg:mb-24"
+          className="text-center mb-12 lg:mb-24"
         >
-          <p className="font-sans text-[#8B7355] text-[9px] tracking-[0.35em] uppercase mb-6 font-bold">
+          <p className="font-sans text-[#8B7355] text-[9px] tracking-[0.35em] uppercase mb-4 lg:mb-6 font-bold">
             Nos Symboles
           </p>
-          <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-[#2C2C2C] tracking-tight leading-[0.95] mb-6">
+          <h2 className="font-display text-3xl md:text-5xl lg:text-7xl font-bold text-[#2C2C2C] tracking-tight leading-[1.1] lg:leading-[0.95] mb-4 lg:mb-6 px-4">
             Cinq Symboles,<br />
             Une Signature Éternelle.
           </h2>
-          <p className="font-sans text-[#2C2C2C]/60 text-base md:text-lg leading-[1.7] max-w-2xl mx-auto">
+          <p className="font-sans text-[#2C2C2C]/60 text-sm md:text-base lg:text-lg leading-[1.6] lg:leading-[1.7] max-w-2xl mx-auto px-4">
             Gravés dans le métal, ces symboles millénaires incarnent les valeurs de Renaissance.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 lg:gap-6 mb-10 lg:mb-12">
           {symbols.map((symbol, index) => (
             <motion.div
               key={symbol.name}
@@ -65,10 +65,10 @@ export default function SymbolesHomeSection() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group relative"
             >
-              <div className="aspect-square relative overflow-hidden border-2 border-[#8B7355]/20 hover:border-[#8B7355] transition-all duration-500">
+              <div className="aspect-square relative overflow-hidden border border-[#8B7355]/20 hover:border-[#8B7355] transition-all duration-500">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#F5F3EF] to-white" />
 
-                <div className="absolute inset-0 flex items-center justify-center p-6">
+                <div className="absolute inset-0 flex items-center justify-center p-4 md:p-6">
                   <img
                     src={symbol.image}
                     alt={symbol.name}
@@ -76,20 +76,20 @@ export default function SymbolesHomeSection() {
                   />
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                  <p className="font-sans text-white text-xs tracking-[0.25em] uppercase font-bold mb-1">
+                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                  <p className="font-sans text-white text-[8px] md:text-xs tracking-[0.2em] md:tracking-[0.25em] uppercase font-bold mb-0.5 md:mb-1">
                     {symbol.subtitle}
                   </p>
-                  <p className="font-display text-white text-sm font-bold">
+                  <p className="font-display text-white text-xs md:text-sm font-bold">
                     {symbol.name}
                   </p>
                 </div>
               </div>
 
-              <div className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-[#8B7355] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-[#8B7355] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-[#8B7355] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-[#8B7355] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </motion.div>
           ))}
         </div>
@@ -99,11 +99,11 @@ export default function SymbolesHomeSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-center"
+          className="text-center px-4"
         >
           <button
             onClick={() => navigate('/histoire')}
-            className="group relative inline-flex items-center gap-3 border-2 border-[#2C2C2C] px-10 py-4 font-sans text-[10px] tracking-[0.3em] uppercase text-[#2C2C2C] font-bold overflow-hidden hover:border-[#8B7355] transition-all duration-500"
+            className="group relative inline-flex items-center justify-center gap-3 border-2 border-[#2C2C2C] px-6 md:px-10 py-3 md:py-4 font-sans text-[9px] md:text-[10px] tracking-[0.25em] md:tracking-[0.3em] uppercase text-[#2C2C2C] font-bold overflow-hidden hover:border-[#8B7355] transition-all duration-500 w-full md:w-auto"
           >
             <span className="absolute inset-0 bg-[#8B7355] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
             <span className="relative z-10 group-hover:text-white transition-colors duration-500">
