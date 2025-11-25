@@ -582,6 +582,17 @@ export default function Header() {
           >
             <div className="flex flex-col min-h-full pt-20 sm:pt-24 px-6 sm:px-8 pb-12">
               <nav className="flex flex-col space-y-8">
+                {/* Shop */}
+                <div className="space-y-4">
+                  <Link
+                    to="/shop"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block font-display text-2xl text-dark-text tracking-tight"
+                  >
+                    Shop
+                  </Link>
+                </div>
+
                 {/* Collections Section */}
                 <div className="space-y-4">
                   <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-dark-text/50 font-bold">
