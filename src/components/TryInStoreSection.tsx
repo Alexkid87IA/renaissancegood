@@ -34,9 +34,6 @@ export default function TryInStoreSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <p className="font-sans text-bronze text-[9px] sm:text-[10px] laptop:text-[11px] tracking-[0.3em] uppercase mb-3 sm:mb-4 laptop:mb-6 font-bold">
-                  Réseau National
-                </p>
                 <h2 className="font-display text-3xl sm:text-4xl laptop:text-5xl md:text-6xl lg:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-4 sm:mb-5 laptop:mb-7 lg:mb-8">
                   ESSAYER EN<br />BOUTIQUE.
                 </h2>
