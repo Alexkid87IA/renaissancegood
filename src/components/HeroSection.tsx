@@ -39,12 +39,20 @@ export default function HeroSection() {
           <p className="text-white text-sm mb-6 leading-relaxed">
             Des montures merveilleuses, conçues et fabriquées avec un savoir-faire artisanal unique.
           </p>
-          <button
-            onClick={() => navigate('/collections')}
-            className="border-2 border-white px-8 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-white hover:text-dark-text transition-colors"
-          >
-            Découvrir les collections
-          </button>
+          <div className="flex gap-4">
+            <button
+              onClick={() => navigate('/shop')}
+              className="bg-white px-8 py-4 font-sans text-xs tracking-[0.2em] uppercase text-dark-text font-bold hover:bg-white/90 transition-colors"
+            >
+              Acheter maintenant
+            </button>
+            <button
+              onClick={() => navigate('/store-locator')}
+              className="border-2 border-white px-8 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-white hover:text-dark-text transition-colors"
+            >
+              Trouver un opticien
+            </button>
+          </div>
         </div>
 
         <div className="absolute inset-x-0 bottom-0 lg:hidden">
