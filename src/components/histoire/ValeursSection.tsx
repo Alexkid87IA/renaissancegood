@@ -105,7 +105,7 @@ export default function ValeursSection() {
               </motion.p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-6 mb-12">
               {valeurs.map((valeur, index) => (
                 <motion.div
                   key={valeur.title}
@@ -113,35 +113,37 @@ export default function ValeursSection() {
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
                   whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                  className="relative border-2 border-bronze/30 bg-gradient-to-br from-white/[0.03] to-transparent p-6 hover:border-bronze hover:bg-bronze/5 transition-all duration-500 group"
+                  className="relative border border-bronze/30 bg-gradient-to-br from-white/[0.04] to-transparent hover:border-bronze hover:bg-bronze/5 transition-all duration-500 group flex flex-col"
                 >
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-bronze via-bronze/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-bronze via-bronze/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-                  <div className="mb-5">
-                    <div className="w-16 h-16 border-2 border-bronze/40 flex items-center justify-center mb-5 group-hover:border-bronze group-hover:bg-bronze/10 transition-all duration-500 relative overflow-hidden">
-                      <motion.span
-                        className="font-sans text-3xl text-bronze font-bold relative z-10"
-                        whileHover={{ scale: 1.2, rotate: 5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {index + 1}
-                      </motion.span>
-                      <motion.div
-                        className="absolute inset-0 bg-bronze/20"
-                        initial={{ scale: 0 }}
-                        whileHover={{ scale: 1 }}
-                        transition={{ duration: 0.5 }}
-                      />
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="mb-auto">
+                      <div className="w-14 h-14 border border-bronze/40 flex items-center justify-center mb-6 group-hover:border-bronze group-hover:bg-bronze/10 transition-all duration-500 relative overflow-hidden">
+                        <motion.span
+                          className="font-sans text-2xl text-bronze font-bold relative z-10"
+                          whileHover={{ scale: 1.15 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {index + 1}
+                        </motion.span>
+                        <motion.div
+                          className="absolute inset-0 bg-bronze/20"
+                          initial={{ scale: 0 }}
+                          whileHover={{ scale: 1 }}
+                          transition={{ duration: 0.5 }}
+                        />
+                      </div>
+                      <h3 className="font-sans text-white text-sm tracking-[0.2em] uppercase font-bold mb-4 group-hover:text-bronze transition-colors duration-500">
+                        {valeur.title}
+                      </h3>
                     </div>
-                    <h3 className="font-sans text-white text-base md:text-lg tracking-[0.25em] uppercase font-bold mb-3 group-hover:text-bronze transition-colors duration-500">
-                      {valeur.title}
-                    </h3>
+                    <p className="font-sans text-white/60 text-sm font-light leading-[1.65] group-hover:text-white/80 transition-colors duration-500">
+                      {valeur.description}
+                    </p>
                   </div>
-                  <p className="font-sans text-white/70 text-sm md:text-base font-light leading-[1.7] group-hover:text-white/90 transition-colors duration-500">
-                    {valeur.description}
-                  </p>
 
-                  <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-bronze/20 group-hover:border-bronze transition-colors duration-500" />
+                  <div className="absolute bottom-0 right-0 w-10 h-10 border-r border-b border-bronze/20 group-hover:border-bronze transition-colors duration-500" />
                 </motion.div>
               ))}
             </div>
