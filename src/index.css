@@ -13,3 +13,9 @@
     @apply font-sans text-dark-text antialiased;
   }
 }
+
+@layer utilities {
+  .safe-area-bottom {
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+}

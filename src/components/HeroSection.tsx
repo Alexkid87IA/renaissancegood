@@ -55,7 +55,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 bg-white px-6 py-6 pb-safe lg:hidden">
+        <div className="absolute inset-x-0 bottom-0 bg-white px-6 py-8 lg:hidden safe-area-bottom">
           <div className="flex flex-col gap-3 max-w-md mx-auto">
             <button
               onClick={() => navigate('/store-locator')}
