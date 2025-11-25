@@ -182,7 +182,7 @@ export default function Header() {
                   <img
                     src="https://res.cloudinary.com/dwt7u0azs/image/upload/v1761868999/RENAISSANCE_TRANSPARENT_bbe5d805-70e6-4344-856b-1d8534ad9056_ujgcyh.webp"
                     alt="Renaissance Paris"
-                    className="h-20 sm:h-24 md:h-28 lg:h-28 laptop:h-28 xl:h-32 w-auto object-contain"
+                    className="h-24 sm:h-28 md:h-28 lg:h-28 laptop:h-28 xl:h-32 w-auto object-contain"
                   />
                 </motion.div>
               </Link>
