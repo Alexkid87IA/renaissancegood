@@ -69,11 +69,11 @@ export default function SymbolesHomeSection() {
 
                 <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEI3MzU1IiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC4xIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30" />
 
-                <div className="absolute inset-0 flex items-center justify-center p-6 laptop:p-10 md:p-8 lg:p-10">
+                <div className="absolute inset-0 p-1">
                   <img
                     src={symbol.image}
                     alt={symbol.name}
-                    className="w-full h-full object-contain filter brightness-110 group-hover:brightness-125 group-hover:scale-110 transition-all duration-700 drop-shadow-2xl"
+                    className="w-full h-full object-cover filter brightness-110 group-hover:brightness-125 group-hover:scale-105 transition-all duration-700"
                   />
                 </div>
 

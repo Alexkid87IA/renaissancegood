@@ -42,7 +42,7 @@ export default function FabricationSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h2 className="font-display text-[2.5rem] sm:text-[2.75rem] md:text-5xl lg:text-6xl laptop:text-7xl xl:text-[9rem] font-bold text-white mb-6 laptop:mb-10 xl:mb-12 tracking-[-0.04em] leading-[0.95]">
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-[-0.03em] leading-[0.95]">
                 FABRICATION
               </h2>
 
