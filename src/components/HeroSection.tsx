@@ -31,12 +31,12 @@ export default function HeroSection() {
           className="absolute inset-0 w-full h-full object-cover lg:hidden"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent hidden lg:block"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent hidden lg:block"></div>
 
         <div className="absolute left-8 bottom-8 hidden lg:block max-w-xl">
-          <p className="text-white/90 text-xs tracking-[0.2em] uppercase font-sans mb-2">Nouvelle Collection</p>
+          <p className="text-white text-xs tracking-[0.2em] uppercase font-sans mb-2">Nouvelle Collection</p>
           <h1 className="text-white text-5xl font-serif mb-4">L'excellence française</h1>
-          <p className="text-white/80 text-sm mb-6 leading-relaxed">
+          <p className="text-white text-sm mb-6 leading-relaxed">
             Des montures d'exception, conçues et fabriquées en France avec un savoir-faire artisanal unique.
           </p>
           <button
