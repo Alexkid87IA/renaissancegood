@@ -1,8 +1,10 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"]
@@ -28,6 +30,21 @@ export default function HeroSection() {
           alt="Hero Background Mobile"
           className="absolute inset-0 w-full h-full object-cover lg:hidden"
         />
+
+        <div className="absolute inset-x-0 bottom-0 lg:hidden flex flex-col gap-3 p-6 pb-8">
+          <button
+            onClick={() => navigate('/store-locator')}
+            className="w-full bg-white/95 backdrop-blur-sm px-6 py-4 font-sans text-xs tracking-[0.2em] uppercase text-dark-text font-bold hover:bg-white transition-colors"
+          >
+            Un opticien proche de chez vous
+          </button>
+          <button
+            onClick={() => navigate('/shop')}
+            className="w-full bg-dark-text px-6 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-dark-text/90 transition-colors"
+          >
+            Acheter maintenant
+          </button>
+        </div>
       </div>
     </motion.section>
   );
