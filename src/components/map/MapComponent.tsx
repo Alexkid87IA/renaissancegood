@@ -230,6 +230,9 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
         .custom-marker:hover {
           transform: scale(1.2);
         }
+        .mapboxgl-canvas {
+          outline: none;
+        }
       `}</style>
     </div>
   );

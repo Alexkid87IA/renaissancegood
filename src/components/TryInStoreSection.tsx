@@ -100,17 +100,19 @@ export default function TryInStoreSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative h-[300px] sm:h-[400px] laptop:h-full"
+            className="relative h-[300px] sm:h-[400px] laptop:h-full overflow-hidden"
           >
-            <MapComponent
-              stores={opticiansData}
-              selectedStore={null}
-              onSelectStore={() => {}}
-              userLocation={null}
-              initialCenter={[2.3, 46.8]}
-              initialZoom={5.3}
-              disableAutoBounds={true}
-            />
+            <div className="absolute inset-0">
+              <MapComponent
+                stores={opticiansData}
+                selectedStore={null}
+                onSelectStore={() => {}}
+                userLocation={null}
+                initialCenter={[2.3, 46.8]}
+                initialZoom={5.3}
+                disableAutoBounds={true}
+              />
+            </div>
           </motion.div>
 
         </div>
