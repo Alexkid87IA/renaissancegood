@@ -16,11 +16,11 @@ export default function AmbassadorsHomeSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="h-screen sticky top-0 z-[60]"
+      className="min-h-screen lg:h-screen sticky top-0 z-[60] py-16 lg:py-0"
     >
       <div className="relative h-full overflow-hidden bg-black">
-        <div className="relative h-full flex items-center max-w-[2000px] mx-auto px-8 lg:px-12">
-          <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 h-full items-center">
+        <div className="relative h-full flex items-center max-w-[2000px] mx-auto px-6 lg:px-12">
+          <div className="w-full grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-24 h-full items-center">
 
             <div className="flex flex-col justify-center">
               <motion.div
@@ -29,20 +29,20 @@ export default function AmbassadorsHomeSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <p className="font-sans text-[#8B7355] text-[9px] tracking-[0.35em] uppercase mb-6 font-bold">
+                <p className="font-sans text-[#8B7355] text-[9px] tracking-[0.35em] uppercase mb-4 lg:mb-6 font-bold">
                   AMBASSADEURS
                 </p>
 
-                <h2 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[0.85] mb-8">
+                <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[0.85] mb-6 lg:mb-8">
                   ILS PORTENT<br />
                   RENAISSANCE.
                 </h2>
 
-                <p className="font-sans text-white/50 text-base md:text-lg leading-[1.7] mb-10 max-w-lg">
+                <p className="font-sans text-white/50 text-sm md:text-lg leading-[1.7] mb-8 lg:mb-10 max-w-lg">
                   Artistes, créateurs, visionnaires. Découvrez ceux qui incarnent l'excellence française et partagent nos valeurs d'élégance intemporelle.
                 </p>
 
-                <div className="space-y-5 mb-10">
+                <div className="space-y-4 lg:space-y-5 mb-8 lg:mb-10">
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -91,7 +91,7 @@ export default function AmbassadorsHomeSection() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="relative flex items-center gap-3 border border-white/10 text-white px-8 py-4 font-sans text-[9px] tracking-[0.3em] font-bold overflow-hidden hover:border-white/30 transition-all duration-300"
+                    className="relative flex items-center gap-3 border border-white/10 text-white px-6 lg:px-8 py-3 lg:py-4 font-sans text-[9px] tracking-[0.3em] font-bold overflow-hidden hover:border-white/30 transition-all duration-300"
                   >
                     <span className="absolute inset-0 bg-white/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
                     <Instagram className="w-4 h-4 relative z-10" />
@@ -105,14 +105,14 @@ export default function AmbassadorsHomeSection() {
               </motion.div>
             </div>
 
-            <div className="relative h-[80vh] hidden lg:block">
-              <div className="h-full grid grid-cols-3 grid-rows-2 gap-2">
+            <div className="relative h-[60vh] lg:h-[80vh]">
+              <div className="h-full grid grid-cols-2 grid-rows-3 lg:grid-cols-3 lg:grid-rows-2 gap-2">
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="col-span-2 row-span-1 group relative overflow-hidden"
+                  className="col-span-2 row-span-2 lg:row-span-1 group relative overflow-hidden"
                 >
                   <img
                     src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1200"
@@ -157,7 +157,7 @@ export default function AmbassadorsHomeSection() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="col-span-2 row-span-1 group relative overflow-hidden"
+                  className="hidden lg:block col-span-2 row-span-1 group relative overflow-hidden"
                 >
                   <img
                     src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1200"
