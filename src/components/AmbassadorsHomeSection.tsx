@@ -105,21 +105,21 @@ export default function AmbassadorsHomeSection() {
               </motion.div>
             </div>
 
-            <div className="relative h-[60vh] lg:h-[80vh]">
-              <div className="h-full grid grid-cols-2 grid-rows-3 lg:grid-cols-3 lg:grid-rows-2 gap-2">
+            <div className="relative w-full">
+              <div className="grid grid-cols-2 gap-2 lg:hidden">
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="col-span-2 row-span-2 lg:row-span-1 group relative overflow-hidden"
+                  className="aspect-[3/4] group relative overflow-hidden"
                 >
                   <img
-                    src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1200"
+                    src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=800"
                     alt="Renaissance Ambassador"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                    className="w-full h-full object-cover grayscale"
                   />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500" />
+                  <div className="absolute inset-0 bg-black/20" />
                 </motion.div>
 
                 <motion.div
@@ -127,14 +127,14 @@ export default function AmbassadorsHomeSection() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="col-span-1 row-span-1 group relative overflow-hidden"
+                  className="aspect-[3/4] group relative overflow-hidden"
                 >
                   <img
                     src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=800"
                     alt="Renaissance Product"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                    className="w-full h-full object-cover grayscale"
                   />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500" />
+                  <div className="absolute inset-0 bg-black/20" />
                 </motion.div>
 
                 <motion.div
@@ -142,14 +142,14 @@ export default function AmbassadorsHomeSection() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="col-span-1 row-span-1 group relative overflow-hidden"
+                  className="aspect-[3/4] group relative overflow-hidden"
                 >
                   <img
                     src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=800"
                     alt="Renaissance Product"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                    className="w-full h-full object-cover grayscale"
                   />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500" />
+                  <div className="absolute inset-0 bg-black/20" />
                 </motion.div>
 
                 <motion.div
@@ -157,15 +157,79 @@ export default function AmbassadorsHomeSection() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="hidden lg:block col-span-2 row-span-1 group relative overflow-hidden"
+                  className="aspect-[3/4] group relative overflow-hidden"
                 >
                   <img
-                    src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1200"
+                    src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=800"
                     alt="Renaissance Ambassador"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                    className="w-full h-full object-cover grayscale"
                   />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500" />
+                  <div className="absolute inset-0 bg-black/20" />
                 </motion.div>
+              </div>
+
+              <div className="hidden lg:block relative h-[80vh]">
+                <div className="h-full grid grid-cols-3 grid-rows-2 gap-2">
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="col-span-2 row-span-1 group relative overflow-hidden"
+                  >
+                    <img
+                      src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1200"
+                      alt="Renaissance Ambassador"
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500" />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="col-span-1 row-span-1 group relative overflow-hidden"
+                  >
+                    <img
+                      src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=800"
+                      alt="Renaissance Product"
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500" />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="col-span-1 row-span-1 group relative overflow-hidden"
+                  >
+                    <img
+                      src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=800"
+                      alt="Renaissance Product"
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500" />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="col-span-2 row-span-1 group relative overflow-hidden"
+                  >
+                    <img
+                      src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1200"
+                      alt="Renaissance Ambassador"
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500" />
+                  </motion.div>
+                </div>
               </div>
             </div>
 
