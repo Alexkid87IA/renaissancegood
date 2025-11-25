@@ -16,10 +16,10 @@ export default function AmbassadorsHomeSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-[140vh] lg:h-screen sticky top-0 z-[60] py-16 lg:py-0"
+      className="min-h-[200vh] lg:h-screen sticky top-0 z-[60] pt-32 pb-24 lg:py-0"
     >
       <div className="relative h-full overflow-hidden bg-black">
-        <div className="relative h-full flex items-center max-w-[2000px] mx-auto px-6 lg:px-12">
+        <div className="relative h-full flex max-w-[2000px] mx-auto px-6 lg:px-12">
           <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 h-full lg:items-center">
 
             <div className="flex flex-col justify-center">
@@ -105,14 +105,14 @@ export default function AmbassadorsHomeSection() {
               </motion.div>
             </div>
 
-            <div className="relative w-full mt-12 mb-12 lg:mt-0 lg:mb-0">
+            <div className="relative w-full mt-16 lg:mt-0">
               <div className="grid grid-cols-2 gap-4 lg:hidden">
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="aspect-[4/5] group relative overflow-hidden"
+                  className="aspect-[3/4] group relative overflow-hidden"
                 >
                   <img
                     src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=800"
@@ -127,7 +127,7 @@ export default function AmbassadorsHomeSection() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="aspect-[4/5] group relative overflow-hidden"
+                  className="aspect-[3/4] group relative overflow-hidden"
                 >
                   <img
                     src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=800"
@@ -142,7 +142,7 @@ export default function AmbassadorsHomeSection() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="aspect-[4/5] group relative overflow-hidden"
+                  className="aspect-[3/4] group relative overflow-hidden"
                 >
                   <img
                     src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=800"
@@ -157,7 +157,7 @@ export default function AmbassadorsHomeSection() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="aspect-[4/5] group relative overflow-hidden"
+                  className="aspect-[3/4] group relative overflow-hidden"
                 >
                   <img
                     src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=800"
