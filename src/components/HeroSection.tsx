@@ -55,17 +55,17 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 bg-white px-6 py-8 lg:hidden">
+        <div className="absolute inset-x-0 bottom-0 bg-white px-6 py-6 pb-safe lg:hidden">
           <div className="flex flex-col gap-3 max-w-md mx-auto">
             <button
               onClick={() => navigate('/store-locator')}
-              className="w-full border-2 border-dark-text px-6 py-4 font-sans text-xs tracking-[0.2em] uppercase text-dark-text font-bold hover:bg-dark-text hover:text-white transition-colors"
+              className="w-full border-2 border-dark-text px-6 py-3.5 font-sans text-[10px] tracking-[0.2em] uppercase text-dark-text font-bold hover:bg-dark-text hover:text-white transition-colors"
             >
               Un opticien proche de chez vous
             </button>
             <button
               onClick={() => navigate('/shop')}
-              className="w-full bg-dark-text px-6 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-dark-text/90 transition-colors"
+              className="w-full bg-dark-text px-6 py-3.5 font-sans text-[10px] tracking-[0.2em] uppercase text-white font-bold hover:bg-dark-text/90 transition-colors"
             >
               Acheter maintenant
             </button>
