@@ -81,31 +81,6 @@ export default function ProductImageNavigation({ images, productName }: ProductI
 
   return (
     <>
-      {/* Boutons de navigation overlay sur les côtés (desktop et mobile) */}
-      <motion.button
-        onClick={goToPrevious}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className="fixed left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white/90 hover:bg-white backdrop-blur-md rounded-full shadow-xl flex items-center justify-center border border-dark-text/10 transition-all"
-        title="Image précédente (←)"
-      >
-        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-dark-text" />
-      </motion.button>
-
-      <motion.button
-        onClick={goToNext}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className="fixed right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white/90 hover:bg-white backdrop-blur-md rounded-full shadow-xl flex items-center justify-center border border-dark-text/10 transition-all"
-        title="Image suivante (→)"
-      >
-        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-dark-text" />
-      </motion.button>
-
       {/* Navigation principale avec thumbnails - Au-dessus de la barre de prix */}
       <motion.div
         initial={{ y: 100, opacity: 0 }}
