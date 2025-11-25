@@ -22,14 +22,14 @@ export default function AmbassadorsHomeSection() {
         <div className="relative h-full flex items-center max-w-[2000px] mx-auto px-6 lg:px-12">
           <div className="w-full">
 
-            <div className="text-center mb-12 lg:mb-16">
+            <div className="text-center mb-12 lg:mb-16 mt-16 lg:mt-20">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <p className="font-sans text-[#8B7355] text-[9px] tracking-[0.35em] uppercase mb-4 lg:mb-6 font-bold">
+                <p className="font-sans text-[#8B7355] text-[9px] tracking-[0.35em] uppercase mb-6 lg:mb-8 font-bold">
                   AMBASSADEURS
                 </p>
 
