@@ -21,7 +21,12 @@ export default function HeroSection() {
         <img
           src="https://renaissanceeyewear.fr/cdn/shop/files/PLV_1.jpg?v=1708709809&width=1440"
           alt="Hero Background"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover hidden lg:block"
+        />
+        <img
+          src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1440"
+          alt="Hero Background Mobile"
+          className="absolute inset-0 w-full h-full object-cover lg:hidden"
         />
       </div>
     </motion.section>
