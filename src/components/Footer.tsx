@@ -99,7 +99,7 @@ export default function Footer() {
         </motion.div>
 
         {/* Trust Signals */}
-        <div className="grid grid-cols-2 laptop:grid-cols-4 gap-4 laptop:gap-6 mb-6 laptop:mb-12 pb-6 laptop:pb-12 border-b border-bronze/10">
+        <div className="flex flex-wrap justify-center laptop:justify-between gap-4 laptop:gap-8 mb-6 laptop:mb-12 pb-6 laptop:pb-12 border-b border-bronze/10">
           {[
             { icon: MapPin, text: '200+ Opticiens' },
             { icon: Truck, text: 'Livraison Offerte' },
@@ -112,7 +112,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="flex flex-col items-center text-center"
+              className="flex flex-col items-center text-center flex-1 min-w-[140px] max-w-[200px]"
             >
               <div className="w-10 laptop:w-14 h-10 laptop:h-14 rounded-full bg-bronze/5 flex items-center justify-center mb-2 laptop:mb-3">
                 <item.icon size={16} className="text-bronze laptop:w-[22px] laptop:h-[22px]" />
