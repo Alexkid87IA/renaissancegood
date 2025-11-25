@@ -213,13 +213,17 @@ export default function FAQPage() {
         <div className="flex flex-col sm:flex-row gap-4">
           <a
             href="mailto:contact@renaissance-eyewear.fr"
-            className="inline-block px-6 py-3 bg-bronze text-white font-sans text-sm tracking-wider uppercase hover:bg-bronze/90 transition-colors text-center"
+            className="inline-block px-6 py-3 bg-bronze font-sans text-sm tracking-wider uppercase hover:bg-bronze/90 transition-colors text-center"
+            style={{ color: '#ffffff' }}
           >
             Nous contacter
           </a>
           <a
             href="tel:+33142868200"
-            className="inline-block px-6 py-3 border border-bronze text-bronze font-sans text-sm tracking-wider uppercase hover:bg-bronze hover:text-white transition-colors text-center"
+            className="inline-block px-6 py-3 border border-bronze text-bronze font-sans text-sm tracking-wider uppercase hover:bg-bronze transition-colors text-center"
+            style={{ color: '#8b7355' }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
+            onMouseLeave={(e) => e.currentTarget.style.color = '#8b7355'}
           >
             +33 1 42 86 82 00
           </a>
