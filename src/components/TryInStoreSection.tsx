@@ -38,7 +38,7 @@ export default function TryInStoreSection() {
                   Réseau National
                 </p>
                 <h2 className="font-display text-3xl sm:text-4xl laptop:text-5xl md:text-6xl lg:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-4 sm:mb-5 laptop:mb-7 lg:mb-8">
-                  ESSAYER<br />EN BOUTIQUE.
+                  ESSAYER EN<br />BOUTIQUE.
                 </h2>
                 <p className="font-sans text-dark-text/70 text-sm sm:text-base laptop:text-base md:text-lg leading-relaxed mb-5 sm:mb-6 laptop:mb-7 lg:mb-8">
                   Renaissance s'essaie, se touche, se vit. Découvrez l'expérience dans l'un
