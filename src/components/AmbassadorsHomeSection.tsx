@@ -29,7 +29,7 @@ export default function AmbassadorsHomeSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <h2 className="font-display text-4xl md:text-5xl laptop:text-6xl lg:text-8xl font-bold text-white tracking-tight leading-[0.85] mb-5 laptop:mb-6 lg:mb-8">
+                <h2 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold text-white tracking-[-0.03em] leading-[0.9] mb-5 laptop:mb-6 lg:mb-8">
                   ILS PORTENT<br />
                   RENAISSANCE.
                 </h2>
