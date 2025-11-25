@@ -149,7 +149,7 @@ export default function Header() {
                 to="/shop"
                 className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase"
               >
-                SHOP
+                BOUTIQUE
               </Link>
               <Link
                 to="/collections/heritage"
@@ -205,14 +205,14 @@ export default function Header() {
 
               {/* Opticiens */}
               <div
-                className="relative hidden laptop:block"
+                className="relative"
                 onMouseEnter={() => setOpticiensOpen(true)}
                 onMouseLeave={() => setOpticiensOpen(false)}
               >
                 <button
                   className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase whitespace-nowrap"
                 >
-                  RETROUVEZ-NOUS CHEZ VOTRE OPTICIEN
+                  RETROUVEZ-NOUS EN BOUTIQUE
                 </button>
                 <AnimatePresence>
                   {opticiensOpen && (
@@ -583,14 +583,14 @@ export default function Header() {
           >
             <div className="flex flex-col min-h-full pt-20 sm:pt-24 px-6 sm:px-8 pb-12">
               <nav className="flex flex-col space-y-8">
-                {/* Shop */}
+                {/* Boutique */}
                 <div className="space-y-4">
                   <Link
                     to="/shop"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block font-display text-2xl text-dark-text tracking-tight"
                   >
-                    Shop
+                    Boutique
                   </Link>
                 </div>
 
