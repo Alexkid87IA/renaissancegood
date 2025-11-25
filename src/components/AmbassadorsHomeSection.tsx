@@ -15,12 +15,12 @@ export default function AmbassadorsHomeSection() {
   return (
     <motion.section
       ref={sectionRef}
-      style={{ scale: scale, opacity: opacity }}
-      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[70] py-16 lg:py-0"
+      style={{ scale, opacity }}
+      className="h-screen sticky top-0 z-[60]"
     >
       <div className="relative h-full overflow-hidden bg-black">
-        <div className="relative h-full flex items-center max-w-[2000px] mx-auto px-6 md:px-8 lg:px-12">
-          <div className="w-full grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-24 h-full items-center">
+        <div className="relative h-full flex items-center max-w-[2000px] mx-auto px-8 lg:px-12">
+          <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 h-full items-center">
 
             <div className="flex flex-col justify-center">
               <motion.div
@@ -29,30 +29,30 @@ export default function AmbassadorsHomeSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <p className="font-sans text-[#8B7355] text-[9px] md:text-[10px] tracking-[0.35em] uppercase mb-4 md:mb-6 font-bold">
+                <p className="font-sans text-[#8B7355] text-[9px] tracking-[0.35em] uppercase mb-6 font-bold">
                   AMBASSADEURS
                 </p>
 
-                <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tight leading-[0.9] md:leading-[0.85] mb-6 md:mb-8">
+                <h2 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[0.85] mb-8">
                   ILS PORTENT<br />
                   RENAISSANCE.
                 </h2>
 
-                <p className="font-sans text-white/50 text-sm md:text-base lg:text-lg leading-[1.7] mb-8 md:mb-10 max-w-lg">
+                <p className="font-sans text-white/50 text-base md:text-lg leading-[1.7] mb-10 max-w-lg">
                   Artistes, créateurs, visionnaires. Découvrez ceux qui incarnent l'excellence française et partagent nos valeurs d'élégance intemporelle.
                 </p>
 
-                <div className="space-y-4 md:space-y-5 mb-8 md:mb-10">
+                <div className="space-y-5 mb-10">
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="flex items-start gap-2.5 md:gap-3"
+                    className="flex items-start gap-3"
                   >
-                    <div className="w-1 h-1 bg-[#8B7355] rounded-full mt-2 md:mt-2.5 flex-shrink-0" />
+                    <div className="w-1 h-1 bg-[#8B7355] rounded-full mt-2.5 flex-shrink-0" />
                     <div>
-                      <p className="font-sans text-white/90 text-xs md:text-sm font-medium mb-0.5">
+                      <p className="font-sans text-white/90 text-sm font-medium mb-0.5">
                         Authenticité & Excellence
                       </p>
                       <p className="font-sans text-white/40 text-xs leading-relaxed">
@@ -66,11 +66,11 @@ export default function AmbassadorsHomeSection() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
-                    className="flex items-start gap-2.5 md:gap-3"
+                    className="flex items-start gap-3"
                   >
-                    <div className="w-1 h-1 bg-[#8B7355] rounded-full mt-2 md:mt-2.5 flex-shrink-0" />
+                    <div className="w-1 h-1 bg-[#8B7355] rounded-full mt-2.5 flex-shrink-0" />
                     <div>
-                      <p className="font-sans text-white/90 text-xs md:text-sm font-medium mb-0.5">
+                      <p className="font-sans text-white/90 text-sm font-medium mb-0.5">
                         Univers & Créativité
                       </p>
                       <p className="font-sans text-white/40 text-xs leading-relaxed">
@@ -91,52 +91,18 @@ export default function AmbassadorsHomeSection() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="relative flex items-center justify-center gap-2 md:gap-3 border border-white/10 text-white px-6 md:px-8 py-3 md:py-4 font-sans text-[9px] md:text-[10px] tracking-[0.25em] md:tracking-[0.3em] font-bold overflow-hidden hover:border-white/30 transition-all duration-300 w-full md:w-auto"
+                    className="relative flex items-center gap-3 border border-white/10 text-white px-8 py-4 font-sans text-[9px] tracking-[0.3em] font-bold overflow-hidden hover:border-white/30 transition-all duration-300"
                   >
                     <span className="absolute inset-0 bg-white/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
-                    <Instagram className="w-3.5 h-3.5 md:w-4 md:h-4 relative z-10 flex-shrink-0" />
+                    <Instagram className="w-4 h-4 relative z-10" />
                     <span className="relative z-10">SUIVRE L'UNIVERS RENAISSANCE</span>
                   </motion.button>
                 </a>
 
-                <p className="font-sans text-white/20 text-[10px] tracking-wider mt-2 md:mt-3 text-center md:text-left">
+                <p className="font-sans text-white/20 text-[10px] tracking-wider mt-3">
                   @renaissanceeyewear
                 </p>
               </motion.div>
-            </div>
-
-            <div className="relative lg:hidden mt-8">
-              <div className="grid grid-cols-2 gap-2">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="aspect-[4/5] relative overflow-hidden"
-                >
-                  <img
-                    src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=800"
-                    alt="Renaissance Ambassador"
-                    className="w-full h-full object-cover grayscale"
-                  />
-                  <div className="absolute inset-0 bg-black/20" />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="aspect-[4/5] relative overflow-hidden"
-                >
-                  <img
-                    src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=800"
-                    alt="Renaissance Product"
-                    className="w-full h-full object-cover grayscale"
-                  />
-                  <div className="absolute inset-0 bg-black/20" />
-                </motion.div>
-              </div>
             </div>
 
             <div className="relative h-[80vh] hidden lg:block">
