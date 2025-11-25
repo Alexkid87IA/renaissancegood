@@ -19,17 +19,19 @@ export default function HeroSection() {
       style={{ scale, opacity }}
       className="h-screen sticky top-0 z-10"
     >
-      <div className="relative h-full overflow-hidden">
-        <img
-          src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764032916/Gemini_Generated_Image_8ftsgv8ftsgv8fts_rqnxed.png"
-          alt="Hero Background"
-          className="absolute inset-0 w-full h-full object-cover hidden lg:block"
-        />
-        <img
-          src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1440"
-          alt="Hero Background Mobile"
-          className="absolute inset-0 w-full h-full object-cover lg:hidden"
-        />
+      <div className="relative h-full overflow-hidden flex flex-col lg:block">
+        <div className="relative flex-1 lg:absolute lg:inset-0">
+          <img
+            src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764032916/Gemini_Generated_Image_8ftsgv8ftsgv8fts_rqnxed.png"
+            alt="Hero Background"
+            className="absolute inset-0 w-full h-full object-cover hidden lg:block"
+          />
+          <img
+            src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1440"
+            alt="Hero Background Mobile"
+            className="absolute inset-0 w-full h-full object-cover lg:hidden"
+          />
+        </div>
 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent hidden lg:block"></div>
 
@@ -55,22 +57,20 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 lg:hidden">
-          <div className="bg-white pt-6 pb-8 px-6">
-            <div className="flex flex-col gap-3">
-              <button
-                onClick={() => navigate('/store-locator')}
-                className="w-full border-2 border-dark-text px-6 py-4 font-sans text-xs tracking-[0.2em] uppercase text-dark-text font-bold hover:bg-dark-text hover:text-white transition-colors"
-              >
-                Un opticien proche de chez vous
-              </button>
-              <button
-                onClick={() => navigate('/shop')}
-                className="w-full bg-dark-text px-6 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-dark-text/90 transition-colors"
-              >
-                Acheter maintenant
-              </button>
-            </div>
+        <div className="relative lg:absolute lg:inset-x-0 lg:bottom-0 bg-white pt-6 pb-6 px-6 lg:hidden">
+          <div className="flex flex-col gap-3">
+            <button
+              onClick={() => navigate('/store-locator')}
+              className="w-full border-2 border-dark-text px-6 py-4 font-sans text-xs tracking-[0.2em] uppercase text-dark-text font-bold hover:bg-dark-text hover:text-white transition-colors"
+            >
+              Un opticien proche de chez vous
+            </button>
+            <button
+              onClick={() => navigate('/shop')}
+              className="w-full bg-dark-text px-6 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-dark-text/90 transition-colors"
+            >
+              Acheter maintenant
+            </button>
           </div>
         </div>
       </div>
