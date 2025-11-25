@@ -34,10 +34,10 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent hidden lg:block"></div>
 
         <div className="absolute left-8 bottom-8 hidden lg:block max-w-xl">
-          <p className="text-white text-xs tracking-[0.2em] uppercase font-sans mb-2">Nouvelle Collection</p>
-          <h1 className="text-white text-5xl font-serif mb-4">L'excellence française</h1>
+          <p className="text-white text-xs tracking-[0.2em] uppercase font-sans mb-2">Portez l'intemporel</p>
+          <h1 className="text-white text-5xl font-serif mb-4">Des lunettes d'exceptions</h1>
           <p className="text-white text-sm mb-6 leading-relaxed">
-            Des montures d'exception, conçues et fabriquées en France avec un savoir-faire artisanal unique.
+            Des montures merveilleuses, conçues et fabriquées avec un savoir-faire artisanal unique.
           </p>
           <button
             onClick={() => navigate('/collections')}
