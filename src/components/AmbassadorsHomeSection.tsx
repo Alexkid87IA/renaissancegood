@@ -16,7 +16,7 @@ export default function AmbassadorsHomeSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="lg:h-screen sticky top-0 z-[60] py-20 lg:py-0"
+      className="min-h-[140vh] lg:h-screen sticky top-0 z-[60] py-16 lg:py-0"
     >
       <div className="relative h-full overflow-hidden bg-black">
         <div className="relative h-full flex items-center max-w-[2000px] mx-auto px-6 lg:px-12">
@@ -105,8 +105,8 @@ export default function AmbassadorsHomeSection() {
               </motion.div>
             </div>
 
-            <div className="relative w-full mt-8 lg:mt-0">
-              <div className="grid grid-cols-2 gap-3 lg:hidden">
+            <div className="relative w-full mt-12 mb-12 lg:mt-0 lg:mb-0">
+              <div className="grid grid-cols-2 gap-4 lg:hidden">
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
