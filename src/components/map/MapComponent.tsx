@@ -10,9 +10,12 @@ interface MapComponentProps {
   selectedStore: any | null;
   onSelectStore: (store: any | null) => void;
   userLocation?: { lat: number; lng: number } | null;
+  initialCenter?: [number, number];
+  initialZoom?: number;
+  disableAutoBounds?: boolean;
 }
 
-export default function MapComponent({ stores, selectedStore, onSelectStore, userLocation }: MapComponentProps) {
+export default function MapComponent({ stores, selectedStore, onSelectStore, userLocation, initialCenter, initialZoom, disableAutoBounds = false }: MapComponentProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const markers = useRef<mapboxgl.Marker[]>([]);
@@ -26,8 +29,8 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/light-v11', // Style clair et épuré
-      center: [2.3522, 48.8566], // Paris par défaut
-      zoom: 5.5, // Vue d'ensemble de la France
+      center: initialCenter || [2.3522, 48.8566], // Paris par défaut
+      zoom: initialZoom || 5.5, // Vue d'ensemble de la France
       attributionControl: false
     });
 
@@ -140,9 +143,9 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
     });
 
     // Ajuster la vue pour montrer tous les marqueurs
-    if (stores.length > 0 && stores.some(s => s.latitude && s.longitude)) {
+    if (!disableAutoBounds && stores.length > 0 && stores.some(s => s.latitude && s.longitude)) {
       const bounds = new mapboxgl.LngLatBounds();
-      
+
       stores.forEach(store => {
         if (store.latitude && store.longitude) {
           bounds.extend([store.longitude, store.latitude]);
