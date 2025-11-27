@@ -17,7 +17,8 @@ export default function CollectionIsis() {
       style={{ scale, opacity }}
       className="h-screen sticky top-0 z-50"
     >
-      <div className="h-full bg-beige flex flex-col md:flex-row px-6 md:px-0">
+      {/* DESKTOP VERSION */}
+      <div className="h-full bg-beige hidden md:flex flex-row px-6 md:px-0">
         <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20 md:ml-6">
           <div className="max-w-2xl">
             <div className="mb-6 sm:mb-8">
@@ -44,12 +45,95 @@ export default function CollectionIsis() {
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 h-[50vh] sm:h-64 md:h-full md:mr-6">
+        <div className="w-full md:w-1/2 h-full md:mr-6">
           <img
             src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=1200&q=80"
             alt="Collection Isis - Egyptian inspiration"
             className="w-full h-full object-cover"
           />
+        </div>
+      </div>
+
+      {/* MOBILE VERSION - Completely New Design */}
+      <div className="h-full bg-beige md:hidden relative overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=1200&q=80"
+            alt="Collection Isis - Egyptian inspiration"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-beige/85 via-beige/90 to-beige"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative h-full flex flex-col justify-between px-6 pt-24 pb-8">
+
+          {/* Top - Badge and Status */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex-shrink-0 space-y-3"
+          >
+            <span className="inline-block bg-dark-text/5 border border-dark-text/15 text-dark-text/50 text-[8px] px-4 py-2 tracking-[0.25em] font-bold uppercase">
+              En Développement
+            </span>
+            <div className="inline-block">
+              <p className="font-sans text-bronze text-[9px] tracking-[0.3em] font-bold uppercase mb-2">
+                Ankh • Scarabée • Cobra
+              </p>
+              <div className="h-px bg-bronze/30 w-20" />
+            </div>
+          </motion.div>
+
+          {/* Center - Title and Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex-1 flex flex-col justify-center"
+          >
+            <h3 className="font-display text-5xl font-bold mb-6 tracking-[-0.03em] leading-[0.95] text-dark-text">
+              COLLECTION<br/>ISIS
+            </h3>
+            <p className="font-sans text-dark-text/70 text-base leading-[1.75] font-light max-w-md">
+              Une fusion audacieuse entre l'héritage égyptien millénaire et l'excellence
+              du design français. Des symboles sacrés réinterprétés avec modernité.
+            </p>
+          </motion.div>
+
+          {/* Bottom - Visual Element and CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex-shrink-0 space-y-6"
+          >
+            {/* Decorative Image Preview */}
+            <div className="relative w-full aspect-[3/2] rounded-lg overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100/50 border border-dark-text/10">
+              <img
+                src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=1200&q=80"
+                alt="Collection Isis Preview"
+                className="w-full h-full object-cover opacity-40"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center">
+                  <p className="font-sans text-dark-text/40 text-xs tracking-[0.3em] font-bold uppercase">
+                    Coming Soon
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Button - Disabled State */}
+            <button
+              disabled
+              className="w-full border-2 border-dark-text/20 px-8 py-4 font-sans text-[10px] tracking-[0.25em] font-bold text-dark-text/30 cursor-not-allowed"
+            >
+              BIENTÔT DISPONIBLE
+            </button>
+          </motion.div>
         </div>
       </div>
     </motion.section>
