@@ -19,7 +19,7 @@ const collections = [
   },
   {
     name: 'Isis',
-    symbol: 'Ankh • Scarabée • Cobra',
+    symbol: '',
     description: 'La renaissance perpétuelle. Collection en développement.',
     edition: 'Bientôt',
     link: null
@@ -121,12 +121,14 @@ export default function CollectionsThemesSection() {
                         {collection.name}
                       </h3>
 
-                      <div className={`
-                        font-sans text-xs tracking-[0.25em] uppercase leading-relaxed
-                        ${isComingSoon ? 'text-bronze/80' : 'text-bronze'}
-                      `}>
-                        {collection.symbol}
-                      </div>
+                      {collection.symbol && (
+                        <div className={`
+                          font-sans text-xs tracking-[0.25em] uppercase leading-relaxed
+                          ${isComingSoon ? 'text-bronze/80' : 'text-bronze'}
+                        `}>
+                          {collection.symbol}
+                        </div>
+                      )}
 
                       <p className="font-sans text-dark-text/70 text-base font-light leading-[1.7] pt-2">
                         {collection.description}
