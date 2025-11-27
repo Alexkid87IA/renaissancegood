@@ -10,11 +10,12 @@ interface ProductImageNavigationProps {
 export default function ProductImageNavigation({ images, productName }: ProductImageNavigationProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   // Détecter quelle image est visible avec l'Intersection Observer
   useEffect(() => {
     const imageElements = document.querySelectorAll('[data-image-section]');
-    
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -38,6 +39,31 @@ export default function ProductImageNavigation({ images, productName }: ProductI
       imageElements.forEach((element) => {
         observer.unobserve(element);
       });
+    };
+  }, [images]);
+
+  // Détecter si on a scrollé au-delà de la dernière image
+  useEffect(() => {
+    const checkVisibility = () => {
+      const imageElements = document.querySelectorAll('[data-image-section]');
+      if (imageElements.length === 0) return;
+
+      const lastImage = imageElements[imageElements.length - 1];
+      const lastImageRect = lastImage.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Masquer la navigation si la dernière image est complètement au-dessus du viewport
+      const shouldHide = lastImageRect.bottom < windowHeight * 0.3;
+      setIsVisible(!shouldHide);
+    };
+
+    checkVisibility();
+    window.addEventListener('scroll', checkVisibility);
+    window.addEventListener('resize', checkVisibility);
+
+    return () => {
+      window.removeEventListener('scroll', checkVisibility);
+      window.removeEventListener('resize', checkVisibility);
     };
   }, [images]);
 
@@ -82,14 +108,17 @@ export default function ProductImageNavigation({ images, productName }: ProductI
   return (
     <>
       {/* Navigation principale avec thumbnails - Au-dessus de la barre de prix */}
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.6 }}
-        className="fixed bottom-20 sm:bottom-24 md:bottom-32 left-1/2 -translate-x-1/2 z-50 max-w-[calc(100vw-1rem)] sm:max-w-none"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed bottom-20 sm:bottom-24 md:bottom-32 left-1/2 -translate-x-1/2 z-50 max-w-[calc(100vw-1rem)] sm:max-w-none"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
         <div className="relative">
           {/* Container principal */}
           <div className="bg-beige/95 backdrop-blur-md border border-bronze/20 rounded-full shadow-2xl">
@@ -195,10 +224,13 @@ export default function ProductImageNavigation({ images, productName }: ProductI
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Indicateur latéral minimaliste (optionnel) */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden xl:block">
+      {isVisible && (
+        <div className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden xl:block">
         <div className="flex flex-col gap-2">
           {images.map((_, index) => (
             <button
@@ -224,7 +256,8 @@ export default function ProductImageNavigation({ images, productName }: ProductI
             </button>
           ))}
         </div>
-      </div>
+        </div>
+      )}
     </>
   );
 }
