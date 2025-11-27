@@ -32,6 +32,16 @@ export default {
         'display-lg': ['5.5rem', { lineHeight: '1.1', letterSpacing: '-0.01em' }],
         'display-md': ['4rem', { lineHeight: '1.1', letterSpacing: '0' }],
       },
+      keyframes: {
+        shimmer: {
+          '0%': { backgroundPosition: '0% 0%' },
+          '50%': { backgroundPosition: '100% 100%' },
+          '100%': { backgroundPosition: '0% 0%' },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 8s ease-in-out infinite',
+      },
     },
   },
   plugins: [],

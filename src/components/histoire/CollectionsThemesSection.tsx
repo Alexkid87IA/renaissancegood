@@ -85,38 +85,73 @@ export default function CollectionsThemesSection() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {collections.map((collection, index) => {
+                const isComingSoon = !collection.link;
+
                 const content = (
-                  <div className="border border-bronze/20 bg-dark-text/[0.02] p-8 h-full hover:border-bronze transition-all duration-300">
-                    <div className="space-y-4">
+                  <div className={`
+                    relative overflow-hidden border p-8 h-full transition-all duration-500 group
+                    ${isComingSoon
+                      ? 'border-bronze/30 bg-gradient-to-br from-dark-text/[0.04] via-bronze/[0.02] to-dark-text/[0.02]'
+                      : 'border-bronze/20 bg-dark-text/[0.02] hover:border-bronze hover:bg-dark-text/[0.03]'
+                    }
+                  `}>
+                    {isComingSoon && (
+                      <>
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-bronze/10 to-transparent blur-3xl" />
+                        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(139,117,95,0.03)_50%,transparent_75%)] bg-[length:250%_250%] animate-shimmer" />
+                      </>
+                    )}
+
+                    <div className="space-y-4 relative z-10">
                       <div className="flex items-center justify-between">
-                        <span className="font-sans text-bronze text-xs tracking-[0.3em] uppercase font-bold">
+                        <span className={`
+                          font-sans text-xs tracking-[0.3em] uppercase font-bold transition-colors
+                          ${isComingSoon ? 'text-bronze/80' : 'text-bronze'}
+                        `}>
                           {collection.edition}
                         </span>
-                        {!collection.link && (
-                          <span className="font-sans text-dark-text/40 text-xs tracking-[0.2em] uppercase">
-                            Bientôt
+                        {isComingSoon && (
+                          <span className="font-sans text-xs tracking-[0.25em] uppercase font-medium px-3 py-1.5 border border-bronze/30 bg-bronze/5 text-bronze/90">
+                            En développement
                           </span>
                         )}
                       </div>
-                      <h3 className="font-display text-4xl md:text-5xl text-dark-text font-bold">
+
+                      <h3 className="font-display text-4xl md:text-5xl text-dark-text font-bold leading-tight">
                         {collection.name}
                       </h3>
-                      <p className="font-sans text-bronze text-xs tracking-[0.2em] uppercase">
+
+                      <div className={`
+                        font-sans text-xs tracking-[0.25em] uppercase leading-relaxed
+                        ${isComingSoon ? 'text-bronze/80' : 'text-bronze'}
+                      `}>
                         {collection.symbol}
-                      </p>
-                      <p className="font-sans text-dark-text/70 text-base font-light leading-[1.7]">
+                      </div>
+
+                      <p className="font-sans text-dark-text/70 text-base font-light leading-[1.7] pt-2">
                         {collection.description}
                       </p>
+
+                      {!isComingSoon && (
+                        <div className="pt-4 flex items-center gap-2 text-bronze opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-0 group-hover:translate-x-1">
+                          <span className="font-sans text-xs tracking-[0.3em] uppercase font-medium">Découvrir</span>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
 
                 return collection.link ? (
-                  <Link key={collection.name} to={collection.link}>
+                  <Link key={collection.name} to={collection.link} className="block">
                     {content}
                   </Link>
                 ) : (
-                  <div key={collection.name}>{content}</div>
+                  <div key={collection.name} className="cursor-default">
+                    {content}
+                  </div>
                 );
               })}
             </div>
