@@ -551,8 +551,21 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-y-0 right-0 z-40 w-full bg-white lg:hidden overflow-y-auto"
+            className="fixed inset-0 z-[150] w-full bg-white lg:hidden overflow-y-auto"
           >
+            {/* Fixed Close Button */}
+            <div className="fixed top-4 right-4 z-10">
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center w-12 h-12 bg-dark-text/5 hover:bg-dark-text/10 transition-colors"
+                aria-label="Fermer le menu"
+              >
+                <svg className="w-6 h-6 text-dark-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
             <div className="flex flex-col min-h-full pt-20 sm:pt-24 px-6 sm:px-8 pb-12">
               <nav className="flex flex-col space-y-8">
                 <div className="space-y-4">
