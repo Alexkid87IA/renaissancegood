@@ -32,6 +32,7 @@ import GuideTaillesPage from './pages/GuideTaillesPage';
 import ManifestePage from './pages/ManifestePage';
 import SavoirFairePage from './pages/SavoirFairePage';
 import SymbolesPage from './pages/SymbolesPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function AppContent() {
   const location = useLocation();
@@ -79,6 +80,9 @@ function AppContent() {
             <Route path="/remboursement" element={<RemboursementPage />} />
             <Route path="/expedition" element={<ExpeditionPage />} />
             <Route path="/conditions-utilisation" element={<ConditionsUtilisationPage />} />
+
+            {/* 404 - Catch all */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
         <div className={`relative z-10 ${isProductPage ? 'ml-0 lg:ml-[340px] laptop:ml-[380px] xl:ml-[480px]' : ''}`}>

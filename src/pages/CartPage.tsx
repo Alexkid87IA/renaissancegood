@@ -261,7 +261,15 @@ export default function CartPage() {
 }
 
 /* CartItemWithCarousel Component */
-function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeItem }) {
+interface CartItemProps {
+  node: any;
+  index: number;
+  isLoading: boolean;
+  updateQuantity: (lineId: string, quantity: number) => Promise<void>;
+  removeItem: (lineId: string) => Promise<void>;
+}
+
+function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeItem }: CartItemProps) {
   const product = node.merchandise.product;
   const price = parseFloat(node.merchandise.price?.amount || node.cost?.totalAmount?.amount || '0');
   const totalPrice = price * node.quantity;
@@ -317,7 +325,6 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
           setAllProductImages(images);
         }
       } catch (error) {
-        console.error('Erreur lors du chargement des images:', error);
         // Fallback sur l'image du panier
         const fallbackImages = product.images.edges.map(edge => edge.node.url);
         setAllProductImages(fallbackImages);
@@ -329,19 +336,19 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
     fetchAllImages();
   }, [product?.handle]);
 
-  const handleNextImage = (e) => {
+  const handleNextImage = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % allProductImages.length);
   };
 
-  const handlePrevImage = (e) => {
+  const handlePrevImage = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev - 1 + allProductImages.length) % allProductImages.length);
   };
 
-  const handleThumbnailClick = (e, idx) => {
+  const handleThumbnailClick = (e: React.MouseEvent, idx: number) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex(idx);

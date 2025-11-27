@@ -1,4 +1,4 @@
-import { Instagram, Facebook, Mail, MapPin, Phone, Shield, Truck, Award, Clock } from 'lucide-react';
+import { Instagram, Facebook, Mail, MapPin, Phone, Shield, Truck, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -9,10 +9,11 @@ export default function Footer() {
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Intégrer avec votre système d'emailing
-    console.log('Newsletter signup:', email);
     setIsSubscribed(true);
-    setTimeout(() => setIsSubscribed(false), 3000);
+    setTimeout(() => {
+      setIsSubscribed(false);
+      setEmail('');
+    }, 3000);
   };
 
   return (

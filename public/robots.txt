@@ -1,0 +1,21 @@
+# robots.txt for RENAISSANCE Paris
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.renaissance-paris.com/sitemap.xml
+
+# Crawl-delay (optional, adjust as needed)
+Crawl-delay: 1
+
+# Allow specific search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Disallow admin or private areas if any
+# User-agent: *
+# Disallow: /admin/

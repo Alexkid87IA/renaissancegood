@@ -36,7 +36,7 @@ interface MenuProduct {
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeMenu, setActiveMenu] = useState(null);
+  const [activeMenu, setActiveMenu] = useState<'heritage' | 'versailles' | 'isis' | null>(null);
   const [languageOpen, setLanguageOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('FR');
   const [opticiensOpen, setOpticiensOpen] = useState(false);
@@ -106,7 +106,6 @@ export default function Header() {
         setIsisCollection(isisProducts);
 
       } catch (error) {
-        console.error('Erreur lors du chargement des collections:', error);
         setVersaillesCollection([]);
         setHeritageCollection([]);
         setIsisCollection([]);

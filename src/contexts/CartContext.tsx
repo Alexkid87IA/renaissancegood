@@ -85,7 +85,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
             return;
           }
         } catch (error) {
-          console.error('Erreur lors du chargement du panier:', error);
           localStorage.removeItem(CART_ID_KEY);
         }
       }
@@ -96,7 +95,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
         setCart(newCart);
         localStorage.setItem(CART_ID_KEY, newCart.id);
       } catch (error) {
-        console.error('Erreur lors de la création du panier:', error);
       }
     };
 
@@ -120,7 +118,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
       setCart(updatedCart);
       setIsCartOpen(true); // Ouvrir le panier après ajout
     } catch (error) {
-      console.error('Erreur lors de l\'ajout au panier:', error);
       alert('Impossible d\'ajouter l\'article au panier. Veuillez réessayer.');
     } finally {
       setIsLoading(false);
@@ -136,7 +133,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const updatedCart = await updateCartItem(cart.id, lineId, quantity);
       setCart(updatedCart);
     } catch (error) {
-      console.error('Erreur lors de la mise à jour:', error);
       alert('Impossible de mettre à jour la quantité. Veuillez réessayer.');
     } finally {
       setIsLoading(false);
@@ -152,7 +148,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const updatedCart = await removeFromCartAPI(cart.id, lineId);
       setCart(updatedCart);
     } catch (error) {
-      console.error('Erreur lors de la suppression:', error);
       alert('Impossible de supprimer l\'article. Veuillez réessayer.');
     } finally {
       setIsLoading(false);

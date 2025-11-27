@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Check, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
 const valeurs = [
   {
@@ -28,12 +28,6 @@ const valeurs = [
     description: 'On ne fait pas vite. On fait bien.',
     icon: '✋'
   }
-];
-
-const accepted = [
-  { title: 'Le luxe uniformisé', desc: 'Réinventer avec authenticité' },
-  { title: "L'oubli artisanal", desc: 'Préserver le savoir-faire' },
-  { title: "L'uniformité", desc: 'Célébrer la singularité' }
 ];
 
 const refus = [
