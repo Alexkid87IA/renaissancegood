@@ -10,11 +10,11 @@ export default function CollectionHeritage() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end center"]
+    offset: ["start start", "end start"]
   });
 
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.85, 1], [1, 1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.9, 1], [1, 1, 0.3]);
 
   const handleNavigate = () => {
     setIsLoading(true);
@@ -87,7 +87,7 @@ export default function CollectionHeritage() {
       </div>
 
       {/* MOBILE VERSION - Completely New Design */}
-      <div className="min-h-[120vh] h-auto bg-beige md:hidden relative overflow-hidden py-12">
+      <div className="h-screen bg-beige md:hidden relative overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
