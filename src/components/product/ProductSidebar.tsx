@@ -37,7 +37,7 @@ interface ProductSidebarProps {
 
 export default function ProductSidebar({ product, selectedColorIndex, onColorChange }: ProductSidebarProps) {
   const [showDimensions, setShowDimensions] = useState(false);
-  const [showDescription, setShowDescription] = useState(false);
+  const [showDescription, setShowDescription] = useState(true);
   const [addedToCart, setAddedToCart] = useState(false);
   const { addToCart, isLoading } = useCart();
 
