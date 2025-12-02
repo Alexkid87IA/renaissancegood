@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { createCart, addToCart as addToCartAPI, updateCartItem, removeFromCart as removeFromCartAPI, getCart } from '../lib/shopify';
+import { createCart, addToCart as addToCartAPI, removeFromCart as removeFromCartAPI, getCart } from '../lib/shopify';
 
 // Types pour le panier
 interface CartLine {

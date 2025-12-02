@@ -14,7 +14,7 @@ export default function CollectionHeritage() {
   });
 
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.85, 1], [1, 1, 0]);
 
   const handleNavigate = () => {
     setIsLoading(true);
@@ -87,7 +87,7 @@ export default function CollectionHeritage() {
       </div>
 
       {/* MOBILE VERSION - Completely New Design */}
-      <div className="h-full bg-beige md:hidden relative overflow-hidden">
+      <div className="min-h-screen h-auto bg-beige md:hidden relative overflow-hidden py-24">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
