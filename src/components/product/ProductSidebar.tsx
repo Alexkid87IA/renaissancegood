@@ -75,50 +75,7 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
           )}
         </div>
 
-        {/* Color Selection - DÉPLACÉE AVANT LA DESCRIPTION */}
-        <div className="mb-6 lg:mb-8 pb-6 lg:pb-8 border-b border-dark-text/10">
-          <div className="flex items-center justify-between mb-4 lg:mb-6">
-            <span className="font-sans text-[11px] tracking-[0.25em] font-bold text-dark-text uppercase">
-              SELECT COLOR
-            </span>
-            <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/60">
-              {product.colors[selectedColorIndex]?.name || ''}
-            </span>
-          </div>
-
-          <div className="grid grid-cols-4 sm:grid-cols-5 laptop:grid-cols-5 gap-2 sm:gap-3 laptop:gap-4">
-            {product.colors.map((color, index) => (
-              <button
-                key={index}
-                onClick={() => onColorChange(index)}
-                disabled={!product.variants[index]?.availableForSale}
-                className={`aspect-square border-2 transition-all duration-300 hover:scale-105 relative ${
-                  selectedColorIndex === index
-                    ? 'border-dark-text shadow-lg bg-dark-text/5'
-                    : 'border-dark-text/20 hover:border-dark-text/50'
-                } ${
-                  !product.variants[index]?.availableForSale
-                    ? 'opacity-30 cursor-not-allowed'
-                    : ''
-                }`}
-                title={color.name}
-              >
-                <div className="w-full h-full flex items-center justify-center p-2">
-                  <svg viewBox="0 0 100 50" className="w-full h-full">
-                    <ellipse cx="20" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <ellipse cx="80" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <line x1="38" y1="25" x2="62" y2="25" stroke="currentColor" strokeWidth="2" />
-                  </svg>
-                </div>
-                {selectedColorIndex === index && (
-                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-dark-text" />
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Description - APRÈS LA SÉLECTION DE COULEUR */}
+        {/* Description */}
         <div className="mb-6 lg:mb-8 pb-6 lg:pb-8 border-b border-dark-text/10">
           <button
             onClick={() => setShowDescription(!showDescription)}

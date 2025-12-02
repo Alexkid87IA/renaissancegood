@@ -242,50 +242,42 @@ export default function ProductPage() {
 
         {/* Scrolling Content */}
         <div className="flex-1">
-          {/* Afficher les images du produit */}
+          {/* Gallery de toutes les images du produit */}
           {product.images && product.images.length > 0 ? (
-            <>
+            <div className="grid grid-cols-2 gap-0">
               {product.images.map((imageUrl, index) => (
                 <div
                   key={index}
                   data-image-section
                   data-image-index={index}
+                  className="relative aspect-square overflow-hidden"
                 >
-                  <ProductImageSection
-                    imageUrl={imageUrl}
+                  <img
+                    src={imageUrl}
                     alt={`${product.name} - vue ${index + 1}`}
-                    backgroundColor={
-                      index % 3 === 0 ? 'bg-neutral-50' :
-                      index % 3 === 1 ? 'bg-white' :
-                      'bg-neutral-100'
-                    }
-                    zIndex={10 + index * 10}
-                    onSwipeLeft={() => handleSwipeLeft(index)}
-                    onSwipeRight={() => handleSwipeRight(index)}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               ))}
-            </>
+            </div>
           ) : (
             // Images par défaut si pas d'images disponibles
-            <>
-              <div data-image-section data-image-index={0}>
-                <ProductImageSection
-                  imageUrl="https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            <div className="grid grid-cols-2 gap-0">
+              <div className="relative aspect-square overflow-hidden">
+                <img
+                  src="https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="Hero view"
-                  backgroundColor="bg-neutral-50"
-                  zIndex={10}
+                  className="w-full h-full object-cover"
                 />
               </div>
-              <div data-image-section data-image-index={1}>
-                <ProductImageSection
-                  imageUrl="https://images.pexels.com/photos/947885/pexels-photo-947885.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              <div className="relative aspect-square overflow-hidden">
+                <img
+                  src="https://images.pexels.com/photos/947885/pexels-photo-947885.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="Front view"
-                  backgroundColor="bg-white"
-                  zIndex={20}
+                  className="w-full h-full object-cover"
                 />
               </div>
-            </>
+            </div>
           )}
 
           <ProductCraftSection />
