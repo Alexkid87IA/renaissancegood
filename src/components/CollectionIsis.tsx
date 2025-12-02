@@ -74,16 +74,16 @@ export default function CollectionIsis() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-shrink-0 space-y-3"
+            className="flex-shrink-0 space-y-4"
           >
-            <span className="inline-block bg-dark-text/5 border border-dark-text/15 text-dark-text/50 text-[8px] px-4 py-2 tracking-[0.25em] font-bold uppercase">
+            <span className="inline-block bg-amber-100/80 border-2 border-amber-900/40 text-amber-900 text-[9px] px-5 py-2.5 tracking-[0.3em] font-bold uppercase shadow-sm">
               En Développement
             </span>
-            <div className="inline-block">
-              <p className="font-sans text-bronze text-[9px] tracking-[0.3em] font-bold uppercase mb-2">
-                Ankh • Scarabée • Cobra
+            <div className="inline-block bg-gradient-to-r from-bronze/10 to-transparent pr-8 py-3 -ml-1 pl-1">
+              <p className="font-sans text-bronze text-[10px] tracking-[0.35em] font-bold uppercase mb-2.5">
+                ANKH • SCARABÉE • COBRA
               </p>
-              <div className="h-px bg-bronze/30 w-20" />
+              <div className="h-0.5 bg-gradient-to-r from-bronze via-bronze/60 to-transparent w-32" />
             </div>
           </motion.div>
 

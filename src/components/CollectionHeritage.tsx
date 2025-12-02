@@ -74,11 +74,11 @@ export default function CollectionHeritage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex-shrink-0"
           >
-            <div className="inline-block">
-              <p className="font-sans text-bronze text-[9px] tracking-[0.3em] font-bold uppercase mb-2">
-                Symbole : Trident
+            <div className="inline-block bg-gradient-to-r from-bronze/10 to-transparent pr-8 py-3 -ml-1 pl-1">
+              <p className="font-sans text-bronze text-[10px] tracking-[0.35em] font-bold uppercase mb-2.5">
+                SYMBOLE : TRIDENT
               </p>
-              <div className="h-px bg-bronze/30 w-16" />
+              <div className="h-0.5 bg-gradient-to-r from-bronze via-bronze/60 to-transparent w-28" />
             </div>
           </motion.div>
 
