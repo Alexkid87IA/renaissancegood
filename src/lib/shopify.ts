@@ -73,7 +73,7 @@ export async function getProducts() {
   return products;
 }
 
-// Fonction pour récupérer un produit spécifique
+// Fonction pour récupérer un produit spécifique (avec metafields dimensions)
 export async function getProduct(handle: string) {
   const response = await fetch(getStorefrontApiUrl(), {
     method: 'POST',
@@ -118,6 +118,18 @@ export async function getProduct(handle: string) {
                   }
                 }
               }
+            }
+            lensWidth: metafield(namespace: "custom", key: "lens_width") {
+              value
+              type
+            }
+            bridgeWidth: metafield(namespace: "custom", key: "bridge_width") {
+              value
+              type
+            }
+            templeLength: metafield(namespace: "custom", key: "temple_length") {
+              value
+              type
             }
           }
         }
@@ -337,7 +349,7 @@ export async function addToCart(cartId: string, variantId: string, quantity: num
 }
 
 // Mettre à jour la quantité d'un article dans le panier
-export async function updateCartItem(cartId: string, lineId: string, quantity: number) {
+export async function updateCartLine(cartId: string, lineId: string, quantity: number) {
   const response = await fetch(getStorefrontApiUrl(), {
     method: 'POST',
     headers: getPublicTokenHeaders(),
