@@ -55,7 +55,7 @@ export default function CollectionIsis() {
       </div>
 
       {/* MOBILE VERSION - Completely New Design */}
-      <div className="min-h-[150vh] h-auto bg-beige md:hidden relative overflow-hidden py-24">
+      <div className="min-h-[120vh] h-auto bg-beige md:hidden relative overflow-hidden py-12">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
