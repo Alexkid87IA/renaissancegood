@@ -55,7 +55,7 @@ export default function CollectionIsis() {
       </div>
 
       {/* MOBILE VERSION - Completely New Design */}
-      <div className="min-h-screen h-auto bg-beige md:hidden relative overflow-hidden py-24">
+      <div className="min-h-[150vh] h-auto bg-beige md:hidden relative overflow-hidden py-24">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
@@ -67,7 +67,7 @@ export default function CollectionIsis() {
         </div>
 
         {/* Content */}
-        <div className="relative h-full flex flex-col justify-between px-6 pt-24 pb-16">
+        <div className="relative min-h-screen flex flex-col justify-between px-6 pt-24 pb-16">
 
           {/* Top - Badge and Status */}
           <motion.div
