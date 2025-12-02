@@ -131,7 +131,7 @@ export default function SymbolesHomeSection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedSymbol(null)}
-            className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-end md:items-center justify-center"
+            className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-end md:items-center justify-center p-0 md:p-4"
           >
             <motion.div
               initial={{ y: "100%", opacity: 0 }}
@@ -139,33 +139,33 @@ export default function SymbolesHomeSection() {
               exit={{ y: "100%", opacity: 0 }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full md:max-w-4xl bg-beige md:border-4 border-[#8B7355] shadow-2xl max-h-[90vh] md:max-h-[85vh] overflow-y-auto"
+              className="relative w-full md:max-w-4xl bg-beige md:border-4 border-[#8B7355] shadow-2xl rounded-t-2xl md:rounded-none"
             >
               <button
                 onClick={() => setSelectedSymbol(null)}
-                className="sticky top-0 right-0 ml-auto z-10 w-12 h-12 bg-[#8B7355] hover:bg-[#6d5a44] text-white flex items-center justify-center transition-colors duration-300 md:absolute md:-top-4 md:-right-4 md:border-2 md:border-beige"
+                className="absolute top-3 right-3 z-10 w-10 h-10 bg-[#8B7355] hover:bg-[#6d5a44] text-white flex items-center justify-center transition-colors duration-300 md:-top-4 md:-right-4 md:w-12 md:h-12 md:border-2 md:border-beige"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 md:w-6 md:h-6" />
               </button>
 
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 relative aspect-square bg-[#1a1a1a] border-b-4 md:border-b-0 md:border-r-4 border-[#8B7355]/30">
+                <div className="md:w-1/2 relative h-48 md:h-auto md:aspect-square bg-[#1a1a1a] border-b-2 md:border-b-0 md:border-r-4 border-[#8B7355]/30">
                   <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEI3MzU1IiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC4xIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30" />
                   <img
                     src={symbols[selectedSymbol].image}
                     alt={symbols[selectedSymbol].name}
-                    className="w-full h-full object-cover p-4 md:p-8"
+                    className="w-full h-full object-contain p-6 md:p-8"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 </div>
 
-                <div className="md:w-1/2 p-6 md:p-8 lg:p-12 flex flex-col justify-center space-y-4 md:space-y-6">
+                <div className="md:w-1/2 p-5 md:p-8 lg:p-12 flex flex-col justify-center space-y-3 md:space-y-6">
                   <div>
                     <motion.p
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 }}
-                      className="font-sans text-[#8B7355] text-[10px] md:text-xs tracking-[0.35em] uppercase font-bold mb-2 md:mb-3"
+                      className="font-sans text-[#8B7355] text-[9px] md:text-xs tracking-[0.3em] md:tracking-[0.35em] uppercase font-bold mb-1.5 md:mb-3"
                     >
                       {symbols[selectedSymbol].subtitle}
                     </motion.p>
@@ -173,7 +173,7 @@ export default function SymbolesHomeSection() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 }}
-                      className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-4 md:mb-6 leading-tight"
+                      className="font-display text-2xl md:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-3 md:mb-6 leading-tight"
                     >
                       {symbols[selectedSymbol].name}
                     </motion.h3>
@@ -183,36 +183,22 @@ export default function SymbolesHomeSection() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="border-l-4 border-[#8B7355] pl-4 md:pl-6 py-3 md:py-4 bg-gradient-to-r from-[#8B7355]/5 to-transparent"
+                    className="border-l-3 md:border-l-4 border-[#8B7355] pl-3 md:pl-6 py-2 md:py-4 bg-gradient-to-r from-[#8B7355]/5 to-transparent"
                   >
-                    <p className="font-sans text-base md:text-xl text-[#2C2C2C]/90 font-light leading-[1.75]">
+                    <p className="font-sans text-sm md:text-xl text-[#2C2C2C]/90 font-light leading-[1.6] md:leading-[1.75]">
                       {symbols[selectedSymbol].description}
                     </p>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="pt-4 md:pt-6 mt-4 md:mt-6 border-t-2 border-[#8B7355]/20"
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className="w-1 h-10 md:h-12 bg-gradient-to-b from-[#8B7355] via-[#8B7355]/50 to-transparent flex-shrink-0" />
-                      <p className="font-sans text-[#2C2C2C]/70 text-sm md:text-base italic leading-relaxed">
-                        Chaque symbole est gravé au laser dans le métal. Une promesse éternelle qui traverse les générations.
-                      </p>
-                    </div>
                   </motion.div>
 
                   <motion.button
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
+                    transition={{ delay: 0.4 }}
                     onClick={() => {
                       setSelectedSymbol(null);
                       navigate('/histoire');
                     }}
-                    className="group relative inline-flex items-center justify-center gap-3 border-2 border-[#2C2C2C] px-6 md:px-8 py-4 font-sans text-[9px] md:text-[10px] tracking-[0.25em] md:tracking-[0.3em] uppercase text-[#2C2C2C] font-bold overflow-hidden hover:border-[#8B7355] active:scale-95 transition-all duration-500 w-full"
+                    className="group relative inline-flex items-center justify-center gap-3 border-2 border-[#2C2C2C] px-6 md:px-8 py-3 md:py-4 font-sans text-[8px] md:text-[10px] tracking-[0.25em] md:tracking-[0.3em] uppercase text-[#2C2C2C] font-bold overflow-hidden hover:border-[#8B7355] active:scale-95 transition-all duration-300 w-full"
                   >
                     <span className="absolute inset-0 bg-[#8B7355] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
                     <span className="relative z-10 group-hover:text-white transition-colors duration-500">
