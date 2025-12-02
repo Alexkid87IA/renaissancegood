@@ -51,10 +51,10 @@ export default function HistoireSection() {
             className="space-y-2 sm:space-y-4 mb-12 sm:mb-16"
           >
             <h2 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-dark-text tracking-[-0.04em] leading-[0.9]">
-              UN MOT OUBLIÉ.
+              LE MONDE OUBLIE.
             </h2>
             <h2 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-bronze tracking-[-0.04em] leading-[0.9]">
-              UN MOT TROP GRAND.
+              NOUS, ON SE SOUVIENT.
             </h2>
           </motion.div>
 
@@ -66,8 +66,7 @@ export default function HistoireSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-sans text-dark-text/50 text-base md:text-lg max-w-xl mx-auto mb-10 sm:mb-12 font-light leading-relaxed"
           >
-            Renaissance. Un mot qui évoque le renouveau, l'excellence, 
-            et la beauté intemporelle de l'artisanat français.
+            Renaissance. Un mot pour ceux qui refusent que tout disparaisse. Que les gestes se perdent. Que le beau devienne jetable.
           </motion.p>
 
           {/* Bouton */}

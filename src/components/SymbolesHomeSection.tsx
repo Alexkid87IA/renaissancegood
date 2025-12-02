@@ -6,32 +6,32 @@ import { X } from 'lucide-react';
 const symbols = [
   {
     name: 'Le Trident',
-    subtitle: 'Souveraineté',
-    description: 'Trois pointes, trois dimensions : force, vision, justesse. Le symbole du pouvoir maîtrisé.',
+    subtitle: 'Pouvoir',
+    description: 'Trois pointes : force, vision, justesse. Celui qui tient le trident ne suit pas. Il trace.',
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763855099/WhatsApp_Image_2025-11-21_at_16.20.29_luvmkv.jpg'
   },
   {
     name: 'La Fleur de Lys',
-    subtitle: 'Excellence',
-    description: "L'excellence héritée. Pureté du geste et exigence du détail.",
+    subtitle: 'Exigence',
+    description: "Le symbole de ceux qui ne lâchent rien. Chaque détail compte. Chaque geste aussi.",
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_4_xntepe.jpg'
   },
   {
     name: 'Le Cobra',
     subtitle: 'Protection',
-    description: 'La protection vigilante. Élégant et puissant. Présence affirmée, force contenue.',
+    description: 'Élégant. Dangereux. Le cobra ne menace pas. Il veille.',
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_3_zmql9v.jpg'
   },
   {
     name: "L'Ankh",
     subtitle: 'Éternité',
-    description: "La clé de vie éternelle. Ce qu'on construit aujourd'hui doit traverser le temps.",
+    description: "La clé de vie des pharaons. Ce qu'on construit bien traverse le temps.",
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_fpklnf.jpg'
   },
   {
     name: 'Le Scarabée',
     subtitle: 'Renaissance',
-    description: 'La renaissance perpétuelle. Transformation et renouveau constant.',
+    description: 'Chaque matin, il renaît. Comme nous. Comme tout ce qui refuse de mourir.',
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_2_tp1ac1.jpg'
   }
 ];
@@ -55,11 +55,11 @@ export default function SymbolesHomeSection() {
             Nos Symboles
           </p>
           <h2 className="font-display text-2xl laptop:text-5xl md:text-4xl lg:text-7xl font-bold text-[#2C2C2C] tracking-tight leading-[1.2] lg:leading-[0.95] mb-3 laptop:mb-5 md:mb-4 lg:mb-6">
-            Cinq Symboles,<br />
-            Une Signature Éternelle.
+            Cinq symboles.<br />
+            Une promesse.
           </h2>
           <p className="font-sans text-[#2C2C2C]/60 text-xs laptop:text-sm md:text-sm lg:text-lg leading-[1.6] lg:leading-[1.7] max-w-2xl mx-auto">
-            Gravés dans le métal, ces symboles millénaires incarnent les valeurs de Renaissance.
+            Gravés dans le métal. Des signes qui parlent depuis des millénaires. On ne les a pas inventés. On les porte.
           </p>
         </motion.div>
 
@@ -205,7 +205,7 @@ export default function SymbolesHomeSection() {
                     <div className="flex items-start gap-3">
                       <div className="w-1 h-12 bg-gradient-to-b from-[#8B7355] via-[#8B7355]/50 to-transparent flex-shrink-0" />
                       <p className="font-sans text-[#2C2C2C]/70 text-base italic leading-relaxed">
-                        Chaque symbole est gravé au laser dans le métal. Une promesse éternelle qui traverse les générations.
+                        Chaque symbole est gravé au laser. Une marque dans le métal. Une promesse qui ne s'efface pas.
                       </p>
                     </div>
                   </motion.div>

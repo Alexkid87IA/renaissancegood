@@ -4,23 +4,23 @@ import { MapPin, Truck, Award, Shield } from 'lucide-react';
 const guarantees = [
   {
     icon: MapPin,
-    title: '200+ Opticiens Partenaires',
-    subtitle: 'en France'
+    title: '200+ Opticiens',
+    subtitle: 'Partout en France'
   },
   {
     icon: Truck,
-    title: 'Livraison Offerte',
-    subtitle: 'dès 500€'
+    title: 'Livraison offerte',
+    subtitle: 'Dès 500€'
   },
   {
     icon: Award,
     title: 'Garantie 2 ans',
-    subtitle: 'sur toutes nos lunettes'
+    subtitle: 'On assume ce qu’on fabrique'
   },
   {
     icon: Shield,
-    title: 'Paiement 100% Sécurisé',
-    subtitle: 'transactions cryptées'
+    title: 'Paiement sécurisé',
+    subtitle: '100% crypté'
   }
 ];
 

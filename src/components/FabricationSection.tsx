@@ -48,8 +48,7 @@ export default function FabricationSection() {
 
               <div className="space-y-6 laptop:space-y-10 mb-10 laptop:mb-14 xl:mb-16">
                 <p className="font-sans text-white text-sm sm:text-base md:text-lg laptop:text-lg xl:text-2xl leading-[1.7] font-light max-w-2xl">
-                  Chaque paire de lunettes Renaissance est le fruit d'un savoir-faire exceptionnel,
-                  alliant l'excellence française et la précision coréenne.
+                  Une paire de Renaissance, c'est 250 étapes. Des mains françaises pour la vision. Des mains coréennes pour la précision. Deux pays. Un seul standard : celui qui dure.
                 </p>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 laptop:gap-8 xl:gap-12 pt-3 laptop:pt-6">
@@ -74,7 +73,7 @@ export default function FabricationSection() {
                   <div className="space-y-2">
                     <p className="font-display text-[2rem] sm:text-[2.25rem] md:text-4xl laptop:text-4xl xl:text-6xl text-white font-bold tracking-tight">2</p>
                     <p className="font-sans text-white/70 text-[9px] sm:text-[10px] tracking-[0.15em] uppercase leading-[1.5] font-medium">
-                      Pays<br/>d'excellence
+                      Pays, un<br/>standard
                     </p>
                   </div>
                 </div>
@@ -84,31 +83,31 @@ export default function FabricationSection() {
                 <div className="flex items-start gap-3 sm:gap-4 group">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
                   <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
-                    <span className="font-semibold text-white">Studio parisien</span> pour la conception et le design
+                    <span className="font-semibold text-white">Dessinées à Paris.</span> Chaque ligne, chaque courbe.
                   </p>
                 </div>
                 <div className="flex items-start gap-3 sm:gap-4 group">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
                   <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
-                    <span className="font-semibold text-white">Ateliers coréens</span> pour l'exigence et la précision d'usinage
+                    <span className="font-semibold text-white">Usinées en Corée.</span> Là où la précision est une religion.
                   </p>
                 </div>
                 <div className="flex items-start gap-3 sm:gap-4 group">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
                   <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
-                    <span className="font-semibold text-white">Matériaux premium</span> : acétate Mazzucchelli, acier inoxydable haut grade
+                    <span className="font-semibold text-white">Acétate Mazzucchelli. Acier haute résistance.</span> Pas de compromis.
                   </p>
                 </div>
                 <div className="flex items-start gap-3 sm:gap-4 group">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
                   <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
-                    <span className="font-semibold text-white">Signature unique</span> : strass sur branche gauche
+                    <span className="font-semibold text-white">Un strass sur la branche gauche.</span> Notre signature. Discrète.
                   </p>
                 </div>
               </div>
 
               <button className="border-2 border-white/30 text-white px-6 sm:px-8 laptop:px-10 xl:px-12 py-3 sm:py-3.5 laptop:py-4 xl:py-5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold hover:bg-white hover:text-dark-text hover:border-white transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
-                NOTRE SAVOIR-FAIRE
+                VOIR LE PROCESSUS
               </button>
             </motion.div>
           </div>

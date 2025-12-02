@@ -31,17 +31,17 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
 
         <div className="absolute left-8 bottom-8 max-w-xl">
-          <p className="text-white text-xs tracking-[0.2em] uppercase font-sans mb-2">Portez l'intemporel</p>
-          <h1 className="text-white text-5xl font-serif mb-4">Des lunettes d'exceptions</h1>
+          <p className="text-white text-xs tracking-[0.2em] uppercase font-sans mb-2">Pour que chaque jour compte</p>
+          <h1 className="text-white text-5xl font-serif mb-4">Ce qui se porte. Ce qui se transmet.</h1>
           <p className="text-white text-sm mb-6 leading-relaxed">
-            Des montures merveilleuses, conçues et fabriquées avec un savoir-faire artisanal unique.
+            Des montures conçues pour durer. Fabriquées par des mains qui savent encore.
           </p>
           <div className="flex gap-4">
             <button
               onClick={() => navigate('/shop')}
               className="bg-white px-8 py-4 font-sans text-xs tracking-[0.2em] uppercase text-dark-text font-bold hover:bg-white/90 transition-colors"
             >
-              Acheter maintenant
+              Découvrir
             </button>
             <button
               onClick={() => navigate('/store-locator')}
@@ -91,10 +91,10 @@ export default function HeroSection() {
             className="flex-1 flex flex-col justify-center max-w-sm"
           >
             <h1 className="text-white text-4xl sm:text-5xl font-serif mb-4 leading-[1.1]">
-              L'excellence<br/>parisienne
+              Fait pour durer.
             </h1>
             <p className="text-white/80 text-sm font-sans leading-relaxed mb-8">
-              Chaque monture incarne un siècle de savoir-faire artisanal français
+              Des lunettes qu'on garde. Des lunettes qu'on transmet.
             </p>
           </motion.div>
 

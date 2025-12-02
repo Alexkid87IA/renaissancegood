@@ -117,7 +117,7 @@ export default function AmbassadorsHomeSection() {
           </a>
           
           <span className="font-sans text-white/30 text-xs hidden sm:block">
-            Rejoignez le mouvement
+            Rejoignez ceux qui transmettent
           </span>
         </motion.div>
       </div>

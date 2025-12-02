@@ -36,8 +36,7 @@ export default function CollectionIsis() {
               <div className="h-px bg-bronze/20 mt-3" />
             </div>
             <p className="font-sans text-dark-text/70 text-base sm:text-lg md:text-xl laptop:text-xl xl:text-2xl leading-[1.75] mb-8 sm:mb-12 laptop:mb-14 xl:mb-16 font-light">
-              Une fusion audacieuse entre l'héritage égyptien millénaire et l'excellence
-              du design français. Des symboles sacrés réinterprétés avec modernité.
+              Les Égyptiens gravaient leurs croyances dans la pierre. Nous les gravons dans le métal. Des symboles qui ont traversé 3000 ans.
             </p>
             <button className="border-2 border-dark-text/25 px-8 sm:px-10 laptop:px-12 py-3.5 sm:py-4 laptop:py-5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold text-dark-text/30 cursor-not-allowed">
               BIENTÔT DISPONIBLE
@@ -98,8 +97,7 @@ export default function CollectionIsis() {
               COLLECTION<br/>ISIS
             </h3>
             <p className="font-sans text-dark-text/70 text-base leading-[1.75] font-light max-w-md">
-              Une fusion audacieuse entre l'héritage égyptien millénaire et l'excellence
-              du design français. Des symboles sacrés réinterprétés avec modernité.
+              Les Égyptiens gravaient leurs croyances dans la pierre. Nous les gravons dans le métal. Des symboles qui ont traversé 3000 ans.
             </p>
           </motion.div>
 

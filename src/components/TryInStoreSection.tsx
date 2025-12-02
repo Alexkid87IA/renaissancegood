@@ -30,11 +30,10 @@ export default function TryInStoreSection() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="font-display text-4xl sm:text-5xl laptop:text-6xl lg:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-4 laptop:mb-6">
-                ESSAYER EN<br />BOUTIQUE.
+                ÇA SE TOUCHE.<br />ÇA SE VIT.
               </h2>
               <p className="font-sans text-dark-text/70 text-sm laptop:text-base leading-[1.6] mb-8 laptop:mb-12 px-4 laptop:px-0">
-                Renaissance s'essaie, se touche, se vit. Découvrez l'expérience dans l'un
-                de nos 200+ opticiens partenaires à travers la France.
+                Une paire de lunettes, ça ne s'achète pas sur une photo. Ça s'essaie. Ça se sent. 200+ opticiens en France vous attendent.
               </p>
 
               <div className="grid md:grid-cols-3 gap-6 laptop:gap-8 mb-8 laptop:mb-12 max-w-4xl mx-auto">
@@ -42,10 +41,10 @@ export default function TryInStoreSection() {
                   <div className="w-2.5 h-2.5 laptop:w-3 laptop:h-3 bg-bronze rotate-45 flex-shrink-0 group-hover:scale-125 transition-transform" />
                   <div>
                     <p className="font-sans text-dark-text text-sm laptop:text-[15px] font-semibold mb-1.5">
-                      Essayage personnalisé
+                      On vous écoute
                     </p>
                     <p className="font-sans text-dark-text/60 text-xs laptop:text-[14px] leading-[1.6] px-2 laptop:px-0">
-                      Nos opticiens partenaires vous conseillent sur la collection qui vous correspond
+                      Nos opticiens prennent le temps. Pas de vente forcée. Juste le bon conseil.
                     </p>
                   </div>
                 </div>
@@ -53,10 +52,10 @@ export default function TryInStoreSection() {
                   <div className="w-2.5 h-2.5 laptop:w-3 laptop:h-3 bg-bronze rotate-45 flex-shrink-0 group-hover:scale-125 transition-transform" />
                   <div>
                     <p className="font-sans text-dark-text text-sm laptop:text-[15px] font-semibold mb-1.5">
-                      Ajustement sur mesure
+                      On ajuste à votre visage
                     </p>
                     <p className="font-sans text-dark-text/60 text-xs laptop:text-[14px] leading-[1.6] px-2 laptop:px-0">
-                      Un réglage professionnel pour un confort optimal
+                      Chaque tête est différente. L'ajustement, c'est ce qui change tout.
                     </p>
                   </div>
                 </div>
@@ -64,10 +63,10 @@ export default function TryInStoreSection() {
                   <div className="w-2.5 h-2.5 laptop:w-3 laptop:h-3 bg-bronze rotate-45 flex-shrink-0 group-hover:scale-125 transition-transform" />
                   <div>
                     <p className="font-sans text-dark-text text-sm laptop:text-[15px] font-semibold mb-1.5">
-                      Service premium
+                      On reste là après
                     </p>
                     <p className="font-sans text-dark-text/60 text-xs laptop:text-[14px] leading-[1.6] px-2 laptop:px-0">
-                      Accompagnement complet et garantie 2 ans
+                      Garantie 2 ans. Un problème ? On le règle.
                     </p>
                   </div>
                 </div>
