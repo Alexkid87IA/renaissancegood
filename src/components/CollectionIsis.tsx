@@ -110,8 +110,8 @@ export default function CollectionIsis() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="flex-shrink-0 space-y-6"
           >
-            {/* Decorative Image Preview */}
-            <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100/50 border border-dark-text/10">
+            {/* Decorative Image Preview - Non-clickable */}
+            <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100/50 border border-dark-text/10 cursor-not-allowed">
               <img
                 src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=1200&q=80"
                 alt="Collection Isis Preview"

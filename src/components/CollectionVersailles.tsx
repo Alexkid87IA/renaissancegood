@@ -1,9 +1,13 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Loader2 } from 'lucide-react';
 
 export default function CollectionVersailles() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end center"]
@@ -11,6 +15,13 @@ export default function CollectionVersailles() {
 
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
   const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0]);
+
+  const handleNavigate = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      navigate('/collections/versailles');
+    }, 800);
+  };
 
   return (
     <motion.section
@@ -105,21 +116,50 @@ export default function CollectionVersailles() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="flex-shrink-0 space-y-6"
           >
-            {/* Product Image */}
-            <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-white/50 backdrop-blur-sm border border-dark-text/10">
+            {/* Product Image - Clickable */}
+            <div
+              onClick={handleNavigate}
+              className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-white/50 backdrop-blur-sm border border-dark-text/10 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
+            >
               <img
                 src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=2687"
                 alt="Collection Versailles"
-                className="w-full h-full object-contain p-4"
+                className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
               />
+
+              {/* Loading Overlay */}
+              {isLoading && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="absolute inset-0 bg-dark-text/80 backdrop-blur-sm flex items-center justify-center"
+                >
+                  <div className="flex flex-col items-center gap-3">
+                    <Loader2 className="w-8 h-8 text-beige animate-spin" />
+                    <p className="text-beige text-xs tracking-[0.3em] font-bold">CHARGEMENT</p>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Hover Indicator */}
+              <div className="absolute inset-0 bg-dark-text/0 group-hover:bg-dark-text/10 transition-colors duration-300 pointer-events-none" />
             </div>
 
             {/* CTA Button */}
-            <Link to="/collections/versailles" className="block">
-              <button className="w-full border-2 border-dark-text px-8 py-5 font-sans text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige transition-all duration-300 active:scale-[0.98] backdrop-blur-sm bg-beige/80 shadow-lg mb-2">
-                DÉCOUVRIR LA COLLECTION
-              </button>
-            </Link>
+            <button
+              onClick={handleNavigate}
+              disabled={isLoading}
+              className="w-full border-2 border-dark-text px-8 py-5 font-sans text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige transition-all duration-300 active:scale-[0.98] backdrop-blur-sm bg-beige/80 shadow-lg mb-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
+            >
+              {isLoading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  CHARGEMENT
+                </span>
+              ) : (
+                'DÉCOUVRIR LA COLLECTION'
+              )}
+            </button>
           </motion.div>
         </div>
       </div>
