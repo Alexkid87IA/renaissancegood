@@ -54,12 +54,35 @@ export default function CollectionHeritage() {
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 h-full md:mr-6">
+        <div
+          onClick={handleNavigate}
+          className="w-full md:w-1/2 h-full md:mr-6 cursor-pointer group relative overflow-hidden"
+        >
           <img
             src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=5760"
             alt="Collection Héritage - Trident"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain transition-all duration-700 group-hover:scale-105"
           />
+
+          {/* Hover overlay */}
+          <div className="absolute inset-0 bg-dark-text/0 group-hover:bg-dark-text/5 transition-all duration-700 pointer-events-none" />
+
+          {/* Loading overlay */}
+          {isLoading && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="absolute inset-0 bg-beige/95 backdrop-blur-md flex items-center justify-center"
+            >
+              <div className="flex flex-col items-center gap-6">
+                <div className="relative">
+                  <div className="w-16 h-16 border-2 border-bronze/20 rounded-full" />
+                  <div className="absolute inset-0 w-16 h-16 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
+                </div>
+                <p className="text-dark-text text-sm tracking-[0.3em] font-light uppercase">Chargement</p>
+              </div>
+            </motion.div>
+          )}
         </div>
       </div>
 
@@ -132,17 +155,20 @@ export default function CollectionHeritage() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="absolute inset-0 bg-dark-text/80 backdrop-blur-sm flex items-center justify-center"
+                  className="absolute inset-0 bg-beige/95 backdrop-blur-md flex items-center justify-center"
                 >
-                  <div className="flex flex-col items-center gap-3">
-                    <Loader2 className="w-8 h-8 text-beige animate-spin" />
-                    <p className="text-beige text-xs tracking-[0.3em] font-bold">CHARGEMENT</p>
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="relative">
+                      <div className="w-12 h-12 border-2 border-bronze/20 rounded-full" />
+                      <div className="absolute inset-0 w-12 h-12 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
+                    </div>
+                    <p className="text-dark-text text-xs tracking-[0.3em] font-light uppercase">Chargement</p>
                   </div>
                 </motion.div>
               )}
 
               {/* Hover Indicator */}
-              <div className="absolute inset-0 bg-dark-text/0 group-hover:bg-dark-text/10 transition-colors duration-300 pointer-events-none" />
+              <div className="absolute inset-0 bg-dark-text/0 group-hover:bg-dark-text/5 transition-all duration-500 pointer-events-none" />
             </div>
 
             {/* CTA Button */}
@@ -152,8 +178,10 @@ export default function CollectionHeritage() {
               className="w-full border-2 border-dark-text px-8 py-5 font-sans text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige transition-all duration-300 active:scale-[0.98] backdrop-blur-sm bg-beige/80 shadow-lg mb-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
             >
               {isLoading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <Loader2 className="w-4 h-4 animate-spin" />
+                <span className="flex items-center justify-center gap-3">
+                  <div className="relative">
+                    <div className="w-3 h-3 border border-current border-t-transparent rounded-full animate-spin" />
+                  </div>
                   CHARGEMENT
                 </span>
               ) : (
