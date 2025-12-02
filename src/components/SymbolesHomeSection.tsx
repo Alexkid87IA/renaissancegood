@@ -154,9 +154,9 @@ export default function SymbolesHomeSection() {
                   <img
                     src={symbols[selectedSymbol].image}
                     alt={symbols[selectedSymbol].name}
-                    className="w-full h-full object-contain p-6 md:p-8"
+                    className="w-full h-full object-contain md:object-cover p-6 md:p-8"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 md:from-black/60 via-transparent to-transparent" />
                 </div>
 
                 <div className="md:w-1/2 p-5 md:p-8 lg:p-12 flex flex-col justify-center space-y-3 md:space-y-6">
@@ -190,10 +190,24 @@ export default function SymbolesHomeSection() {
                     </p>
                   </motion.div>
 
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                    className="hidden md:block pt-6 mt-6 border-t-2 border-[#8B7355]/20"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-1 h-12 bg-gradient-to-b from-[#8B7355] via-[#8B7355]/50 to-transparent flex-shrink-0" />
+                      <p className="font-sans text-[#2C2C2C]/70 text-base italic leading-relaxed">
+                        Chaque symbole est gravé au laser dans le métal. Une promesse éternelle qui traverse les générations.
+                      </p>
+                    </div>
+                  </motion.div>
+
                   <motion.button
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
+                    transition={{ delay: 0.5 }}
                     onClick={() => {
                       setSelectedSymbol(null);
                       navigate('/histoire');
