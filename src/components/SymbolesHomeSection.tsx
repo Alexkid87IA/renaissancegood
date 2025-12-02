@@ -1,36 +1,44 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { X } from 'lucide-react';
 
 const symbols = [
   {
     name: 'Le Trident',
     subtitle: 'Souveraineté',
+    description: 'Trois pointes, trois dimensions : force, vision, justesse. Le symbole du pouvoir maîtrisé.',
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763855099/WhatsApp_Image_2025-11-21_at_16.20.29_luvmkv.jpg'
   },
   {
     name: 'La Fleur de Lys',
     subtitle: 'Excellence',
+    description: "L'excellence héritée. Pureté du geste et exigence du détail.",
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_4_xntepe.jpg'
   },
   {
     name: 'Le Cobra',
     subtitle: 'Protection',
+    description: 'La protection vigilante. Élégant et puissant. Présence affirmée, force contenue.',
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_3_zmql9v.jpg'
   },
   {
     name: "L'Ankh",
     subtitle: 'Éternité',
+    description: "La clé de vie éternelle. Ce qu'on construit aujourd'hui doit traverser le temps.",
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_fpklnf.jpg'
   },
   {
     name: 'Le Scarabée',
     subtitle: 'Renaissance',
+    description: 'La renaissance perpétuelle. Transformation et renouveau constant.',
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_2_tp1ac1.jpg'
   }
 ];
 
 export default function SymbolesHomeSection() {
   const navigate = useNavigate();
+  const [selectedSymbol, setSelectedSymbol] = useState<number | null>(null);
 
   return (
     <section className="relative z-[95] py-16 laptop:py-20 md:py-24 lg:py-32 bg-white">
@@ -63,7 +71,8 @@ export default function SymbolesHomeSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative w-[calc(50%-6px)] laptop:w-[calc(33.333%-13px)] md:w-[calc(33.333%-11px)] lg:w-[calc(20%-19.2px)]"
+              onClick={() => setSelectedSymbol(index)}
+              className="group relative w-[calc(50%-6px)] laptop:w-[calc(33.333%-13px)] md:w-[calc(33.333%-11px)] lg:w-[calc(20%-19.2px)] cursor-pointer"
             >
               <div className="aspect-square relative overflow-hidden bg-[#1a1a1a] border-[3px] laptop:border-4 border-[#8B7355]/30 hover:border-[#8B7355] transition-all duration-500 shadow-lg hover:shadow-2xl">
 
@@ -114,6 +123,111 @@ export default function SymbolesHomeSection() {
         </motion.div>
 
       </div>
+
+      <AnimatePresence>
+        {selectedSymbol !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedSymbol(null)}
+            className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl w-full bg-beige border-4 border-[#8B7355] shadow-2xl"
+            >
+              <button
+                onClick={() => setSelectedSymbol(null)}
+                className="absolute -top-4 -right-4 z-10 w-12 h-12 bg-[#8B7355] hover:bg-[#6d5a44] text-white flex items-center justify-center transition-colors duration-300 border-2 border-beige"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-1/2 relative aspect-square bg-[#1a1a1a] border-b-4 md:border-b-0 md:border-r-4 border-[#8B7355]/30">
+                  <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEI3MzU1IiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC4xIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30" />
+                  <img
+                    src={symbols[selectedSymbol].image}
+                    alt={symbols[selectedSymbol].name}
+                    className="w-full h-full object-cover p-8"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                </div>
+
+                <div className="md:w-1/2 p-8 lg:p-12 flex flex-col justify-center space-y-6">
+                  <div>
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                      className="font-sans text-[#8B7355] text-xs tracking-[0.35em] uppercase font-bold mb-3"
+                    >
+                      {symbols[selectedSymbol].subtitle}
+                    </motion.p>
+                    <motion.h3
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                      className="font-display text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight"
+                    >
+                      {symbols[selectedSymbol].name}
+                    </motion.h3>
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="border-l-4 border-[#8B7355] pl-6 py-4 bg-gradient-to-r from-[#8B7355]/5 to-transparent"
+                  >
+                    <p className="font-sans text-xl text-[#2C2C2C]/90 font-light leading-[1.75]">
+                      {symbols[selectedSymbol].description}
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                    className="pt-6 mt-6 border-t-2 border-[#8B7355]/20"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-1 h-12 bg-gradient-to-b from-[#8B7355] via-[#8B7355]/50 to-transparent flex-shrink-0" />
+                      <p className="font-sans text-[#2C2C2C]/70 text-base italic leading-relaxed">
+                        Chaque symbole est gravé au laser dans le métal. Une promesse éternelle qui traverse les générations.
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  <motion.button
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    onClick={() => {
+                      setSelectedSymbol(null);
+                      navigate('/histoire');
+                    }}
+                    className="group relative inline-flex items-center justify-center gap-3 border-2 border-[#2C2C2C] px-8 py-4 font-sans text-[10px] tracking-[0.3em] uppercase text-[#2C2C2C] font-bold overflow-hidden hover:border-[#8B7355] transition-all duration-500 w-full"
+                  >
+                    <span className="absolute inset-0 bg-[#8B7355] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
+                    <span className="relative z-10 group-hover:text-white transition-colors duration-500">
+                      Découvrir tous les symboles
+                    </span>
+                  </motion.button>
+                </div>
+              </div>
+
+              <div className="absolute -top-3 -left-3 w-8 h-8 border-t-4 border-l-4 border-[#8B7355]" />
+              <div className="absolute -bottom-3 -right-3 w-8 h-8 border-b-4 border-r-4 border-[#8B7355]" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
