@@ -6,11 +6,11 @@ export default function CollectionVersailles() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end center"]
   });
 
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0]);
 
   return (
     <motion.section
@@ -65,7 +65,7 @@ export default function CollectionVersailles() {
         </div>
 
         {/* Content */}
-        <div className="relative h-full flex flex-col justify-between px-6 pt-24 pb-8">
+        <div className="relative h-full flex flex-col justify-between px-6 pt-24 pb-16">
 
           {/* Top - Badge */}
           <motion.div
@@ -106,7 +106,7 @@ export default function CollectionVersailles() {
             className="flex-shrink-0 space-y-6"
           >
             {/* Product Image */}
-            <div className="relative w-full aspect-[3/2] rounded-lg overflow-hidden bg-white/50 backdrop-blur-sm border border-dark-text/10">
+            <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-white/50 backdrop-blur-sm border border-dark-text/10">
               <img
                 src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=2687"
                 alt="Collection Versailles"
@@ -116,7 +116,7 @@ export default function CollectionVersailles() {
 
             {/* CTA Button */}
             <Link to="/collections/versailles" className="block">
-              <button className="w-full border-2 border-dark-text px-8 py-4 font-sans text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige transition-all duration-300 active:scale-[0.98]">
+              <button className="w-full border-2 border-dark-text px-8 py-5 font-sans text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige transition-all duration-300 active:scale-[0.98] backdrop-blur-sm bg-beige/80 shadow-lg mb-2">
                 DÉCOUVRIR LA COLLECTION
               </button>
             </Link>

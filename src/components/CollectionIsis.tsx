@@ -5,11 +5,11 @@ export default function CollectionIsis() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end center"]
   });
 
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0]);
 
   return (
     <motion.section
@@ -67,7 +67,7 @@ export default function CollectionIsis() {
         </div>
 
         {/* Content */}
-        <div className="relative h-full flex flex-col justify-between px-6 pt-24 pb-8">
+        <div className="relative h-full flex flex-col justify-between px-6 pt-24 pb-16">
 
           {/* Top - Badge and Status */}
           <motion.div
@@ -111,7 +111,7 @@ export default function CollectionIsis() {
             className="flex-shrink-0 space-y-6"
           >
             {/* Decorative Image Preview */}
-            <div className="relative w-full aspect-[3/2] rounded-lg overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100/50 border border-dark-text/10">
+            <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100/50 border border-dark-text/10">
               <img
                 src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=1200&q=80"
                 alt="Collection Isis Preview"
@@ -129,7 +129,7 @@ export default function CollectionIsis() {
             {/* CTA Button - Disabled State */}
             <button
               disabled
-              className="w-full border-2 border-dark-text/20 px-8 py-4 font-sans text-[10px] tracking-[0.25em] font-bold text-dark-text/30 cursor-not-allowed"
+              className="w-full border-2 border-dark-text/20 px-8 py-5 font-sans text-[10px] tracking-[0.25em] font-bold text-dark-text/30 cursor-not-allowed backdrop-blur-sm bg-beige/60 mb-2"
             >
               BIENTÔT DISPONIBLE
             </button>
