@@ -139,17 +139,23 @@ export default function SymbolesHomeSection() {
               exit={{ y: "100%", opacity: 0 }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full md:max-w-4xl bg-beige md:border-4 border-[#8B7355] shadow-2xl rounded-t-2xl md:rounded-none"
+              className="relative w-full md:max-w-4xl bg-beige md:border-4 border-[#8B7355] shadow-2xl rounded-t-3xl md:rounded-none max-h-[90vh] overflow-y-auto"
             >
+              <div className="sticky top-0 z-20 bg-beige/95 backdrop-blur-sm md:hidden">
+                <div className="flex items-center justify-center py-3">
+                  <div className="w-12 h-1.5 bg-[#8B7355]/30 rounded-full" />
+                </div>
+              </div>
+
               <button
                 onClick={() => setSelectedSymbol(null)}
-                className="absolute top-3 right-3 z-10 w-10 h-10 bg-[#8B7355] hover:bg-[#6d5a44] text-white flex items-center justify-center transition-colors duration-300 md:-top-4 md:-right-4 md:w-12 md:h-12 md:border-2 md:border-beige"
+                className="absolute top-16 right-4 z-10 w-10 h-10 bg-[#8B7355] hover:bg-[#6d5a44] text-white flex items-center justify-center transition-colors duration-300 md:top-4 md:right-4 md:w-12 md:h-12 md:border-2 md:border-beige rounded-full md:rounded-none shadow-lg"
               >
                 <X className="w-5 h-5 md:w-6 md:h-6" />
               </button>
 
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 relative h-48 md:h-auto md:aspect-square bg-[#1a1a1a] border-b-2 md:border-b-0 md:border-r-4 border-[#8B7355]/30">
+                <div className="md:w-1/2 relative h-64 md:h-auto md:aspect-square bg-[#1a1a1a] border-b-2 md:border-b-0 md:border-r-4 border-[#8B7355]/30">
                   <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEI3MzU1IiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC4xIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30" />
                   <img
                     src={symbols[selectedSymbol].image}
@@ -159,7 +165,7 @@ export default function SymbolesHomeSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 md:from-black/60 via-transparent to-transparent" />
                 </div>
 
-                <div className="md:w-1/2 p-5 md:p-8 lg:p-12 flex flex-col justify-center space-y-3 md:space-y-6">
+                <div className="md:w-1/2 p-6 md:p-8 lg:p-12 flex flex-col justify-center space-y-4 md:space-y-6 pb-8">
                   <div>
                     <motion.p
                       initial={{ opacity: 0, y: 20 }}
@@ -212,7 +218,7 @@ export default function SymbolesHomeSection() {
                       setSelectedSymbol(null);
                       navigate('/histoire');
                     }}
-                    className="group relative inline-flex items-center justify-center gap-3 border-2 border-[#2C2C2C] px-6 md:px-8 py-3 md:py-4 font-sans text-[8px] md:text-[10px] tracking-[0.25em] md:tracking-[0.3em] uppercase text-[#2C2C2C] font-bold overflow-hidden hover:border-[#8B7355] active:scale-95 transition-all duration-300 w-full"
+                    className="group relative inline-flex items-center justify-center gap-3 border-2 border-[#2C2C2C] px-6 md:px-8 py-4 md:py-4 font-sans text-[9px] md:text-[10px] tracking-[0.25em] md:tracking-[0.3em] uppercase text-[#2C2C2C] font-bold overflow-hidden hover:border-[#8B7355] active:scale-95 transition-all duration-300 w-full"
                   >
                     <span className="absolute inset-0 bg-[#8B7355] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
                     <span className="relative z-10 group-hover:text-white transition-colors duration-500">
