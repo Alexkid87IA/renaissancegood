@@ -30,10 +30,10 @@ export default function TryInStoreSection() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="font-display text-4xl sm:text-5xl laptop:text-6xl lg:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-4 laptop:mb-6">
-                ÇA SE TOUCHE.<br />ÇA SE VIT.
+                ESSAYEZ EN BOUTIQUE.<br />COMMANDEZ EN LIGNE.
               </h2>
               <p className="font-sans text-dark-text/70 text-sm laptop:text-base leading-[1.6] mb-8 laptop:mb-12 px-4 laptop:px-0">
-                Une paire de lunettes, ça ne s'achète pas sur une photo. Ça s'essaie. Ça se sent. 200+ opticiens en France vous attendent.
+                Découvrez nos lunettes chez nos opticiens partenaires ou commandez directement en ligne. Livraison offerte, retours gratuits sous 30 jours.
               </p>
 
               <div className="grid md:grid-cols-3 gap-6 laptop:gap-8 mb-8 laptop:mb-12 max-w-4xl mx-auto">
@@ -41,10 +41,10 @@ export default function TryInStoreSection() {
                   <div className="w-2.5 h-2.5 laptop:w-3 laptop:h-3 bg-bronze rotate-45 flex-shrink-0 group-hover:scale-125 transition-transform" />
                   <div>
                     <p className="font-sans text-dark-text text-sm laptop:text-[15px] font-semibold mb-1.5">
-                      On vous écoute
+                      En boutique
                     </p>
                     <p className="font-sans text-dark-text/60 text-xs laptop:text-[14px] leading-[1.6] px-2 laptop:px-0">
-                      Nos opticiens prennent le temps. Pas de vente forcée. Juste le bon conseil.
+                      Essayage personnalisé, conseils d'experts, ajustements immédiats. 200+ opticiens partenaires.
                     </p>
                   </div>
                 </div>
@@ -52,10 +52,10 @@ export default function TryInStoreSection() {
                   <div className="w-2.5 h-2.5 laptop:w-3 laptop:h-3 bg-bronze rotate-45 flex-shrink-0 group-hover:scale-125 transition-transform" />
                   <div>
                     <p className="font-sans text-dark-text text-sm laptop:text-[15px] font-semibold mb-1.5">
-                      On ajuste à votre visage
+                      En ligne
                     </p>
                     <p className="font-sans text-dark-text/60 text-xs laptop:text-[14px] leading-[1.6] px-2 laptop:px-0">
-                      Chaque tête est différente. L'ajustement, c'est ce qui change tout.
+                      Livraison rapide et sécurisée, paiement en plusieurs fois, satisfait ou remboursé 30 jours.
                     </p>
                   </div>
                 </div>
@@ -63,23 +63,30 @@ export default function TryInStoreSection() {
                   <div className="w-2.5 h-2.5 laptop:w-3 laptop:h-3 bg-bronze rotate-45 flex-shrink-0 group-hover:scale-125 transition-transform" />
                   <div>
                     <p className="font-sans text-dark-text text-sm laptop:text-[15px] font-semibold mb-1.5">
-                      On reste là après
+                      Notre engagement
                     </p>
                     <p className="font-sans text-dark-text/60 text-xs laptop:text-[14px] leading-[1.6] px-2 laptop:px-0">
-                      Garantie 2 ans. Un problème ? On le règle.
+                      Garantie 2 ans. Service client réactif. Qualité Renaissance, où que vous soyez.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <Link to="/store-locator">
-                <button className="border-2 border-dark-text bg-dark-text text-white px-8 laptop:px-12 py-4 laptop:py-5 font-sans text-[10px] laptop:text-[11px] tracking-[0.25em] font-bold hover:bg-white hover:text-dark-text transition-all duration-500">
-                  TROUVER VOTRE OPTICIEN
-                </button>
-              </Link>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link to="/store-locator">
+                  <button className="border-2 border-dark-text bg-dark-text text-white px-8 laptop:px-10 py-4 laptop:py-5 font-sans text-[10px] laptop:text-[11px] tracking-[0.25em] font-bold hover:bg-white hover:text-dark-text transition-all duration-500">
+                    TROUVER UN OPTICIEN
+                  </button>
+                </Link>
+                <Link to="/shop">
+                  <button className="border-2 border-dark-text bg-white text-dark-text px-8 laptop:px-10 py-4 laptop:py-5 font-sans text-[10px] laptop:text-[11px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-white transition-all duration-500">
+                    ACHETER EN LIGNE
+                  </button>
+                </Link>
+              </div>
 
               <p className="font-sans text-dark-text/40 text-xs laptop:text-[13px] text-center tracking-wider mt-6 laptop:mt-8">
-                200+ opticiens partenaires en France métropolitaine
+                Livraison offerte en France • Retours gratuits sous 30 jours • Garantie 2 ans
               </p>
             </motion.div>
           </div>
