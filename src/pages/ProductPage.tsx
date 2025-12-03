@@ -244,33 +244,33 @@ export default function ProductPage() {
         <div className="flex-1">
           {/* Gallery de toutes les images du produit */}
           {product.images && product.images.length > 0 ? (
-            <div className="grid grid-cols-2 gap-0">
+            <div className="space-y-0">
               {product.images.map((imageUrl, index) => (
                 <div
                   key={index}
                   data-image-section
                   data-image-index={index}
-                  className="relative aspect-square overflow-hidden"
+                  className="relative w-full h-screen overflow-hidden"
                 >
                   <img
                     src={imageUrl}
                     alt={`${product.name} - vue ${index + 1}`}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               ))}
             </div>
           ) : (
             // Images par défaut si pas d'images disponibles
-            <div className="grid grid-cols-2 gap-0">
-              <div className="relative aspect-square overflow-hidden">
+            <div className="space-y-0">
+              <div className="relative w-full h-screen overflow-hidden">
                 <img
                   src="https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="Hero view"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="relative aspect-square overflow-hidden">
+              <div className="relative w-full h-screen overflow-hidden">
                 <img
                   src="https://images.pexels.com/photos/947885/pexels-photo-947885.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="Front view"
