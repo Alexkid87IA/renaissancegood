@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export default function ProductCraftSection() {
   return (
-    <section className="relative z-[40] ml-0 lg:ml-[340px] laptop:ml-[380px] xl:ml-[480px]">
+    <section className="relative z-[40]">
       <div className="relative min-h-screen overflow-hidden">
         <video
           autoPlay
