@@ -1,16 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import MapComponent from '../components/map/MapComponent';
 import StoreList from '../components/map/StoreList';
 import SearchBar from '../components/map/SearchBar';
 
-// Import des données des opticiens (à créer)
+// Import des données des opticiens
 import opticiansData from '../data/opticians.json';
+
+// Codes pays DOM-TOM
+const DOM_TOM_CODES = ['GUA', 'MTQ', 'GUF', 'REU'];
 
 export default function StoreLocatorPage() {
   const [selectedStore, setSelectedStore] = useState<any | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredStores, setFilteredStores] = useState(opticiansData);
+  const [selectedCountry, setSelectedCountry] = useState('ALL');
   const [userLocation, setUserLocation] = useState<{lat: number; lng: number} | null>(null);
 
   // Scroll to top on mount
@@ -18,20 +21,49 @@ export default function StoreLocatorPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  // Filter stores based on search query
-  useEffect(() => {
-    if (searchQuery.trim() === '') {
-      setFilteredStores(opticiansData);
-    } else {
+  // Calculer le nombre d'opticiens par pays
+  const countryCounts = useMemo(() => {
+    const counts: { [key: string]: number } = {};
+    
+    opticiansData.forEach((store: any) => {
+      const country = store.country;
+      
+      // Grouper les DOM-TOM ensemble
+      if (DOM_TOM_CODES.includes(country)) {
+        counts['DOM-TOM'] = (counts['DOM-TOM'] || 0) + 1;
+      } else {
+        counts[country] = (counts[country] || 0) + 1;
+      }
+    });
+    
+    return counts;
+  }, []);
+
+  // Filtrer les opticiens par pays ET par recherche
+  const filteredStores = useMemo(() => {
+    let filtered = [...opticiansData] as any[];
+
+    // Filtre par pays
+    if (selectedCountry !== 'ALL') {
+      if (selectedCountry === 'DOM-TOM') {
+        filtered = filtered.filter((store: any) => DOM_TOM_CODES.includes(store.country));
+      } else {
+        filtered = filtered.filter((store: any) => store.country === selectedCountry);
+      }
+    }
+
+    // Filtre par recherche texte
+    if (searchQuery.trim() !== '') {
       const query = searchQuery.toLowerCase();
-      const filtered = opticiansData.filter((store: any) => 
+      filtered = filtered.filter((store: any) => 
         store.name.toLowerCase().includes(query) ||
         store.city.toLowerCase().includes(query) ||
         store.postalCode.includes(query)
       );
-      setFilteredStores(filtered);
     }
-  }, [searchQuery]);
+
+    return filtered;
+  }, [searchQuery, selectedCountry]);
 
   // Get user's location
   const getUserLocation = () => {
@@ -50,6 +82,24 @@ export default function StoreLocatorPage() {
     }
   };
 
+  // Obtenir le label du pays pour l'affichage
+  const getCountryLabel = () => {
+    switch (selectedCountry) {
+      case 'ALL': return 'dans le monde';
+      case 'FRA': return 'en France métropolitaine';
+      case 'DOM-TOM': return 'en DOM-TOM';
+      case 'BEL': return 'en Belgique';
+      case 'CHE': return 'en Suisse';
+      case 'LUX': return 'au Luxembourg';
+      case 'DEU': return 'en Allemagne';
+      case 'ITA': return 'en Italie';
+      case 'GRE': return 'en Grèce';
+      case 'ALB': return 'en Albanie';
+      case 'UAE': return 'à Dubai';
+      default: return '';
+    }
+  };
+
   return (
     <div className="min-h-screen bg-beige">
       {/* Hero Section */}
@@ -63,7 +113,7 @@ export default function StoreLocatorPage() {
           >
             {/* Surtitre */}
             <p className="font-sans text-xs text-dark-text/50 tracking-[0.3em] uppercase mb-6">
-              Réseau de 200+ opticiens partenaires
+              Réseau de {opticiansData.length}+ opticiens partenaires
             </p>
 
             {/* Titre principal */}
@@ -80,30 +130,33 @@ export default function StoreLocatorPage() {
               Chaque boutique incarne les valeurs Renaissance : excellence, symbolique et savoir-faire français.
             </p>
 
-            {/* Search Bar */}
+            {/* Search Bar avec sélecteur de pays */}
             <SearchBar 
               value={searchQuery}
               onChange={setSearchQuery}
               onGetLocation={getUserLocation}
+              selectedCountry={selectedCountry}
+              onCountryChange={setSelectedCountry}
+              countryCounts={countryCounts}
             />
 
             {/* Stats */}
-            <div className="mt-12 flex justify-center gap-12">
+            <div className="mt-12 flex justify-center gap-8 laptop:gap-12">
               <div>
                 <p className="font-display text-3xl font-light text-dark-text mb-1">
                   {filteredStores.length}
                 </p>
                 <p className="font-sans text-xs text-dark-text/60 tracking-wider uppercase">
-                  Opticiens
+                  Opticien{filteredStores.length > 1 ? 's' : ''}
                 </p>
               </div>
               <div className="w-[1px] bg-dark-text/10"></div>
               <div>
-                <p className="font-display text-3xl font-light text-dark-text mb-1">
-                  France
+                <p className="font-display text-3xl font-light text-dark-text mb-1 capitalize">
+                  {selectedCountry === 'ALL' ? Object.keys(countryCounts).length : 1}
                 </p>
                 <p className="font-sans text-xs text-dark-text/60 tracking-wider uppercase">
-                  Métropolitaine
+                  {selectedCountry === 'ALL' ? 'Pays' : getCountryLabel()}
                 </p>
               </div>
             </div>
