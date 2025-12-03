@@ -300,7 +300,7 @@ export default function VersaillesCollectionPage() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.img
-            src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=1600&q=80"
+            src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=2687"
             alt="Collection Versailles"
             className="w-full h-full object-cover"
             initial={{ scale: 1.1 }}

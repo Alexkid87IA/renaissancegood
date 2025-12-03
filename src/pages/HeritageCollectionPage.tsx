@@ -299,7 +299,7 @@ export default function HeritageCollectionPage() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.img
-            src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1600&q=80"
+            src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=5760"
             alt="Collection Héritage"
             className="w-full h-full object-cover"
             initial={{ scale: 1.1 }}
