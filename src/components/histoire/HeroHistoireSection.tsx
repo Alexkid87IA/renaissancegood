@@ -148,11 +148,11 @@ export default function HeroHistoireSection() {
                   <div className="mt-4 md:mt-6 flex items-center justify-between px-1 md:px-2">
                     <div className="space-y-1">
                       <p className="font-sans text-white/60 text-[10px] md:text-xs tracking-[0.2em] uppercase">Philosophie</p>
-                      <p className="font-sans text-white text-sm md:text-base lg:text-lg font-light">Restaurer le passé</p>
+                      <p className="font-sans text-white text-sm md:text-base lg:text-lg font-light">Ce qui dure compte</p>
                     </div>
                     <div className="text-right space-y-1">
                       <p className="font-sans text-white/60 text-[10px] md:text-xs tracking-[0.2em] uppercase">Approche</p>
-                      <p className="font-sans text-bronze text-sm md:text-base lg:text-lg font-light">Silence stylé</p>
+                      <p className="font-sans text-bronze text-sm md:text-base lg:text-lg font-light">Rien à prouver</p>
                     </div>
                   </div>
                 </div>

@@ -4,23 +4,23 @@ import { useRef, useState } from 'react';
 const refusStories = [
   {
     number: "01",
-    title: "Le luxe uniformisé",
+    title: "Tout se ressemble",
     statement: "QUAND TOUT SE RESSEMBLE",
-    description: "Refus de voir le luxe devenir une industrie où tout finit par se ressembler. Renaissance crée des pièces uniques, reconnaissables par leur symbole.",
+    description: "Les mêmes formes partout. Les mêmes logos. Le même ennui. On a voulu des montures qu'on reconnaît de loin. Par leur symbole. Par leur gueule.",
     symbolImage: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763855099/WhatsApp_Image_2025-11-21_at_16.20.29_luvmkv.jpg'
   },
   {
     number: "02",
-    title: "L'oubli artisanal",
+    title: "Les mains disparaissent",
     statement: "QUAND LA MACHINE REMPLACE L'HOMME",
-    description: "Refus que le geste artisanal disparaisse. 15 heures de travail par monture. Chaque pièce porte la marque de l'artisan.",
+    description: "Des usines partout. Plus personne ne sait faire avec ses mains. Nos montures, c'est 15 heures de travail. Chaque paire porte la trace de celui qui l'a faite.",
     symbolImage: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_4_xntepe.jpg'
   },
   {
     number: "03",
-    title: "L'uniformité",
+    title: "Rien ne reste",
     statement: "QUAND RIEN NE DURE",
-    description: "Refus de l'uniformité et de l'éphémère. Éditions limitées 100-300 pièces. Fait pour traverser les générations.",
+    description: "On achète. On jette. On recommence. Nos éditions : 100 à 300 pièces. Faites pour qu'on les garde. Pour qu'on les transmette.",
     symbolImage: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_fpklnf.jpg'
   }
 ];

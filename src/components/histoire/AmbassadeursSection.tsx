@@ -66,7 +66,7 @@ export default function AmbassadeursSection() {
                 Ils portent Renaissance
               </h2>
               <p className="font-sans text-dark-text/60 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-                Des personnalités qui incarnent l'élégance, la créativité et l'excellence à la française.
+                Des visages connus. Des parcours différents. Un point commun : ils portent ce qui dure.
               </p>
             </motion.div>
 
@@ -115,8 +115,7 @@ export default function AmbassadeursSection() {
               className="text-center"
             >
               <p className="font-sans text-dark-text/50 text-sm italic max-w-2xl mx-auto leading-relaxed">
-                Ces portraits célèbrent l'alliance entre l'artisanat d'exception et les visages qui font rayonner
-                la culture française à travers le monde.
+                Ils ne portent pas Renaissance pour se montrer. Ils le portent parce que ça leur ressemble. Parce que ça dit quelque chose d'eux.
               </p>
             </motion.div>
 

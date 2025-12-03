@@ -6,21 +6,21 @@ const collections = [
   {
     name: 'Héritage',
     symbol: 'Le Trident',
-    description: 'Souveraineté et maîtrise. La collection qui incarne la puissance française.',
+    description: 'Pour ceux qui mènent. Qui tranchent. Qui avancent sans demander la permission.',
     edition: '100-300 pièces',
     link: '/collections/heritage'
   },
   {
     name: 'Versailles',
     symbol: 'La Fleur de Lys',
-    description: "L'excellence héritée. L'opulence et le raffinement du château.",
+    description: "Ce que les rois portaient. Pas pour briller. Pour marquer qu'ils ne plient pas.",
     edition: '100-300 pièces',
     link: '/collections/versailles'
   },
   {
     name: 'Isis',
     symbol: '',
-    description: 'La renaissance perpétuelle. Collection en développement.',
+    description: "L'Égypte. 3000 ans de symboles. Collection en préparation.",
     edition: 'Bientôt',
     link: null
   }

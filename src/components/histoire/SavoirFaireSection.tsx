@@ -51,7 +51,7 @@ export default function SavoirFaireSection() {
             <div className="flex items-center gap-2 md:gap-3">
               <span className="font-sans text-bronze text-xs md:text-sm font-bold tracking-[0.4em] uppercase">03</span>
               <div className="w-6 md:w-8 h-px bg-bronze/30" />
-              <span className="font-sans text-white/40 text-[10px] md:text-xs font-medium tracking-[0.3em] uppercase">Le Savoir-Faire</span>
+              <span className="font-sans text-white/40 text-[10px] md:text-xs font-medium tracking-[0.3em] uppercase">La Fabrication</span>
             </div>
             <div className="hidden md:block text-right">
               <p className="font-sans text-white/30 text-[10px] tracking-[0.25em] uppercase">Corée du Sud</p>
@@ -64,10 +64,10 @@ export default function SavoirFaireSection() {
 
             <div className="mb-6 md:mb-10 pt-8 md:pt-12 lg:pt-16">
               <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[1.15] mb-3 md:mb-4" style={{ color: '#FFFFFF' }}>
-                LA MAÎTRISE<br />CORÉENNE.
+                FABRIQUÉ<br />EN CORÉE.
               </h2>
               <p className="font-sans text-base md:text-lg lg:text-xl text-white/70 font-light leading-[1.6] max-w-2xl">
-                Nos lunettes sont fabriquées en Corée du Sud. Un choix assumé pour l'exigence, la constance et la précision d'usinage du métal.
+                Nos lunettes sont fabriquées en Corée du Sud. Là-bas, on ne fait pas vite. On fait bien. Le métal, ils le travaillent comme personne.
               </p>
             </div>
 
@@ -87,7 +87,7 @@ export default function SavoirFaireSection() {
                           Vidéo de fabrication
                         </p>
                         <p className="font-sans text-white/50 text-xs md:text-sm font-light">
-                          Découvrez le processus artisanal en détail
+                          Regardez comment c'est vraiment fait
                         </p>
                       </div>
                     </div>
@@ -99,7 +99,7 @@ export default function SavoirFaireSection() {
 
                 <div className="mt-3 md:mt-4 border-l-2 border-bronze/30 pl-3 md:pl-4">
                   <p className="font-sans text-white/60 text-xs md:text-sm italic leading-[1.6]">
-                    15 heures de travail minutieux pour transformer le métal en œuvre d'art portable.
+                    15 heures de travail. Du métal brut à une paire qu'on garde toute une vie.
                   </p>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default function SavoirFaireSection() {
 
                 <div className="border-l-2 border-bronze/30 pl-3 md:pl-4">
                   <p className="font-sans text-xs md:text-sm lg:text-base text-white/70 font-light leading-[1.6] italic">
-                    La rigueur coréenne transforme le métal en héritage. Précision, patience, perfection.
+                    En Corée, le travail du métal, c'est une religion. Ils ne lâchent rien.
                   </p>
                 </div>
               </div>

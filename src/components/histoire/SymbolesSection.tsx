@@ -2,34 +2,34 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 
 const symbols = [
-  { 
-    name: 'Le Trident', 
-    subtitle: 'Souveraineté', 
+  {
+    name: 'Le Trident',
+    subtitle: 'Souveraineté',
     description: 'Trois pointes, trois dimensions : force, vision, justesse. Le symbole du pouvoir maîtrisé.',
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763855099/WhatsApp_Image_2025-11-21_at_16.20.29_luvmkv.jpg'
   },
-  { 
-    name: 'La Fleur de Lys', 
-    subtitle: 'Excellence', 
-    description: "L'excellence héritée. Pureté du geste et exigence du détail.",
+  {
+    name: 'La Fleur de Lys',
+    subtitle: 'Excellence',
+    description: "Le symbole des rois. Ceux qui ne plient pas. Ceux qui tiennent.",
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_4_xntepe.jpg'
   },
-  { 
-    name: 'Le Cobra', 
-    subtitle: 'Protection', 
-    description: 'La protection vigilante. Élégant et puissant. Présence affirmée, force contenue.',
+  {
+    name: 'Le Cobra',
+    subtitle: 'Protection',
+    description: 'Il ne menace pas. Il veille. Calme et dangereux. Force qui se retient.',
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_3_zmql9v.jpg'
   },
-  { 
-    name: "L'Ankh", 
-    subtitle: 'Éternité', 
+  {
+    name: "L'Ankh",
+    subtitle: 'Éternité',
     description: "La clé de vie éternelle. Ce qu'on construit aujourd'hui doit traverser le temps.",
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_fpklnf.jpg'
   },
-  { 
-    name: 'Le Scarabée', 
-    subtitle: 'Renaissance', 
-    description: 'La renaissance perpétuelle. Transformation et renouveau constant.',
+  {
+    name: 'Le Scarabée',
+    subtitle: 'Renaissance',
+    description: 'Chaque matin, il renaît. Symbole de ceux qui se relèvent toujours.',
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_2_tp1ac1.jpg'
   }
 ];
