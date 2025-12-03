@@ -26,7 +26,7 @@ export default function SavoirFaireSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-30 bg-dark-text overflow-hidden"
+      className="min-h-screen lg:sticky lg:top-0 z-30 bg-dark-text overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -36,7 +36,7 @@ export default function SavoirFaireSection() {
           ease: [0.22, 1, 0.36, 1]
         }}
         style={{ willChange: 'opacity, transform' }}
-        className="h-full w-full relative flex flex-col"
+        className="min-h-screen w-full relative flex flex-col"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-dark-text via-dark-text to-dark-text/95" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,115,85,0.08)_0%,transparent_70%)]" />
@@ -59,7 +59,7 @@ export default function SavoirFaireSection() {
           </div>
         </div>
 
-        <div className="relative z-10 flex-1 flex items-start px-4 sm:px-6 md:px-12 lg:px-16 py-8 overflow-y-auto scrollbar-hide">
+        <div className="relative z-10 flex-1 flex items-start px-4 sm:px-6 md:px-12 lg:px-16 py-8">
           <div className="max-w-[1800px] mx-auto w-full">
 
             <div className="mb-6 md:mb-10 pt-8 md:pt-12 lg:pt-16">
@@ -187,15 +187,6 @@ export default function SavoirFaireSection() {
           </div>
         </div>
       </motion.div>
-      <style>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
   );
 }
