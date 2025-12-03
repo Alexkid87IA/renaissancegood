@@ -12,19 +12,19 @@ const celebrities = [
     name: 'Artiste 2',
     role: 'Acteur',
     model: 'Versailles I',
-    image: 'https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=800',
+    image: 'https://26.staticbtf.eno.do/v1/93-default/6ffd0541cdb16d2fcd844d1d0db54334/media.jpg',
   },
   {
     name: 'Artiste 3',
     role: 'Créateur',
     model: 'Héritage XXXXIV',
-    image: 'https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=800',
+    image: 'https://26.staticbtf.eno.do/v1/92-default/3272c50bae44f63ac7a7f3d1dfdba07d/media.jpg',
   },
   {
     name: 'Artiste 4',
     role: 'Musicien',
     model: 'Versailles II',
-    image: 'https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=800',
+    image: 'https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg',
   }
 ];
 
