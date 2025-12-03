@@ -12,7 +12,7 @@ export default function HeroHistoireSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-10 bg-dark-text overflow-hidden"
+      className="min-h-screen lg:sticky lg:top-0 z-10 bg-dark-text overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -22,9 +22,9 @@ export default function HeroHistoireSection() {
           ease: [0.22, 1, 0.36, 1]
         }}
         style={{ willChange: 'opacity, transform' }}
-        className="h-full w-full relative flex flex-col"
+        className="min-h-screen relative flex flex-col"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-dark-text via-dark-text to-dark-text/95" />
+        <div className="absolute inset-0 bg-dark-text" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,115,85,0.08)_0%,transparent_70%)]" />
 
         <div className="absolute inset-0 opacity-[0.02] hidden lg:block">
@@ -34,12 +34,12 @@ export default function HeroHistoireSection() {
           <div className="absolute left-[80%] top-0 bottom-0 w-px bg-bronze" />
         </div>
 
-        <div className="relative z-10 pt-6 md:pt-8 lg:pt-12 px-4 sm:px-6 md:px-12 lg:px-16">
+        <div className="relative z-10 pt-8 md:pt-12 px-6 md:px-12 lg:px-16">
           <div className="max-w-[1800px] mx-auto flex items-start justify-between">
-            <div className="flex items-center gap-2 md:gap-3">
-              <span className="font-sans text-bronze text-xs md:text-sm font-bold tracking-[0.4em] uppercase">01</span>
-              <div className="w-6 md:w-8 h-px bg-bronze/30" />
-              <span className="font-sans text-white/40 text-[10px] md:text-xs font-medium tracking-[0.3em] uppercase">Manifeste</span>
+            <div className="flex items-center gap-3">
+              <span className="font-sans text-bronze text-sm font-bold tracking-[0.4em] uppercase">01</span>
+              <div className="w-8 h-px bg-bronze/30" />
+              <span className="font-sans text-white/40 text-xs font-medium tracking-[0.3em] uppercase">Manifeste</span>
             </div>
 
             <div className="hidden md:block text-right">
@@ -49,131 +49,106 @@ export default function HeroHistoireSection() {
           </div>
         </div>
 
-        <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 md:px-12 lg:px-16 py-8 md:py-12">
-          <div className="max-w-[1800px] mx-auto w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 md:gap-8 lg:gap-16 items-center">
+        <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-12 lg:px-16 py-16 md:py-20">
+          <div className="max-w-6xl mx-auto w-full text-center space-y-12 md:space-y-16">
 
-              <div className="lg:col-span-4 space-y-6 md:space-y-8 lg:space-y-10">
+            <div className="space-y-8">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white tracking-[-0.02em] leading-[0.9]"
+              >
+                UN MOT<br />OUBLIÉ.
+              </motion.h1>
 
-                <div className="space-y-4 md:space-y-6">
-                  <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-[-0.03em] leading-[0.95]">
-                    UN MOT<br />OUBLIÉ.
-                  </h1>
-
-                  <div className="flex items-start gap-3 md:gap-4">
-                    <div className="w-1 h-16 md:h-20 bg-bronze flex-shrink-0 mt-1" />
-                    <div className="space-y-2 md:space-y-3">
-                      <p className="font-sans text-base md:text-lg lg:text-xl xl:text-2xl font-light text-white/80 tracking-[-0.01em] leading-[1.3]">
-                        Un mot trop grand pour ceux qui n'ont rien à dire.
-                      </p>
-                      <p className="font-sans text-base md:text-lg lg:text-xl xl:text-2xl font-light text-bronze tracking-[-0.01em] leading-[1.3]">
-                        Mais parfait pour ceux qui ont quelque chose à restaurer.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="border border-bronze/20 bg-white/[0.02] backdrop-blur-sm p-4 md:p-6 lg:p-8">
-                  <div className="space-y-4 md:space-y-5">
-                    <div className="pb-3 md:pb-4 border-b border-white/5">
-                      <p className="font-sans text-bronze text-[10px] md:text-xs tracking-[0.3em] uppercase font-bold">L'ADN Renaissance</p>
-                    </div>
-
-                    <div className="space-y-2 md:space-y-3 font-sans text-xs md:text-sm">
-                      <div className="flex justify-between items-baseline gap-4">
-                        <span className="text-white/40 tracking-[0.15em] uppercase text-[10px] md:text-xs">Fondation</span>
-                        <span className="text-white/90 font-light text-xs md:text-sm">2019, Paris</span>
-                      </div>
-                      <div className="flex justify-between items-baseline gap-4">
-                        <span className="text-white/40 tracking-[0.15em] uppercase text-[10px] md:text-xs">Fondateurs</span>
-                        <span className="text-white/90 font-light text-xs md:text-sm">Les 3</span>
-                      </div>
-                      <div className="flex justify-between items-baseline gap-4">
-                        <span className="text-white/40 tracking-[0.15em] uppercase text-[10px] md:text-xs">Distribution</span>
-                        <span className="text-white/90 font-light text-xs md:text-sm">200+ opticiens</span>
-                      </div>
-                      <div className="flex justify-between items-baseline gap-4">
-                        <span className="text-white/40 tracking-[0.15em] uppercase text-[10px] md:text-xs">Collections</span>
-                        <span className="text-white/90 font-light text-xs md:text-sm">3 thèmes symboliques</span>
-                      </div>
-                      <div className="flex justify-between items-baseline gap-4">
-                        <span className="text-white/40 tracking-[0.15em] uppercase text-[10px] md:text-xs">Symboles</span>
-                        <span className="text-white/90 font-light text-xs md:text-sm">5 icônes</span>
-                      </div>
-                      <div className="flex justify-between items-baseline gap-4">
-                        <span className="text-white/40 tracking-[0.15em] uppercase text-[10px] md:text-xs">Fabrication</span>
-                        <span className="text-white/90 font-light text-xs md:text-sm">Corée du Sud</span>
-                      </div>
-                      <div className="flex justify-between items-baseline gap-4">
-                        <span className="text-white/40 tracking-[0.15em] uppercase text-[10px] md:text-xs">Éditions</span>
-                        <span className="text-white/90 font-light text-xs md:text-sm">100-300 pièces</span>
-                      </div>
-                    </div>
-
-                    <div className="pt-3 md:pt-4 border-t border-white/5">
-                      <p className="font-sans text-white/50 text-[11px] md:text-xs leading-[1.7] font-light italic">
-                        Renaissance n'est pas fait pour crier. C'est fait pour être reconnu par ceux qui savent.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 md:gap-4">
-                  <div className="w-2 h-2 bg-bronze rotate-45" />
-                  <div>
-                    <p className="font-display text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-white font-bold tracking-tight">
-                      Renaissance.
-                    </p>
-                    <p className="font-sans text-white/40 text-[10px] md:text-xs tracking-[0.3em] uppercase mt-1">Paris • Eyewear</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="lg:col-span-6 relative mt-8 lg:mt-0">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,115,85,0.15)_0%,transparent_60%)] blur-3xl" />
-
-                <div className="relative z-10">
-                  <div className="absolute -inset-4 md:-inset-6 border border-bronze/10 pointer-events-none hidden lg:block" />
-
-                  <div className="relative aspect-[4/3]">
-                    <img
-                      src="https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                      alt="Renaissance Eyewear"
-                      loading="lazy"
-                      className="w-full h-full object-contain"
-                      style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
-                    />
-                  </div>
-
-                  <div className="mt-4 md:mt-6 flex items-center justify-between px-1 md:px-2">
-                    <div className="space-y-1">
-                      <p className="font-sans text-white/60 text-[10px] md:text-xs tracking-[0.2em] uppercase">Philosophie</p>
-                      <p className="font-sans text-white text-sm md:text-base lg:text-lg font-light">Ce qui dure compte</p>
-                    </div>
-                    <div className="text-right space-y-1">
-                      <p className="font-sans text-white/60 text-[10px] md:text-xs tracking-[0.2em] uppercase">Approche</p>
-                      <p className="font-sans text-bronze text-sm md:text-base lg:text-lg font-light">Rien à prouver</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="max-w-3xl mx-auto space-y-4"
+              >
+                <p className="font-sans text-xl md:text-2xl lg:text-3xl font-light text-white/70 leading-[1.4]">
+                  Un mot trop grand pour ceux qui n'ont rien à dire.
+                </p>
+                <p className="font-sans text-xl md:text-2xl lg:text-3xl font-light text-bronze leading-[1.4]">
+                  Mais parfait pour ceux qui ont quelque chose à restaurer.
+                </p>
+              </motion.div>
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="max-w-4xl mx-auto"
+            >
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <div className="space-y-2">
+                  <p className="font-sans text-bronze text-3xl md:text-4xl font-bold">2019</p>
+                  <p className="font-sans text-white/40 text-xs tracking-[0.2em] uppercase">Fondation</p>
+                </div>
+                <div className="space-y-2">
+                  <p className="font-sans text-bronze text-3xl md:text-4xl font-bold">3</p>
+                  <p className="font-sans text-white/40 text-xs tracking-[0.2em] uppercase">Fondateurs</p>
+                </div>
+                <div className="space-y-2">
+                  <p className="font-sans text-bronze text-3xl md:text-4xl font-bold">5</p>
+                  <p className="font-sans text-white/40 text-xs tracking-[0.2em] uppercase">Symboles</p>
+                </div>
+                <div className="space-y-2">
+                  <p className="font-sans text-bronze text-3xl md:text-4xl font-bold">300</p>
+                  <p className="font-sans text-white/40 text-xs tracking-[0.2em] uppercase">Pièces max</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="pt-8"
+            >
+              <div className="inline-flex items-center gap-4 px-8 py-4 border border-bronze/30 bg-white/[0.02]">
+                <div className="w-2 h-2 bg-bronze rotate-45" />
+                <p className="font-sans text-white/60 text-sm md:text-base leading-[1.7] italic">
+                  Renaissance n'est pas fait pour crier.<br className="hidden md:block" />
+                  C'est fait pour être reconnu par ceux qui savent.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="flex items-center justify-center gap-6"
+            >
+              <div className="h-px w-16 bg-bronze/30" />
+              <div className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 bg-bronze rotate-45" />
+                <p className="font-display text-3xl md:text-4xl text-white font-bold tracking-tight">
+                  Renaissance.
+                </p>
+              </div>
+              <div className="h-px w-16 bg-bronze/30" />
+            </motion.div>
+
           </div>
         </div>
 
-        <div className="relative z-10 pb-4 md:pb-6 lg:pb-8 px-4 sm:px-6 md:px-12 lg:px-16">
-          <div className="max-w-[1800px] mx-auto border-t border-white/10 pt-4 md:pt-5">
+        <div className="relative z-10 pb-8 px-6 md:px-12 lg:px-16">
+          <div className="max-w-[1800px] mx-auto border-t border-white/10 pt-5">
             <div className="flex items-center justify-between">
-
-              <div className="flex items-center gap-2 md:gap-3">
-                <span className="font-sans text-white text-lg md:text-xl lg:text-2xl font-light">01</span>
-                <span className="font-sans text-white/30 text-xs md:text-sm">/</span>
-                <span className="font-sans text-white/40 text-xs md:text-sm">08</span>
+              <div className="flex items-center gap-3">
+                <span className="font-sans text-white text-xl md:text-2xl font-light">01</span>
+                <span className="font-sans text-white/30 text-sm">/</span>
+                <span className="font-sans text-white/40 text-sm">09</span>
               </div>
 
-              <div className="flex flex-col items-center gap-1 md:gap-2">
-                <div className="w-px h-8 md:h-12 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
-                <span className="font-sans text-white/30 text-[8px] md:text-[9px] tracking-[0.4em] uppercase">Défiler</span>
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-px h-12 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
+                <span className="font-sans text-white/30 text-[9px] tracking-[0.4em] uppercase">Défiler</span>
               </div>
 
               <div className="hidden md:block text-right">
