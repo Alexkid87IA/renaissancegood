@@ -224,7 +224,7 @@ export default function ProductPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Structure principale avec sidebar fixe sur desktop */}
-      <div className="relative lg:flex pb-24">
+      <div className="relative pb-24">
         {/* Fixed Sidebar - Desktop uniquement */}
         <ProductSidebar
           product={product}
@@ -241,7 +241,7 @@ export default function ProductPage() {
         )}
 
         {/* Scrolling Content */}
-        <div className="flex-1 lg:ml-[340px] laptop:ml-[380px] xl:ml-[480px]">
+        <div className="lg:ml-[340px] laptop:ml-[380px] xl:ml-[480px]">
           {/* Gallery de toutes les images du produit */}
           {product.images && product.images.length > 0 ? (
             <div className="space-y-0">
