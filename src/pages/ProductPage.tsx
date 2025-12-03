@@ -250,12 +250,12 @@ export default function ProductPage() {
                   key={index}
                   data-image-section
                   data-image-index={index}
-                  className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-neutral-50"
+                  className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-neutral-50 lg:px-8 xl:px-12"
                 >
                   <img
                     src={imageUrl}
                     alt={`${product.name} - vue ${index + 1}`}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain max-w-full"
                   />
                 </div>
               ))}
@@ -263,18 +263,18 @@ export default function ProductPage() {
           ) : (
             // Images par défaut si pas d'images disponibles
             <div className="space-y-0">
-              <div className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-neutral-50">
+              <div className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-neutral-50 lg:px-8 xl:px-12">
                 <img
                   src="https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="Hero view"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain max-w-full"
                 />
               </div>
-              <div className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-neutral-50">
+              <div className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-neutral-50 lg:px-8 xl:px-12">
                 <img
                   src="https://images.pexels.com/photos/947885/pexels-photo-947885.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt="Front view"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain max-w-full"
                 />
               </div>
             </div>
