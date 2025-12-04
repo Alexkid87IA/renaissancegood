@@ -38,7 +38,7 @@ export default function CartPage() {
 
   return (
     <div className="min-h-screen bg-beige pt-32 pb-20">
-      <div className="max-w-[1600px] mx-auto px-6 laptop:px-12 xl:px-16">
+      <div className="max-w-[1600px] mx-auto px-6 laptop:px-10 xl:px-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,7 +46,7 @@ export default function CartPage() {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h1 className="font-serif text-5xl laptop:text-6xl xl:text-7xl text-dark-text mb-4 leading-[0.9]">
+          <h1 className="font-serif text-5xl laptop:text-5xl xl:text-7xl text-dark-text mb-4 leading-[0.9]">
             Votre Panier
           </h1>
           <div className="flex items-center gap-3">
@@ -72,7 +72,7 @@ export default function CartPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="max-w-2xl mx-auto text-center py-20"
           >
-            <div className="bg-white border border-dark-text/5 p-12 laptop:p-16">
+            <div className="bg-white border border-dark-text/5 p-12 laptop:p-12">
               <div className="w-20 h-20 mx-auto mb-8 opacity-20">
                 <svg viewBox="0 0 100 50" className="w-full h-full text-dark-text">
                   <ellipse cx="20" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="2" />

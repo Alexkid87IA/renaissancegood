@@ -41,20 +41,20 @@ export default function SymbolesHomeSection() {
   const [selectedSymbol, setSelectedSymbol] = useState<number | null>(null);
 
   return (
-    <section className="relative z-[95] py-16 laptop:py-20 md:py-24 lg:py-32 bg-white">
-      <div className="max-w-[1800px] mx-auto px-4 laptop:px-8 md:px-6 lg:px-12">
+    <section className="relative z-[95] py-16 laptop:py-16 md:py-24 lg:py-32 bg-white">
+      <div className="max-w-[1800px] mx-auto px-4 laptop:px-6 md:px-6 lg:px-12">
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-10 laptop:mb-14 md:mb-16 lg:mb-24"
+          className="text-center mb-10 laptop:mb-12 md:mb-16 lg:mb-24"
         >
-          <p className="font-sans text-[#8B7355] text-[8px] laptop:text-[10px] md:text-[9px] tracking-[0.3em] md:tracking-[0.35em] uppercase mb-3 laptop:mb-5 md:mb-4 lg:mb-6 font-bold">
+          <p className="font-sans text-[#8B7355] text-[8px] laptop:text-[10px] md:text-[9px] tracking-[0.3em] md:tracking-[0.35em] uppercase mb-3 laptop:mb-4 md:mb-4 lg:mb-6 font-bold">
             Nos Symboles
           </p>
-          <h2 className="font-display text-2xl laptop:text-5xl md:text-4xl lg:text-7xl font-bold text-[#2C2C2C] tracking-tight leading-[1.2] lg:leading-[0.95] mb-3 laptop:mb-5 md:mb-4 lg:mb-6">
+          <h2 className="font-display text-2xl laptop:text-5xl md:text-4xl lg:text-7xl font-bold text-[#2C2C2C] tracking-tight leading-[1.2] lg:leading-[0.95] mb-3 laptop:mb-4 md:mb-4 lg:mb-6">
             Cinq symboles.<br />
             Une promesse.
           </h2>
@@ -63,7 +63,7 @@ export default function SymbolesHomeSection() {
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-3 laptop:gap-5 md:gap-4 lg:gap-6 mb-8 laptop:mb-10 md:mb-10 lg:mb-12">
+        <div className="flex flex-wrap justify-center gap-3 laptop:gap-4 md:gap-4 lg:gap-6 mb-8 laptop:mb-8 md:mb-10 lg:mb-12">
           {symbols.map((symbol, index) => (
             <motion.div
               key={symbol.name}
@@ -113,7 +113,7 @@ export default function SymbolesHomeSection() {
         >
           <button
             onClick={() => navigate('/histoire')}
-            className="group relative inline-flex items-center justify-center gap-3 border-2 border-[#2C2C2C] px-8 laptop:px-10 md:px-10 py-3 laptop:py-4 md:py-4 font-sans text-[8px] laptop:text-[10px] md:text-[10px] tracking-[0.25em] laptop:tracking-[0.3em] md:tracking-[0.3em] uppercase text-[#2C2C2C] font-bold overflow-hidden hover:border-[#8B7355] transition-all duration-500 w-auto"
+            className="group relative inline-flex items-center justify-center gap-3 border-2 border-[#2C2C2C] px-8 laptop:px-8 md:px-10 py-3 laptop:py-3.5 md:py-4 font-sans text-[8px] laptop:text-[10px] md:text-[10px] tracking-[0.25em] laptop:tracking-[0.3em] md:tracking-[0.3em] uppercase text-[#2C2C2C] font-bold overflow-hidden hover:border-[#8B7355] transition-all duration-500 w-auto"
           >
             <span className="absolute inset-0 bg-[#8B7355] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
             <span className="relative z-10 group-hover:text-white transition-colors duration-500 whitespace-nowrap">

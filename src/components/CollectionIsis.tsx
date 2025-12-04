@@ -19,10 +19,10 @@ export default function CollectionIsis() {
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-beige hidden md:flex flex-row px-6 md:px-0">
-        <div className="w-full md:w-1/2 laptop:w-[40%] flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-14 md:ml-6">
+        <div className="w-full md:w-1/2 laptop:w-[40%] flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-10 md:ml-6">
           <div className="max-w-2xl">
             <div className="mb-6 sm:mb-8">
-              <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-6xl xl:text-8xl font-bold tracking-[-0.03em] leading-[0.9] mb-4 sm:mb-6">
+              <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-5xl xl:text-8xl font-bold tracking-[-0.03em] leading-[0.9] mb-4 sm:mb-6">
                 COLLECTION<br />ISIS
               </h3>
               <span className="inline-block bg-dark-text/5 border border-dark-text/15 text-dark-text/50 text-[8px] sm:text-[9px] px-4 sm:px-5 py-2 sm:py-2.5 tracking-[0.25em] font-bold uppercase">
@@ -35,12 +35,12 @@ export default function CollectionIsis() {
               </p>
               <div className="h-px bg-bronze/20 mt-3" />
             </div>
-            <p className="font-sans text-dark-text/70 text-base sm:text-lg md:text-xl laptop:text-xl xl:text-2xl leading-[1.75] laptop:leading-[1.65] mb-8 sm:mb-12 laptop:mb-12 xl:mb-16 font-light">
+            <p className="font-sans text-dark-text/70 text-base sm:text-lg md:text-xl laptop:text-lg xl:text-2xl leading-[1.75] laptop:leading-[1.7] mb-8 sm:mb-12 laptop:mb-8 xl:mb-16 font-light">
               L'Ankh : la vie. Le Scarabée : la renaissance. L'Œil : celui qui voit tout.<br />
               Les pharaons sont poussière. Leurs symboles sont debout.<br />
               Ce qui traverse 5 000 ans ne se porte pas par hasard.
             </p>
-            <button className="border-2 border-dark-text/25 px-8 sm:px-10 laptop:px-10 py-3.5 sm:py-4 laptop:py-4 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold text-dark-text/30 cursor-not-allowed">
+            <button className="border-2 border-dark-text/25 px-8 sm:px-10 laptop:px-8 py-3.5 sm:py-4 laptop:py-3.5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold text-dark-text/30 cursor-not-allowed">
               BIENTÔT DISPONIBLE
             </button>
           </div>

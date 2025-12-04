@@ -117,7 +117,7 @@ export default function StoreLocatorPage() {
             </p>
 
             {/* Titre principal */}
-            <h1 className="font-display text-5xl laptop:text-6xl xl:text-7xl font-light text-dark-text mb-6 tracking-tight">
+            <h1 className="font-display text-5xl laptop:text-5xl xl:text-7xl font-light text-dark-text mb-6 tracking-tight">
               Trouvez votre opticien<br />Renaissance
             </h1>
 
@@ -131,7 +131,7 @@ export default function StoreLocatorPage() {
             </p>
 
             {/* Search Bar avec sélecteur de pays */}
-            <SearchBar 
+            <SearchBar
               value={searchQuery}
               onChange={setSearchQuery}
               onGetLocation={getUserLocation}
@@ -141,7 +141,7 @@ export default function StoreLocatorPage() {
             />
 
             {/* Stats */}
-            <div className="mt-12 flex justify-center gap-8 laptop:gap-12">
+            <div className="mt-12 flex justify-center gap-8 laptop:gap-10">
               <div>
                 <p className="font-display text-3xl font-light text-dark-text mb-1">
                   {filteredStores.length}
@@ -166,7 +166,7 @@ export default function StoreLocatorPage() {
 
       {/* Map + List Section */}
       <section className="py-0">
-        <div className="h-[700px] laptop:h-[800px] flex flex-col laptop:flex-row">
+        <div className="h-[700px] laptop:h-[700px] flex flex-col laptop:flex-row">
           {/* Map */}
           <div className="w-full laptop:w-2/3 h-full">
             <MapComponent 

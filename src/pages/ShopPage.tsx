@@ -259,14 +259,14 @@ export default function ShopPage() {
         animate={{ y: hideFilters ? -200 : 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        <div className="max-w-[1800px] mx-auto px-4 sm:px-8 laptop:px-12 py-4 sm:py-6 laptop:py-8">
-          <div className="grid grid-cols-12 gap-2 sm:gap-3 md:gap-6 laptop:gap-8 xl:gap-12">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-8 laptop:px-10 py-4 sm:py-6 laptop:py-6">
+          <div className="grid grid-cols-12 gap-2 sm:gap-3 md:gap-6 laptop:gap-6 xl:gap-12">
             {/* Compteur de résultats */}
             <div className="col-span-6 sm:col-span-4 md:col-span-2 flex flex-col justify-end">
               <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3">
                 # RESULTS
               </p>
-              <p className="font-display text-2xl sm:text-3xl md:text-4xl laptop:text-5xl font-bold text-dark-text leading-none">
+              <p className="font-display text-2xl sm:text-3xl md:text-4xl laptop:text-4xl font-bold text-dark-text leading-none">
                 {filteredProducts.length}
               </p>
             </div>
@@ -340,7 +340,7 @@ export default function ShopPage() {
       </motion.div>
 
       {/* Grille de produits masonry */}
-      <div className="max-w-[1800px] mx-auto px-8 laptop:px-12 py-10 laptop:py-12">
+      <div className="max-w-[1800px] mx-auto px-8 laptop:px-10 py-10 laptop:py-10">
         {filteredProducts.length === 0 ? (
           <div className="text-center py-32">
             <p className="font-sans text-dark-text/40 text-sm tracking-wider uppercase">
