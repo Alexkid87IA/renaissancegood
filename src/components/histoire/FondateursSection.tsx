@@ -12,7 +12,7 @@ export default function FondateursSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-beige overflow-hidden"
+      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-20 bg-beige overflow-hidden"
     >
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute left-[20%] top-0 bottom-0 w-px bg-bronze" />
