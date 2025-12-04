@@ -79,7 +79,7 @@ export default function FabricationSection() {
                 </div>
               </div>
 
-              <div className="space-y-2 laptop:space-y-3 xl:space-y-4 mb-8 laptop:mb-10 xl:mb-16 max-w-2xl">
+              <div className="space-y-2 laptop:space-y-3 xl:space-y-4 mb-8 laptop:mb-12 xl:mb-16 max-w-2xl">
                 <div className="flex items-start gap-3 sm:gap-4 group">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
                   <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
@@ -106,7 +106,7 @@ export default function FabricationSection() {
                 </div>
               </div>
 
-              <button className="border-2 border-white/30 text-white px-6 sm:px-8 laptop:px-8 xl:px-12 py-3 sm:py-3.5 laptop:py-3.5 xl:py-5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold hover:bg-white hover:text-dark-text hover:border-white transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
+              <button className="border-2 border-white/30 text-white px-6 sm:px-8 laptop:px-10 xl:px-12 py-3 sm:py-3.5 laptop:py-4 xl:py-5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold hover:bg-white hover:text-dark-text hover:border-white transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
                 VOIR LE PROCESSUS
               </button>
             </motion.div>

@@ -21,7 +21,7 @@ export default function TryInStoreSection() {
       <div className="relative h-full">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-beige/10 to-beige/20" />
 
-        <div className="relative h-full flex items-center justify-center px-6 laptop:px-12 py-20 laptop:py-12">
+        <div className="relative h-full flex items-center justify-center px-6 laptop:px-16 py-20 laptop:py-16">
           <div className="max-w-2xl w-full text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -29,14 +29,14 @@ export default function TryInStoreSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="font-display text-4xl sm:text-5xl laptop:text-5xl lg:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-4 laptop:mb-6">
+              <h2 className="font-display text-4xl sm:text-5xl laptop:text-6xl lg:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-4 laptop:mb-6">
                 ESSAYEZ EN BOUTIQUE.<br />COMMANDEZ EN LIGNE.
               </h2>
-              <p className="font-sans text-dark-text/70 text-sm laptop:text-base leading-[1.6] mb-8 laptop:mb-10 px-4 laptop:px-0">
+              <p className="font-sans text-dark-text/70 text-sm laptop:text-base leading-[1.6] mb-8 laptop:mb-12 px-4 laptop:px-0">
                 Découvrez nos lunettes chez nos opticiens partenaires ou commandez directement en ligne. Livraison offerte, retours gratuits sous 30 jours.
               </p>
 
-              <div className="grid md:grid-cols-3 gap-6 laptop:gap-6 mb-8 laptop:mb-10 max-w-4xl mx-auto">
+              <div className="grid md:grid-cols-3 gap-6 laptop:gap-8 mb-8 laptop:mb-12 max-w-4xl mx-auto">
                 <div className="flex flex-col items-center gap-3 group">
                   <div className="w-2.5 h-2.5 laptop:w-3 laptop:h-3 bg-bronze rotate-45 flex-shrink-0 group-hover:scale-125 transition-transform" />
                   <div>
@@ -74,18 +74,18 @@ export default function TryInStoreSection() {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link to="/store-locator">
-                  <button className="border-2 border-dark-text bg-dark-text text-white px-8 laptop:px-8 py-4 laptop:py-4 font-sans text-[10px] laptop:text-[10px] tracking-[0.25em] font-bold hover:bg-white hover:text-dark-text transition-all duration-500">
+                  <button className="border-2 border-dark-text bg-dark-text text-white px-8 laptop:px-10 py-4 laptop:py-5 font-sans text-[10px] laptop:text-[11px] tracking-[0.25em] font-bold hover:bg-white hover:text-dark-text transition-all duration-500">
                     TROUVER UN OPTICIEN
                   </button>
                 </Link>
                 <Link to="/shop">
-                  <button className="border-2 border-dark-text bg-white text-dark-text px-8 laptop:px-8 py-4 laptop:py-4 font-sans text-[10px] laptop:text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-white transition-all duration-500">
+                  <button className="border-2 border-dark-text bg-white text-dark-text px-8 laptop:px-10 py-4 laptop:py-5 font-sans text-[10px] laptop:text-[11px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-white transition-all duration-500">
                     ACHETER EN LIGNE
                   </button>
                 </Link>
               </div>
 
-              <p className="font-sans text-dark-text/40 text-xs laptop:text-[13px] text-center tracking-wider mt-6 laptop:mt-6">
+              <p className="font-sans text-dark-text/40 text-xs laptop:text-[13px] text-center tracking-wider mt-6 laptop:mt-8">
                 Livraison offerte en France • Retours gratuits sous 30 jours • Garantie 2 ans
               </p>
             </motion.div>

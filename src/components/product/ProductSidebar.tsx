@@ -59,11 +59,11 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
   };
 
   return (
-    <div className="w-full lg:w-[340px] laptop:w-[280px] xl:w-[480px] bg-white lg:border-r border-dark-text/10 lg:fixed lg:left-0 lg:top-0 lg:bottom-0 overflow-y-auto z-50">
-      <div className="p-4 sm:p-6 lg:p-8 laptop:p-6 xl:p-12 lg:pt-24">
+    <div className="w-full lg:w-[340px] laptop:w-[320px] xl:w-[480px] bg-white lg:border-r border-dark-text/10 lg:fixed lg:left-0 lg:top-0 lg:bottom-0 overflow-y-auto z-50">
+      <div className="p-4 sm:p-6 lg:p-8 laptop:p-8 xl:p-12 lg:pt-24">
         {/* Product Header */}
         <div className="mb-6 lg:mb-10">
-          <h1 className="font-display text-3xl sm:text-4xl laptop:text-3xl xl:text-6xl font-bold text-dark-text mb-3 lg:mb-4 leading-[0.95]">
+          <h1 className="font-display text-3xl sm:text-4xl laptop:text-4xl xl:text-6xl font-bold text-dark-text mb-3 lg:mb-4 leading-[0.95]">
             {product.name}
           </h1>
           {product.badge && (

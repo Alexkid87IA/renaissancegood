@@ -349,14 +349,14 @@ export default function CollectionsPage() {
   return (
     <div className="min-h-screen bg-beige">
       <div className="border-b border-dark-text/10 bg-white sticky top-20 z-30">
-        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-10 py-4 sm:py-6 laptop:py-6">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-4 sm:py-6 laptop:py-8">
           <div className="flex flex-col gap-6">
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
                 <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1.5 sm:mb-2">
                   # RESULTS
                 </p>
-                <p className="font-display text-2xl sm:text-3xl md:text-4xl laptop:text-4xl font-bold text-dark-text leading-none">
+                <p className="font-display text-2xl sm:text-3xl md:text-4xl laptop:text-5xl font-bold text-dark-text leading-none">
                   {filteredProducts.length}
                 </p>
               </div>
@@ -411,7 +411,7 @@ export default function CollectionsPage() {
         </div>
       </div>
 
-      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-10 py-6 sm:py-8 md:py-10 laptop:py-10">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-6 sm:py-8 md:py-10 laptop:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-4 sm:gap-6 md:gap-4">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
