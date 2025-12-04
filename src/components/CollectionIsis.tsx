@@ -31,12 +31,14 @@ export default function CollectionIsis() {
             </div>
             <div className="inline-block mb-8 sm:mb-12">
               <p className="font-sans text-bronze text-[9px] sm:text-[10px] md:text-xs tracking-[0.3em] font-bold uppercase">
-                Ankh • Scarabée • Cobra
+                Ankh • Scarabée • Œil d'Horus
               </p>
               <div className="h-px bg-bronze/20 mt-3" />
             </div>
             <p className="font-sans text-dark-text/70 text-base sm:text-lg md:text-xl laptop:text-xl xl:text-2xl leading-[1.75] mb-8 sm:mb-12 laptop:mb-14 xl:mb-16 font-light">
-              Les Égyptiens gravaient leurs croyances dans la pierre. Nous les gravons dans le métal. Des symboles qui ont traversé 3000 ans.
+              L'Ankh : la vie. Le Scarabée : la renaissance. L'Œil : celui qui voit tout.<br />
+              Les pharaons sont poussière. Leurs symboles sont debout.<br />
+              Ce qui traverse 5 000 ans ne se porte pas par hasard.
             </p>
             <button className="border-2 border-dark-text/25 px-8 sm:px-10 laptop:px-12 py-3.5 sm:py-4 laptop:py-5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold text-dark-text/30 cursor-not-allowed">
               BIENTÔT DISPONIBLE
@@ -80,7 +82,7 @@ export default function CollectionIsis() {
             </span>
             <div className="inline-block bg-gradient-to-r from-bronze/10 to-transparent pr-8 py-3 -ml-1 pl-1">
               <p className="font-sans text-bronze text-[10px] tracking-[0.35em] font-bold uppercase mb-2.5">
-                ANKH • SCARABÉE • COBRA
+                ANKH • SCARABÉE • ŒIL D'HORUS
               </p>
               <div className="h-0.5 bg-gradient-to-r from-bronze via-bronze/60 to-transparent w-32" />
             </div>
@@ -97,7 +99,9 @@ export default function CollectionIsis() {
               COLLECTION<br/>ISIS
             </h3>
             <p className="font-sans text-dark-text/70 text-base leading-[1.75] font-light max-w-md">
-              Les Égyptiens gravaient leurs croyances dans la pierre. Nous les gravons dans le métal. Des symboles qui ont traversé 3000 ans.
+              L'Ankh : la vie. Le Scarabée : la renaissance. L'Œil : celui qui voit tout.<br />
+              Les pharaons sont poussière. Leurs symboles sont debout.<br />
+              Ce qui traverse 5 000 ans ne se porte pas par hasard.
             </p>
           </motion.div>
 

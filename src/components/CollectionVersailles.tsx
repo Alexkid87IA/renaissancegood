@@ -74,7 +74,8 @@ export default function CollectionVersailles() {
               <div className="h-px bg-bronze/20 mt-3" />
             </div>
             <p className="font-sans text-dark-text/70 text-base sm:text-lg md:text-xl laptop:text-xl xl:text-2xl leading-[1.75] mb-8 sm:mb-12 laptop:mb-14 xl:mb-16 font-light">
-              Ce que les rois portaient, ce n'était pas du luxe. C'était une promesse. Celle de ne jamais fléchir.
+              Les rois sont partis. Le symbole est resté.<br />
+              La Fleur de Lys. Pour ceux qui construisent. Pas pour ceux qui paradent.
             </p>
             <Link to="/collections/versailles">
               <button className="border-2 border-dark-text/80 px-8 sm:px-10 laptop:px-12 py-3.5 sm:py-4 laptop:py-5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige hover:border-dark-text transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
@@ -126,7 +127,8 @@ export default function CollectionVersailles() {
               COLLECTION<br/>VERSAILLES
             </h3>
             <p className="font-sans text-dark-text/70 text-base leading-[1.75] font-light max-w-md">
-              Ce que les rois portaient, ce n'était pas du luxe. C'était une promesse. Celle de ne jamais fléchir.
+              Les rois sont partis. Le symbole est resté.<br />
+              La Fleur de Lys. Pour ceux qui construisent. Pas pour ceux qui paradent.
             </p>
           </motion.div>
 
