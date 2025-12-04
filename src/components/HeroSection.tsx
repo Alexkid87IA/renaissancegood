@@ -60,7 +60,7 @@ export default function HeroSection() {
           <img
             src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764096301/unnamed_6_vh8f2v.jpg"
             alt="Hero Background Mobile"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-[center_30%]"
           />
 
           {/* Gradient overlay for text readability */}
