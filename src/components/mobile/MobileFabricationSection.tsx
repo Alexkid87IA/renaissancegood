@@ -35,7 +35,7 @@ export default function MobileFabricationSection({ frame, lens }: MobileFabricat
           </h2>
 
           <p className="font-sans text-sm text-white/90 leading-relaxed mb-6 max-w-md">
-            Chaque paire Renaissance allie excellence française et précision coréenne.
+            Excellence française. Précision coréenne.
           </p>
 
           <div className="grid grid-cols-2 gap-4 mb-6">
@@ -69,19 +69,19 @@ export default function MobileFabricationSection({ frame, lens }: MobileFabricat
             <div className="flex items-start gap-3">
               <div className="w-1 h-1 rounded-full bg-white/60 mt-2 flex-shrink-0" />
               <p className="font-sans text-xs leading-relaxed">
-                <span className="font-semibold">Studio parisien</span> conception et design
+                <span className="font-semibold">Design Paris</span>
               </p>
             </div>
             <div className="flex items-start gap-3">
               <div className="w-1 h-1 rounded-full bg-white/60 mt-2 flex-shrink-0" />
               <p className="font-sans text-xs leading-relaxed">
-                <span className="font-semibold">Ateliers coréens</span> précision d'usinage
+                <span className="font-semibold">Fabrication Corée</span>
               </p>
             </div>
             <div className="flex items-start gap-3">
               <div className="w-1 h-1 rounded-full bg-white/60 mt-2 flex-shrink-0" />
               <p className="font-sans text-xs leading-relaxed">
-                <span className="font-semibold">Matériaux premium</span> acétate Mazzucchelli
+                <span className="font-semibold">Acétate Mazzucchelli</span>
               </p>
             </div>
           </div>
