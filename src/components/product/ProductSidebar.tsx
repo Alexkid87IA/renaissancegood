@@ -63,7 +63,7 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
       <div className="p-4 sm:p-6 lg:p-8 laptop:p-10 xl:p-12 lg:pt-24">
         {/* Product Header */}
         <div className="mb-6 lg:mb-10">
-          <h1 className="font-display text-3xl sm:text-4xl laptop:text-5xl xl:text-6xl font-bold text-dark-text mb-3 lg:mb-4 leading-[0.95]">
+          <h1 className="font-display text-2xl sm:text-3xl laptop:text-4xl xl:text-5xl font-bold text-dark-text mb-3 lg:mb-4 leading-[0.95]">
             {product.name}
           </h1>
           {product.badge && (
