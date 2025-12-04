@@ -34,7 +34,7 @@ export default function HeroHistoireSection() {
           <div className="absolute left-[80%] top-0 bottom-0 w-px bg-bronze" />
         </div>
 
-        <div className="relative z-10 pt-6 md:pt-9 px-6 md:px-12 lg:px-16">
+        <div className="relative z-10 pt-4 md:pt-6 px-6 md:px-12 lg:px-16">
           <div className="max-w-[1800px] mx-auto flex items-start justify-between">
             <div className="flex items-center gap-2.5">
               <span className="font-sans text-bronze text-[0.7rem] font-bold tracking-[0.4em] uppercase">01</span>
@@ -44,15 +44,15 @@ export default function HeroHistoireSection() {
 
             <div className="hidden md:block text-right">
               <p className="font-sans text-white/30 text-[8px] tracking-[0.25em] uppercase">Paris • 2019 • Les 3</p>
-              <p className="font-mono text-white/20 text-[7px] tracking-wider mt-1">48°51'24"N 2°21'04"E</p>
+              <p className="font-mono text-white/20 text-[7px] tracking-wider mt-0.5">48°51'24"N 2°21'04"E</p>
             </div>
           </div>
         </div>
 
-        <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-12 lg:px-16 py-12 md:py-16">
-          <div className="max-w-6xl mx-auto w-full text-center space-y-9 md:space-y-12">
+        <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-12 lg:px-16 py-6 md:py-8">
+          <div className="max-w-6xl mx-auto w-full text-center space-y-4 md:space-y-5">
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -66,7 +66,7 @@ export default function HeroHistoireSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="max-w-3xl mx-auto space-y-3"
+                className="max-w-3xl mx-auto space-y-2"
               >
                 <p className="font-sans text-[1rem] md:text-[1.2rem] lg:text-[1.5rem] font-light text-white/70 leading-[1.4]">
                   Un mot trop grand pour ceux qui n'ont rien à dire.
@@ -83,20 +83,20 @@ export default function HeroHistoireSection() {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="max-w-4xl mx-auto"
             >
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-9">
-                <div className="space-y-2">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div className="space-y-1">
                   <p className="font-sans text-bronze text-[1.5rem] md:text-[1.8rem] font-bold">2019</p>
                   <p className="font-sans text-white/40 text-[0.6rem] tracking-[0.2em] uppercase">Fondation</p>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <p className="font-sans text-bronze text-[1.5rem] md:text-[1.8rem] font-bold">3</p>
                   <p className="font-sans text-white/40 text-[0.6rem] tracking-[0.2em] uppercase">Fondateurs</p>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <p className="font-sans text-bronze text-[1.5rem] md:text-[1.8rem] font-bold">5</p>
                   <p className="font-sans text-white/40 text-[0.6rem] tracking-[0.2em] uppercase">Symboles</p>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <p className="font-sans text-bronze text-[1.5rem] md:text-[1.8rem] font-bold">300</p>
                   <p className="font-sans text-white/40 text-[0.6rem] tracking-[0.2em] uppercase">Pièces max</p>
                 </div>
@@ -107,7 +107,7 @@ export default function HeroHistoireSection() {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="pt-6"
+              className="pt-2"
             >
               <div className="inline-flex items-center gap-3 px-6 py-3 border border-bronze/30 bg-white/[0.02]">
                 <div className="w-1.5 h-1.5 bg-bronze rotate-45" />
@@ -137,8 +137,8 @@ export default function HeroHistoireSection() {
           </div>
         </div>
 
-        <div className="relative z-10 pb-6 px-6 md:px-12 lg:px-16">
-          <div className="max-w-[1800px] mx-auto border-t border-white/10 pt-4">
+        <div className="relative z-10 pb-4 px-6 md:px-12 lg:px-16">
+          <div className="max-w-[1800px] mx-auto border-t border-white/10 pt-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <span className="font-sans text-white text-[1rem] md:text-[1.2rem] font-light">01</span>
@@ -146,8 +146,8 @@ export default function HeroHistoireSection() {
                 <span className="font-sans text-white/40 text-[0.7rem]">09</span>
               </div>
 
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-px h-9 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
+              <div className="flex flex-col items-center gap-1.5">
+                <div className="w-px h-8 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
                 <span className="font-sans text-white/30 text-[7px] tracking-[0.4em] uppercase">Défiler</span>
               </div>
 
