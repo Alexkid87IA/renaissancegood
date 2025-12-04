@@ -59,11 +59,11 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
   };
 
   return (
-    <div className="w-full lg:w-[340px] laptop:w-[320px] xl:w-[480px] bg-white lg:border-r border-dark-text/10 lg:fixed lg:left-0 lg:top-0 lg:bottom-0 overflow-y-auto z-50">
-      <div className="p-4 sm:p-6 lg:p-8 laptop:p-8 xl:p-12 lg:pt-24">
+    <div className="w-full lg:w-[340px] laptop:w-[380px] xl:w-[480px] bg-white lg:border-r border-dark-text/10 lg:fixed lg:left-0 lg:top-0 lg:bottom-0 overflow-y-auto z-50">
+      <div className="p-4 sm:p-6 lg:p-8 laptop:p-10 xl:p-12 lg:pt-24">
         {/* Product Header */}
         <div className="mb-6 lg:mb-10">
-          <h1 className="font-display text-3xl sm:text-4xl laptop:text-4xl xl:text-6xl font-bold text-dark-text mb-3 lg:mb-4 leading-[0.95]">
+          <h1 className="font-display text-3xl sm:text-4xl laptop:text-5xl xl:text-6xl font-bold text-dark-text mb-3 lg:mb-4 leading-[0.95]">
             {product.name}
           </h1>
           {product.badge && (
@@ -176,7 +176,7 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
         {/* Price & Buy Button - Caché sur mobile car présent dans BottomBar */}
         <div className="hidden lg:grid grid-cols-2 gap-3 pt-4">
           <div className="border border-dark-text/20 flex items-center justify-center">
-            <span className="font-sans text-lg laptop:text-base font-semibold text-dark-text">
+            <span className="font-sans text-lg font-semibold text-dark-text">
               {product.variants[selectedColorIndex]?.price || product.price}
             </span>
           </div>

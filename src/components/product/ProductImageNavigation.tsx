@@ -115,7 +115,7 @@ export default function ProductImageNavigation({ images, productName }: ProductI
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed bottom-20 sm:bottom-24 md:bottom-32 laptop:bottom-28 left-1/2 -translate-x-1/2 z-50 max-w-[calc(100vw-1rem)] sm:max-w-none"
+            className="fixed bottom-20 sm:bottom-24 md:bottom-32 left-1/2 -translate-x-1/2 z-50 max-w-[calc(100vw-1rem)] sm:max-w-none"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -150,7 +150,7 @@ export default function ProductImageNavigation({ images, productName }: ProductI
                   >
                     {/* Thumbnail */}
                     <div
-                      className={`relative w-10 h-10 md:w-12 md:h-12 laptop:w-11 laptop:h-11 rounded-lg overflow-hidden transition-all duration-300 ${
+                      className={`relative w-10 h-10 md:w-12 md:h-12 rounded-lg overflow-hidden transition-all duration-300 ${
                         activeIndex === index
                           ? 'ring-2 ring-bronze shadow-lg'
                           : 'ring-1 ring-dark-text/10 opacity-40 hover:opacity-70'
