@@ -42,35 +42,35 @@ export default function FabricationSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-[-0.03em] leading-[0.95]">
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-[-0.03em] leading-[0.95]">
                 FABRICATION
               </h2>
 
-              <div className="space-y-6 laptop:space-y-10 mb-10 laptop:mb-14 xl:mb-16">
+              <div className="space-y-4 laptop:space-y-5 mb-6 laptop:mb-8 xl:mb-10">
                 <p className="font-sans text-white text-sm sm:text-base md:text-lg laptop:text-lg xl:text-2xl leading-[1.7] font-light max-w-2xl">
                   Une paire de Renaissance, c'est 250 étapes. Des mains françaises pour la vision. Des mains coréennes pour la précision. Deux pays. Un seul standard : celui qui dure.
                 </p>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 laptop:gap-8 xl:gap-12 pt-3 laptop:pt-6">
-                  <div className="space-y-2">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 laptop:gap-6 xl:gap-8 pt-2 laptop:pt-3">
+                  <div className="space-y-1.5">
                     <p className="font-display text-[2rem] sm:text-[2.25rem] md:text-4xl laptop:text-4xl xl:text-6xl text-white font-bold tracking-tight">8-12</p>
                     <p className="font-sans text-white/70 text-[9px] sm:text-[10px] tracking-[0.15em] uppercase leading-[1.5] font-medium">
                       Artisans<br/>par paire
                     </p>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <p className="font-display text-[2rem] sm:text-[2.25rem] md:text-4xl laptop:text-4xl xl:text-6xl text-white font-bold tracking-tight">250</p>
                     <p className="font-sans text-white/70 text-[9px] sm:text-[10px] tracking-[0.15em] uppercase leading-[1.5] font-medium">
                       Étapes de<br/>fabrication
                     </p>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <p className="font-display text-[2rem] sm:text-[2.25rem] md:text-4xl laptop:text-4xl xl:text-6xl text-white font-bold tracking-tight whitespace-nowrap">8-15h</p>
                     <p className="font-sans text-white/70 text-[9px] sm:text-[10px] tracking-[0.15em] uppercase leading-[1.5] font-medium">
                       De travail<br/>cumulé
                     </p>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <p className="font-display text-[2rem] sm:text-[2.25rem] md:text-4xl laptop:text-4xl xl:text-6xl text-white font-bold tracking-tight">2</p>
                     <p className="font-sans text-white/70 text-[9px] sm:text-[10px] tracking-[0.15em] uppercase leading-[1.5] font-medium">
                       Pays, un<br/>standard
@@ -79,7 +79,7 @@ export default function FabricationSection() {
                 </div>
               </div>
 
-              <div className="space-y-2 laptop:space-y-3 xl:space-y-4 mb-8 laptop:mb-12 xl:mb-16 max-w-2xl">
+              <div className="space-y-1.5 laptop:space-y-2 xl:space-y-2.5 mb-6 laptop:mb-8 xl:mb-10 max-w-2xl">
                 <div className="flex items-start gap-3 sm:gap-4 group">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
                   <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
