@@ -33,8 +33,7 @@ export default function ProductCraftSection() {
 
               <div className="space-y-4 sm:space-y-6 laptop:space-y-10 mb-8 sm:mb-10 laptop:mb-14 xl:mb-16">
                 <p className="font-sans text-white text-sm sm:text-base md:text-lg laptop:text-lg xl:text-2xl leading-[1.7] font-light max-w-2xl">
-                  Chaque paire de lunettes Renaissance est le fruit d'un savoir-faire exceptionnel,
-                  alliant l'excellence française et la précision coréenne.
+                  Chaque paire Renaissance allie excellence française et précision coréenne.
                 </p>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 laptop:gap-8 xl:gap-12 pt-2 sm:pt-3 laptop:pt-6">
@@ -69,25 +68,25 @@ export default function ProductCraftSection() {
                 <div className="flex items-start gap-3 sm:gap-4 group">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-1.5 sm:mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
                   <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
-                    <span className="font-semibold text-white">Studio parisien</span> pour la conception et le design
+                    <span className="font-semibold text-white">Studio parisien</span> pour conception et design
                   </p>
                 </div>
                 <div className="flex items-start gap-3 sm:gap-4 group">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-1.5 sm:mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
                   <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
-                    <span className="font-semibold text-white">Ateliers coréens</span> pour l'exigence et la précision d'usinage
+                    <span className="font-semibold text-white">Ateliers coréens</span> pour précision d'usinage
                   </p>
                 </div>
                 <div className="flex items-start gap-3 sm:gap-4 group">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-1.5 sm:mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
                   <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
-                    <span className="font-semibold text-white">Matériaux premium</span> : acétate Mazzucchelli, acier inoxydable haut grade
+                    <span className="font-semibold text-white">Matériaux premium</span> : acétate Mazzucchelli, acier inox
                   </p>
                 </div>
                 <div className="flex items-start gap-3 sm:gap-4 group">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-1.5 sm:mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
                   <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
-                    <span className="font-semibold text-white">Signature unique</span> : strass sur branche gauche
+                    <span className="font-semibold text-white">Signature unique</span> : strass branche gauche
                   </p>
                 </div>
               </div>
