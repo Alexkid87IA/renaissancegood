@@ -72,10 +72,10 @@ export default function ProductBottomBar({ product, selectedColorIndex }: Produc
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-dark-text/10 z-[60] shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
-      <div className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-4 max-w-[1800px] mx-auto">
+      <div className="px-3 sm:px-4 lg:px-8 laptop:px-6 py-3 sm:py-4 laptop:py-3.5 flex items-center justify-between gap-2 sm:gap-4 max-w-[1800px] mx-auto">
         <div className="flex items-center gap-2 sm:gap-4 lg:gap-6">
           {/* Visual Color Thumbnail */}
-          <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 border-2 border-dark-text/20 rounded-sm flex items-center justify-center bg-white p-1.5 sm:p-2">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 laptop:w-12 laptop:h-12 border-2 border-dark-text/20 rounded-sm flex items-center justify-center bg-white p-1.5 sm:p-2">
             <svg viewBox="0 0 100 50" className="w-full h-full">
               <ellipse cx="20" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="2" />
               <ellipse cx="80" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -99,14 +99,14 @@ export default function ProductBottomBar({ product, selectedColorIndex }: Produc
         {/* Price & Buy Button */}
         <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
           <div className="text-right">
-            <p className="font-sans text-base sm:text-xl lg:text-2xl font-semibold text-dark-text whitespace-nowrap">
+            <p className="font-sans text-base sm:text-xl lg:text-2xl laptop:text-xl font-semibold text-dark-text whitespace-nowrap">
               {selectedVariant?.price || product.price}
             </p>
           </div>
           <button
             onClick={handleAddToCart}
             disabled={isLoading || !selectedVariant?.availableForSale}
-            className={`px-4 sm:px-6 lg:px-10 py-2.5 sm:py-3 lg:py-4 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.3em] font-bold transition-all duration-200 whitespace-nowrap ${
+            className={`px-4 sm:px-6 lg:px-10 laptop:px-8 py-2.5 sm:py-3 lg:py-4 laptop:py-3.5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.3em] font-bold transition-all duration-200 whitespace-nowrap ${
               addedToCart
                 ? 'bg-green-600 text-white'
                 : 'bg-dark-text text-white hover:bg-dark-text/90'

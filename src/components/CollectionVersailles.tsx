@@ -33,7 +33,7 @@ export default function CollectionVersailles() {
       <div className="h-full bg-beige hidden md:flex flex-row px-6 md:px-0">
         <div
           onClick={handleNavigate}
-          className="w-full md:w-1/2 h-full md:ml-6 cursor-pointer group relative overflow-hidden"
+          className="w-full md:w-1/2 laptop:w-[60%] h-full md:ml-6 cursor-pointer group relative overflow-hidden"
         >
           <img
             src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=2687"
@@ -62,9 +62,9 @@ export default function CollectionVersailles() {
           )}
         </div>
 
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20 md:mr-6">
+        <div className="w-full md:w-1/2 laptop:w-[40%] flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-14 md:mr-6">
           <div className="max-w-2xl">
-            <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 tracking-[-0.03em] leading-[0.9]">
+            <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-6xl xl:text-8xl font-bold mb-6 sm:mb-8 tracking-[-0.03em] leading-[0.9]">
               COLLECTION<br />VERSAILLES
             </h3>
             <div className="inline-block mb-8 sm:mb-12">
@@ -73,12 +73,12 @@ export default function CollectionVersailles() {
               </p>
               <div className="h-px bg-bronze/20 mt-3" />
             </div>
-            <p className="font-sans text-dark-text/70 text-base sm:text-lg md:text-xl laptop:text-xl xl:text-2xl leading-[1.75] mb-8 sm:mb-12 laptop:mb-14 xl:mb-16 font-light">
+            <p className="font-sans text-dark-text/70 text-base sm:text-lg md:text-xl laptop:text-xl xl:text-2xl leading-[1.75] laptop:leading-[1.65] mb-8 sm:mb-12 laptop:mb-12 xl:mb-16 font-light">
               Les rois sont partis. Le symbole est resté.<br />
               La Fleur de Lys. Pour ceux qui construisent. Pas pour ceux qui paradent.
             </p>
             <Link to="/collections/versailles">
-              <button className="border-2 border-dark-text/80 px-8 sm:px-10 laptop:px-12 py-3.5 sm:py-4 laptop:py-5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige hover:border-dark-text transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
+              <button className="border-2 border-dark-text/80 px-8 sm:px-10 laptop:px-10 py-3.5 sm:py-4 laptop:py-4 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige hover:border-dark-text transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
                 DÉCOUVRIR
               </button>
             </Link>
