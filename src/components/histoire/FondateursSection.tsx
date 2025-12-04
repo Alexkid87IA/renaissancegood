@@ -7,20 +7,23 @@ const refusStories = [
     title: "Tout se ressemble",
     statement: "QUAND TOUT SE RESSEMBLE",
     description: "Les mêmes formes partout. Les mêmes logos. Le même ennui. On a voulu des montures qu'on reconnaît de loin. Par leur symbole. Par leur gueule.",
+    shortDesc: "Refus que tout se ressemble.",
     symbolImage: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763855099/WhatsApp_Image_2025-11-21_at_16.20.29_luvmkv.jpg'
   },
   {
     number: "02",
-    title: "Les mains disparaissent",
+    title: "Le travail disparaît",
     statement: "QUAND LA MACHINE REMPLACE L'HOMME",
     description: "Des usines partout. Plus personne ne sait faire avec ses mains. Nos montures, c'est 15 heures de travail. Chaque paire porte la trace de celui qui l'a faite.",
+    shortDesc: "Refus que le travail bien fait disparaisse.",
     symbolImage: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_4_xntepe.jpg'
   },
   {
     number: "03",
-    title: "Rien ne reste",
+    title: "Regarder ailleurs",
     statement: "QUAND RIEN NE DURE",
     description: "On achète. On jette. On recommence. Nos éditions : 100 à 300 pièces. Faites pour qu'on les garde. Pour qu'on les transmette.",
+    shortDesc: "Refus de regarder ailleurs.",
     symbolImage: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_fpklnf.jpg'
   }
 ];
@@ -66,7 +69,7 @@ export default function FondateursSection() {
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,115,85,0.3)_0%,transparent_50%)]"
         />
 
-        <div className="relative z-10 pt-6 md:pt-8 lg:pt-12 px-4 sm:px-6 md:px-12 lg:px-16">
+        <div className="relative z-10 pt-4 md:pt-6 lg:pt-8 px-4 sm:px-6 md:px-12 lg:px-16">
           <div className="max-w-[1800px] mx-auto flex items-start justify-between">
             <div className="flex items-center gap-2 md:gap-3">
               <span className="font-sans text-bronze text-xs md:text-sm font-bold tracking-[0.4em] uppercase">02</span>
@@ -79,41 +82,41 @@ export default function FondateursSection() {
           </div>
         </div>
 
-        <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 md:px-12 lg:px-16 py-8">
-          <div className="max-w-[1800px] mx-auto w-full h-full flex flex-col lg:flex-row gap-6 lg:gap-12">
+        <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 md:px-12 lg:px-16 py-5 md:py-6 lg:py-8">
+          <div className="max-w-[1800px] mx-auto w-full h-full flex flex-col lg:flex-row gap-5 lg:gap-12">
 
-            <div className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-visible justify-start lg:justify-start pb-4 lg:pb-0 snap-x snap-mandatory lg:snap-none">
+            <div className="flex flex-col lg:flex-col gap-3 lg:gap-3 lg:justify-start">
               {refusStories.map((refus, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveRefus(index)}
-                  className={`flex-shrink-0 group transition-all duration-300 snap-center ${
+                  className={`group transition-all duration-300 ${
                     activeRefus === index ? '' : 'opacity-40 hover:opacity-70'
                   }`}
                 >
                   <div className="flex items-center gap-3 lg:gap-4">
-                    <div className={`w-14 h-14 md:w-16 md:h-16 border-2 flex items-center justify-center transition-all duration-300 ${
+                    <div className={`flex-shrink-0 w-16 h-16 md:w-16 md:h-16 lg:w-14 lg:h-14 border-2 flex items-center justify-center transition-all duration-300 ${
                       activeRefus === index
                         ? 'border-bronze bg-bronze/5 scale-105'
                         : 'border-dark-text/10 group-hover:border-bronze/30'
                     }`}>
-                      <span className={`font-sans text-xl md:text-2xl font-bold transition-colors duration-300 ${
+                      <span className={`font-sans text-2xl md:text-2xl lg:text-xl font-bold transition-colors duration-300 ${
                         activeRefus === index ? 'text-bronze' : 'text-dark-text/30'
                       }`}>
                         {refus.number}
                       </span>
                     </div>
 
-                    <div className="text-left hidden lg:block">
+                    <div className="text-left flex-1">
                       <p className={`font-sans text-xs tracking-[0.2em] uppercase transition-colors duration-300 ${
                         activeRefus === index ? 'text-bronze font-bold' : 'text-dark-text/40'
                       }`}>
                         Refus
                       </p>
-                      <p className={`font-sans text-sm font-light transition-colors duration-300 mt-1 ${
+                      <p className={`font-sans text-sm md:text-base font-light transition-colors duration-300 mt-1 ${
                         activeRefus === index ? 'text-dark-text' : 'text-dark-text/50'
                       }`}>
-                        {refus.title}
+                        {refus.shortDesc}
                       </p>
                     </div>
                   </div>
@@ -121,9 +124,9 @@ export default function FondateursSection() {
               ))}
             </div>
 
-            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
+            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-12 items-center">
 
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center order-2 md:order-1">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeRefus}
@@ -134,7 +137,7 @@ export default function FondateursSection() {
                       duration: 0.5,
                       ease: [0.22, 1, 0.36, 1]
                     }}
-                    className="relative w-full max-w-md aspect-square"
+                    className="relative w-full max-w-sm md:max-w-md aspect-square"
                   >
                     <div className="absolute -inset-4 md:-inset-6 border border-bronze/10 hidden md:block" />
 
@@ -154,7 +157,7 @@ export default function FondateursSection() {
                 </AnimatePresence>
               </div>
 
-              <div className="flex flex-col justify-center">
+              <div className="flex flex-col justify-center order-1 md:order-2">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeRefus}
@@ -165,19 +168,19 @@ export default function FondateursSection() {
                       duration: 0.4,
                       ease: [0.22, 1, 0.36, 1]
                     }}
-                    className="space-y-5 md:space-y-6"
+                    className="space-y-4 md:space-y-5"
                   >
                     <div>
                       <p className="font-sans text-bronze text-[10px] md:text-xs tracking-[0.3em] uppercase font-bold mb-2 md:mb-3">
                         Renaissance est née d'un refus
                       </p>
-                      <h3 className="font-display text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-dark-text font-bold leading-[1.1] tracking-tight">
+                      <h3 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-dark-text font-bold leading-[1.1] tracking-tight">
                         {refusStories[activeRefus].statement}
                       </h3>
                     </div>
 
                     <div className="border-l-2 border-bronze/30 pl-4 md:pl-6">
-                      <p className="font-sans text-base md:text-lg lg:text-xl text-dark-text/80 font-light leading-[1.7]">
+                      <p className="font-sans text-sm sm:text-base md:text-lg lg:text-xl text-dark-text/80 font-light leading-[1.7]">
                         {refusStories[activeRefus].description}
                       </p>
                     </div>
@@ -188,9 +191,9 @@ export default function FondateursSection() {
                   initial={{ opacity: 0 }}
                   animate={isInView ? { opacity: 1 } : {}}
                   transition={{ duration: 0.6, delay: 0.6 }}
-                  className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-dark-text/10"
+                  className="mt-5 md:mt-8 pt-4 md:pt-5 border-t border-dark-text/10"
                 >
-                  <div className="space-y-3 md:space-y-4">
+                  <div className="space-y-2.5 md:space-y-3">
                     <div className="flex items-center gap-3 md:gap-4">
                       <div className="w-10 h-10 md:w-12 md:h-12 border-2 border-bronze flex items-center justify-center">
                         <span className="font-display text-xl md:text-2xl text-bronze font-bold">3</span>
@@ -206,7 +209,7 @@ export default function FondateursSection() {
                     </div>
 
                     <p className="font-sans text-sm md:text-base text-dark-text/70 font-light leading-[1.7]">
-                      Pas trois héritiers. Pas trois diplômés. Trois hommes du métier qui ont vu de l'intérieur l'industrie se dégrader. Et qui ont décidé de faire autrement.
+                      Nous sommes Les 3. Pas des héritiers. Pas des diplômés. Des gens du métier. On a vu. On a refusé. On a construit.
                     </p>
                   </div>
                 </motion.div>
@@ -215,16 +218,16 @@ export default function FondateursSection() {
           </div>
         </div>
 
-        <div className="relative z-10 pb-4 md:pb-6 lg:pb-8 px-4 sm:px-6 md:px-12 lg:px-16">
-          <div className="max-w-[1800px] mx-auto border-t border-dark-text/10 pt-4 md:pt-5">
+        <div className="relative z-10 pb-3 md:pb-4 lg:pb-6 px-4 sm:px-6 md:px-12 lg:px-16">
+          <div className="max-w-[1800px] mx-auto border-t border-dark-text/10 pt-3 md:pt-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 md:gap-3">
                 <span className="font-sans text-dark-text text-lg md:text-xl lg:text-2xl font-light">02</span>
                 <span className="font-sans text-dark-text/30 text-xs md:text-sm">/</span>
                 <span className="font-sans text-dark-text/40 text-xs md:text-sm">08</span>
               </div>
-              <div className="flex flex-col items-center gap-1 md:gap-2">
-                <div className="w-px h-8 md:h-12 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
+              <div className="flex flex-col items-center gap-1 md:gap-1.5">
+                <div className="w-px h-7 md:h-10 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
                 <span className="font-sans text-dark-text/30 text-[8px] md:text-[9px] tracking-[0.4em] uppercase">Défiler</span>
               </div>
               <div className="hidden md:block text-right">
