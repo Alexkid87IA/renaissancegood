@@ -36,7 +36,7 @@ export default function CollectionVersailles() {
           className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
         >
           <img
-            src="https://26.staticbtf.eno.do/v1/100-default/fe7d3e75edf55786380cd5f02c7f167e/media.jpg"
+            src="https://26.staticbtf.eno.do/v1/103-default/6438d7ab4a0133318c4426ad47aee221/media.jpg"
             alt="Collection Versailles - Fleur de Lys"
             className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
           />
@@ -91,7 +91,7 @@ export default function CollectionVersailles() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
-            src="https://26.staticbtf.eno.do/v1/100-default/fe7d3e75edf55786380cd5f02c7f167e/media.jpg"
+            src="https://26.staticbtf.eno.do/v1/103-default/6438d7ab4a0133318c4426ad47aee221/media.jpg"
             alt="Collection Versailles - Fleur de Lys"
             className="w-full h-full object-cover opacity-20"
           />
@@ -145,7 +145,7 @@ export default function CollectionVersailles() {
               className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-white/50 backdrop-blur-sm border border-dark-text/10 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
             >
               <img
-                src="https://26.staticbtf.eno.do/v1/100-default/fe7d3e75edf55786380cd5f02c7f167e/media.jpg"
+                src="https://26.staticbtf.eno.do/v1/103-default/6438d7ab4a0133318c4426ad47aee221/media.jpg"
                 alt="Collection Versailles"
                 className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
               />
