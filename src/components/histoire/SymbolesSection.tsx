@@ -15,10 +15,10 @@ const symbols = [
     image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_4_xntepe.jpg'
   },
   {
-    name: "L'Ankh",
-    subtitle: 'Éternité',
-    description: "En Égypte ancienne, l'Ankh est le hiéroglyphe qui signifie \"vie\". Les dieux la tenaient dans leurs mains. Ils la plaçaient sous le nez des pharaons pour leur insuffler le souffle éternel. C'était la clé. Pas d'une porte. De l'au-delà. Les pharaons la portaient pour traverser la mort. Elle est toujours là. Eux non.",
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_fpklnf.jpg'
+    name: 'Le Cobra',
+    subtitle: 'Protection',
+    description: "En Égypte ancienne, seul le pharaon avait le droit de porter le cobra sur son front. C'était l'Uraeus le serpent dressé, prêt à frapper. Il représentait Wadjet, la déesse protectrice. On croyait qu'il crachait du feu sur les ennemis du roi. Personne ne pouvait approcher sans son accord. Pas les rivaux. Pas les traîtres. Pas le chaos. L'Uraeus ne décorait pas. Il protégeait. Ceux qui le portaient étaient intouchables. On l'a choisi pour la même raison. Protéger ce qui compte.",
+    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_3_zmql9v.jpg'
   },
   {
     name: 'Le Scarabée',
@@ -30,7 +30,7 @@ const symbols = [
     name: "L'Œil d'Horus",
     subtitle: 'Vision',
     description: "Horus, fils d'Osiris, affronte son oncle Seth pour venger le meurtre de son père. Le combat dure 80 ans. Seth lui arrache l'œil gauche et le brise en six morceaux. Thot, dieu de la sagesse, le reconstitue et le rend intact. L'Œil d'Horus devient le symbole de ce qui se répare. De ce qui voit au-delà. De la victoire du bien sur le chaos. On le porte pour voir ce que les autres ignorent.",
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_3_zmql9v.jpg'
+    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_fpklnf.jpg'
   }
 ];
 
