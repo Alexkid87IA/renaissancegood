@@ -50,7 +50,7 @@ export default function EngagementSection() {
           <div className="max-w-[1200px] mx-auto w-full">
             <div className="space-y-6 lg:space-y-8">
               <div className="space-y-4">
-                <p className="font-sans text-xl md:text-2xl lg:text-2xl text-dark-text font-light leading-[1.4]">
+                <p className="font-display text-xl md:text-2xl lg:text-2xl text-dark-text font-light leading-[1.4]">
                   Une paire qu'on jette après deux ans, ce n'est pas une paire. C'est un déchet.
                 </p>
 
@@ -71,7 +71,7 @@ export default function EngagementSection() {
                   >
                     <div className="flex items-center gap-1.5 mb-2">
                       <div className="w-1 h-1 bg-bronze rotate-45" />
-                      <h3 className="font-sans text-dark-text text-[0.65rem] tracking-[0.2em] uppercase font-bold">
+                      <h3 className="font-display text-dark-text text-[0.65rem] tracking-[0.2em] uppercase font-bold">
                         {engagement.title}
                       </h3>
                     </div>
@@ -83,7 +83,7 @@ export default function EngagementSection() {
               </div>
 
               <div className="border-l-2 border-bronze/40 pl-6 py-3">
-                <p className="font-sans text-xl md:text-2xl lg:text-2xl text-dark-text font-light leading-[1.3]">
+                <p className="font-display text-xl md:text-2xl lg:text-2xl text-dark-text font-light leading-[1.3]">
                   Ce qu'on vend, on l'assume. Pas un an. Pas deux. Aussi longtemps qu'il le faut.
                 </p>
               </div>

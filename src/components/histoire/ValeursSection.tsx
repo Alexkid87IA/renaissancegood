@@ -115,7 +115,7 @@ export default function ValeursSection() {
                           transition={{ duration: 0.5 }}
                         />
                       </div>
-                      <h3 className="font-sans text-white text-xs lg:text-sm tracking-[0.2em] uppercase font-bold mb-3 lg:mb-4 group-hover:text-bronze transition-colors duration-500">
+                      <h3 className="font-display text-white text-xs lg:text-sm tracking-[0.2em] uppercase font-bold mb-3 lg:mb-4 group-hover:text-bronze transition-colors duration-500">
                         {valeur.title}
                       </h3>
                     </div>

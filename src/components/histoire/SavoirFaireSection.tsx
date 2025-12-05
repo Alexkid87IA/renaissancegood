@@ -130,7 +130,7 @@ export default function SavoirFaireSection() {
                         )}
                       </div>
                       <div className="h-px bg-bronze/20 mb-0.5" />
-                      <p className="font-sans text-white text-[0.5rem] tracking-[0.15em] uppercase font-bold mb-0.5">
+                      <p className="font-display text-white text-[0.5rem] tracking-[0.15em] uppercase font-bold mb-0.5">
                         {stat.label}
                       </p>
                       <p className="font-sans text-white/40 text-[0.45rem] leading-tight">
@@ -155,7 +155,7 @@ export default function SavoirFaireSection() {
                           </span>
                         </div>
                         <div className="flex-1 pt-0.5">
-                          <p className="font-sans text-white text-[0.65rem] md:text-[0.7rem] font-bold mb-0.5">
+                          <p className="font-display text-white text-[0.65rem] md:text-[0.7rem] font-bold mb-0.5">
                             {step.title}
                           </p>
                           <p className="font-sans text-white/50 text-[0.55rem] md:text-[0.6rem] leading-tight">

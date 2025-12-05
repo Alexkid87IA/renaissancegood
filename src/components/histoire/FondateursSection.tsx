@@ -49,15 +49,17 @@ export default function FondateursSection() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="order-2 lg:order-1"
               >
-                <p className="font-sans text-lg md:text-xl lg:text-2xl text-dark-text font-light leading-[1.7] md:leading-[1.8]">
-                  Renaissance est née d'un refus.<br/>
-                  Refus que tout se ressemble.<br/>
-                  Refus que le travail bien fait disparaisse.<br/>
-                  Refus de regarder ailleurs.<br/>
-                  <span className="block mt-6 md:mt-8">
-                    Nous sommes Les 3. Pas des héritiers. Pas des diplômés. Des gens du métier. On a vu. On a refusé. On a construit.
-                  </span>
-                </p>
+                <div className="space-y-6 md:space-y-8">
+                  <p className="font-display text-lg md:text-xl lg:text-2xl text-dark-text font-light leading-[1.7] md:leading-[1.8]">
+                    Renaissance est née d'un refus.<br/>
+                    Refus que tout se ressemble.<br/>
+                    Refus que le travail bien fait disparaisse.<br/>
+                    Refus de regarder ailleurs.
+                  </p>
+                  <p className="font-display text-lg md:text-xl lg:text-2xl text-dark-text font-light leading-[1.7] md:leading-[1.8]">
+                    Nous sommes Les 3. <span className="font-sans">Pas des héritiers. Pas des diplômés. Des gens du métier. On a vu. On a refusé. On a construit.</span>
+                  </p>
+                </div>
               </motion.div>
 
               <motion.div
