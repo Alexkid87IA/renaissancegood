@@ -26,7 +26,7 @@ const guarantees = [
 
 export default function ReassuranceSection() {
   return (
-    <section className="relative z-[100] bg-beige py-16 md:py-20 border-t border-dark-text/10">
+    <section className="relative z-[10] bg-beige py-16 md:py-20 border-t border-dark-text/10">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
