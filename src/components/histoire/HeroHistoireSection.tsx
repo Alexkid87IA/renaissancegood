@@ -27,7 +27,7 @@ export default function HeroHistoireSection() {
         {/* Image de fond */}
         <div className="absolute inset-0">
           <img
-            src="https://26.staticbtf.eno.do/v1/98-default/f317792ae90cda5bb4d46a9b99e9ade3/media.jpg"
+            src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg"
             alt=""
             className="w-full h-full object-cover"
           />
@@ -68,7 +68,7 @@ export default function HeroHistoireSection() {
                 transition={{ delay: 0.2, duration: 0.8 }}
                 className="font-display text-[3rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] xl:text-[6.4rem] font-bold text-white tracking-[-0.02em] leading-[0.9]"
               >
-                UN MOT<br />OUBLIÉ.
+                UN MOT OUBLIÉ.
               </motion.h1>
 
               <motion.div
