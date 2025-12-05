@@ -118,13 +118,11 @@ export default function HeroHistoireSection() {
               transition={{ delay: 0.8, duration: 0.8 }}
               className="pt-1"
             >
-              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 border border-bronze/30 bg-white/[0.02]">
-                <div className="w-1.5 h-1.5 bg-bronze rotate-45" />
-                <p className="font-sans text-white/60 text-[0.65rem] md:text-[0.75rem] leading-[1.6] italic">
-                  Renaissance n'est pas fait pour crier.<br className="hidden md:block" />
-                  C'est fait pour être reconnu par ceux qui savent.
-                </p>
-              </div>
+              <img
+                src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956062/61167e11-16a8-4ef6-8223-6c72972c5f76_ycixx4.png"
+                alt="Renaissance n'est pas fait pour crier"
+                className="w-auto h-auto max-w-full"
+              />
             </motion.div>
 
             <motion.div
@@ -135,11 +133,10 @@ export default function HeroHistoireSection() {
             >
               <div className="h-px w-10 bg-bronze/30" />
               <div className="flex items-center gap-2">
-                <div className="w-1 h-1 bg-bronze rotate-45" />
                 <img
                   src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764955952/6f678730-ea37-4b65-b71d-da3cae41517c_jwnbsr.png"
                   alt="Renaissance"
-                  className="h-[2rem] md:h-[2.5rem] lg:h-[3rem] w-auto"
+                  className="h-[3.5rem] md:h-[4.5rem] lg:h-[5.5rem] w-auto"
                 />
               </div>
               <div className="h-px w-10 bg-bronze/30" />
