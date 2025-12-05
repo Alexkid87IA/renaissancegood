@@ -59,9 +59,9 @@ export default function CollectionHeritage() {
           className="w-full md:w-1/2 h-full md:mr-6 cursor-pointer group relative overflow-hidden"
         >
           <img
-            src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=5760"
+            src="https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg"
             alt="Collection Héritage - Trident"
-            className="w-full h-full object-contain transition-all duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
           />
 
           {/* Hover overlay */}
@@ -91,7 +91,7 @@ export default function CollectionHeritage() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
-            src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=5760"
+            src="https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg"
             alt="Collection Héritage - Trident"
             className="w-full h-full object-cover opacity-20"
           />
@@ -145,7 +145,7 @@ export default function CollectionHeritage() {
               className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-white/50 backdrop-blur-sm border border-dark-text/10 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
             >
               <img
-                src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=5760"
+                src="https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg"
                 alt="Collection Héritage"
                 className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
               />
