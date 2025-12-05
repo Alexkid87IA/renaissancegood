@@ -43,7 +43,7 @@ export default function HeroHistoireSection() {
           <div className="absolute left-[80%] top-0 bottom-0 w-px bg-bronze" />
         </div>
 
-        <div className="relative z-10 pt-3 md:pt-4 px-6 md:px-8 lg:px-12">
+        <div className="relative z-10 pt-24 md:pt-28 lg:pt-32 px-6 md:px-8 lg:px-12">
           <div className="max-w-[1600px] mx-auto flex items-start justify-between">
             <div className="flex items-center gap-2.5">
               <span className="font-sans text-bronze text-[0.65rem] font-bold tracking-[0.4em] uppercase">01</span>
