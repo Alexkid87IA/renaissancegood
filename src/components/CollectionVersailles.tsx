@@ -38,7 +38,7 @@ export default function CollectionVersailles() {
           <img
             src="https://26.staticbtf.eno.do/v1/100-default/fe7d3e75edf55786380cd5f02c7f167e/media.jpg"
             alt="Collection Versailles - Fleur de Lys"
-            className="w-full h-full object-contain transition-all duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
           />
 
           {/* Hover overlay */}
