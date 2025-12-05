@@ -44,7 +44,7 @@ export default function CollectionIsis() {
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 h-full md:mr-6">
+        <div className="w-full md:w-1/2 h-full">
           <img
             src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg"
             alt="Collection Isis - Egyptian inspiration"
