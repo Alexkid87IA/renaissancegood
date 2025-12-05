@@ -29,8 +29,9 @@ export default function TryInStoreSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="font-display text-4xl sm:text-5xl laptop:text-5xl lg:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-4 laptop:mb-6">
-                ESSAYEZ EN BOUTIQUE.<br />COMMANDEZ EN LIGNE.
+              <h2 className="font-display text-4xl sm:text-5xl laptop:text-5xl lg:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[1.1] mb-4 laptop:mb-6">
+                <span className="block whitespace-nowrap">ESSAYEZ EN BOUTIQUE.</span>
+                <span className="block whitespace-nowrap">COMMANDEZ EN LIGNE.</span>
               </h2>
               <p className="font-sans text-dark-text/70 text-sm laptop:text-sm leading-[1.6] mb-8 laptop:mb-10 px-4 laptop:px-0">
                 Découvrez nos lunettes chez nos opticiens partenaires ou commandez directement en ligne. Livraison offerte, retours gratuits sous 30 jours.
