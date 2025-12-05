@@ -29,21 +29,21 @@ export default function TryInStoreSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="font-display text-4xl sm:text-5xl laptop:text-6xl lg:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-4 laptop:mb-6">
+              <h2 className="font-display text-4xl sm:text-5xl laptop:text-5xl lg:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-4 laptop:mb-6">
                 ESSAYEZ EN BOUTIQUE.<br />COMMANDEZ EN LIGNE.
               </h2>
-              <p className="font-sans text-dark-text/70 text-sm laptop:text-base leading-[1.6] mb-8 laptop:mb-12 px-4 laptop:px-0">
+              <p className="font-sans text-dark-text/70 text-sm laptop:text-sm leading-[1.6] mb-8 laptop:mb-10 px-4 laptop:px-0">
                 Découvrez nos lunettes chez nos opticiens partenaires ou commandez directement en ligne. Livraison offerte, retours gratuits sous 30 jours.
               </p>
 
-              <div className="grid md:grid-cols-3 gap-6 laptop:gap-8 mb-8 laptop:mb-12 max-w-4xl mx-auto">
+              <div className="grid md:grid-cols-3 gap-6 laptop:gap-6 mb-8 laptop:mb-10 max-w-4xl mx-auto">
                 <div className="flex flex-col items-center gap-3 group">
                   <div className="w-2.5 h-2.5 laptop:w-3 laptop:h-3 bg-bronze rotate-45 flex-shrink-0 group-hover:scale-125 transition-transform" />
                   <div>
-                    <p className="font-sans text-dark-text text-sm laptop:text-[15px] font-semibold mb-1.5">
+                    <p className="font-sans text-dark-text text-sm laptop:text-sm font-semibold mb-1.5">
                       En boutique
                     </p>
-                    <p className="font-sans text-dark-text/60 text-xs laptop:text-[14px] leading-[1.6] px-2 laptop:px-0">
+                    <p className="font-sans text-dark-text/60 text-xs laptop:text-xs leading-[1.6] px-2 laptop:px-0">
                       Essayage personnalisé, conseils d'experts, ajustements immédiats. 200+ opticiens partenaires.
                     </p>
                   </div>
@@ -51,10 +51,10 @@ export default function TryInStoreSection() {
                 <div className="flex flex-col items-center gap-3 group">
                   <div className="w-2.5 h-2.5 laptop:w-3 laptop:h-3 bg-bronze rotate-45 flex-shrink-0 group-hover:scale-125 transition-transform" />
                   <div>
-                    <p className="font-sans text-dark-text text-sm laptop:text-[15px] font-semibold mb-1.5">
+                    <p className="font-sans text-dark-text text-sm laptop:text-sm font-semibold mb-1.5">
                       En ligne
                     </p>
-                    <p className="font-sans text-dark-text/60 text-xs laptop:text-[14px] leading-[1.6] px-2 laptop:px-0">
+                    <p className="font-sans text-dark-text/60 text-xs laptop:text-xs leading-[1.6] px-2 laptop:px-0">
                       Livraison rapide et sécurisée, paiement en plusieurs fois, satisfait ou remboursé 30 jours.
                     </p>
                   </div>
@@ -62,10 +62,10 @@ export default function TryInStoreSection() {
                 <div className="flex flex-col items-center gap-3 group">
                   <div className="w-2.5 h-2.5 laptop:w-3 laptop:h-3 bg-bronze rotate-45 flex-shrink-0 group-hover:scale-125 transition-transform" />
                   <div>
-                    <p className="font-sans text-dark-text text-sm laptop:text-[15px] font-semibold mb-1.5">
+                    <p className="font-sans text-dark-text text-sm laptop:text-sm font-semibold mb-1.5">
                       Notre engagement
                     </p>
-                    <p className="font-sans text-dark-text/60 text-xs laptop:text-[14px] leading-[1.6] px-2 laptop:px-0">
+                    <p className="font-sans text-dark-text/60 text-xs laptop:text-xs leading-[1.6] px-2 laptop:px-0">
                       Garantie 2 ans. Service client réactif. Qualité Renaissance, où que vous soyez.
                     </p>
                   </div>
@@ -85,7 +85,7 @@ export default function TryInStoreSection() {
                 </Link>
               </div>
 
-              <p className="font-sans text-dark-text/40 text-xs laptop:text-[13px] text-center tracking-wider mt-6 laptop:mt-8">
+              <p className="font-sans text-dark-text/40 text-xs laptop:text-xs text-center tracking-wider mt-6 laptop:mt-6">
                 Livraison offerte en France • Retours gratuits sous 30 jours • Garantie 2 ans
               </p>
             </motion.div>
