@@ -56,7 +56,7 @@ export default function CollectionHeritage() {
 
         <div
           onClick={handleNavigate}
-          className="w-full md:w-1/2 h-full md:mr-6 cursor-pointer group relative overflow-hidden"
+          className="w-full md:w-1/2 h-full md:mr-6 md:my-6 cursor-pointer group relative overflow-hidden"
         >
           <img
             src="https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg"
