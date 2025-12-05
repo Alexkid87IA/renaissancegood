@@ -29,8 +29,8 @@ export default function CollectionAllFrames() {
       className="h-screen sticky top-0 z-[70]"
     >
       {/* DESKTOP VERSION */}
-      <div className="h-full bg-white hidden md:flex flex-row px-6 md:px-0">
-        <div className="w-full md:w-1/2 h-full md:ml-6">
+      <div className="h-full bg-white hidden md:flex flex-row">
+        <div className="w-full md:w-1/2 h-full">
           <img
             src="https://26.staticbtf.eno.do/v1/101-default/f100787ce1cca8944864a92a9f3fa70c/media.jpg"
             alt="Nos créations - Collection complète"
@@ -38,7 +38,7 @@ export default function CollectionAllFrames() {
           />
         </div>
 
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20 md:mr-6">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20">
           <div className="max-w-2xl">
             <div className="mb-6 sm:mb-8">
               <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold tracking-[-0.03em] leading-[0.9] mb-4 sm:mb-6">
