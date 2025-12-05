@@ -30,8 +30,8 @@ export default function CollectionHeritage() {
       className="h-screen sticky top-0 z-30"
     >
       {/* DESKTOP VERSION */}
-      <div className="h-full bg-beige hidden md:flex flex-row px-6 md:px-0">
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20 md:ml-6">
+      <div className="h-full bg-beige hidden md:flex flex-row">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20">
           <div className="max-w-2xl">
             <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 tracking-[-0.03em] leading-[0.9]">
               COLLECTION HÉRITAGE
@@ -56,7 +56,7 @@ export default function CollectionHeritage() {
 
         <div
           onClick={handleNavigate}
-          className="w-full md:w-1/2 h-full md:mr-6 cursor-pointer group relative overflow-hidden"
+          className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
         >
           <img
             src="https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg"
