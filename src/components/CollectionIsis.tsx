@@ -1,20 +1,8 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 
 export default function CollectionIsis() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.9, 1], [1, 1, 0.3]);
-
   return (
-    <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity }}
+    <section
       className="h-screen sticky top-0 z-50"
     >
       {/* DESKTOP VERSION */}
@@ -138,6 +126,6 @@ export default function CollectionIsis() {
           </motion.div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

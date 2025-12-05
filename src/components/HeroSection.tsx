@@ -1,23 +1,12 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 
 export default function HeroSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
 
   return (
-    <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity }}
+    <section
       className="h-screen sticky top-0 z-10"
     >
       {/* DESKTOP VERSION - Unchanged */}
@@ -130,6 +119,6 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

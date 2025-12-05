@@ -1,20 +1,11 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 
 export default function CollectionVersailles() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.9, 1], [1, 1, 0.3]);
 
   const handleNavigate = () => {
     setIsLoading(true);
@@ -24,9 +15,7 @@ export default function CollectionVersailles() {
   };
 
   return (
-    <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity }}
+    <section
       className="h-screen sticky top-0 z-40"
     >
       {/* DESKTOP VERSION */}
@@ -191,6 +180,6 @@ export default function CollectionVersailles() {
           </motion.div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
