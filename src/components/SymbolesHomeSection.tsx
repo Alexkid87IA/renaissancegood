@@ -41,7 +41,7 @@ export default function SymbolesHomeSection() {
   const [selectedSymbol, setSelectedSymbol] = useState<number | null>(null);
 
   return (
-    <section className="relative z-[20] py-16 laptop:py-20 md:py-24 lg:py-32 bg-white">
+    <section className="relative z-[100] py-16 laptop:py-20 md:py-24 lg:py-32 bg-white">
       <div className="max-w-[1800px] mx-auto px-4 laptop:px-8 md:px-6 lg:px-12">
 
         <motion.div
