@@ -136,9 +136,11 @@ export default function HeroHistoireSection() {
               <div className="h-px w-10 bg-bronze/30" />
               <div className="flex items-center gap-2">
                 <div className="w-1 h-1 bg-bronze rotate-45" />
-                <p className="font-display text-[1.4rem] md:text-[1.6rem] lg:text-[1.8rem] text-white font-bold tracking-tight">
-                  Renaissance.
-                </p>
+                <img
+                  src="/capture_d'écran_2025-12-05_à_18.29.34.png"
+                  alt="Renaissance"
+                  className="h-[2rem] md:h-[2.5rem] lg:h-[3rem] w-auto"
+                />
               </div>
               <div className="h-px w-10 bg-bronze/30" />
             </motion.div>
