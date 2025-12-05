@@ -1,19 +1,10 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function CollectionAllFrames() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.9, 1], [1, 1, 0.3]);
 
   const handleNavigate = () => {
     setIsLoading(true);
@@ -23,10 +14,7 @@ export default function CollectionAllFrames() {
   };
 
   return (
-    <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity }}
-      className="h-screen sticky top-0 z-[55]"
+    <section className="h-screen sticky top-0 z-[55] bg-beige"
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-beige hidden md:flex flex-row px-6 md:px-0">
@@ -192,6 +180,6 @@ export default function CollectionAllFrames() {
           </motion.div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
