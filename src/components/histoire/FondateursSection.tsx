@@ -66,7 +66,7 @@ export default function FondateursSection() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="order-1 lg:order-2"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[4/5] overflow-hidden max-w-md mx-auto lg:mx-0 lg:ml-auto">
                   <img
                     src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764957807/16982509-bf2b-4ba3-8129-e65f2a9e17bb_fkmk4i.jpg"
                     alt="Les fondateurs de Renaissance"
