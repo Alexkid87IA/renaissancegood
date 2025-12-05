@@ -37,7 +37,6 @@ export default function CollectionIsis() {
             </div>
             <p className="font-sans text-dark-text/70 text-base sm:text-lg md:text-xl laptop:text-xl xl:text-2xl leading-[1.75] mb-8 sm:mb-12 laptop:mb-14 xl:mb-16 font-light">
               Le Cobra : la garde. Le Scarabée : la renaissance. L'Œil : celui qui voit tout.<br />
-              Les pharaons sont poussière. Leurs symboles sont debout.<br />
               Ce qui traverse 5 000 ans ne se porte pas par hasard.
             </p>
             <button className="border-2 border-dark-text/25 px-8 sm:px-10 laptop:px-12 py-3.5 sm:py-4 laptop:py-5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold text-dark-text/30 cursor-not-allowed">
@@ -100,7 +99,6 @@ export default function CollectionIsis() {
             </h3>
             <p className="font-sans text-dark-text/70 text-base leading-[1.75] font-light max-w-md">
               Le Cobra : la garde. Le Scarabée : la renaissance. L'Œil : celui qui voit tout.<br />
-              Les pharaons sont poussière. Leurs symboles sont debout.<br />
               Ce qui traverse 5 000 ans ne se porte pas par hasard.
             </p>
           </motion.div>
