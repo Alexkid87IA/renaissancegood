@@ -30,13 +30,13 @@ export default function CollectionVersailles() {
       className="h-screen sticky top-0 z-40"
     >
       {/* DESKTOP VERSION */}
-      <div className="h-full bg-beige hidden md:flex flex-row px-6 md:px-0">
+      <div className="h-full bg-beige hidden md:flex flex-row">
         <div
           onClick={handleNavigate}
-          className="w-full md:w-1/2 h-full md:ml-6 cursor-pointer group relative overflow-hidden"
+          className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
         >
           <img
-            src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=2687"
+            src="https://26.staticbtf.eno.do/v1/100-default/fe7d3e75edf55786380cd5f02c7f167e/media.jpg"
             alt="Collection Versailles - Fleur de Lys"
             className="w-full h-full object-contain transition-all duration-700 group-hover:scale-105"
           />
@@ -62,7 +62,7 @@ export default function CollectionVersailles() {
           )}
         </div>
 
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20 md:mr-6">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20">
           <div className="max-w-2xl">
             <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 tracking-[-0.03em] leading-[0.9]">
               COLLECTION<br />VERSAILLES
@@ -91,7 +91,7 @@ export default function CollectionVersailles() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
-            src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=2687"
+            src="https://26.staticbtf.eno.do/v1/100-default/fe7d3e75edf55786380cd5f02c7f167e/media.jpg"
             alt="Collection Versailles - Fleur de Lys"
             className="w-full h-full object-cover opacity-20"
           />
@@ -145,7 +145,7 @@ export default function CollectionVersailles() {
               className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-white/50 backdrop-blur-sm border border-dark-text/10 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
             >
               <img
-                src="https://renaissanceeyewear.fr/cdn/shop/files/XXXVIII_38_C3-3.jpg?v=1741187119&width=2687"
+                src="https://26.staticbtf.eno.do/v1/100-default/fe7d3e75edf55786380cd5f02c7f167e/media.jpg"
                 alt="Collection Versailles"
                 className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
               />
