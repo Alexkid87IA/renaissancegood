@@ -18,8 +18,8 @@ export default function CollectionIsis() {
       className="h-screen sticky top-0 z-50"
     >
       {/* DESKTOP VERSION */}
-      <div className="h-full bg-beige hidden md:flex flex-row px-6 md:px-0">
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20 md:ml-6">
+      <div className="h-full bg-beige hidden md:flex flex-row">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20">
           <div className="max-w-2xl">
             <div className="mb-6 sm:mb-8">
               <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold tracking-[-0.03em] leading-[0.9] mb-4 sm:mb-6">
