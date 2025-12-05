@@ -116,12 +116,12 @@ export default function HeroHistoireSection() {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="pt-1"
+              className="pt-8"
             >
               <img
                 src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956062/61167e11-16a8-4ef6-8223-6c72972c5f76_ycixx4.png"
                 alt="Renaissance n'est pas fait pour crier"
-                className="w-auto h-[2.5rem] md:h-[3rem] lg:h-[3.5rem]"
+                className="w-auto h-[4rem] md:h-[5rem] lg:h-[6rem] mx-auto"
               />
             </motion.div>
 
@@ -129,7 +129,7 @@ export default function HeroHistoireSection() {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 1, duration: 0.8 }}
-              className="flex items-center justify-center gap-4 pt-1"
+              className="flex items-center justify-center gap-4 pt-4"
             >
               <div className="h-px w-10 bg-bronze/30" />
               <div className="flex items-center gap-2">
