@@ -33,7 +33,7 @@ export default function CollectionAllFrames() {
         <div className="w-full md:w-1/2 h-full md:ml-6">
           <img
             src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1200&q=80"
-            alt="Toutes nos montures - Collection complète"
+            alt="Nos créations - Collection complète"
             className="w-full h-full object-cover"
           />
         </div>
@@ -42,7 +42,7 @@ export default function CollectionAllFrames() {
           <div className="max-w-2xl">
             <div className="mb-6 sm:mb-8">
               <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold tracking-[-0.03em] leading-[0.9] mb-4 sm:mb-6">
-                TOUTES<br />NOS MONTURES
+                NOS<br />CRÉATIONS
               </h3>
               <span className="inline-block bg-bronze/10 border border-bronze/20 text-bronze text-[8px] sm:text-[9px] px-4 sm:px-5 py-2 sm:py-2.5 tracking-[0.25em] font-bold uppercase">
                 Heritage • Versailles • Isis
@@ -83,7 +83,7 @@ export default function CollectionAllFrames() {
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1200&q=80"
-            alt="Toutes nos montures - Collection complète"
+            alt="Nos créations - Collection complète"
             className="w-full h-full object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/95 to-white"></div>
@@ -118,7 +118,7 @@ export default function CollectionAllFrames() {
             className="flex-1 flex flex-col justify-center"
           >
             <h3 className="font-display text-5xl font-bold mb-6 tracking-[-0.03em] leading-[0.95] text-dark-text">
-              TOUTES<br/>NOS MONTURES
+              NOS<br/>CRÉATIONS
             </h3>
             <p className="font-sans text-dark-text/70 text-base leading-[1.75] font-light max-w-md">
               Explorez l'intégralité de nos créations. Chaque monture raconte une histoire.<br />
