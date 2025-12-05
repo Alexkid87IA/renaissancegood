@@ -20,13 +20,6 @@ export default function EngagementSection() {
       ref={sectionRef}
       className="min-h-screen z-[90] relative bg-beige overflow-hidden"
     >
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: 'url(https://res.cloudinary.com/dafo6bvhc/image/upload/v1764957680/f366de3a-dd69-467c-8fa2-e6b083e71e3e_xlbj0l.jpg)'
-        }}
-      />
-      <div className="absolute inset-0 bg-white/85" />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -92,19 +85,6 @@ export default function EngagementSection() {
               <div className="border-l-2 border-bronze/40 pl-6 py-3">
                 <p className="font-sans text-xl md:text-2xl lg:text-2xl text-dark-text font-light leading-[1.3]">
                   Ce qu'on vend, on l'assume. Pas un an. Pas deux. Aussi longtemps qu'il le faut.
-                </p>
-              </div>
-
-              <div className="mt-8 text-center">
-                <div className="inline-flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-bronze rotate-45" />
-                  <p className="font-display text-3xl md:text-4xl lg:text-5xl text-dark-text font-bold tracking-tight">
-                    Renaissance.
-                  </p>
-                  <div className="w-1.5 h-1.5 bg-bronze rotate-45" />
-                </div>
-                <p className="font-sans text-dark-text/40 text-[0.65rem] tracking-[0.3em] uppercase mt-2">
-                  Paris • 2019-2025
                 </p>
               </div>
             </div>
