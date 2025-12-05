@@ -137,7 +137,7 @@ export default function HeroHistoireSection() {
               <div className="flex items-center gap-2">
                 <div className="w-1 h-1 bg-bronze rotate-45" />
                 <img
-                  src="/capture_d'écran_2025-12-05_à_18.29.34.png"
+                  src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764955952/6f678730-ea37-4b65-b71d-da3cae41517c_jwnbsr.png"
                   alt="Renaissance"
                   className="h-[2rem] md:h-[2.5rem] lg:h-[3rem] w-auto"
                 />
