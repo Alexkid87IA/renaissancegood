@@ -38,25 +38,45 @@ export default function FondateursSection() {
           </div>
         </div>
 
-        <div className="flex-1 flex items-center py-12 md:py-16 px-6 md:px-12 lg:px-16">
-          <div className="max-w-[1600px] mx-auto w-full">
+        <div className="flex-1 flex items-center py-8 md:py-12 px-6 md:px-12 lg:px-16">
+          <div className="max-w-[1400px] mx-auto w-full">
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="max-w-4xl mx-auto text-center"
-            >
-              <p className="font-sans text-xl md:text-2xl lg:text-3xl text-dark-text font-light leading-[1.8] md:leading-[1.9]">
-                Renaissance est née d'un refus.<br/>
-                Refus que tout se ressemble.<br/>
-                Refus que le travail bien fait disparaisse.<br/>
-                Refus de regarder ailleurs.<br/>
-                <span className="block mt-8 md:mt-10">
-                  Nous sommes Les 3. Pas des héritiers. Pas des diplômés. Des gens du métier. On a vu. On a refusé. On a construit.
-                </span>
-              </p>
-            </motion.div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="order-2 lg:order-1"
+              >
+                <p className="font-sans text-lg md:text-xl lg:text-2xl text-dark-text font-light leading-[1.7] md:leading-[1.8]">
+                  Renaissance est née d'un refus.<br/>
+                  Refus que tout se ressemble.<br/>
+                  Refus que le travail bien fait disparaisse.<br/>
+                  Refus de regarder ailleurs.<br/>
+                  <span className="block mt-6 md:mt-8">
+                    Nous sommes Les 3. Pas des héritiers. Pas des diplômés. Des gens du métier. On a vu. On a refusé. On a construit.
+                  </span>
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="order-1 lg:order-2"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764957807/16982509-bf2b-4ba3-8129-e65f2a9e17bb_fkmk4i.jpg"
+                    alt="Les fondateurs de Renaissance"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 border border-bronze/20" />
+                </div>
+              </motion.div>
+
+            </div>
           </div>
         </div>
 
