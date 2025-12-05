@@ -121,7 +121,7 @@ export default function HeroHistoireSection() {
               <img
                 src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956062/61167e11-16a8-4ef6-8223-6c72972c5f76_ycixx4.png"
                 alt="Renaissance n'est pas fait pour crier"
-                className="w-auto h-auto max-w-full"
+                className="w-auto h-[2.5rem] md:h-[3rem] lg:h-[3.5rem]"
               />
             </motion.div>
 
