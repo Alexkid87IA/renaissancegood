@@ -1,28 +1,26 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
 
 const collections = [
   {
+    name: 'Les Origines',
+    description: 'Là où tout commence. Les stries. La signature.',
+    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg'
+  },
+  {
     name: 'Héritage',
-    symbol: 'Le Trident',
-    description: 'Pour ceux qui mènent. Qui tranchent. Qui avancent sans demander la permission.',
-    edition: '100-300 pièces',
-    link: '/collections/heritage'
+    description: 'Le Trident. Ce qu\'on transmet.',
+    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg'
   },
   {
     name: 'Versailles',
-    symbol: 'La Fleur de Lys',
-    description: "Ce que les rois portaient. Pas pour briller. Pour marquer qu'ils ne plient pas.",
-    edition: '100-300 pièces',
-    link: '/collections/versailles'
+    description: 'La Fleur de Lys. Ce qu\'on bâtit.',
+    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg'
   },
   {
     name: 'Isis',
-    symbol: '',
-    description: "L'Égypte. 3000 ans de symboles. Collection en préparation.",
-    edition: 'Bientôt',
-    link: null
+    description: 'L\'Ankh, le Scarabée, l\'Œil. Ce qui traverse 5 000 ans.',
+    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg'
   }
 ];
 
@@ -37,16 +35,16 @@ export default function CollectionsThemesSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen lg:h-screen lg:sticky lg:top-0 z-[60] bg-beige overflow-hidden"
+      className="min-h-screen lg:sticky lg:top-0 z-[60] bg-beige overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? 
-          { opacity: 1, y: 0 } : 
+        animate={isInView ?
+          { opacity: 1, y: 0 } :
           { opacity: 0, y: 20 }
         }
-        transition={{ 
-          duration: 0.8, 
+        transition={{
+          duration: 0.8,
           ease: [0.22, 1, 0.36, 1]
         }}
         className="h-full w-full relative flex flex-col"
@@ -59,127 +57,98 @@ export default function CollectionsThemesSection() {
           <div className="absolute left-[80%] top-0 bottom-0 w-px bg-bronze" />
         </div>
 
-        <div className="relative z-10 pt-8 md:pt-12 px-6 md:px-12 lg:px-16">
-          <div className="max-w-[1800px] mx-auto flex items-start justify-between">
-            <div className="flex items-center gap-3">
-              <span className="font-sans text-bronze text-sm font-bold tracking-[0.4em] uppercase">06</span>
-              <div className="w-8 h-px bg-bronze/30" />
-              <span className="font-sans text-dark-text/40 text-xs font-medium tracking-[0.3em] uppercase">Les Collections</span>
+        <div className="relative z-10 pt-24 md:pt-28 lg:pt-32 px-6 md:px-8 lg:px-12">
+          <div className="max-w-[1600px] mx-auto flex items-start justify-between">
+            <div className="flex items-center gap-2.5">
+              <span className="font-sans text-bronze text-[0.65rem] font-bold tracking-[0.4em] uppercase">06</span>
+              <div className="w-5 h-px bg-bronze/30" />
+              <span className="font-sans text-dark-text/40 text-[0.55rem] font-medium tracking-[0.3em] uppercase">Les Collections</span>
             </div>
             <div className="hidden md:block text-right">
-              <p className="font-sans text-dark-text/30 text-[10px] tracking-[0.25em] uppercase">3 Thèmes</p>
+              <p className="font-sans text-dark-text/30 text-[7px] tracking-[0.25em] uppercase">4 Collections</p>
             </div>
           </div>
         </div>
 
-        <div className="relative z-10 flex-1 flex items-center px-6 md:px-12 lg:px-16 py-12">
-          <div className="max-w-[1800px] mx-auto w-full">
-            <div className="mb-10">
-              <h2 className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-6">
-                LES COLLECTIONS.
-              </h2>
-              <p className="font-sans text-xl md:text-2xl text-dark-text/70 font-light leading-[1.5] max-w-2xl">
-                Nos collections ne suivent pas les saisons. Elles sont structurées par thèmes symboliques.
-              </p>
+        <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-8 lg:px-12 py-8">
+          <div className="max-w-[1400px] mx-auto w-full">
+            <div className="text-center mb-12 lg:mb-16">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="font-display text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[1.05] mb-4"
+              >
+                Une maison. Quatre collections. Zéro hasard.
+              </motion.h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {collections.map((collection, index) => {
-                const isComingSoon = !collection.link;
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 xl:gap-6 mb-12">
+              {collections.map((collection, index) => (
+                <motion.div
+                  key={collection.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
+                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                  className="relative border border-bronze/30 bg-gradient-to-br from-dark-text/[0.02] to-transparent hover:border-bronze hover:bg-dark-text/[0.03] transition-all duration-500 group"
+                >
+                  <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-bronze via-bronze/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-                const content = (
-                  <div className={`
-                    relative overflow-hidden border p-8 h-full transition-all duration-500 group
-                    ${isComingSoon
-                      ? 'border-bronze/30 bg-gradient-to-br from-dark-text/[0.04] via-bronze/[0.02] to-dark-text/[0.02]'
-                      : 'border-bronze/20 bg-dark-text/[0.02] hover:border-bronze hover:bg-dark-text/[0.03]'
-                    }
-                  `}>
-                    {isComingSoon && (
-                      <>
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-bronze/10 to-transparent blur-3xl" />
-                        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(139,117,95,0.03)_50%,transparent_75%)] bg-[length:250%_250%] animate-shimmer" />
-                      </>
-                    )}
+                  <div className="aspect-square w-full overflow-hidden">
+                    <img
+                      src={collection.image}
+                      alt={collection.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
 
-                    <div className="space-y-4 relative z-10">
-                      <div className="flex items-center justify-between">
-                        <span className={`
-                          font-sans text-xs tracking-[0.3em] uppercase font-bold transition-colors
-                          ${isComingSoon ? 'text-bronze/80' : 'text-bronze'}
-                        `}>
-                          {collection.edition}
-                        </span>
-                        {isComingSoon && (
-                          <span className="font-sans text-xs tracking-[0.25em] uppercase font-medium px-3 py-1.5 border border-bronze/30 bg-bronze/5 text-bronze/90">
-                            En développement
-                          </span>
-                        )}
+                  <div className="p-5 lg:p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-8 h-8 border border-bronze/40 flex items-center justify-center group-hover:border-bronze group-hover:bg-bronze/10 transition-all duration-500">
+                        <span className="font-sans text-sm text-bronze font-bold">{index + 1}</span>
                       </div>
-
-                      <h3 className="font-display text-4xl md:text-5xl text-dark-text font-bold leading-tight">
+                      <h3 className="font-sans text-dark-text text-base lg:text-lg tracking-[0.1em] uppercase font-bold group-hover:text-bronze transition-colors duration-500">
                         {collection.name}
                       </h3>
-
-                      {collection.symbol && (
-                        <div className={`
-                          font-sans text-xs tracking-[0.25em] uppercase leading-relaxed
-                          ${isComingSoon ? 'text-bronze/80' : 'text-bronze'}
-                        `}>
-                          {collection.symbol}
-                        </div>
-                      )}
-
-                      <p className="font-sans text-dark-text/70 text-base font-light leading-[1.7] pt-2">
-                        {collection.description}
-                      </p>
-
-                      {!isComingSoon && (
-                        <div className="pt-4 flex items-center gap-2 text-bronze opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-0 group-hover:translate-x-1">
-                          <span className="font-sans text-xs tracking-[0.3em] uppercase font-medium">Découvrir</span>
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path d="M9 5l7 7-7 7" />
-                          </svg>
-                        </div>
-                      )}
                     </div>
+                    <p className="font-sans text-dark-text/60 text-xs lg:text-sm font-light leading-[1.65] group-hover:text-dark-text/80 transition-colors duration-500">
+                      {collection.description}
+                    </p>
                   </div>
-                );
 
-                return collection.link ? (
-                  <Link key={collection.name} to={collection.link} className="block">
-                    {content}
-                  </Link>
-                ) : (
-                  <div key={collection.name} className="cursor-default">
-                    {content}
-                  </div>
-                );
-              })}
+                  <div className="absolute bottom-0 right-0 w-8 h-8 border-r border-b border-bronze/20 group-hover:border-bronze transition-colors duration-500" />
+                </motion.div>
+              ))}
             </div>
 
-            <div className="mt-10 border-t border-dark-text/10 pt-8">
-              <p className="font-sans text-dark-text/70 text-lg font-light leading-[1.7] italic text-center">
-                La rareté n'est pas une stratégie marketing. C'est un engagement.
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="text-center"
+            >
+              <p className="font-sans text-dark-text/70 text-base md:text-lg lg:text-xl font-light leading-[1.7] italic">
+                On ne collectionne pas les modèles. On collectionne les symboles.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
 
-        <div className="relative z-10 pb-6 md:pb-8 px-6 md:px-12 lg:px-16">
-          <div className="max-w-[1800px] mx-auto border-t border-dark-text/10 pt-5">
+        <div className="relative z-10 pb-6 px-6 md:px-8 lg:px-12">
+          <div className="max-w-[1600px] mx-auto border-t border-dark-text/10 pt-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span className="font-sans text-dark-text text-xl md:text-2xl font-light">06</span>
-                <span className="font-sans text-dark-text/30 text-sm">/</span>
-                <span className="font-sans text-dark-text/40 text-sm">08</span>
+              <div className="flex items-center gap-2">
+                <span className="font-sans text-dark-text text-base md:text-lg font-light">06</span>
+                <span className="font-sans text-dark-text/30 text-xs">/</span>
+                <span className="font-sans text-dark-text/40 text-xs">09</span>
               </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-px h-12 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
-                <span className="font-sans text-dark-text/30 text-[9px] tracking-[0.4em] uppercase">Défiler</span>
+              <div className="flex flex-col items-center gap-1">
+                <div className="w-px h-8 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
+                <span className="font-sans text-dark-text/30 text-[6px] tracking-[0.4em] uppercase">Défiler</span>
               </div>
               <div className="hidden md:block text-right">
-                <p className="font-sans text-dark-text/20 text-[9px] tracking-wider">© 2019-2025 Renaissance</p>
+                <p className="font-sans text-dark-text/20 text-[6px] tracking-wider">© 2019-2025 Renaissance</p>
               </div>
             </div>
           </div>
