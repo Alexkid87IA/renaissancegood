@@ -15,7 +15,7 @@ export default function FabricationSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-screen laptop:h-screen sticky top-0 z-25"
+      className="min-h-screen laptop:h-screen sticky top-0 z-[25]"
       id="fabrication"
     >
       <div className="relative min-h-screen laptop:h-full overflow-hidden">

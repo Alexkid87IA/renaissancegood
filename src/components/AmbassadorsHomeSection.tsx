@@ -30,7 +30,7 @@ const celebrities = [
 
 export default function AmbassadorsHomeSection() {
   return (
-    <section className="h-screen sticky top-0 z-40 bg-[#0a0a0a] flex flex-col">
+    <section className="h-screen sticky top-0 z-[40] bg-[#0a0a0a] flex flex-col">
       
       {/* Header */}
       <div className="pt-20 md:pt-24 lg:pt-28 px-5 md:px-10 lg:px-16">
