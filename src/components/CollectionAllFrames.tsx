@@ -32,7 +32,7 @@ export default function CollectionAllFrames() {
       <div className="h-full bg-white hidden md:flex flex-row">
         <div className="w-full md:w-1/2 h-full">
           <img
-            src="https://26.staticbtf.eno.do/v1/101-default/f100787ce1cca8944864a92a9f3fa70c/media.jpg"
+            src="https://26.staticbtf.eno.do/v1/104-default/18b06e42d2310c24605161b4c62ef0e3/media.jpg"
             alt="Nos créations - Collection complète"
             className="w-full h-full object-cover"
           />
@@ -82,7 +82,7 @@ export default function CollectionAllFrames() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
-            src="https://26.staticbtf.eno.do/v1/101-default/f100787ce1cca8944864a92a9f3fa70c/media.jpg"
+            src="https://26.staticbtf.eno.do/v1/104-default/18b06e42d2310c24605161b4c62ef0e3/media.jpg"
             alt="Nos créations - Collection complète"
             className="w-full h-full object-cover opacity-20"
           />
@@ -136,7 +136,7 @@ export default function CollectionAllFrames() {
             {/* Decorative Image Preview */}
             <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br from-beige/50 to-bronze/10 border border-dark-text/10">
               <img
-                src="https://26.staticbtf.eno.do/v1/101-default/f100787ce1cca8944864a92a9f3fa70c/media.jpg"
+                src="https://26.staticbtf.eno.do/v1/104-default/18b06e42d2310c24605161b4c62ef0e3/media.jpg"
                 alt="Collection Preview"
                 className="w-full h-full object-cover opacity-60"
               />
