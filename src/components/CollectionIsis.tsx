@@ -1,8 +1,22 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function CollectionIsis() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0, 0.9, 1], [1, 1, 0.3]);
+
   return (
-    <section className="h-screen relative">
+    <motion.section
+      ref={sectionRef}
+      style={{ scale, opacity }}
+      className="h-screen sticky top-0 z-50"
+    >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-beige hidden md:flex flex-row px-6 md:px-0">
         <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20 md:ml-6">
@@ -57,7 +71,12 @@ export default function CollectionIsis() {
         <div className="relative min-h-screen flex flex-col justify-between px-6 pt-24 pb-16">
 
           {/* Top - Badge and Status */}
-          <div className="flex-shrink-0 space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex-shrink-0 space-y-4"
+          >
             <span className="inline-block bg-amber-100/80 border-2 border-amber-900/40 text-amber-900 text-[9px] px-5 py-2.5 tracking-[0.3em] font-bold uppercase shadow-sm">
               En Développement
             </span>
@@ -67,10 +86,15 @@ export default function CollectionIsis() {
               </p>
               <div className="h-0.5 bg-gradient-to-r from-bronze via-bronze/60 to-transparent w-32" />
             </div>
-          </div>
+          </motion.div>
 
           {/* Center - Title and Description */}
-          <div className="flex-1 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex-1 flex flex-col justify-center"
+          >
             <h3 className="font-display text-5xl font-bold mb-6 tracking-[-0.03em] leading-[0.95] text-dark-text">
               COLLECTION<br/>ISIS
             </h3>
@@ -79,10 +103,15 @@ export default function CollectionIsis() {
               Les pharaons sont poussière. Leurs symboles sont debout.<br />
               Ce qui traverse 5 000 ans ne se porte pas par hasard.
             </p>
-          </div>
+          </motion.div>
 
           {/* Bottom - Visual Element and CTA */}
-          <div className="flex-shrink-0 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex-shrink-0 space-y-6"
+          >
             {/* Decorative Image Preview - Non-clickable */}
             <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100/50 border border-dark-text/10 cursor-not-allowed">
               <img
@@ -106,9 +135,9 @@ export default function CollectionIsis() {
             >
               BIENTÔT DISPONIBLE
             </button>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -2,7 +2,6 @@ import HeroSection from '../components/HeroSection';
 import CollectionHeritage from '../components/CollectionHeritage';
 import CollectionVersailles from '../components/CollectionVersailles';
 import CollectionIsis from '../components/CollectionIsis';
-import CollectionAllFrames from '../components/CollectionAllFrames';
 import AmbassadorsHomeSection from '../components/AmbassadorsHomeSection';
 import HistoireSection from '../components/HistoireSection';
 import TryInStoreSection from '../components/TryInStoreSection';
@@ -17,7 +16,6 @@ export default function HomePage() {
       <CollectionHeritage />
       <CollectionVersailles />
       <CollectionIsis />
-      <CollectionAllFrames />
       <AmbassadorsHomeSection />
       <HistoireSection />
       <TryInStoreSection />
