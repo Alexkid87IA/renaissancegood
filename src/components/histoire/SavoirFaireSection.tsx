@@ -62,12 +62,12 @@ export default function SavoirFaireSection() {
         <div className="relative z-10 flex-1 flex items-center px-6 md:px-8 lg:px-12 py-4">
           <div className="max-w-[1600px] mx-auto w-full">
 
-            <div className="mb-4 md:mb-6">
+            <div className="mb-3 md:mb-4">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="font-display text-[2.5rem] sm:text-[3rem] md:text-[3.8rem] lg:text-[4.5rem] xl:text-[5.5rem] font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3 md:mb-4"
+                className="font-display text-[1.8rem] sm:text-[2.2rem] md:text-[2.6rem] lg:text-[3rem] xl:text-[3.4rem] font-bold text-white tracking-[-0.03em] leading-[0.9] mb-2 md:mb-3"
               >
                 FABRIQUÉ EN<br />CORÉE DU SUD.
               </motion.h2>
@@ -77,13 +77,10 @@ export default function SavoirFaireSection() {
                 transition={{ delay: 0.4, duration: 0.8 }}
                 className="max-w-2xl space-y-2"
               >
-                <p className="font-sans text-[0.9rem] md:text-[1rem] lg:text-[1.1rem] text-white/70 font-light leading-[1.5]">
-                  Ce qui rend une monture belle, c'est ce qu'on ne voit pas. L'équilibre. La tension du métal. Le poids juste.
+                <p className="font-sans text-[0.7rem] md:text-[0.75rem] lg:text-[0.8rem] text-white/70 font-light leading-[1.5]">
+                  Ce qui rend une monture belle, c'est ce qu'on ne voit pas. L'équilibre. La tension du métal. Le poids juste. La Corée a construit sa réputation là-dessus. Sur l'invisible. Sur ce qui se sent mais ne se montre pas.
                 </p>
-                <p className="font-sans text-[0.9rem] md:text-[1rem] lg:text-[1.1rem] text-white/60 font-light leading-[1.5]">
-                  La Corée a construit sa réputation là-dessus. Sur l'invisible. Sur ce qui se sent mais ne se montre pas.
-                </p>
-                <p className="font-sans text-[0.9rem] md:text-[1rem] lg:text-[1.1rem] text-bronze font-light leading-[1.5] italic">
+                <p className="font-sans text-[0.7rem] md:text-[0.75rem] lg:text-[0.8rem] text-bronze font-light leading-[1.5] italic">
                   Plus de 200 gestes par paire. Zéro démonstration. Juste le résultat.
                 </p>
               </motion.div>
@@ -93,75 +90,75 @@ export default function SavoirFaireSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-5"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-3 md:gap-4"
             >
 
-              <div className="lg:col-span-7">
+              <div className="lg:col-span-4">
                 <div className="relative aspect-video border border-bronze/30 bg-white/[0.02] overflow-hidden group">
                   <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-white/5 to-transparent">
-                    <div className="text-center space-y-2 md:space-y-3 px-4">
-                      <div className="w-12 h-12 md:w-16 md:h-16 mx-auto border border-bronze/50 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-bronze border-b-[8px] border-b-transparent ml-1" />
+                    <div className="text-center space-y-1.5 px-4">
+                      <div className="w-10 h-10 md:w-12 md:h-12 mx-auto border border-bronze/50 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <div className="w-0 h-0 border-t-[7px] border-t-transparent border-l-[10px] border-l-bronze border-b-[7px] border-b-transparent ml-1" />
                       </div>
                       <div>
-                        <p className="font-sans text-white text-[0.8rem] md:text-[0.9rem] font-bold tracking-[0.2em] uppercase mb-1">
+                        <p className="font-sans text-white text-[0.65rem] md:text-[0.7rem] font-bold tracking-[0.2em] uppercase mb-0.5">
                           Vidéo de fabrication
                         </p>
-                        <p className="font-sans text-white/50 text-[0.65rem] md:text-[0.75rem] font-light">
-                          Regardez comment c'est vraiment fait
+                        <p className="font-sans text-bronze text-[0.55rem] md:text-[0.6rem] font-light">
+                          En cours de production
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-bronze" />
-                  <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-bronze" />
+                  <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-bronze" />
+                  <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-bronze" />
                 </div>
               </div>
 
-              <div className="lg:col-span-5 space-y-3 md:space-y-4">
-                <div className="grid grid-cols-3 gap-2 md:gap-3">
+              <div className="lg:col-span-8 space-y-2.5 md:space-y-3">
+                <div className="grid grid-cols-3 gap-1.5 md:gap-2">
                   {stats.map((stat, index) => (
-                    <div key={index} className="border border-bronze/20 bg-white/[0.02] p-2.5 md:p-3 text-center">
-                      <div className="flex items-baseline justify-center gap-0.5 mb-1">
-                        <span className="font-sans text-[1.4rem] md:text-[1.6rem] text-bronze font-bold">
+                    <div key={index} className="border border-bronze/20 bg-white/[0.02] p-2 md:p-2.5 text-center">
+                      <div className="flex items-baseline justify-center gap-0.5 mb-0.5">
+                        <span className="font-sans text-[1rem] md:text-[1.1rem] text-bronze font-bold">
                           {stat.value}
                         </span>
                         {stat.unit && (
-                          <span className="font-sans text-[0.9rem] md:text-[1rem] text-bronze/70 font-bold">
+                          <span className="font-sans text-[0.65rem] md:text-[0.7rem] text-bronze/70 font-bold">
                             {stat.unit}
                           </span>
                         )}
                       </div>
-                      <div className="h-px bg-bronze/20 mb-1" />
-                      <p className="font-sans text-white text-[0.6rem] tracking-[0.15em] uppercase font-bold mb-0.5">
+                      <div className="h-px bg-bronze/20 mb-0.5" />
+                      <p className="font-sans text-white text-[0.5rem] tracking-[0.15em] uppercase font-bold mb-0.5">
                         {stat.label}
                       </p>
-                      <p className="font-sans text-white/40 text-[0.55rem] leading-tight">
+                      <p className="font-sans text-white/40 text-[0.45rem] leading-tight">
                         {stat.sublabel}
                       </p>
                     </div>
                   ))}
                 </div>
 
-                <div className="border border-bronze/20 bg-white/[0.02] p-3 md:p-4">
-                  <div className="pb-2 border-b border-white/5 mb-2 md:mb-3">
-                    <p className="font-sans text-bronze text-[0.6rem] tracking-[0.3em] uppercase font-bold">
+                <div className="border border-bronze/20 bg-white/[0.02] p-2.5 md:p-3">
+                  <div className="pb-1.5 border-b border-white/5 mb-2">
+                    <p className="font-sans text-bronze text-[0.55rem] tracking-[0.3em] uppercase font-bold">
                       5 Étapes essentielles
                     </p>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5 md:space-y-2">
                     {steps.map((step, index) => (
                       <div key={index} className="flex items-start gap-2 group">
-                        <div className="w-6 h-6 flex-shrink-0 border border-bronze/30 flex items-center justify-center group-hover:bg-bronze/10 transition-colors duration-300">
-                          <span className="font-sans text-bronze text-[0.6rem] font-bold">
+                        <div className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0 border border-bronze/30 flex items-center justify-center group-hover:bg-bronze/10 transition-colors duration-300">
+                          <span className="font-sans text-bronze text-[0.5rem] md:text-[0.55rem] font-bold">
                             {step.number}
                           </span>
                         </div>
                         <div className="flex-1 pt-0.5">
-                          <p className="font-sans text-white text-[0.7rem] md:text-[0.75rem] font-bold mb-0.5">
+                          <p className="font-sans text-white text-[0.65rem] md:text-[0.7rem] font-bold mb-0.5">
                             {step.title}
                           </p>
-                          <p className="font-sans text-white/50 text-[0.6rem] leading-tight">
+                          <p className="font-sans text-white/50 text-[0.55rem] md:text-[0.6rem] leading-tight">
                             {step.desc}
                           </p>
                         </div>
