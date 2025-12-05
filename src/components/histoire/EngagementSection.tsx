@@ -18,7 +18,7 @@ export default function EngagementSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen bg-beige overflow-hidden relative"
+      className="min-h-screen z-[90] relative bg-beige overflow-hidden"
     >
       <div
         className="absolute inset-0 bg-cover bg-center"
