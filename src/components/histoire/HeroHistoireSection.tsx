@@ -119,7 +119,7 @@ export default function HeroHistoireSection() {
               className="pt-8"
             >
               <img
-                src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956062/61167e11-16a8-4ef6-8223-6c72972c5f76_ycixx4.png"
+                src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956518/4064a921-64ab-455f-a852-c349da46d95a_mlfxhm.png"
                 alt="Renaissance n'est pas fait pour crier"
                 className="w-auto h-[4rem] md:h-[5rem] lg:h-[6rem] mx-auto"
               />
