@@ -25,7 +25,7 @@ export default function HeroSection() {
         <img
           src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764032916/Gemini_Generated_Image_8ftsgv8ftsgv8fts_rqnxed.png"
           alt="Hero Background"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover lg:object-[center_30%] xl:object-[center_20%] 2xl:object-[center_15%]"
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
