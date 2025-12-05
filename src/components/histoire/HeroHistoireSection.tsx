@@ -24,7 +24,16 @@ export default function HeroHistoireSection() {
         style={{ willChange: 'opacity, transform' }}
         className="h-full relative flex flex-col"
       >
-        <div className="absolute inset-0 bg-dark-text" />
+        {/* Image de fond */}
+        <div className="absolute inset-0">
+          <img
+            src="https://26.staticbtf.eno.do/v1/98-default/f317792ae90cda5bb4d46a9b99e9ade3/media.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay sombre pour la lisibilité */}
+          <div className="absolute inset-0 bg-dark-text/70" />
+        </div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,115,85,0.08)_0%,transparent_70%)]" />
 
         <div className="absolute inset-0 opacity-[0.02] hidden lg:block">
