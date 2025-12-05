@@ -15,9 +15,7 @@ export default function CollectionHeritage() {
   };
 
   return (
-    <section
-      className="h-screen sticky top-0 z-30"
-    >
+    <section className="h-screen relative">
       {/* DESKTOP VERSION */}
       <div className="h-full bg-beige hidden md:flex flex-row px-6 md:px-0">
         <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20 md:ml-6">
@@ -91,27 +89,17 @@ export default function CollectionHeritage() {
         <div className="relative min-h-screen flex flex-col justify-between px-6 pt-24 pb-16">
 
           {/* Top - Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-shrink-0"
-          >
+          <div className="flex-shrink-0">
             <div className="inline-block bg-gradient-to-r from-bronze/10 to-transparent pr-8 py-3 -ml-1 pl-1">
               <p className="font-sans text-bronze text-[10px] tracking-[0.35em] font-bold uppercase mb-2.5">
                 SYMBOLE : TRIDENT
               </p>
               <div className="h-0.5 bg-gradient-to-r from-bronze via-bronze/60 to-transparent w-28" />
             </div>
-          </motion.div>
+          </div>
 
           {/* Center - Title and Description */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex-1 flex flex-col justify-center"
-          >
+          <div className="flex-1 flex flex-col justify-center">
             <h3 className="font-display text-5xl font-bold mb-6 tracking-[-0.03em] leading-[0.95] text-dark-text">
               COLLECTION<br/>HÉRITAGE
             </h3>
@@ -119,15 +107,10 @@ export default function CollectionHeritage() {
               Ce qui se transmet ne se jette pas. Ce qui se respecte ne s'oublie pas.<br />
               Trois pointes. Le passé. Le présent. L'avenir.
             </p>
-          </motion.div>
+          </div>
 
           {/* Bottom - CTA and Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex-shrink-0 space-y-6"
-          >
+          <div className="flex-shrink-0 space-y-6">
             {/* Product Image - Clickable */}
             <div
               onClick={handleNavigate}
@@ -177,7 +160,7 @@ export default function CollectionHeritage() {
                 'DÉCOUVRIR LA COLLECTION'
               )}
             </button>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

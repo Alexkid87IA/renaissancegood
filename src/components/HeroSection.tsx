@@ -6,9 +6,7 @@ export default function HeroSection() {
   const navigate = useNavigate();
 
   return (
-    <section
-      className="h-screen sticky top-0 z-10"
-    >
+    <section className="h-screen relative">
       {/* DESKTOP VERSION - Unchanged */}
       <div className="relative h-full overflow-hidden hidden lg:block">
         <img
@@ -60,40 +58,25 @@ export default function HeroSection() {
         <div className="relative h-full flex flex-col justify-between pt-24 pb-8 px-6">
 
           {/* Top Content - Branding */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex-shrink-0"
-          >
+          <div className="flex-shrink-0">
             <p className="text-white/90 text-[9px] tracking-[0.3em] uppercase font-sans font-bold mb-2">
               RENAISSANCE PARIS
             </p>
             <div className="w-12 h-px bg-white/40"></div>
-          </motion.div>
+          </div>
 
           {/* Center Content - Main Message */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex-1 flex flex-col justify-center max-w-sm"
-          >
+          <div className="flex-1 flex flex-col justify-center max-w-sm">
             <h1 className="text-white text-4xl sm:text-5xl font-serif mb-4 leading-[1.1]">
               Fait pour durer.
             </h1>
             <p className="text-white/80 text-sm font-sans leading-relaxed mb-8">
               Des lunettes qu'on garde. Des lunettes qu'on transmet.
             </p>
-          </motion.div>
+          </div>
 
           {/* Bottom Content - CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex-shrink-0 space-y-3"
-          >
+          <div className="flex-shrink-0 space-y-3">
             <button
               onClick={() => navigate('/shop')}
               className="w-full bg-white text-dark-text px-8 py-4 font-sans text-[10px] tracking-[0.25em] uppercase font-bold hover:bg-white/95 transition-all duration-300 active:scale-[0.98]"
@@ -116,7 +99,7 @@ export default function HeroSection() {
             >
               <ChevronDown className="w-5 h-5 text-white/60" strokeWidth={1.5} />
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
