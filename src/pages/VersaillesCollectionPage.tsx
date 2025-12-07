@@ -299,124 +299,71 @@ export default function VersaillesCollectionPage() {
             alt="Collection Versailles"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-dark-text/60 via-dark-text/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-beige via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-dark-text/70 via-dark-text/50 to-dark-text/70" />
         </motion.div>
 
-        <div className="relative h-full flex flex-col justify-between px-6 md:px-12 lg:px-16 py-12 md:py-16">
+        <div className="relative h-full flex flex-col items-center justify-center px-6 md:px-12 lg:px-16 pt-32 pb-20">
           <motion.div
-            initial={{ y: -30, opacity: 0 }}
+            initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex items-start justify-between"
+            transition={{ duration: 1, delay: 0.3 }}
+            className="max-w-5xl mx-auto text-center"
           >
-            <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full">
-              <div className="w-2 h-2 bg-bronze rounded-full animate-pulse" />
-              <span className="font-sans text-[9px] tracking-[0.3em] font-bold text-white uppercase">
-                Collection Versailles
-              </span>
-            </div>
-            <div className="hidden md:flex items-center gap-6 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full">
-              <div className="flex items-baseline gap-2">
-                <span className="font-display text-2xl font-bold text-white">{loading ? '...' : products.length}</span>
-                <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-white/60 uppercase">Modèles</span>
-              </div>
-              <div className="w-px h-4 bg-white/20" />
-              <div className="flex items-baseline gap-2">
-                <span className="font-display text-2xl font-bold text-white">FR</span>
-                <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-white/60 uppercase">Origine</span>
-              </div>
-            </div>
-          </motion.div>
-
-          <div className="flex-1 flex items-center justify-center">
             <motion.div
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="max-w-4xl mx-auto text-center"
+              className="mb-10"
             >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1, delay: 0.7 }}
-                className="mb-8"
-              >
-                <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white tracking-[-0.04em] leading-[0.85] mb-6">
-                  VERSAILLES
-                </h1>
-                <div className="flex items-center justify-center gap-4 mb-8">
-                  <div className="h-px w-16 bg-gradient-to-r from-transparent to-bronze" />
-                  <span className="font-sans text-[10px] tracking-[0.5em] font-bold text-bronze uppercase">Fleur de Lys</span>
-                  <div className="h-px w-16 bg-gradient-to-l from-transparent to-bronze" />
-                </div>
-              </motion.div>
-
-              <motion.p
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1, delay: 0.9 }}
-                className="font-sans text-white/90 text-lg md:text-xl lg:text-2xl leading-[1.8] font-light max-w-2xl mx-auto mb-12"
-              >
-                Les rois sont partis. Le symbole est resté.<br />
-                <span className="text-bronze">La Fleur de Lys. Pour ceux qui construisent. Pas pour ceux qui paradent.</span>
-              </motion.p>
-
-              <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1, delay: 1.1 }}
-                className="flex flex-col sm:flex-row items-center justify-center gap-4"
-              >
-                <button
-                  onClick={() => {
-                    const section = document.querySelector('[data-products-section]');
-                    section?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="group relative px-8 py-4 bg-white text-dark-text font-sans text-[10px] tracking-[0.25em] font-bold uppercase overflow-hidden rounded-full hover:scale-105 transition-transform duration-300"
-                >
-                  <span className="relative z-10">Explorer la Collection</span>
-                </button>
-                <button
-                  onClick={() => {
-                    const section = document.querySelector('[data-products-section]');
-                    section?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="group px-8 py-4 border-2 border-white text-white font-sans text-[10px] tracking-[0.25em] font-bold uppercase rounded-full hover:bg-white hover:text-dark-text transition-all duration-300"
-                >
-                  Découvrir
-                </button>
-              </motion.div>
+              <h1 className="font-display text-7xl sm:text-8xl md:text-9xl font-bold text-white tracking-[-0.04em] leading-[0.85] mb-8">
+                VERSAILLES
+              </h1>
+              <div className="flex items-center justify-center gap-6 mb-10">
+                <div className="h-px w-20 bg-gradient-to-r from-transparent via-bronze to-bronze" />
+                <span className="font-sans text-xs tracking-[0.5em] font-bold text-bronze uppercase">Fleur de Lys</span>
+                <div className="h-px w-20 bg-gradient-to-l from-transparent via-bronze to-bronze" />
+              </div>
             </motion.div>
-          </div>
 
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.3 }}
-            className="flex items-end justify-between"
-          >
-            <div className="hidden md:block bg-white/10 backdrop-blur-md border border-white/20 px-6 py-4 rounded-2xl">
-              <p className="font-sans text-white/90 text-sm leading-[1.6] font-light max-w-xs">
-                L'essence de la royauté française. Luxe, majesté et raffinement intemporel inspirés du château de Versailles.
-              </p>
-            </div>
+            <motion.p
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.7 }}
+              className="font-sans text-white text-xl md:text-2xl leading-[1.8] font-light max-w-3xl mx-auto mb-16"
+            >
+              Les rois sont partis. Le symbole est resté.<br />
+              <span className="text-bronze font-normal">La Fleur de Lys. Pour ceux qui construisent. Pas pour ceux qui paradent.</span>
+            </motion.p>
 
             <motion.button
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.9 }}
               onClick={() => {
                 const section = document.querySelector('[data-products-section]');
                 section?.scrollIntoView({ behavior: 'smooth' });
               }}
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="flex flex-col items-center gap-3 text-white/60 hover:text-white transition-colors cursor-pointer"
+              className="px-12 py-5 bg-white text-dark-text font-sans text-xs tracking-[0.25em] font-bold uppercase hover:bg-bronze hover:text-white transition-all duration-300 shadow-2xl hover:shadow-bronze/20 hover:scale-105"
             >
-              <span className="font-sans text-[8px] tracking-[0.4em] font-bold uppercase">Scroll</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
+              Explorer la Collection
             </motion.button>
           </motion.div>
+
+          <motion.button
+            initial={{ opacity: 0, y: 0 }}
+            animate={{ opacity: 1, y: [0, 8, 0] }}
+            transition={{ opacity: { duration: 0.8, delay: 1.2 }, y: { duration: 2, repeat: Infinity, ease: "easeInOut" } }}
+            onClick={() => {
+              const section = document.querySelector('[data-products-section]');
+              section?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="absolute bottom-12 flex flex-col items-center gap-3 text-white/50 hover:text-white transition-colors cursor-pointer"
+          >
+            <span className="font-sans text-[8px] tracking-[0.4em] font-bold uppercase">Découvrir</span>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </motion.button>
         </div>
       </div>
 
