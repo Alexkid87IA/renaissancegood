@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useCart } from '../../contexts/CartContext';
+import { Award, Truck, Shield } from 'lucide-react';
 
 interface Variant {
   id: string;
@@ -83,16 +84,37 @@ export default function ProductBottomBar({ product, selectedColorIndex }: Produc
             </svg>
           </div>
 
-          {/* Product Info */}
-          <div className="hidden sm:block">
-            <p className="font-sans text-[9px] tracking-[0.2em] font-bold text-dark-text/50 uppercase mb-1">
-              FRAME
-            </p>
-            <p className="font-sans text-sm text-dark-text font-medium mb-2">{product.frame}</p>
-            <p className="font-sans text-[9px] tracking-[0.2em] font-bold text-dark-text/50 uppercase mb-1">
-              LENS
-            </p>
-            <p className="font-sans text-sm text-dark-text">{product.lens}</p>
+          {/* Reassurance Elements */}
+          <div className="flex items-center gap-3 sm:gap-4 lg:gap-6">
+            {/* Garantie 2 ans */}
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-bronze/10 flex items-center justify-center flex-shrink-0">
+                <Award size={14} className="text-bronze sm:w-4 sm:h-4" />
+              </div>
+              <span className="font-sans text-[10px] sm:text-xs text-dark-text/70 whitespace-nowrap hidden sm:block">
+                Garantie 2 ans
+              </span>
+            </div>
+
+            {/* Livraison Offerte */}
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-bronze/10 flex items-center justify-center flex-shrink-0">
+                <Truck size={14} className="text-bronze sm:w-4 sm:h-4" />
+              </div>
+              <span className="font-sans text-[10px] sm:text-xs text-dark-text/70 whitespace-nowrap hidden sm:block">
+                Livraison Offerte
+              </span>
+            </div>
+
+            {/* Paiement Sécurisé - Hidden on mobile */}
+            <div className="hidden lg:flex items-center gap-1.5 sm:gap-2">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-bronze/10 flex items-center justify-center flex-shrink-0">
+                <Shield size={14} className="text-bronze sm:w-4 sm:h-4" />
+              </div>
+              <span className="font-sans text-[10px] sm:text-xs text-dark-text/70 whitespace-nowrap">
+                Paiement Sécurisé
+              </span>
+            </div>
           </div>
         </div>
 
