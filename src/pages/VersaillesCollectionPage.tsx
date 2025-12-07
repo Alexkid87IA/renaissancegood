@@ -331,10 +331,7 @@ export default function VersaillesCollectionPage() {
               transition={{ duration: 1, delay: 0.7 }}
               className="font-sans text-white text-xl md:text-2xl leading-[1.8] font-light max-w-3xl mx-auto mb-16 drop-shadow-lg"
             >
-              Les rois sont partis. Le symbole est resté.<br />
-              <span className="block mt-4 text-[#E5C158] font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                La Fleur de Lys. Pour ceux qui construisent. Pas pour ceux qui paradent.
-              </span>
+              Les rois sont partis. Le symbole est resté.
             </motion.p>
 
             <motion.button
