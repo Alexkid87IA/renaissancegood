@@ -100,7 +100,7 @@ export default function Footer() {
         </motion.div>
 
         {/* Trust Signals */}
-        <div className="flex flex-wrap justify-center laptop:justify-between gap-4 laptop:gap-8 mb-6 laptop:mb-12 pb-6 laptop:pb-12 border-b border-bronze/10">
+        <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-center laptop:justify-between gap-4 md:gap-6 laptop:gap-8 mb-8 laptop:mb-12 pb-8 laptop:pb-12 border-b border-bronze/10">
           {[
             { icon: MapPin, text: '200+ Opticiens' },
             { icon: Truck, text: 'Livraison Offerte' },
@@ -113,12 +113,12 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="flex flex-col items-center text-center flex-1 min-w-[140px] max-w-[200px]"
+              className="flex flex-col items-center text-center md:flex-1 md:min-w-[140px] md:max-w-[200px]"
             >
-              <div className="w-10 laptop:w-14 h-10 laptop:h-14 rounded-full bg-bronze/5 flex items-center justify-center mb-2 laptop:mb-3">
-                <item.icon size={16} className="text-bronze laptop:w-[22px] laptop:h-[22px]" />
+              <div className="w-12 laptop:w-14 h-12 laptop:h-14 rounded-full bg-bronze/5 flex items-center justify-center mb-2 laptop:mb-3">
+                <item.icon size={18} className="text-bronze laptop:w-[22px] laptop:h-[22px]" />
               </div>
-              <p className="font-sans text-[10px] laptop:text-[13px] text-dark-text/60 leading-relaxed">
+              <p className="font-sans text-[11px] laptop:text-[13px] text-dark-text/60 leading-relaxed">
                 {item.text}
               </p>
             </motion.div>
@@ -126,35 +126,36 @@ export default function Footer() {
         </div>
 
         {/* Links Grid */}
-        <div className="flex flex-wrap justify-center laptop:justify-between gap-8 laptop:gap-10 mb-6 laptop:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 mb-8 laptop:mb-12">
           {/* Boutique */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="text-center sm:text-left"
           >
-            <h4 className="font-sans text-[9px] laptop:text-[11px] tracking-[0.3em] mb-3 laptop:mb-5 font-bold text-dark-text uppercase">
+            <h4 className="font-sans text-[10px] laptop:text-[11px] tracking-[0.3em] mb-4 laptop:mb-5 font-bold text-dark-text uppercase">
               Boutique
             </h4>
-            <ul className="space-y-2 laptop:space-y-3">
+            <ul className="space-y-2.5 laptop:space-y-3">
               <li>
-                <Link to="/shop" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light block">
+                <Link to="/shop" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light block">
                   Toutes les Créations
                 </Link>
               </li>
               <li>
-                <Link to="/shop?collection=heritage" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light block">
+                <Link to="/shop?collection=heritage" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light block">
                   Collection Héritage
                 </Link>
               </li>
               <li>
-                <Link to="/shop?collection=versailles" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light block">
+                <Link to="/shop?collection=versailles" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light block">
                   Collection Versailles
                 </Link>
               </li>
               <li>
-                <Link to="/opticiens" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light block">
+                <Link to="/opticiens" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light block">
                   Trouver un Opticien
                 </Link>
               </li>
@@ -167,28 +168,29 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
+            className="text-center sm:text-left"
           >
-            <h4 className="font-sans text-[9px] laptop:text-[11px] tracking-[0.3em] mb-3 laptop:mb-5 font-bold text-dark-text uppercase">
+            <h4 className="font-sans text-[10px] laptop:text-[11px] tracking-[0.3em] mb-4 laptop:mb-5 font-bold text-dark-text uppercase">
               La Maison
             </h4>
-            <ul className="space-y-2 laptop:space-y-3">
+            <ul className="space-y-2.5 laptop:space-y-3">
               <li>
-                <Link to="/histoire" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light block">
+                <Link to="/histoire" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light block">
                   Notre Histoire
                 </Link>
               </li>
               <li>
-                <Link to="/manifesto" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light block">
+                <Link to="/manifesto" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light block">
                   Manifeste
                 </Link>
               </li>
               <li>
-                <Link to="/savoir-faire" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light block">
+                <Link to="/savoir-faire" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light block">
                   Savoir-Faire
                 </Link>
               </li>
               <li>
-                <Link to="/symboles" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light block">
+                <Link to="/symboles" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light block">
                   Les 5 Symboles
                 </Link>
               </li>
@@ -201,28 +203,29 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
+            className="text-center sm:text-left"
           >
-            <h4 className="font-sans text-[9px] laptop:text-[11px] tracking-[0.3em] mb-3 laptop:mb-5 font-bold text-dark-text uppercase">
+            <h4 className="font-sans text-[10px] laptop:text-[11px] tracking-[0.3em] mb-4 laptop:mb-5 font-bold text-dark-text uppercase">
               Service Client
             </h4>
-            <ul className="space-y-2 laptop:space-y-3">
+            <ul className="space-y-2.5 laptop:space-y-3">
               <li>
-                <Link to="/faq" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light block">
+                <Link to="/faq" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light block">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link to="/livraison" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light block">
+                <Link to="/livraison" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light block">
                   Livraison & Retours
                 </Link>
               </li>
               <li>
-                <Link to="/garantie" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light block">
+                <Link to="/garantie" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light block">
                   Garantie
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light block">
+                <Link to="/contact" className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light block">
                   Contact
                 </Link>
               </li>
@@ -235,32 +238,33 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
+            className="text-center sm:text-left"
           >
-            <h4 className="font-sans text-[9px] laptop:text-[11px] tracking-[0.3em] mb-3 laptop:mb-5 font-bold text-dark-text uppercase">
+            <h4 className="font-sans text-[10px] laptop:text-[11px] tracking-[0.3em] mb-4 laptop:mb-5 font-bold text-dark-text uppercase">
               Contact
             </h4>
-            <ul className="space-y-2 laptop:space-y-3">
-              <li className="flex items-start gap-1.5">
-                <Mail size={12} className="text-bronze mt-0.5 flex-shrink-0 laptop:w-[14px] laptop:h-[14px]" />
+            <ul className="space-y-2.5 laptop:space-y-3">
+              <li className="flex items-start gap-2 justify-center sm:justify-start">
+                <Mail size={14} className="text-bronze mt-0.5 flex-shrink-0 laptop:w-[14px] laptop:h-[14px]" />
                 <a
                   href="mailto:contact@renaissance-eyewear.fr"
-                  className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light break-all"
+                  className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light break-all"
                 >
                   contact@renaissance.fr
                 </a>
               </li>
-              <li className="flex items-start gap-1.5">
-                <Phone size={12} className="text-bronze mt-0.5 flex-shrink-0 laptop:w-[14px] laptop:h-[14px]" />
+              <li className="flex items-start gap-2 justify-center sm:justify-start">
+                <Phone size={14} className="text-bronze mt-0.5 flex-shrink-0 laptop:w-[14px] laptop:h-[14px]" />
                 <a
                   href="tel:+33142868200"
-                  className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-xs laptop:text-[15px] font-light"
+                  className="font-sans text-dark-text/60 hover:text-bronze transition-colors text-[13px] laptop:text-[15px] font-light"
                 >
                   +33 1 42 86 82 00
                 </a>
               </li>
-              <li className="flex items-start gap-1.5">
-                <MapPin size={12} className="text-bronze mt-0.5 flex-shrink-0 laptop:w-[14px] laptop:h-[14px]" />
-                <span className="font-sans text-dark-text/60 text-xs laptop:text-[15px] font-light">
+              <li className="flex items-start gap-2 justify-center sm:justify-start">
+                <MapPin size={14} className="text-bronze mt-0.5 flex-shrink-0 laptop:w-[14px] laptop:h-[14px]" />
+                <span className="font-sans text-dark-text/60 text-[13px] laptop:text-[15px] font-light">
                   Paris, France
                 </span>
               </li>
@@ -269,14 +273,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-bronze/10 pt-5 laptop:pt-8">
-          <div className="flex flex-col laptop:flex-row justify-between items-center gap-3 laptop:gap-4">
+        <div className="border-t border-bronze/10 pt-6 laptop:pt-8">
+          <div className="flex flex-col laptop:flex-row justify-between items-center gap-4 laptop:gap-4">
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="font-sans text-dark-text/50 text-[10px] laptop:text-[13px] font-light tracking-wider"
+              className="font-sans text-dark-text/50 text-[11px] laptop:text-[13px] font-light tracking-wider"
             >
               © 2025 Renaissance Eyewear
             </motion.p>
@@ -285,18 +289,18 @@ export default function Footer() {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="flex flex-wrap justify-center gap-3 laptop:gap-6"
+              className="flex flex-wrap justify-center gap-4 laptop:gap-6"
             >
-              <Link to="/mentions-legales" className="font-sans text-dark-text/50 hover:text-bronze text-[10px] laptop:text-[13px] transition-colors font-light tracking-wider">
+              <Link to="/mentions-legales" className="font-sans text-dark-text/50 hover:text-bronze text-[11px] laptop:text-[13px] transition-colors font-light tracking-wider">
                 Mentions
               </Link>
-              <Link to="/confidentialite" className="font-sans text-dark-text/50 hover:text-bronze text-[10px] laptop:text-[13px] transition-colors font-light tracking-wider">
+              <Link to="/confidentialite" className="font-sans text-dark-text/50 hover:text-bronze text-[11px] laptop:text-[13px] transition-colors font-light tracking-wider">
                 Confidentialité
               </Link>
-              <Link to="/cgv" className="font-sans text-dark-text/50 hover:text-bronze text-[10px] laptop:text-[13px] transition-colors font-light tracking-wider">
+              <Link to="/cgv" className="font-sans text-dark-text/50 hover:text-bronze text-[11px] laptop:text-[13px] transition-colors font-light tracking-wider">
                 CGV
               </Link>
-              <Link to="/cookies" className="font-sans text-dark-text/50 hover:text-bronze text-[10px] laptop:text-[13px] transition-colors font-light tracking-wider">
+              <Link to="/cookies" className="font-sans text-dark-text/50 hover:text-bronze text-[11px] laptop:text-[13px] transition-colors font-light tracking-wider">
                 Cookies
               </Link>
             </motion.div>
