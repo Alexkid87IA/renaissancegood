@@ -287,7 +287,7 @@ interface CartItemProps {
 
 function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeItem }: CartItemProps) {
   const product = node.merchandise.product;
-  const price = parseFloat(node.merchandise.price?.amount || node.cost?.totalAmount?.amount || '0');
+  const price = parseFloat(node.merchandise.priceV2?.amount || node.cost?.totalAmount?.amount || '0');
   const totalPrice = price * node.quantity;
   const collection = product?.collections?.edges?.[0]?.node?.title || 'Exclusive';
 
