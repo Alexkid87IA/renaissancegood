@@ -1,9 +1,20 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function TryInStoreSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"]
@@ -15,8 +26,8 @@ export default function TryInStoreSection() {
   return (
     <motion.section
       ref={sectionRef}
-      style={{ scale, opacity }}
-      className="min-h-screen md:h-screen md:sticky top-0 z-[80] bg-white"
+      style={isMobile ? {} : { scale, opacity }}
+      className="min-h-screen md:h-screen relative md:sticky top-0 md:z-[80] bg-white"
     >
       <div className="relative min-h-screen md:h-full">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-beige/10 to-beige/20" />
