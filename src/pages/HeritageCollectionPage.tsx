@@ -331,7 +331,7 @@ export default function HeritageCollectionPage() {
               className="font-sans text-white text-xl md:text-2xl leading-[1.8] font-light max-w-3xl mx-auto mb-16 drop-shadow-lg"
             >
               Ce qui se transmet ne se jette pas. Ce qui se respecte ne s'oublie pas.<br />
-              <span className="inline-block mt-4 px-6 py-2 bg-bronze/20 backdrop-blur-sm rounded-lg text-[#D4AF37] font-medium drop-shadow-xl">
+              <span className="block mt-4 text-[#E5C158] font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                 Trois pointes. Le passé. Le présent. L'avenir.
               </span>
             </motion.p>
