@@ -302,7 +302,7 @@ export default function VersaillesCollectionPage() {
           <div className="absolute inset-0 bg-dark-text/80" />
         </motion.div>
 
-        <div className="relative h-full flex flex-col items-center justify-center px-6 md:px-12 lg:px-16 pt-32 pb-20">
+        <div className="relative h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 lg:px-16 pt-24 sm:pt-32 pb-16 sm:pb-20">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -313,15 +313,15 @@ export default function VersaillesCollectionPage() {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="mb-10"
+              className="mb-6 sm:mb-10"
             >
-              <h1 className="font-display text-7xl sm:text-8xl md:text-9xl font-bold text-white tracking-[-0.04em] leading-[0.85] mb-8 drop-shadow-2xl">
+              <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white tracking-[-0.04em] leading-[0.85] mb-6 sm:mb-8 drop-shadow-2xl">
                 VERSAILLES
               </h1>
-              <div className="flex items-center justify-center gap-6 mb-10">
-                <div className="h-px w-20 bg-gradient-to-r from-transparent via-bronze to-bronze" />
-                <span className="font-sans text-xs tracking-[0.5em] font-bold text-bronze uppercase">Fleur de Lys</span>
-                <div className="h-px w-20 bg-gradient-to-l from-transparent via-bronze to-bronze" />
+              <div className="flex items-center justify-center gap-3 sm:gap-6 mb-6 sm:mb-10">
+                <div className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent via-bronze to-bronze" />
+                <span className="font-sans text-[10px] sm:text-xs tracking-[0.3em] sm:tracking-[0.5em] font-bold text-bronze uppercase">Fleur de Lys</span>
+                <div className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent via-bronze to-bronze" />
               </div>
             </motion.div>
 
@@ -329,7 +329,7 @@ export default function VersaillesCollectionPage() {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, delay: 0.7 }}
-              className="font-sans text-white text-xl md:text-2xl leading-[1.8] font-light max-w-3xl mx-auto mb-16 drop-shadow-lg"
+              className="font-sans text-white text-base sm:text-xl md:text-2xl leading-[1.6] sm:leading-[1.8] font-light max-w-3xl mx-auto mb-10 sm:mb-16 drop-shadow-lg px-4"
             >
               Les rois sont partis. Le symbole est resté.
             </motion.p>
@@ -342,7 +342,7 @@ export default function VersaillesCollectionPage() {
                 const section = document.querySelector('[data-products-section]');
                 section?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-12 py-5 bg-white text-dark-text font-sans text-xs tracking-[0.25em] font-bold uppercase hover:bg-bronze hover:text-white transition-all duration-300 shadow-2xl hover:shadow-bronze/20 hover:scale-105"
+              className="px-8 sm:px-12 py-4 sm:py-5 bg-white text-dark-text font-sans text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] font-bold uppercase hover:bg-bronze hover:text-white transition-all duration-300 shadow-2xl hover:shadow-bronze/20 hover:scale-105"
             >
               Explorer la Collection
             </motion.button>
