@@ -11,7 +11,7 @@ export default function IsisCollectionPage() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <img
-            src="https://images.pexels.com/photos/947885/pexels-photo-947885.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            src="https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg"
             alt="Collection Isis"
             className="w-full h-full object-cover"
           />
