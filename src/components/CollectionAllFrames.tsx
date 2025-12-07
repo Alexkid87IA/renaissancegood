@@ -26,7 +26,7 @@ export default function CollectionAllFrames() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-screen lg:h-screen relative lg:sticky top-0 lg:z-50"
+      className="min-h-screen lg:h-screen relative sticky top-0 z-50"
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-white hidden md:flex flex-row">

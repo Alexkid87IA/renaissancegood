@@ -15,7 +15,7 @@ export default function CollectionIsis() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-screen lg:h-screen relative lg:sticky top-0 lg:z-40"
+      className="min-h-screen lg:h-screen relative sticky top-0 z-40"
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-beige hidden md:flex flex-row">

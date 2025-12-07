@@ -16,7 +16,7 @@ export default function HistoireSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-screen lg:h-screen relative lg:sticky top-0 lg:z-[70] bg-[#fafaf8]"
+      className="min-h-screen lg:h-screen relative sticky top-0 z-[70] bg-[#fafaf8]"
       id="histoire"
     >
       <div className="relative min-h-full py-16 lg:py-0 lg:h-full flex flex-col items-center justify-center text-center px-6 sm:px-8 md:px-12">
