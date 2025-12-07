@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 import CollectionsPage from './pages/CollectionsPage';
 import HeritageCollectionPage from './pages/HeritageCollectionPage';
 import VersaillesCollectionPage from './pages/VersaillesCollectionPage';
+import IsisCollectionPage from './pages/IsisCollectionPage';
 import ProductPage from './pages/ProductPage';
 import HistoirePage from './pages/HistoirePage';
 import CartPage from './pages/CartPage';
@@ -48,6 +49,7 @@ function AppContent() {
             <Route path="/collections" element={<CollectionsPage />} />
             <Route path="/collections/heritage" element={<HeritageCollectionPage />} />
             <Route path="/collections/versailles" element={<VersaillesCollectionPage />} />
+            <Route path="/collections/isis" element={<IsisCollectionPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/histoire" element={<HistoirePage />} />
             <Route path="/cart" element={<CartPage />} />
