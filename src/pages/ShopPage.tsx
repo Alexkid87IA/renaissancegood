@@ -77,7 +77,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
   return (
     <motion.div
-      className="group relative bg-white overflow-hidden col-span-full sm:col-span-1 md:col-span-6"
+      className="group relative overflow-hidden col-span-full sm:col-span-1 md:col-span-6"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -89,7 +89,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden bg-beige/20">
+        <div className="relative aspect-[16/9] overflow-hidden bg-beige/20">
           <motion.img
             key={currentImageIndex}
             src={currentImage}
@@ -130,23 +130,17 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           )}
         </div>
 
-        <div className="p-5 sm:p-6 bg-white">
-          <div className="flex items-start justify-between mb-3">
+        <div className="bg-white p-4 sm:p-5">
+          <div className="flex items-center justify-between">
             <div className="flex-1">
-              <p className="font-sans text-[9px] tracking-[0.25em] text-dark-text/50 uppercase mb-2">
-                {category}
-              </p>
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-dark-text leading-tight mb-1">
+              <h3 className="font-display text-lg sm:text-xl font-bold text-dark-text leading-tight">
                 {product.title}
               </h3>
+              <p className="font-sans text-sm sm:text-base font-semibold text-dark-text/70 mt-1">
+                €{price}
+              </p>
             </div>
-          </div>
-
-          <div className="flex items-center justify-between pt-3 border-t border-dark-text/5">
-            <p className="font-sans text-base sm:text-lg font-semibold text-dark-text">
-              €{price}
-            </p>
-            <div className="text-dark-text/40 group-hover:text-dark-text group-hover:translate-x-1 transition-all">
+            <div className="text-dark-text/40 group-hover:text-dark-text group-hover:translate-x-1 transition-all ml-3">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path d="M9 5l7 7-7 7" />
               </svg>
