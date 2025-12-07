@@ -19,7 +19,7 @@ export default function HistoireSection() {
       className="min-h-screen lg:h-screen relative lg:sticky top-0 lg:z-[70] bg-[#fafaf8]"
       id="histoire"
     >
-      <div className="relative h-full flex flex-col items-center justify-center text-center px-6 sm:px-8 md:px-12">
+      <div className="relative min-h-full py-16 lg:py-0 lg:h-full flex flex-col items-center justify-center text-center px-6 sm:px-8 md:px-12">
         
         {/* Lignes décoratives */}
         <div className="absolute top-0 left-1/4 w-px h-24 bg-gradient-to-b from-bronze/20 to-transparent" />

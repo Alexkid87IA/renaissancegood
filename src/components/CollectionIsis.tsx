@@ -15,7 +15,7 @@ export default function CollectionIsis() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="h-screen relative lg:sticky top-0 lg:z-40"
+      className="min-h-screen lg:h-screen relative lg:sticky top-0 lg:z-40"
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-beige hidden md:flex flex-row">
@@ -54,7 +54,7 @@ export default function CollectionIsis() {
       </div>
 
       {/* MOBILE VERSION - Completely New Design */}
-      <div className="h-screen bg-beige md:hidden relative overflow-hidden">
+      <div className="min-h-screen bg-beige md:hidden relative overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img

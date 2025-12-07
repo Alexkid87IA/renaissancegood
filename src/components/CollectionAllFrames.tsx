@@ -26,7 +26,7 @@ export default function CollectionAllFrames() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="h-screen relative lg:sticky top-0 lg:z-50"
+      className="min-h-screen lg:h-screen relative lg:sticky top-0 lg:z-50"
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-white hidden md:flex flex-row">
@@ -78,7 +78,7 @@ export default function CollectionAllFrames() {
       </div>
 
       {/* MOBILE VERSION */}
-      <div className="h-screen bg-white md:hidden relative overflow-hidden">
+      <div className="min-h-screen bg-white md:hidden relative overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
