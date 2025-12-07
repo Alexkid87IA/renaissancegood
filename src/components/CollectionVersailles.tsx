@@ -27,7 +27,7 @@ export default function CollectionVersailles() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="h-screen sticky top-0 z-30"
+      className="h-screen relative lg:sticky top-0 lg:z-30"
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-beige hidden md:flex flex-row">

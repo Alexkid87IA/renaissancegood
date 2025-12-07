@@ -18,7 +18,7 @@ export default function HeroSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="h-screen sticky top-0 z-10"
+      className="h-screen relative lg:sticky top-0 lg:z-10"
     >
       {/* DESKTOP VERSION - Unchanged */}
       <div className="relative h-full overflow-hidden hidden lg:block">

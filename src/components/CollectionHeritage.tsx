@@ -27,7 +27,7 @@ export default function CollectionHeritage() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="h-screen sticky top-0 z-20"
+      className="h-screen relative lg:sticky top-0 lg:z-20"
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-beige hidden md:flex flex-row">
