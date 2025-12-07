@@ -1,286 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { getProductsByCollection } from '../lib/shopify';
-
-interface ShopifyProduct {
-  id: string;
-  title: string;
-  handle: string;
-  description: string;
-  availableForSale: boolean;
-  priceRange: {
-    minVariantPrice: {
-      amount: string;
-      currencyCode: string;
-    };
-  };
-  images: {
-    edges: Array<{
-      node: {
-        url: string;
-        altText: string | null;
-      };
-    }>;
-  };
-}
-
-interface Product {
-  id: string;
-  name: string;
-  category: string;
-  material: string;
-  shape: string;
-  images: string[];
-  badge?: string;
-  gridPosition: string;
-  price: string;
-  handle: string;
-}
-
-interface FilterOption {
-  label: string;
-  value: string;
-}
-
-const materials: FilterOption[] = [
-  { label: 'All', value: 'all' },
-  { label: 'Acétate', value: 'Acétate' },
-  { label: 'Métal', value: 'Métal' },
-  { label: 'Titane', value: 'Titane' }
-];
-
-const shapes: FilterOption[] = [
-  { label: 'All', value: 'all' },
-  { label: 'Rond', value: 'Rond' },
-  { label: 'Ovale', value: 'Ovale' },
-  { label: 'Carré', value: 'Carré' },
-  { label: 'Papillon', value: 'Papillon' }
-];
-
-const gridPositions = [
-  'col-span-7 row-span-2',
-  'col-span-5 row-span-2',
-  'col-span-4 row-span-1',
-  'col-span-8 row-span-1',
-  'col-span-6 row-span-2',
-  'col-span-6 row-span-2',
-  'col-span-8 row-span-1',
-  'col-span-4 row-span-2',
-  'col-span-5 row-span-1',
-  'col-span-7 row-span-1'
-];
-
-function FilterSelect({
-  label,
-  options,
-  value,
-  onChange
-}: {
-  label: string;
-  options: FilterOption[];
-  value: string;
-  onChange: (value: string) => void;
-}) {
-  return (
-    <div className="relative">
-      <label className="font-sans text-[8px] tracking-[0.25em] font-bold text-dark-text uppercase mb-1.5 md:mb-2 block">
-        {label}
-      </label>
-      <div className="relative">
-        <select
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-transparent border-b-2 border-dark-text/20 pb-1.5 md:pb-2 font-sans text-xs text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6"
-        >
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        <div className="absolute right-0 bottom-2 sm:bottom-3 pointer-events-none">
-          <svg width="8" height="5" viewBox="0 0 10 6" fill="none" className="sm:w-[10px] sm:h-[6px]">
-            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ProductCard({ product }: { product: Product }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  return (
-    <motion.div
-      className="group relative overflow-hidden col-span-full sm:col-span-1 md:col-span-6"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5 }}
-    >
-      <Link
-        to={`/product/${product.handle}`}
-        className="block cursor-pointer"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className="relative aspect-[16/9] overflow-hidden bg-beige/20">
-          <motion.img
-            key={currentImageIndex}
-            src={product.images[currentImageIndex]}
-            alt={product.name}
-            className="w-full h-full object-cover"
-            initial={{ scale: 1 }}
-            animate={{ scale: isHovered ? 1.05 : 1 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          />
-
-          {product.badge && (
-            <div className="absolute top-4 left-4 bg-dark-text px-4 py-2">
-              <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-white">
-                {product.badge}
-              </span>
-            </div>
-          )}
-
-          {product.images.length > 1 && (
-            <div className="absolute bottom-4 left-4 flex gap-2">
-              {product.images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setCurrentImageIndex(index);
-                  }}
-                  aria-label={`View image ${index + 1}`}
-                  className={`h-2 rounded-full transition-all ${
-                    currentImageIndex === index
-                      ? 'bg-dark-text w-6'
-                      : 'bg-dark-text/30 w-2'
-                  }`}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="bg-white p-4 sm:p-5">
-          <div className="flex items-center justify-between">
-            <div className="flex-1">
-              <h3 className="font-display text-lg sm:text-xl font-bold text-dark-text leading-tight">
-                {product.name}
-              </h3>
-              <p className="font-sans text-sm sm:text-base font-semibold text-dark-text/70 mt-1">
-                {product.price}
-              </p>
-            </div>
-            <div className="text-dark-text/40 group-hover:text-dark-text group-hover:translate-x-1 transition-all ml-3">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </Link>
-    </motion.div>
-  );
-}
+import { motion } from 'framer-motion';
 
 export default function IsisCollectionPage() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const filtersRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
-  const [selectedMaterial, setSelectedMaterial] = useState('all');
-  const [selectedShape, setSelectedShape] = useState('all');
-  const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [hideFilters, setHideFilters] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [showMobileFilters, setShowMobileFilters] = useState(false);
-
-  useEffect(() => {
-    async function loadProducts() {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const shopifyProducts = await getProductsByCollection('ISIS');
-
-        const transformedProducts: Product[] = shopifyProducts.map((product: ShopifyProduct, index: number) => ({
-          id: product.id,
-          name: product.title,
-          handle: product.handle,
-          category: 'OPTICAL',
-          material: 'Titane',
-          shape: 'Papillon',
-          images: product.images.edges.map(edge => edge.node.url),
-          price: `${product.priceRange.minVariantPrice.amount} ${product.priceRange.minVariantPrice.currencyCode}`,
-          gridPosition: gridPositions[index % gridPositions.length]
-        }));
-
-        setProducts(transformedProducts);
-        setFilteredProducts(transformedProducts);
-      } catch (err) {
-        console.error('Erreur lors du chargement des produits:', err);
-        setError('Impossible de charger les produits. Veuillez réessayer.');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadProducts();
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (window.innerWidth >= 768) {
-        if (currentScrollY > lastScrollY && currentScrollY > 200) {
-          setHideFilters(true);
-        } else if (currentScrollY < lastScrollY) {
-          setHideFilters(false);
-        }
-      } else {
-        setHideFilters(false);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
-
-  useEffect(() => {
-    let filtered = products;
-
-    if (selectedMaterial !== 'all') {
-      filtered = filtered.filter(p => p.material === selectedMaterial);
-    }
-    if (selectedShape !== 'all') {
-      filtered = filtered.filter(p => p.shape === selectedShape);
-    }
-
-    setFilteredProducts(filtered);
-  }, [selectedMaterial, selectedShape, products]);
-
   return (
     <div className="bg-beige">
       <div className="relative h-screen overflow-hidden">
         <motion.div
-          ref={heroRef}
           className="absolute inset-0"
           initial={{ scale: 1.1, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -358,194 +82,111 @@ export default function IsisCollectionPage() {
         </div>
       </div>
 
-      <div className="relative z-20 bg-beige pt-20" data-products-section>
-        <motion.div
-          ref={filtersRef}
-          className="border-b border-dark-text/10 bg-white sticky top-20 z-40 shadow-sm"
-          initial={{ y: 0 }}
-          animate={{ y: hideFilters ? -200 : 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12">
-            <div className="py-3 md:py-6">
-              <div className="flex items-center justify-between">
-                <div className="flex flex-col">
-                  <p className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1">
-                    # PRODUCTS
-                  </p>
-                  <p className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-dark-text leading-none">
-                    {loading ? '...' : filteredProducts.length}
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="md:hidden">
-                    <p className="font-sans text-[8px] tracking-[0.25em] font-bold text-dark-text/50 uppercase">
-                      Isis
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => setShowMobileFilters(true)}
-                    className="md:hidden flex items-center gap-2 px-4 py-2 bg-dark-text text-white"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path d="M3 4h18M3 12h18M3 20h18" />
-                    </svg>
-                    <span className="font-sans text-[10px] tracking-[0.2em] font-bold">FILTRES</span>
-                  </button>
-                </div>
+      <div className="relative z-20 bg-beige" data-products-section>
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16 py-20 sm:py-32 md:py-40">
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <div className="mb-8 sm:mb-12">
+              <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 mb-8 sm:mb-10">
+                <svg viewBox="0 0 100 100" className="w-full h-full text-bronze" fill="currentColor">
+                  <path d="M50 10 C30 10 10 30 10 50 C10 70 30 90 50 90 C70 90 90 70 90 50 C90 30 70 10 50 10 Z M50 20 C40 20 35 25 35 35 L35 45 C35 50 38 53 43 53 L57 53 C62 53 65 50 65 45 L65 35 C65 25 60 20 50 20 Z M35 60 C30 60 25 65 25 70 L25 75 C25 80 30 85 35 85 L65 85 C70 85 75 80 75 75 L75 70 C75 65 70 60 65 60 L35 60 Z"/>
+                </svg>
               </div>
 
-              <div className="hidden md:grid md:grid-cols-4 gap-4 mt-5">
-                <div className="hidden md:block">
-                  <FilterSelect
-                    label="COLLECTION"
-                    options={[{ label: 'Isis', value: 'isis' }]}
-                    value="isis"
-                    onChange={() => {}}
-                  />
-                </div>
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-dark-text tracking-[-0.02em] leading-[0.9] mb-6 sm:mb-8">
+                Bientôt Disponible
+              </h2>
 
-                <FilterSelect
-                  label="MATERIAL"
-                  options={materials}
-                  value={selectedMaterial}
-                  onChange={setSelectedMaterial}
-                />
-
-                <FilterSelect
-                  label="SHAPE"
-                  options={shapes}
-                  value={selectedShape}
-                  onChange={setSelectedShape}
-                />
-
-                <div className="col-span-2 md:col-span-1">
-                  <FilterSelect
-                    label="LENS"
-                    options={[{ label: 'All', value: 'all' }]}
-                    value="all"
-                    onChange={() => {}}
-                  />
-                </div>
+              <div className="flex items-center justify-center gap-4 sm:gap-6 mb-8 sm:mb-10">
+                <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent via-dark-text/20 to-dark-text/20" />
+                <span className="font-sans text-[10px] sm:text-xs tracking-[0.3em] sm:tracking-[0.4em] font-bold text-dark-text/60 uppercase">Coming Soon</span>
+                <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent via-dark-text/20 to-dark-text/20" />
               </div>
             </div>
-          </div>
-        </motion.div>
 
-        {showMobileFilters && (
-          <>
-            <div
-              className="fixed inset-0 bg-dark-text/50 z-50 md:hidden"
-              onClick={() => setShowMobileFilters(false)}
-            />
             <motion.div
-              className="fixed inset-x-0 bottom-0 bg-white z-50 md:hidden rounded-t-2xl shadow-2xl"
-              initial={{ y: '100%' }}
-              animate={{ y: 0 }}
-              exit={{ y: '100%' }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="max-w-2xl mx-auto"
             >
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-sans text-sm tracking-[0.2em] font-bold text-dark-text uppercase">
-                    Filtres
-                  </h3>
-                  <button
-                    onClick={() => setShowMobileFilters(false)}
-                    className="p-2"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
+              <p className="font-sans text-base sm:text-lg md:text-xl text-dark-text/70 leading-[1.7] sm:leading-[1.8] font-light mb-10 sm:mb-12">
+                La collection ISIS est actuellement en préparation. Découvrez bientôt des montures inspirées
+                par les symboles éternels de l'Égypte ancienne, où l'artisanat français rencontre le mystère millénaire.
+              </p>
 
-                <div className="space-y-6">
-                  <FilterSelect
-                    label="MATERIAL"
-                    options={materials}
-                    value={selectedMaterial}
-                    onChange={setSelectedMaterial}
-                  />
-
-                  <FilterSelect
-                    label="SHAPE"
-                    options={shapes}
-                    value={selectedShape}
-                    onChange={setSelectedShape}
-                  />
-
-                  <FilterSelect
-                    label="LENS"
-                    options={[{ label: 'All', value: 'all' }]}
-                    value="all"
-                    onChange={() => {}}
-                  />
-                </div>
-
-                <div className="mt-8 flex gap-3">
-                  <button
-                    onClick={() => {
-                      setSelectedMaterial('all');
-                      setSelectedShape('all');
-                    }}
-                    className="flex-1 px-6 py-3 border-2 border-dark-text/20 font-sans text-xs tracking-[0.2em] font-bold text-dark-text uppercase"
-                  >
-                    Réinitialiser
-                  </button>
-                  <button
-                    onClick={() => setShowMobileFilters(false)}
-                    className="flex-1 px-6 py-3 bg-dark-text text-white font-sans text-xs tracking-[0.2em] font-bold uppercase"
-                  >
-                    Appliquer
-                  </button>
-                </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href="/collections/versailles"
+                  className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-dark-text text-white font-sans text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] font-bold uppercase hover:bg-bronze transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                >
+                  Découvrir Versailles
+                </a>
+                <a
+                  href="/collections/heritage"
+                  className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 border-2 border-dark-text text-dark-text font-sans text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] font-bold uppercase hover:bg-dark-text hover:text-white transition-all duration-300"
+                >
+                  Découvrir Heritage
+                </a>
               </div>
             </motion.div>
-          </>
-        )}
+          </motion.div>
 
-        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-6 sm:py-8 md:py-10 laptop:py-12">
-          {loading && (
-            <div className="text-center py-32">
-              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-dark-text"></div>
-              <p className="font-sans text-dark-text/60 text-sm tracking-wider uppercase mt-6">
-                Chargement des produits...
-              </p>
-            </div>
-          )}
-
-          {error && (
-            <div className="text-center py-32">
-              <p className="font-sans text-red-600 text-sm tracking-wider uppercase mb-4">
-                {error}
-              </p>
-              <button
-                onClick={() => window.location.reload()}
-                className="font-sans text-xs tracking-wider uppercase border border-dark-text px-6 py-3 hover:bg-dark-text hover:text-white transition-colors"
-              >
-                Réessayer
-              </button>
-            </div>
-          )}
-
-          {!loading && !error && (
-            <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-4 sm:gap-6 md:gap-4">
-                {filteredProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-20 sm:mt-32 md:mt-40 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12"
+          >
+            <div className="text-center">
+              <div className="mb-4 sm:mb-6">
+                <svg className="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-bronze" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                  <path d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
               </div>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-dark-text mb-3 sm:mb-4">
+                Design Unique
+              </h3>
+              <p className="font-sans text-sm sm:text-base text-dark-text/60 leading-relaxed">
+                Des montures inspirées par les symboles sacrés de l'Égypte ancienne
+              </p>
+            </div>
 
-              {filteredProducts.length === 0 && (
-                <div className="text-center py-32">
-                  <p className="font-sans text-dark-text/40 text-sm tracking-wider uppercase">
-                    No products match your filters
-                  </p>
-                </div>
-              )}
-            </>
-          )}
+            <div className="text-center">
+              <div className="mb-4 sm:mb-6">
+                <svg className="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-bronze" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                  <path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+                </svg>
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-dark-text mb-3 sm:mb-4">
+                Qualité Supérieure
+              </h3>
+              <p className="font-sans text-sm sm:text-base text-dark-text/60 leading-relaxed">
+                Fabriqué en France avec les meilleurs matériaux
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="mb-4 sm:mb-6">
+                <svg className="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-bronze" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                  <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                </svg>
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-dark-text mb-3 sm:mb-4">
+                Édition Limitée
+              </h3>
+              <p className="font-sans text-sm sm:text-base text-dark-text/60 leading-relaxed">
+                Une collection exclusive et numérotée
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
