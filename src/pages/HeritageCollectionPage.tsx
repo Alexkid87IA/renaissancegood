@@ -298,7 +298,7 @@ export default function HeritageCollectionPage() {
             alt="Collection Héritage"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-dark-text/70 via-dark-text/50 to-dark-text/70" />
+          <div className="absolute inset-0 bg-dark-text/80" />
         </motion.div>
 
         <div className="relative h-full flex flex-col items-center justify-center px-6 md:px-12 lg:px-16 pt-32 pb-20">
@@ -314,7 +314,7 @@ export default function HeritageCollectionPage() {
               transition={{ duration: 1, delay: 0.5 }}
               className="mb-10"
             >
-              <h1 className="font-display text-7xl sm:text-8xl md:text-9xl font-bold text-white tracking-[-0.04em] leading-[0.85] mb-8">
+              <h1 className="font-display text-7xl sm:text-8xl md:text-9xl font-bold text-white tracking-[-0.04em] leading-[0.85] mb-8 drop-shadow-2xl">
                 HÉRITAGE
               </h1>
               <div className="flex items-center justify-center gap-6 mb-10">
@@ -328,10 +328,12 @@ export default function HeritageCollectionPage() {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, delay: 0.7 }}
-              className="font-sans text-white text-xl md:text-2xl leading-[1.8] font-light max-w-3xl mx-auto mb-16"
+              className="font-sans text-white text-xl md:text-2xl leading-[1.8] font-light max-w-3xl mx-auto mb-16 drop-shadow-lg"
             >
               Ce qui se transmet ne se jette pas. Ce qui se respecte ne s'oublie pas.<br />
-              <span className="text-bronze font-normal">Trois pointes. Le passé. Le présent. L'avenir.</span>
+              <span className="inline-block mt-4 px-6 py-2 bg-bronze/20 backdrop-blur-sm rounded-lg text-[#D4AF37] font-medium drop-shadow-xl">
+                Trois pointes. Le passé. Le présent. L'avenir.
+              </span>
             </motion.p>
 
             <motion.button
