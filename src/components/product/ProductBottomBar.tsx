@@ -74,18 +74,8 @@ export default function ProductBottomBar({ product, selectedColorIndex }: Produc
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-dark-text/10 z-[60] shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
       <div className="px-3 sm:px-4 lg:px-8 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-4 max-w-[1800px] mx-auto">
-        <div className="flex items-center gap-2 sm:gap-4 lg:gap-6">
-          {/* Visual Color Thumbnail */}
-          <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 border-2 border-dark-text/20 rounded-sm flex items-center justify-center bg-white p-1.5 sm:p-2">
-            <svg viewBox="0 0 100 50" className="w-full h-full">
-              <ellipse cx="20" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="2" />
-              <ellipse cx="80" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="2" />
-              <line x1="38" y1="25" x2="62" y2="25" stroke="currentColor" strokeWidth="2" />
-            </svg>
-          </div>
-
-          {/* Reassurance Elements */}
-          <div className="flex items-center gap-3 sm:gap-4 lg:gap-6">
+        {/* Reassurance Elements */}
+        <div className="flex items-center gap-3 sm:gap-4 lg:gap-6">
             {/* Garantie 2 ans */}
             <div className="flex items-center gap-1.5 sm:gap-2">
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-bronze/10 flex items-center justify-center flex-shrink-0">
@@ -116,7 +106,6 @@ export default function ProductBottomBar({ product, selectedColorIndex }: Produc
               </span>
             </div>
           </div>
-        </div>
 
         {/* Price & Buy Button */}
         <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
