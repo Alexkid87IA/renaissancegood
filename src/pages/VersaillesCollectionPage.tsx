@@ -555,44 +555,6 @@ export default function VersaillesCollectionPage() {
             </>
           )}
         </div>
-
-        <section className="relative py-16 sm:py-24 md:py-32 bg-dark-text text-white">
-          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-12">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-16"
-            >
-              <p className="font-sans text-[9px] tracking-[0.5em] font-bold text-white/40 uppercase mb-8">
-                Expérience Exclusive
-              </p>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-8 sm:mb-12 leading-[1.1]">
-                Découvrez Versailles en Boutique
-              </h2>
-              <p className="font-sans text-white/70 text-base sm:text-lg md:text-xl leading-[1.9] font-light max-w-3xl mx-auto">
-                Essayez la collection complète dans nos boutiques et bénéficiez des conseils personnalisés de nos experts. Une expérience unique vous attend.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-full aspect-video bg-black/20 border-2 border-white/10 overflow-hidden"
-            >
-              <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="Découverte de nos boutiques"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
-              />
-            </motion.div>
-          </div>
-        </section>
       </div>
     </div>
   );
