@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Minus, Plus, X, Shield, Truck, Award, Package, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Minus, Plus, X, Shield, Truck, Award, Package, ChevronLeft, ChevronRight, ExternalLink, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../contexts/CartContext';
 
@@ -221,13 +221,29 @@ export default function CartPage() {
                   </span>
                 </div>
 
-                {/* MODIFICATION ICI : Bouton redirige vers /checkout au lieu de cart.checkoutUrl */}
-                <Link
-                  to="/checkout"
-                  className="block w-full bg-dark-text text-white py-5 px-6 text-center font-sans text-[10px] tracking-[0.3em] font-bold hover:bg-bronze transition-all duration-300 mb-4"
+                {/* Message de réassurance avant redirection Shopify */}
+                <div className="mb-4 p-4 bg-beige border border-bronze/20">
+                  <div className="flex items-center gap-2 justify-center text-dark-text/70">
+                    <Lock size={14} strokeWidth={2} className="text-bronze" />
+                    <p className="font-sans text-xs">
+                      Paiement sécurisé via Shopify
+                    </p>
+                  </div>
+                  <p className="font-sans text-[10px] text-dark-text/50 text-center mt-1">
+                    Ouverture dans un nouvel onglet
+                  </p>
+                </div>
+
+                {/* Bouton de redirection vers Shopify Checkout */}
+                <a
+                  href={cart?.checkoutUrl || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full bg-dark-text text-white py-5 px-6 text-center font-sans text-[10px] tracking-[0.3em] font-bold hover:bg-bronze transition-all duration-300 mb-4"
                 >
-                  FINALISER LA COMMANDE
-                </Link>
+                  <span>FINALISER LA COMMANDE</span>
+                  <ExternalLink size={14} strokeWidth={2.5} />
+                </a>
 
                 <Link
                   to="/collections/heritage"
