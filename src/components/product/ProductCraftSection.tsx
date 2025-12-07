@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export default function ProductCraftSection() {
   return (
     <section className="relative z-[40]">
-      <div className="relative min-h-screen overflow-hidden">
+      <div className="relative h-[70vh] lg:h-[75vh] laptop:h-[80vh] xl:h-[85vh] overflow-hidden">
         <video
           autoPlay
           loop
@@ -19,7 +19,7 @@ export default function ProductCraftSection() {
 
         <div className="absolute inset-0 bg-gradient-to-r from-dark-text/95 via-dark-text/80 to-dark-text/65" />
 
-        <div className="relative min-h-screen flex items-center px-4 sm:px-6 md:px-12 lg:px-16 laptop:px-20 py-16 sm:py-20">
+        <div className="relative h-full flex items-center px-4 sm:px-6 md:px-12 lg:px-16 laptop:px-20 py-16 sm:py-20">
           <div className="max-w-3xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
