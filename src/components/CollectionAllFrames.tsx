@@ -97,17 +97,11 @@ export default function CollectionAllFrames() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-shrink-0 space-y-4"
+            className="flex-shrink-0"
           >
             <span className="inline-block bg-bronze/10 border-2 border-bronze/20 text-bronze text-[9px] px-5 py-2.5 tracking-[0.3em] font-bold uppercase shadow-sm">
               Heritage • Versailles • Isis
             </span>
-            <div className="inline-block bg-gradient-to-r from-dark-text/5 to-transparent pr-8 py-3 -ml-1 pl-1">
-              <p className="font-sans text-dark-text text-[10px] tracking-[0.35em] font-bold uppercase mb-2.5">
-                L'EXCELLENCE PARISIENNE
-              </p>
-              <div className="h-0.5 bg-gradient-to-r from-dark-text via-dark-text/60 to-transparent w-32" />
-            </div>
           </motion.div>
 
           {/* Center - Title and Description */}
