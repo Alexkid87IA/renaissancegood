@@ -59,7 +59,7 @@ export default function AmbassadorsHomeSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group relative aspect-[2/3] md:aspect-[3/4] overflow-hidden bg-[#111]"
+                className="group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-[#111]"
               >
                 {/* Image */}
                 <img

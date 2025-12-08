@@ -80,9 +80,9 @@ export default function FabricationSection() {
               </div>
 
               <div className="space-y-1 laptop:space-y-2 xl:space-y-2.5 mb-5 laptop:mb-8 xl:mb-10 max-w-2xl">
-                <div className="flex items-start gap-2 sm:gap-4 group">
-                  <div className="w-1 h-1 rounded-full bg-white/50 mt-1.5 flex-shrink-0 group-hover:bg-white transition-colors" />
-                  <p className="font-sans text-white text-[10px] sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
+                <div className="flex items-start gap-3 sm:gap-4 group">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
+                  <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
                     <span className="font-semibold text-white">Dessinées à Paris.</span> Chaque ligne, chaque courbe.
                   </p>
                 </div>
