@@ -53,81 +53,93 @@ export default function CollectionIsis() {
         </div>
       </div>
 
-      {/* MOBILE VERSION - Completely New Design */}
-      <div className="h-screen bg-beige md:hidden relative overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
-          <img
-            src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg"
-            alt="Collection Isis - Egyptian inspiration"
-            className="w-full h-full object-cover opacity-30"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-beige/85 via-beige/90 to-beige"></div>
-        </div>
-
+      {/* MOBILE VERSION - Compact Design */}
+      <div className="min-h-[82vh] bg-beige md:hidden relative overflow-hidden">
         {/* Content */}
-        <div className="relative h-full flex flex-col justify-between px-6 pt-20 pb-10">
+        <div className="relative h-full flex flex-col px-5 pt-16 pb-6">
 
-          {/* Top - Badge and Status */}
+          {/* Top - Status Badge (Compact) */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-shrink-0 space-y-3"
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="flex-shrink-0 mb-2"
           >
-            <span className="inline-block bg-bronze/15 border-2 border-bronze/60 text-bronze text-[9px] px-5 py-2.5 tracking-[0.3em] font-bold uppercase shadow-sm">
+            <span className="inline-block bg-bronze/15 border border-bronze/60 text-bronze text-[8px] px-3 py-1.5 tracking-[0.25em] font-bold uppercase">
               Bientôt Disponible
             </span>
-            <div className="inline-block bg-gradient-to-r from-bronze/10 to-transparent pr-8 py-2 -ml-1 pl-1">
-              <p className="font-sans text-bronze text-[10px] tracking-[0.35em] font-bold uppercase mb-2">
+          </motion.div>
+
+          {/* Badge Symbols (Compact) */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.15 }}
+            className="flex-shrink-0 mb-2"
+          >
+            <div className="inline-block">
+              <p className="font-sans text-bronze text-[8px] tracking-[0.3em] font-bold uppercase">
                 COBRA • SCARABÉE • ŒIL D'HORUS
               </p>
-              <div className="h-0.5 bg-gradient-to-r from-bronze via-bronze/60 to-transparent w-32" />
+              <div className="h-px bg-bronze/30 mt-1 w-32" />
             </div>
           </motion.div>
 
-          {/* Center - Title and Description */}
+          {/* Title (Compact) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex-shrink-0 py-6"
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="flex-shrink-0 mb-3"
           >
-            <h3 className="font-display text-5xl font-bold mb-4 tracking-[-0.03em] leading-[0.95] text-dark-text">
+            <h3 className="font-display text-3xl font-bold tracking-[-0.02em] leading-[0.9] text-dark-text">
               COLLECTION<br/>ISIS
             </h3>
-            <p className="font-sans text-dark-text/70 text-base leading-[1.65] font-light max-w-md">
+          </motion.div>
+
+          {/* Product Image - Main Focus (50% space) with Grayscale */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="flex-shrink-0 mb-2"
+          >
+            <div className="relative w-full h-[42vh] rounded-md overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100/30 border border-dark-text/10 cursor-not-allowed">
+              <img
+                src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg"
+                alt="Collection Isis Preview"
+                className="w-full h-full object-cover grayscale opacity-50"
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-beige/40 to-transparent">
+                <p className="font-sans text-dark-text/50 text-[10px] tracking-[0.3em] font-bold uppercase bg-beige/80 px-4 py-2 rounded">
+                  Coming Soon
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Description (Compact, 2 lines max) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+            className="flex-shrink-0 mb-3"
+          >
+            <p className="font-sans text-dark-text/70 text-xs leading-[1.5] font-light line-clamp-2">
               Le Cobra : la garde. Le Scarabée : la renaissance. L'Œil : celui qui voit tout. Ce qui traverse 5 000 ans ne se porte pas par hasard.
             </p>
           </motion.div>
 
-          {/* Bottom - Visual Element and CTA */}
+          {/* CTA Button (Disabled) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex-shrink-0 space-y-4"
+            transition={{ duration: 0.4, delay: 0.5 }}
+            className="flex-shrink-0"
           >
-            {/* Decorative Image Preview - Non-clickable */}
-            <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100/50 border border-dark-text/10 cursor-not-allowed">
-              <img
-                src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg"
-                alt="Collection Isis Preview"
-                className="w-full h-full object-cover opacity-40"
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <p className="font-sans text-dark-text/40 text-xs tracking-[0.3em] font-bold uppercase">
-                    Coming Soon
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA Button - Disabled State */}
             <button
               disabled
-              className="w-full border-2 border-dark-text/20 px-8 py-4 font-sans text-[10px] tracking-[0.25em] font-bold text-dark-text/30 cursor-not-allowed backdrop-blur-sm bg-beige/60"
+              className="w-full border-2 border-dark-text/20 px-6 py-3 font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text/30 cursor-not-allowed bg-beige/60"
             >
               BIENTÔT DISPONIBLE
             </button>

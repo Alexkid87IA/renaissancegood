@@ -86,68 +86,53 @@ export default function CollectionHeritage() {
         </div>
       </div>
 
-      {/* MOBILE VERSION - Completely New Design */}
-      <div className="h-screen bg-beige md:hidden relative overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
-          <img
-            src="https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg"
-            alt="Collection Héritage - Trident"
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-beige/80 via-beige/90 to-beige"></div>
-        </div>
-
+      {/* MOBILE VERSION - Compact Design */}
+      <div className="min-h-[82vh] bg-beige md:hidden relative overflow-hidden">
         {/* Content */}
-        <div className="relative h-full flex flex-col justify-between px-6 pt-20 pb-10">
+        <div className="relative h-full flex flex-col px-5 pt-16 pb-6">
 
-          {/* Top - Badge */}
+          {/* Top - Badge (Compact) */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-shrink-0"
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="flex-shrink-0 mb-2"
           >
-            <div className="inline-block bg-gradient-to-r from-bronze/10 to-transparent pr-8 py-2 -ml-1 pl-1">
-              <p className="font-sans text-bronze text-[10px] tracking-[0.35em] font-bold uppercase mb-2">
+            <div className="inline-block">
+              <p className="font-sans text-bronze text-[8px] tracking-[0.3em] font-bold uppercase">
                 SYMBOLE : TRIDENT
               </p>
-              <div className="h-0.5 bg-gradient-to-r from-bronze via-bronze/60 to-transparent w-28" />
+              <div className="h-px bg-bronze/30 mt-1 w-20" />
             </div>
           </motion.div>
 
-          {/* Center - Title and Description */}
+          {/* Title (Compact) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex-shrink-0 py-6"
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="flex-shrink-0 mb-3"
           >
-            <h3 className="font-display text-5xl font-bold mb-4 tracking-[-0.03em] leading-[0.95] text-dark-text">
+            <h3 className="font-display text-3xl font-bold tracking-[-0.02em] leading-[0.9] text-dark-text">
               COLLECTION<br/>HÉRITAGE
             </h3>
-            <p className="font-sans text-dark-text/70 text-base leading-[1.65] font-light max-w-md">
-              Ce qui se transmet ne se jette pas. Ce qui se respecte ne s'oublie pas.<br />
-              Trois pointes. Le passé. Le présent. L'avenir.
-            </p>
           </motion.div>
 
-          {/* Bottom - CTA and Image */}
+          {/* Product Image - Main Focus (50% space) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex-shrink-0 space-y-4"
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="flex-shrink-0 mb-2"
           >
-            {/* Product Image - Clickable */}
             <div
               onClick={handleNavigate}
-              className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-white/50 backdrop-blur-sm border border-dark-text/10 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
+              className="relative w-full h-[42vh] rounded-md overflow-hidden bg-white/30 border border-dark-text/10 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
             >
               <img
                 src="https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg"
                 alt="Collection Héritage"
-                className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
 
               {/* Loading Overlay */}
@@ -157,30 +142,49 @@ export default function CollectionHeritage() {
                   animate={{ opacity: 1 }}
                   className="absolute inset-0 bg-beige/95 backdrop-blur-md flex items-center justify-center"
                 >
-                  <div className="flex flex-col items-center gap-4">
+                  <div className="flex flex-col items-center gap-3">
                     <div className="relative">
-                      <div className="w-12 h-12 border-2 border-bronze/20 rounded-full" />
-                      <div className="absolute inset-0 w-12 h-12 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
+                      <div className="w-10 h-10 border-2 border-bronze/20 rounded-full" />
+                      <div className="absolute inset-0 w-10 h-10 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
                     </div>
-                    <p className="text-dark-text text-xs tracking-[0.3em] font-light uppercase">Chargement</p>
+                    <p className="text-dark-text text-[10px] tracking-[0.3em] font-light uppercase">Chargement</p>
                   </div>
                 </motion.div>
               )}
 
               {/* Hover Indicator */}
-              <div className="absolute inset-0 bg-dark-text/0 group-hover:bg-dark-text/5 transition-all duration-500 pointer-events-none" />
+              <div className="absolute inset-0 bg-dark-text/0 group-active:bg-dark-text/5 transition-all duration-300 pointer-events-none" />
             </div>
+          </motion.div>
 
-            {/* CTA Button */}
+          {/* Description (Compact, 2 lines max) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+            className="flex-shrink-0 mb-3"
+          >
+            <p className="font-sans text-dark-text/70 text-xs leading-[1.5] font-light line-clamp-2">
+              Ce qui se transmet ne se jette pas. Ce qui se respecte ne s'oublie pas. Trois pointes. Le passé. Le présent. L'avenir.
+            </p>
+          </motion.div>
+
+          {/* CTA Button (Always visible) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+            className="flex-shrink-0"
+          >
             <button
               onClick={handleNavigate}
               disabled={isLoading}
-              className="w-full border-2 border-dark-text px-8 py-4 font-sans text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige transition-all duration-300 active:scale-[0.98] backdrop-blur-sm bg-beige/80 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
+              className="w-full border-2 border-dark-text px-6 py-3 font-sans text-[9px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige transition-all duration-300 active:scale-[0.98] bg-beige shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
-                <span className="flex items-center justify-center gap-3">
+                <span className="flex items-center justify-center gap-2">
                   <div className="relative">
-                    <div className="w-3 h-3 border border-current border-t-transparent rounded-full animate-spin" />
+                    <div className="w-2.5 h-2.5 border border-current border-t-transparent rounded-full animate-spin" />
                   </div>
                   CHARGEMENT
                 </span>

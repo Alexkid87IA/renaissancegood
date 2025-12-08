@@ -15,10 +15,10 @@ export default function FabricationSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-screen laptop:h-screen relative sticky top-0 z-[90]"
+      className="min-h-[85vh] laptop:h-screen relative sticky top-0 z-[90]"
       id="fabrication"
     >
-      <div className="relative min-h-screen laptop:h-full overflow-hidden">
+      <div className="relative min-h-[85vh] laptop:h-full overflow-hidden">
         <video
           autoPlay
           loop
@@ -34,27 +34,27 @@ export default function FabricationSection() {
 
         <div className="absolute inset-0 bg-gradient-to-r from-dark-text/95 via-dark-text/80 to-dark-text/65" />
 
-        <div className="relative min-h-screen laptop:h-full flex items-center px-6 sm:px-8 md:px-12 lg:px-16 laptop:px-20 max-w-[1920px] mx-auto py-20 laptop:py-0 md:ml-6">
+        <div className="relative min-h-[85vh] laptop:h-full flex items-center px-5 sm:px-8 md:px-12 lg:px-16 laptop:px-20 max-w-[1920px] mx-auto py-16 laptop:py-0 md:ml-6">
           <div className="max-w-3xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-[-0.03em] leading-[0.95]">
+              <h2 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-3 tracking-[-0.03em] leading-[0.95]">
                 FABRICATION
               </h2>
 
-              <div className="space-y-4 laptop:space-y-5 mb-6 laptop:mb-8 xl:mb-10">
-                <p className="font-sans text-white text-sm sm:text-base md:text-lg laptop:text-lg xl:text-2xl leading-[1.7] font-light max-w-2xl">
+              <div className="space-y-3 laptop:space-y-5 mb-5 laptop:mb-8 xl:mb-10">
+                <p className="font-sans text-white text-xs sm:text-base md:text-lg laptop:text-lg xl:text-2xl leading-[1.7] font-light max-w-2xl">
                   Une paire de Renaissance, c'est 250 étapes. Des mains françaises pour la vision. Des mains coréennes pour la précision. Deux pays. Un seul standard : celui qui dure.
                 </p>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 laptop:gap-6 xl:gap-8 pt-2 laptop:pt-3">
-                  <div className="space-y-1.5">
-                    <p className="font-display text-[2rem] sm:text-[2.25rem] md:text-4xl laptop:text-4xl xl:text-6xl text-white font-bold tracking-tight">8-12</p>
-                    <p className="font-sans text-white/70 text-[9px] sm:text-[10px] tracking-[0.15em] uppercase leading-[1.5] font-medium">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 md:gap-5 laptop:gap-6 xl:gap-8 pt-1 laptop:pt-3">
+                  <div className="space-y-1">
+                    <p className="font-display text-[24px] sm:text-[2.25rem] md:text-4xl laptop:text-4xl xl:text-6xl text-white font-bold tracking-tight">8-12</p>
+                    <p className="font-sans text-white/70 text-[8px] sm:text-[10px] tracking-[0.15em] uppercase leading-[1.5] font-medium">
                       Artisans<br/>par paire
                     </p>
                   </div>
@@ -79,10 +79,10 @@ export default function FabricationSection() {
                 </div>
               </div>
 
-              <div className="space-y-1.5 laptop:space-y-2 xl:space-y-2.5 mb-6 laptop:mb-8 xl:mb-10 max-w-2xl">
-                <div className="flex items-start gap-3 sm:gap-4 group">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
-                  <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
+              <div className="space-y-1 laptop:space-y-2 xl:space-y-2.5 mb-5 laptop:mb-8 xl:mb-10 max-w-2xl">
+                <div className="flex items-start gap-2 sm:gap-4 group">
+                  <div className="w-1 h-1 rounded-full bg-white/50 mt-1.5 flex-shrink-0 group-hover:bg-white transition-colors" />
+                  <p className="font-sans text-white text-[10px] sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
                     <span className="font-semibold text-white">Dessinées à Paris.</span> Chaque ligne, chaque courbe.
                   </p>
                 </div>
@@ -106,7 +106,7 @@ export default function FabricationSection() {
                 </div>
               </div>
 
-              <button className="border-2 border-white/30 text-white px-6 sm:px-8 laptop:px-10 xl:px-12 py-3 sm:py-3.5 laptop:py-4 xl:py-5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold hover:bg-white hover:text-dark-text hover:border-white transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
+              <button className="border-2 border-white/30 text-white px-5 sm:px-8 laptop:px-10 xl:px-12 py-2.5 sm:py-3.5 laptop:py-4 xl:py-5 font-sans text-[8px] sm:text-[10px] tracking-[0.25em] font-bold hover:bg-white hover:text-dark-text hover:border-white transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
                 VOIR LE PROCESSUS
               </button>
             </motion.div>

@@ -77,71 +77,86 @@ export default function CollectionAllFrames() {
         </div>
       </div>
 
-      {/* MOBILE VERSION */}
-      <div className="h-screen bg-white md:hidden relative overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
-          <img
-            src="https://26.staticbtf.eno.do/v1/104-default/18b06e42d2310c24605161b4c62ef0e3/media.jpg"
-            alt="Nos créations - Collection complète"
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/95 to-white"></div>
-        </div>
-
+      {/* MOBILE VERSION - Compact Design */}
+      <div className="min-h-[82vh] bg-white md:hidden relative overflow-hidden">
         {/* Content */}
-        <div className="relative h-full flex flex-col justify-between px-6 pt-20 pb-10">
+        <div className="relative h-full flex flex-col px-5 pt-16 pb-6">
 
-          {/* Top - Badge and Category */}
+          {/* Top - Badge (Compact) */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-shrink-0"
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="flex-shrink-0 mb-2"
           >
-            <span className="inline-block bg-bronze/10 border-2 border-bronze/20 text-bronze text-[9px] px-5 py-2.5 tracking-[0.3em] font-bold uppercase shadow-sm">
+            <span className="inline-block bg-bronze/10 border border-bronze/20 text-bronze text-[8px] px-3 py-1.5 tracking-[0.25em] font-bold uppercase">
               Heritage • Versailles • Isis
             </span>
           </motion.div>
 
-          {/* Center - Title and Description */}
+          {/* Title (Compact) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex-shrink-0 py-6"
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="flex-shrink-0 mb-3"
           >
-            <h3 className="font-display text-5xl font-bold mb-4 tracking-[-0.03em] leading-[0.95] text-dark-text">
+            <h3 className="font-display text-3xl font-bold tracking-[-0.02em] leading-[0.9] text-dark-text">
               NOS<br/>CRÉATIONS
             </h3>
-            <p className="font-sans text-dark-text/70 text-base leading-[1.65] font-light max-w-md">
-              Explorez l'intégralité de nos créations. Chaque monture raconte une histoire.<br />
-              Des symboles anciens aux lignes modernes. Le savoir-faire parisien dans toute sa splendeur.
-            </p>
           </motion.div>
 
-          {/* Bottom - Visual Element and CTA */}
+          {/* Product Image - Main Focus (50% space) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex-shrink-0 space-y-4"
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="flex-shrink-0 mb-2"
           >
-            {/* Decorative Image Preview */}
-            <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-gradient-to-br from-beige/50 to-bronze/10 border border-dark-text/10">
+            <div
+              onClick={handleNavigate}
+              className="relative w-full h-[42vh] rounded-md overflow-hidden bg-gradient-to-br from-beige/30 to-bronze/10 border border-dark-text/10 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
+            >
               <img
                 src="https://26.staticbtf.eno.do/v1/104-default/18b06e42d2310c24605161b4c62ef0e3/media.jpg"
                 alt="Collection Preview"
-                className="w-full h-full object-cover opacity-60"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 to-transparent"></div>
+              {isLoading && (
+                <div className="absolute inset-0 bg-white/90 flex items-center justify-center">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-8 h-8 border-2 border-dark-text/20 border-t-dark-text rounded-full animate-spin" />
+                    <p className="text-dark-text text-[10px] tracking-[0.3em] font-light uppercase">Chargement</p>
+                  </div>
+                </div>
+              )}
             </div>
+          </motion.div>
 
-            {/* CTA Button */}
+          {/* Description (Compact, 2 lines max) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+            className="flex-shrink-0 mb-3"
+          >
+            <p className="font-sans text-dark-text/70 text-xs leading-[1.5] font-light line-clamp-2">
+              Explorez l'intégralité de nos créations. Chaque monture raconte une histoire. Des symboles anciens aux lignes modernes.
+            </p>
+          </motion.div>
+
+          {/* CTA Button (Always visible) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+            className="flex-shrink-0"
+          >
             <button
               onClick={handleNavigate}
               disabled={isLoading}
-              className="w-full border-2 border-dark-text px-8 py-4 font-sans text-[10px] tracking-[0.25em] font-bold text-dark-text active:bg-dark-text active:text-white transition-all duration-300 disabled:opacity-50"
+              className="w-full border-2 border-dark-text px-6 py-3 font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text hover:bg-dark-text hover:text-white transition-all duration-300 active:scale-[0.98] bg-white shadow-md disabled:opacity-50"
             >
               {isLoading ? 'CHARGEMENT...' : 'VOIR LA BOUTIQUE'}
             </button>
