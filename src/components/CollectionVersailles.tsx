@@ -87,7 +87,7 @@ export default function CollectionVersailles() {
       </div>
 
       {/* MOBILE VERSION - Completely New Design */}
-      <div className="min-h-screen bg-beige md:hidden relative overflow-hidden">
+      <div className="h-screen bg-beige md:hidden relative overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
@@ -99,7 +99,7 @@ export default function CollectionVersailles() {
         </div>
 
         {/* Content */}
-        <div className="relative min-h-screen flex flex-col justify-between px-6 pt-24 pb-16">
+        <div className="relative h-full flex flex-col justify-between px-6 pt-20 pb-10">
 
           {/* Top - Badge */}
           <motion.div
@@ -108,8 +108,8 @@ export default function CollectionVersailles() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex-shrink-0"
           >
-            <div className="inline-block bg-gradient-to-r from-bronze/10 to-transparent pr-8 py-3 -ml-1 pl-1">
-              <p className="font-sans text-bronze text-[10px] tracking-[0.35em] font-bold uppercase mb-2.5">
+            <div className="inline-block bg-gradient-to-r from-bronze/10 to-transparent pr-8 py-2 -ml-1 pl-1">
+              <p className="font-sans text-bronze text-[10px] tracking-[0.35em] font-bold uppercase mb-2">
                 SYMBOLE : FLEUR DE LYS
               </p>
               <div className="h-0.5 bg-gradient-to-r from-bronze via-bronze/60 to-transparent w-32" />
@@ -121,12 +121,12 @@ export default function CollectionVersailles() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex-1 flex flex-col justify-center"
+            className="flex-shrink-0 py-6"
           >
-            <h3 className="font-display text-5xl font-bold mb-6 tracking-[-0.03em] leading-[0.95] text-dark-text">
+            <h3 className="font-display text-5xl font-bold mb-4 tracking-[-0.03em] leading-[0.95] text-dark-text">
               COLLECTION<br/>VERSAILLES
             </h3>
-            <p className="font-sans text-dark-text/70 text-base leading-[1.75] font-light max-w-md">
+            <p className="font-sans text-dark-text/70 text-base leading-[1.65] font-light max-w-md">
               Les rois sont partis. Le symbole est resté.<br />
               La Fleur de Lys. Pour ceux qui construisent. Pas pour ceux qui paradent.
             </p>
@@ -137,17 +137,17 @@ export default function CollectionVersailles() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex-shrink-0 space-y-6"
+            className="flex-shrink-0 space-y-4"
           >
             {/* Product Image - Clickable */}
             <div
               onClick={handleNavigate}
-              className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-white/50 backdrop-blur-sm border border-dark-text/10 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
+              className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-white/50 backdrop-blur-sm border border-dark-text/10 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
             >
               <img
                 src="https://26.staticbtf.eno.do/v1/103-default/6438d7ab4a0133318c4426ad47aee221/media.jpg"
                 alt="Collection Versailles"
-                className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
               />
 
               {/* Loading Overlay */}
@@ -175,7 +175,7 @@ export default function CollectionVersailles() {
             <button
               onClick={handleNavigate}
               disabled={isLoading}
-              className="w-full border-2 border-dark-text px-8 py-5 font-sans text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige transition-all duration-300 active:scale-[0.98] backdrop-blur-sm bg-beige/80 shadow-lg mb-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
+              className="w-full border-2 border-dark-text px-8 py-4 font-sans text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige transition-all duration-300 active:scale-[0.98] backdrop-blur-sm bg-beige/80 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center gap-3">

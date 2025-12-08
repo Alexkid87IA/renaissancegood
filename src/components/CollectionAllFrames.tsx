@@ -78,7 +78,7 @@ export default function CollectionAllFrames() {
       </div>
 
       {/* MOBILE VERSION */}
-      <div className="min-h-screen bg-white md:hidden relative overflow-hidden">
+      <div className="h-screen bg-white md:hidden relative overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
@@ -90,7 +90,7 @@ export default function CollectionAllFrames() {
         </div>
 
         {/* Content */}
-        <div className="relative min-h-screen flex flex-col justify-between px-6 pt-24 pb-16">
+        <div className="relative h-full flex flex-col justify-between px-6 pt-20 pb-10">
 
           {/* Top - Badge and Category */}
           <motion.div
@@ -109,12 +109,12 @@ export default function CollectionAllFrames() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex-1 flex flex-col justify-center"
+            className="flex-shrink-0 py-6"
           >
-            <h3 className="font-display text-5xl font-bold mb-6 tracking-[-0.03em] leading-[0.95] text-dark-text">
+            <h3 className="font-display text-5xl font-bold mb-4 tracking-[-0.03em] leading-[0.95] text-dark-text">
               NOS<br/>CRÉATIONS
             </h3>
-            <p className="font-sans text-dark-text/70 text-base leading-[1.75] font-light max-w-md">
+            <p className="font-sans text-dark-text/70 text-base leading-[1.65] font-light max-w-md">
               Explorez l'intégralité de nos créations. Chaque monture raconte une histoire.<br />
               Des symboles anciens aux lignes modernes. Le savoir-faire parisien dans toute sa splendeur.
             </p>
@@ -125,10 +125,10 @@ export default function CollectionAllFrames() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex-shrink-0 space-y-6"
+            className="flex-shrink-0 space-y-4"
           >
             {/* Decorative Image Preview */}
-            <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br from-beige/50 to-bronze/10 border border-dark-text/10">
+            <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-gradient-to-br from-beige/50 to-bronze/10 border border-dark-text/10">
               <img
                 src="https://26.staticbtf.eno.do/v1/104-default/18b06e42d2310c24605161b4c62ef0e3/media.jpg"
                 alt="Collection Preview"
@@ -141,7 +141,7 @@ export default function CollectionAllFrames() {
             <button
               onClick={handleNavigate}
               disabled={isLoading}
-              className="w-full border-2 border-dark-text px-8 py-5 font-sans text-[10px] tracking-[0.25em] font-bold text-dark-text active:bg-dark-text active:text-white transition-all duration-300 disabled:opacity-50 mb-2"
+              className="w-full border-2 border-dark-text px-8 py-4 font-sans text-[10px] tracking-[0.25em] font-bold text-dark-text active:bg-dark-text active:text-white transition-all duration-300 disabled:opacity-50"
             >
               {isLoading ? 'CHARGEMENT...' : 'VOIR LA BOUTIQUE'}
             </button>

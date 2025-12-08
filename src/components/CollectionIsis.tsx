@@ -54,7 +54,7 @@ export default function CollectionIsis() {
       </div>
 
       {/* MOBILE VERSION - Completely New Design */}
-      <div className="min-h-screen bg-beige md:hidden relative overflow-hidden">
+      <div className="h-screen bg-beige md:hidden relative overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
@@ -66,20 +66,20 @@ export default function CollectionIsis() {
         </div>
 
         {/* Content */}
-        <div className="relative min-h-screen flex flex-col justify-between px-6 pt-24 pb-16">
+        <div className="relative h-full flex flex-col justify-between px-6 pt-20 pb-10">
 
           {/* Top - Badge and Status */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-shrink-0 space-y-4"
+            className="flex-shrink-0 space-y-3"
           >
             <span className="inline-block bg-bronze/15 border-2 border-bronze/60 text-bronze text-[9px] px-5 py-2.5 tracking-[0.3em] font-bold uppercase shadow-sm">
               Bientôt Disponible
             </span>
-            <div className="inline-block bg-gradient-to-r from-bronze/10 to-transparent pr-8 py-3 -ml-1 pl-1">
-              <p className="font-sans text-bronze text-[10px] tracking-[0.35em] font-bold uppercase mb-2.5">
+            <div className="inline-block bg-gradient-to-r from-bronze/10 to-transparent pr-8 py-2 -ml-1 pl-1">
+              <p className="font-sans text-bronze text-[10px] tracking-[0.35em] font-bold uppercase mb-2">
                 COBRA • SCARABÉE • ŒIL D'HORUS
               </p>
               <div className="h-0.5 bg-gradient-to-r from-bronze via-bronze/60 to-transparent w-32" />
@@ -91,12 +91,12 @@ export default function CollectionIsis() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex-1 flex flex-col justify-center"
+            className="flex-shrink-0 py-6"
           >
-            <h3 className="font-display text-5xl font-bold mb-6 tracking-[-0.03em] leading-[0.95] text-dark-text">
+            <h3 className="font-display text-5xl font-bold mb-4 tracking-[-0.03em] leading-[0.95] text-dark-text">
               COLLECTION<br/>ISIS
             </h3>
-            <p className="font-sans text-dark-text/70 text-base leading-[1.75] font-light max-w-md">
+            <p className="font-sans text-dark-text/70 text-base leading-[1.65] font-light max-w-md">
               Le Cobra : la garde. Le Scarabée : la renaissance. L'Œil : celui qui voit tout. Ce qui traverse 5 000 ans ne se porte pas par hasard.
             </p>
           </motion.div>
@@ -106,10 +106,10 @@ export default function CollectionIsis() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex-shrink-0 space-y-6"
+            className="flex-shrink-0 space-y-4"
           >
             {/* Decorative Image Preview - Non-clickable */}
-            <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100/50 border border-dark-text/10 cursor-not-allowed">
+            <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100/50 border border-dark-text/10 cursor-not-allowed">
               <img
                 src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg"
                 alt="Collection Isis Preview"
@@ -127,7 +127,7 @@ export default function CollectionIsis() {
             {/* CTA Button - Disabled State */}
             <button
               disabled
-              className="w-full border-2 border-dark-text/20 px-8 py-5 font-sans text-[10px] tracking-[0.25em] font-bold text-dark-text/30 cursor-not-allowed backdrop-blur-sm bg-beige/60 mb-2"
+              className="w-full border-2 border-dark-text/20 px-8 py-4 font-sans text-[10px] tracking-[0.25em] font-bold text-dark-text/30 cursor-not-allowed backdrop-blur-sm bg-beige/60"
             >
               BIENTÔT DISPONIBLE
             </button>
