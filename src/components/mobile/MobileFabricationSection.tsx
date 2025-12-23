@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useRef, useEffect } from 'react';
 
 interface MobileFabricationSectionProps {
   frame: string;
@@ -6,13 +7,32 @@ interface MobileFabricationSectionProps {
 }
 
 export default function MobileFabricationSection({ frame, lens }: MobileFabricationSectionProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Forcer l'autoplay sur mobile
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.play().catch(() => {
+        // Si autoplay échoue, on essaie au premier touch
+        const playOnTouch = () => {
+          video.play();
+          document.removeEventListener('touchstart', playOnTouch);
+        };
+        document.addEventListener('touchstart', playOnTouch);
+      });
+    }
+  }, []);
+
   return (
     <section className="relative overflow-hidden">
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
+        webkit-playsinline="true"
         className="w-full h-[60vh] object-cover"
       >
         <source
