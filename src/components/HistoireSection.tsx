@@ -16,14 +16,14 @@ export default function HistoireSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-[78vh] lg:h-screen relative sticky top-0 z-[70] bg-[#fafaf8]"
+      className="min-h-[78vh] lg:h-screen relative sticky top-0 z-[70] bg-[#0a0a0a]"
       id="histoire"
     >
       <div className="relative min-h-full py-12 lg:py-0 lg:h-full flex flex-col items-center justify-center text-center px-5 sm:px-8 md:px-12">
 
         {/* Lignes décoratives - Hidden on mobile */}
-        <div className="hidden md:block absolute top-0 left-1/4 w-px h-24 bg-gradient-to-b from-bronze/20 to-transparent" />
-        <div className="hidden md:block absolute top-0 right-1/4 w-px h-24 bg-gradient-to-b from-bronze/20 to-transparent" />
+        <div className="hidden md:block absolute top-0 left-1/4 w-px h-24 bg-gradient-to-b from-bronze/30 to-transparent" />
+        <div className="hidden md:block absolute top-0 right-1/4 w-px h-24 bg-gradient-to-b from-bronze/30 to-transparent" />
 
         {/* Contenu */}
         <div className="max-w-5xl">
@@ -35,11 +35,11 @@ export default function HistoireSection() {
             transition={{ duration: 0.4 }}
             className="flex items-center justify-center gap-2 mb-6"
           >
-            <div className="w-6 h-px bg-bronze/40" />
+            <div className="w-6 h-px bg-bronze/50" />
             <span className="font-sans text-bronze text-[8px] tracking-[0.35em] uppercase">
               Notre Histoire
             </span>
-            <div className="w-6 h-px bg-bronze/40" />
+            <div className="w-6 h-px bg-bronze/50" />
           </motion.div>
 
           {/* Titres */}
@@ -50,7 +50,7 @@ export default function HistoireSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="space-y-1.5 sm:space-y-4 mb-8 sm:mb-16"
           >
-            <h2 className="font-display text-[28px] sm:text-[2.55rem] md:text-[3.825rem] lg:text-[5.1rem] xl:text-[6.8rem] font-bold text-dark-text tracking-[-0.04em] leading-[0.9]">
+            <h2 className="font-display text-[28px] sm:text-[2.55rem] md:text-[3.825rem] lg:text-[5.1rem] xl:text-[6.8rem] font-bold text-white tracking-[-0.04em] leading-[0.9]">
               LE MONDE OUBLIE.
             </h2>
             <h2 className="font-display text-[28px] sm:text-[2.55rem] md:text-[3.825rem] lg:text-[5.1rem] xl:text-[6.8rem] font-bold text-bronze tracking-[-0.04em] leading-[0.9]">
@@ -64,7 +64,7 @@ export default function HistoireSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="font-sans text-dark-text/50 text-xs md:text-[0.95625rem] max-w-xl mx-auto mb-8 sm:mb-12 font-light leading-relaxed"
+            className="font-sans text-white/50 text-xs md:text-[0.95625rem] max-w-xl mx-auto mb-8 sm:mb-12 font-light leading-relaxed"
           >
             Renaissance. Un mot pour ceux qui refusent que tout disparaisse. Que les gestes se perdent. Que le beau devienne jetable.
           </motion.p>
@@ -77,8 +77,8 @@ export default function HistoireSection() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <Link to="/histoire">
-              <button className="group relative border-2 border-dark-text text-dark-text px-8 sm:px-12 py-3.5 sm:py-5 font-sans text-[8px] tracking-[0.25em] font-bold overflow-hidden transition-all duration-500 hover:text-white">
-                <span className="absolute inset-0 bg-dark-text translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              <button className="group relative border-2 border-white/30 text-white px-8 sm:px-12 py-3.5 sm:py-5 font-sans text-[8px] tracking-[0.25em] font-bold overflow-hidden transition-all duration-500 hover:border-bronze hover:text-dark-text">
+                <span className="absolute inset-0 bg-bronze translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                 <span className="relative z-10">DÉCOUVRIR NOTRE HISTOIRE</span>
               </button>
             </Link>
@@ -87,7 +87,7 @@ export default function HistoireSection() {
 
         {/* Diamant décoratif en bas - Hidden on mobile */}
         <div className="hidden md:block absolute bottom-12 left-1/2 -translate-x-1/2">
-          <div className="w-2 h-2 border border-bronze/30 rotate-45" />
+          <div className="w-2 h-2 border border-bronze/40 rotate-45" />
         </div>
       </div>
     </motion.section>

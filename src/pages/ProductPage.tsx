@@ -18,6 +18,7 @@ interface ShopifyProduct {
   description: string;
   descriptionHtml: string;
   availableForSale: boolean;
+  tags?: string[];
   priceRange: {
     minVariantPrice: {
       amount: string;
@@ -78,6 +79,7 @@ interface Product {
   descriptionHtml?: string;
   images: string[];
   variants: Variant[];
+  tags?: string[];
 }
 
 export default function ProductPage() {
@@ -169,7 +171,8 @@ export default function ProductPage() {
           description: shopifyProduct.description || 'Découvrez ce modèle unique de la collection Renaissance.',
           descriptionHtml: shopifyProduct.descriptionHtml || shopifyProduct.description,
           images: images,
-          variants: variants
+          variants: variants,
+          tags: shopifyProduct.tags || []
         };
 
         setProduct(formattedProduct);

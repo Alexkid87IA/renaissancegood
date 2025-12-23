@@ -13,9 +13,10 @@ interface Variant {
 interface MobileBottomBarProps {
   selectedVariant: Variant | undefined;
   productPrice: string;
+  isOutOfStock?: boolean;
 }
 
-export default function MobileBottomBar({ selectedVariant, productPrice }: MobileBottomBarProps) {
+export default function MobileBottomBar({ selectedVariant, productPrice, isOutOfStock = false }: MobileBottomBarProps) {
   const [addedToCart, setAddedToCart] = useState(false);
   const { addToCart, isLoading } = useCart();
 
@@ -66,23 +67,31 @@ export default function MobileBottomBar({ selectedVariant, productPrice }: Mobil
         <div className="flex items-center gap-3">
           <div className="flex-shrink-0">
             <p className="font-sans text-xs text-dark-text/60 tracking-wide mb-1">Prix</p>
-            <p className="font-sans text-xl font-semibold text-dark-text">
+            <p className={`font-sans text-xl font-semibold ${isOutOfStock ? 'text-dark-text/40 line-through' : 'text-dark-text'}`}>
               {selectedVariant?.price || productPrice}
             </p>
           </div>
 
-          <motion.button
-            onClick={handleAddToCart}
-            disabled={isLoading || !selectedVariant?.availableForSale}
-            whileTap={{ scale: 0.98 }}
-            className={`flex-1 py-4 font-sans text-[11px] tracking-[0.3em] font-bold transition-all duration-300 ${
-              addedToCart
-                ? 'bg-green-600 text-white'
-                : 'bg-dark-text text-white active:bg-dark-text/90'
-            } disabled:opacity-50 disabled:cursor-not-allowed shadow-sm`}
-          >
-            {isLoading ? 'AJOUT...' : addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER AU PANIER'}
-          </motion.button>
+          {isOutOfStock ? (
+            <div className="flex-1 py-4 bg-bronze/10 border border-bronze/30 flex items-center justify-center">
+              <span className="font-sans text-[11px] tracking-[0.2em] font-bold text-bronze uppercase">
+                Indisponible
+              </span>
+            </div>
+          ) : (
+            <motion.button
+              onClick={handleAddToCart}
+              disabled={isLoading || !selectedVariant?.availableForSale}
+              whileTap={{ scale: 0.98 }}
+              className={`flex-1 py-4 font-sans text-[11px] tracking-[0.3em] font-bold transition-all duration-300 ${
+                addedToCart
+                  ? 'bg-green-600 text-white'
+                  : 'bg-dark-text text-white active:bg-dark-text/90'
+              } disabled:opacity-50 disabled:cursor-not-allowed shadow-sm`}
+            >
+              {isLoading ? 'AJOUT...' : addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER AU PANIER'}
+            </motion.button>
+          )}
         </div>
       </div>
     </motion.div>

@@ -34,6 +34,7 @@ interface Product {
   descriptionHtml?: string;
   variants: Variant[];
   images?: string[];
+  tags?: string[];
 }
 
 interface ProductPageMobileProps {
@@ -43,6 +44,16 @@ interface ProductPageMobileProps {
 export default function ProductPageMobile({ product }: ProductPageMobileProps) {
   const navigate = useNavigate();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+
+  // Vérifier si le produit est adaptable en optique
+  const isNonAdaptable = product.tags?.some(tag => 
+    tag.toLowerCase() === 'non-adaptable' || 
+    tag.toLowerCase() === 'solaire-uniquement'
+  );
+
+  // Vérifier si le variant sélectionné est en rupture de stock
+  const selectedVariant = product.variants[selectedColorIndex];
+  const isOutOfStock = !selectedVariant?.availableForSale;
 
   const handleShare = async () => {
     if ('vibrate' in navigator) {
@@ -153,6 +164,65 @@ export default function ProductPageMobile({ product }: ProductPageMobileProps) {
           onColorChange={setSelectedColorIndex}
         />
 
+        {/* Bandeau Rupture de Stock - Mobile */}
+        {isOutOfStock && (
+          <div className="mx-5 mb-4 p-4 bg-bronze/10 border border-bronze/30 rounded-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-bronze/20 flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5 text-bronze" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-sans text-sm font-bold text-bronze uppercase tracking-wide">
+                  Rupture de stock
+                </p>
+                <p className="font-sans text-xs text-dark-text/60 mt-0.5">
+                  Ce modèle est temporairement indisponible
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Badge Adaptable / Non-Adaptable */}
+        <div className="px-5 py-4 border-b border-dark-text/10">
+          {isNonAdaptable ? (
+            <div className="flex items-center gap-3 bg-bronze/5 p-4 rounded-lg">
+              <div className="w-10 h-10 rounded-full bg-bronze/10 flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5 text-bronze" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 8v4M12 16h.01" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-sans text-xs tracking-[0.1em] font-bold text-bronze uppercase">
+                  Solaire uniquement
+                </p>
+                <p className="font-sans text-xs text-dark-text/50 mt-0.5">
+                  Non adaptable en verres correcteurs
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3 bg-green-50 p-4 rounded-lg">
+              <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-sans text-xs tracking-[0.1em] font-bold text-dark-text uppercase">
+                  Adaptable à votre vue
+                </p>
+                <p className="font-sans text-xs text-dark-text/50 mt-0.5">
+                  Compatible verres correcteurs
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+
         <MobileAccordion sections={accordionSections} defaultOpen={0} />
 
         <MobileFabricationSection frame={product.frame} lens={product.lens} />
@@ -163,6 +233,7 @@ export default function ProductPageMobile({ product }: ProductPageMobileProps) {
       <MobileBottomBar
         selectedVariant={product.variants[selectedColorIndex]}
         productPrice={product.price}
+        isOutOfStock={isOutOfStock}
       />
 
       <style>{`

@@ -27,6 +27,7 @@ interface Product {
   description: string;
   descriptionHtml?: string;
   variants: Variant[];
+  tags?: string[];
 }
 
 interface ProductSidebarProps {
@@ -40,6 +41,16 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
   const [showDescription, setShowDescription] = useState(true);
   const [addedToCart, setAddedToCart] = useState(false);
   const { addToCart, isLoading } = useCart();
+
+  // Vérifier si le produit est adaptable en optique
+  const isNonAdaptable = product.tags?.some(tag => 
+    tag.toLowerCase() === 'non-adaptable' || 
+    tag.toLowerCase() === 'solaire-uniquement'
+  );
+
+  // Vérifier si le variant sélectionné est en rupture de stock
+  const selectedVariant = product.variants[selectedColorIndex];
+  const isOutOfStock = !selectedVariant?.availableForSale;
 
   const handleAddToCart = async () => {
     const selectedVariant = product.variants[selectedColorIndex];
@@ -66,11 +77,70 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
           <h1 className="font-display text-2xl sm:text-3xl laptop:text-4xl xl:text-5xl font-bold text-dark-text mb-3 lg:mb-4 leading-[0.95]">
             {product.name}
           </h1>
-          {product.badge && (
+          {product.badge && !isOutOfStock && (
             <div className="inline-block border border-dark-text px-3 py-1.5">
               <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text">
                 {product.badge}
               </span>
+            </div>
+          )}
+        </div>
+
+        {/* Bandeau Rupture de Stock */}
+        {isOutOfStock && (
+          <div className="mb-6 lg:mb-8 p-4 bg-bronze/10 border border-bronze/30 rounded-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-bronze/20 flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5 text-bronze" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-sans text-sm font-bold text-bronze uppercase tracking-wide">
+                  Rupture de stock
+                </p>
+                <p className="font-sans text-xs text-dark-text/60 mt-0.5">
+                  Ce modèle est temporairement indisponible
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Badge Adaptable / Non-Adaptable */}
+        <div className="mb-6 lg:mb-8 pb-6 lg:pb-8 border-b border-dark-text/10">
+          {isNonAdaptable ? (
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-bronze/10 flex items-center justify-center">
+                <svg className="w-4 h-4 text-bronze" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 8v4M12 16h.01" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-sans text-[10px] tracking-[0.15em] font-bold text-bronze uppercase">
+                  Solaire uniquement
+                </p>
+                <p className="font-sans text-xs text-dark-text/50 mt-0.5">
+                  Non adaptable en verres correcteurs
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center">
+                <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-sans text-[10px] tracking-[0.15em] font-bold text-dark-text uppercase">
+                  Adaptable à votre vue
+                </p>
+                <p className="font-sans text-xs text-dark-text/50 mt-0.5">
+                  Compatible verres correcteurs
+                </p>
+              </div>
             </div>
           )}
         </div>
@@ -176,21 +246,29 @@ export default function ProductSidebar({ product, selectedColorIndex, onColorCha
         {/* Price & Buy Button - Caché sur mobile car présent dans BottomBar */}
         <div className="hidden lg:grid grid-cols-2 gap-3 pt-4">
           <div className="border border-dark-text/20 flex items-center justify-center">
-            <span className="font-sans text-lg font-semibold text-dark-text">
+            <span className={`font-sans text-lg font-semibold ${isOutOfStock ? 'text-dark-text/40 line-through' : 'text-dark-text'}`}>
               {product.variants[selectedColorIndex]?.price || product.price}
             </span>
           </div>
-          <button
-            onClick={handleAddToCart}
-            disabled={isLoading || !product.variants[selectedColorIndex]?.availableForSale}
-            className={`px-6 py-4 font-sans text-[10px] tracking-[0.3em] font-bold transition-all duration-200 ${
-              addedToCart
-                ? 'bg-green-600 text-white'
-                : 'bg-dark-text text-white hover:bg-dark-text/90'
-            } disabled:opacity-50 disabled:cursor-not-allowed`}
-          >
-            {isLoading ? 'AJOUT...' : addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER'}
-          </button>
+          {isOutOfStock ? (
+            <div className="px-6 py-4 bg-bronze/10 border border-bronze/30 flex items-center justify-center">
+              <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-bronze uppercase">
+                Indisponible
+              </span>
+            </div>
+          ) : (
+            <button
+              onClick={handleAddToCart}
+              disabled={isLoading}
+              className={`px-6 py-4 font-sans text-[10px] tracking-[0.3em] font-bold transition-all duration-200 ${
+                addedToCart
+                  ? 'bg-green-600 text-white'
+                  : 'bg-dark-text text-white hover:bg-dark-text/90'
+              } disabled:opacity-50 disabled:cursor-not-allowed`}
+            >
+              {isLoading ? 'AJOUT...' : addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER'}
+            </button>
+          )}
         </div>
       </div>
 

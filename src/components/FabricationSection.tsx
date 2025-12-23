@@ -27,7 +27,7 @@ export default function FabricationSection() {
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source
-            src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761874713/61822c99-1122-400c-aa3a-317de2674d17_zodmfx.mp4"
+            src="https://res.cloudinary.com/dafo6bvhc/video/upload/v1766499859/61822c99-1122-400c-aa3a-317de2674d17_1_efejw1.mp4"
             type="video/mp4"
           />
         </video>

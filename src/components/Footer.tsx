@@ -68,7 +68,7 @@ export default function Footer() {
           className="text-center mb-6 laptop:mb-12"
         >
           <img
-            src="https://res.cloudinary.com/dwt7u0azs/image/upload/v1761868999/RENAISSANCE_TRANSPARENT_bbe5d805-70e6-4344-856b-1d8534ad9056_ujgcyh.webp"
+            src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1766502526/6c20430c-e6c7-41d2-b451-8717d92026d9_l19hau.png"
             alt="Renaissance Eyewear"
             className="h-16 laptop:h-28 w-auto object-contain mb-3 laptop:mb-6 mx-auto"
           />

@@ -16,7 +16,7 @@ export async function getProducts() {
     body: JSON.stringify({
       query: `
         {
-          products(first: 50) {
+          products(first: 250) {
             edges {
               node {
                 id
@@ -25,6 +25,7 @@ export async function getProducts() {
                 description
                 descriptionHtml
                 availableForSale
+                tags
                 priceRange {
                   minVariantPrice {
                     amount
@@ -44,11 +45,20 @@ export async function getProducts() {
                     node {
                       id
                       title
+                      quantityAvailable
                       priceV2 {
                         amount
                         currencyCode
                       }
                       availableForSale
+                    }
+                  }
+                }
+                collections(first: 5) {
+                  edges {
+                    node {
+                      handle
+                      title
                     }
                   }
                 }
@@ -62,13 +72,8 @@ export async function getProducts() {
 
   const { data } = await response.json();
   
-  // Filtrer seulement les produits disponibles à la vente
-  // Note : Les produits archivés dans Shopify doivent être dépubliés du canal "Headless"
-  // pour ne pas apparaître ici. Si un produit archivé apparaît, vérifier dans Shopify
-  // que le canal "Headless" ou "Storefront API" est bien décoché.
-  const products = data.products.edges
-    .map((edge: any) => edge.node)
-    .filter((product: any) => product.availableForSale);
+  // Récupérer tous les produits publiés (sans filtrer par stock)
+  const products = data.products.edges.map((edge: any) => edge.node);
     
   return products;
 }
@@ -88,6 +93,7 @@ export async function getProduct(handle: string) {
             description
             descriptionHtml
             availableForSale
+            tags
             priceRange {
               minVariantPrice {
                 amount
@@ -119,6 +125,14 @@ export async function getProduct(handle: string) {
                 }
               }
             }
+            collections(first: 5) {
+              edges {
+                node {
+                  handle
+                  title
+                }
+              }
+            }
             lensWidth: metafield(namespace: "custom", key: "lens_width") {
               value
               type
@@ -141,7 +155,7 @@ export async function getProduct(handle: string) {
   return data.productByHandle;
 }
 
-// Fonction pour récupérer les produits par collection (Heritage, Versailles)
+// Fonction pour récupérer les produits par collection (Heritage, Versailles, etc.)
 export async function getProductsByCollection(collectionHandle: string) {
   const response = await fetch(getStorefrontApiUrl(), {
     method: 'POST',
@@ -151,7 +165,7 @@ export async function getProductsByCollection(collectionHandle: string) {
         {
           collection(handle: "${collectionHandle}") {
             title
-            products(first: 50) {
+            products(first: 250) {
               edges {
                 node {
                   id
@@ -160,6 +174,7 @@ export async function getProductsByCollection(collectionHandle: string) {
                   description
                   descriptionHtml
                   availableForSale
+                  tags
                   priceRange {
                     minVariantPrice {
                       amount
@@ -179,11 +194,20 @@ export async function getProductsByCollection(collectionHandle: string) {
                       node {
                         id
                         title
+                        quantityAvailable
                         priceV2 {
                           amount
                           currencyCode
                         }
                         availableForSale
+                      }
+                    }
+                  }
+                  collections(first: 5) {
+                    edges {
+                      node {
+                        handle
+                        title
                       }
                     }
                   }
@@ -202,10 +226,8 @@ export async function getProductsByCollection(collectionHandle: string) {
     return [];
   }
   
-  // Filtrer seulement les produits disponibles à la vente
-  const products = data.collection.products.edges
-    .map((edge: any) => edge.node)
-    .filter((product: any) => product.availableForSale);
+  // Récupérer tous les produits de la collection (sans filtrer par stock)
+  const products = data.collection.products.edges.map((edge: any) => edge.node);
   
   return products;
 }
@@ -349,7 +371,7 @@ export async function addToCart(cartId: string, variantId: string, quantity: num
 }
 
 // Mettre à jour la quantité d'un article dans le panier
-export async function updateCartLine(cartId: string, lineId: string, quantity: number) {
+export async function updateCartItem(cartId: string, lineId: string, quantity: number) {
   const response = await fetch(getStorefrontApiUrl(), {
     method: 'POST',
     headers: getPublicTokenHeaders(),
@@ -674,4 +696,109 @@ export async function getRecentBlogPosts(blogHandle: string = 'actualites', limi
   }
   
   return data.blog.articles.edges.map((edge: any) => edge.node);
+}
+
+// ===== FONCTIONS POUR LE CHECKOUT =====
+
+// Convertir le cartId en checkoutId
+function cartIdToCheckoutId(cartId: string): string {
+  const base64Part = cartId.split('/').pop();
+  return `gid://shopify/Checkout/${base64Part}`;
+}
+
+// Mettre à jour l'email du checkout
+export async function updateCheckoutEmail(cartId: string, email: string) {
+  const checkoutId = cartIdToCheckoutId(cartId);
+  
+  const response = await fetch(getStorefrontApiUrl(), {
+    method: 'POST',
+    headers: getPublicTokenHeaders(),
+    body: JSON.stringify({
+      query: `
+        mutation checkoutEmailUpdateV2($checkoutId: ID!, $email: String!) {
+          checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {
+            checkout {
+              id
+              email
+              webUrl
+            }
+            checkoutUserErrors {
+              field
+              message
+            }
+          }
+        }
+      `,
+      variables: {
+        checkoutId,
+        email
+      }
+    }),
+  });
+
+  const { data } = await response.json();
+  
+  if (data.checkoutEmailUpdateV2.checkoutUserErrors.length > 0) {
+    console.error('Erreur lors de la mise à jour de l\'email:', data.checkoutEmailUpdateV2.checkoutUserErrors);
+  }
+  
+  return data.checkoutEmailUpdateV2;
+}
+
+// Mettre à jour l'adresse de livraison du checkout
+export async function updateCheckoutShippingAddress(cartId: string, shippingAddress: {
+  firstName: string;
+  lastName: string;
+  address1: string;
+  address2?: string;
+  city: string;
+  zip: string;
+  country: string;
+  phone: string;
+}) {
+  const checkoutId = cartIdToCheckoutId(cartId);
+  
+  const response = await fetch(getStorefrontApiUrl(), {
+    method: 'POST',
+    headers: getPublicTokenHeaders(),
+    body: JSON.stringify({
+      query: `
+        mutation checkoutShippingAddressUpdateV2($checkoutId: ID!, $shippingAddress: MailingAddressInput!) {
+          checkoutShippingAddressUpdateV2(checkoutId: $checkoutId, shippingAddress: $shippingAddress) {
+            checkout {
+              id
+              email
+              shippingAddress {
+                firstName
+                lastName
+                address1
+                address2
+                city
+                zip
+                country
+                phone
+              }
+              webUrl
+            }
+            checkoutUserErrors {
+              field
+              message
+            }
+          }
+        }
+      `,
+      variables: {
+        checkoutId,
+        shippingAddress
+      }
+    }),
+  });
+
+  const { data } = await response.json();
+  
+  if (data.checkoutShippingAddressUpdateV2.checkoutUserErrors.length > 0) {
+    console.error('Erreur lors de la mise à jour de l\'adresse:', data.checkoutShippingAddressUpdateV2.checkoutUserErrors);
+  }
+  
+  return data.checkoutShippingAddressUpdateV2;
 }
