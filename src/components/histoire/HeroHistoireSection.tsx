@@ -151,7 +151,7 @@ export default function HeroHistoireSection() {
               <div className="flex items-center gap-2">
                 <span className="font-sans text-white text-[0.95rem] md:text-[1.1rem] font-light">01</span>
                 <span className="font-sans text-white/30 text-[0.65rem]">/</span>
-                <span className="font-sans text-white/40 text-[0.65rem]">09</span>
+                <span className="font-sans text-white/40 text-[0.65rem]">07</span>
               </div>
 
               <div className="flex flex-col items-center gap-1">

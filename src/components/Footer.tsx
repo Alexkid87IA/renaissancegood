@@ -19,9 +19,11 @@ export default function Footer() {
               alt="Renaissance Eyewear"
               className="h-16 md:h-20 w-auto object-contain mb-6 brightness-0 invert"
             />
-            <p className="font-display text-xl md:text-2xl text-white/80 font-light leading-relaxed mb-6">
-              Pour que chaque jour compte.
-            </p>
+            <img
+              src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956518/4064a921-64ab-455f-a852-c349da46d95a_mlfxhm.png"
+              alt="Pour que chaque jour compte"
+              className="h-10 md:h-12 w-auto object-contain mb-6 opacity-70"
+            />
             <p className="font-sans text-sm text-white/50 font-light leading-relaxed">
               Lunetterie française d'exception. Symboles intemporels, savoir-faire artisanal, éditions limitées.
             </p>

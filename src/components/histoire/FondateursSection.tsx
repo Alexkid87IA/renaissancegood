@@ -125,7 +125,7 @@ export default function FondateursSection() {
               <div className="flex items-center gap-3">
                 <span className="font-sans text-dark-text text-lg md:text-xl font-light">02</span>
                 <span className="font-sans text-dark-text/30 text-sm">/</span>
-                <span className="font-sans text-dark-text/40 text-sm">08</span>
+                <span className="font-sans text-dark-text/40 text-sm">07</span>
               </div>
               <div className="flex flex-col items-center gap-1">
                 <div className="w-px h-8 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
