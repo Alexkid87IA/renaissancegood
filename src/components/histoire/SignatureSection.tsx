@@ -129,15 +129,6 @@ export default function SignatureSection() {
               ))}
             </div>
 
-            {/* Signature finale */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.9, duration: 0.7 }}
-              className="mt-16 text-center"
-            >
-              <p className="font-display text-bronze text-2xl md:text-3xl tracking-wide">Renaissance.</p>
-            </motion.div>
           </div>
         </div>
 
