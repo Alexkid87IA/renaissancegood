@@ -73,7 +73,7 @@ export default function Footer() {
             className="h-16 laptop:h-28 w-auto object-contain mb-3 laptop:mb-6 mx-auto"
           />
           <p className="font-serif text-sm laptop:text-[17px] text-dark-text/70 max-w-2xl mx-auto mb-4 laptop:mb-6 italic">
-            « Le silence stylé des symboles intemporels »
+            Pour que chaque jour compte.
           </p>
 
           {/* Social Media */}

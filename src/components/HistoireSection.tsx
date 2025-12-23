@@ -16,10 +16,10 @@ export default function HistoireSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-[85vh] lg:h-screen relative sticky top-0 z-[70] bg-[#0a0a0a]"
+      className="py-20 md:py-0 md:min-h-[70vh] lg:min-h-[75vh] xl:min-h-[80vh] relative sticky top-0 z-[70] bg-[#0a0a0a] flex items-center justify-center"
       id="histoire"
     >
-      <div className="relative min-h-full py-16 lg:py-0 lg:h-full flex flex-col items-center justify-center text-center px-6 sm:px-8 md:px-12">
+      <div className="relative w-full flex flex-col items-center justify-center text-center px-6 sm:px-8 md:px-12 md:py-16 lg:py-20">
 
         {/* Lignes décoratives - Hidden on mobile */}
         <div className="hidden md:block absolute top-0 left-1/4 w-px h-24 bg-gradient-to-b from-bronze/30 to-transparent" />
@@ -50,10 +50,10 @@ export default function HistoireSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="space-y-3 sm:space-y-4 mb-10 sm:mb-16"
           >
-            <h2 className="font-display text-[26px] xs:text-[32px] sm:text-[2.55rem] md:text-[3.825rem] lg:text-[5.1rem] xl:text-[6.8rem] font-bold text-white tracking-[-0.03em] sm:tracking-[-0.04em] leading-[1] sm:leading-[0.9]">
+            <h2 className="font-display text-[26px] xs:text-[32px] sm:text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] xl:text-[5.5rem] font-bold text-white tracking-[-0.03em] sm:tracking-[-0.04em] leading-[1] sm:leading-[0.95]">
               LE MONDE OUBLIE.
             </h2>
-            <h2 className="font-display text-[26px] xs:text-[32px] sm:text-[2.55rem] md:text-[3.825rem] lg:text-[5.1rem] xl:text-[6.8rem] font-bold text-bronze tracking-[-0.03em] sm:tracking-[-0.04em] leading-[1] sm:leading-[0.9]">
+            <h2 className="font-display text-[26px] xs:text-[32px] sm:text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] xl:text-[5.5rem] font-bold text-bronze tracking-[-0.03em] sm:tracking-[-0.04em] leading-[1] sm:leading-[0.95]">
               NOUS, ON SE SOUVIENT.
             </h2>
           </motion.div>
@@ -85,10 +85,11 @@ export default function HistoireSection() {
           </motion.div>
         </div>
 
-        {/* Diamant décoratif en bas - Hidden on mobile */}
-        <div className="hidden md:block absolute bottom-12 left-1/2 -translate-x-1/2">
-          <div className="w-2 h-2 border border-bronze/40 rotate-45" />
+        {/* Diamant décoratif en bas */}
+        <div className="hidden md:block mt-12 lg:mt-16">
+          <div className="w-2 h-2 border border-bronze/40 rotate-45 mx-auto" />
         </div>
+
       </div>
     </motion.section>
   );

@@ -5,20 +5,23 @@ const engagements = [
   { 
     number: '01',
     title: 'Durabilité', 
-    description: "On construit pour durer. Pas pour être jeté après deux saisons.",
-    detail: "10 ans minimum. Garanti."
+    description: "Nos grands-parents gardaient leurs affaires. Nos parents ont commencé à jeter. Nous, on choisit.",
+    stat: "10 ans minimum",
+    statLabel: "Garanti"
   },
   { 
     number: '02',
     title: 'Traçabilité', 
-    description: "Tu sais d'où viennent tes lunettes. Fabrication, matériaux, tout est transparent.",
-    detail: "Design français. Excellence coréenne."
+    description: "Chaque pièce a une origine. Design français. Fabrication coréenne. On te dit tout parce qu'on n'a rien à cacher.",
+    stat: "100%",
+    statLabel: "Transparent"
   },
   { 
     number: '03',
     title: 'Équité', 
-    description: "On paie nos partenaires correctement. On respecte nos opticiens.",
-    detail: "200+ partenaires de confiance."
+    description: "200 partenaires. Certains depuis le premier jour. On construit des relations, pas des contrats.",
+    stat: "200+",
+    statLabel: "Partenaires"
   }
 ];
 
@@ -69,7 +72,7 @@ export default function EngagementSection() {
               <span className="font-sans text-white/40 text-[0.55rem] font-medium tracking-[0.3em] uppercase">L'Engagement</span>
             </div>
             <div className="hidden md:block text-right">
-              <p className="font-sans text-white/30 text-[7px] tracking-[0.25em] uppercase">Responsabilité</p>
+              <p className="font-sans text-white/30 text-[7px] tracking-[0.25em] uppercase">Durabilité</p>
             </div>
           </div>
         </div>
@@ -87,11 +90,12 @@ export default function EngagementSection() {
                 className="space-y-6"
               >
                 <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-white font-light leading-[1.2]">
-                  Une paire qu'on jette après deux ans,<br />
-                  <span className="text-bronze">ce n'est pas une paire.</span>
+                  Avant, on réparait.<br />
+                  Aujourd'hui, on jette.<br />
+                  <span className="text-bronze">Nous, on répare.</span>
                 </h2>
                 <p className="font-sans text-white/60 text-lg md:text-xl max-w-2xl leading-relaxed">
-                  Nous, on construit pour 10 ans minimum. On garantit 2 ans. On fournit les pièces tant que la monture existe. On ajuste gratuitement, à vie.
+                  On construit pour dix ans. On garantit deux ans. On fournit les pièces tant que la monture existe. On ajuste gratuitement. À vie.
                 </p>
               </motion.div>
 
@@ -105,7 +109,7 @@ export default function EngagementSection() {
                     transition={{ delay: 0.3 + index * 0.1, duration: 0.7 }}
                     className="group"
                   >
-                    <div className="border border-white/10 bg-white/[0.02] backdrop-blur-sm p-6 md:p-8 hover:bg-white/[0.05] hover:border-bronze/30 transition-all duration-500 h-full">
+                    <div className="border border-white/10 bg-white/[0.02] backdrop-blur-sm p-6 md:p-8 hover:bg-white/[0.05] hover:border-bronze/30 transition-all duration-500 h-full flex flex-col">
                       <div className="flex items-center gap-3 mb-4">
                         <span className="font-display text-bronze/60 text-2xl md:text-3xl font-light group-hover:text-bronze transition-colors duration-500">
                           {engagement.number}
@@ -115,12 +119,13 @@ export default function EngagementSection() {
                       <h3 className="font-display text-white text-xl md:text-2xl font-light mb-3 tracking-wide">
                         {engagement.title}
                       </h3>
-                      <p className="font-sans text-white/60 text-sm md:text-base font-light leading-[1.7] mb-4">
+                      <p className="font-sans text-white/60 text-sm md:text-base font-light leading-[1.7] mb-6 flex-1">
                         {engagement.description}
                       </p>
-                      <p className="font-sans text-bronze text-xs tracking-wider uppercase">
-                        {engagement.detail}
-                      </p>
+                      <div className="border-t border-white/10 pt-4 mt-auto">
+                        <p className="font-display text-bronze text-2xl md:text-3xl font-light">{engagement.stat}</p>
+                        <p className="font-sans text-white/40 text-xs tracking-wider uppercase mt-1">{engagement.statLabel}</p>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
@@ -135,7 +140,7 @@ export default function EngagementSection() {
               >
                 <p className="font-display text-2xl md:text-3xl text-white font-light leading-[1.4]">
                   Ce qu'on vend, on l'assume.<br />
-                  <span className="text-white/60">Pas un an. Pas deux. Aussi longtemps qu'il le faut.</span>
+                  <span className="text-white/60">Aujourd'hui. Dans dix ans. Quand tu le transmettras.</span>
                 </p>
               </motion.div>
 

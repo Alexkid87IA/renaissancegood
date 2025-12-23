@@ -3,20 +3,24 @@ import { useRef } from 'react';
 
 const narrativeSteps = [
   {
-    text: 'Regarde la branche gauche. Un strass. Pas plus gros qu\'une tête d\'épingle.',
-    detail: 'Invisible pour les autres. Évident pour toi.'
+    number: '1',
+    text: "Branche gauche. Un strass. Plus petit qu'une tête d'épingle.",
+    detail: "Les autres regardent. Toi seul vois."
   },
   {
-    text: 'Approche-toi. Des gravures apparaissent. Tu ne les avais jamais vues.',
-    detail: 'Les symboles sacrés, cachés dans le métal.'
+    number: '2',
+    text: "Approche-toi. Des symboles apparaissent. Gravés dans le métal.",
+    detail: "Chacun porte un sens. Chacun garde un secret. Tu choisis celui qui te ressemble."
   },
   {
-    text: 'Retourne la pièce. Un numéro. Le tien. Le seul.',
-    detail: 'Édition limitée. Jamais reproduite.'
+    number: '3',
+    text: "Retourne la pièce. Un numéro. Gravé pour toi.",
+    detail: "Il n'existera qu'une fois. Comme toi."
   },
   {
-    text: 'Ce n\'est pas une lunette. C\'est un secret que tu portes sur le visage.',
-    detail: 'Le luxe silencieux. La signature Renaissance.'
+    number: '4',
+    text: "Une lunette, tout le monde peut en porter une.",
+    detail: "Un secret, ça se mérite."
   }
 ];
 
@@ -86,10 +90,10 @@ export default function SignatureSection() {
               className="mb-12 md:mb-16"
             >
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-dark-text font-light leading-[1.2] mb-4">
-                Le luxe qui ne crie pas.
+                Certains secrets se portent sur le visage.
               </h2>
               <p className="font-sans text-dark-text/60 text-lg md:text-xl max-w-2xl">
-                Pas de logo visible. Pas de monogramme. Juste des détails que seul le porteur connaît.
+                Zéro logo. Zéro monogramme. Juste toi et ce que tu sais.
               </p>
             </motion.div>
           </div>
@@ -109,7 +113,7 @@ export default function SignatureSection() {
                 >
                   <div className="flex-shrink-0 mt-1">
                     <div className="w-12 h-12 md:w-14 md:h-14 border border-bronze/30 bg-white flex items-center justify-center group-hover:border-bronze group-hover:bg-bronze/5 transition-all duration-500 shadow-sm">
-                      <span className="font-display text-bronze text-lg md:text-xl font-light">{index + 1}</span>
+                      <span className="font-display text-bronze text-lg md:text-xl font-light">{step.number}</span>
                     </div>
                   </div>
                   <div className="flex-1 pt-1">
@@ -124,6 +128,16 @@ export default function SignatureSection() {
                 </motion.div>
               ))}
             </div>
+
+            {/* Signature finale */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.9, duration: 0.7 }}
+              className="mt-16 text-center"
+            >
+              <p className="font-display text-bronze text-2xl md:text-3xl tracking-wide">Renaissance.</p>
+            </motion.div>
           </div>
         </div>
 
