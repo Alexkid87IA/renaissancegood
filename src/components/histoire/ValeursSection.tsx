@@ -1,195 +1,153 @@
-import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
-const stats = [
-  { value: '200', unit: '+', label: 'Gestes', sublabel: 'Par paire' },
-  { value: '15', unit: 'h', label: 'Temps', sublabel: 'Fabrication' },
-  { value: '0', unit: '', label: 'Compromis', sublabel: 'Zéro' }
+const valeurs = [
+  { 
+    number: '01',
+    title: 'La Justesse', 
+    description: 'Chaque mot vrai. Chaque geste nécessaire. Chaque matière juste.',
+    keyword: 'Vérité'
+  },
+  { 
+    number: '02',
+    title: 'Le Respect', 
+    description: 'On ne traite personne comme un chiffre. Ni client, ni partenaire, ni artisan.',
+    keyword: 'Dignité'
+  },
+  { 
+    number: '03',
+    title: 'Le Silence', 
+    description: "La vraie élégance, c'est ne pas forcer l'attention. Être reconnu par ceux qui savent.",
+    keyword: 'Discrétion'
+  },
+  { 
+    number: '04',
+    title: 'La Transmission', 
+    description: "On construit pour que dans 20 ans, quelqu'un hérite d'une paire et la garde.",
+    keyword: 'Héritage'
+  },
+  { 
+    number: '05',
+    title: 'La Maîtrise', 
+    description: 'On ne fait pas vite. On fait bien. Le temps est un allié, pas un ennemi.',
+    keyword: 'Excellence'
+  }
 ];
 
-const steps = [
-  { number: '01', title: 'Découpe', desc: 'Métal épais de haute qualité' },
-  { number: '02', title: 'Façonnage', desc: 'Précision micrométrique' },
-  { number: '03', title: 'Équilibrage', desc: 'Tension et poids parfaits' },
-  { number: '04', title: 'Polissage', desc: 'Finition miroir multi-passes' },
-  { number: '05', title: 'Sertissage', desc: 'Strass signature à la main' }
-];
-
-export default function SavoirFaireSection() {
+export default function ValeursSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, {
-    once: true,
-    amount: 0.1,
-    margin: "0px 0px -20% 0px"
-  });
 
   return (
     <section
       ref={sectionRef}
-      className="h-screen lg:sticky lg:top-0 z-30 bg-dark-text overflow-hidden"
+      className="min-h-screen lg:sticky lg:top-0 z-[60] relative bg-dark-text overflow-hidden"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{
-          duration: 0.6,
-          ease: [0.22, 1, 0.36, 1]
-        }}
-        style={{ willChange: 'opacity, transform' }}
-        className="h-full w-full relative flex flex-col"
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-dark-text via-dark-text to-dark-text/95" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,115,85,0.08)_0%,transparent_70%)]" />
+      {/* Fond avec gradient subtil */}
+      <div className="absolute inset-0 bg-gradient-to-br from-dark-text via-dark-text to-[#252525]" />
+      
+      {/* Effet radial bronze subtil */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(139,115,85,0.06)_0%,transparent_50%)]" />
+      
+      {/* Lignes décoratives */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute left-[20%] top-0 bottom-0 w-px bg-bronze" />
+        <div className="absolute left-[40%] top-0 bottom-0 w-px bg-bronze" />
+        <div className="absolute left-[60%] top-0 bottom-0 w-px bg-bronze" />
+        <div className="absolute left-[80%] top-0 bottom-0 w-px bg-bronze" />
+      </div>
 
-        <div className="absolute inset-0 opacity-[0.02] hidden lg:block">
-          <div className="absolute left-[33%] top-0 bottom-0 w-px bg-bronze" />
-          <div className="absolute left-[66%] top-0 bottom-0 w-px bg-bronze" />
-        </div>
-
-        <div className="relative z-10 pt-3 md:pt-4 px-6 md:px-8 lg:px-12">
-          <div className="max-w-[1600px] mx-auto flex items-start justify-between">
-            <div className="flex items-center gap-2.5">
-              <span className="font-sans text-bronze text-[0.65rem] font-bold tracking-[0.4em] uppercase">03</span>
-              <div className="w-5 h-px bg-bronze/30" />
-              <span className="font-sans text-white/40 text-[0.55rem] font-medium tracking-[0.3em] uppercase">La Fabrication</span>
+      <div className="h-full w-full relative flex flex-col">
+        {/* Header */}
+        <div className="relative z-10 pt-6 md:pt-8 px-6 md:px-12 lg:px-16">
+          <div className="max-w-[1800px] mx-auto flex items-start justify-between">
+            <div className="flex items-center gap-3">
+              <span className="font-sans text-bronze text-sm font-bold tracking-[0.4em] uppercase">05</span>
+              <div className="w-8 h-px bg-bronze/30" />
+              <span className="font-sans text-white/40 text-xs font-medium tracking-[0.3em] uppercase">Les Piliers</span>
             </div>
             <div className="hidden md:block text-right">
-              <p className="font-sans text-white/30 text-[7px] tracking-[0.25em] uppercase">Corée du Sud</p>
+              <p className="font-sans text-white/30 text-[10px] tracking-[0.25em] uppercase">5 Valeurs</p>
             </div>
           </div>
         </div>
 
-        <div className="relative z-10 flex-1 flex items-center px-6 md:px-8 lg:px-12 py-4">
-          <div className="max-w-[1600px] mx-auto w-full">
-
-            <div className="mb-3 md:mb-4">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.2, duration: 0.8 }}
-                className="font-display text-[1.8rem] sm:text-[2.2rem] md:text-[2.6rem] lg:text-[3rem] xl:text-[3.4rem] font-bold text-white tracking-[-0.03em] leading-[0.9] mb-2 md:mb-3"
-              >
-                FABRIQUÉ EN<br />CORÉE DU SUD.
-              </motion.h2>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.4, duration: 0.8 }}
-                className="max-w-2xl space-y-2"
-              >
-                <p className="font-sans text-[0.7rem] md:text-[0.75rem] lg:text-[0.8rem] text-white/70 font-light leading-[1.5]">
-                  Ce qui rend une monture belle, c'est ce qu'on ne voit pas. L'équilibre. La tension du métal. Le poids juste. La Corée a construit sa réputation là-dessus. Sur l'invisible. Sur ce qui se sent mais ne se montre pas.
-                </p>
-                <p className="font-sans text-[0.7rem] md:text-[0.75rem] lg:text-[0.8rem] text-bronze font-light leading-[1.5] italic">
-                  Plus de 200 gestes par paire. Zéro démonstration. Juste le résultat.
-                </p>
-              </motion.div>
+        {/* Contenu principal */}
+        <div className="relative z-10 flex-1 flex items-center px-6 md:px-12 lg:px-16 py-6 lg:py-4">
+          <div className="max-w-[1800px] mx-auto w-full">
+            
+            {/* Titre */}
+            <div className="mb-8 lg:mb-10">
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-4">
+                NOS <span className="text-bronze">VALEURS.</span>
+              </h2>
+              <p className="font-sans text-base md:text-lg text-white/60 font-light leading-relaxed max-w-xl">
+                Cinq piliers non-négociables. Ce qui nous guide depuis le premier jour.
+              </p>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-3 md:gap-4"
-            >
-
-              <div className="lg:col-span-4">
-                <div className="relative aspect-video border border-bronze/30 bg-white/[0.02] overflow-hidden group">
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-white/5 to-transparent">
-                    <div className="text-center space-y-1.5 px-4">
-                      <div className="w-10 h-10 md:w-12 md:h-12 mx-auto border border-bronze/50 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <div className="w-0 h-0 border-t-[7px] border-t-transparent border-l-[10px] border-l-bronze border-b-[7px] border-b-transparent ml-1" />
-                      </div>
-                      <div>
-                        <p className="font-sans text-white text-[0.65rem] md:text-[0.7rem] font-bold tracking-[0.2em] uppercase mb-0.5">
-                          Vidéo de fabrication
-                        </p>
-                        <p className="font-sans text-bronze text-[0.55rem] md:text-[0.6rem] font-light">
-                          En cours de production
-                        </p>
-                      </div>
+            {/* Grid des valeurs */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5">
+              {valeurs.map((valeur) => (
+                <div
+                  key={valeur.title}
+                  className="group"
+                >
+                  <div className="border border-white/10 bg-white/[0.02] backdrop-blur-sm p-5 md:p-6 hover:bg-white/[0.05] hover:border-bronze/30 transition-all duration-500 h-full flex flex-col">
+                    
+                    {/* Numéro */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="font-display text-bronze/50 text-2xl md:text-3xl font-light group-hover:text-bronze transition-colors duration-500">
+                        {valeur.number}
+                      </span>
+                      <div className="flex-1 h-px bg-white/10 group-hover:bg-bronze/30 transition-colors duration-500" />
                     </div>
-                  </div>
-                  <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-bronze" />
-                  <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-bronze" />
-                </div>
-              </div>
-
-              <div className="lg:col-span-8 space-y-2.5 md:space-y-3">
-                <div className="grid grid-cols-3 gap-1.5 md:gap-2">
-                  {stats.map((stat, index) => (
-                    <div key={index} className="border border-bronze/20 bg-white/[0.02] p-2 md:p-2.5 text-center">
-                      <div className="flex items-baseline justify-center gap-0.5 mb-0.5">
-                        <span className="font-sans text-[1rem] md:text-[1.1rem] text-bronze font-bold">
-                          {stat.value}
-                        </span>
-                        {stat.unit && (
-                          <span className="font-sans text-[0.65rem] md:text-[0.7rem] text-bronze/70 font-bold">
-                            {stat.unit}
-                          </span>
-                        )}
-                      </div>
-                      <div className="h-px bg-bronze/20 mb-0.5" />
-                      <p className="font-display text-white text-[0.5rem] tracking-[0.15em] uppercase font-bold mb-0.5">
-                        {stat.label}
-                      </p>
-                      <p className="font-sans text-white/40 text-[0.45rem] leading-tight">
-                        {stat.sublabel}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="border border-bronze/20 bg-white/[0.02] p-2.5 md:p-3">
-                  <div className="pb-1.5 border-b border-white/5 mb-2">
-                    <p className="font-sans text-bronze text-[0.55rem] tracking-[0.3em] uppercase font-bold">
-                      5 Étapes essentielles
+                    
+                    {/* Keyword */}
+                    <p className="font-sans text-bronze text-[9px] tracking-[0.25em] uppercase font-bold mb-2">
+                      {valeur.keyword}
                     </p>
-                  </div>
-                  <div className="space-y-1.5 md:space-y-2">
-                    {steps.map((step, index) => (
-                      <div key={index} className="flex items-start gap-2 group">
-                        <div className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0 border border-bronze/30 flex items-center justify-center group-hover:bg-bronze/10 transition-colors duration-300">
-                          <span className="font-sans text-bronze text-[0.5rem] md:text-[0.55rem] font-bold">
-                            {step.number}
-                          </span>
-                        </div>
-                        <div className="flex-1 pt-0.5">
-                          <p className="font-display text-white text-[0.65rem] md:text-[0.7rem] font-bold mb-0.5">
-                            {step.title}
-                          </p>
-                          <p className="font-sans text-white/50 text-[0.55rem] md:text-[0.6rem] leading-tight">
-                            {step.desc}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
+                    
+                    {/* Titre */}
+                    <h3 className="font-display text-white text-lg md:text-xl font-bold mb-3 tracking-wide leading-tight">
+                      {valeur.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="font-sans text-white/50 text-sm font-light leading-[1.7] flex-1">
+                      {valeur.description}
+                    </p>
+
+                    {/* Ligne décorative bas */}
+                    <div className="mt-4 pt-4 border-t border-white/5">
+                      <div className="w-6 h-0.5 bg-bronze/30 group-hover:w-full group-hover:bg-bronze/50 transition-all duration-700" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              ))}
+            </div>
+
           </div>
         </div>
 
-        <div className="relative z-10 pb-3 px-6 md:px-8 lg:px-12">
-          <div className="max-w-[1600px] mx-auto border-t border-white/10 pt-2.5">
+        {/* Footer */}
+        <div className="relative z-10 pb-4 md:pb-6 px-6 md:px-12 lg:px-16">
+          <div className="max-w-[1800px] mx-auto border-t border-white/10 pt-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="font-sans text-white text-[0.95rem] md:text-[1.1rem] font-light">03</span>
-                <span className="font-sans text-white/30 text-[0.65rem]">/</span>
-                <span className="font-sans text-white/40 text-[0.65rem]">07</span>
+              <div className="flex items-center gap-3">
+                <span className="font-sans text-white text-lg md:text-xl font-light">05</span>
+                <span className="font-sans text-white/30 text-sm">/</span>
+                <span className="font-sans text-white/40 text-sm">07</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <div className="w-px h-7 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
-                <span className="font-sans text-white/30 text-[6px] tracking-[0.4em] uppercase">Défiler</span>
+                <div className="w-px h-8 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
+                <span className="font-sans text-white/30 text-[8px] tracking-[0.3em] uppercase">Défiler</span>
               </div>
               <div className="hidden md:block text-right">
-                <p className="font-sans text-white/20 text-[6px] tracking-wider">© 2019-2025 Renaissance</p>
+                <p className="font-sans text-white/20 text-[8px] tracking-wider">© 2019-2025 Renaissance</p>
               </div>
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
