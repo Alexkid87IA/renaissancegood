@@ -113,6 +113,7 @@ export default function MobileRelatedProducts({ currentProductId, limit = 4 }: M
                       src={imageUrl}
                       alt={product.title}
                       className="w-full h-full object-contain p-4 active:scale-95 transition-transform duration-200"
+                      loading="lazy"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">

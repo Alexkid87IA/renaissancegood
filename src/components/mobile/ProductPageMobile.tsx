@@ -8,6 +8,8 @@ import MobileAccordion from './MobileAccordion';
 import MobileBottomBar from './MobileBottomBar';
 import MobileFabricationSection from './MobileFabricationSection';
 import MobileRelatedProducts from './MobileRelatedProducts';
+import { createSanitizedMarkup } from '../../lib/sanitize';
+import { ColorVariant, getColorSwatchStyle } from '../../lib/productGrouping';
 
 interface Variant {
   id: string;
@@ -19,6 +21,7 @@ interface Variant {
 interface Product {
   id: string;
   name: string;
+  modelName?: string;
   collection: string;
   badge?: string;
   price: string;
@@ -39,9 +42,17 @@ interface Product {
 
 interface ProductPageMobileProps {
   product: Product;
+  colorVariants?: ColorVariant[];
+  selectedColorVariantIndex?: number;
+  onColorVariantChange?: (index: number) => void;
 }
 
-export default function ProductPageMobile({ product }: ProductPageMobileProps) {
+export default function ProductPageMobile({
+  product,
+  colorVariants = [],
+  selectedColorVariantIndex = 0,
+  onColorVariantChange
+}: ProductPageMobileProps) {
   const navigate = useNavigate();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
 
@@ -79,7 +90,7 @@ export default function ProductPageMobile({ product }: ProductPageMobileProps) {
       content: (
         <div
           className="font-sans text-sm text-dark-text/70 leading-relaxed description-content"
-          dangerouslySetInnerHTML={{ __html: product.descriptionHtml || product.description }}
+          dangerouslySetInnerHTML={createSanitizedMarkup(product.descriptionHtml || product.description)}
         />
       ),
     },
@@ -139,7 +150,7 @@ export default function ProductPageMobile({ product }: ProductPageMobileProps) {
           <ChevronLeft className="w-6 h-6 text-dark-text" />
         </button>
 
-        <h1 className="font-display text-base font-light text-dark-text tracking-tight absolute left-1/2 -translate-x-1/2">
+        <h1 className="font-display text-base font-light text-dark-text tracking-tight absolute left-1/2 -translate-x-1/2 uppercase">
           {product.name}
         </h1>
 
@@ -163,6 +174,54 @@ export default function ProductPageMobile({ product }: ProductPageMobileProps) {
           selectedColorIndex={selectedColorIndex}
           onColorChange={setSelectedColorIndex}
         />
+
+        {/* Sélecteur de coloris (autres produits du même modèle) */}
+        {colorVariants.length > 1 && onColorVariantChange && (
+          <div className="px-5 py-4 border-b border-dark-text/10">
+            <div className="flex items-center justify-between mb-3">
+              <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
+                COLORIS
+              </span>
+              <span className="font-sans text-xs text-dark-text/50">
+                {colorVariants.length} disponibles
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              {colorVariants.map((variant, index) => {
+                const isSelected = selectedColorVariantIndex === index;
+
+                return (
+                  <button
+                    key={variant.handle}
+                    onClick={() => onColorVariantChange(index)}
+                    className="relative transition-all duration-200 active:scale-95"
+                    title={`Coloris ${variant.colorNumber}`}
+                  >
+                    <div
+                      className={`w-12 h-12 rounded-lg overflow-hidden transition-all duration-200 ${
+                        isSelected
+                          ? 'ring-2 ring-dark-text ring-offset-2'
+                          : 'ring-1 ring-dark-text/20'
+                      }`}
+                    >
+                      {variant.thumbnail ? (
+                        <img
+                          src={variant.thumbnail}
+                          alt={`Coloris ${variant.colorNumber}`}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div
+                          className="w-full h-full bg-dark-text/10"
+                        />
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Bandeau Rupture de Stock - Mobile */}
         {isOutOfStock && (

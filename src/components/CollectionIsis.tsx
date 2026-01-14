@@ -49,6 +49,7 @@ export default function CollectionIsis() {
             src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg"
             alt="Collection Isis - Egyptian inspiration"
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         </div>
       </div>
@@ -109,6 +110,7 @@ export default function CollectionIsis() {
                 src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg"
                 alt="Collection Isis Preview"
                 className="w-full h-full object-cover grayscale opacity-50"
+                loading="lazy"
               />
               <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-beige/40 to-transparent">
                 <p className="font-sans text-dark-text/50 text-[10px] tracking-[0.3em] font-bold uppercase bg-beige/80 px-4 py-2 rounded">

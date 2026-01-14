@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getProducts } from '../../lib/shopify';
+import { getModelName } from '../../lib/productGrouping';
 
 interface Product {
   id: string;
@@ -21,6 +22,7 @@ interface Product {
       };
     }>;
   };
+  tags?: string[];
 }
 
 interface RelatedProductsProps {
@@ -37,15 +39,10 @@ export default function RelatedProducts({ currentProductId, limit = 4 }: Related
     async function loadRelatedProducts() {
       try {
         setLoading(true);
-        
-        // Récupérer tous les produits depuis Shopify
         const allProducts = await getProducts();
-        
-        // Filtrer pour exclure le produit actuel et limiter le nombre
         const filteredProducts = allProducts
           .filter((p: Product) => p.id !== currentProductId)
           .slice(0, limit);
-        
         setProducts(filteredProducts);
       } catch (error) {
         console.error('Erreur lors du chargement des produits similaires:', error);
@@ -53,138 +50,109 @@ export default function RelatedProducts({ currentProductId, limit = 4 }: Related
         setLoading(false);
       }
     }
-
     loadRelatedProducts();
   }, [currentProductId, limit]);
 
   if (loading) {
     return (
-      <div className="py-32 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8 laptop:px-16">
-          <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-dark-text/20"></div>
-          </div>
+      <section className="py-20 lg:py-32 bg-beige ml-0 lg:ml-[340px] laptop:ml-[380px] xl:ml-[480px]">
+        <div className="flex items-center justify-center">
+          <div className="w-10 h-10 border-2 border-bronze/20 border-t-bronze rounded-full animate-spin" />
         </div>
-      </div>
+      </section>
     );
   }
 
-  if (products.length === 0) {
-    return null;
-  }
+  if (products.length === 0) return null;
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 laptop:py-32 bg-white border-t border-dark-text/10 ml-0 lg:ml-[400px] xl:ml-[480px]">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-16">
-        {/* Titre de la section - Style Renaissance */}
-        <div className="mb-10 sm:mb-12 md:mb-16 lg:mb-20 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl laptop:text-5xl xl:text-6xl font-light text-dark-text mb-3 sm:mb-4 tracking-tight">
-              Vous aimerez peut-être
-            </h2>
-            <div className="w-10 sm:w-12 h-[1px] bg-bronze mx-auto mb-4 sm:mb-6"></div>
-            <p className="font-sans text-[10px] sm:text-xs text-dark-text/50 tracking-[0.2em] uppercase">
-              Découvrez notre sélection
-            </p>
-          </motion.div>
-        </div>
+    <section className="pt-0 pb-16 lg:pb-24 xl:pb-32 bg-beige ml-0 lg:ml-[340px] laptop:ml-[380px] xl:ml-[480px]">
+      <div className="px-5 sm:px-8 lg:px-12 xl:px-20 pt-16 lg:pt-24 xl:pt-32">
+        {/* En-tête */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 lg:mb-16"
+        >
+          <p className="font-sans text-bronze text-[9px] sm:text-[10px] tracking-[0.3em] font-bold uppercase mb-4">
+            Sélection
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95]">
+            VOUS AIMEREZ AUSSI
+          </h2>
+        </motion.div>
 
-        {/* Grille de produits - Design épuré et luxueux */}
-        <div className="grid grid-cols-2 md:grid-cols-3 laptop:grid-cols-4 gap-4 sm:gap-6 md:gap-8 laptop:gap-10 mb-12 sm:mb-16">
+        {/* Grille de produits */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {products.map((product, index) => {
             const imageUrl = product.images.edges[0]?.node.url;
+            const secondImageUrl = product.images.edges[1]?.node.url;
             const price = parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0);
+            const modelName = getModelName(product.title);
 
             return (
-              <motion.div
+              <motion.article
                 key={product.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group cursor-pointer"
                 onClick={() => navigate(`/product/${product.handle}`)}
+                className="group cursor-pointer"
               >
-                {/* Container de la carte */}
-                <div className="relative overflow-hidden">
-                  {/* Image du produit - Ratio 16:10 adapté aux lunettes */}
-                  <div className="aspect-[16/10] bg-neutral-50/50 mb-3 sm:mb-4 md:mb-6 overflow-hidden relative border border-dark-text/5">
-                    {imageUrl ? (
+                {/* Image */}
+                <div className="relative aspect-[4/3] mb-4 overflow-hidden">
+                  {imageUrl && (
+                    <>
                       <img
                         src={imageUrl}
                         alt={product.title}
-                        className="w-full h-full object-contain p-3 sm:p-4 md:p-6 transition-all duration-700 group-hover:scale-110 group-hover:p-2 sm:group-hover:p-3 md:group-hover:p-4"
+                        loading="lazy"
+                        className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
+                          secondImageUrl ? 'group-hover:opacity-0' : 'group-hover:scale-105'
+                        }`}
                       />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <svg
-                          viewBox="0 0 100 50"
-                          className="w-24 h-24 text-dark-text/10"
-                        >
-                          <ellipse cx="20" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="1" />
-                          <ellipse cx="80" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="1" />
-                          <line x1="38" y1="25" x2="62" y2="25" stroke="currentColor" strokeWidth="1" />
-                        </svg>
-                      </div>
-                    )}
-
-                    {/* Ligne bronze qui apparaît au hover */}
-                    <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-bronze scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                  </div>
-
-                  {/* Informations du produit - Typographie élégante */}
-                  <div className="space-y-1.5 sm:space-y-2 px-0.5 sm:px-1">
-                    {/* Nom du produit */}
-                    <h3 className="font-display text-base sm:text-lg md:text-xl laptop:text-2xl font-light text-dark-text group-hover:text-bronze transition-colors duration-300 tracking-tight leading-tight">
-                      {product.title}
-                    </h3>
-                    
-                    {/* Prix avec divider */}
-                    <div className="flex items-center gap-2 sm:gap-3">
-                      <div className="w-6 sm:w-8 h-[1px] bg-dark-text/20 group-hover:bg-bronze group-hover:w-10 sm:group-hover:w-12 transition-all duration-300" />
-                      <p className="font-sans text-xs sm:text-sm text-dark-text/70 tracking-wide">
-                        €{price}
-                      </p>
-                    </div>
-
-                    {/* Call to action subtil qui apparaît au hover - Masqué sur mobile */}
-                    <div className="overflow-hidden hidden sm:block">
-                      <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 0, y: 10 }}
-                        className="font-sans text-[10px] tracking-[0.2em] uppercase text-bronze opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-y-0 translate-y-2"
-                      >
-                        Découvrir →
-                      </motion.p>
-                    </div>
-                  </div>
+                      {secondImageUrl && (
+                        <img
+                          src={secondImageUrl}
+                          alt={`${product.title} - vue 2`}
+                          loading="lazy"
+                          className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-500"
+                        />
+                      )}
+                    </>
+                  )}
                 </div>
-              </motion.div>
+
+                {/* Infos */}
+                <div>
+                  <h3 className="font-display text-base sm:text-lg lg:text-xl font-bold text-dark-text mb-1 group-hover:text-bronze transition-colors duration-300 leading-tight uppercase">
+                    {modelName}
+                  </h3>
+                  <p className="font-sans text-sm text-dark-text/60">
+                    {price} €
+                  </p>
+                </div>
+              </motion.article>
             );
           })}
         </div>
 
-        {/* Bouton voir plus - Style Renaissance épuré */}
-        <motion.div 
-          className="text-center"
+        {/* Bouton voir plus */}
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-12 lg:mt-16 text-center"
         >
           <button
-            onClick={() => navigate('/collections/heritage')}
-            className="group inline-block relative overflow-hidden"
+            onClick={() => navigate('/shop')}
+            className="border-2 border-dark-text/80 px-10 py-4 font-sans text-[10px] tracking-[0.25em] font-bold uppercase hover:bg-dark-text hover:text-beige transition-all duration-500"
           >
-            <span className="relative z-10 block border border-dark-text px-10 py-4 font-sans text-[10px] tracking-[0.3em] uppercase text-dark-text transition-colors duration-300 group-hover:text-white">
-              Explorer la collection
-            </span>
-            <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
+            Voir toute la collection
           </button>
         </motion.div>
       </div>

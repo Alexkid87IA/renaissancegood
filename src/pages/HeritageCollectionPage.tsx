@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { getProductsByCollection } from '../lib/shopify';
+import SEO from '../components/SEO';
 
 // Interface adaptée pour les produits Shopify
 interface ShopifyProduct {
@@ -285,6 +286,11 @@ export default function HeritageCollectionPage() {
 
   return (
     <div className="bg-beige">
+      <SEO
+        title="Collection Héritage"
+        description="Découvrez la collection Héritage de RENAISSANCE Paris. Des lunettes de luxe au design intemporel, alliant tradition et modernité. Fabriquées avec les meilleurs matériaux."
+        url="/collections/heritage"
+      />
       <div className="relative h-screen overflow-hidden">
         <motion.div
           ref={heroRef}

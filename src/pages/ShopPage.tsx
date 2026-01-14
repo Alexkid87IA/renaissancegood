@@ -1,204 +1,17 @@
+// ========================================
+// PAGE BOUTIQUE
+// Liste des produits groupés par modèle avec filtres
+// ========================================
+
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getProductsByCollection } from '../lib/shopify';
-
-interface Product {
-  id: string;
-  handle: string;
-  title: string;
-  description: string;
-  availableForSale?: boolean;
-  priceRange: {
-    minVariantPrice: {
-      amount: string;
-      currencyCode: string;
-    };
-  };
-  images: {
-    edges: Array<{
-      node: {
-        url: string;
-        altText: string | null;
-      };
-    }>;
-  };
-  variants?: {
-    edges: Array<{
-      node: {
-        id: string;
-        quantityAvailable?: number;
-        availableForSale?: boolean;
-      };
-    }>;
-  };
-  tags?: string[];
-  collections?: {
-    edges: Array<{
-      node: {
-        handle: string;
-        title: string;
-      };
-    }>;
-  };
-}
-
-
-// Composant FilterSelect pour les filtres
-function FilterSelect({
-  label,
-  options,
-  value,
-  onChange
-}: {
-  label: string;
-  options: Array<{ label: string; value: string }>;
-  value: string;
-  onChange: (value: string) => void;
-}) {
-  return (
-    <div className="relative">
-      <label className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3 block">
-        {label}
-      </label>
-      <div className="relative">
-        <select
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-transparent border-b-2 border-dark-text/20 pb-1.5 sm:pb-2 font-sans text-xs sm:text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6"
-        >
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        <div className="absolute right-0 bottom-2 sm:bottom-3 pointer-events-none">
-          <svg width="8" height="5" viewBox="0 0 10 6" fill="none" className="sm:w-[10px] sm:h-[6px]">
-            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Composant ProductCard - Design cohérent avec les pages collections
-function ProductCard({ product, index }: { product: Product; index: number }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const productImages = product.images.edges.map(edge => edge.node.url);
-  const currentImage = productImages[currentImageIndex] || productImages[0];
-  const price = parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0);
-  const category = product.tags?.includes('Solaire') ? 'SOLAIRE' : 'OPTICAL';
-  
-  // Calculer le stock total de tous les variants
-  const totalStock = product.variants?.edges.reduce((total, edge) => {
-    return total + (edge.node.quantityAvailable || 0);
-  }, 0) || 0;
-  
-  // Rupture de stock si stock total = 0
-  const isOutOfStock = totalStock === 0;
-
-  return (
-    <motion.div
-      className="group relative bg-white overflow-hidden col-span-full sm:col-span-1 md:col-span-6"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5 }}
-    >
-      <Link
-        to={`/product/${product.handle}`}
-        className="block cursor-pointer"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className={`relative aspect-[16/9] overflow-hidden bg-beige/20 ${isOutOfStock ? 'opacity-70' : ''}`}>
-          <motion.img
-            key={currentImageIndex}
-            src={currentImage}
-            alt={product.title}
-            className="w-full h-full object-cover"
-            initial={{ scale: 1 }}
-            animate={{ scale: isHovered ? 1.05 : 1 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          />
-
-          {/* Badge Rupture de stock */}
-          {isOutOfStock && (
-            <div className="absolute top-4 right-4 bg-bronze/90 px-4 py-2">
-              <span className="font-sans text-[8px] tracking-[0.2em] font-bold text-white uppercase">
-                Rupture de stock
-              </span>
-            </div>
-          )}
-
-          {/* Badge New Release - seulement si en stock */}
-          {index < 2 && !isOutOfStock && (
-            <div className="absolute top-4 left-4 bg-dark-text px-4 py-2">
-              <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-white">
-                NEW RELEASE
-              </span>
-            </div>
-          )}
-
-          {productImages.length > 1 && (
-            <div className="absolute bottom-4 left-4 flex gap-1 z-10">
-              {productImages.map((_, imgIndex) => (
-                <button
-                  key={imgIndex}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setCurrentImageIndex(imgIndex);
-                  }}
-                  onMouseDown={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
-                  aria-label={`View image ${imgIndex + 1}`}
-                  className="p-2 -m-1 cursor-pointer"
-                >
-                  <span className={`block h-2 rounded-full transition-all ${
-                    currentImageIndex === imgIndex
-                      ? 'bg-dark-text w-6'
-                      : 'bg-dark-text/30 w-2 hover:bg-dark-text/50'
-                  }`} />
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="p-5 sm:p-6 bg-white">
-          <div className="flex items-start justify-between mb-3">
-            <div className="flex-1">
-              <p className="font-sans text-[9px] tracking-[0.25em] text-dark-text/50 uppercase mb-2">
-                {category}
-              </p>
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-dark-text leading-tight mb-1">
-                {product.title}
-              </h3>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between pt-3 border-t border-dark-text/5">
-            <p className="font-sans text-base sm:text-lg font-semibold text-dark-text">
-              €{price}
-            </p>
-            <div className="text-dark-text/40 group-hover:text-dark-text group-hover:translate-x-1 transition-all">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </Link>
-    </motion.div>
-  );
-}
+import { getGroupedProducts, GroupedProduct } from '../lib/productGrouping';
+import FilterSelect from '../components/FilterSelect';
+import GroupedProductCard from '../components/GroupedProductCard';
+import { Product } from '../components/ProductCard';
+import SEO from '../components/SEO';
 
 // Fonction helper pour vérifier si un produit appartient à une collection
 function productBelongsToCollection(product: Product, collectionHandle: string): boolean {
@@ -212,13 +25,12 @@ function productBelongsToCollection(product: Product, collectionHandle: string):
 function productMatchesType(product: Product, type: string): boolean {
   if (type === 'all') return true;
   if (type === 'sun' || type === 'solaire') {
-    return product.tags?.some(tag => 
+    return product.tags?.some(tag =>
       tag.toLowerCase() === 'solaire' || tag.toLowerCase() === 'sun'
     ) || false;
   }
   if (type === 'optical' || type === 'optique') {
-    // Si pas de tag solaire, c'est optique par défaut
-    const isSolaire = product.tags?.some(tag => 
+    const isSolaire = product.tags?.some(tag =>
       tag.toLowerCase() === 'solaire' || tag.toLowerCase() === 'sun'
     );
     return !isSolaire;
@@ -229,6 +41,7 @@ function productMatchesType(product: Product, type: string): boolean {
 export default function ShopPage() {
   const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
+  const [groupedProducts, setGroupedProducts] = useState<GroupedProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedType, setSelectedType] = useState('all');
@@ -246,14 +59,11 @@ export default function ShopPage() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Masquer les filtres au scroll vers le bas
       if (currentScrollY > lastScrollY && currentScrollY > 200) {
         setHideFilters(true);
       } else if (currentScrollY < lastScrollY) {
         setHideFilters(false);
       }
-
       setLastScrollY(currentScrollY);
     };
 
@@ -261,17 +71,15 @@ export default function ShopPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Charger les produits depuis la collection "Toutes Les Lunettes" (handle: solaires)
+  // Charger les produits depuis Shopify
   useEffect(() => {
     async function loadProducts() {
       try {
         setLoading(true);
-        // Récupère les produits dans l'ordre manuel défini dans Shopify
         const data = await getProductsByCollection('solaires');
         setProducts(data);
       } catch (err) {
         setError('Impossible de charger la collection');
-        console.error(err);
       } finally {
         setLoading(false);
       }
@@ -279,34 +87,28 @@ export default function ShopPage() {
     loadProducts();
   }, []);
 
-  // Filtrer les produits
-  const filteredProducts = products.filter(product => {
-    // Filtre par type (Optical/Solaire)
-    if (!productMatchesType(product, selectedType)) {
-      return false;
-    }
-
-    // Filtre par collection (Heritage, Versailles, Isis)
-    if (selectedCollection !== 'all') {
-      if (!productBelongsToCollection(product, selectedCollection)) {
-        return false;
+  // Filtrer et regrouper les produits
+  useEffect(() => {
+    // D'abord filtrer les produits
+    const filteredProducts = products.filter(product => {
+      if (!productMatchesType(product, selectedType)) return false;
+      if (selectedCollection !== 'all') {
+        if (!productBelongsToCollection(product, selectedCollection)) return false;
       }
-    }
-
-    // Filtre par matériau (basé sur les tags)
-    if (selectedMaterial !== 'all') {
-      const hasMaterial = product.tags?.some(tag => 
-        tag.toLowerCase().includes(selectedMaterial.toLowerCase())
-      );
-      if (!hasMaterial) {
-        return false;
+      if (selectedMaterial !== 'all') {
+        const hasMaterial = product.tags?.some(tag =>
+          tag.toLowerCase().includes(selectedMaterial.toLowerCase())
+        );
+        if (!hasMaterial) return false;
       }
-    }
+      return true;
+    });
 
-    return true;
-  });
+    // Ensuite regrouper par modèle
+    const grouped = getGroupedProducts(filteredProducts);
+    setGroupedProducts(grouped);
+  }, [products, selectedType, selectedCollection, selectedMaterial]);
 
-  // État de chargement
   if (loading) {
     return (
       <div className="min-h-screen bg-beige flex items-center justify-center pt-20">
@@ -320,7 +122,6 @@ export default function ShopPage() {
     );
   }
 
-  // État d'erreur
   if (error) {
     return (
       <div className="min-h-screen bg-beige flex items-center justify-center pt-20">
@@ -341,7 +142,12 @@ export default function ShopPage() {
 
   return (
     <div className="min-h-screen bg-beige">
-      {/* Barre de filtres sticky en haut */}
+      <SEO
+        title="Boutique - Toutes nos lunettes"
+        description="Explorez toute la collection RENAISSANCE Paris. Lunettes de vue et solaires de luxe, fabriquées artisanalement en France. Trouvez la monture qui vous correspond."
+        url="/shop"
+      />
+      {/* Barre de filtres sticky */}
       <motion.div
         className="border-b border-dark-text/10 bg-white sticky top-16 sm:top-20 z-30 shadow-sm"
         initial={{ y: 0 }}
@@ -353,10 +159,10 @@ export default function ShopPage() {
             {/* Compteur de résultats */}
             <div className="col-span-6 sm:col-span-4 md:col-span-2 flex flex-col justify-end">
               <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3">
-                # RESULTS
+                # MODÈLES
               </p>
               <p className="font-display text-2xl sm:text-3xl md:text-4xl laptop:text-5xl font-bold text-dark-text leading-none">
-                {filteredProducts.length}
+                {groupedProducts.length}
               </p>
             </div>
 
@@ -428,9 +234,9 @@ export default function ShopPage() {
         </div>
       </motion.div>
 
-      {/* Grille de produits */}
+      {/* Grille de produits groupés */}
       <div className="max-w-[1800px] mx-auto px-8 laptop:px-12 py-10 laptop:py-12">
-        {filteredProducts.length === 0 ? (
+        {groupedProducts.length === 0 ? (
           <div className="text-center py-32">
             <p className="font-sans text-dark-text/40 text-sm tracking-wider uppercase">
               Aucun produit disponible pour le moment
@@ -441,8 +247,12 @@ export default function ShopPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-4 sm:gap-6 md:gap-4">
-            {filteredProducts.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
+            {groupedProducts.map((groupedProduct, index) => (
+              <GroupedProductCard
+                key={groupedProduct.modelName}
+                groupedProduct={groupedProduct}
+                index={index}
+              />
             ))}
           </div>
         )}

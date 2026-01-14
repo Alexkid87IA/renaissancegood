@@ -8,85 +8,62 @@ const client = createStorefrontClient({
 
 export const { getStorefrontApiUrl, getPublicTokenHeaders } = client;
 
-// Fonction pour récupérer tous les produits
-export async function getProducts() {
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        {
-          products(first: 250) {
-            edges {
-              node {
-                id
-                title
-                handle
-                description
-                descriptionHtml
-                availableForSale
-                tags
-                priceRange {
-                  minVariantPrice {
-                    amount
-                    currencyCode
-                  }
-                }
-                images(first: 5) {
-                  edges {
-                    node {
-                      url
-                      altText
-                    }
-                  }
-                }
-                variants(first: 10) {
-                  edges {
-                    node {
-                      id
-                      title
-                      quantityAvailable
-                      priceV2 {
-                        amount
-                        currencyCode
-                      }
-                      availableForSale
-                    }
-                  }
-                }
-                collections(first: 5) {
-                  edges {
-                    node {
-                      handle
-                      title
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      `,
-    }),
-  });
-
-  const { data } = await response.json();
-  
-  // Récupérer tous les produits publiés (sans filtrer par stock)
-  const products = data.products.edges.map((edge: any) => edge.node);
-    
-  return products;
+// ========================================
+// TYPES POUR LES RÉPONSES GRAPHQL
+// ========================================
+interface GraphQLResponse<T> {
+  data: T;
+  errors?: Array<{ message: string; locations?: Array<{ line: number; column: number }> }>;
 }
 
-// Fonction pour récupérer un produit spécifique (avec metafields dimensions)
-export async function getProduct(handle: string) {
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        {
-          productByHandle(handle: "${handle}") {
+// ========================================
+// FONCTION UTILITAIRE POUR LES REQUÊTES AVEC TIMEOUT ET VALIDATION
+// ========================================
+async function shopifyFetch<T>(query: string, variables?: Record<string, unknown>): Promise<T> {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 secondes timeout
+
+  try {
+    const response = await fetch(getStorefrontApiUrl(), {
+      method: 'POST',
+      headers: getPublicTokenHeaders(),
+      body: JSON.stringify({ query, variables }),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP: ${response.status} ${response.statusText}`);
+    }
+
+    const result: GraphQLResponse<T> = await response.json();
+
+    // Vérifier les erreurs GraphQL
+    if (result.errors && result.errors.length > 0) {
+      const errorMessages = result.errors.map(e => e.message).join(', ');
+      throw new Error(`Erreur GraphQL: ${errorMessages}`);
+    }
+
+    return result.data;
+  } catch (error) {
+    clearTimeout(timeoutId);
+    if (error instanceof Error && error.name === 'AbortError') {
+      throw new Error('La requête a expiré. Veuillez réessayer.');
+    }
+    throw error;
+  }
+}
+
+// ========================================
+// FONCTION POUR RÉCUPÉRER TOUS LES PRODUITS
+// ========================================
+export async function getProducts() {
+  const query = `
+    query GetProducts {
+      products(first: 250) {
+        edges {
+          node {
             id
             title
             handle
@@ -100,7 +77,7 @@ export async function getProduct(handle: string) {
                 currencyCode
               }
             }
-            images(first: 10) {
+            images(first: 20) {
               edges {
                 node {
                   url
@@ -113,6 +90,7 @@ export async function getProduct(handle: string) {
                 node {
                   id
                   title
+                  quantityAvailable
                   priceV2 {
                     amount
                     currencyCode
@@ -121,6 +99,10 @@ export async function getProduct(handle: string) {
                   selectedOptions {
                     name
                     value
+                  }
+                  image {
+                    url
+                    altText
                   }
                 }
               }
@@ -133,501 +115,340 @@ export async function getProduct(handle: string) {
                 }
               }
             }
-            lensWidth: metafield(namespace: "custom", key: "lens_width") {
-              value
-              type
-            }
-            bridgeWidth: metafield(namespace: "custom", key: "bridge_width") {
-              value
-              type
-            }
-            templeLength: metafield(namespace: "custom", key: "temple_length") {
-              value
-              type
+          }
+        }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{ products: { edges: Array<{ node: unknown }> } }>(query);
+  return data.products.edges.map((edge) => edge.node);
+}
+
+// ========================================
+// FONCTION POUR RÉCUPÉRER UN PRODUIT PAR HANDLE
+// ========================================
+export async function getProduct(handle: string) {
+  const query = `
+    query GetProduct($handle: String!) {
+      productByHandle(handle: $handle) {
+        id
+        title
+        handle
+        description
+        descriptionHtml
+        availableForSale
+        tags
+        priceRange {
+          minVariantPrice {
+            amount
+            currencyCode
+          }
+        }
+        images(first: 50) {
+          edges {
+            node {
+              url
+              altText
             }
           }
         }
-      `,
-    }),
-  });
+        variants(first: 20) {
+          edges {
+            node {
+              id
+              title
+              priceV2 {
+                amount
+                currencyCode
+              }
+              availableForSale
+              selectedOptions {
+                name
+                value
+              }
+              image {
+                url
+                altText
+              }
+            }
+          }
+        }
+        collections(first: 5) {
+          edges {
+            node {
+              handle
+              title
+            }
+          }
+        }
+        lensWidth: metafield(namespace: "custom", key: "lens_width") {
+          value
+          type
+        }
+        bridgeWidth: metafield(namespace: "custom", key: "bridge_width") {
+          value
+          type
+        }
+        templeLength: metafield(namespace: "custom", key: "temple_length") {
+          value
+          type
+        }
+      }
+    }
+  `;
 
-  const { data } = await response.json();
+  const data = await shopifyFetch<{ productByHandle: unknown }>(query, { handle });
   return data.productByHandle;
 }
 
-// Fonction pour récupérer les produits par collection (Heritage, Versailles, etc.)
+// ========================================
+// FONCTION POUR RÉCUPÉRER LES PRODUITS PAR COLLECTION
+// ========================================
 export async function getProductsByCollection(collectionHandle: string) {
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        {
-          collection(handle: "${collectionHandle}") {
-            title
-            products(first: 250) {
-              edges {
-                node {
-                  id
-                  title
-                  handle
-                  description
-                  descriptionHtml
-                  availableForSale
-                  tags
-                  priceRange {
-                    minVariantPrice {
-                      amount
-                      currencyCode
-                    }
-                  }
-                  images(first: 5) {
-                    edges {
-                      node {
-                        url
-                        altText
-                      }
-                    }
-                  }
-                  variants(first: 10) {
-                    edges {
-                      node {
-                        id
-                        title
-                        quantityAvailable
-                        priceV2 {
-                          amount
-                          currencyCode
-                        }
-                        availableForSale
-                      }
-                    }
-                  }
-                  collections(first: 5) {
-                    edges {
-                      node {
-                        handle
-                        title
-                      }
-                    }
-                  }
+  const query = `
+    query GetProductsByCollection($handle: String!) {
+      collection(handle: $handle) {
+        title
+        products(first: 250) {
+          edges {
+            node {
+              id
+              title
+              handle
+              description
+              descriptionHtml
+              availableForSale
+              tags
+              priceRange {
+                minVariantPrice {
+                  amount
+                  currencyCode
                 }
               }
-            }
-          }
-        }
-      `,
-    }),
-  });
-
-  const { data } = await response.json();
-  
-  if (!data.collection) {
-    return [];
-  }
-  
-  // Récupérer tous les produits de la collection (sans filtrer par stock)
-  const products = data.collection.products.edges.map((edge: any) => edge.node);
-  
-  return products;
-}
-
-// ===== FONCTIONS DE GESTION DU PANIER =====
-
-// Créer un nouveau panier
-export async function createCart() {
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        mutation {
-          cartCreate {
-            cart {
-              id
-              checkoutUrl
-              lines(first: 10) {
+              images(first: 20) {
                 edges {
                   node {
-                    id
-                    quantity
-                    merchandise {
-                      ... on ProductVariant {
-                        id
-                        title
-                        priceV2 {
-                          amount
-                          currencyCode
-                        }
-                        product {
-                          id
-                          title
-                          handle
-                          images(first: 1) {
-                            edges {
-                              node {
-                                url
-                                altText
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              cost {
-                totalAmount {
-                  amount
-                  currencyCode
-                }
-                subtotalAmount {
-                  amount
-                  currencyCode
-                }
-              }
-            }
-          }
-        }
-      `,
-    }),
-  });
-
-  const { data } = await response.json();
-  return data.cartCreate.cart;
-}
-
-// Ajouter un article au panier
-export async function addToCart(cartId: string, variantId: string, quantity: number = 1) {
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        mutation {
-          cartLinesAdd(
-            cartId: "${cartId}"
-            lines: [
-              {
-                merchandiseId: "${variantId}"
-                quantity: ${quantity}
-              }
-            ]
-          ) {
-            cart {
-              id
-              checkoutUrl
-              lines(first: 50) {
-                edges {
-                  node {
-                    id
-                    quantity
-                    merchandise {
-                      ... on ProductVariant {
-                        id
-                        title
-                        priceV2 {
-                          amount
-                          currencyCode
-                        }
-                        product {
-                          id
-                          title
-                          handle
-                          images(first: 1) {
-                            edges {
-                              node {
-                                url
-                                altText
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              cost {
-                totalAmount {
-                  amount
-                  currencyCode
-                }
-                subtotalAmount {
-                  amount
-                  currencyCode
-                }
-              }
-            }
-          }
-        }
-      `,
-    }),
-  });
-
-  const { data } = await response.json();
-  return data.cartLinesAdd.cart;
-}
-
-// Mettre à jour la quantité d'un article dans le panier
-export async function updateCartItem(cartId: string, lineId: string, quantity: number) {
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        mutation {
-          cartLinesUpdate(
-            cartId: "${cartId}"
-            lines: [
-              {
-                id: "${lineId}"
-                quantity: ${quantity}
-              }
-            ]
-          ) {
-            cart {
-              id
-              checkoutUrl
-              lines(first: 50) {
-                edges {
-                  node {
-                    id
-                    quantity
-                    merchandise {
-                      ... on ProductVariant {
-                        id
-                        title
-                        priceV2 {
-                          amount
-                          currencyCode
-                        }
-                        product {
-                          id
-                          title
-                          handle
-                          images(first: 1) {
-                            edges {
-                              node {
-                                url
-                                altText
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              cost {
-                totalAmount {
-                  amount
-                  currencyCode
-                }
-                subtotalAmount {
-                  amount
-                  currencyCode
-                }
-              }
-            }
-          }
-        }
-      `,
-    }),
-  });
-
-  const { data } = await response.json();
-  return data.cartLinesUpdate.cart;
-}
-
-// Supprimer un article du panier
-export async function removeFromCart(cartId: string, lineId: string) {
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        mutation {
-          cartLinesRemove(
-            cartId: "${cartId}"
-            lineIds: ["${lineId}"]
-          ) {
-            cart {
-              id
-              checkoutUrl
-              lines(first: 50) {
-                edges {
-                  node {
-                    id
-                    quantity
-                    merchandise {
-                      ... on ProductVariant {
-                        id
-                        title
-                        priceV2 {
-                          amount
-                          currencyCode
-                        }
-                        product {
-                          id
-                          title
-                          handle
-                          images(first: 1) {
-                            edges {
-                              node {
-                                url
-                                altText
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              cost {
-                totalAmount {
-                  amount
-                  currencyCode
-                }
-                subtotalAmount {
-                  amount
-                  currencyCode
-                }
-              }
-            }
-          }
-        }
-      `,
-    }),
-  });
-
-  const { data } = await response.json();
-  return data.cartLinesRemove.cart;
-}
-
-// Récupérer le panier existant
-export async function getCart(cartId: string) {
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        {
-          cart(id: "${cartId}") {
-            id
-            checkoutUrl
-            lines(first: 50) {
-              edges {
-                node {
-                  id
-                  quantity
-                  merchandise {
-                    ... on ProductVariant {
-                      id
-                      title
-                      priceV2 {
-                        amount
-                        currencyCode
-                      }
-                      product {
-                        id
-                        title
-                        handle
-                        images(first: 1) {
-                          edges {
-                            node {
-                              url
-                              altText
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            cost {
-              totalAmount {
-                amount
-                currencyCode
-              }
-              subtotalAmount {
-                amount
-                currencyCode
-              }
-            }
-          }
-        }
-      `,
-    }),
-  });
-
-  const { data } = await response.json();
-  return data.cart;
-}
-
-// ===== FONCTIONS POUR LE BLOG =====
-
-// Récupérer tous les articles du blog
-export async function getBlogPosts(blogHandle: string = 'actualites') {
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        {
-          blog(handle: "${blogHandle}") {
-            articles(first: 50, sortKey: PUBLISHED_AT, reverse: true) {
-              edges {
-                node {
-                  id
-                  title
-                  handle
-                  excerpt
-                  excerptHtml
-                  contentHtml
-                  image {
                     url
                     altText
                   }
-                  publishedAt
-                  author {
-                    name
+                }
+              }
+              variants(first: 20) {
+                edges {
+                  node {
+                    id
+                    title
+                    quantityAvailable
+                    priceV2 {
+                      amount
+                      currencyCode
+                    }
+                    availableForSale
+                    selectedOptions {
+                      name
+                      value
+                    }
+                    image {
+                      url
+                      altText
+                    }
                   }
-                  tags
+                }
+              }
+              collections(first: 5) {
+                edges {
+                  node {
+                    handle
+                    title
+                  }
                 }
               }
             }
           }
         }
-      `,
-    }),
-  });
+      }
+    }
+  `;
 
-  const { data } = await response.json();
-  
-  if (!data.blog) {
+  const data = await shopifyFetch<{ collection: { products: { edges: Array<{ node: unknown }> } } | null }>(
+    query,
+    { handle: collectionHandle }
+  );
+
+  if (!data.collection) {
     return [];
   }
-  
-  return data.blog.articles.edges.map((edge: any) => edge.node);
+
+  return data.collection.products.edges.map((edge) => edge.node);
 }
 
-// Récupérer un article spécifique par son handle
-export async function getBlogPostByHandle(blogHandle: string = 'actualites', articleHandle: string) {
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        {
-          blog(handle: "${blogHandle}") {
-            articleByHandle(handle: "${articleHandle}") {
+// ========================================
+// FRAGMENT CART POUR ÉVITER LA DUPLICATION
+// ========================================
+const CART_FRAGMENT = `
+  fragment CartFields on Cart {
+    id
+    checkoutUrl
+    lines(first: 50) {
+      edges {
+        node {
+          id
+          quantity
+          merchandise {
+            ... on ProductVariant {
+              id
+              title
+              priceV2 {
+                amount
+                currencyCode
+              }
+              product {
+                id
+                title
+                handle
+                images(first: 1) {
+                  edges {
+                    node {
+                      url
+                      altText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    cost {
+      totalAmount {
+        amount
+        currencyCode
+      }
+      subtotalAmount {
+        amount
+        currencyCode
+      }
+    }
+  }
+`;
+
+// ========================================
+// CRÉATION DU PANIER
+// ========================================
+export async function createCart() {
+  const query = `
+    ${CART_FRAGMENT}
+    mutation CreateCart {
+      cartCreate {
+        cart {
+          ...CartFields
+        }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{ cartCreate: { cart: unknown } }>(query);
+  return data.cartCreate.cart;
+}
+
+// ========================================
+// AJOUTER AU PANIER
+// ========================================
+export async function addToCart(cartId: string, variantId: string, quantity: number = 1) {
+  const query = `
+    ${CART_FRAGMENT}
+    mutation AddToCart($cartId: ID!, $lines: [CartLineInput!]!) {
+      cartLinesAdd(cartId: $cartId, lines: $lines) {
+        cart {
+          ...CartFields
+        }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{ cartLinesAdd: { cart: unknown } }>(query, {
+    cartId,
+    lines: [{ merchandiseId: variantId, quantity }]
+  });
+
+  return data.cartLinesAdd.cart;
+}
+
+// ========================================
+// METTRE À JOUR UN ARTICLE DU PANIER
+// ========================================
+export async function updateCartItem(cartId: string, lineId: string, quantity: number) {
+  const query = `
+    ${CART_FRAGMENT}
+    mutation UpdateCartItem($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+      cartLinesUpdate(cartId: $cartId, lines: $lines) {
+        cart {
+          ...CartFields
+        }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{ cartLinesUpdate: { cart: unknown } }>(query, {
+    cartId,
+    lines: [{ id: lineId, quantity }]
+  });
+
+  return data.cartLinesUpdate.cart;
+}
+
+// ========================================
+// SUPPRIMER DU PANIER
+// ========================================
+export async function removeFromCart(cartId: string, lineId: string) {
+  const query = `
+    ${CART_FRAGMENT}
+    mutation RemoveFromCart($cartId: ID!, $lineIds: [ID!]!) {
+      cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+        cart {
+          ...CartFields
+        }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{ cartLinesRemove: { cart: unknown } }>(query, {
+    cartId,
+    lineIds: [lineId]
+  });
+
+  return data.cartLinesRemove.cart;
+}
+
+// ========================================
+// RÉCUPÉRER LE PANIER
+// ========================================
+export async function getCart(cartId: string) {
+  const query = `
+    ${CART_FRAGMENT}
+    query GetCart($cartId: ID!) {
+      cart(id: $cartId) {
+        ...CartFields
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{ cart: unknown }>(query, { cartId });
+  return data.cart;
+}
+
+// ========================================
+// FONCTIONS POUR LE BLOG
+// ========================================
+export async function getBlogPosts(blogHandle: string = 'actualites') {
+  const query = `
+    query GetBlogPosts($handle: String!) {
+      blog(handle: $handle) {
+        articles(first: 50, sortKey: PUBLISHED_AT, reverse: true) {
+          edges {
+            node {
               id
               title
               handle
@@ -646,106 +467,134 @@ export async function getBlogPostByHandle(blogHandle: string = 'actualites', art
             }
           }
         }
-      `,
-    }),
-  });
+      }
+    }
+  `;
 
-  const { data } = await response.json();
-  
-  if (!data.blog || !data.blog.articleByHandle) {
-    return null;
-  }
-  
-  return data.blog.articleByHandle;
-}
+  const data = await shopifyFetch<{ blog: { articles: { edges: Array<{ node: unknown }> } } | null }>(
+    query,
+    { handle: blogHandle }
+  );
 
-// Récupérer les articles récents (pour suggestions)
-export async function getRecentBlogPosts(blogHandle: string = 'actualites', limit: number = 3) {
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        {
-          blog(handle: "${blogHandle}") {
-            articles(first: ${limit}, sortKey: PUBLISHED_AT, reverse: true) {
-              edges {
-                node {
-                  id
-                  title
-                  handle
-                  excerpt
-                  image {
-                    url
-                    altText
-                  }
-                  publishedAt
-                }
-              }
-            }
-          }
-        }
-      `,
-    }),
-  });
-
-  const { data } = await response.json();
-  
   if (!data.blog) {
     return [];
   }
-  
-  return data.blog.articles.edges.map((edge: any) => edge.node);
+
+  return data.blog.articles.edges.map((edge) => edge.node);
 }
 
-// ===== FONCTIONS POUR LE CHECKOUT =====
+export async function getBlogPostByHandle(blogHandle: string = 'actualites', articleHandle: string) {
+  const query = `
+    query GetBlogPostByHandle($blogHandle: String!, $articleHandle: String!) {
+      blog(handle: $blogHandle) {
+        articleByHandle(handle: $articleHandle) {
+          id
+          title
+          handle
+          excerpt
+          excerptHtml
+          contentHtml
+          image {
+            url
+            altText
+          }
+          publishedAt
+          author {
+            name
+          }
+          tags
+        }
+      }
+    }
+  `;
 
-// Convertir le cartId en checkoutId
+  const data = await shopifyFetch<{ blog: { articleByHandle: unknown } | null }>(query, {
+    blogHandle,
+    articleHandle
+  });
+
+  if (!data.blog || !data.blog.articleByHandle) {
+    return null;
+  }
+
+  return data.blog.articleByHandle;
+}
+
+export async function getRecentBlogPosts(blogHandle: string = 'actualites', limit: number = 3) {
+  const query = `
+    query GetRecentBlogPosts($handle: String!, $limit: Int!) {
+      blog(handle: $handle) {
+        articles(first: $limit, sortKey: PUBLISHED_AT, reverse: true) {
+          edges {
+            node {
+              id
+              title
+              handle
+              excerpt
+              image {
+                url
+                altText
+              }
+              publishedAt
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{ blog: { articles: { edges: Array<{ node: unknown }> } } | null }>(
+    query,
+    { handle: blogHandle, limit }
+  );
+
+  if (!data.blog) {
+    return [];
+  }
+
+  return data.blog.articles.edges.map((edge) => edge.node);
+}
+
+// ========================================
+// FONCTIONS POUR LE CHECKOUT
+// ========================================
 function cartIdToCheckoutId(cartId: string): string {
   const base64Part = cartId.split('/').pop();
   return `gid://shopify/Checkout/${base64Part}`;
 }
 
-// Mettre à jour l'email du checkout
 export async function updateCheckoutEmail(cartId: string, email: string) {
   const checkoutId = cartIdToCheckoutId(cartId);
-  
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        mutation checkoutEmailUpdateV2($checkoutId: ID!, $email: String!) {
-          checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {
-            checkout {
-              id
-              email
-              webUrl
-            }
-            checkoutUserErrors {
-              field
-              message
-            }
-          }
-        }
-      `,
-      variables: {
-        checkoutId,
-        email
-      }
-    }),
-  });
 
-  const { data } = await response.json();
-  
+  const query = `
+    mutation CheckoutEmailUpdate($checkoutId: ID!, $email: String!) {
+      checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {
+        checkout {
+          id
+          email
+          webUrl
+        }
+        checkoutUserErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{ checkoutEmailUpdateV2: { checkout: unknown; checkoutUserErrors: Array<{ field: string; message: string }> } }>(
+    query,
+    { checkoutId, email }
+  );
+
   if (data.checkoutEmailUpdateV2.checkoutUserErrors.length > 0) {
-    console.error('Erreur lors de la mise à jour de l\'email:', data.checkoutEmailUpdateV2.checkoutUserErrors);
+    const errors = data.checkoutEmailUpdateV2.checkoutUserErrors.map(e => e.message).join(', ');
+    throw new Error(`Erreur lors de la mise à jour de l'email: ${errors}`);
   }
-  
+
   return data.checkoutEmailUpdateV2;
 }
 
-// Mettre à jour l'adresse de livraison du checkout
 export async function updateCheckoutShippingAddress(cartId: string, shippingAddress: {
   firstName: string;
   lastName: string;
@@ -757,48 +606,73 @@ export async function updateCheckoutShippingAddress(cartId: string, shippingAddr
   phone: string;
 }) {
   const checkoutId = cartIdToCheckoutId(cartId);
-  
-  const response = await fetch(getStorefrontApiUrl(), {
-    method: 'POST',
-    headers: getPublicTokenHeaders(),
-    body: JSON.stringify({
-      query: `
-        mutation checkoutShippingAddressUpdateV2($checkoutId: ID!, $shippingAddress: MailingAddressInput!) {
-          checkoutShippingAddressUpdateV2(checkoutId: $checkoutId, shippingAddress: $shippingAddress) {
-            checkout {
-              id
-              email
-              shippingAddress {
-                firstName
-                lastName
-                address1
-                address2
-                city
-                zip
-                country
-                phone
-              }
-              webUrl
-            }
-            checkoutUserErrors {
-              field
-              message
+
+  const query = `
+    mutation CheckoutShippingAddressUpdate($checkoutId: ID!, $shippingAddress: MailingAddressInput!) {
+      checkoutShippingAddressUpdateV2(checkoutId: $checkoutId, shippingAddress: $shippingAddress) {
+        checkout {
+          id
+          email
+          shippingAddress {
+            firstName
+            lastName
+            address1
+            address2
+            city
+            zip
+            country
+            phone
+          }
+          webUrl
+        }
+        checkoutUserErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{ checkoutShippingAddressUpdateV2: { checkout: unknown; checkoutUserErrors: Array<{ field: string; message: string }> } }>(
+    query,
+    { checkoutId, shippingAddress }
+  );
+
+  if (data.checkoutShippingAddressUpdateV2.checkoutUserErrors.length > 0) {
+    const errors = data.checkoutShippingAddressUpdateV2.checkoutUserErrors.map(e => e.message).join(', ');
+    throw new Error(`Erreur lors de la mise à jour de l'adresse: ${errors}`);
+  }
+
+  return data.checkoutShippingAddressUpdateV2;
+}
+
+// ========================================
+// FONCTION POUR RÉCUPÉRER LES IMAGES D'UN PRODUIT (utilisée par CartPage)
+// ========================================
+export async function getProductImages(handle: string) {
+  const query = `
+    query GetProductImages($handle: String!) {
+      productByHandle(handle: $handle) {
+        images(first: 50) {
+          edges {
+            node {
+              url
+              altText
             }
           }
         }
-      `,
-      variables: {
-        checkoutId,
-        shippingAddress
       }
-    }),
-  });
+    }
+  `;
 
-  const { data } = await response.json();
-  
-  if (data.checkoutShippingAddressUpdateV2.checkoutUserErrors.length > 0) {
-    console.error('Erreur lors de la mise à jour de l\'adresse:', data.checkoutShippingAddressUpdateV2.checkoutUserErrors);
+  const data = await shopifyFetch<{ productByHandle: { images: { edges: Array<{ node: { url: string; altText: string | null } }> } } | null }>(
+    query,
+    { handle }
+  );
+
+  if (!data.productByHandle) {
+    return [];
   }
-  
-  return data.checkoutShippingAddressUpdateV2;
+
+  return data.productByHandle.images.edges.map((edge) => edge.node);
 }

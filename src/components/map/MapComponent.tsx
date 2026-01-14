@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-// Clé API Mapbox
-mapboxgl.accessToken = 'pk.eyJ1IjoiYWxleHF1aWwiLCJhIjoiY21pYXA0MTMxMGc3bzJrcXB1bm12em1seiJ9.yjpl8WFjeQAS6wCBpa-4wg';
+// Clé API Mapbox depuis les variables d'environnement
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
 interface MapComponentProps {
   stores: any[];

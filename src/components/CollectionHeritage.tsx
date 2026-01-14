@@ -61,6 +61,7 @@ export default function CollectionHeritage() {
           <img
             src="https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg"
             alt="Collection Héritage - Trident"
+            loading="lazy"
             className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
           />
 

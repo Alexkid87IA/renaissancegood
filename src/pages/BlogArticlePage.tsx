@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowLeft, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
 import { getBlogPostByHandle } from '../lib/shopify';
+import { createSanitizedMarkup } from '../lib/sanitize';
 
 // Interface pour l'article
 interface BlogArticle {
@@ -218,7 +219,7 @@ export default function BlogArticlePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="prose prose-lg max-w-none"
-          dangerouslySetInnerHTML={{ __html: article.contentHtml }}
+          dangerouslySetInnerHTML={createSanitizedMarkup(article.contentHtml)}
         />
 
         {/* Author Bio */}

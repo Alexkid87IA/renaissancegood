@@ -1,38 +1,56 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { CartProvider } from './contexts/CartContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
 import ScrollToTop from './components/ScrollToTop';
-import HomePage from './pages/HomePage';
-import CollectionsPage from './pages/CollectionsPage';
-import HeritageCollectionPage from './pages/HeritageCollectionPage';
-import VersaillesCollectionPage from './pages/VersaillesCollectionPage';
-import IsisCollectionPage from './pages/IsisCollectionPage';
-import ProductPage from './pages/ProductPage';
-import HistoirePage from './pages/HistoirePage';
-import CartPage from './pages/CartPage';
-import ShopPage from './pages/ShopPage';
-import BlogPage from './pages/BlogPage';
-import BlogArticlePage from './pages/BlogArticlePage';
-import StoreLocatorPage from './pages/StoreLocatorPage';
 
-// Pages légales et service client
-import ConfidentialitePage from './pages/ConfidentialitePage';
-import RemboursementPage from './pages/RemboursementPage';
-import ExpeditionPage from './pages/ExpeditionPage';
-import ConditionsUtilisationPage from './pages/ConditionsUtilisationPage';
-import CookiesPage from './pages/CookiesPage';
-import CGVPage from './pages/CGVPage';
-import MentionsLegalesPage from './pages/MentionsLegalesPage';
-import FAQPage from './pages/FAQPage';
-import ContactPage from './pages/ContactPage';
-import GarantiePage from './pages/GarantiePage';
-import GuideTaillesPage from './pages/GuideTaillesPage';
-import ManifestePage from './pages/ManifestePage';
-import SavoirFairePage from './pages/SavoirFairePage';
-import SymbolesPage from './pages/SymbolesPage';
-import NotFoundPage from './pages/NotFoundPage';
+// Lazy load all pages for code splitting
+const HomePage = lazy(() => import('./pages/HomePage'));
+const CollectionsPage = lazy(() => import('./pages/CollectionsPage'));
+const HeritageCollectionPage = lazy(() => import('./pages/HeritageCollectionPage'));
+const VersaillesCollectionPage = lazy(() => import('./pages/VersaillesCollectionPage'));
+const IsisCollectionPage = lazy(() => import('./pages/IsisCollectionPage'));
+const ProductPage = lazy(() => import('./pages/ProductPage'));
+const HistoirePage = lazy(() => import('./pages/HistoirePage'));
+const CartPage = lazy(() => import('./pages/CartPage'));
+const ShopPage = lazy(() => import('./pages/ShopPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const BlogArticlePage = lazy(() => import('./pages/BlogArticlePage'));
+const StoreLocatorPage = lazy(() => import('./pages/StoreLocatorPage'));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
+const CheckoutConfirmationPage = lazy(() => import('./pages/CheckoutConfirmationPage'));
+
+// Pages légales et service client (lazy loaded)
+const ConfidentialitePage = lazy(() => import('./pages/ConfidentialitePage'));
+const RemboursementPage = lazy(() => import('./pages/RemboursementPage'));
+const ExpeditionPage = lazy(() => import('./pages/ExpeditionPage'));
+const ConditionsUtilisationPage = lazy(() => import('./pages/ConditionsUtilisationPage'));
+const CookiesPage = lazy(() => import('./pages/CookiesPage'));
+const CGVPage = lazy(() => import('./pages/CGVPage'));
+const MentionsLegalesPage = lazy(() => import('./pages/MentionsLegalesPage'));
+const FAQPage = lazy(() => import('./pages/FAQPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const GarantiePage = lazy(() => import('./pages/GarantiePage'));
+const GuideTaillesPage = lazy(() => import('./pages/GuideTaillesPage'));
+const ManifestePage = lazy(() => import('./pages/ManifestePage'));
+const SavoirFairePage = lazy(() => import('./pages/SavoirFairePage'));
+const SymbolesPage = lazy(() => import('./pages/SymbolesPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+
+// Loading component for Suspense
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-beige">
+      <div className="text-center">
+        <div className="w-8 h-8 border-2 border-dark-text/20 border-t-dark-text rounded-full animate-spin mx-auto mb-4" />
+        <p className="font-sans text-xs tracking-[0.2em] text-dark-text/50 uppercase">Chargement</p>
+      </div>
+    </div>
+  );
+}
 
 function AppContent() {
   const location = useLocation();
@@ -43,47 +61,51 @@ function AppContent() {
       <div className="relative bg-beige">
         <Header />
         <main className="relative">
-          <Routes>
-            {/* Pages principales */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/collections" element={<CollectionsPage />} />
-            <Route path="/collections/heritage" element={<HeritageCollectionPage />} />
-            <Route path="/collections/versailles" element={<VersaillesCollectionPage />} />
-            <Route path="/collections/isis" element={<IsisCollectionPage />} />
-            <Route path="/product/:id" element={<ProductPage />} />
-            <Route path="/histoire" element={<HistoirePage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:handle" element={<BlogArticlePage />} />
-            <Route path="/opticiens" element={<StoreLocatorPage />} />
-            <Route path="/store-locator" element={<StoreLocatorPage />} />
-            
-            {/* Pages service client */}
-            <Route path="/faq" element={<FAQPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/garantie" element={<GarantiePage />} />
-            <Route path="/guide-tailles" element={<GuideTaillesPage />} />
-            <Route path="/livraison" element={<ExpeditionPage />} />
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              {/* Pages principales */}
+              <Route path="/" element={<HomePage />} />
+              <Route path="/collections" element={<CollectionsPage />} />
+              <Route path="/collections/heritage" element={<HeritageCollectionPage />} />
+              <Route path="/collections/versailles" element={<VersaillesCollectionPage />} />
+              <Route path="/collections/isis" element={<IsisCollectionPage />} />
+              <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/histoire" element={<HistoirePage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/checkout/confirmation" element={<CheckoutConfirmationPage />} />
+              <Route path="/shop" element={<ShopPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:handle" element={<BlogArticlePage />} />
+              <Route path="/opticiens" element={<StoreLocatorPage />} />
+              <Route path="/store-locator" element={<StoreLocatorPage />} />
 
-            {/* Pages magazine/histoire */}
-            <Route path="/manifeste" element={<ManifestePage />} />
-            <Route path="/manifesto" element={<ManifestePage />} />
-            <Route path="/savoir-faire" element={<SavoirFairePage />} />
-            <Route path="/symboles" element={<SymbolesPage />} />
+              {/* Pages service client */}
+              <Route path="/faq" element={<FAQPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/garantie" element={<GarantiePage />} />
+              <Route path="/guide-tailles" element={<GuideTaillesPage />} />
+              <Route path="/livraison" element={<ExpeditionPage />} />
 
-            {/* Pages légales */}
-            <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
-            <Route path="/confidentialite" element={<ConfidentialitePage />} />
-            <Route path="/cgv" element={<CGVPage />} />
-            <Route path="/cookies" element={<CookiesPage />} />
-            <Route path="/remboursement" element={<RemboursementPage />} />
-            <Route path="/expedition" element={<ExpeditionPage />} />
-            <Route path="/conditions-utilisation" element={<ConditionsUtilisationPage />} />
+              {/* Pages magazine/histoire */}
+              <Route path="/manifeste" element={<ManifestePage />} />
+              <Route path="/manifesto" element={<ManifestePage />} />
+              <Route path="/savoir-faire" element={<SavoirFairePage />} />
+              <Route path="/symboles" element={<SymbolesPage />} />
 
-            {/* 404 - Catch all */}
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+              {/* Pages légales */}
+              <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
+              <Route path="/confidentialite" element={<ConfidentialitePage />} />
+              <Route path="/cgv" element={<CGVPage />} />
+              <Route path="/cookies" element={<CookiesPage />} />
+              <Route path="/remboursement" element={<RemboursementPage />} />
+              <Route path="/expedition" element={<ExpeditionPage />} />
+              <Route path="/conditions-utilisation" element={<ConditionsUtilisationPage />} />
+
+              {/* 404 - Catch all */}
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
         </main>
         <div className={`relative z-10 ${isProductPage ? 'ml-0 lg:ml-[340px] laptop:ml-[380px] xl:ml-[480px]' : ''}`}>
           <Footer />
@@ -95,13 +117,15 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <CartProvider>
-        <AppContent />
-        <CartDrawer />
-      </CartProvider>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <ScrollToTop />
+        <CartProvider>
+          <AppContent />
+          <CartDrawer />
+        </CartProvider>
+      </Router>
+    </HelmetProvider>
   );
 }
 

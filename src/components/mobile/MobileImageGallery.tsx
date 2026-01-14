@@ -58,7 +58,7 @@ export default function MobileImageGallery({ images, productName }: MobileImageG
 
   return (
     <div className="relative bg-white">
-      <div className="relative h-[70vh] overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden">
         <AnimatePresence initial={false} mode="wait">
           <motion.div
             key={currentIndex}
@@ -70,12 +70,12 @@ export default function MobileImageGallery({ images, productName }: MobileImageG
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.2}
             onDragEnd={handleDragEnd}
-            className="h-full w-full flex items-center justify-center"
+            className="h-full w-full"
           >
             <motion.img
               src={images[currentIndex]}
               alt={`${productName} - vue ${currentIndex + 1}`}
-              className="max-w-full max-h-full object-contain px-6 select-none"
+              className="w-full h-full object-cover select-none"
               animate={{ scale }}
               transition={{ duration: 0.3 }}
               onClick={handleDoubleTap}

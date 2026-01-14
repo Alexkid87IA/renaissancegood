@@ -39,6 +39,7 @@ export default function CollectionVersailles() {
             src="https://26.staticbtf.eno.do/v1/103-default/6438d7ab4a0133318c4426ad47aee221/media.jpg"
             alt="Collection Versailles - Fleur de Lys"
             className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+            loading="lazy"
           />
 
           {/* Hover overlay */}
@@ -133,6 +134,7 @@ export default function CollectionVersailles() {
                 src="https://26.staticbtf.eno.do/v1/103-default/6438d7ab4a0133318c4426ad47aee221/media.jpg"
                 alt="Collection Versailles"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
               />
 
               {/* Loading Overlay */}

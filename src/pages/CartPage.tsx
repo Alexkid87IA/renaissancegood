@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Minus, Plus, X, Shield, Truck, Award, Package, ChevronLeft, ChevronRight, ExternalLink, Lock } from 'lucide-react';
+import { Minus, Plus, X, Shield, Truck, Award, Package, ChevronLeft, ChevronRight, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../contexts/CartContext';
 
@@ -221,29 +221,23 @@ export default function CartPage() {
                   </span>
                 </div>
 
-                {/* Message de réassurance avant redirection Shopify */}
+                {/* Message de réassurance */}
                 <div className="mb-4 p-4 bg-beige border border-bronze/20">
                   <div className="flex items-center gap-2 justify-center text-dark-text/70">
                     <Lock size={14} strokeWidth={2} className="text-bronze" />
                     <p className="font-sans text-xs">
-                      Paiement sécurisé via Shopify
+                      Paiement sécurisé via Stripe
                     </p>
                   </div>
-                  <p className="font-sans text-[10px] text-dark-text/50 text-center mt-1">
-                    Ouverture dans un nouvel onglet
-                  </p>
                 </div>
 
-                {/* Bouton de redirection vers Shopify Checkout */}
-                <a
-                  href={cart?.checkoutUrl || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                {/* Bouton vers Checkout */}
+                <Link
+                  to="/checkout"
                   className="flex items-center justify-center gap-2 w-full bg-dark-text text-white py-5 px-6 text-center font-sans text-[10px] tracking-[0.3em] font-bold hover:bg-bronze transition-all duration-300 mb-4"
                 >
                   <span>FINALISER LA COMMANDE</span>
-                  <ExternalLink size={14} strokeWidth={2.5} />
-                </a>
+                </Link>
 
                 <Link
                   to="/collections/heritage"
@@ -265,6 +259,42 @@ export default function CartPage() {
                   <div className="flex items-center gap-3 text-dark-text/60">
                     <Package size={16} strokeWidth={1.5} className="flex-shrink-0" />
                     <p className="font-sans text-xs">Emballage premium inclus</p>
+                  </div>
+                </div>
+
+                {/* Moyens de paiement */}
+                <div className="mt-8 pt-6 border-t border-dark-text/10">
+                  <p className="text-[9px] text-dark-text/40 uppercase tracking-[0.15em] text-center mb-4">
+                    Moyens de paiement
+                  </p>
+                  <div className="flex items-center justify-center gap-1.5 flex-wrap">
+                    {/* Visa */}
+                    <div className="h-6 px-2 bg-white border border-dark-text/10 rounded flex items-center justify-center">
+                      <span className="text-[9px] font-bold text-[#1A1F71] tracking-wide">VISA</span>
+                    </div>
+                    {/* Mastercard */}
+                    <div className="w-9 h-6 bg-white border border-dark-text/10 rounded flex items-center justify-center">
+                      <div className="flex items-center -space-x-1.5">
+                        <div className="w-3 h-3 rounded-full bg-[#EB001B]"></div>
+                        <div className="w-3 h-3 rounded-full bg-[#F79E1B]"></div>
+                      </div>
+                    </div>
+                    {/* Apple Pay */}
+                    <div className="h-6 px-2 bg-black rounded flex items-center justify-center">
+                      <span className="text-[9px] font-medium text-white">Pay</span>
+                    </div>
+                    {/* Google Pay */}
+                    <div className="h-6 px-2 bg-white border border-dark-text/10 rounded flex items-center justify-center">
+                      <span className="text-[9px] font-medium text-[#5F6368]">G Pay</span>
+                    </div>
+                    {/* PayPal */}
+                    <div className="h-6 px-2 bg-[#0070BA] rounded flex items-center justify-center">
+                      <span className="text-[9px] font-bold text-white">PayPal</span>
+                    </div>
+                    {/* CB */}
+                    <div className="h-6 px-2 bg-white border border-dark-text/10 rounded flex items-center justify-center">
+                      <span className="text-[9px] font-bold text-[#1A4298]">CB</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -380,14 +410,16 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
       className="bg-white border border-dark-text/5 overflow-hidden mb-6"
     >
       <div className="flex flex-col lg:flex-row">
-        {/* Image Container with Carousel */}
-        <div className="w-full lg:w-[400px] xl:w-[480px] flex-shrink-0 bg-beige flex flex-col">
-          <Link 
+        {/* Image Container with Carousel - Full bleed */}
+        <div className="w-full lg:w-[500px] xl:w-[560px] flex-shrink-0 flex flex-col">
+          <Link
             to={`/product/${product?.handle || ''}`}
-            className="relative group/image flex-1 min-h-[300px] lg:min-h-[400px] flex items-center justify-center overflow-hidden"
+            className="relative group/image aspect-[4/3] overflow-hidden bg-neutral-100"
           >
             {loadingImages ? (
-              <div className="w-8 h-8 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-8 h-8 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
+              </div>
             ) : (
               <AnimatePresence mode="wait">
                 {allProductImages.map((img, i) => i === currentImageIndex && (
@@ -395,8 +427,7 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
                     key={i}
                     src={img}
                     alt={`${product?.title || 'Produit'} - Image ${i + 1}`}
-                    className="w-full h-full object-contain p-8 cursor-pointer"
-                    style={{ aspectRatio: '4/3' }}
+                    className="w-full h-full object-cover cursor-pointer"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -407,80 +438,64 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
             )}
 
             {/* Badge Collection */}
-            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 border border-dark-text/10 z-10 pointer-events-none">
+            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 z-10 pointer-events-none">
               <p className="font-sans text-[8px] tracking-[0.2em] font-bold text-dark-text uppercase">
-                Collection {collection}
+                {collection}
               </p>
             </div>
 
-            {/* Hover overlay avec texte "Voir le produit" */}
-            <div className="absolute inset-0 bg-dark-text/0 group-hover/image:bg-dark-text/5 transition-colors duration-300 flex items-center justify-center pointer-events-none">
-              <div className="opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 bg-white/95 px-4 py-2 border border-dark-text/10">
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-dark-text/0 group-hover/image:bg-dark-text/10 transition-colors duration-300 flex items-center justify-center pointer-events-none">
+              <div className="opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 bg-white px-5 py-2.5">
                 <p className="font-sans text-[9px] tracking-[0.2em] font-bold text-dark-text uppercase">
                   Voir le produit
                 </p>
               </div>
             </div>
 
-            {/* Navigation Arrows - Visibles seulement s'il y a plusieurs images */}
+            {/* Navigation Arrows */}
             {!loadingImages && allProductImages.length > 1 && (
               <>
                 <button
                   type="button"
                   onClick={handlePrevImage}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2.5 shadow-lg transition-all duration-200 opacity-0 group-hover:opacity-100 z-20 border border-dark-text/10"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white w-10 h-10 flex items-center justify-center transition-all duration-200 opacity-0 group-hover/image:opacity-100 z-20"
                   aria-label="Image précédente"
                 >
-                  <ChevronLeft size={18} className="text-dark-text" strokeWidth={2.5} />
+                  <ChevronLeft size={20} className="text-dark-text" strokeWidth={2} />
                 </button>
                 <button
                   type="button"
                   onClick={handleNextImage}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2.5 shadow-lg transition-all duration-200 opacity-0 group-hover:opacity-100 z-20 border border-dark-text/10"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white w-10 h-10 flex items-center justify-center transition-all duration-200 opacity-0 group-hover/image:opacity-100 z-20"
                   aria-label="Image suivante"
                 >
-                  <ChevronRight size={18} className="text-dark-text" strokeWidth={2.5} />
+                  <ChevronRight size={20} className="text-dark-text" strokeWidth={2} />
                 </button>
-
-                {/* Indicateurs de position */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-                  {allProductImages.map((_, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={(e) => handleThumbnailClick(e, i)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        i === currentImageIndex
-                          ? 'bg-bronze w-8'
-                          : 'bg-white/60 hover:bg-white/90 w-2'
-                      }`}
-                      aria-label={`Aller à l'image ${i + 1}`}
-                    />
-                  ))}
-                </div>
               </>
             )}
           </Link>
 
-          {/* Thumbnails - Affichés seulement s'il y a plusieurs images */}
+          {/* Thumbnails - Style épuré */}
           {!loadingImages && allProductImages.length > 1 && (
-            <div className="flex gap-2 p-4 bg-white border-t border-dark-text/5 overflow-x-auto">
+            <div className="flex bg-white border-t border-dark-text/5">
               {allProductImages.map((img, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={(e) => handleThumbnailClick(e, i)}
-                  className={`flex-shrink-0 w-20 aspect-[4/3] bg-beige border-2 transition-all duration-200 overflow-hidden ${
-                    i === currentImageIndex
-                      ? 'border-bronze ring-1 ring-bronze/20'
-                      : 'border-transparent hover:border-dark-text/20'
+                  className={`flex-1 aspect-[4/3] transition-all duration-200 overflow-hidden relative ${
+                    i === currentImageIndex ? 'opacity-100' : 'opacity-40 hover:opacity-70'
                   }`}
                 >
                   <img
                     src={img}
                     alt={`${product?.title || 'Produit'} thumbnail ${i + 1}`}
-                    className="w-full h-full object-contain p-1"
+                    className="w-full h-full object-cover"
                   />
+                  {i === currentImageIndex && (
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-dark-text" />
+                  )}
                 </button>
               ))}
             </div>
