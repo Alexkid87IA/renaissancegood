@@ -10,6 +10,7 @@ import GroupedProductCard from '../components/GroupedProductCard';
 import { Product } from '../components/ProductCard';
 import { getProducts, getProductsByCollection } from '../lib/shopify';
 import { getGroupedProducts, GroupedProduct } from '../lib/productGrouping';
+import SEO from '../components/SEO';
 
 // Configuration des filtres
 const COLLECTIONS = [
@@ -111,6 +112,11 @@ export default function CollectionsPage() {
 
   return (
     <div className="min-h-screen bg-beige">
+      <SEO
+        title="Collections"
+        description="Explorez toutes les collections RENAISSANCE Paris. Héritage, Versailles et Isis : des lunettes de luxe fabriquées en France avec un savoir-faire artisanal d'exception."
+        url="/collections"
+      />
       {/* Barre de filtres */}
       <div className="border-b border-dark-text/10 bg-white sticky top-20 z-30">
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-4 sm:py-6 laptop:py-8">

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -43,6 +44,11 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-beige pt-24 pb-16">
+      <SEO
+        title="Contact"
+        description="Contactez RENAISSANCE Paris pour toute question sur nos lunettes de luxe. Service client disponible par email et téléphone du lundi au vendredi."
+        url="/contact"
+      />
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         <motion.div

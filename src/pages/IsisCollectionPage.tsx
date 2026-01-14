@@ -1,8 +1,14 @@
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 export default function IsisCollectionPage() {
   return (
     <div className="bg-beige">
+      <SEO
+        title="Collection Isis"
+        description="Découvrez la collection Isis de RENAISSANCE Paris. Des lunettes de luxe audacieuses inspirées de la déesse égyptienne, alliant mystère et raffinement."
+        url="/collections/isis"
+      />
       <div className="relative h-screen overflow-hidden">
         <motion.div
           className="absolute inset-0"

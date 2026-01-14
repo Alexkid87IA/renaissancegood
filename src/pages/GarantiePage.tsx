@@ -1,8 +1,14 @@
 import LegalPageTemplate from '../components/LegalPageTemplate';
+import SEO from '../components/SEO';
 
 export default function GarantiePage() {
   return (
     <LegalPageTemplate title="Garantie & Service Après-Vente">
+      <SEO
+        title="Garantie & Service Après-Vente"
+        description="Garantie 2 ans RENAISSANCE Paris. Service après-vente, réparations, entretien et conseils pour vos lunettes de luxe. Satisfaction garantie."
+        url="/garantie"
+      />
       <h2>Garantie Constructeur</h2>
       <p>
         Tous les produits Renaissance bénéficient d'une <strong>garantie constructeur de 2 ans</strong> à compter de la date d'achat, couvrant les défauts de fabrication et de matériaux.

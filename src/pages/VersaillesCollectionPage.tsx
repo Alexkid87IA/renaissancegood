@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { getProductsByCollection } from '../lib/shopify';
+import SEO from '../components/SEO';
 
 // Interface adaptée pour les produits Shopify
 interface ShopifyProduct {
@@ -286,6 +287,11 @@ export default function VersaillesCollectionPage() {
 
   return (
     <div className="bg-beige">
+      <SEO
+        title="Collection Versailles"
+        description="Découvrez la collection Versailles de RENAISSANCE Paris. L'élégance à la française incarnée dans des lunettes de luxe raffinées, inspirées du château de Versailles."
+        url="/collections/versailles"
+      />
       <div className="relative h-screen overflow-hidden">
         <motion.div
           ref={heroRef}

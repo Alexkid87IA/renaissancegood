@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import LegalPageTemplate from '../components/LegalPageTemplate';
+import SEO from '../components/SEO';
 
 const faqCategories = [
   {
@@ -165,8 +166,24 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function FAQPage() {
+  // Aplatir toutes les questions FAQ pour le schema SEO
+  const allFaqItems = useMemo(() => {
+    return faqCategories.flatMap(category =>
+      category.questions.map(q => ({
+        question: q.q,
+        answer: q.a,
+      }))
+    );
+  }, []);
+
   return (
     <LegalPageTemplate title="Questions Fréquentes">
+      <SEO
+        title="Questions Fréquentes (FAQ)"
+        description="Trouvez les réponses à vos questions sur les lunettes RENAISSANCE Paris : commande, livraison, retours, entretien, garantie et opticiens partenaires."
+        url="/faq"
+        faqItems={allFaqItems}
+      />
       <div className="mb-8">
         <p className="font-sans text-dark-text/70 text-base leading-relaxed mb-4">
           Vous trouverez ci-dessous les réponses aux questions les plus fréquemment posées.

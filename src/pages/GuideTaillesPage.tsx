@@ -1,9 +1,15 @@
 import { motion } from 'framer-motion';
 import { Ruler, Eye, ArrowLeftRight } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function GuideTaillesPage() {
   return (
     <div className="min-h-screen bg-beige pt-24 pb-16">
+      <SEO
+        title="Guide des Tailles"
+        description="Trouvez la monture RENAISSANCE Paris parfaitement adaptée à votre visage. Guide des dimensions, formes de visage et conseils pour choisir vos lunettes."
+        url="/guide-tailles"
+      />
       <div className="max-w-6xl mx-auto px-6 md:px-12">
 
         <motion.div

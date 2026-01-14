@@ -1,8 +1,14 @@
 import LegalPageTemplate from '../components/LegalPageTemplate';
+import SEO from '../components/SEO';
 
 export default function ExpeditionPage() {
   return (
     <LegalPageTemplate title="Expédition">
+      <SEO
+        title="Livraison"
+        description="Livraison gratuite RENAISSANCE Paris. Expédition sous 24-48h, suivi Colissimo et livraison internationale. Découvrez nos délais et conditions."
+        url="/livraison"
+      />
       <h2>Politique d'Expédition</h2>
       <p>
         Nous nous engageons à expédier vos commandes rapidement et en toute transparence.

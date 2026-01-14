@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import SEO from '../components/SEO';
 
 // Import des sections redesignées
 import HeroHistoireSection from '../components/histoire/HeroHistoireSection';
@@ -17,6 +18,11 @@ export default function HistoirePage() {
 
   return (
     <div className="bg-beige relative">
+      <SEO
+        title="Notre Histoire"
+        description="Découvrez l'histoire de RENAISSANCE Paris, maison française de lunettes de luxe. Notre savoir-faire artisanal, nos valeurs et notre engagement pour l'excellence."
+        url="/histoire"
+      />
       <HeroHistoireSection />
       <FondateursSection />
       <SavoirFaireSection />

@@ -1,5 +1,26 @@
 import { Helmet } from 'react-helmet-async';
 
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface LocalBusinessProps {
+  name: string;
+  address: {
+    street: string;
+    city: string;
+    postalCode: string;
+    country: string;
+  };
+  phone?: string;
+  openingHours?: string[];
+  geo?: {
+    latitude: number;
+    longitude: number;
+  };
+}
+
 interface SEOProps {
   title?: string;
   description?: string;
@@ -23,6 +44,10 @@ interface SEOProps {
     modifiedTime?: string;
     author: string;
   };
+  // Pour les pages FAQ
+  faqItems?: FAQItem[];
+  // Pour les pages avec LocalBusiness (opticiens)
+  localBusiness?: LocalBusinessProps;
   noIndex?: boolean;
 }
 
@@ -38,6 +63,8 @@ export default function SEO({
   type = 'website',
   product,
   article,
+  faqItems,
+  localBusiness,
   noIndex = false,
 }: SEOProps) {
   const fullTitle = title
@@ -112,6 +139,43 @@ export default function SEO({
         url: `${BASE_URL}/logo.png`,
       },
     },
+  } : null;
+
+  // JSON-LD pour FAQ
+  const faqSchema = faqItems && faqItems.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map(item => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  } : null;
+
+  // JSON-LD pour LocalBusiness
+  const localBusinessSchema = localBusiness ? {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: localBusiness.name,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: localBusiness.address.street,
+      addressLocality: localBusiness.address.city,
+      postalCode: localBusiness.address.postalCode,
+      addressCountry: localBusiness.address.country,
+    },
+    ...(localBusiness.phone && { telephone: localBusiness.phone }),
+    ...(localBusiness.openingHours && { openingHours: localBusiness.openingHours }),
+    ...(localBusiness.geo && {
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: localBusiness.geo.latitude,
+        longitude: localBusiness.geo.longitude,
+      },
+    }),
   } : null;
 
   // JSON-LD pour BreadcrumbList (basé sur l'URL)
@@ -201,6 +265,18 @@ export default function SEO({
       {articleSchema && (
         <script type="application/ld+json">
           {JSON.stringify(articleSchema)}
+        </script>
+      )}
+
+      {faqSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      )}
+
+      {localBusinessSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(localBusinessSchema)}
         </script>
       )}
 

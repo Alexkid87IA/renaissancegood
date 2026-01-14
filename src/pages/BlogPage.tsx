@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { getBlogPosts } from '../lib/shopify';
+import SEO from '../components/SEO';
 
 // Interface pour les articles
 interface BlogArticle {
@@ -45,6 +46,11 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-beige">
+      <SEO
+        title="Le Manifeste - Blog"
+        description="Découvrez l'univers RENAISSANCE Paris. Articles sur nos symboles, notre savoir-faire artisanal et l'histoire de la lunetterie de luxe française."
+        url="/blog"
+      />
       {/* Hero Section */}
       <section className="relative h-[60vh] bg-dark-text flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 opacity-10">

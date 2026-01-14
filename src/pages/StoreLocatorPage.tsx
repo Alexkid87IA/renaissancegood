@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import MapComponent from '../components/map/MapComponent';
 import StoreList from '../components/map/StoreList';
 import SearchBar from '../components/map/SearchBar';
+import SEO from '../components/SEO';
 
 // Import des données des opticiens
 import opticiansData from '../data/opticians.json';
@@ -102,6 +103,11 @@ export default function StoreLocatorPage() {
 
   return (
     <div className="min-h-screen bg-beige">
+      <SEO
+        title="Trouver un Opticien Partenaire"
+        description={`Trouvez l'un de nos ${opticiansData.length}+ opticiens partenaires RENAISSANCE Paris près de chez vous. Essayez nos lunettes de luxe et bénéficiez de conseils personnalisés.`}
+        url="/opticiens"
+      />
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-8 border-b border-dark-text/10">
         <div className="max-w-[1400px] mx-auto">
