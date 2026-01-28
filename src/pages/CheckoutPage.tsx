@@ -97,11 +97,12 @@ function StripePaymentForm({
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const [paymentError, setPaymentError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!stripe || !elements) return;
+    if (!stripe || !elements || !isReady) return;
 
     setIsProcessing(true);
     setPaymentError(null);
@@ -121,7 +122,6 @@ function StripePaymentForm({
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
         onSuccess(paymentIntent.id);
       } else if (paymentIntent) {
-        // Handle other statuses (requires_action, processing, etc.)
         setPaymentError('Le paiement nécessite une action supplémentaire.');
         onError('Action supplémentaire requise');
       }
@@ -137,24 +137,39 @@ function StripePaymentForm({
 
   return (
     <form onSubmit={handleSubmit}>
-      <PaymentElement
-        options={{
-          layout: 'tabs',
-          defaultValues: {
-            billingDetails: {
-              name: `${formData.firstName} ${formData.lastName}`,
-              email: formData.email,
-              phone: formData.phone,
-              address: {
-                line1: formData.address,
-                city: formData.city,
-                postal_code: formData.postalCode,
-                country: COUNTRY_CODES[formData.country] || 'FR',
+      <div className={isReady ? '' : 'min-h-[200px] flex items-center justify-center'}>
+        {!isReady && (
+          <div className="text-center">
+            <div className="w-5 h-5 border-2 border-dark-text/20 border-t-dark-text rounded-full animate-spin mx-auto mb-2" />
+            <p className="font-sans text-[11px] text-dark-text/30">Chargement du formulaire de paiement...</p>
+          </div>
+        )}
+        <div className={isReady ? '' : 'sr-only'}>
+          <PaymentElement
+            onReady={() => setIsReady(true)}
+            onLoadError={(e) => {
+              console.error('PaymentElement load error:', e);
+              setPaymentError(`Erreur de chargement du formulaire de paiement: ${e.error?.message || 'Vérifiez votre connexion.'}`);
+            }}
+            options={{
+              layout: 'tabs',
+              defaultValues: {
+                billingDetails: {
+                  name: `${formData.firstName} ${formData.lastName}`,
+                  email: formData.email,
+                  phone: formData.phone,
+                  address: {
+                    line1: formData.address,
+                    city: formData.city,
+                    postal_code: formData.postalCode,
+                    country: COUNTRY_CODES[formData.country] || 'FR',
+                  },
+                },
               },
-            },
-          },
-        }}
-      />
+            }}
+          />
+        </div>
+      </div>
 
       {paymentError && (
         <motion.div
@@ -169,7 +184,7 @@ function StripePaymentForm({
 
       <button
         type="submit"
-        disabled={!stripe || isProcessing}
+        disabled={!stripe || !isReady || isProcessing}
         className="w-full mt-8 bg-dark-text text-white py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-bronze transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
       >
         {isProcessing ? (
