@@ -111,18 +111,6 @@ function StripePaymentForm({
         elements,
         confirmParams: {
           return_url: `${window.location.origin}/checkout/confirmation`,
-          receipt_email: formData.email || undefined,
-          shipping: {
-            name: `${formData.firstName} ${formData.lastName}`,
-            address: {
-              line1: formData.address,
-              line2: formData.addressComplement || undefined,
-              city: formData.city,
-              postal_code: formData.postalCode,
-              country: COUNTRY_CODES[formData.country] || 'FR',
-            },
-            phone: formData.phone || undefined,
-          },
         },
         redirect: 'if_required',
       });
