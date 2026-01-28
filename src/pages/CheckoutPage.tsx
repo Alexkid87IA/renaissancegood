@@ -111,7 +111,7 @@ function StripePaymentForm({
         elements,
         confirmParams: {
           return_url: `${window.location.origin}/checkout/confirmation`,
-          receipt_email: formData.email,
+          receipt_email: formData.email || undefined,
           shipping: {
             name: `${formData.firstName} ${formData.lastName}`,
             address: {
@@ -121,7 +121,7 @@ function StripePaymentForm({
               postal_code: formData.postalCode,
               country: COUNTRY_CODES[formData.country] || 'FR',
             },
-            phone: formData.phone,
+            phone: formData.phone || undefined,
           },
         },
         redirect: 'if_required',
@@ -132,10 +132,16 @@ function StripePaymentForm({
         onError(error.message || 'Erreur de paiement');
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
         onSuccess(paymentIntent.id);
+      } else if (paymentIntent) {
+        // Handle other statuses (requires_action, processing, etc.)
+        setPaymentError('Le paiement nécessite une action supplémentaire.');
+        onError('Action supplémentaire requise');
       }
-    } catch {
-      setPaymentError('Une erreur inattendue est survenue');
-      onError('Erreur inattendue');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Erreur inattendue';
+      console.error('Payment error:', err);
+      setPaymentError(message);
+      onError(message);
     } finally {
       setIsProcessing(false);
     }
