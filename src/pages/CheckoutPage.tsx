@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { loadStripe, type Appearance } from '@stripe/stripe-js';
-import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { Elements, PaymentElement, ExpressCheckoutElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useCart } from '../contexts/CartContext';
 import { Lock, ArrowLeft, AlertCircle, ChevronDown, Check, Shield, Truck, RotateCcw } from 'lucide-react';
 
@@ -80,6 +80,103 @@ const stripeAppearance: Appearance = {
 };
 
 // ========================================
+// EXPRESS CHECKOUT (Apple Pay / Google Pay)
+// ========================================
+
+function ExpressCheckoutSection({
+  total,
+  onSuccess,
+  onError,
+}: {
+  total: number;
+  onSuccess: (paymentIntentId: string) => void;
+  onError: (error: string) => void;
+}) {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [hasExpressMethods, setHasExpressMethods] = useState<boolean | null>(null);
+
+  const handleExpressConfirm = async () => {
+    if (!stripe || !elements) return;
+
+    try {
+      const { error, paymentIntent } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: `${window.location.origin}/checkout/confirmation`,
+        },
+        redirect: 'if_required',
+      });
+
+      if (error) {
+        onError(error.message || 'Erreur de paiement express');
+      } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+        onSuccess(paymentIntent.id);
+      }
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Erreur inattendue';
+      onError(message);
+    }
+  };
+
+  if (hasExpressMethods === false) return null;
+
+  return (
+    <div className={hasExpressMethods === null ? 'min-h-[60px]' : ''}>
+      <div className={hasExpressMethods === null ? 'opacity-0 h-0 overflow-hidden' : ''}>
+        <p className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-4">
+          Paiement express
+        </p>
+        <ExpressCheckoutElement
+          onReady={({ availablePaymentMethods }) => {
+            if (availablePaymentMethods) {
+              const hasAny = Object.values(availablePaymentMethods).some(Boolean);
+              setHasExpressMethods(hasAny);
+            } else {
+              setHasExpressMethods(false);
+            }
+          }}
+          onConfirm={handleExpressConfirm}
+          onClick={({ resolve }) => {
+            const shippingFree = total >= 500;
+            resolve({
+              emailRequired: true,
+              phoneNumberRequired: true,
+              shippingAddressRequired: true,
+              allowedShippingCountries: ['FR', 'BE', 'CH', 'LU'],
+              shippingRates: shippingFree
+                ? [{ id: 'free', displayName: 'Livraison Express Offerte', amount: 0 }]
+                : [{ id: 'standard', displayName: 'Livraison Express 48h', amount: 1500 }],
+            });
+          }}
+          options={{
+            buttonType: {
+              applePay: 'buy',
+              googlePay: 'buy',
+            },
+            buttonTheme: {
+              applePay: 'black',
+              googlePay: 'black',
+            },
+            layout: {
+              maxColumns: 2,
+              maxRows: 1,
+            },
+          }}
+        />
+
+        {/* Divider "OU" */}
+        <div className="flex items-center gap-4 my-8">
+          <div className="flex-1 h-px bg-dark-text/[0.07]" />
+          <span className="font-sans text-[10px] tracking-[0.25em] text-dark-text/25 uppercase">ou</span>
+          <div className="flex-1 h-px bg-dark-text/[0.07]" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ========================================
 // COMPOSANT PAIEMENT STRIPE
 // ========================================
 
@@ -136,89 +233,113 @@ function StripePaymentForm({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className={isReady ? '' : 'min-h-[200px] flex items-center justify-center'}>
-        {!isReady && (
-          <div className="text-center">
-            <div className="w-5 h-5 border-2 border-dark-text/20 border-t-dark-text rounded-full animate-spin mx-auto mb-2" />
-            <p className="font-sans text-[11px] text-dark-text/30">Chargement du formulaire de paiement...</p>
-          </div>
-        )}
-        <div className={isReady ? '' : 'sr-only'}>
-          <PaymentElement
-            onReady={() => setIsReady(true)}
-            onLoadError={(e) => {
-              console.error('PaymentElement load error:', e);
-              setPaymentError(`Erreur de chargement du formulaire de paiement: ${e.error?.message || 'Vérifiez votre connexion.'}`);
-            }}
-            options={{
-              layout: 'tabs',
-              defaultValues: {
-                billingDetails: {
-                  name: `${formData.firstName} ${formData.lastName}`,
-                  email: formData.email,
-                  phone: formData.phone,
-                  address: {
-                    line1: formData.address,
-                    city: formData.city,
-                    postal_code: formData.postalCode,
-                    country: COUNTRY_CODES[formData.country] || 'FR',
+    <div>
+      {/* EXPRESS CHECKOUT */}
+      <ExpressCheckoutSection
+        total={total}
+        onSuccess={onSuccess}
+        onError={onError}
+      />
+
+      {/* CARD PAYMENT */}
+      <form onSubmit={handleSubmit}>
+        <p className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-4">
+          Paiement par carte
+        </p>
+
+        <div className={isReady ? '' : 'min-h-[200px] flex items-center justify-center'}>
+          {!isReady && (
+            <div className="text-center">
+              <div className="w-5 h-5 border-2 border-dark-text/20 border-t-dark-text rounded-full animate-spin mx-auto mb-2" />
+              <p className="font-sans text-[11px] text-dark-text/30">Chargement du formulaire de paiement...</p>
+            </div>
+          )}
+          <div className={isReady ? '' : 'sr-only'}>
+            <PaymentElement
+              onReady={() => setIsReady(true)}
+              onLoadError={(e) => {
+                console.error('PaymentElement load error:', e);
+                setPaymentError(`Erreur de chargement: ${e.error?.message || 'Vérifiez votre connexion.'}`);
+              }}
+              options={{
+                layout: 'tabs',
+                defaultValues: {
+                  billingDetails: {
+                    name: `${formData.firstName} ${formData.lastName}`,
+                    email: formData.email,
+                    phone: formData.phone,
+                    address: {
+                      line1: formData.address,
+                      city: formData.city,
+                      postal_code: formData.postalCode,
+                      country: COUNTRY_CODES[formData.country] || 'FR',
+                    },
                   },
                 },
-              },
-            }}
-          />
+              }}
+            />
+          </div>
         </div>
-      </div>
 
-      {paymentError && (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-start gap-3 p-4 bg-red-50 border border-red-100 mt-6"
-        >
-          <AlertCircle className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
-          <p className="font-sans text-sm text-red-700">{paymentError}</p>
-        </motion.div>
-      )}
-
-      <button
-        type="submit"
-        disabled={!stripe || !isReady || isProcessing}
-        className="w-full mt-8 bg-dark-text text-white py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-bronze transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
-      >
-        {isProcessing ? (
-          <>
-            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            <span>Traitement en cours...</span>
-          </>
-        ) : (
-          <>
-            <Lock className="w-3.5 h-3.5" />
-            <span>Confirmer et payer {total.toFixed(2)}€</span>
-          </>
+        {paymentError && (
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-start gap-3 p-4 bg-red-50 border border-red-100 mt-6"
+          >
+            <AlertCircle className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+            <p className="font-sans text-sm text-red-700">{paymentError}</p>
+          </motion.div>
         )}
-      </button>
-    </form>
+
+        <button
+          type="submit"
+          disabled={!stripe || !isReady || isProcessing}
+          className="w-full mt-8 bg-dark-text text-white py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-bronze transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+        >
+          {isProcessing ? (
+            <>
+              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              <span>Traitement en cours...</span>
+            </>
+          ) : (
+            <>
+              <Lock className="w-3.5 h-3.5" />
+              <span>Confirmer et payer {total.toFixed(2)}&euro;</span>
+            </>
+          )}
+        </button>
+
+        {/* Payment method icons */}
+        <div className="flex items-center justify-center gap-2.5 mt-5">
+          <span className="font-sans text-[9px] tracking-[0.1em] text-dark-text/20 uppercase mr-1">
+            Moyens accept&eacute;s
+          </span>
+          {['VISA', 'MC', 'CB', 'AMEX'].map((brand) => (
+            <div key={brand} className="w-8 h-5 border border-dark-text/[0.07] rounded-sm flex items-center justify-center bg-white">
+              <span className="font-sans text-[7px] font-bold text-dark-text/50">{brand}</span>
+            </div>
+          ))}
+        </div>
+      </form>
+    </div>
   );
 }
 
 // ========================================
-// BARRE DE PROGRESSION
+// BARRE DE PROGRESSION (2 étapes)
 // ========================================
 
-function StepProgress({ currentStep }: { currentStep: 1 | 2 | 3 }) {
+function StepProgress({ currentStep }: { currentStep: 1 | 2 }) {
   const steps = [
     { num: 1, label: 'Information' },
-    { num: 2, label: 'Livraison' },
-    { num: 3, label: 'Paiement' },
+    { num: 2, label: 'Paiement' },
   ];
 
   return (
     <div className="flex items-center justify-center gap-0 mb-10 md:mb-14">
       {steps.map((step, index) => (
         <div key={step.num} className="flex items-center">
-          {/* Cercle */}
           <div className="flex flex-col items-center">
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${
@@ -230,7 +351,13 @@ function StepProgress({ currentStep }: { currentStep: 1 | 2 | 3 }) {
               }`}
             >
               {step.num < currentStep ? (
-                <Check className="w-3.5 h-3.5 text-white" />
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                >
+                  <Check className="w-3.5 h-3.5 text-white" />
+                </motion.div>
               ) : (
                 <span
                   className={`font-sans text-[11px] font-medium ${
@@ -250,15 +377,14 @@ function StepProgress({ currentStep }: { currentStep: 1 | 2 | 3 }) {
             </span>
           </div>
 
-          {/* Ligne entre les cercles */}
           {index < steps.length - 1 && (
-            <div className="w-16 sm:w-24 md:w-32 h-px mx-3 sm:mx-4 relative -mt-5">
+            <div className="w-24 sm:w-32 md:w-40 h-px mx-4 sm:mx-5 relative -mt-5">
               <div className="absolute inset-0 bg-dark-text/10" />
               <motion.div
                 className="absolute inset-y-0 left-0 bg-dark-text"
                 initial={false}
                 animate={{ width: step.num < currentStep ? '100%' : '0%' }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               />
             </div>
           )}
@@ -276,7 +402,7 @@ export default function CheckoutPage() {
   const navigate = useNavigate();
   const { cart, isLoading, clearCart } = useCart();
 
-  const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
+  const [currentStep, setCurrentStep] = useState<1 | 2>(1);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [paymentError, setPaymentError] = useState<string | null>(null);
   const [orderComplete, setOrderComplete] = useState(false);
@@ -309,9 +435,9 @@ export default function CheckoutPage() {
   const shipping = subtotal >= 500 ? 0 : 15;
   const total = subtotal + shipping;
 
-  // Créer le PaymentIntent uniquement à l'étape 3
+  // Créer le PaymentIntent à l'étape 2
   useEffect(() => {
-    if (currentStep === 3 && !clientSecret && total > 0) {
+    if (currentStep === 2 && !clientSecret && total > 0) {
       createPaymentIntent();
     }
   }, [currentStep, clientSecret, total]);
@@ -358,7 +484,7 @@ export default function CheckoutPage() {
     }
   };
 
-  // Validation
+  // Validation fusionnée — étape 1 valide contact + adresse
   const validateStep = (step: number): boolean => {
     const errors: FormErrors = {};
 
@@ -366,9 +492,6 @@ export default function CheckoutPage() {
       if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
         errors.email = 'Adresse email invalide';
       }
-    }
-
-    if (step === 2) {
       if (!formData.firstName.trim()) errors.firstName = 'Prénom requis';
       if (!formData.lastName.trim()) errors.lastName = 'Nom requis';
       if (!formData.address.trim()) errors.address = 'Adresse requise';
@@ -380,7 +503,7 @@ export default function CheckoutPage() {
     return Object.keys(errors).length === 0;
   };
 
-  const goToStep = (step: 1 | 2 | 3) => {
+  const goToStep = (step: 1 | 2) => {
     if (step > currentStep) {
       if (!validateStep(currentStep)) return;
     }
@@ -427,19 +550,25 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-beige">
       {/* ==================== HEADER ==================== */}
       <header className="sticky top-0 bg-white/95 backdrop-blur-sm z-50 border-b border-dark-text/[0.07]">
-        <div className="max-w-[1400px] mx-auto px-6 h-14 flex items-center justify-between">
+        <div className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
           <Link to="/cart" className="flex items-center gap-2 text-dark-text/40 hover:text-dark-text transition-colors">
             <ArrowLeft className="w-4 h-4" />
-            <span className="font-sans text-xs tracking-[0.1em]">Panier</span>
+            <span className="font-sans text-xs tracking-[0.1em] hidden sm:inline">Panier</span>
           </Link>
 
-          <Link to="/" className="font-display text-base tracking-[0.25em] text-dark-text font-bold uppercase">
-            Renaissance
+          <Link to="/" className="absolute left-1/2 -translate-x-1/2">
+            <img
+              src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png"
+              alt="Renaissance Paris"
+              className="h-6 md:h-7 object-contain"
+            />
           </Link>
 
           <div className="flex items-center gap-1.5 text-dark-text/30">
             <Lock className="w-3 h-3" />
-            <span className="font-sans text-[9px] tracking-[0.1em] uppercase hidden sm:inline">Paiement sécurisé</span>
+            <span className="font-sans text-[9px] tracking-[0.15em] uppercase hidden sm:inline">
+              Paiement sécurisé
+            </span>
           </div>
         </div>
       </header>
@@ -475,7 +604,7 @@ export default function CheckoutPage() {
                 Votre commande ({cartLines.length} {cartLines.length > 1 ? 'articles' : 'article'})
               </span>
               <div className="flex items-center gap-3">
-                <span className="font-display text-lg font-bold text-dark-text">{total.toFixed(2)}€</span>
+                <span className="font-display text-lg font-bold text-dark-text">{total.toFixed(2)}&euro;</span>
                 <ChevronDown className={`w-4 h-4 text-dark-text/40 transition-transform ${summaryOpen ? 'rotate-180' : ''}`} />
               </div>
             </button>
@@ -500,10 +629,11 @@ export default function CheckoutPage() {
             {/* COLONNE GAUCHE — Formulaire en étapes */}
             <div>
               <AnimatePresence mode="wait">
-                {/* ===== ÉTAPE 1 : INFORMATION ===== */}
+                {/* ===== ÉTAPE 1 : INFORMATION + LIVRAISON ===== */}
                 {currentStep === 1 && (
                   <motion.div key="step1" variants={fadeIn} initial="hidden" animate="visible" exit="exit">
                     <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8">
+                      {/* Contact */}
                       <h2 className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-6">
                         Vos coordonnées
                       </h2>
@@ -526,27 +656,10 @@ export default function CheckoutPage() {
                         />
                       </div>
 
-                      <button
-                        onClick={() => goToStep(2)}
-                        className="w-full mt-8 bg-dark-text text-white py-4 font-sans text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-bronze transition-all duration-300"
-                      >
-                        Continuer vers la livraison
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
+                      {/* Divider */}
+                      <div className="h-px bg-dark-text/[0.07] my-8" />
 
-                {/* ===== ÉTAPE 2 : LIVRAISON ===== */}
-                {currentStep === 2 && (
-                  <motion.div key="step2" variants={fadeIn} initial="hidden" animate="visible" exit="exit">
-                    {/* Résumé étape 1 */}
-                    <StepSummary
-                      label="Contact"
-                      value={formData.email}
-                      onEdit={() => setCurrentStep(1)}
-                    />
-
-                    <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8 mt-4">
+                      {/* Shipping Address */}
                       <h2 className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-6">
                         Adresse de livraison
                       </h2>
@@ -609,37 +722,29 @@ export default function CheckoutPage() {
                         </select>
                       </div>
 
-                      <div className="flex gap-3 mt-8">
-                        <button
-                          onClick={() => setCurrentStep(1)}
-                          className="px-6 py-4 border border-dark-text/15 font-sans text-[10px] tracking-[0.2em] uppercase text-dark-text/60 hover:text-dark-text hover:border-dark-text/30 transition-all duration-300"
-                        >
-                          Retour
-                        </button>
-                        <button
-                          onClick={() => goToStep(3)}
-                          className="flex-1 bg-dark-text text-white py-4 font-sans text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-bronze transition-all duration-300"
-                        >
-                          Continuer vers le paiement
-                        </button>
-                      </div>
+                      <button
+                        onClick={() => goToStep(2)}
+                        className="w-full mt-8 bg-dark-text text-white py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-bronze transition-all duration-300"
+                      >
+                        Continuer vers le paiement
+                      </button>
                     </div>
                   </motion.div>
                 )}
 
-                {/* ===== ÉTAPE 3 : PAIEMENT ===== */}
-                {currentStep === 3 && (
-                  <motion.div key="step3" variants={fadeIn} initial="hidden" animate="visible" exit="exit">
-                    {/* Résumés étapes précédentes */}
+                {/* ===== ÉTAPE 2 : PAIEMENT ===== */}
+                {currentStep === 2 && (
+                  <motion.div key="step2" variants={fadeIn} initial="hidden" animate="visible" exit="exit">
+                    {/* Résumés des infos précédentes */}
                     <StepSummary
                       label="Contact"
-                      value={formData.email}
+                      value={`${formData.email}${formData.phone ? ` · ${formData.phone}` : ''}`}
                       onEdit={() => setCurrentStep(1)}
                     />
                     <StepSummary
                       label="Livraison"
                       value={`${formData.firstName} ${formData.lastName}, ${formData.address}, ${formData.postalCode} ${formData.city}`}
-                      onEdit={() => setCurrentStep(2)}
+                      onEdit={() => setCurrentStep(1)}
                     />
 
                     <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8 mt-4">
@@ -677,11 +782,11 @@ export default function CheckoutPage() {
 
                     {/* Retour */}
                     <button
-                      onClick={() => setCurrentStep(2)}
+                      onClick={() => setCurrentStep(1)}
                       className="mt-4 flex items-center gap-2 text-dark-text/35 hover:text-dark-text transition-colors font-sans text-xs"
                     >
                       <ArrowLeft className="w-3.5 h-3.5" />
-                      Modifier l'adresse de livraison
+                      Modifier mes informations
                     </button>
                   </motion.div>
                 )}
@@ -702,29 +807,23 @@ export default function CheckoutPage() {
                 <OrderSummary cartLines={cartLines} subtotal={subtotal} shipping={shipping} total={total} />
 
                 {/* Garanties */}
-                <div className="mt-4 bg-white border border-dark-text/[0.07] p-5">
-                  <div className="grid grid-cols-3 gap-4 text-center">
-                    <div className="flex flex-col items-center gap-2">
-                      <Truck className="w-4 h-4 text-dark-text/30" />
-                      <div>
-                        <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/30 uppercase">Livraison</p>
-                        <p className="font-sans text-xs text-dark-text mt-0.5">Express 48h</p>
+                <div className="mt-4 bg-white border border-dark-text/[0.07] p-6">
+                  <div className="space-y-4">
+                    {[
+                      { Icon: Truck, label: 'Livraison Express', desc: 'Sous 48h dans toute la France' },
+                      { Icon: Shield, label: 'Garantie 2 ans', desc: 'Fabrication artisanale certifiée' },
+                      { Icon: RotateCcw, label: 'Retours gratuits', desc: '30 jours pour changer d\'avis' },
+                    ].map(({ Icon, label, desc }) => (
+                      <div key={label} className="flex items-center gap-4">
+                        <div className="w-9 h-9 border border-dark-text/[0.07] flex items-center justify-center flex-shrink-0">
+                          <Icon className="w-4 h-4 text-bronze/60" />
+                        </div>
+                        <div>
+                          <p className="font-sans text-xs text-dark-text font-medium">{label}</p>
+                          <p className="font-sans text-[11px] text-dark-text/35">{desc}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex flex-col items-center gap-2">
-                      <Shield className="w-4 h-4 text-dark-text/30" />
-                      <div>
-                        <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/30 uppercase">Garantie</p>
-                        <p className="font-sans text-xs text-dark-text mt-0.5">2 ans</p>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-center gap-2">
-                      <RotateCcw className="w-4 h-4 text-dark-text/30" />
-                      <div>
-                        <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/30 uppercase">Retours</p>
-                        <p className="font-sans text-xs text-dark-text mt-0.5">30 jours</p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
 
@@ -836,7 +935,7 @@ function OrderSummary({
 
           return (
             <div key={node.id} className="flex gap-4">
-              <div className="w-16 h-16 bg-neutral-50 border border-dark-text/[0.05] flex-shrink-0">
+              <div className="w-20 h-20 bg-[#f5f5f3] border border-dark-text/[0.05] flex-shrink-0 relative overflow-hidden">
                 {image && (
                   <img
                     src={image}
@@ -844,18 +943,20 @@ function OrderSummary({
                     className="w-full h-full object-cover"
                   />
                 )}
+                {node.quantity > 1 && (
+                  <div className="absolute -top-1 -right-1 w-5 h-5 bg-dark-text text-white rounded-full flex items-center justify-center">
+                    <span className="font-sans text-[9px] font-bold">{node.quantity}</span>
+                  </div>
+                )}
               </div>
-              <div className="flex-1 min-w-0">
+              <div className="flex-1 min-w-0 flex flex-col justify-center">
                 <p className="font-sans text-sm text-dark-text truncate">
                   {node.merchandise.product.title}
                 </p>
                 {node.merchandise.title !== 'Default Title' && (
                   <p className="font-sans text-[11px] text-dark-text/35 mt-0.5">{node.merchandise.title}</p>
                 )}
-                <div className="flex items-center justify-between mt-2">
-                  <p className="font-sans text-[11px] text-dark-text/40">Qté : {node.quantity}</p>
-                  <p className="font-sans text-sm text-dark-text">{itemTotal.toFixed(2)}€</p>
-                </div>
+                <p className="font-sans text-sm text-dark-text mt-1.5 font-medium">{itemTotal.toFixed(2)}&euro;</p>
               </div>
             </div>
           );
@@ -866,7 +967,7 @@ function OrderSummary({
       <div className="border-t border-dark-text/[0.07] pt-5 space-y-2.5">
         <div className="flex justify-between">
           <span className="font-sans text-sm text-dark-text/45">Sous-total</span>
-          <span className="font-sans text-sm text-dark-text">{subtotal.toFixed(2)}€</span>
+          <span className="font-sans text-sm text-dark-text">{subtotal.toFixed(2)}&euro;</span>
         </div>
         <div className="flex justify-between">
           <span className="font-sans text-sm text-dark-text/45">Livraison</span>
@@ -883,7 +984,7 @@ function OrderSummary({
       <div className="border-t border-dark-text/[0.07] mt-4 pt-4">
         <div className="flex justify-between items-baseline">
           <span className="font-sans text-[10px] tracking-[0.2em] text-dark-text/50 uppercase">Total</span>
-          <span className="font-display text-2xl font-bold text-dark-text">{total.toFixed(2)}€</span>
+          <span className="font-display text-2xl font-bold text-dark-text">{total.toFixed(2)}&euro;</span>
         </div>
       </div>
     </div>
