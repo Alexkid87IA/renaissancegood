@@ -86,7 +86,7 @@ export default function Header() {
 
   // Header transparent uniquement sur certaines pages
   const isTransparentPage = TRANSPARENT_PAGES.includes(location.pathname);
-  const isTransparent = isTransparentPage && !scrolled && activeMenu === null;
+  const isTransparent = isTransparentPage && !scrolled;
 
   // Collections
   const [versaillesCollection, setVersaillesCollection] = useState<MenuProduct[]>([]);
@@ -150,7 +150,7 @@ export default function Header() {
 
             {/* Navigation Desktop Gauche */}
             <nav className="hidden lg:flex items-center gap-3 laptop:gap-4 xl:gap-6 2xl:gap-10 flex-1">
-              <NavLink to="/shop" transparent={isTransparent}>BOUTIQUE</NavLink>
+              <NavLink to="/shop" transparent={isTransparent} onMouseEnter={() => setActiveMenu(null)}>BOUTIQUE</NavLink>
               <NavLink to="/collections/heritage" transparent={isTransparent} onMouseEnter={() => setActiveMenu('heritage')}>
                 HÉRITAGE
               </NavLink>
@@ -160,7 +160,7 @@ export default function Header() {
               <NavLink to="/collections/isis" transparent={isTransparent} onMouseEnter={() => setActiveMenu('isis')}>
                 ISIS
               </NavLink>
-              <NavLink to="/histoire" transparent={isTransparent}>HISTOIRE</NavLink>
+              <NavLink to="/histoire" transparent={isTransparent} onMouseEnter={() => setActiveMenu(null)}>HISTOIRE</NavLink>
             </nav>
 
             {/* Logo — Dual crossfade (no flicker) */}
@@ -178,7 +178,7 @@ export default function Header() {
                   <img
                     src={LOGO_WHITE}
                     alt="Renaissance Paris"
-                    className={`h-7 sm:h-8 md:h-8 lg:h-9 xl:h-10 w-auto object-contain transition-opacity duration-700 ${
+                    className={`h-36 sm:h-36 md:h-40 lg:h-40 xl:h-44 w-auto object-contain transition-opacity duration-700 ${
                       isTransparent ? 'opacity-100' : 'opacity-0'
                     }`}
                   />
@@ -186,7 +186,7 @@ export default function Header() {
                   <img
                     src={LOGO_DARK}
                     alt="Renaissance Paris"
-                    className={`absolute inset-0 h-7 sm:h-8 md:h-8 lg:h-9 xl:h-10 w-auto object-contain transition-opacity duration-700 ${
+                    className={`absolute inset-0 h-36 sm:h-36 md:h-40 lg:h-40 xl:h-44 w-auto object-contain transition-opacity duration-700 ${
                       isTransparent ? 'opacity-0' : 'opacity-100'
                     }`}
                   />
@@ -324,7 +324,7 @@ function NavLink({ to, children, onMouseEnter, transparent }: { to: string; chil
     <Link
       to={to}
       onMouseEnter={onMouseEnter}
-      className={`group relative font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.3em] font-medium transition-colors duration-500 uppercase pb-1 ${
+      className={`group relative font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.3em] font-medium transition-colors duration-150 uppercase pb-1 ${
         transparent
           ? 'text-white/90 hover:text-white'
           : 'text-dark-text hover:text-bronze'
@@ -332,33 +332,25 @@ function NavLink({ to, children, onMouseEnter, transparent }: { to: string; chil
     >
       {children}
       {/* Underline animé */}
-      <span className={`absolute bottom-0 left-0 h-[1px] w-0 group-hover:w-full transition-all duration-500 ease-out ${
+      <span className={`absolute bottom-0 left-0 h-[1px] w-0 group-hover:w-full transition-all duration-200 ease-out ${
         transparent ? 'bg-white/60' : 'bg-bronze'
       }`} />
     </Link>
   );
 }
 
-// Wrapper pour Mega Menu
+// Wrapper pour Mega Menu — apparition instantanée
 function MegaMenuWrapper({ children, onMouseLeave }: { children: React.ReactNode; onMouseLeave: () => void }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      className="fixed top-[64px] sm:top-[64px] md:top-[72px] lg:top-[80px] left-0 right-0 z-[90]"
+      transition={{ duration: 0.08 }}
+      className="fixed top-[64px] sm:top-[64px] md:top-[72px] lg:top-[80px] left-0 right-0 z-[90] bg-beige border-t border-dark-text/[0.06]"
       onMouseLeave={onMouseLeave}
     >
-      <motion.div
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -20, opacity: 0 }}
-        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="bg-beige border-t border-dark-text/[0.06]"
-      >
-        {children}
-      </motion.div>
+      {children}
     </motion.div>
   );
 }

@@ -110,14 +110,6 @@ export default function ProductCard({ product, index = 0, showNewBadge = true }:
             </div>
           )}
 
-          {/* Badge New Release - seulement si en stock et showNewBadge actif */}
-          {showNewBadge && index < 2 && !isOutOfStock && (
-            <div className="absolute top-4 left-4 bg-dark-text px-4 py-2">
-              <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-white">
-                NEW RELEASE
-              </span>
-            </div>
-          )}
 
           {/* Navigation images */}
           {productImages.length > 1 && (

@@ -217,7 +217,7 @@ export default function CollectionsPage() {
                 key={groupedProduct.modelName}
                 groupedProduct={groupedProduct}
                 index={index}
-                showNewBadge={index < 2}
+                showNewBadge={false}
               />
             ))}
           </div>

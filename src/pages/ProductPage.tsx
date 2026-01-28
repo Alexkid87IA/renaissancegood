@@ -175,7 +175,7 @@ export default function ProductPage() {
           name: shopifyProduct.title,
           modelName: modelName,
           collection: shopifyProduct.tags?.[0] || 'OPTICAL',
-          badge: 'NEW RELEASE',
+          badge: '',
           price: `€${parseFloat(shopifyProduct.priceRange.minVariantPrice.amount).toFixed(2)}`,
           frame: colors[0]?.name || 'Default',
           lens: 'Clear Lens',
