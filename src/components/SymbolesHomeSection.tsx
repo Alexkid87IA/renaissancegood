@@ -1,239 +1,223 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { X } from 'lucide-react';
+import { useRef, useState } from 'react';
 
 const symbols = [
   {
     name: 'Le Trident',
     subtitle: 'Pouvoir',
-    description: 'Trois pointes : force, vision, justesse. Celui qui tient le trident ne suit pas. Il trace.',
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763855099/WhatsApp_Image_2025-11-21_at_16.20.29_luvmkv.jpg'
+    description: 'Trois pointes : force, vision, justesse. Celui qui tient le trident ne suit pas. Il trace.',
+    image: 'https://renaissance-cdn.b-cdn.net/TRIDENT%20SYMBOL.png'
   },
   {
     name: 'La Fleur de Lys',
     subtitle: 'Exigence',
     description: "Le symbole de ceux qui ne lâchent rien. Chaque détail compte. Chaque geste aussi.",
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_4_xntepe.jpg'
+    image: 'https://renaissance-cdn.b-cdn.net/FLEUR%20DE%20LYS%20SYMBOL.png'
   },
   {
     name: 'Le Cobra',
     subtitle: 'Protection',
     description: 'Élégant. Dangereux. Le cobra ne menace pas. Il veille.',
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_3_zmql9v.jpg'
+    image: 'https://renaissance-cdn.b-cdn.net/COBRA%20SYMBOL.png'
   },
   {
     name: "L'Ankh",
     subtitle: 'Éternité',
     description: "La clé de vie des pharaons. Ce qu'on construit bien traverse le temps.",
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_fpklnf.jpg'
+    image: 'https://renaissance-cdn.b-cdn.net/ANKH%20SYMBOL.png'
   },
   {
     name: 'Le Scarabée',
     subtitle: 'Renaissance',
     description: 'Chaque matin, il renaît. Comme nous. Comme tout ce qui refuse de mourir.',
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_2_tp1ac1.jpg'
+    image: 'https://renaissance-cdn.b-cdn.net/SCARABEE%20SYMBOL.png'
   }
 ];
 
 export default function SymbolesHomeSection() {
   const navigate = useNavigate();
-  const [selectedSymbol, setSelectedSymbol] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"]
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
 
   return (
-    <section className="relative z-[100] py-16 laptop:py-20 md:py-24 lg:py-32 bg-white">
-      <div className="max-w-[1800px] mx-auto px-4 laptop:px-8 md:px-6 lg:px-12">
+    <section
+      ref={sectionRef}
+      className="relative z-[100]"
+      // Height = enough vertical space to scroll through all symbols
+      // 300vh gives comfortable scroll room for 5 cards
+      style={{ height: '300vh' }}
+    >
+      {/* Sticky container — stays in view while user scrolls */}
+      <div className="sticky top-0 h-screen overflow-hidden bg-black">
+        <div className="h-full flex flex-col">
+          {/* Header — compact pour maximiser l'espace des cartes */}
+          <div className="max-w-[1800px] mx-auto w-full px-6 sm:px-10 md:px-12 lg:px-16 pt-6 sm:pt-8 lg:pt-10 pb-4 sm:pb-5 lg:pb-6 flex-shrink-0">
+            <div className="flex items-end justify-between gap-8">
+              <div>
+                <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.35em] text-white/30 uppercase mb-2 font-medium">
+                  Gravés dans le métal
+                </p>
+                <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white tracking-[-0.03em] leading-[0.9]">
+                  Cinq symboles.{' '}
+                  <span className="font-light italic tracking-[-0.01em]">Une promesse.</span>
+                </h2>
+              </div>
+              <p className="hidden sm:block font-sans text-white/35 text-xs lg:text-sm leading-[1.6] max-w-sm flex-shrink-0">
+                Des signes qui parlent depuis des millénaires. On ne les a pas inventés. On les porte.
+              </p>
+            </div>
+          </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-10 laptop:mb-14 md:mb-16 lg:mb-24"
-        >
-          <p className="font-sans text-[#8B7355] text-[8px] laptop:text-[10px] md:text-[9px] tracking-[0.3em] md:tracking-[0.35em] uppercase mb-3 laptop:mb-5 md:mb-4 lg:mb-6 font-bold">
-            Nos Symboles
-          </p>
-          <h2 className="font-display text-2xl laptop:text-5xl md:text-4xl lg:text-7xl font-bold text-[#2C2C2C] tracking-tight leading-[1.2] lg:leading-[0.95] mb-3 laptop:mb-5 md:mb-4 lg:mb-6">
-            Cinq symboles.<br />
-            Une promesse.
-          </h2>
-          <p className="font-sans text-[#2C2C2C]/60 text-xs laptop:text-sm md:text-sm lg:text-lg leading-[1.6] lg:leading-[1.7] max-w-2xl mx-auto">
-            Gravés dans le métal. Des signes qui parlent depuis des millénaires. On ne les a pas inventés. On les porte.
-          </p>
-        </motion.div>
-
-        <div className="flex flex-wrap justify-center gap-3 laptop:gap-5 md:gap-4 lg:gap-6 mb-8 laptop:mb-10 md:mb-10 lg:mb-12">
-          {symbols.map((symbol, index) => (
+          {/* Horizontal track — driven by vertical scroll */}
+          <div className="flex-1 min-h-0 px-6 sm:px-10 md:px-12 lg:px-16 pb-2 sm:pb-3">
             <motion.div
-              key={symbol.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              onClick={() => setSelectedSymbol(index)}
-              className="group relative w-[calc(50%-6px)] laptop:w-[calc(33.333%-13px)] md:w-[calc(33.333%-11px)] lg:w-[calc(20%-19.2px)] cursor-pointer"
+              className="flex gap-1 sm:gap-1.5 lg:gap-2 h-full"
+              style={{ x, willChange: 'transform' }}
             >
-              <div className="aspect-square relative overflow-hidden bg-[#1a1a1a] border-[3px] laptop:border-4 border-[#8B7355]/30 hover:border-[#8B7355] transition-all duration-500 shadow-lg hover:shadow-2xl">
-
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEI3MzU1IiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC4xIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30" />
-
-                <div className="absolute inset-0 p-1">
-                  <img
-                    src={symbol.image}
-                    alt={symbol.name}
-                    className="w-full h-full object-cover filter brightness-110 group-hover:brightness-125 group-hover:scale-105 transition-all duration-700"
+              {symbols.map((symbol, index) => (
+                <div
+                  key={symbol.name}
+                  className="flex-shrink-0 h-full w-[70vw] sm:w-[45vw] lg:w-[35vw] xl:w-[28vw] max-w-[520px]"
+                >
+                  <SymbolCard
+                    symbol={symbol}
+                    index={index}
+                    isHovered={hoveredIndex === index}
+                    onHover={() => setHoveredIndex(index)}
+                    onLeave={() => setHoveredIndex(null)}
                   />
                 </div>
+              ))}
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-
-                <div className="absolute bottom-0 left-0 right-0 p-4 laptop:p-6 md:p-5 lg:p-6 bg-gradient-to-t from-black/95 via-black/80 to-transparent">
-                  <p className="font-sans text-[#8B7355] text-[9px] laptop:text-[11px] md:text-[10px] lg:text-xs tracking-[0.3em] uppercase font-bold mb-1 laptop:mb-1.5 md:mb-1.5 drop-shadow-lg">
-                    {symbol.subtitle}
+              {/* CTA card at the end */}
+              <div
+                className="flex-shrink-0 h-full flex items-center w-[60vw] sm:w-[35vw] lg:w-[24vw] max-w-[360px]"
+              >
+                <div className="px-4 sm:px-6">
+                  <p className="font-sans text-[9px] tracking-[0.3em] text-white/30 uppercase mb-6 font-medium">
+                    05 symboles
                   </p>
-                  <p className="font-display text-white text-sm laptop:text-lg md:text-base lg:text-lg font-bold drop-shadow-lg">
-                    {symbol.name}
+                  <p className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight tracking-[-0.02em] mb-8">
+                    Chaque gravure
+                    <br />
+                    <span className="font-light italic">raconte.</span>
                   </p>
+                  <button
+                    onClick={() => navigate('/histoire')}
+                    className="group relative overflow-hidden border border-white/30 px-8 sm:px-10 py-3.5 sm:py-4"
+                  >
+                    <span className="relative z-10 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-medium uppercase text-white group-hover:text-black transition-colors duration-500">
+                      Leur histoire
+                    </span>
+                    <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  </button>
                 </div>
               </div>
-
-              <div className="absolute -top-1.5 laptop:-top-2 -left-1.5 laptop:-left-2 w-4 laptop:w-5 h-4 laptop:h-5 border-t-[2px] laptop:border-t-[3px] border-l-[2px] laptop:border-l-[3px] border-[#8B7355] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute -bottom-1.5 laptop:-bottom-2 -right-1.5 laptop:-right-2 w-4 laptop:w-5 h-4 laptop:h-5 border-b-[2px] laptop:border-b-[3px] border-r-[2px] laptop:border-r-[3px] border-[#8B7355] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </motion.div>
-          ))}
+          </div>
+
+          {/* Progress bar */}
+          <div className="flex-shrink-0 px-6 sm:px-10 md:px-12 lg:px-16 pb-4 sm:pb-5">
+            <div className="max-w-[1800px] mx-auto">
+              <div className="h-px bg-white/10 relative overflow-hidden">
+                <motion.div
+                  className="absolute inset-y-0 left-0 bg-white/40"
+                  style={{ width: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]) }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ========================================
+// CARTE SYMBOLE
+// ========================================
+
+function SymbolCard({
+  symbol,
+  index,
+  isHovered,
+  onHover,
+  onLeave,
+}: {
+  symbol: typeof symbols[0];
+  index: number;
+  isHovered: boolean;
+  onHover: () => void;
+  onLeave: () => void;
+}) {
+  return (
+    <div
+      className="group cursor-pointer h-full flex flex-col"
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+    >
+      {/* Image — fills all available height, full black bg, no frame */}
+      <div className="relative flex-1 min-h-0 overflow-hidden bg-black">
+        <img
+          src={symbol.image}
+          alt={symbol.name}
+          className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-out ${
+            isHovered ? 'scale-105' : 'scale-100'
+          }`}
+        />
+
+        {/* Overlay au hover */}
+        <div className={`absolute inset-0 bg-black/50 transition-opacity duration-500 ${
+          isHovered ? 'opacity-100' : 'opacity-0'
+        }`} />
+
+        {/* Description révélée au hover */}
+        <div className={`absolute inset-0 flex flex-col justify-end p-5 sm:p-6 lg:p-8 transition-all duration-500 ${
+          isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
+          <p className="font-sans text-white/85 text-xs sm:text-sm lg:text-base leading-[1.65] font-light">
+            {symbol.description}
+          </p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-center"
-        >
-          <button
-            onClick={() => navigate('/histoire')}
-            className="group relative inline-flex items-center justify-center gap-3 border-2 border-[#2C2C2C] px-8 laptop:px-10 md:px-10 py-3 laptop:py-4 md:py-4 font-sans text-[8px] laptop:text-[10px] md:text-[10px] tracking-[0.25em] laptop:tracking-[0.3em] md:tracking-[0.3em] uppercase text-[#2C2C2C] font-bold overflow-hidden hover:border-[#8B7355] transition-all duration-500 w-auto"
-          >
-            <span className="absolute inset-0 bg-[#8B7355] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
-            <span className="relative z-10 group-hover:text-white transition-colors duration-500 whitespace-nowrap">
-              Découvrir leur histoire
-            </span>
-          </button>
-        </motion.div>
-
+        {/* Numéro discret */}
+        <div className="absolute top-4 sm:top-5 right-4 sm:right-5">
+          <span className={`font-sans text-[10px] sm:text-xs text-white/15 font-medium tracking-wider transition-colors duration-500 ${
+            isHovered ? 'text-white/35' : ''
+          }`}>
+            {String(index + 1).padStart(2, '0')}
+          </span>
+        </div>
       </div>
 
-      <AnimatePresence>
-        {selectedSymbol !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedSymbol(null)}
-            className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-end md:items-center justify-center p-0 md:p-4"
-          >
-            <motion.div
-              initial={{ y: "100%", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "100%", opacity: 0 }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full md:max-w-4xl bg-beige md:border-4 border-[#8B7355] shadow-2xl rounded-t-3xl md:rounded-none max-h-[90vh] overflow-y-auto"
-            >
-              <div className="sticky top-0 z-20 bg-beige/95 backdrop-blur-sm md:hidden">
-                <div className="flex items-center justify-center py-3">
-                  <div className="w-12 h-1.5 bg-[#8B7355]/30 rounded-full" />
-                </div>
-              </div>
+      {/* Infos sous l'image */}
+      <div className="pt-4 sm:pt-5 pb-1 flex-shrink-0">
+        <p className={`font-sans text-[8px] sm:text-[9px] tracking-[0.25em] text-white/30 uppercase font-medium mb-1 transition-colors duration-500 ${
+          isHovered ? 'text-white/50' : ''
+        }`}>
+          {symbol.subtitle}
+        </p>
+        <h3 className={`font-display text-sm sm:text-base lg:text-lg font-bold text-white leading-tight tracking-[-0.01em] transition-all duration-500 ${
+          isHovered ? 'translate-x-1' : ''
+        }`}>
+          {symbol.name}
+        </h3>
+      </div>
 
-              <button
-                onClick={() => setSelectedSymbol(null)}
-                className="absolute top-16 right-4 z-10 w-10 h-10 bg-[#8B7355] hover:bg-[#6d5a44] text-white flex items-center justify-center transition-colors duration-300 md:top-4 md:right-4 md:w-12 md:h-12 md:border-2 md:border-beige rounded-full md:rounded-none shadow-lg"
-              >
-                <X className="w-5 h-5 md:w-6 md:h-6" />
-              </button>
-
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 relative h-64 md:h-auto md:aspect-square bg-[#1a1a1a] border-b-2 md:border-b-0 md:border-r-4 border-[#8B7355]/30">
-                  <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEI3MzU1IiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC4xIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30" />
-                  <img
-                    src={symbols[selectedSymbol].image}
-                    alt={symbols[selectedSymbol].name}
-                    className="w-full h-full object-contain md:object-cover p-6 md:p-8"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 md:from-black/60 via-transparent to-transparent" />
-                </div>
-
-                <div className="md:w-1/2 p-6 md:p-8 lg:p-12 flex flex-col justify-center space-y-4 md:space-y-6 pb-8">
-                  <div>
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 }}
-                      className="font-sans text-[#8B7355] text-[9px] md:text-xs tracking-[0.3em] md:tracking-[0.35em] uppercase font-bold mb-1.5 md:mb-3"
-                    >
-                      {symbols[selectedSymbol].subtitle}
-                    </motion.p>
-                    <motion.h3
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
-                      className="font-display text-2xl md:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-3 md:mb-6 leading-tight"
-                    >
-                      {symbols[selectedSymbol].name}
-                    </motion.h3>
-                  </div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="border-l-3 md:border-l-4 border-[#8B7355] pl-3 md:pl-6 py-2 md:py-4 bg-gradient-to-r from-[#8B7355]/5 to-transparent"
-                  >
-                    <p className="font-sans text-sm md:text-xl text-[#2C2C2C]/90 font-light leading-[1.6] md:leading-[1.75]">
-                      {symbols[selectedSymbol].description}
-                    </p>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="hidden md:block pt-6 mt-6 border-t-2 border-[#8B7355]/20"
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className="w-1 h-12 bg-gradient-to-b from-[#8B7355] via-[#8B7355]/50 to-transparent flex-shrink-0" />
-                      <p className="font-sans text-[#2C2C2C]/70 text-base italic leading-relaxed">
-                        Chaque symbole est gravé au laser. Une marque dans le métal. Une promesse qui ne s'efface pas.
-                      </p>
-                    </div>
-                  </motion.div>
-
-                  <motion.button
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    onClick={() => {
-                      setSelectedSymbol(null);
-                      navigate('/histoire');
-                    }}
-                    className="group relative inline-flex items-center justify-center gap-3 border-2 border-[#2C2C2C] px-6 md:px-8 py-4 md:py-4 font-sans text-[9px] md:text-[10px] tracking-[0.25em] md:tracking-[0.3em] uppercase text-[#2C2C2C] font-bold overflow-hidden hover:border-[#8B7355] active:scale-95 transition-all duration-300 w-full"
-                  >
-                    <span className="absolute inset-0 bg-[#8B7355] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
-                    <span className="relative z-10 group-hover:text-white transition-colors duration-500">
-                      Découvrir tous les symboles
-                    </span>
-                  </motion.button>
-                </div>
-              </div>
-
-              <div className="hidden md:block absolute -top-3 -left-3 w-8 h-8 border-t-4 border-l-4 border-[#8B7355]" />
-              <div className="hidden md:block absolute -bottom-3 -right-3 w-8 h-8 border-b-4 border-r-4 border-[#8B7355]" />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
+      {/* Ligne animée */}
+      <div className="h-px bg-white/10 relative overflow-hidden flex-shrink-0">
+        <div className={`absolute inset-y-0 left-0 bg-white/40 transition-all duration-700 ease-out ${
+          isHovered ? 'w-full' : 'w-0'
+        }`} />
+      </div>
+    </div>
   );
 }

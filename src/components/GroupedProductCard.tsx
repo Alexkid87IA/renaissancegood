@@ -3,7 +3,7 @@
 // Carte produit affichant un modèle avec ses variantes de couleur
 // ========================================
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { GroupedProduct, getColorSwatchStyle } from '../lib/productGrouping';
@@ -25,15 +25,26 @@ export default function GroupedProductCard({
 
   const currentVariant = groupedProduct.colorVariants[selectedVariantIndex];
   const currentProduct = currentVariant.product;
-  const productImages = currentProduct.images.edges.map(edge => edge.node.url);
+
+  const productImages = useMemo(
+    () => currentProduct.images.edges.map(edge => edge.node.url),
+    [currentProduct.images.edges]
+  );
   const currentImage = productImages[currentImageIndex] || productImages[0];
-  const price = parseFloat(currentProduct.priceRange.minVariantPrice.amount).toFixed(0);
+
+  const price = useMemo(
+    () => parseFloat(currentProduct.priceRange.minVariantPrice.amount).toFixed(0),
+    [currentProduct.priceRange.minVariantPrice.amount]
+  );
   const category = currentProduct.tags?.includes('Solaire') ? 'SOLAIRE' : 'OPTICAL';
 
   // Calculer le stock total
-  const totalStock = currentProduct.variants?.edges.reduce((total, edge) => {
-    return total + (edge.node.quantityAvailable || 0);
-  }, 0) || 0;
+  const totalStock = useMemo(
+    () => currentProduct.variants?.edges.reduce((total, edge) => {
+      return total + (edge.node.quantityAvailable || 0);
+    }, 0) || 0,
+    [currentProduct.variants?.edges]
+  );
   const isOutOfStock = totalStock === 0;
 
   // Changer de variante de couleur
@@ -49,7 +60,7 @@ export default function GroupedProductCard({
       className="group relative bg-white overflow-hidden col-span-full sm:col-span-1 md:col-span-6"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
       <Link

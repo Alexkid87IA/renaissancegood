@@ -242,7 +242,7 @@ export default function CartDrawer() {
                 <div className="space-y-3">
                   {/* Bouton Checkout */}
                   <Link
-                    to="/cart"
+                    to="/checkout"
                     onClick={closeCart}
                     className="block w-full bg-dark-text text-white text-center font-sans text-[10px] tracking-[0.3em] uppercase py-4 hover:bg-bronze transition-all duration-300"
                   >

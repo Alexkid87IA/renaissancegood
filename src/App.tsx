@@ -54,12 +54,12 @@ function PageLoader() {
 
 function AppContent() {
   const location = useLocation();
-  const isProductPage = location.pathname.startsWith('/product/');
+  const isCheckout = location.pathname.startsWith('/checkout');
 
   return (
     <>
       <div className="relative bg-beige">
-        <Header />
+        {!isCheckout && <Header />}
         <main className="relative">
           <Suspense fallback={<PageLoader />}>
             <Routes>
@@ -107,9 +107,11 @@ function AppContent() {
             </Routes>
           </Suspense>
         </main>
-        <div className={`relative z-10 ${isProductPage ? 'ml-0 lg:ml-[340px] laptop:ml-[380px] xl:ml-[480px]' : ''}`}>
-          <Footer />
-        </div>
+        {!isCheckout && (
+          <div className="relative z-10">
+            <Footer />
+          </div>
+        )}
       </div>
     </>
   );

@@ -54,8 +54,9 @@ export default function ProductSidebar({
   selectedColorVariantIndex = 0,
   onColorVariantChange
 }: ProductSidebarProps) {
-  const [showDimensions, setShowDimensions] = useState(false);
-  const [showDescription, setShowDescription] = useState(true);
+  const [showDimensions, setShowDimensions] = useState(true);
+  const [showFabrication, setShowFabrication] = useState(true);
+  const [showDescription, setShowDescription] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
   const { addToCart, isLoading } = useCart();
 
@@ -87,86 +88,19 @@ export default function ProductSidebar({
   );
 
   return (
-    <div className="w-[340px] laptop:w-[380px] xl:w-[480px] bg-white border-r border-dark-text/10 fixed left-0 top-20 bottom-0 overflow-y-auto z-50 hidden lg:block">
+    <div>
       <div className="p-8 laptop:p-10 xl:p-12">
         {/* Product Header */}
-        <div className="mb-6">
-          <h1 className="font-display text-3xl laptop:text-4xl xl:text-5xl font-bold text-dark-text mb-3 leading-[0.95] uppercase">
+        <div className="mb-5">
+          <h1 className="font-display text-3xl laptop:text-4xl xl:text-5xl font-bold text-dark-text mb-1 leading-[0.95] uppercase">
             {product.modelName || product.name}
           </h1>
-          {product.badge && (
-            <div className="inline-block border border-dark-text px-3 py-1.5">
-              <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text">
-                {product.badge}
-              </span>
-            </div>
-          )}
         </div>
 
-        {/* Prix - Visible en haut */}
-        <div className="mb-8 pb-8 border-b border-dark-text/10">
-          <div className="flex items-center justify-between">
-            <span className="font-display text-3xl font-bold text-dark-text">
-              {displayPrice}
-            </span>
-            <button
-              onClick={handleAddToCart}
-              disabled={isLoading || !selectedVariant?.availableForSale}
-              className={`px-6 py-3 font-sans text-[10px] tracking-[0.2em] uppercase transition-all duration-300 ${
-                addedToCart
-                  ? 'bg-green-600 text-white'
-                  : 'bg-dark-text text-white hover:bg-dark-text/90'
-              } disabled:opacity-50 disabled:cursor-not-allowed`}
-            >
-              {isLoading ? 'AJOUT...' : addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER'}
-            </button>
-          </div>
-        </div>
-
-        {/* Badge Adaptable / Non-Adaptable */}
-        <div className="mb-8 pb-8 border-b border-dark-text/10">
-          {isNonAdaptable ? (
-            <div className="flex items-center gap-3 bg-bronze/5 p-4 rounded-lg">
-              <div className="w-10 h-10 rounded-full bg-bronze/10 flex items-center justify-center flex-shrink-0">
-                <svg className="w-5 h-5 text-bronze" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 8v4M12 16h.01" />
-                </svg>
-              </div>
-              <div>
-                <p className="font-sans text-xs tracking-[0.1em] font-bold text-bronze uppercase">
-                  Solaire uniquement
-                </p>
-                <p className="font-sans text-xs text-dark-text/50 mt-0.5">
-                  Non adaptable en verres correcteurs
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="flex items-center gap-3 bg-green-50 p-4 rounded-lg">
-              <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                </svg>
-              </div>
-              <div>
-                <p className="font-sans text-xs tracking-[0.1em] font-bold text-dark-text uppercase">
-                  Adaptable à votre vue
-                </p>
-                <p className="font-sans text-xs text-dark-text/50 mt-0.5">
-                  Compatible verres correcteurs
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* ========================================
-            SÉLECTION DE COLORIS (AUTRES PRODUITS DU MÊME MODÈLE)
-            ======================================== */}
+        {/* Coloris — directement sous le nom */}
         {colorVariants.length > 1 && onColorVariantChange && (
-          <div className="mb-8 pb-8 border-b border-dark-text/10">
-            <div className="flex items-center justify-between mb-5">
+          <div className="mb-5 pb-5 border-b border-dark-text/10">
+            <div className="flex items-center justify-between mb-3">
               <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
                 COLORIS
               </span>
@@ -174,17 +108,14 @@ export default function ProductSidebar({
                 {colorVariants.length} disponibles
               </span>
             </div>
-
-            {/* Grille des miniatures de coloris */}
             <div className="flex flex-wrap gap-3">
               {colorVariants.map((variant, index) => {
                 const isSelected = selectedColorVariantIndex === index;
-
                 return (
                   <button
                     key={variant.handle}
                     onClick={() => onColorVariantChange(index)}
-                    className={`relative group transition-all duration-300 hover:scale-105`}
+                    className="relative group transition-all duration-300 hover:scale-105"
                     title={`Coloris ${variant.colorNumber}`}
                   >
                     <div
@@ -213,6 +144,75 @@ export default function ProductSidebar({
             </div>
           </div>
         )}
+
+        {/* Prix */}
+        <div className="mb-6 pb-6 border-b border-dark-text/10">
+          <div className="flex items-center justify-between">
+            <span className="font-display text-3xl font-bold text-dark-text">
+              {displayPrice}
+            </span>
+            <button
+              onClick={handleAddToCart}
+              disabled={isLoading || !selectedVariant?.availableForSale}
+              className={`px-6 py-3 font-sans text-[10px] tracking-[0.2em] uppercase transition-all duration-300 ${
+                addedToCart
+                  ? 'bg-green-600 text-white'
+                  : 'bg-dark-text text-white hover:bg-dark-text/90'
+              } disabled:opacity-50 disabled:cursor-not-allowed`}
+            >
+              {isLoading ? 'AJOUT...' : addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER'}
+            </button>
+          </div>
+        </div>
+
+        {/* Badge Adaptable / Non-Adaptable (compact) */}
+        <div className="mb-6 pb-6 border-b border-dark-text/10">
+          {isNonAdaptable ? (
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-bronze/5 rounded">
+              <svg className="w-3.5 h-3.5 text-bronze flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4M12 16h.01" />
+              </svg>
+              <span className="font-sans text-[10px] tracking-[0.1em] font-medium text-bronze uppercase">
+                Solaire uniquement
+              </span>
+            </div>
+          ) : (
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 rounded">
+              <svg className="w-3.5 h-3.5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              <span className="font-sans text-[10px] tracking-[0.1em] font-medium text-dark-text uppercase">
+                Adaptable à votre vue
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Description (preview + Voir plus) */}
+        <div className="mb-6 pb-6 border-b border-dark-text/10">
+          <div className={`relative ${!showDescription ? 'max-h-[3.5em] overflow-hidden' : ''}`}>
+            {product.descriptionHtml ? (
+              <div
+                className="font-sans text-sm text-dark-text/70 leading-relaxed description-content"
+                dangerouslySetInnerHTML={createSanitizedMarkup(product.descriptionHtml)}
+              />
+            ) : (
+              <p className="font-sans text-sm text-dark-text/70 leading-relaxed">
+                {product.description}
+              </p>
+            )}
+            {!showDescription && (
+              <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent" />
+            )}
+          </div>
+          <button
+            onClick={() => setShowDescription(!showDescription)}
+            className="font-sans text-xs text-dark-text/40 hover:text-dark-text mt-2 transition-colors"
+          >
+            {showDescription ? 'Voir moins' : 'Voir plus'}
+          </button>
+        </div>
 
         {/* ========================================
             SÉLECTION DE VARIANTES INTERNES (si plusieurs)
@@ -283,52 +283,11 @@ export default function ProductSidebar({
           </div>
         )}
 
-        {/* Description */}
-        <div className="mb-8 pb-8 border-b border-dark-text/10">
-          <button
-            onClick={() => setShowDescription(!showDescription)}
-            className="w-full flex items-center justify-between mb-4 group"
-          >
-            <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
-              DESCRIPTION
-            </span>
-            <motion.div
-              animate={{ rotate: showDescription ? 0 : 45 }}
-              transition={{ duration: 0.2 }}
-            >
-              {showDescription ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-            </motion.div>
-          </button>
-          
-          <AnimatePresence>
-            {showDescription && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="overflow-hidden"
-              >
-                {product.descriptionHtml ? (
-                  <div
-                    className="font-sans text-sm text-dark-text/70 leading-relaxed description-content"
-                    dangerouslySetInnerHTML={createSanitizedMarkup(product.descriptionHtml)}
-                  />
-                ) : (
-                  <p className="font-sans text-sm text-dark-text/70 leading-relaxed">
-                    {product.description}
-                  </p>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
         {/* Dimensions */}
-        <div className="mb-8 pb-8 border-b border-dark-text/10">
+        <div className="mb-6 pb-6 border-b border-dark-text/10">
           <button
             onClick={() => setShowDimensions(!showDimensions)}
-            className="w-full flex items-center justify-between mb-4 group"
+            className="w-full flex items-center justify-between group"
           >
             <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
               DIMENSIONS
@@ -340,7 +299,7 @@ export default function ProductSidebar({
               {showDimensions ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
             </motion.div>
           </button>
-          
+
           <AnimatePresence>
             {showDimensions && (
               <motion.div
@@ -350,7 +309,7 @@ export default function ProductSidebar({
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-4 mt-4">
                   <div className="text-center p-3 bg-neutral-50 rounded">
                     <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">Verre</p>
                     <p className="font-sans text-sm font-medium text-dark-text">{product.dimensions.lens}</p>
@@ -362,6 +321,71 @@ export default function ProductSidebar({
                   <div className="text-center p-3 bg-neutral-50 rounded">
                     <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">Branche</p>
                     <p className="font-sans text-sm font-medium text-dark-text">{product.dimensions.temple}</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Fabrication */}
+        <div className="mb-6 pb-6 border-b border-dark-text/10">
+          <button
+            onClick={() => setShowFabrication(!showFabrication)}
+            className="w-full flex items-center justify-between group"
+          >
+            <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
+              FABRICATION
+            </span>
+            <motion.div
+              animate={{ rotate: showFabrication ? 0 : 45 }}
+              transition={{ duration: 0.2 }}
+            >
+              {showFabrication ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+            </motion.div>
+          </button>
+
+          <AnimatePresence>
+            {showFabrication && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <div className="mt-4 space-y-4">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3 bg-neutral-50 rounded">
+                      <p className="font-display text-lg font-bold text-dark-text">8-12</p>
+                      <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">Artisans par paire</p>
+                    </div>
+                    <div className="p-3 bg-neutral-50 rounded">
+                      <p className="font-display text-lg font-bold text-dark-text">250</p>
+                      <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">Étapes de fabrication</p>
+                    </div>
+                    <div className="p-3 bg-neutral-50 rounded">
+                      <p className="font-display text-lg font-bold text-dark-text">8-15h</p>
+                      <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">De travail cumulé</p>
+                    </div>
+                    <div className="p-3 bg-neutral-50 rounded">
+                      <p className="font-display text-lg font-bold text-dark-text">2</p>
+                      <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">Pays, un standard</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="font-sans text-xs text-dark-text/60 leading-relaxed">
+                      <span className="font-semibold text-dark-text">Dessinées à Paris.</span> Chaque ligne, chaque courbe.
+                    </p>
+                    <p className="font-sans text-xs text-dark-text/60 leading-relaxed">
+                      <span className="font-semibold text-dark-text">Usinées en Corée.</span> Là où la précision est une religion.
+                    </p>
+                    <p className="font-sans text-xs text-dark-text/60 leading-relaxed">
+                      <span className="font-semibold text-dark-text">Acétate Mazzucchelli. Acier haute résistance.</span> Pas de compromis.
+                    </p>
+                    <p className="font-sans text-xs text-dark-text/60 leading-relaxed">
+                      <span className="font-semibold text-dark-text">Un strass sur la branche gauche.</span> Notre signature. Discrète.
+                    </p>
                   </div>
                 </div>
               </motion.div>

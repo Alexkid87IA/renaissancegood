@@ -42,27 +42,20 @@ export default function CollectionAllFrames() {
         <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20">
           <div className="max-w-2xl">
             <div className="mb-6 sm:mb-8">
-              <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold tracking-[-0.03em] leading-[0.9] mb-4 sm:mb-6">
-                NOS<br />CRÉATIONS
+              <h3 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-5xl laptop:text-[3.5rem] xl:text-6xl font-bold tracking-[-0.03em] leading-[0.9]">
+                TOUTES NOS<br />
+                <span className="font-light italic">Créations.</span>
               </h3>
-              <span className="inline-block bg-bronze/10 border border-bronze/20 text-bronze text-[8px] sm:text-[9px] px-4 sm:px-5 py-2 sm:py-2.5 tracking-[0.25em] font-bold uppercase">
-                Heritage • Versailles • Isis
-              </span>
             </div>
-            <div className="inline-block mb-8 sm:mb-12">
-              <p className="font-sans text-dark-text text-[9px] sm:text-[10px] md:text-xs tracking-[0.3em] font-bold uppercase">
-                L'excellence Parisienne
-              </p>
-              <div className="h-px bg-dark-text/20 mt-3" />
-            </div>
-            <p className="font-sans text-dark-text/70 text-base sm:text-lg md:text-xl laptop:text-xl xl:text-2xl leading-[1.75] mb-8 sm:mb-12 laptop:mb-14 xl:mb-16 font-light">
-              Explorez l'intégralité de nos créations. Chaque monture raconte une histoire.<br />
-              Des symboles anciens aux lignes modernes. Le savoir-faire parisien dans toute sa splendeur.
+            <div className="w-12 h-px bg-dark-text/15 mb-8" />
+            <p className="font-sans text-dark-text/50 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-14">
+              Collections, hors-série et pièces uniques.<br />
+              Un seul geste : celui qui refuse l'oubli.
             </p>
             <button
               onClick={handleNavigate}
               disabled={isLoading}
-              className="group relative border-2 border-dark-text px-8 sm:px-10 laptop:px-12 py-3.5 sm:py-4 laptop:py-5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold text-dark-text hover:bg-dark-text hover:text-white transition-all duration-500 disabled:opacity-50 overflow-hidden"
+              className="group relative border border-dark-text/60 px-8 sm:px-10 laptop:px-11 py-3 sm:py-3.5 laptop:py-4 font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-medium text-dark-text hover:bg-dark-text hover:text-white transition-all duration-500 disabled:opacity-50 overflow-hidden"
             >
               <span className="relative z-10">
                 {isLoading ? 'CHARGEMENT...' : 'VOIR LA BOUTIQUE'}
@@ -84,26 +77,16 @@ export default function CollectionAllFrames() {
         <div className="relative h-full flex flex-col px-5 pt-16 pb-6">
 
           {/* Top - Badge (Compact) */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="flex-shrink-0 mb-2"
-          >
-            <span className="inline-block bg-bronze/10 border border-bronze/20 text-bronze text-[8px] px-3 py-1.5 tracking-[0.25em] font-bold uppercase">
-              Heritage • Versailles • Isis
-            </span>
-          </motion.div>
-
-          {/* Title (Compact) */}
+          {/* Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             className="flex-shrink-0 mb-3"
           >
-            <h3 className="font-display text-3xl font-bold tracking-[-0.02em] leading-[0.9] text-dark-text">
-              NOS<br/>CRÉATIONS
+            <h3 className="font-display text-2xl font-bold tracking-[-0.02em] leading-[0.9] text-dark-text">
+              TOUTES NOS<br/>
+              <span className="font-light italic">Créations.</span>
             </h3>
           </motion.div>
 
@@ -143,8 +126,8 @@ export default function CollectionAllFrames() {
             transition={{ duration: 0.4, delay: 0.4 }}
             className="flex-shrink-0 mb-3"
           >
-            <p className="font-sans text-dark-text/70 text-xs leading-[1.5] font-light line-clamp-2">
-              Explorez l'intégralité de nos créations. Chaque monture raconte une histoire. Des symboles anciens aux lignes modernes.
+            <p className="font-sans text-dark-text/50 text-xs leading-[1.7] font-light">
+              Collections, hors-série et pièces uniques. Un seul geste : celui qui refuse l'oubli.
             </p>
           </motion.div>
 
@@ -158,7 +141,7 @@ export default function CollectionAllFrames() {
             <button
               onClick={handleNavigate}
               disabled={isLoading}
-              className="w-full border-2 border-dark-text px-6 py-3 font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text hover:bg-dark-text hover:text-white transition-all duration-300 active:scale-[0.98] bg-white shadow-md disabled:opacity-50"
+              className="w-full border border-dark-text/60 px-6 py-3 font-sans text-[8px] tracking-[0.3em] font-medium text-dark-text hover:bg-dark-text hover:text-white transition-all duration-300 active:scale-[0.98] bg-white disabled:opacity-50"
             >
               {isLoading ? 'CHARGEMENT...' : 'VOIR LA BOUTIQUE'}
             </button>

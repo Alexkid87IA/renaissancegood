@@ -3,16 +3,13 @@
 // Affiche un produit avec navigation entre les variantes de couleur
 // ========================================
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getProduct, getProducts } from '../lib/shopify';
 import { useDeviceType } from '../hooks/useDeviceType';
 import { findRelatedColorVariants, getModelName, ColorVariant, getColorSwatchStyle } from '../lib/productGrouping';
 import ProductSidebar from '../components/product/ProductSidebar';
-import ProductImageSection from '../components/product/ProductImageSection';
-import ProductCraftSection from '../components/product/ProductCraftSection';
 import ProductBottomBar from '../components/product/ProductBottomBar';
-import ProductImageNavigation from '../components/product/ProductImageNavigation';
 import RelatedProducts from '../components/product/RelatedProducts';
 import ProductPageMobile from '../components/mobile/ProductPageMobile';
 import { Product as ShopifyProductType } from '../components/ProductCard';
@@ -283,6 +280,49 @@ export default function ProductPage() {
     return genericImages.map(img => img.url);
   }, [product, selectedColorIndex]);
 
+  // Refs pour synchroniser le scroll du panneau info avec le scroll de la galerie
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const infoPanelRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll du panneau produit quand l'utilisateur scrolle les images
+  useEffect(() => {
+    const panel = infoPanelRef.current;
+    const gallery = galleryRef.current;
+    if (!panel || !gallery) return;
+
+    const onScroll = () => {
+      const overflow = panel.scrollHeight - panel.clientHeight;
+      if (overflow <= 0) return;
+
+      const galleryRect = gallery.getBoundingClientRect();
+      const scrollRange = gallery.offsetHeight - window.innerHeight;
+      if (scrollRange <= 0) return;
+
+      const progress = Math.max(0, Math.min(1, -galleryRect.top / scrollRange));
+      panel.scrollTop = progress * overflow;
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [displayImages]);
+
+  // Afficher la bottom bar quand on a scrollé au-delà de la grille produit
+  const [showBottomBar, setShowBottomBar] = useState(false);
+  const gridEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const sentinel = gridEndRef.current;
+    if (!sentinel) return;
+
+    const onScroll = () => {
+      const rect = sentinel.getBoundingClientRect();
+      setShowBottomBar(rect.top < window.innerHeight * 0.3);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [product]);
+
   if (loading) {
     return (
       <div className="bg-white min-h-screen flex items-center justify-center">
@@ -357,64 +397,52 @@ export default function ProductPage() {
         />
       )}
 
-      <div className="relative">
-        {/* Fixed Sidebar avec sélecteur de couleurs */}
-        <ProductSidebar
-          product={product}
-          selectedColorIndex={selectedColorIndex}
-          onColorChange={setSelectedColorIndex}
-          colorVariants={colorVariants}
-          selectedColorVariantIndex={selectedColorVariantIndex}
-          onColorVariantChange={handleColorVariantChange}
-        />
+      {/* Two-column layout: Gallery (left) + Product Info (right) */}
+      <div className="lg:grid lg:grid-cols-[1fr,440px] xl:grid-cols-[1fr,500px]">
 
-        {/* Image Navigation */}
-        {displayImages.length > 0 && (
-          <ProductImageNavigation
-            images={displayImages}
-            productName={product.name}
-          />
-        )}
-
-        {/* Scrolling Content - Sections qui se superposent */}
-        <div className="lg:ml-[340px] laptop:ml-[380px] xl:ml-[480px]">
+        {/* Left Column: Image Gallery — sticky z-index scroll effect */}
+        <div ref={galleryRef}>
           {displayImages.length > 0 ? (
-            <>
-              {displayImages.map((imageUrl, index) => (
-                <section
-                  key={`${selectedColorVariantIndex}-${index}`}
-                  data-image-section
-                  data-image-index={index}
-                  className="w-full aspect-[4/3] lg:aspect-auto lg:min-h-screen sticky top-0 overflow-hidden"
-                  style={{ zIndex: 10 + index * 10 }}
-                >
-                  <img
-                    src={imageUrl}
-                    alt={`${product.modelName} - vue ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </section>
-              ))}
-            </>
+            displayImages.map((imageUrl, index) => (
+              <section
+                key={`${selectedColorVariantIndex}-${index}`}
+                className="w-full sticky top-0 overflow-hidden"
+                style={{ zIndex: 10 + index * 10 }}
+              >
+                <img
+                  src={imageUrl}
+                  alt={`${product.modelName} - vue ${index + 1}`}
+                  className="w-full block"
+                />
+              </section>
+            ))
           ) : (
-            <section className="h-screen sticky top-0 z-10 overflow-hidden flex items-center justify-center bg-neutral-50">
-              <div className="text-center">
-                <p className="font-sans text-dark-text/40 text-sm">Aucune image disponible</p>
-              </div>
-            </section>
+            <div className="aspect-square flex items-center justify-center">
+              <p className="font-sans text-dark-text/40 text-sm">Aucune image disponible</p>
+            </div>
           )}
+        </div>
 
-          {/* Section Craft qui se superpose aux images */}
-          <div className="sticky top-0" style={{ zIndex: 10 + displayImages.length * 10 }}>
-            <ProductCraftSection />
-          </div>
+        {/* Right Column: Product Info (sticky on desktop, scroll synced) */}
+        <div ref={infoPanelRef} className="border-t lg:border-t-0 lg:border-l border-dark-text/10 lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:overflow-y-auto">
+          <ProductSidebar
+            product={product}
+            selectedColorIndex={selectedColorIndex}
+            onColorChange={setSelectedColorIndex}
+            colorVariants={colorVariants}
+            selectedColorVariantIndex={selectedColorVariantIndex}
+            onColorVariantChange={handleColorVariantChange}
+          />
         </div>
       </div>
 
-      {/* Section produits similaires */}
+      {/* Sentinelle : quand visible = on a dépassé la grille produit */}
+      <div ref={gridEndRef} className="h-px" />
+
+      {/* Related products */}
       <RelatedProducts currentProductId={product.id} limit={4} />
 
-      <ProductBottomBar product={product} selectedColorIndex={selectedColorIndex} />
+      <ProductBottomBar product={product} selectedColorIndex={selectedColorIndex} visible={showBottomBar} />
     </div>
   );
 }

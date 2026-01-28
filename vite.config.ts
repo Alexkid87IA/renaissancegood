@@ -16,7 +16,6 @@ export default defineConfig({
           'vendor-motion': ['framer-motion'],
           'vendor-mapbox': ['mapbox-gl'],
           'vendor-shopify': ['@shopify/hydrogen-react'],
-          'vendor-supabase': ['@supabase/supabase-js'],
         },
       },
     },

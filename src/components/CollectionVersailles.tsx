@@ -1,12 +1,30 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Loader2 } from 'lucide-react';
+
+const stagger = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+  },
+};
+
+const fade = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function CollectionVersailles() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+
+  const textInView = useInView(textRef, { once: true, amount: 0.3 });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -18,9 +36,7 @@ export default function CollectionVersailles() {
 
   const handleNavigate = () => {
     setIsLoading(true);
-    setTimeout(() => {
-      navigate('/collections/versailles');
-    }, 800);
+    setTimeout(() => navigate('/collections/versailles'), 800);
   };
 
   return (
@@ -29,169 +45,193 @@ export default function CollectionVersailles() {
       style={{ scale, opacity }}
       className="min-h-screen lg:h-screen relative sticky top-0 z-30"
     >
-      {/* DESKTOP VERSION */}
+      {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">
+
+        {/* IMAGE SIDE (left) */}
         <div
           onClick={handleNavigate}
           className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
         >
           <img
-            src="https://26.staticbtf.eno.do/v1/103-default/6438d7ab4a0133318c4426ad47aee221/media.jpg"
+            src="https://renaissance-cdn.b-cdn.net/VERSAILLES-COLLECTION.jpeg"
             alt="Collection Versailles - Fleur de Lys"
-            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
             loading="lazy"
+            className="w-full h-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.03] group-hover:brightness-[1.05]"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-dark-text/0 group-hover:bg-dark-text/10 transition-all duration-700 pointer-events-none" />
 
-          {/* Hover overlay */}
-          <div className="absolute inset-0 bg-dark-text/0 group-hover:bg-dark-text/5 transition-all duration-700 pointer-events-none" />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-3 group-hover:translate-y-0">
+              <span className="font-sans text-white text-[10px] tracking-[0.3em] font-medium uppercase">
+                Découvrir
+              </span>
+            </div>
+          </div>
 
-          {/* Loading overlay */}
           {isLoading && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="absolute inset-0 bg-beige/95 backdrop-blur-md flex items-center justify-center"
             >
-              <div className="flex flex-col items-center gap-6">
-                <div className="relative">
-                  <div className="w-16 h-16 border-2 border-bronze/20 rounded-full" />
-                  <div className="absolute inset-0 w-16 h-16 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
-                </div>
-                <p className="text-dark-text text-sm tracking-[0.3em] font-light uppercase">Chargement</p>
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-12 h-12 border border-bronze/30 border-t-bronze rounded-full animate-spin" />
+                <p className="text-dark-text text-[10px] tracking-[0.3em] font-light uppercase">Chargement</p>
               </div>
             </motion.div>
           )}
         </div>
 
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20">
-          <div className="max-w-2xl">
-            <h3 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-7xl laptop:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 tracking-[-0.03em] leading-[0.9]">
-              COLLECTION<br />VERSAILLES
-            </h3>
-            <div className="inline-block mb-8 sm:mb-12">
-              <p className="font-sans text-bronze text-[9px] sm:text-[10px] md:text-xs tracking-[0.3em] font-bold uppercase">
-                Symbole : Fleur de Lys
-              </p>
-              <div className="h-px bg-bronze/20 mt-3" />
-            </div>
-            <p className="font-sans text-dark-text/70 text-base sm:text-lg md:text-xl laptop:text-xl xl:text-2xl leading-[1.75] mb-8 sm:mb-12 laptop:mb-14 xl:mb-16 font-light">
-              Les rois sont partis. Le symbole est resté.<br />
-              La Fleur de Lys. Pour ceux qui construisent. Pas pour ceux qui paradent.
-            </p>
-            <Link to="/collections/versailles">
-              <button className="border-2 border-dark-text/80 px-8 sm:px-10 laptop:px-12 py-3.5 sm:py-4 laptop:py-5 font-sans text-[9px] sm:text-[10px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige hover:border-dark-text transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
-                DÉCOUVRIR
-              </button>
-            </Link>
-          </div>
+        {/* TEXT SIDE (right) */}
+        <div className="w-full md:w-1/2 flex items-center justify-center p-10 md:p-16 lg:p-20 xl:p-28">
+          <motion.div
+            ref={textRef}
+            variants={stagger}
+            initial="hidden"
+            animate={textInView ? "visible" : "hidden"}
+            className="max-w-lg"
+          >
+
+            {/* Label */}
+            <motion.p variants={fade} className="font-sans text-dark-text/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
+              Collection
+            </motion.p>
+
+            {/* Title */}
+            <motion.h3 variants={fade} className="font-display text-4xl md:text-5xl laptop:text-[3.5rem] xl:text-6xl font-bold tracking-[-0.03em] leading-[0.9] mb-3">
+              VERSAILLES
+            </motion.h3>
+            <motion.p variants={fade} className="font-display text-2xl md:text-3xl laptop:text-[2rem] xl:text-4xl font-light italic text-dark-text/70 tracking-[-0.02em] leading-[1] mb-8">
+              La Fleur de Lys.
+            </motion.p>
+
+            {/* Line */}
+            <motion.div variants={fade} className="w-12 h-px bg-dark-text/15 mb-8" />
+
+            {/* Description */}
+            <motion.p variants={fade} className="font-sans text-dark-text/50 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-14">
+              Les rois sont partis. Le symbole est resté. La Fleur de Lys. Pour ceux qui construisent. Pas pour ceux qui paradent.
+            </motion.p>
+
+            {/* CTA */}
+            <motion.div variants={fade}>
+              <Link to="/collections/versailles">
+                <button className="group relative overflow-hidden border border-dark-text px-10 py-4 transition-all duration-500">
+                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
+                    Découvrir
+                  </span>
+                  <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </button>
+              </Link>
+            </motion.div>
+
+          </motion.div>
         </div>
       </div>
 
-      {/* MOBILE VERSION - Compact Design */}
+      {/* MOBILE */}
       <div className="min-h-[82vh] bg-beige md:hidden relative overflow-hidden">
-        {/* Content */}
-        <div className="relative h-full flex flex-col px-5 pt-16 pb-6">
+        <div className="relative h-full flex flex-col px-6 pt-14 pb-6">
 
-          {/* Top - Badge (Compact) */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="flex-shrink-0 mb-2"
+          {/* Label */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="font-sans text-dark-text/30 text-[8px] tracking-[0.4em] font-medium uppercase mb-5 flex-shrink-0"
           >
-            <div className="inline-block">
-              <p className="font-sans text-bronze text-[8px] tracking-[0.3em] font-bold uppercase">
-                SYMBOLE : FLEUR DE LYS
-              </p>
-              <div className="h-px bg-bronze/30 mt-1 w-24" />
-            </div>
-          </motion.div>
+            Collection Versailles
+          </motion.p>
 
-          {/* Title (Compact) */}
+          {/* Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="flex-shrink-0 mb-3"
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-shrink-0 mb-2"
           >
             <h3 className="font-display text-3xl font-bold tracking-[-0.02em] leading-[0.9] text-dark-text">
-              COLLECTION<br/>VERSAILLES
+              VERSAILLES
             </h3>
+            <p className="font-display text-xl font-light italic text-dark-text/60 tracking-[-0.02em] mt-1">
+              La Fleur de Lys.
+            </p>
           </motion.div>
 
-          {/* Product Image - Main Focus (50% space) */}
+          {/* Line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-shrink-0 mb-3 origin-left"
+          >
+            <div className="w-10 h-px bg-dark-text/15" />
+          </motion.div>
+
+          {/* Image */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            className="flex-shrink-0 mb-2"
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-shrink-0 mb-4"
           >
             <div
               onClick={handleNavigate}
-              className="relative w-full h-[42vh] rounded-md overflow-hidden bg-white/30 border border-dark-text/10 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
+              className="relative w-full h-[40vh] overflow-hidden cursor-pointer group active:scale-[0.98] transition-transform duration-200"
             >
               <img
-                src="https://26.staticbtf.eno.do/v1/103-default/6438d7ab4a0133318c4426ad47aee221/media.jpg"
+                src="https://renaissance-cdn.b-cdn.net/VERSAILLES-COLLECTION.jpeg"
                 alt="Collection Versailles"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                loading="lazy"
+                className="w-full h-full object-cover"
               />
-
-              {/* Loading Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-text/15 via-transparent to-transparent pointer-events-none" />
               {isLoading && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="absolute inset-0 bg-beige/95 backdrop-blur-md flex items-center justify-center"
                 >
-                  <div className="flex flex-col items-center gap-3">
-                    <div className="relative">
-                      <div className="w-10 h-10 border-2 border-bronze/20 rounded-full" />
-                      <div className="absolute inset-0 w-10 h-10 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
-                    </div>
-                    <p className="text-dark-text text-[10px] tracking-[0.3em] font-light uppercase">Chargement</p>
-                  </div>
+                  <div className="w-8 h-8 border border-bronze/30 border-t-bronze rounded-full animate-spin" />
                 </motion.div>
               )}
-
-              {/* Hover Indicator */}
-              <div className="absolute inset-0 bg-dark-text/0 group-active:bg-dark-text/5 transition-all duration-300 pointer-events-none" />
             </div>
           </motion.div>
 
-          {/* Description (Compact, 2 lines max) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-            className="flex-shrink-0 mb-3"
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="font-sans text-dark-text/50 text-xs leading-[1.7] font-light mb-5 flex-shrink-0"
           >
-            <p className="font-sans text-dark-text/70 text-xs leading-[1.5] font-light line-clamp-2">
-              Les rois sont partis. Le symbole est resté. La Fleur de Lys. Pour ceux qui construisent. Pas pour ceux qui paradent.
-            </p>
-          </motion.div>
+            Les rois sont partis. Le symbole est resté. La Fleur de Lys. Pour ceux qui construisent. Pas pour ceux qui paradent.
+          </motion.p>
 
-          {/* CTA Button (Always visible) */}
+          {/* CTA */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.5 }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="flex-shrink-0"
           >
             <button
               onClick={handleNavigate}
               disabled={isLoading}
-              className="w-full border-2 border-dark-text px-6 py-3 font-sans text-[9px] tracking-[0.25em] font-bold hover:bg-dark-text hover:text-beige transition-all duration-300 active:scale-[0.98] bg-beige shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+              className="group relative overflow-hidden w-full border border-dark-text px-6 py-3.5 bg-beige transition-all duration-300 active:scale-[0.98] disabled:opacity-50"
             >
-              {isLoading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <div className="relative">
-                    <div className="w-2.5 h-2.5 border border-current border-t-transparent rounded-full animate-spin" />
-                  </div>
-                  CHARGEMENT
-                </span>
-              ) : (
-                'DÉCOUVRIR LA COLLECTION'
+              <span className="relative z-10 font-sans text-[8px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
+                {isLoading ? 'CHARGEMENT...' : 'DÉCOUVRIR LA COLLECTION'}
+              </span>
+              {!isLoading && (
+                <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               )}
             </button>
           </motion.div>

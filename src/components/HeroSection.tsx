@@ -23,16 +23,19 @@ export default function HeroSection() {
       {/* DESKTOP VERSION - Unchanged */}
       <div className="relative h-full overflow-hidden hidden lg:block">
         <img
-          src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764032916/Gemini_Generated_Image_8ftsgv8ftsgv8fts_rqnxed.png"
-          alt="Hero Background"
-          className="absolute inset-0 w-full h-full object-cover lg:object-[center_30%] xl:object-[center_20%] 2xl:object-[center_15%]"
+          src="/images/hero-home.jpg"
+          alt="Renaissance Paris - Collection"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
 
         <div className="absolute left-8 bottom-8 max-w-xl">
           <p className="text-white text-xs tracking-[0.2em] uppercase font-sans mb-2">Pour que chaque jour compte</p>
-          <h1 className="text-white text-5xl font-serif mb-4">Ce qui se porte. Ce qui se transmet.</h1>
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-[-0.03em] leading-[0.95]">
+            Ce qui se porte.<br />
+            <span className="font-light italic">Ce qui se transmet.</span>
+          </h1>
           <p className="text-white text-sm mb-6 leading-relaxed">
             Des montures conçues pour durer. Fabriquées par des mains qui savent encore.
           </p>
@@ -90,8 +93,9 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="flex-1 flex flex-col justify-center max-w-sm"
           >
-            <h1 className="text-white text-4xl sm:text-5xl font-serif mb-4 leading-[1.1]">
-              Fait pour durer.
+            <h1 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4 tracking-[-0.03em] leading-[0.95]">
+              Fait pour durer.<br />
+              <span className="font-light italic">Fait pour transmettre.</span>
             </h1>
             <p className="text-white/80 text-sm font-sans leading-relaxed mb-8">
               Des lunettes qu'on garde. Des lunettes qu'on transmet.

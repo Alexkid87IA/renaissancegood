@@ -1,8 +1,34 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { useRef, useEffect } from 'react';
+
+const stagger = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+  },
+};
+
+const fade = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function FabricationSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.75;
+    }
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"]
@@ -20,97 +46,78 @@ export default function FabricationSection() {
     >
       <div className="relative min-h-[85vh] laptop:h-full overflow-hidden">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          src="https://renaissance-cdn.b-cdn.net/FABRICATION-VIDEO.mp4"
           className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source
-            src="https://res.cloudinary.com/dafo6bvhc/video/upload/v1766499859/61822c99-1122-400c-aa3a-317de2674d17_1_efejw1.mp4"
-            type="video/mp4"
-          />
-        </video>
+        />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-dark-text/95 via-dark-text/80 to-dark-text/65" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/90 via-[#0a0a0a]/70 to-[#0a0a0a]/40" />
 
-        <div className="relative min-h-[85vh] laptop:h-full flex items-center px-5 sm:px-8 md:px-12 lg:px-16 laptop:px-20 max-w-[1920px] mx-auto py-16 laptop:py-0 md:ml-6">
-          <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-3 tracking-[-0.03em] leading-[0.95]">
-                FABRICATION
-              </h2>
+        <div className="relative min-h-[85vh] laptop:h-full flex items-center px-6 md:px-12 lg:px-20 xl:px-28 py-16 laptop:py-0">
+          <motion.div
+            ref={contentRef}
+            variants={stagger}
+            initial="hidden"
+            animate={contentInView ? "visible" : "hidden"}
+            className="max-w-xl"
+          >
 
-              <div className="space-y-3 laptop:space-y-5 mb-5 laptop:mb-8 xl:mb-10">
-                <p className="font-sans text-white text-xs sm:text-base md:text-lg laptop:text-lg xl:text-2xl leading-[1.7] font-light max-w-2xl">
-                  Une paire de Renaissance, c'est 250 étapes. Des mains françaises pour la vision. Des mains coréennes pour la précision. Deux pays. Un seul standard : celui qui dure.
-                </p>
+            {/* Label */}
+            <motion.p variants={fade} className="font-sans text-white/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
+              Fabrication
+            </motion.p>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 md:gap-5 laptop:gap-6 xl:gap-8 pt-1 laptop:pt-3">
-                  <div className="space-y-1">
-                    <p className="font-display text-[24px] sm:text-[2.25rem] md:text-4xl laptop:text-4xl xl:text-6xl text-white font-bold tracking-tight">8-12</p>
-                    <p className="font-sans text-white/70 text-[8px] sm:text-[10px] tracking-[0.15em] uppercase leading-[1.5] font-medium">
-                      Artisans<br/>par paire
-                    </p>
-                  </div>
-                  <div className="space-y-1.5">
-                    <p className="font-display text-[2rem] sm:text-[2.25rem] md:text-4xl laptop:text-4xl xl:text-6xl text-white font-bold tracking-tight">250</p>
-                    <p className="font-sans text-white/70 text-[9px] sm:text-[10px] tracking-[0.15em] uppercase leading-[1.5] font-medium">
-                      Étapes de<br/>fabrication
-                    </p>
-                  </div>
-                  <div className="space-y-1.5">
-                    <p className="font-display text-[2rem] sm:text-[2.25rem] md:text-4xl laptop:text-4xl xl:text-6xl text-white font-bold tracking-tight whitespace-nowrap">8-15h</p>
-                    <p className="font-sans text-white/70 text-[9px] sm:text-[10px] tracking-[0.15em] uppercase leading-[1.5] font-medium">
-                      De travail<br/>cumulé
-                    </p>
-                  </div>
-                  <div className="space-y-1.5">
-                    <p className="font-display text-[2rem] sm:text-[2.25rem] md:text-4xl laptop:text-4xl xl:text-6xl text-white font-bold tracking-tight">2</p>
-                    <p className="font-sans text-white/70 text-[9px] sm:text-[10px] tracking-[0.15em] uppercase leading-[1.5] font-medium">
-                      Pays, un<br/>standard
-                    </p>
-                  </div>
-                </div>
+            {/* Title */}
+            <motion.h2 variants={fade} className="font-display text-3xl sm:text-4xl md:text-5xl laptop:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
+              NOTRE
+            </motion.h2>
+            <motion.p variants={fade} className="font-display text-xl sm:text-2xl md:text-3xl laptop:text-4xl xl:text-5xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 md:mb-10">
+              Fabrication.
+            </motion.p>
+
+            {/* Line */}
+            <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8 md:mb-10" />
+
+            {/* Description */}
+            <motion.p variants={fade} className="font-sans text-white/40 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-14 max-w-md">
+              Une paire de Renaissance, c'est 250 étapes. Des mains françaises pour la vision. Des mains coréennes pour la précision. Deux pays. Un seul standard : celui qui dure.
+            </motion.p>
+
+            {/* Stats */}
+            <motion.div variants={fade} className="flex items-start gap-0 mb-10 xl:mb-14">
+              <div className="pr-6 md:pr-8">
+                <p className="font-display text-2xl md:text-3xl xl:text-4xl text-white font-bold tracking-tight leading-none mb-2">8-12</p>
+                <p className="font-sans text-white/40 text-[8px] tracking-[0.25em] uppercase font-medium">Artisans par paire</p>
               </div>
-
-              <div className="space-y-1 laptop:space-y-2 xl:space-y-2.5 mb-5 laptop:mb-8 xl:mb-10 max-w-2xl">
-                <div className="flex items-start gap-3 sm:gap-4 group">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
-                  <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
-                    <span className="font-semibold text-white">Dessinées à Paris.</span> Chaque ligne, chaque courbe.
-                  </p>
-                </div>
-                <div className="flex items-start gap-3 sm:gap-4 group">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
-                  <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
-                    <span className="font-semibold text-white">Usinées en Corée.</span> Là où la précision est une religion.
-                  </p>
-                </div>
-                <div className="flex items-start gap-3 sm:gap-4 group">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
-                  <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
-                    <span className="font-semibold text-white">Acétate Mazzucchelli. Acier haute résistance.</span> Pas de compromis.
-                  </p>
-                </div>
-                <div className="flex items-start gap-3 sm:gap-4 group">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white/50 mt-2 flex-shrink-0 group-hover:bg-white transition-colors" />
-                  <p className="font-sans text-white text-xs sm:text-[13px] md:text-sm laptop:text-sm xl:text-lg leading-[1.55] font-light">
-                    <span className="font-semibold text-white">Un strass sur la branche gauche.</span> Notre signature. Discrète.
-                  </p>
-                </div>
+              <div className="border-l border-white/10 pl-6 md:pl-8 pr-6 md:pr-8">
+                <p className="font-display text-2xl md:text-3xl xl:text-4xl text-white font-bold tracking-tight leading-none mb-2">250</p>
+                <p className="font-sans text-white/40 text-[8px] tracking-[0.25em] uppercase font-medium">Étapes</p>
               </div>
+              <div className="border-l border-white/10 pl-6 md:pl-8 pr-6 md:pr-8">
+                <p className="font-display text-2xl md:text-3xl xl:text-4xl text-white font-bold tracking-tight leading-none mb-2">8-15h</p>
+                <p className="font-sans text-white/40 text-[8px] tracking-[0.25em] uppercase font-medium">De travail</p>
+              </div>
+              <div className="border-l border-white/10 pl-6 md:pl-8">
+                <p className="font-display text-2xl md:text-3xl xl:text-4xl text-white font-bold tracking-tight leading-none mb-2">2</p>
+                <p className="font-sans text-white/40 text-[8px] tracking-[0.25em] uppercase font-medium">Pays</p>
+              </div>
+            </motion.div>
 
-              <button className="border-2 border-white/30 text-white px-5 sm:px-8 laptop:px-10 xl:px-12 py-2.5 sm:py-3.5 laptop:py-4 xl:py-5 font-sans text-[8px] sm:text-[10px] tracking-[0.25em] font-bold hover:bg-white hover:text-dark-text hover:border-white transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
-                VOIR LE PROCESSUS
+            {/* CTA */}
+            <motion.div variants={fade}>
+              <button className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-bronze/60">
+                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                  Voir le processus
+                </span>
+                <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </button>
             </motion.div>
-          </div>
+
+          </motion.div>
         </div>
       </div>
     </motion.section>

@@ -6,7 +6,6 @@ import CollectionAllFrames from '../components/CollectionAllFrames';
 import HistoireSection from '../components/HistoireSection';
 import TryInStoreSection from '../components/TryInStoreSection';
 import FabricationSection from '../components/FabricationSection';
-import SymbolesHomeSection from '../components/SymbolesHomeSection';
 import ReassuranceSection from '../components/ReassuranceSection';
 import SEO from '../components/SEO';
 
@@ -23,10 +22,9 @@ export default function HomePage() {
       <CollectionVersailles />
       <CollectionIsis />
       <CollectionAllFrames />
-      <HistoireSection />
       <TryInStoreSection />
+      <HistoireSection />
       <FabricationSection />
-      <SymbolesHomeSection />
       <ReassuranceSection />
     </>
   );

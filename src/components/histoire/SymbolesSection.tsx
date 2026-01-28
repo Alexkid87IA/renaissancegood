@@ -6,31 +6,31 @@ const symbols = [
     name: 'Le Trident', 
     subtitle: 'Souveraineté', 
     description: 'Trois pointes, trois dimensions : force, vision, justesse. Le symbole du pouvoir maîtrisé.',
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763855099/WhatsApp_Image_2025-11-21_at_16.20.29_luvmkv.jpg'
+    image: 'https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png'
   },
-  { 
-    name: 'La Fleur de Lys', 
-    subtitle: 'Excellence', 
+  {
+    name: 'La Fleur de Lys',
+    subtitle: 'Excellence',
     description: "L'excellence héritée. Pureté du geste et exigence du détail.",
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_4_xntepe.jpg'
+    image: 'https://renaissance-cdn.b-cdn.net/FLEUR%20DE%20LYS%20SYMBOL.png'
   },
-  { 
-    name: "L'Ankh", 
-    subtitle: 'Éternité', 
+  {
+    name: "L'Ankh",
+    subtitle: 'Éternité',
     description: "La clé de vie éternelle. Ce qu'on construit aujourd'hui doit traverser le temps.",
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_fpklnf.jpg'
+    image: 'https://renaissance-cdn.b-cdn.net/ANKH%20SYMBOL.png'
   },
-  { 
-    name: 'Le Scarabée', 
-    subtitle: 'Renaissance', 
+  {
+    name: 'Le Scarabée',
+    subtitle: 'Renaissance',
     description: 'La renaissance perpétuelle. Transformation et renouveau constant.',
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_2_tp1ac1.jpg'
+    image: 'https://renaissance-cdn.b-cdn.net/SCARABEE%20SYMBOL.png'
   },
-  { 
-    name: 'Le Cobra', 
-    subtitle: 'Protection', 
+  {
+    name: 'Le Cobra',
+    subtitle: 'Protection',
     description: 'La protection vigilante. Élégant et puissant. Présence affirmée, force contenue.',
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1763850148/WhatsApp_Image_2025-11-21_at_16.19.41_3_zmql9v.jpg'
+    image: 'https://renaissance-cdn.b-cdn.net/COBRA%20SYMBOL.png'
   }
 ];
 

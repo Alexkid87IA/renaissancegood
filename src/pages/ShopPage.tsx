@@ -3,7 +3,7 @@
 // Liste des produits groupés par modèle avec filtres
 // ========================================
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getProductsByCollection } from '../lib/shopify';
@@ -48,7 +48,8 @@ export default function ShopPage() {
   const [selectedCollection, setSelectedCollection] = useState('all');
   const [selectedMaterial, setSelectedMaterial] = useState('all');
   const [hideFilters, setHideFilters] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
+  const ticking = useRef(false);
 
   // Scroll vers le haut au chargement
   useEffect(() => {
@@ -56,20 +57,25 @@ export default function ShopPage() {
   }, []);
 
   // Gérer le masquage des filtres au scroll
-  useEffect(() => {
-    const handleScroll = () => {
+  const handleScroll = useCallback(() => {
+    if (ticking.current) return;
+    ticking.current = true;
+    requestAnimationFrame(() => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 200) {
+      if (currentScrollY > lastScrollYRef.current && currentScrollY > 200) {
         setHideFilters(true);
-      } else if (currentScrollY < lastScrollY) {
+      } else if (currentScrollY < lastScrollYRef.current) {
         setHideFilters(false);
       }
-      setLastScrollY(currentScrollY);
-    };
+      lastScrollYRef.current = currentScrollY;
+      ticking.current = false;
+    });
+  }, []);
 
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, [handleScroll]);
 
   // Charger les produits depuis Shopify
   useEffect(() => {

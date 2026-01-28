@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "VITE_MAPBOX_ACCESS_TOKEN,VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN,VITE_STRIPE_PUBLISHABLE_KEY,VITE_SHOPIFY_STORE_DOMAIN"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

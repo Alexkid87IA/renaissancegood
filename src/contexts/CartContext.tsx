@@ -56,6 +56,7 @@ interface CartContextType {
   addToCart: (variantId: string, quantity?: number) => Promise<void>;
   updateQuantity: (lineId: string, quantity: number) => Promise<void>;
   removeItem: (lineId: string) => Promise<void>;
+  clearCart: () => Promise<void>;
   openCart: () => void;
   closeCart: () => void;
 }
@@ -154,6 +155,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // Vider le panier (après achat)
+  const clearCart = async () => {
+    localStorage.removeItem(CART_ID_KEY);
+    try {
+      const newCart = await createCart();
+      setCart(newCart);
+      localStorage.setItem(CART_ID_KEY, newCart.id);
+    } catch {
+      setCart(null);
+    }
+  };
+
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
 
@@ -167,6 +180,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         addToCart,
         updateQuantity,
         removeItem,
+        clearCart,
         openCart,
         closeCart,
       }}

@@ -68,11 +68,11 @@ export default function MegaMenu({
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                       loading="lazy"
                     />
                   </div>
-                  <h3 className="font-serif text-sm tracking-[0.12em] text-dark-text mb-2 uppercase">
+                  <h3 className="font-display text-sm tracking-[-0.01em] text-dark-text mb-2">
                     {item.name}
                   </h3>
                   <p className="font-sans text-xs text-dark-text/50 mb-2.5 font-light">
@@ -91,22 +91,21 @@ export default function MegaMenu({
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="flex flex-col justify-center lg:pl-8 lg:border-l border-bronze/15"
+            className="flex flex-col justify-center lg:pl-8 lg:border-l border-dark-text/[0.06]"
           >
-            <h3 className="font-serif text-2xl md:text-3xl text-dark-text mb-4 md:mb-6 leading-[1.2] whitespace-pre-line">
+            <h3 className="font-display text-2xl md:text-3xl text-dark-text mb-4 md:mb-6 leading-[1.2] tracking-[-0.02em] whitespace-pre-line">
               {title}
             </h3>
-            <p className="font-sans text-dark-text/60 text-sm leading-relaxed mb-6 md:mb-10 font-light">
+            <p className="font-sans text-dark-text/50 text-[13px] md:text-sm leading-[1.8] mb-6 md:mb-10 font-light">
               {description}
             </p>
             <Link to={collectionLink} onClick={onClose}>
-              <motion.button
-                whileHover={{ x: 4 }}
-                className="inline-flex items-center gap-3 font-sans text-[10px] tracking-[0.3em] text-dark-text uppercase font-light group"
-              >
-                EXPLORER LA COLLECTION
-                <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
-              </motion.button>
+              <button className="group relative overflow-hidden border border-dark-text px-8 py-3 transition-all duration-500">
+                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
+                  Explorer la collection
+                </span>
+                <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              </button>
             </Link>
           </motion.div>
         </div>

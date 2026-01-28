@@ -3,7 +3,7 @@
 // Navigation principale du site Renaissance
 // ========================================
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
@@ -81,15 +81,22 @@ export default function Header() {
   const [heritageCollection, setHeritageCollection] = useState<MenuProduct[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
 
-  // Effet scroll
-  useEffect(() => {
-    const handleScroll = () => {
+  // Effet scroll (throttled via rAF)
+  const scrollTicking = useRef(false);
+  const handleScroll = useCallback(() => {
+    if (scrollTicking.current) return;
+    scrollTicking.current = true;
+    requestAnimationFrame(() => {
       setScrolled(window.scrollY > 20);
-    };
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+      scrollTicking.current = false;
+    });
   }, []);
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   // Charger les collections
   useEffect(() => {
@@ -121,7 +128,7 @@ export default function Header() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-          scrolled ? 'bg-white backdrop-blur-xl shadow-sm' : 'bg-white/95 backdrop-blur-md'
+          scrolled ? 'bg-white backdrop-blur-xl border-b border-dark-text/[0.06]' : 'bg-white/95 backdrop-blur-md'
         }`}
       >
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 laptop:px-14 xl:px-20">
@@ -154,9 +161,9 @@ export default function Header() {
                   whileTap={{ opacity: 0.6 }}
                 >
                   <img
-                    src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1766502526/6c20430c-e6c7-41d2-b451-8717d92026d9_l19hau.png"
+                    src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png"
                     alt="Renaissance Paris"
-                    className="h-24 sm:h-28 md:h-28 lg:h-28 laptop:h-28 xl:h-32 w-auto object-contain"
+                    className="h-20 sm:h-22 md:h-24 lg:h-24 laptop:h-24 xl:h-28 w-auto object-contain"
                   />
                 </motion.div>
               </Link>
@@ -316,12 +323,12 @@ function MegaMenuWrapper({ children, onMouseLeave }: { children: React.ReactNode
 function IconButton({ onClick, icon }: { onClick?: () => void; icon: 'search' | 'user' }) {
   const icons = {
     search: (
-      <svg className="w-4 h-4 laptop:w-[18px] laptop:h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
     ),
     user: (
-      <svg className="w-4 h-4 laptop:w-[18px] laptop:h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
       </svg>
     )
@@ -341,7 +348,7 @@ function IconButton({ onClick, icon }: { onClick?: () => void; icon: 'search' | 
 function CartIcon({ itemCount }: { itemCount: number }) {
   return (
     <Link to="/cart" className="relative text-dark-text hover:text-bronze transition-colors duration-300">
-      <svg className="w-4 h-4 laptop:w-[18px] laptop:h-[18px] lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
       </svg>
       {itemCount > 0 && (
