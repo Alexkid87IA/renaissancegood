@@ -27,7 +27,7 @@ export default function ProductCraftSection() {
         className="absolute inset-0 w-full h-full object-cover opacity-30"
       >
         <source
-          src="https://res.cloudinary.com/dafo6bvhc/video/upload/v1766499859/61822c99-1122-400c-aa3a-317de2674d17_1_efejw1.mp4"
+          src="https://renaissance-cdn.b-cdn.net/FABRICATION-VIDEO.mp4"
           type="video/mp4"
         />
       </video>

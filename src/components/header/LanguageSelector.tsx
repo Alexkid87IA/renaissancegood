@@ -16,6 +16,7 @@ interface LanguageSelectorProps {
   currentLang: string;
   languages: Language[];
   onSelect: (code: string) => void;
+  transparent?: boolean;
 }
 
 export default function LanguageSelector({
@@ -23,7 +24,8 @@ export default function LanguageSelector({
   onToggle,
   currentLang,
   languages,
-  onSelect
+  onSelect,
+  transparent
 }: LanguageSelectorProps) {
   return (
     <div
@@ -31,7 +33,11 @@ export default function LanguageSelector({
       onMouseEnter={() => onToggle(true)}
       onMouseLeave={() => onToggle(false)}
     >
-      <button className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase">
+      <button className={`font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium transition-colors duration-500 uppercase ${
+        transparent
+          ? 'text-white/90 hover:text-white/50'
+          : 'text-dark-text hover:text-bronze'
+      }`}>
         {currentLang}
       </button>
       <AnimatePresence>
@@ -41,7 +47,7 @@ export default function LanguageSelector({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full right-0 mt-3 bg-white shadow-xl border border-dark-text/5 overflow-hidden min-w-[140px]"
+            className="absolute top-full right-0 mt-3 bg-white border border-dark-text/[0.08] overflow-hidden min-w-[140px]"
           >
             {languages.map((lang) => (
               <button
@@ -50,10 +56,10 @@ export default function LanguageSelector({
                   onSelect(lang.code);
                   onToggle(false);
                 }}
-                className={`w-full text-left px-5 py-3 font-sans text-xs tracking-wider transition-colors ${
+                className={`w-full text-left px-5 py-3 font-sans text-xs tracking-wider transition-colors duration-300 ${
                   currentLang === lang.code
-                    ? 'bg-bronze text-white'
-                    : 'text-dark-text hover:bg-beige'
+                    ? 'bg-dark-text/5 text-dark-text font-medium'
+                    : 'text-dark-text/60 hover:bg-beige hover:text-dark-text'
                 }`}
               >
                 {lang.label}

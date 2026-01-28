@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { getProductsByCollection } from '../lib/shopify';
 
@@ -65,6 +65,13 @@ function formatProducts(products: ShopifyProduct[], defaultDescription: string):
   }));
 }
 
+// Pages où le header est transparent au top
+const TRANSPARENT_PAGES = ['/'];
+
+// URLs des logos
+const LOGO_WHITE = 'https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png';
+const LOGO_DARK = 'https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png';
+
 export default function Header() {
   // États
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -75,6 +82,11 @@ export default function Header() {
   const [opticiensOpen, setOpticiensOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { itemCount } = useCart();
+  const location = useLocation();
+
+  // Header transparent uniquement sur certaines pages
+  const isTransparentPage = TRANSPARENT_PAGES.includes(location.pathname);
+  const isTransparent = isTransparentPage && !scrolled && activeMenu === null;
 
   // Collections
   const [versaillesCollection, setVersaillesCollection] = useState<MenuProduct[]>([]);
@@ -127,43 +139,56 @@ export default function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-          scrolled ? 'bg-white backdrop-blur-xl border-b border-dark-text/[0.06]' : 'bg-white/95 backdrop-blur-md'
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ${
+          isTransparent
+            ? 'bg-transparent'
+            : 'bg-beige/95 backdrop-blur-xl border-b border-dark-text/[0.06]'
         }`}
       >
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 laptop:px-14 xl:px-20">
-          <div className="flex items-center justify-between h-14 sm:h-14 md:h-16">
+          <div className="flex items-center justify-between h-16 sm:h-16 md:h-18 lg:h-20">
 
             {/* Navigation Desktop Gauche */}
             <nav className="hidden lg:flex items-center gap-3 laptop:gap-4 xl:gap-6 2xl:gap-10 flex-1">
-              <NavLink to="/shop">BOUTIQUE</NavLink>
-              <NavLink to="/collections/heritage" onMouseEnter={() => setActiveMenu('heritage')}>
+              <NavLink to="/shop" transparent={isTransparent}>BOUTIQUE</NavLink>
+              <NavLink to="/collections/heritage" transparent={isTransparent} onMouseEnter={() => setActiveMenu('heritage')}>
                 HÉRITAGE
               </NavLink>
-              <NavLink to="/collections/versailles" onMouseEnter={() => setActiveMenu('versailles')}>
+              <NavLink to="/collections/versailles" transparent={isTransparent} onMouseEnter={() => setActiveMenu('versailles')}>
                 VERSAILLES
               </NavLink>
-              <NavLink to="/collections/isis" onMouseEnter={() => setActiveMenu('isis')}>
+              <NavLink to="/collections/isis" transparent={isTransparent} onMouseEnter={() => setActiveMenu('isis')}>
                 ISIS
               </NavLink>
-              <NavLink to="/histoire">HISTOIRE</NavLink>
+              <NavLink to="/histoire" transparent={isTransparent}>HISTOIRE</NavLink>
             </nav>
 
-            {/* Logo */}
+            {/* Logo — Dual crossfade (no flicker) */}
             <div className="flex-shrink-0 mx-2 sm:mx-4 md:mx-6 lg:mx-8">
               <Link to="/">
                 <motion.div
-                  className="focus:outline-none block"
+                  className="relative focus:outline-none block"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                   whileHover={{ opacity: 0.75 }}
                   whileTap={{ opacity: 0.6 }}
                 >
+                  {/* Logo blanc (transparent mode) */}
                   <img
-                    src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png"
+                    src={LOGO_WHITE}
                     alt="Renaissance Paris"
-                    className="h-20 sm:h-22 md:h-24 lg:h-24 laptop:h-24 xl:h-28 w-auto object-contain"
+                    className={`h-7 sm:h-8 md:h-8 lg:h-9 xl:h-10 w-auto object-contain transition-opacity duration-700 ${
+                      isTransparent ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                  {/* Logo sombre (scrolled mode) — absolute overlay */}
+                  <img
+                    src={LOGO_DARK}
+                    alt="Renaissance Paris"
+                    className={`absolute inset-0 h-7 sm:h-8 md:h-8 lg:h-9 xl:h-10 w-auto object-contain transition-opacity duration-700 ${
+                      isTransparent ? 'opacity-0' : 'opacity-100'
+                    }`}
                   />
                 </motion.div>
               </Link>
@@ -171,35 +196,46 @@ export default function Header() {
 
             {/* Navigation Desktop Droite */}
             <div className="hidden lg:flex items-center gap-3 laptop:gap-4 xl:gap-6 2xl:gap-10 flex-1 justify-end">
-              <OpticianDropdown isOpen={opticiensOpen} onToggle={setOpticiensOpen} />
+              <OpticianDropdown isOpen={opticiensOpen} onToggle={setOpticiensOpen} transparent={isTransparent} />
               <LanguageSelector
                 isOpen={languageOpen}
                 onToggle={setLanguageOpen}
                 currentLang={currentLang}
                 languages={SUPPORTED_LANGUAGES}
                 onSelect={setCurrentLang}
+                transparent={isTransparent}
               />
-              <IconButton onClick={() => setSearchOpen(!searchOpen)} icon="search" />
-              <CartIcon itemCount={itemCount} />
-              <IconButton icon="user" />
+              <IconButton onClick={() => setSearchOpen(!searchOpen)} icon="search" transparent={isTransparent} />
+              <CartIcon itemCount={itemCount} transparent={isTransparent} />
+              <IconButton icon="user" transparent={isTransparent} />
             </div>
 
-            {/* Navigation Mobile */}
+            {/* Navigation Mobile — Hamburger asymétrique 2 lignes */}
             <div className="lg:hidden flex items-center gap-4">
-              <CartIcon itemCount={itemCount} />
+              <CartIcon itemCount={itemCount} transparent={isTransparent} />
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-dark-text focus:outline-none"
+                className={`relative w-6 h-5 flex flex-col justify-center items-end gap-[6px] transition-colors duration-500 focus:outline-none ${
+                  isTransparent ? 'text-white/90' : 'text-dark-text'
+                }`}
+                aria-label="Menu"
               >
-                {mobileMenuOpen ? (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                ) : (
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                )}
+                <motion.span
+                  className="block h-[1.5px] bg-current origin-right"
+                  animate={mobileMenuOpen
+                    ? { rotate: -45, width: '100%', y: 0 }
+                    : { rotate: 0, width: '100%', y: 0 }
+                  }
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                />
+                <motion.span
+                  className="block h-[1.5px] bg-current origin-right"
+                  animate={mobileMenuOpen
+                    ? { rotate: 45, width: '100%', y: 0 }
+                    : { rotate: 0, width: '66.67%', y: 0 }
+                  }
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                />
               </button>
             </div>
           </div>
@@ -246,7 +282,7 @@ export default function Header() {
           <MegaMenuWrapper onMouseLeave={() => setActiveMenu(null)}>
             <div className="max-w-[1600px] mx-auto px-8 md:px-12 lg:px-16 py-12 md:py-16 lg:py-24">
               <div className="flex flex-col items-center justify-center text-center">
-                <h3 className="font-serif text-3xl md:text-4xl text-dark-text mb-4">
+                <h3 className="font-display text-3xl md:text-4xl text-dark-text tracking-[-0.02em] mb-4">
                   Collection Isis
                 </h3>
                 <p className="font-sans text-bronze text-xs md:text-sm tracking-[0.2em] uppercase font-medium">
@@ -282,15 +318,23 @@ export default function Header() {
 // SOUS-COMPOSANTS INTERNES
 // ========================================
 
-// Lien de navigation
-function NavLink({ to, children, onMouseEnter }: { to: string; children: React.ReactNode; onMouseEnter?: () => void }) {
+// Lien de navigation avec underline bronze animé
+function NavLink({ to, children, onMouseEnter, transparent }: { to: string; children: React.ReactNode; onMouseEnter?: () => void; transparent?: boolean }) {
   return (
     <Link
       to={to}
       onMouseEnter={onMouseEnter}
-      className="font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium text-dark-text hover:text-bronze transition-colors duration-300 uppercase"
+      className={`group relative font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.3em] font-medium transition-colors duration-500 uppercase pb-1 ${
+        transparent
+          ? 'text-white/90 hover:text-white'
+          : 'text-dark-text hover:text-bronze'
+      }`}
     >
       {children}
+      {/* Underline animé */}
+      <span className={`absolute bottom-0 left-0 h-[1px] w-0 group-hover:w-full transition-all duration-500 ease-out ${
+        transparent ? 'bg-white/60' : 'bg-bronze'
+      }`} />
     </Link>
   );
 }
@@ -303,7 +347,7 @@ function MegaMenuWrapper({ children, onMouseLeave }: { children: React.ReactNode
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="fixed top-[56px] sm:top-[56px] md:top-[64px] left-0 right-0 z-[90]"
+      className="fixed top-[64px] sm:top-[64px] md:top-[72px] lg:top-[80px] left-0 right-0 z-[90]"
       onMouseLeave={onMouseLeave}
     >
       <motion.div
@@ -311,7 +355,7 @@ function MegaMenuWrapper({ children, onMouseLeave }: { children: React.ReactNode
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -20, opacity: 0 }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="bg-white border-t border-dark-text/5"
+        className="bg-beige border-t border-dark-text/[0.06]"
       >
         {children}
       </motion.div>
@@ -320,7 +364,7 @@ function MegaMenuWrapper({ children, onMouseLeave }: { children: React.ReactNode
 }
 
 // Icône de bouton
-function IconButton({ onClick, icon }: { onClick?: () => void; icon: 'search' | 'user' }) {
+function IconButton({ onClick, icon, transparent }: { onClick?: () => void; icon: 'search' | 'user'; transparent?: boolean }) {
   const icons = {
     search: (
       <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -337,22 +381,33 @@ function IconButton({ onClick, icon }: { onClick?: () => void; icon: 'search' | 
   return (
     <button
       onClick={onClick}
-      className="text-dark-text hover:text-bronze transition-colors duration-300"
+      className={`transition-colors duration-500 ${
+        transparent
+          ? 'text-white/90 hover:text-white/50'
+          : 'text-dark-text hover:text-bronze'
+      }`}
     >
       {icons[icon]}
     </button>
   );
 }
 
-// Icône panier
-function CartIcon({ itemCount }: { itemCount: number }) {
+// Icône panier — badge carré (pas de rounded-full, cohérent avec le design system sans rayon)
+function CartIcon({ itemCount, transparent }: { itemCount: number; transparent?: boolean }) {
   return (
-    <Link to="/cart" className="relative text-dark-text hover:text-bronze transition-colors duration-300">
+    <Link
+      to="/cart"
+      className={`relative transition-colors duration-500 ${
+        transparent
+          ? 'text-white/90 hover:text-white/50'
+          : 'text-dark-text hover:text-bronze'
+      }`}
+    >
       <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
       </svg>
       {itemCount > 0 && (
-        <span className="absolute -top-2 -right-2 bg-bronze text-white text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+        <span className="absolute -top-2 -right-2.5 bg-bronze text-white text-[8px] font-medium w-4 h-4 flex items-center justify-center">
           {itemCount}
         </span>
       )}

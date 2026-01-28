@@ -27,7 +27,7 @@ export default function HeroHistoireSection() {
         {/* Image de fond */}
         <div className="absolute inset-0">
           <img
-            src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg"
+            src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
             alt=""
             className="w-full h-full object-cover"
           />
@@ -119,7 +119,7 @@ export default function HeroHistoireSection() {
               className="pt-8"
             >
               <img
-                src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956518/4064a921-64ab-455f-a852-c349da46d95a_mlfxhm.png"
+                src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png"
                 alt="Renaissance n'est pas fait pour crier"
                 className="w-auto h-[4rem] md:h-[5rem] lg:h-[6rem] mx-auto"
               />
@@ -134,7 +134,7 @@ export default function HeroHistoireSection() {
               <div className="h-px w-10 bg-bronze/30" />
               <div className="flex items-center gap-2">
                 <img
-                  src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764955952/6f678730-ea37-4b65-b71d-da3cae41517c_jwnbsr.png"
+                  src="https://renaissance-cdn.b-cdn.net/LOGO%20R%20TRANSPARENT.png"
                   alt="Renaissance"
                   className="h-[3.5rem] md:h-[4.5rem] lg:h-[5.5rem] w-auto"
                 />

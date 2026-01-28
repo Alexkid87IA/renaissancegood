@@ -5,22 +5,22 @@ const collections = [
   {
     name: 'Les Origines',
     description: 'Là où tout commence. Les stries. La signature.',
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg'
+    image: 'https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png'
   },
   {
     name: 'Héritage',
     description: 'Le Trident. Ce qu\'on transmet.',
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg'
+    image: 'https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg'
   },
   {
     name: 'Versailles',
     description: 'La Fleur de Lys. Ce qu\'on bâtit.',
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg'
+    image: 'https://renaissance-cdn.b-cdn.net/VERSAILLES-COLLECTION.jpeg'
   },
   {
     name: 'Isis',
     description: 'L\'Ankh, le Scarabée, l\'Œil. Ce qui traverse 5 000 ans.',
-    image: 'https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg'
+    image: 'https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg'
   }
 ];
 

@@ -90,7 +90,7 @@ export default function CollectionIsis() {
         {/* IMAGE SIDE */}
         <div className="w-full md:w-1/2 h-full relative overflow-hidden">
           <img
-            src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg"
+            src="https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg"
             alt="Collection Isis - Egyptian inspiration"
             className="w-full h-full object-cover grayscale-[30%]"
             loading="lazy"
@@ -164,7 +164,7 @@ export default function CollectionIsis() {
           >
             <div className="relative w-full h-[40vh] overflow-hidden">
               <img
-                src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764956302/1d248e53-314b-475b-abd6-d43943737b7b_janoci.jpg"
+                src="https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg"
                 alt="Collection Isis"
                 className="w-full h-full object-cover grayscale-[40%] opacity-70"
                 loading="lazy"

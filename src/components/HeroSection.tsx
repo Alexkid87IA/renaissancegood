@@ -61,7 +61,7 @@ export default function HeroSection() {
         {/* Full Screen Image with proper object positioning */}
         <div className="absolute inset-0">
           <img
-            src="https://res.cloudinary.com/dafo6bvhc/image/upload/v1764096301/unnamed_6_vh8f2v.jpg"
+            src="/images/hero-home.jpg"
             alt="Hero Background Mobile"
             className="w-full h-full object-cover object-[center_30%]"
           />

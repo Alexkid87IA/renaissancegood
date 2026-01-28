@@ -28,7 +28,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -20, opacity: 0 }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="bg-white border-t border-b border-dark-text/10"
+        className="bg-white border-t border-b border-dark-text/[0.06]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-6 sm:py-8">
@@ -36,7 +36,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
             {/* En-tête */}
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
-                <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1.5 sm:mb-2">
+                <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-medium text-dark-text uppercase mb-1.5 sm:mb-2">
                   RECHERCHE
                 </p>
                 <p className="font-sans text-dark-text/60 text-xs">
@@ -62,18 +62,17 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
             </div>
 
             {/* Footer */}
-            <div className="pt-4 border-t border-dark-text/10 flex items-center justify-between">
-              <p className="font-sans text-dark-text/60 text-xs">
+            <div className="pt-4 border-t border-dark-text/[0.06] flex items-center justify-between">
+              <p className="font-sans text-dark-text/40 text-xs font-light">
                 Utilisez les filtres pour affiner votre recherche
               </p>
               <Link to="/collections" onClick={onClose}>
-                <motion.button
-                  whileHover={{ x: 4 }}
-                  className="inline-flex items-center gap-3 font-sans text-[10px] tracking-[0.3em] text-dark-text uppercase font-medium group"
-                >
-                  VOIR TOUS LES PRODUITS
-                  <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </motion.button>
+                <button className="group relative overflow-hidden border border-dark-text px-6 py-2.5 transition-all duration-500">
+                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
+                    Voir tous les produits
+                  </span>
+                  <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </button>
               </Link>
             </div>
           </div>
@@ -87,11 +86,11 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
 function FilterSelect({ label, options }: { label: string; options: string[] }) {
   return (
     <div className="relative">
-      <label className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-dark-text uppercase mb-2 sm:mb-3 block">
+      <label className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-medium text-dark-text uppercase mb-2 sm:mb-3 block">
         {label}
       </label>
       <div className="relative">
-        <select className="w-full bg-transparent border-b-2 border-dark-text/20 pb-2 sm:pb-2.5 font-sans text-xs sm:text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6">
+        <select className="w-full bg-transparent border-b border-dark-text/15 pb-2 sm:pb-2.5 font-sans text-xs sm:text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6">
           {options.map((option) => (
             <option key={option} value={option.toLowerCase()}>
               {option}
