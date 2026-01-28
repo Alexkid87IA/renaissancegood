@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { getProductsByCollection } from '../lib/shopify';
 import SEO from '../components/SEO';
+import { stagger, fade } from '../components/shared';
 
 // Interface adaptée pour les produits Shopify
 interface ShopifyProduct {
@@ -194,12 +195,16 @@ function ProductCard({ product }: { product: Product }) {
 
 export default function HeritageCollectionPage() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
   const filtersRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
 
   const [selectedMaterial, setSelectedMaterial] = useState('all');
   const [selectedShape, setSelectedShape] = useState('all');
@@ -291,85 +296,140 @@ export default function HeritageCollectionPage() {
         description="Découvrez la collection Héritage de RENAISSANCE Paris. Des lunettes de luxe au design intemporel, alliant tradition et modernité. Fabriquées avec les meilleurs matériaux."
         url="/collections/heritage"
       />
-      <div className="relative h-screen overflow-hidden">
-        <motion.div
-          ref={heroRef}
-          className="absolute inset-0"
-          initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <img
-            src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=5760"
-            alt="Collection Héritage"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-dark-text/80" />
-        </motion.div>
+      <motion.div
+        ref={heroRef}
+        style={{ scale, opacity }}
+        className="h-screen relative lg:sticky lg:top-0 lg:z-10"
+      >
+        {/* DESKTOP — Split éditorial */}
+        <div className="relative h-full overflow-hidden hidden lg:flex">
+          {/* Left Panel — Content */}
+          <div className="w-[42%] bg-[#0c0c0c] relative flex flex-col justify-center px-12 xl:px-20 2xl:px-28">
+            {/* Symbol watermark */}
+            <img
+              src="https://renaissance-cdn.b-cdn.net/TRIDENT%20SYMBOL.png"
+              alt=""
+              className="absolute top-1/2 -translate-y-1/2 right-6 w-48 xl:w-56 2xl:w-64 opacity-[0.03] pointer-events-none select-none invert"
+            />
 
-        <div className="relative h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 lg:px-16 pt-24 sm:pt-32 pb-16 sm:pb-20">
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="max-w-5xl mx-auto text-center"
-          >
+            {/* Top label */}
+            <div className="absolute top-10 left-12 xl:left-20 2xl:left-28">
+              <p className="font-sans text-white/25 text-[9px] tracking-[0.4em] font-medium uppercase">
+                Collection I
+              </p>
+            </div>
+
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="mb-6 sm:mb-10"
+              ref={contentRef}
+              variants={stagger}
+              initial="hidden"
+              animate={contentInView ? "visible" : "hidden"}
+              className="relative z-10"
             >
-              <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white tracking-[-0.04em] leading-[0.85] mb-6 sm:mb-8 drop-shadow-2xl">
-                HÉRITAGE
-              </h1>
-              <div className="flex items-center justify-center gap-3 sm:gap-6 mb-6 sm:mb-10">
-                <div className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent via-bronze to-bronze" />
-                <span className="font-sans text-[10px] sm:text-xs tracking-[0.3em] sm:tracking-[0.5em] font-bold text-bronze uppercase">Trident</span>
-                <div className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent via-bronze to-bronze" />
-              </div>
+              <motion.h1 variants={fade} className="font-display text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white mb-3 tracking-[-0.03em] leading-[0.9]">
+                HÉRITAGE.
+              </motion.h1>
+              <motion.p variants={fade} className="font-display text-2xl xl:text-3xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 xl:mb-10">
+                Le Trident.
+              </motion.p>
+
+              <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8 xl:mb-10" />
+
+              <motion.p variants={fade} className="font-sans text-white/35 text-[13px] xl:text-sm leading-[1.9] font-light max-w-md mb-10 xl:mb-14">
+                Ce qui se transmet ne se jette pas. Ce qui se respecte ne s'oublie pas. Trois pointes. Le passé. Le présent. L'avenir.
+              </motion.p>
+
+              <motion.div variants={fade}>
+                <button
+                  onClick={() => {
+                    const section = document.querySelector('[data-products-section]');
+                    section?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="group relative overflow-hidden border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
+                >
+                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                    Explorer la collection
+                  </span>
+                  <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </button>
+              </motion.div>
             </motion.div>
 
-            <motion.p
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.7 }}
-              className="font-sans text-white text-base sm:text-xl md:text-2xl leading-[1.6] sm:leading-[1.8] font-light max-w-3xl mx-auto mb-10 sm:mb-16 drop-shadow-lg px-4"
-            >
-              Ce qui se transmet ne se jette pas. Ce qui se respecte ne s'oublie pas.
-            </motion.p>
+            {/* Bottom scroll indicator */}
+            <div className="absolute bottom-10 left-12 xl:left-20 2xl:left-28 flex items-center gap-3">
+              <div className="w-8 h-px bg-white/15" />
+              <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">Scroll</span>
+            </div>
+          </div>
 
-            <motion.button
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1, delay: 0.9 }}
-              onClick={() => {
-                const section = document.querySelector('[data-products-section]');
-                section?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="px-8 sm:px-12 py-4 sm:py-5 bg-white text-dark-text font-sans text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] font-bold uppercase hover:bg-bronze hover:text-white transition-all duration-300 shadow-2xl hover:shadow-bronze/20 hover:scale-105"
-            >
-              Explorer la Collection
-            </motion.button>
-          </motion.div>
-
-          <motion.button
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: [0, 8, 0] }}
-            transition={{ opacity: { duration: 0.8, delay: 1.2 }, y: { duration: 2, repeat: Infinity, ease: "easeInOut" } }}
-            onClick={() => {
-              const section = document.querySelector('[data-products-section]');
-              section?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="absolute bottom-12 flex flex-col items-center gap-3 text-white/50 hover:text-white transition-colors cursor-pointer"
-          >
-            <span className="font-sans text-[8px] tracking-[0.4em] font-bold uppercase">Découvrir</span>
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </motion.button>
+          {/* Right Panel — Image */}
+          <div className="flex-1 relative overflow-hidden">
+            <motion.img
+              src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=5760"
+              alt="Collection Héritage"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ y: imageY }}
+            />
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0c0c0c] to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0c0c0c]/20 to-transparent" />
+          </div>
         </div>
-      </div>
+
+        {/* MOBILE */}
+        <div className="relative h-full overflow-hidden lg:hidden flex flex-col">
+          {/* Image top */}
+          <div className="relative h-[55%] overflow-hidden">
+            <img
+              src="https://renaissanceeyewear.fr/cdn/shop/files/XXXXIV_44_C3-2.jpg?v=1741099694&width=5760"
+              alt="Collection Héritage"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0c]/40 via-transparent to-[#0c0c0c]" />
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="absolute top-24 left-6"
+            >
+              <p className="text-white/50 text-[9px] tracking-[0.3em] uppercase font-sans font-medium">
+                Collection I
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Content bottom */}
+          <div className="flex-1 bg-[#0c0c0c] px-6 flex flex-col justify-center relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <h1 className="font-display text-3xl sm:text-4xl font-bold text-white mb-2 tracking-[-0.03em] leading-[0.9]">
+                HÉRITAGE.
+              </h1>
+              <p className="font-display text-lg sm:text-xl font-light italic text-white/50 tracking-[-0.02em] mb-5">
+                Le Trident.
+              </p>
+              <div className="w-10 h-px bg-white/15 mb-5" />
+              <p className="text-white/35 text-sm font-sans leading-relaxed font-light mb-6">
+                Ce qui se transmet ne se jette pas. Trois pointes.
+              </p>
+              <button
+                onClick={() => {
+                  const section = document.querySelector('[data-products-section]');
+                  section?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="group relative overflow-hidden w-full border border-white/15 px-8 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98]"
+              >
+                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                  Explorer la collection
+                </span>
+                <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              </button>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
 
       <div className="relative z-20 bg-beige pt-20" data-products-section>
         <motion.div

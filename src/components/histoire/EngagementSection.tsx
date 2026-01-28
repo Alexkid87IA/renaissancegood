@@ -1,24 +1,23 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { stagger, fade } from './shared';
 
 const engagements = [
-  { 
-    number: '01',
-    title: 'Durabilité', 
+  {
+    title: 'Durabilité',
     description: "Nos grands-parents gardaient leurs affaires. Nos parents ont commencé à jeter. Nous, on choisit.",
-    stat: "10 ans minimum",
-    statLabel: "Garanti"
+    stat: "10 ans",
+    statLabel: "Minimum garanti"
   },
-  { 
-    number: '02',
-    title: 'Traçabilité', 
+  {
+    title: 'Traçabilité',
     description: "Chaque pièce a une origine. Design français. Fabrication coréenne. On te dit tout parce qu'on n'a rien à cacher.",
     stat: "100%",
     statLabel: "Transparent"
   },
-  { 
-    number: '03',
-    title: 'Équité', 
+  {
+    title: 'Équité',
     description: "200 partenaires. Certains depuis le premier jour. On construit des relations, pas des contrats.",
     stat: "200+",
     statLabel: "Partenaires"
@@ -27,147 +26,90 @@ const engagements = [
 
 export default function EngagementSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, {
-    once: true,
-    amount: 0.1,
-    margin: "0px 0px -20% 0px"
+  const contentRef = useRef<HTMLDivElement>(null);
+  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
   });
 
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
+
   return (
-    <section
+    <motion.section
       ref={sectionRef}
-      className="min-h-screen z-[90] relative bg-dark-text overflow-hidden"
+      style={{ scale, opacity }}
+      className="min-h-screen relative z-[70] bg-[#0a0a0a] overflow-hidden"
     >
-      {/* Fond avec gradient subtil */}
-      <div className="absolute inset-0 bg-gradient-to-br from-dark-text via-dark-text to-[#252525]" />
-      
-      {/* Effet radial bronze subtil */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(139,115,85,0.08)_0%,transparent_60%)]" />
-      
-      {/* Lignes décoratives */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div className="absolute left-[25%] top-0 bottom-0 w-px bg-bronze" />
-        <div className="absolute left-[50%] top-0 bottom-0 w-px bg-bronze" />
-        <div className="absolute left-[75%] top-0 bottom-0 w-px bg-bronze" />
+      <div className="min-h-screen flex items-center justify-center px-6 md:px-16 py-20 md:py-0">
+        <motion.div
+          ref={contentRef}
+          variants={stagger}
+          initial="hidden"
+          animate={contentInView ? "visible" : "hidden"}
+          className="max-w-[1600px] w-full"
+        >
+          {/* Centered header */}
+          <div className="text-center mb-14 lg:mb-20">
+            <motion.p variants={fade} className="font-sans text-white/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
+              Notre Engagement
+            </motion.p>
+
+            <motion.h2 variants={fade} className="font-display text-3xl sm:text-4xl md:text-5xl laptop:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
+              AVANT, ON RÉPARAIT.
+            </motion.h2>
+            <motion.p variants={fade} className="font-display text-xl sm:text-2xl md:text-3xl laptop:text-4xl xl:text-5xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 md:mb-10">
+              Nous, on répare.
+            </motion.p>
+
+            <motion.div variants={fade} className="w-12 h-px bg-white/15 mx-auto mb-8 md:mb-10" />
+
+            <motion.p variants={fade} className="font-sans text-white/40 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light max-w-lg mx-auto mb-14">
+              On construit pour dix ans. On garantit deux ans. On fournit les pièces tant que la monture existe. On ajuste gratuitement. À vie.
+            </motion.p>
+          </div>
+
+          {/* 3 Engagements - ReassuranceSection grid pattern */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 mb-14 lg:mb-20">
+            {engagements.map((e, index) => (
+              <motion.div
+                key={e.title}
+                variants={fade}
+                className={`py-8 md:py-0 md:pr-10 xl:pr-14 ${
+                  index > 0 ? 'md:pl-10 xl:pl-14 md:border-l md:border-white/[0.07]' : ''
+                } ${index > 0 ? 'border-t md:border-t-0 border-white/[0.07]' : ''}`}
+              >
+                <p className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] font-bold text-white tracking-[-0.02em] leading-none mb-2">
+                  {e.stat}
+                </p>
+                <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.25em] text-white/30 uppercase font-medium mb-3 sm:mb-4">
+                  {e.statLabel}
+                </p>
+                <h3 className="font-display text-lg md:text-xl text-white font-bold mb-3 tracking-wide leading-tight">
+                  {e.title}
+                </h3>
+                <p className="font-sans text-xs sm:text-sm text-white/50 leading-relaxed">
+                  {e.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <motion.div variants={fade} className="text-center">
+            <Link to="/shop">
+              <button className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-bronze/60">
+                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                  Découvrir nos créations
+                </span>
+                <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              </button>
+            </Link>
+          </motion.div>
+        </motion.div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ?
-          { opacity: 1, y: 0 } :
-          { opacity: 0, y: 20 }
-        }
-        transition={{
-          duration: 0.8,
-          ease: [0.22, 1, 0.36, 1]
-        }}
-        className="h-full w-full relative flex flex-col"
-      >
-        {/* Header */}
-        <div className="relative z-10 pt-24 md:pt-28 lg:pt-32 px-6 md:px-8 lg:px-12">
-          <div className="max-w-[1400px] mx-auto flex items-start justify-between">
-            <div className="flex items-center gap-2">
-              <span className="font-sans text-bronze text-[0.65rem] font-bold tracking-[0.4em] uppercase">07</span>
-              <div className="w-5 h-px bg-bronze/30" />
-              <span className="font-sans text-white/40 text-[0.55rem] font-medium tracking-[0.3em] uppercase">L'Engagement</span>
-            </div>
-            <div className="hidden md:block text-right">
-              <p className="font-sans text-white/30 text-[7px] tracking-[0.25em] uppercase">Durabilité</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Contenu principal */}
-        <div className="relative z-10 flex-1 flex items-center px-6 md:px-8 lg:px-12 py-12">
-          <div className="max-w-[1200px] mx-auto w-full">
-            <div className="space-y-10 lg:space-y-12">
-              
-              {/* Citation d'accroche */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.1, duration: 0.7 }}
-                className="space-y-6"
-              >
-                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-white font-light leading-[1.2]">
-                  Avant, on réparait.<br />
-                  Aujourd'hui, on jette.<br />
-                  <span className="text-bronze">Nous, on répare.</span>
-                </h2>
-                <p className="font-sans text-white/60 text-lg md:text-xl max-w-2xl leading-relaxed">
-                  On construit pour dix ans. On garantit deux ans. On fournit les pièces tant que la monture existe. On ajuste gratuitement. À vie.
-                </p>
-              </motion.div>
-
-              {/* Les 3 engagements */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-12">
-                {engagements.map((engagement, index) => (
-                  <motion.div
-                    key={engagement.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.3 + index * 0.1, duration: 0.7 }}
-                    className="group"
-                  >
-                    <div className="border border-white/10 bg-white/[0.02] backdrop-blur-sm p-6 md:p-8 hover:bg-white/[0.05] hover:border-bronze/30 transition-all duration-500 h-full flex flex-col">
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="font-display text-bronze/60 text-2xl md:text-3xl font-light group-hover:text-bronze transition-colors duration-500">
-                          {engagement.number}
-                        </span>
-                        <div className="w-8 h-px bg-bronze/20 group-hover:w-12 group-hover:bg-bronze/40 transition-all duration-500" />
-                      </div>
-                      <h3 className="font-display text-white text-xl md:text-2xl font-light mb-3 tracking-wide">
-                        {engagement.title}
-                      </h3>
-                      <p className="font-sans text-white/60 text-sm md:text-base font-light leading-[1.7] mb-6 flex-1">
-                        {engagement.description}
-                      </p>
-                      <div className="border-t border-white/10 pt-4 mt-auto">
-                        <p className="font-display text-bronze text-2xl md:text-3xl font-light">{engagement.stat}</p>
-                        <p className="font-sans text-white/40 text-xs tracking-wider uppercase mt-1">{engagement.statLabel}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Citation finale */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.6, duration: 0.7 }}
-                className="border-l-2 border-bronze/50 pl-8 py-4 mt-12"
-              >
-                <p className="font-display text-2xl md:text-3xl text-white font-light leading-[1.4]">
-                  Ce qu'on vend, on l'assume.<br />
-                  <span className="text-white/60">Aujourd'hui. Dans dix ans. Quand tu le transmettras.</span>
-                </p>
-              </motion.div>
-
-            </div>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="relative z-10 pb-8 px-6 md:px-8 lg:px-12">
-          <div className="max-w-[1400px] mx-auto border-t border-white/10 pt-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="font-sans text-white text-base md:text-lg font-light">07</span>
-                <span className="font-sans text-white/30 text-xs">/</span>
-                <span className="font-sans text-white/40 text-xs">07</span>
-              </div>
-              <div className="flex flex-col items-center gap-1">
-                <div className="w-2 h-2 border border-bronze/50 rotate-45" />
-                <span className="font-sans text-white/30 text-[6px] tracking-[0.4em] uppercase mt-2">Fin</span>
-              </div>
-              <div className="hidden md:block text-right">
-                <p className="font-sans text-white/20 text-[6px] tracking-wider">© 2019-2025 Renaissance</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </section>
+    </motion.section>
   );
 }

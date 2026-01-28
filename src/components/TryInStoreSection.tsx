@@ -1,22 +1,7 @@
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-
-const stagger = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
-  },
-};
-
-const fade = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+import { stagger, fade } from './shared';
 
 export default function TryInStoreSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -28,8 +13,8 @@ export default function TryInStoreSection() {
     offset: ["start start", "end start"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
 
   return (
     <motion.section

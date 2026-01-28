@@ -1,12 +1,13 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { stagger, fade } from './shared';
 
 const symbols = [
-  { 
-    name: 'Le Trident', 
-    subtitle: 'Souveraineté', 
+  {
+    name: 'Le Trident',
+    subtitle: 'Souveraineté',
     description: 'Trois pointes, trois dimensions : force, vision, justesse. Le symbole du pouvoir maîtrisé.',
-    image: 'https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png'
+    image: 'https://renaissance-cdn.b-cdn.net/TRIDENT%20SYMBOL.png'
   },
   {
     name: 'La Fleur de Lys',
@@ -36,137 +37,196 @@ const symbols = [
 
 export default function SymbolesSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  
-  const isInView = useInView(sectionRef, {
-    once: true,
-    amount: 0.1,
-    margin: "0px 0px -20% 0px"
+  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
   });
 
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0, 0.9, 1], [1, 1, 0.3]);
+
   return (
-    <section
+    <motion.section
       ref={sectionRef}
-      className="min-h-screen lg:sticky lg:top-0 z-[40] relative bg-beige overflow-hidden"
+      style={{ scale, opacity }}
+      className="min-h-screen lg:h-screen relative sticky top-0 z-[40] bg-beige"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="h-full w-full relative flex flex-col"
-      >
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-beige via-beige to-beige/95" />
-        
-        {/* Grid décoratif */}
-        <div className="absolute inset-0 opacity-[0.03]">
-          <div className="absolute left-[20%] top-0 bottom-0 w-px bg-bronze" />
-          <div className="absolute left-[40%] top-0 bottom-0 w-px bg-bronze" />
-          <div className="absolute left-[60%] top-0 bottom-0 w-px bg-bronze" />
-          <div className="absolute left-[80%] top-0 bottom-0 w-px bg-bronze" />
-        </div>
+      {/* DESKTOP */}
+      <div className="h-full bg-beige hidden md:flex flex-row">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-10 md:p-16 lg:p-20 xl:p-28">
+          <motion.div
+            ref={contentRef}
+            variants={stagger}
+            initial="hidden"
+            animate={contentInView ? "visible" : "hidden"}
+            className="max-w-lg"
+          >
+            <motion.p variants={fade} className="font-sans text-dark-text/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
+              Nos Symboles
+            </motion.p>
 
-        {/* HEADER */}
-        <div className="relative z-10 pt-6 md:pt-8 px-6 md:px-12 lg:px-16">
-          <div className="max-w-[1800px] mx-auto flex items-start justify-between">
-            <div className="flex items-center gap-3">
-              <span className="font-sans text-bronze text-sm font-bold tracking-[0.4em] uppercase">04</span>
-              <div className="w-8 h-px bg-bronze/30" />
-              <span className="font-sans text-dark-text/40 text-xs font-medium tracking-[0.3em] uppercase">Le Lexique</span>
-            </div>
-            <div className="hidden md:block text-right">
-              <p className="font-sans text-dark-text/30 text-[10px] tracking-[0.25em] uppercase">5 Symboles</p>
-            </div>
-          </div>
-        </div>
+            <motion.h2 variants={fade} className="font-display text-4xl md:text-5xl laptop:text-[3.5rem] xl:text-6xl font-bold tracking-[-0.03em] leading-[0.9] mb-3">
+              CINQ SYMBOLES.
+            </motion.h2>
+            <motion.p variants={fade} className="font-display text-2xl md:text-3xl laptop:text-[2rem] xl:text-4xl font-light italic text-dark-text/70 tracking-[-0.02em] leading-[1] mb-8">
+              Gravés dans le métal.
+            </motion.p>
 
-        {/* CONTENU PRINCIPAL */}
-        <div className="relative z-10 flex-1 flex items-center px-6 md:px-12 lg:px-16 py-6 lg:py-4">
-          <div className="max-w-[1800px] mx-auto w-full">
-            
-            {/* Titre */}
-            <div className="mb-6 lg:mb-8">
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-3">
-                LES <span className="text-bronze">SYMBOLES.</span>
-              </h2>
-              <p className="font-sans text-base md:text-lg text-dark-text/70 font-light leading-[1.5] max-w-xl">
-                Chaque symbole porte un sens, une histoire, une promesse.
-              </p>
-            </div>
+            <motion.div variants={fade} className="w-12 h-px bg-dark-text/15 mb-8" />
 
-            {/* Grid des symboles */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
-              {symbols.map((symbol, index) => (
-                <motion.div
-                  key={symbol.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
-                  className={`group cursor-pointer ${activeIndex === index ? 'ring-2 ring-bronze' : ''}`}
-                  onClick={() => setActiveIndex(index)}
+            <motion.p variants={fade} className="font-sans text-dark-text/50 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10">
+              Chaque symbole porte un sens, une histoire, une promesse. Des signes qui parlent depuis des millénaires. On ne les a pas inventés. On les porte.
+            </motion.p>
+
+            <motion.div variants={fade} className="flex flex-wrap gap-2 mb-8">
+              {symbols.map((s, i) => (
+                <button
+                  key={s.name}
+                  onClick={() => setActiveIndex(i)}
+                  className={`font-sans text-[9px] tracking-[0.3em] font-medium uppercase px-4 py-2.5 border transition-all duration-300 ${
+                    activeIndex === i
+                      ? 'border-dark-text bg-dark-text text-beige'
+                      : 'border-dark-text/15 text-dark-text/50 hover:border-dark-text/40'
+                  }`}
                 >
-                  <div className="relative aspect-square overflow-hidden bg-dark-text/5 border border-dark-text/10 hover:border-bronze/50 transition-all duration-500">
-                    <img
-                      src={symbol.image}
-                      alt={symbol.name}
-                      className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-text/80 via-dark-text/20 to-transparent" />
-                    
-                    {/* Contenu overlay */}
-                    <div className="absolute inset-x-0 bottom-0 p-3 md:p-4">
-                      <p className="font-sans text-bronze text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-bold mb-0.5">
-                        {symbol.subtitle}
-                      </p>
-                      <h3 className="font-display text-white text-sm md:text-base lg:text-lg font-bold leading-tight">
-                        {symbol.name}
-                      </h3>
-                    </div>
-
-                    {/* Coins décoratifs */}
-                    <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-bronze/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-bronze/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
-                </motion.div>
+                  {s.name}
+                </button>
               ))}
-            </div>
+            </motion.div>
 
-            {/* Description du symbole actif */}
             <motion.div
               key={activeIndex}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="mt-6 lg:mt-8 border-l-2 border-bronze/50 pl-6 max-w-2xl"
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="font-display text-xl md:text-2xl text-dark-text font-light leading-relaxed">
+              <p className="font-sans text-[9px] tracking-[0.25em] text-dark-text/30 uppercase font-medium mb-2">
+                {symbols[activeIndex].subtitle}
+              </p>
+              <p className="font-display text-xl md:text-2xl text-dark-text/70 font-light leading-relaxed">
                 {symbols[activeIndex].description}
               </p>
             </motion.div>
-
-          </div>
+          </motion.div>
         </div>
 
-        {/* FOOTER */}
-        <div className="relative z-10 pb-4 md:pb-6 px-6 md:px-12 lg:px-16">
-          <div className="max-w-[1800px] mx-auto border-t border-dark-text/10 pt-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span className="font-sans text-dark-text text-lg md:text-xl font-light">04</span>
-                <span className="font-sans text-dark-text/30 text-sm">/</span>
-                <span className="font-sans text-dark-text/40 text-sm">07</span>
-              </div>
-              <div className="flex flex-col items-center gap-1">
-                <div className="w-px h-8 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
-                <span className="font-sans text-dark-text/30 text-[8px] tracking-[0.3em] uppercase">Défiler</span>
-              </div>
-              <div className="hidden md:block text-right">
-                <p className="font-sans text-dark-text/20 text-[8px] tracking-wider">© 2019-2025 Renaissance</p>
-              </div>
+        <div className="w-full md:w-1/2 h-full relative overflow-hidden">
+          <motion.img
+            key={activeIndex}
+            initial={{ opacity: 0, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            src={symbols[activeIndex].image}
+            alt={symbols[activeIndex].name}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 via-transparent to-transparent pointer-events-none" />
+        </div>
+      </div>
+
+      {/* MOBILE */}
+      <div className="min-h-[82vh] bg-beige md:hidden relative overflow-hidden">
+        <div className="relative h-full flex flex-col px-6 pt-14 pb-6">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="font-sans text-dark-text/30 text-[8px] tracking-[0.4em] font-medium uppercase mb-5 flex-shrink-0"
+          >
+            Nos Symboles
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-shrink-0 mb-2"
+          >
+            <h2 className="font-display text-3xl font-bold tracking-[-0.02em] leading-[0.9] text-dark-text">
+              CINQ SYMBOLES.
+            </h2>
+            <p className="font-display text-xl font-light italic text-dark-text/60 tracking-[-0.02em] mt-1">
+              Gravés dans le métal.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-shrink-0 mb-4 origin-left"
+          >
+            <div className="w-10 h-px bg-dark-text/15" />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-shrink-0 mb-4"
+          >
+            <div className="relative w-full h-[35vh] overflow-hidden">
+              <motion.img
+                key={activeIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                src={symbols[activeIndex].image}
+                alt={symbols[activeIndex].name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-text/15 via-transparent to-transparent pointer-events-none" />
             </div>
-          </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-shrink-0 mb-4"
+          >
+            <div className="flex flex-wrap gap-1.5">
+              {symbols.map((s, i) => (
+                <button
+                  key={s.name}
+                  onClick={() => setActiveIndex(i)}
+                  className={`font-sans text-[7px] tracking-[0.25em] font-medium uppercase px-3 py-2 border transition-all duration-300 ${
+                    activeIndex === i
+                      ? 'border-dark-text bg-dark-text text-beige'
+                      : 'border-dark-text/15 text-dark-text/50'
+                  }`}
+                >
+                  {s.name}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            key={`mobile-${activeIndex}`}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex-shrink-0"
+          >
+            <p className="font-sans text-[8px] tracking-[0.2em] text-dark-text/30 uppercase font-medium mb-1">
+              {symbols[activeIndex].subtitle}
+            </p>
+            <p className="font-sans text-dark-text/50 text-xs leading-[1.7] font-light">
+              {symbols[activeIndex].description}
+            </p>
+          </motion.div>
         </div>
-      </motion.div>
-    </section>
+      </div>
+    </motion.section>
   );
 }

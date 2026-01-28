@@ -1,195 +1,183 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef } from 'react';
-
-const stats = [
-  { value: '200', unit: '+', label: 'Gestes', sublabel: 'Par paire' },
-  { value: '15', unit: 'h', label: 'Temps', sublabel: 'Fabrication' },
-  { value: '0', unit: '', label: 'Compromis', sublabel: 'Zéro' }
-];
-
-const steps = [
-  { number: '01', title: 'Découpe', desc: 'Métal épais de haute qualité' },
-  { number: '02', title: 'Façonnage', desc: 'Précision micrométrique' },
-  { number: '03', title: 'Équilibrage', desc: 'Tension et poids parfaits' },
-  { number: '04', title: 'Polissage', desc: 'Finition miroir multi-passes' },
-  { number: '05', title: 'Sertissage', desc: 'Strass signature à la main' }
-];
+import { Link } from 'react-router-dom';
+import { stagger, fade } from './shared';
 
 export default function SavoirFaireSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, {
-    once: true,
-    amount: 0.1,
-    margin: "0px 0px -20% 0px"
+  const contentRef = useRef<HTMLDivElement>(null);
+  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
   });
 
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
+
   return (
-    <section
+    <motion.section
       ref={sectionRef}
-      className="h-screen lg:sticky lg:top-0 z-30 bg-dark-text overflow-hidden"
+      style={{ scale, opacity }}
+      className="min-h-[85vh] md:h-screen relative sticky top-0 z-30 bg-[#0a0a0a]"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{
-          duration: 0.6,
-          ease: [0.22, 1, 0.36, 1]
-        }}
-        style={{ willChange: 'opacity, transform' }}
-        className="h-full w-full relative flex flex-col"
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-dark-text via-dark-text to-dark-text/95" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,115,85,0.08)_0%,transparent_70%)]" />
+      {/* DESKTOP */}
+      <div className="hidden md:block relative h-full overflow-hidden">
+        <img
+          src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
+          alt="Fabrication Renaissance - Corée du Sud"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/90 via-[#0a0a0a]/70 to-[#0a0a0a]/40" />
 
-        <div className="absolute inset-0 opacity-[0.02] hidden lg:block">
-          <div className="absolute left-[33%] top-0 bottom-0 w-px bg-bronze" />
-          <div className="absolute left-[66%] top-0 bottom-0 w-px bg-bronze" />
-        </div>
+        <div className="relative h-full flex items-center px-12 lg:px-20 xl:px-28">
+          <motion.div
+            ref={contentRef}
+            variants={stagger}
+            initial="hidden"
+            animate={contentInView ? "visible" : "hidden"}
+            className="max-w-xl"
+          >
+            <motion.p variants={fade} className="font-sans text-white/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
+              Fabrication
+            </motion.p>
 
-        <div className="relative z-10 pt-3 md:pt-4 px-6 md:px-8 lg:px-12">
-          <div className="max-w-[1600px] mx-auto flex items-start justify-between">
-            <div className="flex items-center gap-2.5">
-              <span className="font-sans text-bronze text-[0.65rem] font-bold tracking-[0.4em] uppercase">03</span>
-              <div className="w-5 h-px bg-bronze/30" />
-              <span className="font-sans text-white/40 text-[0.55rem] font-medium tracking-[0.3em] uppercase">La Fabrication</span>
-            </div>
-            <div className="hidden md:block text-right">
-              <p className="font-sans text-white/30 text-[7px] tracking-[0.25em] uppercase">Corée du Sud</p>
-            </div>
-          </div>
-        </div>
+            <motion.h2 variants={fade} className="font-display text-4xl md:text-5xl laptop:text-[3.5rem] xl:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.9] mb-3">
+              FABRIQUÉ EN CORÉE DU SUD.
+            </motion.h2>
+            <motion.p variants={fade} className="font-display text-2xl md:text-3xl laptop:text-[2rem] xl:text-4xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8">
+              200 gestes. Zéro compromis.
+            </motion.p>
 
-        <div className="relative z-10 flex-1 flex items-center px-6 md:px-8 lg:px-12 py-4">
-          <div className="max-w-[1600px] mx-auto w-full">
+            <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8" />
 
-            <div className="mb-3 md:mb-4">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.2, duration: 0.8 }}
-                className="font-display text-[1.8rem] sm:text-[2.2rem] md:text-[2.6rem] lg:text-[3rem] xl:text-[3.4rem] font-bold text-white tracking-[-0.03em] leading-[0.9] mb-2 md:mb-3"
-              >
-                FABRIQUÉ EN<br />CORÉE DU SUD.
-              </motion.h2>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.4, duration: 0.8 }}
-                className="max-w-2xl space-y-2"
-              >
-                <p className="font-sans text-[0.7rem] md:text-[0.75rem] lg:text-[0.8rem] text-white/70 font-light leading-[1.5]">
-                  Ce qui rend une monture belle, c'est ce qu'on ne voit pas. L'équilibre. La tension du métal. Le poids juste. La Corée a construit sa réputation là-dessus. Sur l'invisible. Sur ce qui se sent mais ne se montre pas.
-                </p>
-                <p className="font-sans text-[0.7rem] md:text-[0.75rem] lg:text-[0.8rem] text-bronze font-light leading-[1.5] italic">
-                  Plus de 200 gestes par paire. Zéro démonstration. Juste le résultat.
-                </p>
-              </motion.div>
-            </div>
+            <motion.p variants={fade} className="font-sans text-white/40 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-14 max-w-md">
+              Ce qui rend une monture belle, c'est ce qu'on ne voit pas. L'équilibre. La tension du métal. Le poids juste. Plus de 200 gestes par paire. Zéro démonstration. Juste le résultat.
+            </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-3 md:gap-4"
-            >
-
-              <div className="lg:col-span-4">
-                <div className="relative aspect-video border border-bronze/30 bg-white/[0.02] overflow-hidden group">
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-white/5 to-transparent">
-                    <div className="text-center space-y-1.5 px-4">
-                      <div className="w-10 h-10 md:w-12 md:h-12 mx-auto border border-bronze/50 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <div className="w-0 h-0 border-t-[7px] border-t-transparent border-l-[10px] border-l-bronze border-b-[7px] border-b-transparent ml-1" />
-                      </div>
-                      <div>
-                        <p className="font-sans text-white text-[0.65rem] md:text-[0.7rem] font-bold tracking-[0.2em] uppercase mb-0.5">
-                          Vidéo de fabrication
-                        </p>
-                        <p className="font-sans text-bronze text-[0.55rem] md:text-[0.6rem] font-light">
-                          En cours de production
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-bronze" />
-                  <div className="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-bronze" />
-                </div>
+            <motion.div variants={fade} className="flex items-start gap-0 mb-10 xl:mb-14">
+              <div className="pr-6 md:pr-8">
+                <p className="font-display text-3xl md:text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">200+</p>
+                <p className="font-sans text-[9px] tracking-[0.25em] text-white/30 uppercase font-medium">Gestes par paire</p>
               </div>
-
-              <div className="lg:col-span-8 space-y-2.5 md:space-y-3">
-                <div className="grid grid-cols-3 gap-1.5 md:gap-2">
-                  {stats.map((stat, index) => (
-                    <div key={index} className="border border-bronze/20 bg-white/[0.02] p-2 md:p-2.5 text-center">
-                      <div className="flex items-baseline justify-center gap-0.5 mb-0.5">
-                        <span className="font-sans text-[1rem] md:text-[1.1rem] text-bronze font-bold">
-                          {stat.value}
-                        </span>
-                        {stat.unit && (
-                          <span className="font-sans text-[0.65rem] md:text-[0.7rem] text-bronze/70 font-bold">
-                            {stat.unit}
-                          </span>
-                        )}
-                      </div>
-                      <div className="h-px bg-bronze/20 mb-0.5" />
-                      <p className="font-display text-white text-[0.5rem] tracking-[0.15em] uppercase font-bold mb-0.5">
-                        {stat.label}
-                      </p>
-                      <p className="font-sans text-white/40 text-[0.45rem] leading-tight">
-                        {stat.sublabel}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="border border-bronze/20 bg-white/[0.02] p-2.5 md:p-3">
-                  <div className="pb-1.5 border-b border-white/5 mb-2">
-                    <p className="font-sans text-bronze text-[0.55rem] tracking-[0.3em] uppercase font-bold">
-                      5 Étapes essentielles
-                    </p>
-                  </div>
-                  <div className="space-y-1.5 md:space-y-2">
-                    {steps.map((step, index) => (
-                      <div key={index} className="flex items-start gap-2 group">
-                        <div className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0 border border-bronze/30 flex items-center justify-center group-hover:bg-bronze/10 transition-colors duration-300">
-                          <span className="font-sans text-bronze text-[0.5rem] md:text-[0.55rem] font-bold">
-                            {step.number}
-                          </span>
-                        </div>
-                        <div className="flex-1 pt-0.5">
-                          <p className="font-display text-white text-[0.65rem] md:text-[0.7rem] font-bold mb-0.5">
-                            {step.title}
-                          </p>
-                          <p className="font-sans text-white/50 text-[0.55rem] md:text-[0.6rem] leading-tight">
-                            {step.desc}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              <div className="border-l border-white/10 pl-6 md:pl-8 pr-6 md:pr-8">
+                <p className="font-display text-3xl md:text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">15h</p>
+                <p className="font-sans text-[9px] tracking-[0.25em] text-white/30 uppercase font-medium">De fabrication</p>
+              </div>
+              <div className="border-l border-white/10 pl-6 md:pl-8">
+                <p className="font-display text-3xl md:text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">0</p>
+                <p className="font-sans text-[9px] tracking-[0.25em] text-white/30 uppercase font-medium">Compromis</p>
               </div>
             </motion.div>
-          </div>
-        </div>
 
-        <div className="relative z-10 pb-3 px-6 md:px-8 lg:px-12">
-          <div className="max-w-[1600px] mx-auto border-t border-white/10 pt-2.5">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="font-sans text-white text-[0.95rem] md:text-[1.1rem] font-light">03</span>
-                <span className="font-sans text-white/30 text-[0.65rem]">/</span>
-                <span className="font-sans text-white/40 text-[0.65rem]">07</span>
-              </div>
-              <div className="flex flex-col items-center gap-1">
-                <div className="w-px h-7 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
-                <span className="font-sans text-white/30 text-[6px] tracking-[0.4em] uppercase">Défiler</span>
-              </div>
-              <div className="hidden md:block text-right">
-                <p className="font-sans text-white/20 text-[6px] tracking-wider">© 2019-2025 Renaissance</p>
-              </div>
-            </div>
-          </div>
+            <motion.div variants={fade}>
+              <Link to="/savoir-faire">
+                <button className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-bronze/60">
+                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                    Notre savoir-faire
+                  </span>
+                  <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </button>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
-      </motion.div>
-    </section>
+      </div>
+
+      {/* MOBILE */}
+      <div className="md:hidden relative min-h-[85vh] overflow-hidden">
+        <img
+          src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
+          alt="Fabrication Renaissance"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/60 via-[#0a0a0a]/80 to-[#0a0a0a]/95" />
+
+        <div className="relative flex flex-col justify-end px-6 pt-20 pb-10 min-h-[85vh]">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="font-sans text-white/30 text-[8px] tracking-[0.4em] font-medium uppercase mb-5"
+          >
+            Fabrication
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-2"
+          >
+            <h2 className="font-display text-3xl font-bold text-white tracking-[-0.02em] leading-[0.9]">
+              FABRIQUÉ EN CORÉE DU SUD.
+            </h2>
+            <p className="font-display text-xl font-light italic text-white/50 tracking-[-0.02em] mt-1">
+              200 gestes. Zéro compromis.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-5 origin-left"
+          >
+            <div className="w-10 h-px bg-white/15" />
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="font-sans text-white/40 text-xs leading-[1.7] font-light mb-6"
+          >
+            Ce qui rend une monture belle, c'est ce qu'on ne voit pas. L'équilibre. La tension du métal. Le poids juste.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="flex gap-0 mb-8"
+          >
+            <div className="pr-5">
+              <p className="font-display text-2xl font-bold text-white leading-none mb-1">200+</p>
+              <p className="font-sans text-[8px] tracking-[0.2em] text-white/30 uppercase">Gestes</p>
+            </div>
+            <div className="border-l border-white/10 pl-5 pr-5">
+              <p className="font-display text-2xl font-bold text-white leading-none mb-1">15h</p>
+              <p className="font-sans text-[8px] tracking-[0.2em] text-white/30 uppercase">Fabrication</p>
+            </div>
+            <div className="border-l border-white/10 pl-5">
+              <p className="font-display text-2xl font-bold text-white leading-none mb-1">0</p>
+              <p className="font-sans text-[8px] tracking-[0.2em] text-white/30 uppercase">Compromis</p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Link to="/savoir-faire">
+              <button className="group relative overflow-hidden w-full border border-white/20 px-6 py-3.5 transition-all duration-300 active:scale-[0.98] hover:border-bronze/60">
+                <span className="relative z-10 font-sans text-[8px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                  Notre savoir-faire
+                </span>
+                <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              </button>
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+    </motion.section>
   );
 }

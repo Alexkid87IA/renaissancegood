@@ -12,8 +12,8 @@ export default function CollectionAllFrames() {
     offset: ["start start", "end start"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.9, 1], [1, 1, 0.3]);
+  const scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
 
   const handleNavigate = () => {
     setIsLoading(true);

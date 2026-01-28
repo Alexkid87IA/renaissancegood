@@ -1,21 +1,6 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef } from 'react';
-
-const stagger = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
-};
-
-const fade = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+import { stagger, fade } from './shared';
 
 const guarantees = [
   {
@@ -41,11 +26,24 @@ const guarantees = [
 ];
 
 export default function ReassuranceSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });
 
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
+
   return (
-    <section className="relative z-[100] bg-beige">
+    <motion.section
+      ref={sectionRef}
+      style={{ scale, opacity }}
+      className="relative z-[90] bg-beige"
+    >
       {/* Séparateur haut */}
       <div className="mx-6 sm:mx-10 lg:mx-14 xl:mx-20">
         <div className="h-px bg-dark-text/[0.07]" />
@@ -97,6 +95,6 @@ export default function ReassuranceSection() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

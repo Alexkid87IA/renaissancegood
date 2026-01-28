@@ -132,6 +132,11 @@ export default function Header() {
     fetchAllCollections();
   }, []);
 
+  // Fermer le mega menu au changement de page
+  useEffect(() => {
+    setActiveMenu(null);
+  }, [location.pathname]);
+
   return (
     <>
       {/* Header principal */}

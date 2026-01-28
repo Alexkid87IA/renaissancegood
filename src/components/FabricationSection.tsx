@@ -1,21 +1,6 @@
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useEffect } from 'react';
-
-const stagger = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
-  },
-};
-
-const fade = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+import { stagger, fade } from './shared';
 
 export default function FabricationSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -34,14 +19,14 @@ export default function FabricationSection() {
     offset: ["start start", "end start"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
 
   return (
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="min-h-[85vh] laptop:h-screen relative sticky top-0 z-[90]"
+      className="min-h-[85vh] laptop:h-screen relative sticky top-0 z-[80]"
       id="fabrication"
     >
       <div className="relative min-h-[85vh] laptop:h-full overflow-hidden">
