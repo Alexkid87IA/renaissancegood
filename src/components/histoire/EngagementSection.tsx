@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { stagger, fade } from './shared';
+import { useDeviceType } from '../../hooks/useDeviceType';
 
 const engagements = [
   {
@@ -28,87 +29,140 @@ export default function EngagementSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
+  const { isMobile } = useDeviceType();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
-
   return (
     <motion.section
       ref={sectionRef}
-      style={{ scale, opacity }}
-      className="min-h-screen relative z-[70] bg-[#0a0a0a] overflow-hidden"
+      className="min-h-screen md:h-screen relative z-[70] bg-[#0a0a0a]"
     >
-      <div className="min-h-screen flex items-center justify-center px-6 md:px-16 py-20 md:py-0">
+      {/* DESKTOP */}
+      <div className="hidden md:flex h-full">
+        {/* Left — Image */}
+        <div className="w-1/2 h-full relative overflow-hidden">
+          <img
+            src="https://renaissance-cdn.b-cdn.net/portrait.png"
+            alt="Renaissance Paris - Engagement"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0a0a0a]" />
+        </div>
+
+        {/* Right — Content */}
         <motion.div
           ref={contentRef}
           variants={stagger}
           initial="hidden"
           animate={contentInView ? "visible" : "hidden"}
-          className="max-w-[1600px] w-full"
+          className="w-1/2 flex items-center justify-center px-12 lg:px-16 xl:px-20"
         >
-          {/* Centered header */}
-          <div className="text-center mb-14 lg:mb-20">
-            <motion.p variants={fade} className="font-sans text-white/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
+          <div className="max-w-lg">
+            <motion.p variants={fade} className="font-sans text-white/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
               Notre Engagement
             </motion.p>
 
-            <motion.h2 variants={fade} className="font-display text-3xl sm:text-4xl md:text-5xl laptop:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
+            <motion.h2 variants={fade} className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
               AVANT, ON RÉPARAIT.
             </motion.h2>
-            <motion.p variants={fade} className="font-display text-xl sm:text-2xl md:text-3xl laptop:text-4xl xl:text-5xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 md:mb-10">
+            <motion.p variants={fade} className="font-display text-2xl lg:text-3xl xl:text-4xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 lg:mb-10">
               Nous, on répare.
             </motion.p>
 
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mx-auto mb-8 md:mb-10" />
+            <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8 lg:mb-10" />
 
-            <motion.p variants={fade} className="font-sans text-white/40 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light max-w-lg mx-auto mb-14">
+            <motion.p variants={fade} className="font-sans text-white/40 text-[13px] lg:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-12 max-w-md">
               On construit pour dix ans. On garantit deux ans. On fournit les pièces tant que la monture existe. On ajuste gratuitement. À vie.
             </motion.p>
-          </div>
 
-          {/* 3 Engagements - ReassuranceSection grid pattern */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 mb-14 lg:mb-20">
-            {engagements.map((e, index) => (
-              <motion.div
-                key={e.title}
-                variants={fade}
-                className={`py-8 md:py-0 md:pr-10 xl:pr-14 ${
-                  index > 0 ? 'md:pl-10 xl:pl-14 md:border-l md:border-white/[0.07]' : ''
-                } ${index > 0 ? 'border-t md:border-t-0 border-white/[0.07]' : ''}`}
-              >
-                <p className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] font-bold text-white tracking-[-0.02em] leading-none mb-2">
-                  {e.stat}
-                </p>
-                <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.25em] text-white/30 uppercase font-medium mb-3 sm:mb-4">
-                  {e.statLabel}
-                </p>
-                <h3 className="font-display text-lg md:text-xl text-white font-bold mb-3 tracking-wide leading-tight">
-                  {e.title}
-                </h3>
-                <p className="font-sans text-xs sm:text-sm text-white/50 leading-relaxed">
-                  {e.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+            {/* Engagements */}
+            <div className="flex gap-0 mb-10 xl:mb-12">
+              {engagements.map((e, index) => (
+                <motion.div
+                  key={e.title}
+                  variants={fade}
+                  className={`${index > 0 ? 'border-l border-white/[0.07] pl-5 lg:pl-6' : ''} ${index < engagements.length - 1 ? 'pr-5 lg:pr-6' : ''}`}
+                >
+                  <p className="font-display text-2xl lg:text-3xl xl:text-4xl font-bold text-white tracking-[-0.02em] leading-none mb-1">
+                    {e.stat}
+                  </p>
+                  <p className="font-sans text-[8px] lg:text-[9px] tracking-[0.2em] text-white/30 uppercase font-medium">
+                    {e.statLabel}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
 
-          {/* CTA */}
-          <motion.div variants={fade} className="text-center">
-            <Link to="/shop">
-              <button className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-bronze/60">
-                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#0a0a0a] transition-colors duration-500">
-                  Découvrir nos créations
-                </span>
-                <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            {/* CTA */}
+            <motion.div variants={fade}>
+              <Link to="/shop">
+                <button className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-bronze/60">
+                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                    Découvrir nos créations
+                  </span>
+                  <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </button>
+              </Link>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* MOBILE */}
+      <div className="h-screen md:hidden relative overflow-hidden">
+        <img
+          src="https://renaissance-cdn.b-cdn.net/portrait.png"
+          alt="Renaissance Paris - Engagement"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+        <div className="relative h-full flex flex-col justify-end px-6 pb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="font-sans text-white/40 text-[8px] tracking-[0.4em] font-medium uppercase mb-4">
+              Notre Engagement
+            </p>
+            <h2 className="font-display text-3xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-2">
+              AVANT, ON RÉPARAIT.
+            </h2>
+            <p className="font-display text-xl font-light italic text-white/60 tracking-[-0.02em] mb-5">
+              Nous, on répare.
+            </p>
+
+            <div className="flex gap-0 mb-6">
+              {engagements.map((e, index) => (
+                <div
+                  key={e.title}
+                  className={`${index > 0 ? 'border-l border-white/[0.07] pl-4' : ''} ${index < engagements.length - 1 ? 'pr-4' : ''}`}
+                >
+                  <p className="font-display text-xl font-bold text-white tracking-[-0.02em] leading-none mb-1">
+                    {e.stat}
+                  </p>
+                  <p className="font-sans text-[7px] tracking-[0.15em] text-white/30 uppercase font-medium">
+                    {e.statLabel}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <Link to="/shop" className="block w-full">
+              <button className="w-full bg-white text-dark-text px-8 py-4 font-sans text-[9px] tracking-[0.25em] uppercase font-bold hover:bg-white/90 transition-all duration-300 active:scale-[0.98]">
+                Découvrir nos créations
               </button>
             </Link>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </motion.section>
   );

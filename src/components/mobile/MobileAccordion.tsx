@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus } from 'lucide-react';
 
 interface AccordionSection {
   title: string;
@@ -23,28 +22,29 @@ export default function MobileAccordion({ sections, defaultOpen }: MobileAccordi
   };
 
   return (
-    <div className="bg-white px-6 py-4">
+    <div className="bg-white px-6">
       {sections.map((section, index) => (
         <div
           key={index}
-          className={`${index !== 0 ? 'border-t border-dark-text/10' : ''}`}
+          className="border-t border-dark-text/8"
         >
           <button
             onClick={() => toggleSection(index)}
             className="w-full flex items-center justify-between py-5 group"
           >
-            <span className="font-sans text-[11px] tracking-[0.25em] font-bold text-dark-text uppercase">
+            <span className="font-sans text-[9px] tracking-[0.3em] font-medium text-dark-text/50 uppercase">
               {section.title}
             </span>
             <motion.div
-              animate={{ rotate: openIndex === index ? 0 : 90 }}
+              animate={{ rotate: openIndex === index ? 45 : 0 }}
               transition={{ duration: 0.2 }}
+              className="w-4 h-4 flex items-center justify-center"
             >
-              {openIndex === index ? (
-                <Minus className="w-4 h-4 text-dark-text" />
-              ) : (
-                <Plus className="w-4 h-4 text-dark-text" />
-              )}
+              <span className="block w-3 h-px bg-dark-text/40 relative">
+                <span className={`absolute inset-0 bg-dark-text/40 transition-transform duration-200 ${
+                  openIndex === index ? 'rotate-0' : 'rotate-90'
+                }`} />
+              </span>
             </motion.div>
           </button>
 

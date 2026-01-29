@@ -38,7 +38,7 @@ interface ShopifyProduct {
   };
 }
 
-type ActiveMenu = 'heritage' | 'versailles' | 'isis' | null;
+type ActiveMenu = 'heritage' | 'versailles' | 'isis' | 'histoire' | null;
 
 // Configuration des collections
 const COLLECTION_CONFIG = {
@@ -93,13 +93,42 @@ export default function Header() {
   const [heritageCollection, setHeritageCollection] = useState<MenuProduct[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
 
+  // Mobile: hide header on scroll, show on stop/scroll-up
+  const [mobileHidden, setMobileHidden] = useState(false);
+  const lastScrollY = useRef(0);
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   // Effet scroll (throttled via rAF)
   const scrollTicking = useRef(false);
   const handleScroll = useCallback(() => {
     if (scrollTicking.current) return;
     scrollTicking.current = true;
     requestAnimationFrame(() => {
-      setScrolled(window.scrollY > 20);
+      const currentY = window.scrollY;
+      setScrolled(currentY > 20);
+
+      // Mobile hide/show logic (only beyond 80px to avoid hero flicker)
+      const isMobile = window.innerWidth < 1024;
+      if (isMobile && currentY > 80) {
+        const isScrollingDown = currentY > lastScrollY.current + 5;
+        const isScrollingUp = currentY < lastScrollY.current - 5;
+
+        if (isScrollingDown) {
+          setMobileHidden(true);
+        } else if (isScrollingUp) {
+          setMobileHidden(false);
+        }
+
+        // Also show on scroll stop
+        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+        scrollTimeout.current = setTimeout(() => {
+          setMobileHidden(false);
+        }, 300);
+      } else if (isMobile && currentY <= 80) {
+        setMobileHidden(false);
+      }
+
+      lastScrollY.current = currentY;
       scrollTicking.current = false;
     });
   }, []);
@@ -107,7 +136,10 @@ export default function Header() {
   useEffect(() => {
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    };
   }, [handleScroll]);
 
   // Charger les collections
@@ -142,12 +174,12 @@ export default function Header() {
       {/* Header principal */}
       <motion.header
         initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ${
+        animate={{ y: mobileHidden ? -100 : 0 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 left-0 right-0 z-[100] transition-colors duration-700 ${
           isTransparent
-            ? 'bg-transparent'
-            : 'bg-beige/95 backdrop-blur-xl border-b border-dark-text/[0.06]'
+            ? 'bg-transparent border-b border-transparent'
+            : 'bg-white/95 backdrop-blur-xl border-b border-dark-text/[0.06]'
         }`}
       >
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 laptop:px-14 xl:px-20">
@@ -165,7 +197,7 @@ export default function Header() {
               <NavLink to="/collections/isis" transparent={isTransparent} onMouseEnter={() => setActiveMenu('isis')}>
                 ISIS
               </NavLink>
-              <NavLink to="/histoire" transparent={isTransparent} onMouseEnter={() => setActiveMenu(null)}>HISTOIRE</NavLink>
+              <NavLink to="/histoire" transparent={isTransparent} onMouseEnter={() => setActiveMenu('histoire')}>HISTOIRE</NavLink>
             </nav>
 
             {/* Logo — Dual crossfade (no flicker) */}
@@ -212,7 +244,19 @@ export default function Header() {
               />
               <IconButton onClick={() => setSearchOpen(!searchOpen)} icon="search" transparent={isTransparent} />
               <CartIcon itemCount={itemCount} transparent={isTransparent} />
-              <IconButton icon="user" transparent={isTransparent} />
+              <Link
+                to="/suivi-commande"
+                className={`transition-colors duration-500 ${
+                  isTransparent
+                    ? 'text-white/90 hover:text-white/50'
+                    : 'text-dark-text hover:text-dark-text/50'
+                }`}
+                title="Suivre ma commande"
+              >
+                <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+              </Link>
             </div>
 
             {/* Navigation Mobile — Hamburger asymétrique 2 lignes */}
@@ -285,14 +329,100 @@ export default function Header() {
       <AnimatePresence>
         {activeMenu === 'isis' && (
           <MegaMenuWrapper onMouseLeave={() => setActiveMenu(null)}>
-            <div className="max-w-[1600px] mx-auto px-8 md:px-12 lg:px-16 py-12 md:py-16 lg:py-24">
-              <div className="flex flex-col items-center justify-center text-center">
-                <h3 className="font-display text-3xl md:text-4xl text-dark-text tracking-[-0.02em] mb-4">
-                  Collection Isis
-                </h3>
-                <p className="font-sans text-bronze text-xs md:text-sm tracking-[0.2em] uppercase font-medium">
-                  Bientôt disponible
-                </p>
+            <div className="max-w-[1600px] mx-auto px-8 md:px-12 lg:px-16 py-10 lg:py-14">
+              <div className="flex items-center gap-12 lg:gap-16">
+                {/* Image */}
+                <div className="w-[280px] lg:w-[340px] h-[200px] lg:h-[240px] flex-shrink-0 relative overflow-hidden">
+                  <img
+                    src="https://renaissance-cdn.b-cdn.net/collection%20isis%20comming%20soon.png"
+                    alt="Collection Isis"
+                    className="w-full h-full object-cover grayscale-[20%]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 to-transparent" />
+                </div>
+
+                {/* Content */}
+                <div className="flex-1">
+                  <p className="font-sans text-[9px] tracking-[0.4em] text-dark-text/30 uppercase font-medium mb-3">
+                    Prochainement
+                  </p>
+                  <h3 className="font-display text-4xl lg:text-5xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9] mb-2">
+                    ISIS
+                  </h3>
+                  <p className="font-display text-xl lg:text-2xl font-light italic text-dark-text/50 tracking-[-0.02em] mb-6">
+                    Le Cobra. Le Scarabée. L'Œil.
+                  </p>
+
+                  <div className="w-10 h-px bg-dark-text/10 mb-6" />
+
+                  <p className="font-sans text-[13px] text-dark-text/40 leading-[1.8] font-light max-w-md mb-8">
+                    Ce qui traverse 5 000 ans ne se porte pas par hasard. Une collection inspirée des symboles éternels de l'Égypte ancienne.
+                  </p>
+
+                  <div className="inline-flex items-center gap-2.5 border border-dark-text/12 px-5 py-2.5">
+                    <span className="w-1.5 h-1.5 bg-dark-text/30 rounded-full animate-pulse" />
+                    <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/40">
+                      Bientôt disponible
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </MegaMenuWrapper>
+        )}
+      </AnimatePresence>
+
+      {/* Mega Menu - Histoire */}
+      <AnimatePresence>
+        {activeMenu === 'histoire' && (
+          <MegaMenuWrapper onMouseLeave={() => setActiveMenu(null)}>
+            <div className="max-w-[1600px] mx-auto px-8 md:px-12 lg:px-16 py-10 lg:py-14">
+              <div className="flex items-center gap-12 lg:gap-16">
+                {/* Image */}
+                <div className="w-[280px] lg:w-[340px] h-[200px] lg:h-[240px] flex-shrink-0 relative overflow-hidden">
+                  <img
+                    src="https://renaissance-cdn.b-cdn.net/page%20histoire.png"
+                    alt="Notre Histoire"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 to-transparent" />
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 max-w-lg">
+                  <p className="font-sans text-[9px] tracking-[0.4em] text-dark-text/30 uppercase font-medium mb-3">
+                    La Maison
+                  </p>
+                  <h3 className="font-display text-4xl lg:text-5xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9] mb-2">
+                    RENAISSANCE
+                  </h3>
+                  <p className="font-display text-xl lg:text-2xl font-light italic text-dark-text/50 tracking-[-0.02em] mb-6">
+                    Paris, depuis toujours.
+                  </p>
+                  <div className="w-10 h-px bg-dark-text/10 mb-6" />
+                  <p className="font-sans text-[13px] text-dark-text/40 leading-[1.8] font-light mb-8">
+                    Cinq symboles millénaires. Un savoir-faire artisanal d'exception. Des lunettes conçues pour durer et se transmettre.
+                  </p>
+                  <div className="flex gap-3">
+                    <Link to="/histoire" onClick={() => setActiveMenu(null)}>
+                      <button className="group relative overflow-hidden border border-dark-text px-8 py-3 transition-all duration-500">
+                        <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-white transition-colors duration-500">
+                          Notre histoire
+                        </span>
+                        <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                      </button>
+                    </Link>
+                    <Link to="/savoir-faire" onClick={() => setActiveMenu(null)}>
+                      <button className="group relative overflow-hidden border border-dark-text/20 px-8 py-3 transition-all duration-500 hover:border-dark-text">
+                        <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/50 group-hover:text-white transition-colors duration-500">
+                          Savoir-faire
+                        </span>
+                        <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                      </button>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </MegaMenuWrapper>
@@ -361,18 +491,13 @@ function MegaMenuWrapper({ children, onMouseLeave }: { children: React.ReactNode
 }
 
 // Icône de bouton
-function IconButton({ onClick, icon, transparent }: { onClick?: () => void; icon: 'search' | 'user'; transparent?: boolean }) {
+function IconButton({ onClick, icon, transparent }: { onClick?: () => void; icon: 'search'; transparent?: boolean }) {
   const icons = {
     search: (
       <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
     ),
-    user: (
-      <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-      </svg>
-    )
   };
 
   return (

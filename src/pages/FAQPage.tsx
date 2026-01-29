@@ -1,8 +1,8 @@
-import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useMemo, useRef, useEffect } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import LegalPageTemplate from '../components/LegalPageTemplate';
 import SEO from '../components/SEO';
+import { stagger, fade } from '../components/shared';
 
 const faqCategories = [
   {
@@ -121,7 +121,7 @@ const faqCategories = [
   }
 ];
 
-function FAQItem({ question, answer }: { question: string; answer: string }) {
+function FAQItem({ question, answer, index }: { question: string; answer: string; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -129,13 +129,14 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="border-b border-bronze/10"
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      className="border-b border-dark-text/8"
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-5 flex items-center justify-between gap-4 text-left group hover:bg-beige/30 px-4 transition-colors"
+        className="w-full py-6 flex items-center justify-between gap-6 text-left group"
       >
-        <span className="font-sans text-dark-text text-base font-medium leading-relaxed flex-1">
+        <span className="font-sans text-dark-text text-sm lg:text-base font-medium leading-relaxed flex-1">
           {question}
         </span>
         <motion.div
@@ -143,7 +144,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
           transition={{ duration: 0.3 }}
           className="flex-shrink-0"
         >
-          <ChevronDown size={20} className="text-bronze" />
+          <ChevronDown size={16} className="text-bronze" />
         </motion.div>
       </button>
       <AnimatePresence>
@@ -155,7 +156,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="font-sans text-dark-text/70 text-sm leading-relaxed pb-5 px-4">
+            <p className="font-sans text-dark-text/50 text-sm leading-[1.8] font-light pb-6">
               {answer}
             </p>
           </motion.div>
@@ -166,7 +167,15 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function FAQPage() {
-  // Aplatir toutes les questions FAQ pour le schema SEO
+  const heroRef = useRef<HTMLDivElement>(null);
+  const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const ctaInView = useInView(ctaRef, { once: true, amount: 0.3 });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const allFaqItems = useMemo(() => {
     return faqCategories.flatMap(category =>
       category.questions.map(q => ({
@@ -176,76 +185,131 @@ export default function FAQPage() {
     );
   }, []);
 
+  const totalQuestions = allFaqItems.length;
+
   return (
-    <LegalPageTemplate title="Questions Fréquentes">
+    <div className="min-h-screen bg-beige">
       <SEO
         title="Questions Fréquentes (FAQ)"
         description="Trouvez les réponses à vos questions sur les lunettes RENAISSANCE Paris : commande, livraison, retours, entretien, garantie et opticiens partenaires."
         url="/faq"
         faqItems={allFaqItems}
       />
-      <div className="mb-8">
-        <p className="font-sans text-dark-text/70 text-base leading-relaxed mb-4">
-          Vous trouverez ci-dessous les réponses aux questions les plus fréquemment posées.
-          Si vous ne trouvez pas la réponse à votre question, n'hésitez pas à nous contacter.
-        </p>
-      </div>
 
-      <div className="space-y-8">
-        {faqCategories.map((category, index) => (
+      {/* HERO — Éditorial dark */}
+      <section className="bg-[#000000] pt-32 pb-20 lg:pt-40 lg:pb-28">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
           <motion.div
-            key={category.category}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            className="bg-white border border-bronze/10"
+            ref={heroRef}
+            variants={stagger}
+            initial="hidden"
+            animate={heroInView ? "visible" : "hidden"}
           >
-            <div className="bg-bronze/5 px-6 py-4 border-b border-bronze/10">
-              <h2 className="font-sans text-dark-text text-lg font-bold tracking-wider uppercase">
-                {category.category}
-              </h2>
-            </div>
-            <div>
-              {category.questions.map((item, idx) => (
-                <FAQItem key={idx} question={item.q} answer={item.a} />
-              ))}
-            </div>
+            <motion.p variants={fade} className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
+              Aide & Support
+            </motion.p>
+            <motion.h1 variants={fade} className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
+              QUESTIONS
+              <br />FRÉQUENTES.
+            </motion.h1>
+            <motion.p variants={fade} className="font-display text-xl lg:text-2xl xl:text-3xl font-light italic text-white/40 tracking-[-0.02em] mb-8">
+              Tout ce qu'il faut savoir.
+            </motion.p>
+            <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8" />
+            <motion.div variants={fade} className="flex items-center gap-6">
+              <div>
+                <p className="font-display text-2xl lg:text-3xl font-bold text-white leading-none">{totalQuestions}</p>
+                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/25 mt-1">Réponses</p>
+              </div>
+              <div className="w-px h-8 bg-white/10" />
+              <div>
+                <p className="font-display text-2xl lg:text-3xl font-bold text-white leading-none">{faqCategories.length}</p>
+                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/25 mt-1">Catégories</p>
+              </div>
+            </motion.div>
           </motion.div>
-        ))}
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="mt-12 p-8 bg-gradient-to-br from-bronze/5 to-transparent border-l-4 border-bronze"
-      >
-        <h3 className="font-serif text-2xl text-dark-text mb-4">
-          Vous avez une autre question ?
-        </h3>
-        <p className="font-sans text-dark-text/70 text-base leading-relaxed mb-6">
-          Notre équipe est à votre disposition pour répondre à toutes vos questions.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <a
-            href="mailto:contact@renaissance-eyewear.fr"
-            className="inline-block px-6 py-3 bg-bronze font-sans text-sm tracking-wider uppercase hover:bg-bronze/90 transition-colors text-center"
-            style={{ color: '#ffffff' }}
-          >
-            Nous contacter
-          </a>
-          <a
-            href="tel:+33142868200"
-            className="inline-block px-6 py-3 border border-bronze text-bronze font-sans text-sm tracking-wider uppercase hover:bg-bronze transition-colors text-center"
-            style={{ color: '#8b7355' }}
-            onMouseEnter={(e) => e.currentTarget.style.color = '#ffffff'}
-            onMouseLeave={(e) => e.currentTarget.style.color = '#8b7355'}
-          >
-            +33 1 42 86 82 00
-          </a>
         </div>
-      </motion.div>
-    </LegalPageTemplate>
+      </section>
+
+      {/* FAQ CONTENT */}
+      <section className="py-16 lg:py-24">
+        <div className="max-w-[900px] mx-auto px-6 md:px-12">
+          <div className="space-y-12 lg:space-y-16">
+            {faqCategories.map((category, catIndex) => (
+              <motion.div
+                key={category.category}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: catIndex * 0.05 }}
+              >
+                {/* Category header */}
+                <div className="mb-6">
+                  <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-bronze uppercase mb-2">
+                    {String(catIndex + 1).padStart(2, '0')}
+                  </p>
+                  <h2 className="font-display text-2xl lg:text-3xl font-bold text-dark-text tracking-[-0.02em]">
+                    {category.category}
+                  </h2>
+                  <div className="w-8 h-px bg-dark-text/15 mt-4" />
+                </div>
+
+                {/* Questions */}
+                <div>
+                  {category.questions.map((item, idx) => (
+                    <FAQItem key={idx} question={item.q} answer={item.a} index={idx} />
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className="bg-[#0a0a0a] py-20 lg:py-28">
+        <div className="max-w-3xl mx-auto px-6 md:px-12 text-center">
+          <motion.div
+            ref={ctaRef}
+            variants={stagger}
+            initial="hidden"
+            animate={ctaInView ? "visible" : "hidden"}
+          >
+            <motion.p variants={fade} className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
+              Besoin d'aide
+            </motion.p>
+            <motion.h2 variants={fade} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
+              Une autre question ?
+            </motion.h2>
+            <motion.p variants={fade} className="font-display text-lg lg:text-xl font-light italic text-white/35 tracking-[-0.02em] mb-8">
+              Nous sommes là pour vous.
+            </motion.p>
+            <motion.div variants={fade} className="w-12 h-px bg-white/15 mx-auto mb-8" />
+            <motion.p variants={fade} className="font-sans text-white/30 text-[13px] lg:text-sm leading-[1.8] font-light mb-10 max-w-lg mx-auto">
+              Notre équipe est à votre disposition pour répondre à toutes vos questions.
+            </motion.p>
+            <motion.div variants={fade} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="/contact"
+                className="group relative overflow-hidden border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
+              >
+                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                  Nous contacter
+                </span>
+                <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              </a>
+              <a
+                href="tel:+33142868200"
+                className="group border border-white/8 px-10 py-4 transition-all duration-500 hover:border-white/20"
+              >
+                <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/35 group-hover:text-white/60 transition-colors duration-500">
+                  +33 1 42 86 82 00
+                </span>
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
   );
 }

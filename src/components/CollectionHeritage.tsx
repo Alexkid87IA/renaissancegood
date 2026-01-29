@@ -85,7 +85,7 @@ export default function CollectionHeritage() {
           className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
         >
           <img
-            src="https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg"
+            src="https://renaissance-cdn.b-cdn.net/packshot%20collection%20heritage.png"
             alt="Collection Héritage - Trident"
             loading="lazy"
             className="w-full h-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.03] group-hover:brightness-[1.05]"
@@ -117,110 +117,51 @@ export default function CollectionHeritage() {
       </div>
 
       {/* MOBILE */}
-      <div className="min-h-[82vh] bg-beige md:hidden relative overflow-hidden">
-        <div className="relative h-full flex flex-col px-6 pt-14 pb-6">
-
-          {/* Label */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="font-sans text-dark-text/30 text-[8px] tracking-[0.4em] font-medium uppercase mb-5 flex-shrink-0"
-          >
-            Collection Héritage
-          </motion.p>
-
-          {/* Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0 mb-2"
-          >
-            <h3 className="font-display text-3xl font-bold tracking-[-0.02em] leading-[0.9] text-dark-text">
-              HÉRITAGE
-            </h3>
-            <p className="font-display text-xl font-light italic text-dark-text/60 tracking-[-0.02em] mt-1">
-              Le Trident.
-            </p>
-          </motion.div>
-
-          {/* Line */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0 mb-3 origin-left"
-          >
-            <div className="w-10 h-px bg-dark-text/15" />
-          </motion.div>
-
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0 mb-4"
-          >
-            <div
-              onClick={handleNavigate}
-              className="relative w-full h-[40vh] overflow-hidden cursor-pointer group active:scale-[0.98] transition-transform duration-200"
-            >
-              <img
-                src="https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg"
-                alt="Collection Héritage"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-text/15 via-transparent to-transparent pointer-events-none" />
-              {isLoading && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="absolute inset-0 bg-beige/95 backdrop-blur-md flex items-center justify-center"
-                >
-                  <div className="w-8 h-8 border border-bronze/30 border-t-bronze rounded-full animate-spin" />
-                </motion.div>
-              )}
-            </div>
-          </motion.div>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="font-sans text-dark-text/50 text-xs leading-[1.7] font-light mb-5 flex-shrink-0"
-          >
-            Ce qui se transmet ne se jette pas. Ce qui se respecte ne s'oublie pas. Trois pointes. Le passé. Le présent. L'avenir.
-          </motion.p>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0"
-          >
-            <button
-              onClick={handleNavigate}
-              disabled={isLoading}
-              className="group relative overflow-hidden w-full border border-dark-text px-6 py-3.5 bg-beige transition-all duration-300 active:scale-[0.98] disabled:opacity-50"
-            >
-              <span className="relative z-10 font-sans text-[8px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
-                {isLoading ? 'CHARGEMENT...' : 'DÉCOUVRIR LA COLLECTION'}
-              </span>
-              {!isLoading && (
-                <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-              )}
-            </button>
-          </motion.div>
+      <div className="md:hidden relative h-screen bg-[#000000] overflow-hidden" onClick={handleNavigate}>
+        {/* Image — remontée pour centrer le produit */}
+        <div className="absolute inset-0">
+          <img
+            src="https://renaissance-cdn.b-cdn.net/packshot%20collection%20heritage.png"
+            alt="Collection Héritage"
+            className="w-full h-full object-cover object-[center_35%]"
+          />
+          {/* Gradient uniquement sur le tiers bas */}
+          <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-b from-transparent to-[#000000]" />
         </div>
+
+        {/* Content — bas */}
+        <div className="absolute bottom-0 left-0 right-0 px-6 pb-8">
+          <p className="font-sans text-white/50 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
+            Collection
+          </p>
+          <h3 className="font-display text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[0.9] text-white mb-1">
+            HÉRITAGE
+          </h3>
+          <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em] mb-5">
+            Le Trident.
+          </p>
+          <button
+            disabled={isLoading}
+            className="group relative overflow-hidden w-full border border-white/20 px-6 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98] disabled:opacity-50"
+          >
+            <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
+              {isLoading ? 'CHARGEMENT...' : 'DÉCOUVRIR LA COLLECTION'}
+            </span>
+            {!isLoading && (
+              <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            )}
+          </button>
+        </div>
+
+        {isLoading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="absolute inset-0 bg-[#000000]/90 flex items-center justify-center z-10"
+          >
+            <div className="w-8 h-8 border border-bronze/30 border-t-bronze rounded-full animate-spin" />
+          </motion.div>
+        )}
       </div>
     </motion.section>
   );

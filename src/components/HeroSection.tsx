@@ -18,17 +18,18 @@ export default function HeroSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="h-screen relative lg:sticky top-0 lg:z-10"
+      className="h-screen sticky top-0 z-10"
     >
       {/* DESKTOP VERSION - Unchanged */}
       <div className="relative h-full overflow-hidden hidden lg:block">
         <img
-          src="/images/hero-home.jpg"
+          src="https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_07AM.jpeg"
           alt="Renaissance Paris - Collection"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/60 to-transparent"></div>
 
         <div className="absolute left-8 bottom-8 max-w-xl">
           <p className="text-white text-xs tracking-[0.2em] uppercase font-sans mb-2">Pour que chaque jour compte</p>
@@ -61,30 +62,21 @@ export default function HeroSection() {
         {/* Full Screen Image with proper object positioning */}
         <div className="absolute inset-0">
           <img
-            src="/images/hero-home.jpg"
+            src="https://renaissance-cdn.b-cdn.net/campgane.png"
             alt="Hero Background Mobile"
             className="w-full h-full object-cover object-[center_30%]"
           />
 
-          {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80"></div>
+          {/* Overlay for text readability */}
+          <div className="absolute inset-0 bg-[#000000]/25"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70"></div>
         </div>
 
         {/* Content Container - Centered vertically */}
         <div className="relative h-full flex flex-col justify-between pt-24 pb-8 px-6">
 
-          {/* Top Content - Branding */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex-shrink-0"
-          >
-            <p className="text-white/90 text-[9px] tracking-[0.3em] uppercase font-sans font-bold mb-2">
-              RENAISSANCE PARIS
-            </p>
-            <div className="w-12 h-px bg-white/40"></div>
-          </motion.div>
+          {/* Top spacer */}
+          <div className="flex-shrink-0" />
 
           {/* Center Content - Main Message */}
           <motion.div

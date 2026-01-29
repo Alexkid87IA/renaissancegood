@@ -75,7 +75,7 @@ export default function CollectionIsis() {
         {/* IMAGE SIDE */}
         <div className="w-full md:w-1/2 h-full relative overflow-hidden">
           <img
-            src="https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg"
+            src="https://renaissance-cdn.b-cdn.net/collection%20isis%20comming%20soon.png"
             alt="Collection Isis - Egyptian inspiration"
             className="w-full h-full object-cover grayscale-[30%]"
             loading="lazy"
@@ -85,105 +85,35 @@ export default function CollectionIsis() {
       </div>
 
       {/* MOBILE */}
-      <div className="min-h-[82vh] bg-beige md:hidden relative overflow-hidden">
-        <div className="relative h-full flex flex-col px-6 pt-14 pb-6">
+      <div className="md:hidden relative h-screen bg-[#000000] overflow-hidden">
+        {/* Image — remontée */}
+        <div className="absolute inset-0">
+          <img
+            src="https://renaissance-cdn.b-cdn.net/collection%20isis%20comming%20soon.png"
+            alt="Collection Isis"
+            className="w-full h-full object-cover object-[center_35%] grayscale-[30%] opacity-80"
+            loading="lazy"
+          />
+          <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-b from-transparent to-[#000000]" />
+        </div>
 
-          {/* Label */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="font-sans text-dark-text/30 text-[8px] tracking-[0.4em] font-medium uppercase mb-5 flex-shrink-0"
-          >
-            Collection Isis
-          </motion.p>
-
-          {/* Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0 mb-2"
-          >
-            <h3 className="font-display text-3xl font-bold tracking-[-0.02em] leading-[0.9] text-dark-text">
-              ISIS
-            </h3>
-            <p className="font-display text-xl font-light italic text-dark-text/60 tracking-[-0.02em] mt-1">
-              Le Cobra. Le Scarabée. L'Œil.
-            </p>
-          </motion.div>
-
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0 mb-3"
-          >
-            <span className="inline-block border border-dark-text/15 text-dark-text/35 text-[7px] px-3 py-1 tracking-[0.3em] font-medium uppercase">
+        {/* Content — bas */}
+        <div className="absolute bottom-0 left-0 right-0 px-6 pb-8">
+          <p className="font-sans text-white/50 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
+            Collection
+          </p>
+          <h3 className="font-display text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[0.9] text-white mb-1">
+            ISIS
+          </h3>
+          <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em] mb-3">
+            Le Cobra. Le Scarabée. L'Œil.
+          </p>
+          <div className="w-full border border-white/20 px-6 py-4 flex items-center justify-center gap-3">
+            <span className="w-1.5 h-1.5 bg-white/40 rounded-full animate-pulse" />
+            <span className="font-sans text-[10px] tracking-[0.3em] font-medium uppercase text-white/50">
               Bientôt Disponible
             </span>
-          </motion.div>
-
-          {/* Line */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0 mb-3 origin-left"
-          >
-            <div className="w-10 h-px bg-dark-text/15" />
-          </motion.div>
-
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0 mb-4"
-          >
-            <div className="relative w-full h-[40vh] overflow-hidden">
-              <img
-                src="https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg"
-                alt="Collection Isis"
-                className="w-full h-full object-cover grayscale-[40%] opacity-70"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-beige/30 via-transparent to-transparent pointer-events-none" />
-            </div>
-          </motion.div>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="font-sans text-dark-text/50 text-xs leading-[1.7] font-light mb-5 flex-shrink-0"
-          >
-            Le Cobra : la garde. Le Scarabée : la renaissance. L'Œil : celui qui voit tout. Ce qui traverse 5 000 ans ne se porte pas par hasard.
-          </motion.p>
-
-          {/* CTA - disabled */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0"
-          >
-            <button
-              disabled
-              className="w-full border border-dark-text/12 px-6 py-3.5 font-sans text-[8px] tracking-[0.3em] font-medium uppercase text-dark-text/25 cursor-not-allowed bg-beige"
-            >
-              BIENTÔT DISPONIBLE
-            </button>
-          </motion.div>
+          </div>
         </div>
       </div>
     </motion.section>

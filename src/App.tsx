@@ -5,6 +5,7 @@ import { CartProvider } from './contexts/CartContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
+import CookieBanner from './components/CookieBanner';
 import ScrollToTop from './components/ScrollToTop';
 
 // Lazy load all pages for code splitting
@@ -35,6 +36,7 @@ const FAQPage = lazy(() => import('./pages/FAQPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const GarantiePage = lazy(() => import('./pages/GarantiePage'));
 const GuideTaillesPage = lazy(() => import('./pages/GuideTaillesPage'));
+const SuiviCommandePage = lazy(() => import('./pages/SuiviCommandePage'));
 const ManifestePage = lazy(() => import('./pages/ManifestePage'));
 const SavoirFairePage = lazy(() => import('./pages/SavoirFairePage'));
 const SymbolesPage = lazy(() => import('./pages/SymbolesPage'));
@@ -86,6 +88,7 @@ function AppContent() {
               <Route path="/garantie" element={<GarantiePage />} />
               <Route path="/guide-tailles" element={<GuideTaillesPage />} />
               <Route path="/livraison" element={<ExpeditionPage />} />
+              <Route path="/suivi-commande" element={<SuiviCommandePage />} />
 
               {/* Pages magazine/histoire */}
               <Route path="/manifeste" element={<ManifestePage />} />
@@ -125,6 +128,7 @@ function App() {
         <CartProvider>
           <AppContent />
           <CartDrawer />
+          <CookieBanner />
         </CartProvider>
       </Router>
     </HelmetProvider>

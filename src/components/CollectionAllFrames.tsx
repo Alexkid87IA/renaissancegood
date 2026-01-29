@@ -1,19 +1,28 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function CollectionAllFrames() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  );
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
-  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.6], [1, isMobile ? 1 : 0.92]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, isMobile ? 1 : 0]);
 
   const handleNavigate = () => {
     setIsLoading(true);
@@ -30,12 +39,11 @@ export default function CollectionAllFrames() {
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-white hidden md:flex flex-row">
-        <div className="w-full md:w-1/2 h-full">
+        <div className="w-full md:w-1/2 h-full relative overflow-hidden">
           <img
-            src="https://26.staticbtf.eno.do/v1/104-default/18b06e42d2310c24605161b4c62ef0e3/media.jpg"
-            alt="Nos créations - Collection complète"
-            className="w-full h-full object-cover"
-            loading="lazy"
+            src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
+            alt="Nos créations"
+            className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
 
@@ -71,82 +79,47 @@ export default function CollectionAllFrames() {
         </div>
       </div>
 
-      {/* MOBILE VERSION - Compact Design */}
-      <div className="min-h-[82vh] bg-white md:hidden relative overflow-hidden">
-        {/* Content */}
-        <div className="relative h-full flex flex-col px-5 pt-16 pb-6">
-
-          {/* Top - Badge (Compact) */}
-          {/* Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="flex-shrink-0 mb-3"
-          >
-            <h3 className="font-display text-2xl font-bold tracking-[-0.02em] leading-[0.9] text-dark-text">
-              TOUTES NOS<br/>
-              <span className="font-light italic">Créations.</span>
-            </h3>
-          </motion.div>
-
-          {/* Product Image - Main Focus (50% space) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            className="flex-shrink-0 mb-2"
-          >
-            <div
-              onClick={handleNavigate}
-              className="relative w-full h-[42vh] rounded-md overflow-hidden bg-gradient-to-br from-beige/30 to-bronze/10 border border-dark-text/10 cursor-pointer group active:scale-[0.98] transition-transform duration-200"
-            >
-              <img
-                src="https://26.staticbtf.eno.do/v1/104-default/18b06e42d2310c24605161b4c62ef0e3/media.jpg"
-                alt="Collection Preview"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 to-transparent"></div>
-              {isLoading && (
-                <div className="absolute inset-0 bg-white/90 flex items-center justify-center">
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-8 h-8 border-2 border-dark-text/20 border-t-dark-text rounded-full animate-spin" />
-                    <p className="text-dark-text text-[10px] tracking-[0.3em] font-light uppercase">Chargement</p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </motion.div>
-
-          {/* Description (Compact, 2 lines max) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-            className="flex-shrink-0 mb-3"
-          >
-            <p className="font-sans text-dark-text/50 text-xs leading-[1.7] font-light">
-              Collections, hors-série et pièces uniques. Un seul geste : celui qui refuse l'oubli.
-            </p>
-          </motion.div>
-
-          {/* CTA Button (Always visible) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.5 }}
-            className="flex-shrink-0"
-          >
-            <button
-              onClick={handleNavigate}
-              disabled={isLoading}
-              className="w-full border border-dark-text/60 px-6 py-3 font-sans text-[8px] tracking-[0.3em] font-medium text-dark-text hover:bg-dark-text hover:text-white transition-all duration-300 active:scale-[0.98] bg-white disabled:opacity-50"
-            >
-              {isLoading ? 'CHARGEMENT...' : 'VOIR LA BOUTIQUE'}
-            </button>
-          </motion.div>
+      {/* MOBILE */}
+      <div className="md:hidden relative h-screen bg-[#000000] overflow-hidden" onClick={handleNavigate}>
+        {/* Image — remontée */}
+        <div className="absolute inset-0">
+          <img
+            src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
+            alt="Nos créations"
+            className="w-full h-full object-cover object-[center_35%]"
+          />
+          <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-b from-transparent to-[#000000]" />
         </div>
+
+        {/* Content — bas */}
+        <div className="absolute bottom-0 left-0 right-0 px-6 pb-8">
+          <p className="font-sans text-white/50 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
+            Boutique
+          </p>
+          <h3 className="font-display text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[0.9] text-white mb-1">
+            TOUTES NOS
+          </h3>
+          <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em] mb-5">
+            Créations.
+          </p>
+          <button
+            disabled={isLoading}
+            className="group relative overflow-hidden w-full border border-white/20 px-6 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98] disabled:opacity-50"
+          >
+            <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
+              {isLoading ? 'CHARGEMENT...' : 'VOIR LA BOUTIQUE'}
+            </span>
+            {!isLoading && (
+              <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            )}
+          </button>
+        </div>
+
+        {isLoading && (
+          <div className="absolute inset-0 bg-[#000000]/90 flex items-center justify-center z-10">
+            <div className="w-8 h-8 border border-bronze/30 border-t-bronze rounded-full animate-spin" />
+          </div>
+        )}
       </div>
     </motion.section>
   );

@@ -17,7 +17,7 @@ export default function HistoirePage() {
   }, []);
 
   return (
-    <div className="bg-beige relative">
+    <div className="bg-[#0a0a0a] relative">
       <SEO
         title="Notre Histoire"
         description="Découvrez l'histoire de RENAISSANCE Paris, maison française de lunettes de luxe. Notre savoir-faire artisanal, nos valeurs et notre engagement pour l'excellence."

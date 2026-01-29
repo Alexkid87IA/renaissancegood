@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { stagger, fade } from './shared';
+import { useDeviceType } from '../../hooks/useDeviceType';
 
 const symbols = [
   {
@@ -40,6 +41,7 @@ export default function SymbolesSection() {
   const contentRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
+  const { isMobile } = useDeviceType();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -115,115 +117,72 @@ export default function SymbolesSection() {
         </div>
 
         <div className="w-full md:w-1/2 h-full relative overflow-hidden">
-          <motion.img
-            key={activeIndex}
-            initial={{ opacity: 0, scale: 1.02 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            src={symbols[activeIndex].image}
-            alt={symbols[activeIndex].name}
+          <img
+            src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
+            alt="Renaissance Paris - Symboles"
             className="w-full h-full object-cover"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 via-transparent to-transparent pointer-events-none" />
         </div>
       </div>
 
       {/* MOBILE */}
-      <div className="min-h-[82vh] bg-beige md:hidden relative overflow-hidden">
-        <div className="relative h-full flex flex-col px-6 pt-14 pb-6">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="font-sans text-dark-text/30 text-[8px] tracking-[0.4em] font-medium uppercase mb-5 flex-shrink-0"
-          >
-            Nos Symboles
-          </motion.p>
+      <div className="h-screen md:hidden relative overflow-hidden">
+        <img
+          src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
+          alt="Renaissance Paris - Symboles"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
+        <div className="relative h-full flex flex-col justify-end px-6 pb-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0 mb-2"
+            transition={{ duration: 0.8 }}
           >
-            <h2 className="font-display text-3xl font-bold tracking-[-0.02em] leading-[0.9] text-dark-text">
+            <p className="font-sans text-white/40 text-[8px] tracking-[0.4em] font-medium uppercase mb-4">
+              Nos Symboles
+            </p>
+            <h2 className="font-display text-3xl font-bold tracking-[-0.02em] leading-[0.9] text-white mb-2">
               CINQ SYMBOLES.
             </h2>
-            <p className="font-display text-xl font-light italic text-dark-text/60 tracking-[-0.02em] mt-1">
+            <p className="font-display text-xl font-light italic text-white/60 tracking-[-0.02em] mb-5">
               Gravés dans le métal.
             </p>
-          </motion.div>
 
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0 mb-4 origin-left"
-          >
-            <div className="w-10 h-px bg-dark-text/15" />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0 mb-4"
-          >
-            <div className="relative w-full h-[35vh] overflow-hidden">
-              <motion.img
-                key={activeIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                src={symbols[activeIndex].image}
-                alt={symbols[activeIndex].name}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-text/15 via-transparent to-transparent pointer-events-none" />
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="flex-shrink-0 mb-4"
-          >
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-1.5 mb-4">
               {symbols.map((s, i) => (
                 <button
                   key={s.name}
                   onClick={() => setActiveIndex(i)}
                   className={`font-sans text-[7px] tracking-[0.25em] font-medium uppercase px-3 py-2 border transition-all duration-300 ${
                     activeIndex === i
-                      ? 'border-dark-text bg-dark-text text-beige'
-                      : 'border-dark-text/15 text-dark-text/50'
+                      ? 'border-white bg-white text-dark-text'
+                      : 'border-white/20 text-white/50'
                   }`}
                 >
                   {s.name}
                 </button>
               ))}
             </div>
-          </motion.div>
 
-          <motion.div
-            key={`mobile-${activeIndex}`}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="flex-shrink-0"
-          >
-            <p className="font-sans text-[8px] tracking-[0.2em] text-dark-text/30 uppercase font-medium mb-1">
-              {symbols[activeIndex].subtitle}
-            </p>
-            <p className="font-sans text-dark-text/50 text-xs leading-[1.7] font-light">
-              {symbols[activeIndex].description}
-            </p>
+            <motion.div
+              key={`mobile-${activeIndex}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <p className="font-sans text-[8px] tracking-[0.2em] text-white/30 uppercase font-medium mb-1">
+                {symbols[activeIndex].subtitle}
+              </p>
+              <p className="font-sans text-white/60 text-xs leading-[1.7] font-light">
+                {symbols[activeIndex].description}
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </div>

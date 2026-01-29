@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../../contexts/CartContext';
-import { Award, Truck } from 'lucide-react';
+import { ShoppingBag, Check } from 'lucide-react';
 
 interface Variant {
   id: string;
@@ -33,7 +33,7 @@ export default function MobileBottomBar({ selectedVariant, productPrice, isOutOf
     try {
       await addToCart(selectedVariant.id);
       setAddedToCart(true);
-      setTimeout(() => setAddedToCart(false), 2000);
+      setTimeout(() => setAddedToCart(false), 2500);
     } catch (error) {
       console.error('Erreur lors de l\'ajout au panier:', error);
     }
@@ -43,55 +43,87 @@ export default function MobileBottomBar({ selectedVariant, productPrice, isOutOf
     <motion.div
       initial={{ y: 100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-dark-text/10 z-50 safe-area-bottom"
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed bottom-0 left-0 right-0 z-50 safe-area-bottom"
     >
-      <div className="px-4 py-4">
-        {/* Reassurance Icons - Mobile */}
-        <div className="flex items-center gap-3 mb-3 pb-3 border-b border-dark-text/5">
-          <div className="flex items-center gap-1.5">
-            <div className="w-6 h-6 rounded-full bg-bronze/10 flex items-center justify-center">
-              <Award size={12} className="text-bronze" />
-            </div>
-            <span className="font-sans text-[9px] text-dark-text/60">Garantie 2 ans</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-6 h-6 rounded-full bg-bronze/10 flex items-center justify-center">
-              <Truck size={12} className="text-bronze" />
-            </div>
-            <span className="font-sans text-[9px] text-dark-text/60">Livraison Offerte</span>
-          </div>
-        </div>
+      {/* Fond avec blur */}
+      <div className="bg-white/95 backdrop-blur-xl border-t border-dark-text/8">
+        <div className="px-5 pt-3 pb-4">
 
-        {/* Price & CTA */}
-        <div className="flex items-center gap-3">
-          <div className="flex-shrink-0">
-            <p className="font-sans text-xs text-dark-text/60 tracking-wide mb-1">Prix</p>
-            <p className={`font-sans text-xl font-semibold ${isOutOfStock ? 'text-dark-text/40 line-through' : 'text-dark-text'}`}>
-              {selectedVariant?.price || productPrice}
-            </p>
+          {/* Réassurance top */}
+          <div className="flex items-center justify-center gap-4 mb-3">
+            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/30 uppercase">Livraison offerte</span>
+            <span className="w-3 h-px bg-dark-text/10" />
+            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/30 uppercase">Garantie 2 ans</span>
+            <span className="w-3 h-px bg-dark-text/10" />
+            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/30 uppercase">Retour 14j</span>
           </div>
 
-          {isOutOfStock ? (
-            <div className="flex-1 py-4 bg-bronze/10 border border-bronze/30 flex items-center justify-center">
-              <span className="font-sans text-[11px] tracking-[0.2em] font-bold text-bronze uppercase">
-                Indisponible
-              </span>
+          {/* Prix + CTA */}
+          <div className="flex items-center gap-4">
+            {/* Price block */}
+            <div className="flex-shrink-0 min-w-[80px]">
+              <p className="font-sans text-[7px] tracking-[0.2em] text-dark-text/35 uppercase mb-0.5">Prix</p>
+              <p className={`font-display text-xl font-bold tracking-tight ${isOutOfStock ? 'text-dark-text/25 line-through' : 'text-dark-text'}`}>
+                {selectedVariant?.price || productPrice}
+              </p>
             </div>
-          ) : (
-            <motion.button
-              onClick={handleAddToCart}
-              disabled={isLoading || !selectedVariant?.availableForSale}
-              whileTap={{ scale: 0.98 }}
-              className={`flex-1 py-4 font-sans text-[11px] tracking-[0.3em] font-bold transition-all duration-300 ${
-                addedToCart
-                  ? 'bg-green-600 text-white'
-                  : 'bg-dark-text text-white active:bg-dark-text/90'
-              } disabled:opacity-50 disabled:cursor-not-allowed shadow-sm`}
-            >
-              {isLoading ? 'AJOUT...' : addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER AU PANIER'}
-            </motion.button>
-          )}
+
+            {/* CTA Button */}
+            {isOutOfStock ? (
+              <div className="flex-1 h-[52px] border border-dark-text/10 flex items-center justify-center">
+                <span className="font-sans text-[9px] tracking-[0.3em] font-medium text-dark-text/25 uppercase">
+                  Indisponible
+                </span>
+              </div>
+            ) : (
+              <motion.button
+                onClick={handleAddToCart}
+                disabled={isLoading || !selectedVariant?.availableForSale}
+                whileTap={{ scale: 0.97 }}
+                className={`flex-1 h-[52px] flex items-center justify-center gap-2.5 font-sans text-[9px] tracking-[0.25em] font-medium uppercase transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed ${
+                  addedToCart
+                    ? 'bg-dark-text text-white'
+                    : 'bg-dark-text text-white active:bg-dark-text/90'
+                }`}
+              >
+                <AnimatePresence mode="wait">
+                  {isLoading ? (
+                    <motion.span
+                      key="loading"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      AJOUT...
+                    </motion.span>
+                  ) : addedToCart ? (
+                    <motion.span
+                      key="added"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      className="flex items-center gap-2"
+                    >
+                      <Check className="w-3.5 h-3.5" />
+                      AJOUTÉ
+                    </motion.span>
+                  ) : (
+                    <motion.span
+                      key="default"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      className="flex items-center gap-2.5"
+                    >
+                      <ShoppingBag className="w-3.5 h-3.5" />
+                      AJOUTER AU PANIER
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>

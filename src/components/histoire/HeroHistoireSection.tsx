@@ -1,13 +1,14 @@
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { stagger, fade } from './shared';
+import { useDeviceType } from '../../hooks/useDeviceType';
 
 export default function HeroHistoireSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
+  const { isMobile } = useDeviceType();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -21,7 +22,7 @@ export default function HeroHistoireSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="h-screen relative lg:sticky top-0 lg:z-10"
+      className="h-screen relative sticky top-0 z-10"
     >
       {/* DESKTOP */}
       <div className="relative h-full overflow-hidden hidden lg:block">
@@ -51,20 +52,9 @@ export default function HeroHistoireSection() {
 
             <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8" />
 
-            <motion.p variants={fade} className="font-sans text-white/40 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10">
+            <motion.p variants={fade} className="font-sans text-white/40 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light">
               Un mot trop grand pour ceux qui n'ont rien à dire. Mais parfait pour ceux qui ont quelque chose à restaurer.
             </motion.p>
-
-            <motion.div variants={fade}>
-              <Link to="/shop">
-                <button className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-bronze/60">
-                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#0a0a0a] transition-colors duration-500">
-                    Découvrir nos créations
-                  </span>
-                  <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                </button>
-              </Link>
-            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -80,24 +70,12 @@ export default function HeroHistoireSection() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80" />
         </div>
 
-        <div className="relative h-full flex flex-col justify-between pt-24 pb-8 px-6">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex-shrink-0"
-          >
-            <p className="text-white/90 text-[9px] tracking-[0.3em] uppercase font-sans font-bold mb-2">
-              NOTRE HISTOIRE
-            </p>
-            <div className="w-12 h-px bg-white/40" />
-          </motion.div>
-
+        <div className="relative h-full flex flex-col justify-end pb-8 px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex-1 flex flex-col justify-center max-w-sm"
+            className="max-w-sm mb-6"
           >
             <h1 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4 tracking-[-0.03em] leading-[0.95]">
               Un mot oublié.
@@ -110,27 +88,15 @@ export default function HeroHistoireSection() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex-shrink-0 space-y-3"
+            className="flex-shrink-0"
           >
-            <Link to="/shop" className="block">
-              <button className="w-full bg-white text-dark-text px-8 py-4 font-sans text-[10px] tracking-[0.25em] uppercase font-bold hover:bg-white/95 transition-all duration-300 active:scale-[0.98]">
-                Découvrir nos créations
-              </button>
-            </Link>
-
-            <Link to="/store-locator" className="block">
-              <button className="w-full border-2 border-white/80 text-white px-8 py-4 font-sans text-[10px] tracking-[0.25em] uppercase font-bold hover:bg-white/10 backdrop-blur-sm transition-all duration-300 active:scale-[0.98]">
-                Trouver un opticien
-              </button>
-            </Link>
-
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="flex justify-center pt-4"
+              className="flex justify-center"
             >
               <ChevronDown className="w-5 h-5 text-white/60" strokeWidth={1.5} />
             </motion.div>

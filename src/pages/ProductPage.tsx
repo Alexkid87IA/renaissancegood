@@ -11,6 +11,7 @@ import { findRelatedColorVariants, getModelName, ColorVariant, getColorSwatchSty
 import ProductSidebar from '../components/product/ProductSidebar';
 import ProductBottomBar from '../components/product/ProductBottomBar';
 import RelatedProducts from '../components/product/RelatedProducts';
+import ColorVariantsSection from '../components/product/ColorVariantsSection';
 import ProductPageMobile from '../components/mobile/ProductPageMobile';
 import { Product as ShopifyProductType } from '../components/ProductCard';
 import SEO from '../components/SEO';
@@ -306,17 +307,18 @@ export default function ProductPage() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [displayImages]);
 
-  // Afficher la bottom bar quand on a scrollé au-delà de la grille produit
+  // Afficher la bottom bar dès que le prix dans la sidebar disparaît du viewport
   const [showBottomBar, setShowBottomBar] = useState(false);
-  const gridEndRef = useRef<HTMLDivElement>(null);
+  const priceRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const sentinel = gridEndRef.current;
-    if (!sentinel) return;
+    const priceEl = priceRef.current;
+    if (!priceEl) return;
 
     const onScroll = () => {
-      const rect = sentinel.getBoundingClientRect();
-      setShowBottomBar(rect.top < window.innerHeight * 0.3);
+      const rect = priceEl.getBoundingClientRect();
+      // Le prix est hors écran quand son bas est au-dessus du viewport
+      setShowBottomBar(rect.bottom < 0);
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -432,12 +434,18 @@ export default function ProductPage() {
             colorVariants={colorVariants}
             selectedColorVariantIndex={selectedColorVariantIndex}
             onColorVariantChange={handleColorVariantChange}
+            priceRef={priceRef}
           />
         </div>
       </div>
 
-      {/* Sentinelle : quand visible = on a dépassé la grille produit */}
-      <div ref={gridEndRef} className="h-px" />
+      {/* Section autres coloris */}
+      <ColorVariantsSection
+        colorVariants={colorVariants}
+        selectedColorVariantIndex={selectedColorVariantIndex}
+        onColorVariantChange={handleColorVariantChange}
+        currentHandle={id}
+      />
 
       {/* Related products */}
       <RelatedProducts currentProductId={product.id} limit={4} />

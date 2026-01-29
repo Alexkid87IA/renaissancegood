@@ -65,34 +65,67 @@ export default function CartPage() {
         </motion.div>
 
         {cartLines.length === 0 ? (
-          /* Empty Cart */
+          /* Empty Cart — Premium editorial */
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="max-w-2xl mx-auto text-center py-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto py-8 sm:py-16"
           >
-            <div className="bg-white border border-dark-text/5 p-12 laptop:p-16">
-              <div className="w-20 h-20 mx-auto mb-8 opacity-20">
-                <svg viewBox="0 0 100 50" className="w-full h-full text-dark-text">
-                  <ellipse cx="20" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="2" />
-                  <ellipse cx="80" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="2" />
-                  <line x1="38" y1="25" x2="62" y2="25" stroke="currentColor" strokeWidth="2" />
-                </svg>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              {/* Left — Image */}
+              <div className="relative h-[300px] lg:h-[500px] overflow-hidden">
+                <img
+                  src="https://renaissance-cdn.b-cdn.net/campgane.png"
+                  alt="Renaissance Paris"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/40 via-transparent to-transparent lg:bg-none" />
+                <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#000000] to-transparent hidden lg:block" />
               </div>
-              <h2 className="font-serif text-3xl text-dark-text mb-4">
-                Votre panier est vide
-              </h2>
-              <p className="font-sans text-dark-text/60 mb-10 leading-relaxed">
-                Découvrez nos collections d'exception et trouvez la monture<br />
-                qui révélera votre style unique.
-              </p>
-              <Link
-                to="/collections/heritage"
-                className="inline-block bg-dark-text text-white px-10 py-5 font-sans text-[10px] tracking-[0.3em] font-bold hover:bg-bronze transition-all duration-300"
-              >
-                DÉCOUVRIR NOS COLLECTIONS
-              </Link>
+
+              {/* Right — Content */}
+              <div className="bg-[#000000] px-8 lg:px-12 py-12 lg:py-0 flex flex-col justify-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                  <p className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-5">
+                    Votre panier
+                  </p>
+                  <h2 className="font-display text-3xl lg:text-4xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
+                    RIEN POUR
+                    <br />L'INSTANT.
+                  </h2>
+                  <p className="font-display text-lg font-light italic text-white/40 tracking-[-0.02em] mb-6">
+                    L'exception vous attend.
+                  </p>
+                  <div className="w-10 h-px bg-white/15 mb-6" />
+                  <p className="font-sans text-white/30 text-[13px] leading-[1.8] font-light mb-8 max-w-sm">
+                    Découvrez nos collections et trouvez la monture qui révélera votre style unique.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Link
+                      to="/collections/heritage"
+                      className="group relative overflow-hidden border border-white/15 px-8 py-4 transition-all duration-500 hover:border-bronze/60 text-center"
+                    >
+                      <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                        Nos collections
+                      </span>
+                      <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                    </Link>
+                    <Link
+                      to="/boutique"
+                      className="group relative overflow-hidden border border-white/8 px-8 py-4 transition-all duration-500 hover:border-white/20 text-center"
+                    >
+                      <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/40 group-hover:text-white/70 transition-colors duration-500">
+                        Boutique
+                      </span>
+                    </Link>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         ) : (

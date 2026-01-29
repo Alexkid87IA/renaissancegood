@@ -10,8 +10,10 @@ interface Variant {
 interface Product {
   id: string;
   name: string;
+  modelName?: string;
   badge?: string;
   price: string;
+  collection: string;
   colors: { name: string }[];
   variants: Variant[];
   description: string;
@@ -41,76 +43,75 @@ export default function MobileProductInfo({
 
   return (
     <motion.div
-      className="bg-white px-6 py-8"
-      initial={{ opacity: 0, y: 20 }}
+      className="bg-white px-6 pt-6 pb-4"
+      initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
+      transition={{ duration: 0.5, delay: 0.15 }}
     >
-      <div className="space-y-6">
-        {product.badge && (
-          <div className="inline-block">
-            <div className="border border-dark-text px-3 py-1.5">
-              <span className="font-sans text-[9px] tracking-[0.3em] font-bold text-dark-text">
-                {product.badge}
-              </span>
-            </div>
+      {/* Collection label */}
+      <p className="font-sans text-dark-text/30 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
+        {product.collection}
+      </p>
+
+      {/* Product name */}
+      <h1 className="font-display text-2xl font-bold text-dark-text tracking-[-0.02em] leading-[0.95] mb-2">
+        {product.modelName || product.name}
+      </h1>
+
+      {/* Price */}
+      <p className="font-display text-lg font-light text-dark-text/70 mb-5">
+        {selectedVariant?.price || product.price}
+      </p>
+
+      {/* Separator */}
+      <div className="w-10 h-px bg-dark-text/10 mb-5" />
+
+      {/* Color variants — only show if more than 1 */}
+      {product.colors && product.colors.length > 1 && (
+        <div className="mb-2">
+          <div className="flex items-center justify-between mb-3">
+            <span className="font-sans text-[9px] tracking-[0.3em] font-medium text-dark-text/40 uppercase">
+              Couleur
+            </span>
+            <span className="font-sans text-[11px] text-dark-text/50 font-light">
+              {product.colors[selectedColorIndex]?.name || ''}
+            </span>
           </div>
-        )}
 
-        <div>
-          <h1 className="font-display text-3xl font-light text-dark-text leading-tight tracking-tight mb-3">
-            {product.name}
-          </h1>
-          <p className="font-sans text-2xl font-semibold text-dark-text">
-            {selectedVariant?.price || product.price}
-          </p>
-        </div>
+          <div className="flex gap-2.5">
+            {product.colors.map((color, index) => {
+              const isSelected = selectedColorIndex === index;
+              const isAvailable = product.variants[index]?.availableForSale;
 
-        {product.colors && product.colors.length > 1 && (
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <span className="font-sans text-[11px] tracking-[0.25em] font-bold text-dark-text uppercase">
-                CHOISIR UNE COULEUR
-              </span>
-              <span className="font-sans text-xs text-dark-text/60 tracking-wide">
-                {product.colors[selectedColorIndex]?.name || ''}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-4 gap-3">
-              {product.colors.map((color, index) => (
-                <motion.button
+              return (
+                <button
                   key={index}
                   onClick={() => handleColorChange(index)}
-                  disabled={!product.variants[index]?.availableForSale}
-                  whileTap={{ scale: 0.95 }}
-                  className={`aspect-square border-2 transition-all duration-200 relative ${
-                    selectedColorIndex === index
-                      ? 'border-dark-text shadow-lg bg-dark-text/5'
-                      : 'border-dark-text/20'
-                  } ${
-                    !product.variants[index]?.availableForSale
-                      ? 'opacity-30 cursor-not-allowed'
-                      : 'active:scale-95'
+                  disabled={!isAvailable}
+                  className={`relative w-10 h-10 transition-all duration-300 ${
+                    !isAvailable ? 'opacity-20 cursor-not-allowed' : 'active:scale-95'
                   }`}
                   title={color.name}
                 >
-                  <div className="w-full h-full flex items-center justify-center p-3">
-                    <svg viewBox="0 0 100 50" className="w-full h-full">
-                      <ellipse cx="20" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="2" />
-                      <ellipse cx="80" cy="25" rx="18" ry="22" fill="none" stroke="currentColor" strokeWidth="2" />
-                      <line x1="38" y1="25" x2="62" y2="25" stroke="currentColor" strokeWidth="2" />
-                    </svg>
+                  <div
+                    className={`w-full h-full border transition-all duration-300 ${
+                      isSelected
+                        ? 'border-dark-text'
+                        : 'border-dark-text/15'
+                    }`}
+                  >
+                    <div className="w-full h-full bg-dark-text/5 flex items-center justify-center">
+                      <span className="font-sans text-[7px] tracking-[0.1em] text-dark-text/50 uppercase leading-tight text-center px-0.5">
+                        {color.name.substring(0, 6)}
+                      </span>
+                    </div>
                   </div>
-                  {selectedColorIndex === index && (
-                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-dark-text" />
-                  )}
-                </motion.button>
-              ))}
-            </div>
+                </button>
+              );
+            })}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </motion.div>
   );
 }

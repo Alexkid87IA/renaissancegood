@@ -26,12 +26,17 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
     if (!mapContainer.current || map.current) return;
 
     // Créer la carte centrée sur la France
+    const isMobile = window.innerWidth < 768;
+
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/light-v11', // Style clair et épuré
-      center: initialCenter || [2.3522, 48.8566], // Paris par défaut
-      zoom: initialZoom || 5.5, // Vue d'ensemble de la France
-      attributionControl: false
+      style: 'mapbox://styles/mapbox/light-v11',
+      center: initialCenter || [2.3522, 46.6],
+      zoom: initialZoom || (isMobile ? 4.5 : 5.8),
+      attributionControl: false,
+      logoPosition: 'bottom-left',
+      scrollZoom: false,
+      projection: 'mercator'
     });
 
     // Ajouter les contrôles de navigation (zoom +/-)
@@ -232,6 +237,12 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
         }
         .mapboxgl-canvas {
           outline: none;
+        }
+        .mapboxgl-ctrl-logo {
+          display: none !important;
+        }
+        .mapboxgl-ctrl-attrib {
+          display: none !important;
         }
       `}</style>
     </div>

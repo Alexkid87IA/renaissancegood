@@ -44,6 +44,7 @@ interface ProductSidebarProps {
   colorVariants?: ColorVariant[];
   selectedColorVariantIndex?: number;
   onColorVariantChange?: (index: number) => void;
+  priceRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 export default function ProductSidebar({
@@ -52,7 +53,8 @@ export default function ProductSidebar({
   onColorChange,
   colorVariants = [],
   selectedColorVariantIndex = 0,
-  onColorVariantChange
+  onColorVariantChange,
+  priceRef
 }: ProductSidebarProps) {
   const [showDimensions, setShowDimensions] = useState(true);
   const [showFabrication, setShowFabrication] = useState(true);
@@ -146,7 +148,7 @@ export default function ProductSidebar({
         )}
 
         {/* Prix */}
-        <div className="mb-6 pb-6 border-b border-dark-text/10">
+        <div ref={priceRef} className="mb-6 pb-6 border-b border-dark-text/10">
           <div className="flex items-center justify-between">
             <span className="font-display text-3xl font-bold text-dark-text">
               {displayPrice}

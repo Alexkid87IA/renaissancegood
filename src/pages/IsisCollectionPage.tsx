@@ -24,21 +24,14 @@ export default function IsisCollectionPage() {
         url="/collections/isis"
       />
 
-      <motion.div
+      <div
         ref={heroRef}
-        style={{ scale, opacity }}
-        className="h-screen relative lg:sticky lg:top-0 lg:z-10"
+        className="h-screen relative overflow-hidden"
       >
         {/* DESKTOP — Split éditorial */}
         <div className="relative h-full overflow-hidden hidden lg:flex">
           {/* Left Panel — Content */}
-          <div className="w-[42%] bg-[#0c0c0c] relative flex flex-col justify-center px-12 xl:px-20 2xl:px-28">
-            {/* Symbol watermark */}
-            <img
-              src="https://renaissance-cdn.b-cdn.net/SCARABEE%20SYMBOL.png"
-              alt=""
-              className="absolute top-1/2 -translate-y-1/2 right-6 w-48 xl:w-56 2xl:w-64 opacity-[0.03] pointer-events-none select-none invert"
-            />
+          <div className="w-[42%] bg-[#000000] relative flex flex-col justify-center px-12 xl:px-20 2xl:px-28">
 
             {/* Top label */}
             <div className="absolute top-10 left-12 xl:left-20 2xl:left-28">
@@ -104,8 +97,8 @@ export default function IsisCollectionPage() {
               className="absolute inset-0 w-full h-full object-cover"
               style={{ y: imageY }}
             />
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0c0c0c] to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0c0c0c]/20 to-transparent" />
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#000000] to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#000000]/20 to-transparent" />
           </div>
         </div>
 
@@ -118,7 +111,7 @@ export default function IsisCollectionPage() {
               alt="Collection Isis"
               className="w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0c]/40 via-transparent to-[#0c0c0c]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]" />
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -132,7 +125,7 @@ export default function IsisCollectionPage() {
           </div>
 
           {/* Content bottom */}
-          <div className="flex-1 bg-[#0c0c0c] px-6 flex flex-col justify-center relative">
+          <div className="flex-1 bg-[#000000] px-6 flex flex-col justify-center relative">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -166,7 +159,7 @@ export default function IsisCollectionPage() {
             </motion.div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       <div className="relative z-20 bg-beige" data-products-section>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16 py-20 sm:py-32 md:py-40">

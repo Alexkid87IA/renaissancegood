@@ -1,9 +1,15 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { Mail, Phone, Clock, Send, MapPin } from 'lucide-react';
 import SEO from '../components/SEO';
+import { stagger, fade } from '../components/shared';
 
 export default function ContactPage() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
+  const formRef = useRef<HTMLDivElement>(null);
+  const formInView = useInView(formRef, { once: true, amount: 0.2 });
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,328 +20,419 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     await new Promise(resolve => setTimeout(resolve, 1500));
-
     setIsSubmitting(false);
     setIsSubmitted(true);
-
     setTimeout(() => {
       setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: 'general',
-        message: ''
-      });
+      setFormData({ name: '', email: '', phone: '', subject: 'general', message: '' });
     }, 3000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
-    <div className="min-h-screen bg-beige pt-24 pb-16">
+    <div className="min-h-screen bg-beige">
       <SEO
         title="Contact"
         description="Contactez RENAISSANCE Paris pour toute question sur nos lunettes de luxe. Service client disponible par email et téléphone du lundi au vendredi."
         url="/contact"
       />
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark-text mb-4">
-            Nous Contacter
-          </h1>
-          <p className="font-sans text-dark-text/60 text-lg max-w-2xl mx-auto">
-            Notre équipe est à votre écoute pour répondre à toutes vos questions
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-white p-6 border border-bronze/10 hover:border-bronze/30 transition-colors"
-          >
-            <div className="w-12 h-12 bg-bronze/10 flex items-center justify-center mb-4">
-              <Mail className="text-bronze" size={24} />
+      {/* HERO — Split éditorial */}
+      <div className="h-screen relative overflow-hidden">
+        {/* DESKTOP */}
+        <div className="relative h-full overflow-hidden hidden lg:flex">
+          <div className="w-[42%] bg-[#000000] relative flex flex-col justify-center px-12 xl:px-20 2xl:px-28">
+            <div className="absolute top-10 left-12 xl:left-20 2xl:left-28">
+              <p className="font-sans text-white/25 text-[9px] tracking-[0.4em] font-medium uppercase">
+                La Maison
+              </p>
             </div>
-            <h3 className="font-sans text-dark-text text-lg font-bold mb-2 tracking-wider uppercase">
-              Email
-            </h3>
-            <p className="font-sans text-dark-text/60 text-sm mb-3">
-              Nous répondons sous 48h
-            </p>
-            <a
-              href="mailto:contact@renaissance-eyewear.fr"
-              className="font-sans text-bronze text-sm hover:text-bronze/80 transition-colors break-all"
+
+            <motion.div
+              ref={heroRef}
+              variants={stagger}
+              initial="hidden"
+              animate={heroInView ? "visible" : "hidden"}
+              className="relative z-10"
             >
-              contact@renaissance-eyewear.fr
-            </a>
-          </motion.div>
+              <motion.h1 variants={fade} className="font-display text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white mb-3 tracking-[-0.03em] leading-[0.9]">
+                CONTACTEZ-
+                <br />NOUS.
+              </motion.h1>
+              <motion.p variants={fade} className="font-display text-2xl xl:text-3xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 xl:mb-10">
+                À votre écoute.
+              </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white p-6 border border-bronze/10 hover:border-bronze/30 transition-colors"
-          >
-            <div className="w-12 h-12 bg-bronze/10 flex items-center justify-center mb-4">
-              <Phone className="text-bronze" size={24} />
-            </div>
-            <h3 className="font-sans text-dark-text text-lg font-bold mb-2 tracking-wider uppercase">
-              Téléphone
-            </h3>
-            <p className="font-sans text-dark-text/60 text-sm mb-3">
-              Service client disponible
-            </p>
-            <a
-              href="tel:+33142868200"
-              className="font-sans text-bronze text-sm hover:text-bronze/80 transition-colors"
-            >
-              +33 1 42 86 82 00
-            </a>
-          </motion.div>
+              <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8 xl:mb-10" />
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-white p-6 border border-bronze/10 hover:border-bronze/30 transition-colors"
-          >
-            <div className="w-12 h-12 bg-bronze/10 flex items-center justify-center mb-4">
-              <Clock className="text-bronze" size={24} />
+              <motion.p variants={fade} className="font-sans text-white/35 text-[13px] xl:text-sm leading-[1.9] font-light max-w-md mb-10 xl:mb-14">
+                Notre équipe est disponible pour répondre à toutes vos questions sur nos collections, vos commandes ou le réseau d'opticiens partenaires.
+              </motion.p>
+
+              <motion.div variants={fade}>
+                <button
+                  onClick={() => {
+                    const section = document.querySelector('[data-contact-form]');
+                    section?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="group relative overflow-hidden border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
+                >
+                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                    Écrire un message
+                  </span>
+                  <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </button>
+              </motion.div>
+            </motion.div>
+
+            <div className="absolute bottom-10 left-12 xl:left-20 2xl:left-28 flex items-center gap-3">
+              <div className="w-8 h-px bg-white/15" />
+              <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">Scroll</span>
             </div>
-            <h3 className="font-sans text-dark-text text-lg font-bold mb-2 tracking-wider uppercase">
-              Horaires
-            </h3>
-            <p className="font-sans text-dark-text/60 text-sm mb-3">
-              Du lundi au vendredi
-            </p>
-            <p className="font-sans text-bronze text-sm">
-              9h - 18h
-            </p>
-          </motion.div>
+          </div>
+
+          <div className="flex-1 relative overflow-hidden">
+            <img
+              src="https://renaissance-cdn.b-cdn.net/campgane.png"
+              alt="Renaissance Paris - Contact"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#000000] to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#000000]/20 to-transparent" />
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* MOBILE */}
+        <div className="relative h-full overflow-hidden lg:hidden flex flex-col">
+          <div className="relative h-[50%] overflow-hidden">
+            <img
+              src="https://renaissance-cdn.b-cdn.net/campgane.png"
+              alt="Renaissance Paris - Contact"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]" />
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="absolute top-24 left-6"
+            >
+              <p className="text-white/50 text-[9px] tracking-[0.3em] uppercase font-sans font-medium">
+                La Maison
+              </p>
+            </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-white p-8 border border-bronze/10"
-          >
-            <h2 className="font-serif text-2xl text-dark-text mb-6">
-              Envoyez-nous un message
-            </h2>
-
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label htmlFor="name" className="block font-sans text-sm text-dark-text/70 mb-2 tracking-wide uppercase">
-                  Nom complet *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-dark-text/20 bg-beige/30 font-sans text-sm text-dark-text focus:outline-none focus:border-bronze transition-colors"
-                  placeholder="Votre nom"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block font-sans text-sm text-dark-text/70 mb-2 tracking-wide uppercase">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-dark-text/20 bg-beige/30 font-sans text-sm text-dark-text focus:outline-none focus:border-bronze transition-colors"
-                  placeholder="votre@email.fr"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block font-sans text-sm text-dark-text/70 mb-2 tracking-wide uppercase">
-                  Téléphone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-dark-text/20 bg-beige/30 font-sans text-sm text-dark-text focus:outline-none focus:border-bronze transition-colors"
-                  placeholder="+33 6 12 34 56 78"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block font-sans text-sm text-dark-text/70 mb-2 tracking-wide uppercase">
-                  Sujet *
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-dark-text/20 bg-beige/30 font-sans text-sm text-dark-text focus:outline-none focus:border-bronze transition-colors"
-                >
-                  <option value="general">Question générale</option>
-                  <option value="order">Ma commande</option>
-                  <option value="product">Question produit</option>
-                  <option value="return">Retour ou échange</option>
-                  <option value="sav">Service après-vente</option>
-                  <option value="partner">Devenir partenaire</option>
-                  <option value="other">Autre</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block font-sans text-sm text-dark-text/70 mb-2 tracking-wide uppercase">
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 border border-dark-text/20 bg-beige/30 font-sans text-sm text-dark-text focus:outline-none focus:border-bronze transition-colors resize-none"
-                  placeholder="Décrivez votre demande..."
-                />
-              </div>
-
-              <motion.button
-                type="submit"
-                disabled={isSubmitting || isSubmitted}
-                whileHover={{ scale: isSubmitting || isSubmitted ? 1 : 1.02 }}
-                whileTap={{ scale: isSubmitting || isSubmitted ? 1 : 0.98 }}
-                className={`w-full py-4 font-sans text-sm tracking-wider uppercase transition-colors flex items-center justify-center gap-2 ${
-                  isSubmitted
-                    ? 'bg-green-600 text-white'
-                    : isSubmitting
-                    ? 'bg-bronze/50 text-white cursor-not-allowed'
-                    : 'bg-bronze text-white hover:bg-bronze/90'
-                }`}
+          <div className="flex-1 bg-[#000000] px-6 flex flex-col justify-center relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <h1 className="font-display text-3xl sm:text-4xl font-bold text-white mb-2 tracking-[-0.03em] leading-[0.9]">
+                CONTACTEZ-NOUS.
+              </h1>
+              <p className="font-display text-lg sm:text-xl font-light italic text-white/50 tracking-[-0.02em] mb-5">
+                À votre écoute.
+              </p>
+              <div className="w-10 h-px bg-white/15 mb-5" />
+              <p className="text-white/35 text-sm font-sans leading-relaxed font-light mb-6">
+                Notre équipe est disponible pour répondre à toutes vos questions.
+              </p>
+              <button
+                onClick={() => {
+                  const section = document.querySelector('[data-contact-form]');
+                  section?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="group relative overflow-hidden w-full border border-white/15 px-8 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98]"
               >
-                {isSubmitted ? (
-                  <>
-                    <span>✓</span>
-                    <span>Message envoyé</span>
-                  </>
-                ) : isSubmitting ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    <span>Envoi en cours...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send size={16} />
-                    <span>Envoyer le message</span>
-                  </>
-                )}
-              </motion.button>
-
-              <p className="font-sans text-xs text-dark-text/50 text-center">
-                * Champs obligatoires
-              </p>
-            </form>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="space-y-6"
-          >
-            <div className="bg-white p-8 border border-bronze/10">
-              <div className="flex items-start gap-4 mb-6">
-                <MapPin className="text-bronze flex-shrink-0 mt-1" size={24} />
-                <div>
-                  <h3 className="font-sans text-dark-text text-lg font-bold mb-2 tracking-wider uppercase">
-                    Localisation
-                  </h3>
-                  <p className="font-sans text-dark-text/70 text-sm leading-relaxed">
-                    Paris, France
-                  </p>
-                  <p className="font-sans text-dark-text/50 text-xs mt-2">
-                    La Maison Renaissance est fièrement établie à Paris, capitale de l'élégance et du savoir-faire français.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-bronze/5 to-transparent p-8 border-l-4 border-bronze">
-              <h3 className="font-serif text-2xl text-dark-text mb-4">
-                Besoin d'un conseil ?
-              </h3>
-              <p className="font-sans text-dark-text/70 text-sm leading-relaxed mb-4">
-                Rendez-vous chez l'un de nos 200+ opticiens partenaires pour essayer nos collections et bénéficier de conseils personnalisés.
-              </p>
-              <a
-                href="/store-locator"
-                className="inline-block px-6 py-3 bg-bronze text-white font-sans text-sm tracking-wider uppercase hover:bg-bronze/90 transition-colors"
-              >
-                Trouver un opticien
-              </a>
-            </div>
-
-            <div className="bg-white p-8 border border-bronze/10">
-              <h3 className="font-sans text-dark-text text-lg font-bold mb-4 tracking-wider uppercase">
-                Réseaux Sociaux
-              </h3>
-              <p className="font-sans text-dark-text/60 text-sm mb-4">
-                Suivez-nous pour découvrir nos nouvelles collections et l'actualité de la Maison.
-              </p>
-              <div className="flex gap-3">
-                <a
-                  href="https://instagram.com/renaissance.eyewear"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 border border-bronze/20 flex items-center justify-center hover:border-bronze hover:bg-bronze/5 transition-all"
-                >
-                  <span className="text-bronze text-sm">IG</span>
-                </a>
-                <a
-                  href="https://facebook.com/renaissance.eyewear"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 border border-bronze/20 flex items-center justify-center hover:border-bronze hover:bg-bronze/5 transition-all"
-                >
-                  <span className="text-bronze text-sm">FB</span>
-                </a>
-              </div>
-            </div>
-          </motion.div>
+                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                  Écrire un message
+                </span>
+                <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              </button>
+            </motion.div>
+          </div>
         </div>
       </div>
+
+      {/* CONTACT INFO CARDS — Section sombre */}
+      <section className="bg-[#000000]">
+        <div className="max-w-[1000px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-3">
+            {[
+              {
+                icon: Mail,
+                title: 'Email',
+                detail: 'contact@renaissance-eyewear.fr',
+                sub: 'Réponse sous 48h',
+                href: 'mailto:contact@renaissance-eyewear.fr'
+              },
+              {
+                icon: Phone,
+                title: 'Téléphone',
+                detail: '+33 1 42 86 82 00',
+                sub: 'Lun — Ven',
+                href: 'tel:+33142868200'
+              },
+              {
+                icon: Clock,
+                title: 'Horaires',
+                detail: '9h — 18h',
+                sub: 'Du lundi au vendredi',
+                href: null
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="bg-[#000000] py-12 lg:py-16 px-6 text-center flex flex-col items-center"
+              >
+                <item.icon className="w-5 h-5 text-bronze mb-6" strokeWidth={1.5} />
+                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/25 mb-3">
+                  {item.title}
+                </p>
+                {item.href ? (
+                  <a href={item.href} className="block font-sans text-base lg:text-lg font-medium text-white mb-2 hover:text-bronze transition-colors duration-500">
+                    {item.detail}
+                  </a>
+                ) : (
+                  <p className="font-display text-xl lg:text-2xl font-bold text-white mb-2">
+                    {item.detail}
+                  </p>
+                )}
+                <p className="font-sans text-xs text-white/30 font-light">
+                  {item.sub}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FORMULAIRE + INFOS — Section beige */}
+      <section className="py-20 sm:py-28 lg:py-32" data-contact-form>
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+
+            {/* LEFT — Formulaire */}
+            <motion.div
+              ref={formRef}
+              initial={{ opacity: 0, y: 30 }}
+              animate={formInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="font-sans text-dark-text/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
+                Message
+              </p>
+              <h2 className="font-display text-3xl lg:text-4xl xl:text-5xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-3">
+                Écrivez-nous.
+              </h2>
+              <p className="font-display text-lg lg:text-xl font-light italic text-dark-text/40 tracking-[-0.02em] mb-8">
+                Nous reviendrons vers vous rapidement.
+              </p>
+              <div className="w-12 h-px bg-dark-text/15 mb-10" />
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text uppercase mb-2">
+                      Nom complet *
+                    </label>
+                    <input
+                      type="text" id="name" name="name" value={formData.name} onChange={handleChange} required
+                      placeholder="Votre nom"
+                      className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text uppercase mb-2">
+                      Email *
+                    </label>
+                    <input
+                      type="email" id="email" name="email" value={formData.email} onChange={handleChange} required
+                      placeholder="votre@email.fr"
+                      className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="phone" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text uppercase mb-2">
+                      Téléphone
+                    </label>
+                    <input
+                      type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange}
+                      placeholder="+33 6 12 34 56 78"
+                      className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="subject" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text uppercase mb-2">
+                      Sujet *
+                    </label>
+                    <select
+                      id="subject" name="subject" value={formData.subject} onChange={handleChange} required
+                      className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text focus:outline-none focus:border-bronze transition-colors duration-300 appearance-none cursor-pointer"
+                    >
+                      <option value="general">Question générale</option>
+                      <option value="order">Ma commande</option>
+                      <option value="product">Question produit</option>
+                      <option value="return">Retour ou échange</option>
+                      <option value="sav">Service après-vente</option>
+                      <option value="partner">Devenir partenaire</option>
+                      <option value="other">Autre</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text uppercase mb-2">
+                    Message *
+                  </label>
+                  <textarea
+                    id="message" name="message" value={formData.message} onChange={handleChange} required rows={5}
+                    placeholder="Décrivez votre demande..."
+                    className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300 resize-none"
+                  />
+                </div>
+
+                <div className="pt-4">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting || isSubmitted}
+                    className={`group relative overflow-hidden border px-10 py-4 transition-all duration-500 ${
+                      isSubmitted
+                        ? 'border-green-600 bg-green-600'
+                        : isSubmitting
+                        ? 'border-dark-text/20 opacity-60 cursor-not-allowed'
+                        : 'border-dark-text hover:border-dark-text'
+                    }`}
+                  >
+                    <span className={`relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase flex items-center gap-2 transition-colors duration-500 ${
+                      isSubmitted
+                        ? 'text-white'
+                        : isSubmitting
+                        ? 'text-dark-text/50'
+                        : 'text-dark-text group-hover:text-beige'
+                    }`}>
+                      {isSubmitted ? (
+                        <>Message envoyé</>
+                      ) : isSubmitting ? (
+                        <>
+                          <div className="w-3 h-3 border border-dark-text/30 border-t-dark-text rounded-full animate-spin" />
+                          Envoi en cours...
+                        </>
+                      ) : (
+                        <>
+                          <Send size={12} />
+                          Envoyer le message
+                        </>
+                      )}
+                    </span>
+                    {!isSubmitted && !isSubmitting && (
+                      <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                    )}
+                  </button>
+                </div>
+
+                <p className="font-sans text-[10px] text-dark-text/30">
+                  * Champs obligatoires
+                </p>
+              </form>
+            </motion.div>
+
+            {/* RIGHT — Infos complémentaires */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-8 lg:pt-20"
+            >
+              {/* Localisation */}
+              <div className="border border-dark-text/8 p-8 lg:p-10">
+                <MapPin className="w-5 h-5 text-bronze mb-5" strokeWidth={1.5} />
+                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/30 mb-3">
+                  Localisation
+                </p>
+                <p className="font-display text-xl font-bold text-dark-text mb-2">
+                  Paris, France
+                </p>
+                <p className="font-sans text-xs text-dark-text/40 font-light leading-relaxed">
+                  La Maison Renaissance est fièrement établie à Paris, capitale de l'élégance et du savoir-faire français.
+                </p>
+              </div>
+
+              {/* Opticiens */}
+              <div className="bg-[#0a0a0a] p-8 lg:p-10">
+                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/25 mb-4">
+                  Réseau
+                </p>
+                <h3 className="font-display text-2xl font-bold text-white mb-3 tracking-[-0.02em]">
+                  Besoin d'essayer ?
+                </h3>
+                <p className="font-sans text-white/35 text-sm leading-[1.8] font-light mb-8">
+                  Rendez-vous chez l'un de nos 200+ opticiens partenaires pour essayer nos collections et bénéficier de conseils personnalisés.
+                </p>
+                <a
+                  href="/opticiens"
+                  className="group relative overflow-hidden inline-block border border-white/15 px-8 py-3.5 transition-all duration-500 hover:border-bronze/60"
+                >
+                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                    Trouver un opticien
+                  </span>
+                  <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </a>
+              </div>
+
+              {/* Réseaux sociaux */}
+              <div className="border border-dark-text/8 p-8 lg:p-10">
+                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/30 mb-4">
+                  Suivez-nous
+                </p>
+                <p className="font-sans text-xs text-dark-text/40 font-light leading-relaxed mb-6">
+                  Découvrez nos nouvelles collections et l'actualité de la Maison.
+                </p>
+                <div className="flex gap-3">
+                  {[
+                    { label: 'Instagram', href: 'https://instagram.com/renaissance.eyewear' },
+                    { label: 'Facebook', href: 'https://facebook.com/renaissance.eyewear' }
+                  ].map(social => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative overflow-hidden border border-dark-text/10 px-5 py-2.5 transition-all duration-500 hover:border-dark-text"
+                    >
+                      <span className="relative z-10 font-sans text-[9px] tracking-[0.2em] font-medium uppercase text-dark-text/50 group-hover:text-beige transition-colors duration-500">
+                        {social.label}
+                      </span>
+                      <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
