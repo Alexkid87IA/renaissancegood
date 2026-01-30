@@ -100,6 +100,10 @@
   "loading": "Chargement",
   "error": "Impossible de charger la collection",
   "retry": "Réessayer",
+  "errorBoundary": {
+    "message": "Nous sommes désolés. Veuillez rafraîchir la page.",
+    "refresh": "Rafraîchir la page"
+  },
   "notFound": {
     "title": "Page introuvable",
     "description": "La page que vous cherchez n'existe pas ou a été déplacée.",
@@ -135,5 +139,30 @@
     "copyright": "© 2025 Renaissance Eyewear",
     "legalNotice": "Mentions légales",
     "privacy": "Confidentialité"
+  },
+  "seo": {
+    "defaultDescription": "Découvrez les lunettes de luxe RENAISSANCE Paris. Savoir-faire artisanal français, matériaux nobles et design intemporel. Créées à Paris avec passion.",
+    "defaultTitle": "Lunettes de Luxe Artisanales | Excellence Française",
+    "orgDescription": "Maison française de lunettes de luxe artisanales",
+    "home": "Accueil"
+  },
+  "search": {
+    "title": "RECHERCHE",
+    "subtitle": "Trouvez votre monture idéale",
+    "collection": "COLLECTION",
+    "material": "MATÉRIAU",
+    "shape": "FORME",
+    "lens": "VERRE",
+    "all": "Tout",
+    "acetate": "Acétate",
+    "metal": "Métal",
+    "titanium": "Titane",
+    "round": "Rond",
+    "oval": "Ovale",
+    "square": "Carré",
+    "hexagonal": "Hexagonal",
+    "butterfly": "Papillon",
+    "helpText": "Utilisez les filtres pour affiner votre recherche",
+    "viewAll": "Voir tous les produits"
   }
 }

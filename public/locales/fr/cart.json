@@ -157,5 +157,23 @@
     "continueShopping": "Continuer mes achats",
     "backToHome": "Retour à l'accueil",
     "orderQuestion": "Une question sur votre commande ?"
+  },
+  "drawer": {
+    "title": "Votre Panier",
+    "close": "Fermer le panier",
+    "itemCount": "{{count}} article",
+    "itemCount_other": "{{count}} articles",
+    "freeShippingRemaining": "avant la livraison offerte",
+    "emptyTitle": "Votre panier est vide",
+    "emptyDescription": "Découvrez nos collections d'exception",
+    "discover": "Découvrir",
+    "warranty": "Garantie 3 ans",
+    "trackedShipping": "Livraison suivie",
+    "subtotal": "Sous-total",
+    "checkout": "Finaliser la commande",
+    "viewCart": "Voir le panier complet",
+    "taxesNote": "Les taxes et frais de livraison seront calculés à l'étape suivante",
+    "decreaseQty": "Diminuer la quantité",
+    "increaseQty": "Augmenter la quantité"
   }
 }

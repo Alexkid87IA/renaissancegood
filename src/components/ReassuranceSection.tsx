@@ -16,7 +16,7 @@ export default function ReassuranceSection() {
   ];
 
   return (
-    <section className="relative z-[90] bg-beige">
+    <section className="sticky top-0 z-[90] bg-beige">
 
       {/* DESKTOP — layout 2 colonnes : texte à gauche, image à droite */}
       <div className="hidden md:flex">

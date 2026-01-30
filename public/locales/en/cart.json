@@ -157,5 +157,23 @@
     "continueShopping": "Continue shopping",
     "backToHome": "Back to home",
     "orderQuestion": "A question about your order?"
+  },
+  "drawer": {
+    "title": "Your Cart",
+    "close": "Close cart",
+    "itemCount": "{{count}} item",
+    "itemCount_other": "{{count}} items",
+    "freeShippingRemaining": "until free shipping",
+    "emptyTitle": "Your cart is empty",
+    "emptyDescription": "Discover our exceptional collections",
+    "discover": "Discover",
+    "warranty": "3-year warranty",
+    "trackedShipping": "Tracked shipping",
+    "subtotal": "Subtotal",
+    "checkout": "Complete order",
+    "viewCart": "View full cart",
+    "taxesNote": "Taxes and shipping costs will be calculated at the next step",
+    "decreaseQty": "Decrease quantity",
+    "increaseQty": "Increase quantity"
   }
 }

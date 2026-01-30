@@ -25,7 +25,7 @@ export default function FabricationSection() {
 
   return (
     <motion.section
-      className="relative z-[80] bg-[#000000]"
+      className="sticky top-0 z-[80] bg-[#000000]"
       id="fabrication"
     >
       {/* DESKTOP */}

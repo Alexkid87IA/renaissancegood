@@ -135,6 +135,24 @@
     "shippingRateFree": "Бесплатная экспресс-доставка",
     "shippingRateStandard": "Экспресс-доставка 48 ч"
   },
+  "drawer": {
+    "title": "Ваша корзина",
+    "close": "Закрыть корзину",
+    "itemCount": "{{count}} товар",
+    "itemCount_other": "{{count}} товаров",
+    "freeShippingRemaining": "до бесплатной доставки",
+    "emptyTitle": "Ваша корзина пуста",
+    "emptyDescription": "Откройте наши исключительные коллекции",
+    "discover": "Перейти",
+    "warranty": "Гарантия 3 года",
+    "trackedShipping": "Отслеживаемая доставка",
+    "subtotal": "Итого",
+    "checkout": "Оформить заказ",
+    "viewCart": "Открыть корзину",
+    "taxesNote": "Налоги и стоимость доставки будут рассчитаны на следующем шаге",
+    "decreaseQty": "Уменьшить количество",
+    "increaseQty": "Увеличить количество"
+  },
   "confirmationPage": {
     "confirmed": "Подтверждено",
     "headerTitle": "Renaissance",

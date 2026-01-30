@@ -11,7 +11,7 @@ export default function TryInStoreSection() {
 
   return (
     <motion.section
-      className="min-h-screen relative z-[60] bg-[#000000]"
+      className="min-h-screen sticky top-0 z-[60] bg-[#000000]"
     >
       {/* DESKTOP */}
       <div className="h-screen hidden md:flex flex-row">

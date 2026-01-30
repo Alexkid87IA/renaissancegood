@@ -116,6 +116,31 @@
     "decline": "Rechazar",
     "learnMore": "Más información"
   },
+  "seo": {
+    "defaultDescription": "Descubra las gafas de lujo RENAISSANCE Paris. Artesanía francesa, materiales nobles y diseño atemporal.",
+    "defaultTitle": "Gafas de lujo artesanales | Excelencia francesa",
+    "orgDescription": "Casa francesa de gafas de lujo artesanales",
+    "home": "Inicio"
+  },
+  "search": {
+    "title": "BÚSQUEDA",
+    "subtitle": "Encuentra tu montura ideal",
+    "collection": "COLECCIÓN",
+    "material": "MATERIAL",
+    "shape": "FORMA",
+    "lens": "LENTES",
+    "all": "Todo",
+    "acetate": "Acetato",
+    "metal": "Metal",
+    "titanium": "Titanio",
+    "round": "Redondo",
+    "oval": "Ovalado",
+    "square": "Cuadrado",
+    "hexagonal": "Hexagonal",
+    "butterfly": "Mariposa",
+    "helpText": "Utiliza los filtros para refinar tu búsqueda",
+    "viewAll": "Ver todos los productos"
+  },
   "productFooter": {
     "collections": "Colecciones",
     "heritage": "Herencia",

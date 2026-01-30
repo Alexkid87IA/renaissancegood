@@ -20,7 +20,7 @@ export default function CollectionVersailles() {
 
   return (
     <motion.section
-      className="min-h-screen lg:h-screen relative z-30"
+      className="min-h-screen lg:h-screen sticky top-0 z-30"
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">

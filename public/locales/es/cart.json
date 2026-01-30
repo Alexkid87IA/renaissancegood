@@ -135,6 +135,24 @@
     "shippingRateFree": "Envío Express Gratuito",
     "shippingRateStandard": "Envío Express 48h"
   },
+  "drawer": {
+    "title": "Tu carrito",
+    "close": "Cerrar carrito",
+    "itemCount": "{{count}} artículo",
+    "itemCount_other": "{{count}} artículos",
+    "freeShippingRemaining": "para el envío gratuito",
+    "emptyTitle": "Tu carrito está vacío",
+    "emptyDescription": "Descubre nuestras colecciones excepcionales",
+    "discover": "Descubrir",
+    "warranty": "Garantía 3 años",
+    "trackedShipping": "Envío con seguimiento",
+    "subtotal": "Subtotal",
+    "checkout": "Finalizar pedido",
+    "viewCart": "Ver carrito completo",
+    "taxesNote": "Los impuestos y gastos de envío se calcularán en el siguiente paso",
+    "decreaseQty": "Disminuir cantidad",
+    "increaseQty": "Aumentar cantidad"
+  },
   "confirmationPage": {
     "confirmed": "Confirmado",
     "headerTitle": "Renaissance",

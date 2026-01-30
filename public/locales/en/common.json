@@ -98,6 +98,12 @@
     "ourOpticians": "Our Opticians"
   },
   "loading": "Loading",
+  "error": "Failed to load collection",
+  "retry": "Retry",
+  "errorBoundary": {
+    "message": "We're sorry. Please refresh the page.",
+    "refresh": "Refresh page"
+  },
   "notFound": {
     "title": "Page not found",
     "description": "The page you are looking for does not exist or has been moved.",
@@ -133,5 +139,30 @@
     "copyright": "\u00a9 2025 Renaissance Eyewear",
     "legalNotice": "Legal Notice",
     "privacy": "Privacy Policy"
+  },
+  "seo": {
+    "defaultDescription": "Discover RENAISSANCE Paris luxury eyewear. French artisanal craftsmanship, noble materials and timeless design. Created in Paris with passion.",
+    "defaultTitle": "Artisanal Luxury Eyewear | French Excellence",
+    "orgDescription": "French house of artisanal luxury eyewear",
+    "home": "Home"
+  },
+  "search": {
+    "title": "SEARCH",
+    "subtitle": "Find your ideal frame",
+    "collection": "COLLECTION",
+    "material": "MATERIAL",
+    "shape": "SHAPE",
+    "lens": "LENS",
+    "all": "All",
+    "acetate": "Acetate",
+    "metal": "Metal",
+    "titanium": "Titanium",
+    "round": "Round",
+    "oval": "Oval",
+    "square": "Square",
+    "hexagonal": "Hexagonal",
+    "butterfly": "Butterfly",
+    "helpText": "Use filters to refine your search",
+    "viewAll": "View all products"
   }
 }

@@ -46,7 +46,7 @@ export default function CartDrawer() {
             ref={drawerRef}
             role="dialog"
             aria-modal="true"
-            aria-label={t('drawer.title', 'Votre Panier')}
+            aria-label={t('drawer.title')}
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -57,7 +57,7 @@ export default function CartDrawer() {
             <div className="flex items-center justify-between p-6 bg-white border-b border-dark-text/10">
               <div>
                 <h2 className="font-serif text-3xl text-dark-text leading-none mb-2">
-                  {t('drawer.title', 'Votre Panier')}
+                  {t('drawer.title')}
                 </h2>
                 <p className="font-sans text-xs text-dark-text/60">
                   {t('drawer.itemCount', { count: itemCount })}
@@ -66,7 +66,7 @@ export default function CartDrawer() {
               <button
                 onClick={closeCart}
                 className="p-2 hover:bg-dark-text/5 rounded-full transition-colors"
-                aria-label={t('drawer.close', 'Fermer le panier')}
+                aria-label={t('drawer.close')}
               >
                 <X size={24} className="text-dark-text" />
               </button>
@@ -108,17 +108,17 @@ export default function CartDrawer() {
                     </svg>
                   </div>
                   <h3 className="font-serif text-xl text-dark-text mb-2">
-                    {t('drawer.emptyTitle', 'Votre panier est vide')}
+                    {t('drawer.emptyTitle')}
                   </h3>
                   <p className="font-sans text-dark-text/60 text-sm mb-6 leading-relaxed">
-                    {t('drawer.emptyDescription', "Découvrez nos collections d'exception")}
+                    {t('drawer.emptyDescription')}
                   </p>
                   <LocaleLink
                     to="/shop"
                     onClick={closeCart}
                     className="font-sans text-[10px] tracking-[0.3em] uppercase bg-dark-text text-white px-8 py-4 hover:bg-bronze transition-all duration-300"
                   >
-                    {t('drawer.discover', 'Découvrir')}
+                    {t('drawer.discover')}
                   </LocaleLink>
                 </div>
               ) : (
@@ -205,7 +205,7 @@ export default function CartDrawer() {
                                   }}
                                   disabled={isLoading}
                                   className="w-7 h-7 border border-dark-text/20 flex items-center justify-center hover:bg-beige transition-colors disabled:opacity-50"
-                                  aria-label="Diminuer la quantité"
+                                  aria-label={t('drawer.decreaseQty')}
                                 >
                                   {node.quantity === 1 ? (
                                     <X size={12} className="text-dark-text" />
@@ -220,7 +220,7 @@ export default function CartDrawer() {
                                   onClick={() => updateQuantity(node.id, node.quantity + 1)}
                                   disabled={isLoading}
                                   className="w-7 h-7 border border-dark-text/20 flex items-center justify-center hover:bg-beige transition-colors disabled:opacity-50"
-                                  aria-label="Augmenter la quantité"
+                                  aria-label={t('drawer.increaseQty')}
                                 >
                                   <span className="text-xs">+</span>
                                 </button>
@@ -242,18 +242,18 @@ export default function CartDrawer() {
                 <div className="flex items-center justify-center gap-4 pb-4 border-b border-dark-text/5">
                   <div className="flex items-center gap-1.5">
                     <Shield size={12} className="text-bronze" />
-                    <span className="font-sans text-[9px] text-dark-text/60">{t('drawer.warranty', 'Garantie 3 ans')}</span>
+                    <span className="font-sans text-[9px] text-dark-text/60">{t('drawer.warranty')}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Truck size={12} className="text-bronze" />
-                    <span className="font-sans text-[9px] text-dark-text/60">{t('drawer.trackedShipping', 'Livraison suivie')}</span>
+                    <span className="font-sans text-[9px] text-dark-text/60">{t('drawer.trackedShipping')}</span>
                   </div>
                 </div>
 
                 {/* Sous-total */}
                 <div className="flex items-baseline justify-between pb-4">
                   <span className="font-sans text-xs tracking-[0.2em] uppercase text-dark-text/60">
-                    {t('drawer.subtotal', 'Sous-total')}
+                    {t('drawer.subtotal')}
                   </span>
                   <span className="font-serif text-2xl text-dark-text">
                     {subtotal.toFixed(2)}€
@@ -268,7 +268,7 @@ export default function CartDrawer() {
                     onClick={closeCart}
                     className="block w-full bg-dark-text text-white text-center font-sans text-[10px] tracking-[0.3em] uppercase py-4 hover:bg-bronze transition-all duration-300"
                   >
-                    {t('drawer.checkout', 'Finaliser la commande')}
+                    {t('drawer.checkout')}
                   </LocaleLink>
 
                   {/* Bouton Voir le panier complet */}
@@ -277,12 +277,12 @@ export default function CartDrawer() {
                     onClick={closeCart}
                     className="block w-full border border-dark-text text-dark-text text-center font-sans text-[10px] tracking-[0.3em] uppercase py-4 hover:bg-dark-text hover:text-white transition-all duration-300"
                   >
-                    {t('drawer.viewCart', 'Voir le panier complet')}
+                    {t('drawer.viewCart')}
                   </LocaleLink>
                 </div>
 
                 <p className="font-sans text-[9px] text-dark-text/40 text-center leading-relaxed">
-                  {t('drawer.taxesNote', 'Les taxes et frais de livraison seront calculés à l\'étape suivante')}
+                  {t('drawer.taxesNote')}
                 </p>
               </div>
             )}

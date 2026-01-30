@@ -116,6 +116,31 @@
     "decline": "Rifiuta",
     "learnMore": "Scopri di pi\u00f9"
   },
+  "seo": {
+    "defaultDescription": "Scopri gli occhiali di lusso RENAISSANCE Paris. Artigianato francese, materiali nobili e design senza tempo.",
+    "defaultTitle": "Occhiali di lusso artigianali | Eccellenza francese",
+    "orgDescription": "Maison francese di occhiali di lusso artigianali",
+    "home": "Home"
+  },
+  "search": {
+    "title": "RICERCA",
+    "subtitle": "Trova la tua montatura ideale",
+    "collection": "COLLEZIONE",
+    "material": "MATERIALE",
+    "shape": "FORMA",
+    "lens": "LENTE",
+    "all": "Tutti",
+    "acetate": "Acetato",
+    "metal": "Metallo",
+    "titanium": "Titanio",
+    "round": "Rotondo",
+    "oval": "Ovale",
+    "square": "Quadrato",
+    "hexagonal": "Esagonale",
+    "butterfly": "Farfalla",
+    "helpText": "Usa i filtri per affinare la ricerca",
+    "viewAll": "Vedi tutti i prodotti"
+  },
   "productFooter": {
     "collections": "Collezioni",
     "heritage": "Eredit\u00e0",

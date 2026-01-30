@@ -11,7 +11,7 @@ export default function HistoireSection() {
 
   return (
     <motion.section
-      className="relative z-[70] overflow-hidden"
+      className="sticky top-0 z-[70] overflow-hidden"
       id="histoire"
     >
       {/* DESKTOP */}

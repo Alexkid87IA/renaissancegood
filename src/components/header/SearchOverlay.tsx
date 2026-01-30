@@ -4,7 +4,8 @@
 // ========================================
 
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LocaleLink from '../LocaleLink';
 
 interface SearchOverlayProps {
   isOpen: boolean;
@@ -12,6 +13,8 @@ interface SearchOverlayProps {
 }
 
 export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
+  const { t } = useTranslation('common');
+
   if (!isOpen) return null;
 
   return (
@@ -37,10 +40,10 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
                 <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-medium text-dark-text uppercase mb-1.5 sm:mb-2">
-                  RECHERCHE
+                  {t('search.title')}
                 </p>
                 <p className="font-sans text-dark-text/60 text-xs">
-                  Trouvez votre monture idéale
+                  {t('search.subtitle')}
                 </p>
               </div>
               <button
@@ -55,25 +58,25 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
 
             {/* Filtres */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-              <FilterSelect label="COLLECTION" options={['All', 'Heritage', 'Versailles', 'Isis']} />
-              <FilterSelect label="MATERIAL" options={['All', 'Acétate', 'Métal', 'Titane']} />
-              <FilterSelect label="SHAPE" options={['All', 'Rond', 'Ovale', 'Carré', 'Hexagonal', 'Papillon']} />
-              <FilterSelect label="LENS" options={['All']} />
+              <FilterSelect label={t('search.collection')} options={[t('search.all'), 'Heritage', 'Versailles', 'Isis']} />
+              <FilterSelect label={t('search.material')} options={[t('search.all'), t('search.acetate'), t('search.metal'), t('search.titanium')]} />
+              <FilterSelect label={t('search.shape')} options={[t('search.all'), t('search.round'), t('search.oval'), t('search.square'), t('search.hexagonal'), t('search.butterfly')]} />
+              <FilterSelect label={t('search.lens')} options={[t('search.all')]} />
             </div>
 
             {/* Footer */}
             <div className="pt-4 border-t border-dark-text/[0.06] flex items-center justify-between">
               <p className="font-sans text-dark-text/40 text-xs font-light">
-                Utilisez les filtres pour affiner votre recherche
+                {t('search.helpText')}
               </p>
-              <Link to="/collections" onClick={onClose}>
+              <LocaleLink to="/collections" onClick={onClose}>
                 <button className="group relative overflow-hidden border border-dark-text px-6 py-2.5 transition-all duration-500">
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
-                    Voir tous les produits
+                    {t('search.viewAll')}
                   </span>
                   <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </button>
-              </Link>
+              </LocaleLink>
             </div>
           </div>
         </div>

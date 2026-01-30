@@ -10,7 +10,7 @@ export default function CollectionIsis() {
 
   return (
     <motion.section
-      className="min-h-screen lg:h-screen relative z-40"
+      className="min-h-screen lg:h-screen sticky top-0 z-40"
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">

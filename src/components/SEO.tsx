@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
 import { SUPPORTED_LOCALES, LOCALE_TO_HREFLANG, LOCALE_TO_OG } from '../lib/i18n';
 
@@ -59,7 +60,7 @@ const SITE_NAME = 'RENAISSANCE Paris';
 
 export default function SEO({
   title,
-  description = 'Découvrez les lunettes de luxe RENAISSANCE Paris. Savoir-faire artisanal français, matériaux nobles et design intemporel. Créées à Paris avec passion.',
+  description,
   image = DEFAULT_IMAGE,
   url,
   type = 'website',
@@ -70,10 +71,13 @@ export default function SEO({
   noIndex = false,
 }: SEOProps) {
   const { locale } = useLocale();
+  const { t } = useTranslation('common');
+
+  const resolvedDescription = description || t('seo.defaultDescription');
 
   const fullTitle = title
     ? `${title} | ${SITE_NAME}`
-    : `${SITE_NAME} - Lunettes de Luxe Artisanales | Excellence Française`;
+    : `${SITE_NAME} - ${t('seo.defaultTitle')}`;
 
   // Build canonical URL with locale prefix
   const pathForUrl = url || '/';
@@ -98,7 +102,7 @@ export default function SEO({
     name: 'RENAISSANCE Paris',
     url: BASE_URL,
     logo: `${BASE_URL}/logo.png`,
-    description: 'Maison française de lunettes de luxe artisanales',
+    description: t('seo.orgDescription'),
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Paris',
@@ -140,7 +144,7 @@ export default function SEO({
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
-    description: description,
+    description: resolvedDescription,
     image: fullImage,
     datePublished: article.publishedTime,
     dateModified: article.modifiedTime || article.publishedTime,
@@ -201,7 +205,7 @@ export default function SEO({
 
     const parts = url.split('/').filter(Boolean);
     const items = [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: BASE_URL },
+      { '@type': 'ListItem', position: 1, name: t('seo.home'), item: BASE_URL },
     ];
 
     let currentPath = '';
@@ -229,7 +233,7 @@ export default function SEO({
     <Helmet>
       {/* Balises de base */}
       <title>{fullTitle}</title>
-      <meta name="description" content={description} />
+      <meta name="description" content={resolvedDescription} />
       <link rel="canonical" href={canonicalUrl} />
 
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
@@ -238,7 +242,7 @@ export default function SEO({
       <meta property="og:type" content={type} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
+      <meta property="og:description" content={resolvedDescription} />
       <meta property="og:image" content={fullImage} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:locale" content={ogLocale} />
@@ -256,7 +260,7 @@ export default function SEO({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={canonicalUrl} />
       <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:description" content={resolvedDescription} />
       <meta name="twitter:image" content={fullImage} />
 
       {/* Product specific Open Graph */}

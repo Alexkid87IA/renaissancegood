@@ -116,6 +116,31 @@
     "decline": "Ablehnen",
     "learnMore": "Mehr erfahren"
   },
+  "seo": {
+    "defaultDescription": "Entdecken Sie die Luxusbrillen von RENAISSANCE Paris. Französische Handwerkskunst, edle Materialien und zeitloses Design.",
+    "defaultTitle": "Handgefertigte Luxusbrillen | Französische Exzellenz",
+    "orgDescription": "Französisches Haus für handgefertigte Luxusbrillen",
+    "home": "Startseite"
+  },
+  "search": {
+    "title": "SUCHE",
+    "subtitle": "Finden Sie Ihre ideale Fassung",
+    "collection": "KOLLEKTION",
+    "material": "MATERIAL",
+    "shape": "FORM",
+    "lens": "GLÄSER",
+    "all": "Alle",
+    "acetate": "Acetat",
+    "metal": "Metall",
+    "titanium": "Titan",
+    "round": "Rund",
+    "oval": "Oval",
+    "square": "Eckig",
+    "hexagonal": "Hexagonal",
+    "butterfly": "Schmetterling",
+    "helpText": "Verwenden Sie die Filter, um Ihre Suche zu verfeinern",
+    "viewAll": "Alle Produkte ansehen"
+  },
   "productFooter": {
     "collections": "Kollektionen",
     "heritage": "Erbe",

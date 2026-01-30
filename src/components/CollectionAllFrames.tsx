@@ -17,7 +17,7 @@ export default function CollectionAllFrames() {
 
   return (
     <motion.section
-      className="min-h-screen lg:h-screen relative z-50"
+      className="min-h-screen lg:h-screen sticky top-0 z-50"
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-white hidden md:flex flex-row">
