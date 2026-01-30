@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { MapPin, Phone, ExternalLink } from 'lucide-react';
+import { Store } from '../../types/store';
 
 interface StoreListProps {
-  stores: any[];
-  selectedStore: any | null;
-  onSelectStore: (store: any) => void;
+  stores: Store[];
+  selectedStore: Store | null;
+  onSelectStore: (store: Store | null) => void;
   searchQuery: string;
 }
 

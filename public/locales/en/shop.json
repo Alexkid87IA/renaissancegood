@@ -1,0 +1,17 @@
+{
+  "title": "EXPLORE",
+  "subtitle": "All our creations",
+  "filterAll": "All",
+  "filterCollection": "Collection",
+  "filterPrice": "Price",
+  "filterColor": "Color",
+  "filterSort": "Sort by",
+  "sortNewest": "Newest",
+  "sortPriceAsc": "Price: Low to High",
+  "sortPriceDesc": "Price: High to Low",
+  "sortNameAsc": "A-Z",
+  "noProducts": "No products found",
+  "results": "results",
+  "showing": "Showing",
+  "products": "products"
+}

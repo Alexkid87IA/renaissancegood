@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import ValeursSection from '../components/histoire/ValeursSection';
 import SEO from '../components/SEO';
 
 export default function ManifestePage() {
+  const { t } = useTranslation('histoire');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -10,8 +13,8 @@ export default function ManifestePage() {
   return (
     <div className="bg-dark-text relative">
       <SEO
-        title="Manifeste"
-        description="Découvrez le manifeste RENAISSANCE Paris. Nos valeurs d'excellence, d'authenticité et de savoir-faire français au service de la lunetterie de luxe."
+        title={t('page.manifeste.seoTitle')}
+        description={t('page.manifeste.seoDescription')}
         url="/manifeste"
       />
       <ValeursSection />

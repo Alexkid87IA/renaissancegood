@@ -65,6 +65,7 @@ export default function AmbassadorsHomeSection() {
                 <img
                   src={celeb.image}
                   alt={celeb.name}
+                  loading="lazy"
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                 />
 

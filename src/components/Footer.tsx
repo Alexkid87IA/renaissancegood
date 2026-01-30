@@ -1,10 +1,12 @@
 import { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { Instagram, Facebook, ArrowUp, MapPin, Phone, Mail, ArrowRight } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { stagger, fade } from './shared';
+import LocaleLink from './LocaleLink';
 
 export default function Footer() {
+  const { t } = useTranslation('common');
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -44,17 +46,17 @@ export default function Footer() {
               className="max-w-2xl mx-auto text-center"
             >
               <motion.p variants={fade} className="font-sans text-[9px] tracking-[0.4em] text-white/30 uppercase font-medium mb-4">
-                Le Cercle Renaissance
+                {t('footer.newsletterLabel')}
               </motion.p>
               <motion.h2 variants={fade} className="font-display text-5xl lg:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
-                REJOIGNEZ LA MAISON.
+                {t('footer.newsletterTitle')}
               </motion.h2>
               <motion.p variants={fade} className="font-display text-3xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-10">
-                Accès anticipé. Invitations privées.
+                {t('footer.newsletterSubtitle')}
               </motion.p>
               <motion.div variants={fade} className="w-12 h-px bg-white/15 mx-auto mb-10" />
               <motion.p variants={fade} className="font-sans text-white/35 text-sm leading-[1.9] font-light mb-12 max-w-lg mx-auto">
-                Nouvelles collections en avant-première, coulisses de l'atelier et histoires de la Maison. Rien de plus.
+                {t('footer.newsletterDescription')}
               </motion.p>
               <motion.div variants={fade}>
                 {!subscribed ? (
@@ -63,7 +65,7 @@ export default function Footer() {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Votre adresse email"
+                      placeholder={t('footer.emailPlaceholder')}
                       required
                       className="flex-1 px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-sm font-sans placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-all duration-500"
                     />
@@ -72,7 +74,7 @@ export default function Footer() {
                       className="group relative overflow-hidden border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white"
                     >
                       <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#000000] transition-colors duration-500 flex items-center gap-2">
-                        S'inscrire
+                        {t('footer.subscribe')}
                         <ArrowRight className="w-3.5 h-3.5" />
                       </span>
                       <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
@@ -86,10 +88,10 @@ export default function Footer() {
                     className="py-4"
                   >
                     <p className="font-sans text-sm text-white font-medium">
-                      Bienvenue dans le Cercle Renaissance.
+                      {t('footer.subscribeSuccess')}
                     </p>
                     <p className="font-sans text-xs text-white/30 mt-2">
-                      Vous recevrez nos prochaines communications.
+                      {t('footer.subscribeSuccessDetail')}
                     </p>
                   </motion.div>
                 )}
@@ -113,9 +115,10 @@ export default function Footer() {
                 src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png"
                 alt="Renaissance Paris"
                 className="h-20 lg:h-24 w-auto object-contain mb-8"
+                loading="lazy"
               />
               <p className="font-sans text-xs text-white/30 leading-[1.9] max-w-[260px] font-light mb-10">
-                Lunetterie parisienne d'exception. Cinq symboles millénaires, un savoir-faire artisanal, des éditions limitées à 300 pièces.
+                {t('footer.brandDescription')}
               </p>
               <div className="space-y-3.5 mb-10">
                 <a href="mailto:contact@renaissance-eyewear.fr" className="flex items-center gap-3 group">
@@ -130,12 +133,12 @@ export default function Footer() {
                     +33 1 42 86 82 00
                   </span>
                 </a>
-                <Link to="/store-locator" className="flex items-center gap-3 group">
+                <LocaleLink to="/store-locator" className="flex items-center gap-3 group">
                   <MapPin className="w-3.5 h-3.5 text-white/20 group-hover:text-white/50 transition-colors duration-500" />
                   <span className="font-sans text-[11px] text-white/35 group-hover:text-white/60 transition-colors duration-500">
-                    Trouver un opticien
+                    {t('footer.findOptician')}
                   </span>
-                </Link>
+                </LocaleLink>
               </div>
               <div className="flex items-center gap-2.5">
                 <a href="https://instagram.com/renaissance.eyewear" target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-white/[0.08] flex items-center justify-center hover:border-white/30 hover:bg-white/[0.03] transition-all duration-500" aria-label="Instagram">
@@ -150,30 +153,30 @@ export default function Footer() {
             {/* Right — 4 link columns */}
             <motion.div variants={fade} className="grid grid-cols-4 gap-6 lg:gap-10">
               {[
-                { title: 'Collections', links: [
-                  { to: '/collections/heritage', label: 'Héritage' },
-                  { to: '/collections/versailles', label: 'Versailles' },
-                  { to: '/collections/isis', label: 'Isis' },
-                  { to: '/shop', label: 'Toutes les créations' },
+                { title: t('nav.collections'), links: [
+                  { to: '/collections/heritage', label: t('footerLinks.heritage') },
+                  { to: '/collections/versailles', label: t('footerLinks.versailles') },
+                  { to: '/collections/isis', label: t('footerLinks.isis') },
+                  { to: '/shop', label: t('footerLinks.allCreations') },
                 ]},
-                { title: 'La Maison', links: [
-                  { to: '/histoire', label: 'Notre Histoire' },
-                  { to: '/savoir-faire', label: 'Savoir-faire' },
-                  { to: '/symboles', label: 'Les 5 Symboles' },
-                  { to: '/blog', label: 'Le Manifeste' },
+                { title: t('nav.laMaison'), links: [
+                  { to: '/histoire', label: t('footerLinks.ourHistory') },
+                  { to: '/savoir-faire', label: t('footerLinks.savoirFaire') },
+                  { to: '/symboles', label: t('footerLinks.fiveSymbols') },
+                  { to: '/blog', label: t('footerLinks.manifeste') },
                 ]},
-                { title: 'Services', links: [
-                  { to: '/livraison', label: 'Livraison & Retours' },
-                  { to: '/garantie', label: 'Garantie 2 ans' },
-                  { to: '/guide-tailles', label: 'Guide des tailles' },
-                  { to: '/store-locator', label: 'Nos opticiens' },
-                  { to: '/suivi-commande', label: 'Suivi de commande' },
+                { title: t('nav.services'), links: [
+                  { to: '/livraison', label: t('footerLinks.shipping') },
+                  { to: '/garantie', label: t('footerLinks.warranty') },
+                  { to: '/guide-tailles', label: t('footerLinks.sizeGuide') },
+                  { to: '/store-locator', label: t('footerLinks.ourOpticians') },
+                  { to: '/suivi-commande', label: t('footerLinks.orderTracking') },
                 ]},
-                { title: 'Aide', links: [
-                  { to: '/faq', label: 'FAQ' },
-                  { to: '/contact', label: 'Contact' },
-                  { to: '/cgv', label: 'CGV' },
-                  { to: '/confidentialite', label: 'Confidentialité' },
+                { title: t('nav.aide'), links: [
+                  { to: '/faq', label: t('footerLinks.faq') },
+                  { to: '/contact', label: t('footerLinks.contact') },
+                  { to: '/cgv', label: t('footerLinks.cgv') },
+                  { to: '/confidentialite', label: t('footerLinks.privacy') },
                 ]},
               ].map((col) => (
                 <div key={col.title}>
@@ -182,9 +185,9 @@ export default function Footer() {
                   <ul className="space-y-3.5">
                     {col.links.map(({ to, label }) => (
                       <li key={to}>
-                        <Link to={to} className="font-sans text-[12px] text-white/35 hover:text-white/70 hover:translate-x-1 transition-all duration-500 font-light inline-block">
+                        <LocaleLink to={to} className="font-sans text-[12px] text-white/35 hover:text-white/70 hover:translate-x-1 transition-all duration-500 font-light inline-block">
                           {label}
-                        </Link>
+                        </LocaleLink>
                       </li>
                     ))}
                   </ul>
@@ -197,6 +200,7 @@ export default function Footer() {
                   src="https://renaissance-cdn.b-cdn.net/fd9d5fd3-567f-4abb-9157-6f52b4ccb3c5.png"
                   alt="Pour Que Cela Ne s'Oublie Jamais"
                   className="w-full max-w-[500px] lg:max-w-[600px] h-auto object-contain"
+                  loading="lazy"
                 />
               </div>
             </motion.div>
@@ -214,10 +218,10 @@ export default function Footer() {
               className="grid grid-cols-4 gap-0"
             >
               {[
-                { number: '300', label: 'Éditions', description: 'Pièces par série' },
-                { number: '48h', label: 'Livraison', description: 'Express offerte' },
-                { number: '2 ans', label: 'Garantie', description: 'Incluse' },
-                { number: '200+', label: 'Opticiens', description: 'Partout en France' },
+                { number: '300', label: t('trust.editions'), description: t('trust.editionsDesc') },
+                { number: '48h', label: t('trust.delivery'), description: t('trust.deliveryDesc') },
+                { number: '2 ans', label: t('trust.warranty'), description: t('trust.warrantyDesc') },
+                { number: '200+', label: t('trust.opticians'), description: t('trust.opticiansDesc') },
               ].map((item, index) => (
                 <motion.div
                   key={item.label}
@@ -247,14 +251,14 @@ export default function Footer() {
               <div className="flex items-center gap-5">
                 <div className="flex gap-4">
                   {[
-                    { to: '/cgv', label: 'CGV' },
-                    { to: '/mentions-legales', label: 'Mentions légales' },
-                    { to: '/confidentialite', label: 'Confidentialité' },
-                    { to: '/cookies', label: 'Cookies' },
+                    { to: '/cgv', label: t('footerLinks.cgv') },
+                    { to: '/mentions-legales', label: t('footerLinks.legalNotice') },
+                    { to: '/confidentialite', label: t('footerLinks.privacy') },
+                    { to: '/cookies', label: t('footerLinks.cookies') },
                   ].map(({ to, label }) => (
-                    <Link key={to} to={to} className="font-sans text-[11px] text-white/25 hover:text-white/50 transition-colors duration-300">
+                    <LocaleLink key={to} to={to} className="font-sans text-[11px] text-white/25 hover:text-white/50 transition-colors duration-300">
                       {label}
-                    </Link>
+                    </LocaleLink>
                   ))}
                 </div>
                 <p className="font-sans text-[11px] text-white/20">
@@ -263,7 +267,7 @@ export default function Footer() {
                 <button
                   onClick={scrollToTop}
                   className="w-9 h-9 border border-white/[0.08] flex items-center justify-center hover:border-white/30 hover:bg-white/[0.03] transition-all duration-500 group"
-                  aria-label="Retour en haut"
+                  aria-label={t('footer.backToTop')}
                 >
                   <ArrowUp className="w-3.5 h-3.5 text-white/25 group-hover:text-white/60 transition-colors duration-500" />
                 </button>
@@ -282,18 +286,17 @@ export default function Footer() {
         <div className="border-b border-white/[0.06] px-6 py-16">
           <div className="text-center">
             <p className="font-sans text-[8px] tracking-[0.4em] text-white/30 uppercase font-medium mb-4">
-              Le Cercle Renaissance
+              {t('footer.newsletterLabel')}
             </p>
             <h2 className="font-display text-[26px] font-bold text-white tracking-[-0.03em] leading-[0.95] mb-2">
-              REJOIGNEZ
-              <br />LA MAISON.
+              {t('footer.newsletterTitle')}
             </h2>
             <p className="font-display text-base font-light italic text-white/45 tracking-[-0.02em] mb-6">
-              Accès anticipé. Invitations privées.
+              {t('footer.newsletterSubtitle')}
             </p>
             <div className="w-10 h-px bg-white/15 mx-auto mb-6" />
             <p className="font-sans text-white/30 text-[12px] leading-[1.8] font-light mb-8 max-w-[260px] mx-auto">
-              Nouvelles collections en avant-première, coulisses de l'atelier et histoires de la Maison.
+              {t('footer.newsletterDescriptionMobile')}
             </p>
 
             {!subscribed ? (
@@ -302,7 +305,7 @@ export default function Footer() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Votre adresse email"
+                  placeholder={t('footer.emailPlaceholder')}
                   required
                   className="w-full px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-sm font-sans placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-all duration-500 text-center"
                 />
@@ -311,7 +314,7 @@ export default function Footer() {
                   className="w-full bg-white py-4"
                 >
                   <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-[#000000] flex items-center justify-center gap-2">
-                    S'inscrire
+                    {t('footer.subscribe')}
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </button>
@@ -319,10 +322,10 @@ export default function Footer() {
             ) : (
               <div className="py-4">
                 <p className="font-sans text-sm text-white font-medium">
-                  Bienvenue dans le Cercle Renaissance.
+                  {t('footer.subscribeSuccess')}
                 </p>
                 <p className="font-sans text-xs text-white/30 mt-2">
-                  Vous recevrez nos prochaines communications.
+                  {t('footer.subscribeSuccessDetail')}
                 </p>
               </div>
             )}
@@ -333,30 +336,30 @@ export default function Footer() {
         <div className="border-b border-white/[0.06] px-6 py-12">
           <div className="grid grid-cols-2 gap-y-10 gap-x-6">
             {[
-              { title: 'Collections', links: [
-                { to: '/collections/heritage', label: 'Héritage' },
-                { to: '/collections/versailles', label: 'Versailles' },
-                { to: '/collections/isis', label: 'Isis' },
-                { to: '/shop', label: 'Boutique' },
+              { title: t('nav.collections'), links: [
+                { to: '/collections/heritage', label: t('footerLinks.heritage') },
+                { to: '/collections/versailles', label: t('footerLinks.versailles') },
+                { to: '/collections/isis', label: t('footerLinks.isis') },
+                { to: '/shop', label: t('nav.explorer') },
               ]},
-              { title: 'La Maison', links: [
-                { to: '/histoire', label: 'Notre Histoire' },
-                { to: '/savoir-faire', label: 'Savoir-faire' },
-                { to: '/symboles', label: 'Les 5 Symboles' },
-                { to: '/blog', label: 'Le Manifeste' },
+              { title: t('nav.laMaison'), links: [
+                { to: '/histoire', label: t('footerLinks.ourHistory') },
+                { to: '/savoir-faire', label: t('footerLinks.savoirFaire') },
+                { to: '/symboles', label: t('footerLinks.fiveSymbols') },
+                { to: '/blog', label: t('footerLinks.manifeste') },
               ]},
-              { title: 'Services', links: [
-                { to: '/livraison', label: 'Livraison & Retours' },
-                { to: '/garantie', label: 'Garantie 2 ans' },
-                { to: '/guide-tailles', label: 'Guide des tailles' },
-                { to: '/store-locator', label: 'Nos opticiens' },
-                { to: '/suivi-commande', label: 'Suivi de commande' },
+              { title: t('nav.services'), links: [
+                { to: '/livraison', label: t('footerLinks.shipping') },
+                { to: '/garantie', label: t('footerLinks.warranty') },
+                { to: '/guide-tailles', label: t('footerLinks.sizeGuide') },
+                { to: '/store-locator', label: t('footerLinks.ourOpticians') },
+                { to: '/suivi-commande', label: t('footerLinks.orderTracking') },
               ]},
-              { title: 'Aide', links: [
-                { to: '/faq', label: 'FAQ' },
-                { to: '/contact', label: 'Contact' },
-                { to: '/cgv', label: 'CGV' },
-                { to: '/confidentialite', label: 'Confidentialité' },
+              { title: t('nav.aide'), links: [
+                { to: '/faq', label: t('footerLinks.faq') },
+                { to: '/contact', label: t('footerLinks.contact') },
+                { to: '/cgv', label: t('footerLinks.cgv') },
+                { to: '/confidentialite', label: t('footerLinks.privacy') },
               ]},
             ].map((col) => (
               <div key={col.title} className="text-center">
@@ -366,9 +369,9 @@ export default function Footer() {
                 <ul className="space-y-3">
                   {col.links.map(({ to, label }) => (
                     <li key={to}>
-                      <Link to={to} className="font-sans text-[12px] text-white/30 font-light">
+                      <LocaleLink to={to} className="font-sans text-[12px] text-white/30 font-light">
                         {label}
-                      </Link>
+                      </LocaleLink>
                     </li>
                   ))}
                 </ul>
@@ -384,9 +387,10 @@ export default function Footer() {
               src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png"
               alt="Renaissance Paris"
               className="h-32 w-auto object-contain mb-6"
+              loading="lazy"
             />
             <p className="font-sans text-[11px] text-white/25 leading-[1.8] font-light max-w-[240px] mb-8">
-              Lunetterie parisienne d'exception. Savoir-faire artisanal, éditions limitées à 300 pièces.
+              {t('footer.brandDescriptionMobile')}
             </p>
 
             {/* Contact centered */}
@@ -417,10 +421,10 @@ export default function Footer() {
         <div className="border-b border-white/[0.06] px-6 py-10">
           <div className="grid grid-cols-2 gap-0">
             {[
-              { number: '300', label: 'Éditions' },
-              { number: '48h', label: 'Livraison' },
-              { number: '2 ans', label: 'Garantie' },
-              { number: '200+', label: 'Opticiens' },
+              { number: '300', label: t('trust.editions') },
+              { number: '48h', label: t('trust.delivery') },
+              { number: '2 ans', label: t('trust.warranty') },
+              { number: '200+', label: t('trust.opticians') },
             ].map((item, index) => (
               <div
                 key={item.label}
@@ -455,18 +459,18 @@ export default function Footer() {
           <div className="flex flex-col items-center text-center gap-3">
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
               {[
-                { to: '/cgv', label: 'CGV' },
-                { to: '/mentions-legales', label: 'Mentions légales' },
-                { to: '/confidentialite', label: 'Confidentialité' },
-                { to: '/cookies', label: 'Cookies' },
+                { to: '/cgv', label: t('footerLinks.cgv') },
+                { to: '/mentions-legales', label: t('footerLinks.legalNotice') },
+                { to: '/confidentialite', label: t('footerLinks.privacy') },
+                { to: '/cookies', label: t('footerLinks.cookies') },
               ].map(({ to, label }) => (
-                <Link key={to} to={to} className="font-sans text-[9px] text-white/20">
+                <LocaleLink key={to} to={to} className="font-sans text-[9px] text-white/20">
                   {label}
-                </Link>
+                </LocaleLink>
               ))}
             </div>
             <p className="font-sans text-[9px] text-white/15">
-              &copy; {new Date().getFullYear()} Renaissance Paris &mdash; Tous droits réservés
+              &copy; {new Date().getFullYear()} Renaissance Paris &mdash; {t('footer.allRightsReserved')}
             </p>
           </div>
         </div>

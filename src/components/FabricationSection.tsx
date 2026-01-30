@@ -1,50 +1,31 @@
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import LocaleLink from './LocaleLink';
+import { useTranslation } from 'react-i18next';
 import { stagger, fade } from './shared';
 
 const FABRICATION_IMAGE = 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_06AM.jpeg';
 
-const STATS = [
-  { value: '8-12', label: 'Artisans par paire' },
-  { value: '250', label: 'Étapes de fabrication' },
-  { value: '15h', label: 'De travail cumulé' },
-  { value: '2', label: 'Pays d\'excellence' },
-];
-
-const DETAILS = [
-  { label: 'Design', location: 'Paris, France' },
-  { label: 'Fabrication', location: 'Corée du Sud' },
-  { label: 'Acétate', location: 'Mazzucchelli, Italie' },
-];
-
 export default function FabricationSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation('home');
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== 'undefined' ? window.innerWidth < 768 : false
-  );
 
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 0.6], [1, isMobile ? 1 : 0.92]);
-  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, isMobile ? 1 : 0]);
+  const STATS = [
+    { value: '8-12', label: t('fabrication.stat1') },
+    { value: '250', label: t('fabrication.stat2') },
+    { value: '15h', label: t('fabrication.stat3') },
+    { value: '2', label: t('fabrication.stat4') },
+  ];
+  const DETAILS = [
+    { label: t('fabrication.detail1Label'), location: t('fabrication.detail1Location') },
+    { label: t('fabrication.detail2Label'), location: t('fabrication.detail2Location') },
+    { label: t('fabrication.detail3Label'), location: t('fabrication.detail3Location') },
+  ];
 
   return (
     <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity }}
-      className="relative sticky top-0 z-[80] bg-[#000000]"
+      className="relative z-[80] bg-[#000000]"
       id="fabrication"
     >
       {/* DESKTOP */}
@@ -68,17 +49,17 @@ export default function FabricationSection() {
             className="max-w-xl"
           >
             <motion.p variants={fade} className="font-sans text-white/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
-              Savoir-faire
+              {t('fabrication.label')}
             </motion.p>
             <motion.h2 variants={fade} className="font-display text-5xl laptop:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
-              NOTRE
+              {t('fabrication.title')}
             </motion.h2>
             <motion.p variants={fade} className="font-display text-3xl laptop:text-4xl xl:text-5xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-10">
-              Fabrication.
+              {t('fabrication.subtitle')}
             </motion.p>
             <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-10" />
             <motion.p variants={fade} className="font-sans text-white/40 text-[13px] lg:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-12 max-w-md">
-              Une paire de Renaissance, c'est 250 étapes. Des mains françaises pour la vision. Des mains coréennes pour la précision. Deux pays. Un seul standard : celui qui dure.
+              {t('fabrication.description')}
             </motion.p>
 
             {/* Stats */}
@@ -109,14 +90,14 @@ export default function FabricationSection() {
 
             {/* CTA */}
             <motion.div variants={fade}>
-              <Link to="/savoir-faire">
+              <LocaleLink to="/savoir-faire">
                 <button className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-bronze/60">
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#000000] transition-colors duration-500">
-                    Voir le processus
+                    {t('fabrication.cta')}
                   </span>
                   <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </button>
-              </Link>
+              </LocaleLink>
             </motion.div>
           </motion.div>
         </div>
@@ -135,13 +116,13 @@ export default function FabricationSection() {
         {/* Content — bas */}
         <div className="absolute bottom-0 left-0 right-0 px-6 pb-8">
           <p className="font-sans text-white/25 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
-            Savoir-faire
+            {t('fabrication.label')}
           </p>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-1">
-            NOTRE
+            {t('fabrication.title')}
           </h2>
           <p className="font-display text-lg sm:text-xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-6">
-            Fabrication.
+            {t('fabrication.subtitle')}
           </p>
 
           {/* Stats — 2x2 grid */}
@@ -159,14 +140,14 @@ export default function FabricationSection() {
           </div>
 
           {/* CTA */}
-          <Link to="/savoir-faire">
+          <LocaleLink to="/savoir-faire">
             <button className="group relative overflow-hidden w-full border border-white/20 px-6 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98]">
               <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
-                Voir le processus
+                {t('fabrication.cta')}
               </span>
               <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </button>
-          </Link>
+          </LocaleLink>
         </div>
       </div>
     </motion.section>

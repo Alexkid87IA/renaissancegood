@@ -1,0 +1,130 @@
+{
+  "title": "FAQ",
+  "subtitle": "Questions fréquentes",
+  "description": "Retrouvez les réponses à vos questions les plus fréquentes.",
+  "categories": {
+    "all": "Toutes",
+    "orders": "Commandes",
+    "shipping": "Livraison",
+    "returns": "Retours",
+    "products": "Produits",
+    "warranty": "Garantie",
+    "stores": "Boutiques"
+  },
+  "contactUs": "Vous n'avez pas trouvé votre réponse ?",
+  "contactCta": "Contactez-nous",
+  "seo": {
+    "title": "Questions Fréquentes (FAQ)",
+    "description": "Trouvez les réponses à vos questions sur les lunettes RENAISSANCE Paris : commande, livraison, retours, entretien, garantie et opticiens partenaires."
+  },
+  "hero": {
+    "label": "Aide & Support",
+    "titleLine1": "QUESTIONS",
+    "titleLine2": "FRÉQUENTES.",
+    "subtitle": "Tout ce qu'il faut savoir.",
+    "answers": "Réponses",
+    "categoriesCount": "Catégories"
+  },
+  "categoryNames": {
+    "orderPayment": "Commande & Paiement",
+    "delivery": "Livraison",
+    "returnsExchanges": "Retours & Échanges",
+    "productsCare": "Produits & Entretien",
+    "partnerOpticians": "Opticiens Partenaires",
+    "contactSupport": "Contact & Assistance"
+  },
+  "questions": {
+    "paymentMethods": {
+      "q": "Quels moyens de paiement acceptez-vous ?",
+      "a": "Nous acceptons les cartes bancaires (Visa, Mastercard, American Express), PayPal, et les virements bancaires. Tous les paiements sont sécurisés et cryptés."
+    },
+    "modifyOrder": {
+      "q": "Puis-je modifier ou annuler ma commande ?",
+      "a": "Vous pouvez modifier ou annuler votre commande dans les 2 heures suivant sa validation en nous contactant immédiatement. Passé ce délai, votre commande est en cours de préparation."
+    },
+    "invoice": {
+      "q": "Recevrai-je une facture ?",
+      "a": "Oui, une facture détaillée vous sera envoyée par e-mail dès l'expédition de votre commande."
+    },
+    "deliveryTimes": {
+      "q": "Quels sont les délais de livraison ?",
+      "a": "Les commandes sont expédiées sous 24-48h. La livraison en France métropolitaine prend 1-2 jours ouvrés, 2-3 jours pour l'UE, et 3-7 jours pour l'international."
+    },
+    "freeShipping": {
+      "q": "La livraison est-elle gratuite ?",
+      "a": "Oui, la livraison est gratuite pour toutes les commandes, quelle que soit la destination."
+    },
+    "trackOrder": {
+      "q": "Puis-je suivre ma commande ?",
+      "a": "Oui, vous recevrez un numéro de suivi par e-mail dès l'expédition de votre commande. Vous pourrez suivre votre colis en temps réel."
+    },
+    "internationalShipping": {
+      "q": "Livrez-vous à l'international ?",
+      "a": "Oui, nous livrons dans le monde entier. Des frais de douane peuvent s'appliquer selon les pays et sont à la charge du destinataire."
+    },
+    "returnPolicy": {
+      "q": "Quelle est votre politique de retour ?",
+      "a": "Vous disposez de 14 jours à compter de la réception pour retourner votre commande. Le produit doit être dans son état d'origine avec l'emballage intact. Les frais de retour sont pris en charge par Renaissance."
+    },
+    "howToReturn": {
+      "q": "Comment procéder à un retour ?",
+      "a": "Contactez notre service client à contact@renaissance-eyewear.fr avec votre numéro de commande. Nous vous enverrons une étiquette de retour prépayée et les instructions."
+    },
+    "refundDelay": {
+      "q": "Quand serai-je remboursé ?",
+      "a": "Le remboursement est effectué sous 14 jours suivant la réception et la validation de votre retour, sur le moyen de paiement utilisé lors de l'achat."
+    },
+    "exchangeFrame": {
+      "q": "Puis-je échanger ma monture ?",
+      "a": "Oui, nous proposons des échanges gratuits. Contactez-nous pour organiser l'échange de votre monture."
+    },
+    "chooseSize": {
+      "q": "Comment choisir la bonne taille de monture ?",
+      "a": "Consultez notre Guide des Tailles qui détaille les dimensions de chaque modèle. Vous pouvez également essayer nos montures chez l'un de nos 200+ opticiens partenaires."
+    },
+    "prescriptionLenses": {
+      "q": "Les montures sont-elles adaptées aux verres correcteurs ?",
+      "a": "Oui, toutes nos montures optiques peuvent recevoir vos verres correcteurs. Rendez-vous chez un opticien partenaire pour le montage."
+    },
+    "cleanGlasses": {
+      "q": "Comment entretenir mes lunettes Renaissance ?",
+      "a": "Nettoyez vos lunettes avec le chiffon microfibre fourni. Évitez les produits chimiques agressifs. Rangez-les dans leur étui lorsque vous ne les portez pas."
+    },
+    "warranty": {
+      "q": "Quelle est la garantie sur les montures ?",
+      "a": "Toutes nos montures bénéficient d'une garantie constructeur de 2 ans couvrant les défauts de fabrication."
+    },
+    "tryBeforeBuy": {
+      "q": "Puis-je essayer les lunettes avant d'acheter ?",
+      "a": "Oui, visitez l'un de nos 200+ opticiens partenaires en France pour essayer nos collections et bénéficier de conseils personnalisés."
+    },
+    "findOptician": {
+      "q": "Comment trouver un opticien partenaire ?",
+      "a": "Utilisez notre localisateur d'opticiens sur la page \"Trouver un Opticien\" pour trouver le point de vente le plus proche de chez vous."
+    },
+    "samePrices": {
+      "q": "Les prix sont-ils les mêmes en ligne et chez les opticiens ?",
+      "a": "Oui, nos tarifs sont identiques sur notre site et chez nos opticiens partenaires."
+    },
+    "contactService": {
+      "q": "Comment contacter le service client ?",
+      "a": "Vous pouvez nous contacter par e-mail à contact@renaissance-eyewear.fr ou par téléphone au +33 1 42 86 82 00 (Lun-Ven, 9h-18h)."
+    },
+    "responseDelay": {
+      "q": "Quel est le délai de réponse du service client ?",
+      "a": "Nous nous engageons à répondre à toutes les demandes sous 48 heures ouvrées maximum."
+    },
+    "customization": {
+      "q": "Proposez-vous un service de personnalisation ?",
+      "a": "Contactez-nous pour discuter de vos besoins en matière de personnalisation. Certaines options peuvent être disponibles sur demande."
+    }
+  },
+  "cta": {
+    "label": "Besoin d'aide",
+    "title": "Une autre question ?",
+    "subtitle": "Nous sommes là pour vous.",
+    "description": "Notre équipe est à votre disposition pour répondre à toutes vos questions.",
+    "contactUs": "Nous contacter",
+    "callUs": "+33 1 42 86 82 00"
+  }
+}

@@ -3,8 +3,11 @@
 // Affiche un produit avec navigation entre les variantes de couleur
 // ========================================
 
-import { useState, useEffect, useMemo, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
+import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
+import { useTranslation } from 'react-i18next';
+import { useLocale } from '../contexts/LocaleContext';
 import { getProduct, getProducts } from '../lib/shopify';
 import { useDeviceType } from '../hooks/useDeviceType';
 import { findRelatedColorVariants, getModelName, ColorVariant, getColorSwatchStyle } from '../lib/productGrouping';
@@ -97,7 +100,9 @@ interface Product {
 
 export default function ProductPage() {
   const { id } = useParams();
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
+  const { t } = useTranslation('product');
+  const { shopifyLanguage } = useLocale();
   const { isMobile } = useDeviceType();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [product, setProduct] = useState<Product | null>(null);
@@ -116,7 +121,7 @@ export default function ProductPage() {
   useEffect(() => {
     async function loadProduct() {
       if (!id) {
-        setError('Produit non trouvé');
+        setError(t('notFound', { ns: 'common' }));
         setLoading(false);
         return;
       }
@@ -126,16 +131,16 @@ export default function ProductPage() {
         setError(null);
 
         // Charger le produit actuel
-        const shopifyProduct: ShopifyProduct = await getProduct(id);
+        const shopifyProduct: ShopifyProduct = await getProduct(id, shopifyLanguage);
 
         if (!shopifyProduct) {
-          setError('Produit non trouvé');
+          setError(t('notFound', { ns: 'common' }));
           setLoading(false);
           return;
         }
 
         // Charger tous les produits pour trouver les variantes de couleur
-        const allProducts = await getProducts() as ShopifyProductType[];
+        const allProducts = await getProducts(shopifyLanguage) as ShopifyProductType[];
         const relatedVariants = findRelatedColorVariants(allProducts, id);
         setColorVariants(relatedVariants);
 
@@ -186,7 +191,7 @@ export default function ProductPage() {
             bridge: '20mm',
             temple: '145mm'
           },
-          description: shopifyProduct.description || 'Découvrez ce modèle unique de la collection Renaissance.',
+          description: shopifyProduct.description || t('defaultDescription'),
           descriptionHtml: shopifyProduct.descriptionHtml || shopifyProduct.description,
           allImages: allImages,
           variants: variants,
@@ -195,14 +200,14 @@ export default function ProductPage() {
 
         setProduct(formattedProduct);
       } catch (err) {
-        setError('Impossible de charger le produit. Veuillez réessayer.');
+        setError(t('loadError'));
       } finally {
         setLoading(false);
       }
     }
 
     loadProduct();
-  }, [id]);
+  }, [id, shopifyLanguage]);
 
   // Gérer le changement de variante de couleur (navigation vers un autre produit)
   const handleColorVariantChange = (index: number) => {
@@ -285,6 +290,48 @@ export default function ProductPage() {
   const galleryRef = useRef<HTMLDivElement>(null);
   const infoPanelRef = useRef<HTMLDivElement>(null);
 
+  // Track active image index for thumbnail navigation
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  useEffect(() => {
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+
+    const sections = gallery.querySelectorAll<HTMLElement>('[data-image-index]');
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = parseInt(entry.target.getAttribute('data-image-index') || '0');
+            setActiveImageIndex(idx);
+          }
+        });
+      },
+      { threshold: 0.5, rootMargin: '-10% 0px -10% 0px' }
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => { sections.forEach((el) => observer.unobserve(el)); };
+  }, [displayImages]);
+
+  const scrollToImage = useCallback((index: number) => {
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+    const sections = gallery.querySelectorAll<HTMLElement>('[data-image-index]');
+    const target = sections[index];
+    if (!target) return;
+
+    // Each sticky section stacks at top:0, so scroll to cumulative offset
+    const galleryTop = gallery.getBoundingClientRect().top + window.scrollY;
+    let offset = 0;
+    for (let i = 0; i < index; i++) {
+      offset += sections[i].offsetHeight;
+    }
+    window.scrollTo({ top: galleryTop + offset, behavior: 'smooth' });
+  }, []);
+
   // Auto-scroll du panneau produit quand l'utilisateur scrolle les images
   useEffect(() => {
     const panel = infoPanelRef.current;
@@ -331,7 +378,7 @@ export default function ProductPage() {
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-dark-text mb-6"></div>
           <p className="font-sans text-dark-text/60 text-sm tracking-wider uppercase">
-            Chargement du produit...
+            {t('loadingProduct')}
           </p>
         </div>
       </div>
@@ -343,13 +390,13 @@ export default function ProductPage() {
       <div className="bg-white min-h-screen flex items-center justify-center">
         <div className="text-center max-w-md px-8">
           <p className="font-sans text-dark-text text-sm tracking-wider uppercase mb-6">
-            {error || 'Produit non trouvé'}
+            {error || t('notFound', { ns: 'common' })}
           </p>
           <button
             onClick={() => navigate('/collections/heritage')}
             className="font-sans text-xs tracking-wider uppercase border border-dark-text px-6 py-3 hover:bg-dark-text hover:text-white transition-colors"
           >
-            Retour aux collections
+            {t('backToCollections')}
           </button>
         </div>
       </div>
@@ -403,27 +450,56 @@ export default function ProductPage() {
       <div className="lg:grid lg:grid-cols-[1fr,440px] xl:grid-cols-[1fr,500px]">
 
         {/* Left Column: Image Gallery — sticky z-index scroll effect */}
-        <div ref={galleryRef}>
+        <div ref={galleryRef} className="relative">
           {displayImages.length > 0 ? (
             displayImages.map((imageUrl, index) => (
               <section
                 key={`${selectedColorVariantIndex}-${index}`}
                 className="w-full sticky top-0 overflow-hidden"
                 style={{ zIndex: 10 + index * 10 }}
+                data-image-index={index}
               >
                 <img
                   src={imageUrl}
                   alt={`${product.modelName} - vue ${index + 1}`}
                   className="w-full block"
+                  loading="lazy"
                 />
               </section>
             ))
           ) : (
             <div className="aspect-square flex items-center justify-center">
-              <p className="font-sans text-dark-text/40 text-sm">Aucune image disponible</p>
+              <p className="font-sans text-dark-text/40 text-sm">{t('noImage')}</p>
             </div>
           )}
         </div>
+
+        {/* Thumbnail navigation — fixed bottom, left column only */}
+        {displayImages.length > 1 && (
+          <div className="fixed bottom-6 z-50 left-0 lg:right-[440px] xl:right-[500px] right-0 flex justify-center pointer-events-none">
+            <div className="pointer-events-auto inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-xl rounded-full shadow-lg shadow-black/8 border border-dark-text/8 px-3 py-2">
+              {displayImages.map((thumbUrl, thumbIndex) => (
+                <button
+                  key={thumbIndex}
+                  onClick={() => scrollToImage(thumbIndex)}
+                  className={`relative rounded-lg overflow-hidden transition-all duration-300 ${
+                    activeImageIndex === thumbIndex
+                      ? 'ring-[1.5px] ring-dark-text ring-offset-1 w-11 h-11'
+                      : 'opacity-50 hover:opacity-80 w-9 h-9'
+                  }`}
+                  aria-label={`Image ${thumbIndex + 1}`}
+                >
+                  <img
+                    src={thumbUrl}
+                    alt={`${product.modelName} - miniature ${thumbIndex + 1}`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Right Column: Product Info (sticky on desktop, scroll synced) */}
         <div ref={infoPanelRef} className="border-t lg:border-t-0 lg:border-l border-dark-text/10 lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:overflow-y-auto">

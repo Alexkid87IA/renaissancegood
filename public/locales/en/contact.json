@@ -1,0 +1,205 @@
+{
+  "title": "Contact",
+  "subtitle": "We are here to help",
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send",
+    "sending": "Sending...",
+    "sent": "Message sent!",
+    "sentDesc": "We will get back to you as soon as possible."
+  },
+  "info": {
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "hours": "Hours"
+  },
+  "storeLocator": {
+    "title": "Find an optician",
+    "subtitle": "More than 200 partner opticians in France",
+    "search": "Search for a city...",
+    "nearMe": "Near me",
+    "noResults": "No optician found in this area.",
+    "directions": "Directions",
+    "phone": "Call",
+    "filters": "Filters"
+  },
+  "guarantee": {
+    "title": "Warranty",
+    "subtitle": "2-year warranty on all our frames"
+  },
+  "sizeGuide": {
+    "title": "Size Guide",
+    "subtitle": "Find the perfect frame"
+  },
+  "orderTracking": {
+    "title": "Order Tracking",
+    "subtitle": "Track your order in real time",
+    "orderNumber": "Order number",
+    "email": "Email address",
+    "track": "Track",
+    "status": "Status"
+  },
+  "contactPage": {
+    "seo": {
+      "title": "Contact",
+      "description": "Contact RENAISSANCE Paris for any questions about our luxury eyewear. Customer service available by email and phone Monday to Friday."
+    },
+    "hero": {
+      "label": "The House",
+      "titleLine1": "CONTACT",
+      "titleLine2": "US.",
+      "titleMobile": "CONTACT US.",
+      "subtitle": "At your service.",
+      "description": "Our team is available to answer all your questions about our collections, your orders or our partner opticians network.",
+      "descriptionMobile": "Our team is available to answer all your questions.",
+      "cta": "Write a message",
+      "scroll": "Scroll"
+    },
+    "cards": {
+      "emailTitle": "Email",
+      "emailDetail": "contact@renaissance-eyewear.fr",
+      "emailSub": "Response within 48h",
+      "phoneTitle": "Phone",
+      "phoneDetail": "+33 1 42 86 82 00",
+      "phoneSub": "Mon — Fri",
+      "hoursTitle": "Hours",
+      "hoursDetail": "9am — 6pm",
+      "hoursSub": "Monday to Friday"
+    },
+    "formSection": {
+      "label": "Message",
+      "title": "Write to us.",
+      "subtitle": "We will get back to you shortly.",
+      "nameLabel": "Full name *",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Email *",
+      "emailPlaceholder": "your@email.com",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "+33 6 12 34 56 78",
+      "subjectLabel": "Subject *",
+      "subjectGeneral": "General question",
+      "subjectOrder": "My order",
+      "subjectProduct": "Product question",
+      "subjectReturn": "Return or exchange",
+      "subjectSav": "After-sales service",
+      "subjectPartner": "Become a partner",
+      "subjectOther": "Other",
+      "messageLabel": "Message *",
+      "messagePlaceholder": "Describe your request...",
+      "sent": "Message sent",
+      "sending": "Sending...",
+      "submit": "Send message",
+      "requiredFields": "* Required fields"
+    },
+    "sidebar": {
+      "locationLabel": "Location",
+      "locationTitle": "Paris, France",
+      "locationDescription": "Maison Renaissance is proudly established in Paris, capital of elegance and French craftsmanship.",
+      "networkLabel": "Network",
+      "networkTitle": "Need to try?",
+      "networkDescription": "Visit one of our 200+ partner opticians to try our collections and receive personalized advice.",
+      "networkCta": "Find an optician",
+      "socialLabel": "Follow us",
+      "socialDescription": "Discover our new collections and news from the House."
+    }
+  },
+  "storeLocatorPage": {
+    "seo": {
+      "title": "Find a Partner Optician",
+      "description": "Find one of our {{count}}+ RENAISSANCE Paris partner opticians near you. Try our luxury eyewear and receive personalized advice."
+    },
+    "hero": {
+      "label": "Partner Network",
+      "titleLine1": "FIND YOUR",
+      "titleLine2": "OPTICIAN.",
+      "subtitle": "Excellence near you.",
+      "description": "Each store embodies Renaissance values: excellence, symbolism and French craftsmanship.",
+      "opticians": "Opticians",
+      "countries": "Countries",
+      "cta": "Search for an optician",
+      "scroll": "Scroll"
+    },
+    "search": {
+      "label": "Locate",
+      "title": "Search for an optician",
+      "resultsCount": "{{count}} partner optician in {{countries}} countries",
+      "resultsCountPlural": "{{count}} partner opticians in {{countries}} countries"
+    },
+    "cta": {
+      "label": "Become a partner",
+      "title": "Are you an optician?",
+      "subtitle": "Join excellence.",
+      "description": "Join the Renaissance network and offer your clients exceptional eyewear, symbols of French heritage and a unique vision of luxury.",
+      "button": "Become a partner"
+    }
+  },
+  "suiviCommande": {
+    "seo": {
+      "title": "Order Tracking",
+      "description": "Track your RENAISSANCE Paris order with peace of mind. Enter your order number and email to access your delivery status."
+    },
+    "hero": {
+      "label": "Customer Service",
+      "titleLine1": "TRACK YOUR",
+      "titleLine2": "ORDER.",
+      "subtitle": "With peace of mind.",
+      "scroll": "Scroll"
+    },
+    "form": {
+      "orderNumberLabel": "Order number",
+      "emailLabel": "Email address",
+      "orderPlaceholder": "#1001",
+      "emailPlaceholder": "your@email.com",
+      "submit": "Track my order",
+      "error": "Please enter your order number and email."
+    },
+    "reassurance": {
+      "freeShipping": "Free shipping",
+      "warranty": "2-year warranty",
+      "returns": "30-day returns"
+    },
+    "faqSection": {
+      "label": "Frequently asked questions",
+      "titleLine1": "WE'VE GOT",
+      "titleLine2": "answers.",
+      "allQuestions": "All questions",
+      "questions": {
+        "whereIsOrder": {
+          "q": "Where is my order?",
+          "a": "After shipping, you will receive an email with your tracking number. Delivery takes 1 to 3 business days in metropolitan France, 2-3 days for the EU."
+        },
+        "deliveryTimes": {
+          "q": "What are the delivery times?",
+          "a": "Orders are shipped within 24-48h. Delivery in metropolitan France takes 1-2 business days, 2-3 days for the EU, and 3-7 days internationally."
+        },
+        "noConfirmation": {
+          "q": "I didn't receive my confirmation email.",
+          "a": "Check your spam and junk mail. If you can't find your confirmation, contact us with your name and order date at contact@renaissance-eyewear.fr."
+        },
+        "modifyOrder": {
+          "q": "Can I modify or cancel my order?",
+          "a": "You can modify or cancel your order within 2 hours of placing it by contacting us immediately. After this period, your order is being prepared."
+        },
+        "returnPolicy": {
+          "q": "What is your return policy?",
+          "a": "You have 14 days from receipt to return your order. The product must be in its original condition with intact packaging. Return shipping is covered by Renaissance."
+        },
+        "refundDelay": {
+          "q": "When will I be refunded?",
+          "a": "The refund is processed within 14 days of receiving and validating your return, using the original payment method."
+        }
+      }
+    },
+    "ctaBottom": {
+      "label": "Customer Service",
+      "title": "A question?",
+      "subtitle": "Our team is at your service.",
+      "contactUs": "Contact us",
+      "viewFaq": "View FAQ"
+    }
+  }
+}

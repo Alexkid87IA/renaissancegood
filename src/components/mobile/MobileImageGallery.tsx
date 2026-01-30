@@ -40,6 +40,7 @@ export default function MobileImageGallery({ images, productName }: MobileImageG
               src={images[currentIndex]}
               alt={`${productName} - vue ${currentIndex + 1}`}
               className="w-full h-full object-cover select-none"
+              loading="lazy"
             />
           </motion.div>
         </AnimatePresence>
@@ -85,6 +86,7 @@ export default function MobileImageGallery({ images, productName }: MobileImageG
                 src={image}
                 alt={`Miniature ${index + 1}`}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </button>
           ))}

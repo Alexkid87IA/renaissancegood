@@ -1,28 +1,17 @@
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { stagger, fade } from './shared';
 import { useDeviceType } from '../../hooks/useDeviceType';
 
 export default function FondateursSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
   const { isMobile } = useDeviceType();
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.9, 1], [1, 1, 0.3]);
-
   return (
     <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity }}
-      className="min-h-screen lg:h-screen relative sticky top-0 z-20 bg-beige"
+      className="min-h-screen lg:h-screen relative z-20 bg-beige"
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">

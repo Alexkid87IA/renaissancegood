@@ -1,23 +1,17 @@
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LocaleLink from './LocaleLink';
+import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { stagger, fade } from './shared';
 
 export default function CollectionVersailles() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation('collections');
 
   const textInView = useInView(textRef, { once: true, amount: 0.3 });
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
-  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
 
   const handleNavigate = () => {
     setIsLoading(true);
@@ -26,9 +20,7 @@ export default function CollectionVersailles() {
 
   return (
     <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity }}
-      className="min-h-screen lg:h-screen relative sticky top-0 z-30"
+      className="min-h-screen lg:h-screen relative z-30"
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">
@@ -50,7 +42,7 @@ export default function CollectionVersailles() {
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-3 group-hover:translate-y-0">
               <span className="font-sans text-white text-[10px] tracking-[0.3em] font-medium uppercase">
-                Découvrir
+                {t('versailles.discover')}
               </span>
             </div>
           </div>
@@ -63,7 +55,7 @@ export default function CollectionVersailles() {
             >
               <div className="flex flex-col items-center gap-4">
                 <div className="w-12 h-12 border border-bronze/30 border-t-bronze rounded-full animate-spin" />
-                <p className="text-dark-text text-[10px] tracking-[0.3em] font-light uppercase">Chargement</p>
+                <p className="text-dark-text text-[10px] tracking-[0.3em] font-light uppercase">{t('loading', { ns: 'common' })}</p>
               </div>
             </motion.div>
           )}
@@ -81,15 +73,15 @@ export default function CollectionVersailles() {
 
             {/* Label */}
             <motion.p variants={fade} className="font-sans text-dark-text/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
-              Collection
+              {t('versailles.label')}
             </motion.p>
 
             {/* Title */}
             <motion.h3 variants={fade} className="font-display text-4xl md:text-5xl laptop:text-[3.5rem] xl:text-6xl font-bold tracking-[-0.03em] leading-[0.9] mb-3">
-              VERSAILLES
+              {t('versailles.title')}
             </motion.h3>
             <motion.p variants={fade} className="font-display text-2xl md:text-3xl laptop:text-[2rem] xl:text-4xl font-light italic text-dark-text/70 tracking-[-0.02em] leading-[1] mb-8">
-              La Fleur de Lys.
+              {t('versailles.subtitle')}
             </motion.p>
 
             {/* Line */}
@@ -97,19 +89,19 @@ export default function CollectionVersailles() {
 
             {/* Description */}
             <motion.p variants={fade} className="font-sans text-dark-text/50 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-14">
-              Les rois sont partis. Le symbole est resté. La Fleur de Lys. Pour ceux qui construisent. Pas pour ceux qui paradent.
+              {t('versailles.description')}
             </motion.p>
 
             {/* CTA */}
             <motion.div variants={fade}>
-              <Link to="/collections/versailles">
+              <LocaleLink to="/collections/versailles">
                 <button className="group relative overflow-hidden border border-dark-text px-10 py-4 transition-all duration-500">
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
-                    Découvrir
+                    {t('versailles.discover')}
                   </span>
                   <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </button>
-              </Link>
+              </LocaleLink>
             </motion.div>
 
           </motion.div>
@@ -117,39 +109,42 @@ export default function CollectionVersailles() {
       </div>
 
       {/* MOBILE */}
-      <div className="md:hidden relative h-screen bg-[#000000] overflow-hidden" onClick={handleNavigate}>
-        {/* Image — remontée */}
+      <div className="md:hidden relative h-[100dvh] bg-[#000000] overflow-hidden" onClick={handleNavigate}>
+        {/* Image — sans overlay */}
         <div className="absolute inset-0">
           <img
             src="https://renaissance-cdn.b-cdn.net/VERSAILLES-COLLECTION.jpeg"
             alt="Collection Versailles"
             className="w-full h-full object-cover object-[center_35%]"
+            loading="lazy"
           />
-          <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-b from-transparent to-[#000000]" />
         </div>
 
-        {/* Content — bas */}
-        <div className="absolute bottom-0 left-0 right-0 px-6 pb-8">
+        {/* Content — centré verticalement */}
+        <div className="relative h-full flex flex-col justify-center px-6 pt-20">
           <p className="font-sans text-white/50 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
-            Collection
+            {t('versailles.label')}
           </p>
-          <h3 className="font-display text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[0.9] text-white mb-1">
-            VERSAILLES
-          </h3>
-          <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em] mb-5">
-            La Fleur de Lys.
-          </p>
-          <button
-            disabled={isLoading}
-            className="group relative overflow-hidden w-full border border-white/20 px-6 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98] disabled:opacity-50"
-          >
-            <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
-              {isLoading ? 'CHARGEMENT...' : 'DÉCOUVRIR LA COLLECTION'}
-            </span>
-            {!isLoading && (
-              <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-            )}
-          </button>
+          <div className="flex items-baseline justify-between">
+            <div>
+              <h3 className="font-display text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[0.9] text-white mb-1">
+                {t('versailles.title')}
+              </h3>
+              <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em]">
+                {t('versailles.subtitle')}
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="font-display text-sm italic text-white/50 font-light">
+                {isLoading ? '...' : t('versailles.discover')}
+              </span>
+              {!isLoading && (
+                <svg className="w-4 h-4 text-white/35" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              )}
+            </div>
+          </div>
         </div>
 
         {isLoading && (

@@ -210,6 +210,7 @@ export default function ProductHeroSection({ product, mainImage, onColorChange }
               src={mainImage}
               alt={product.name}
               className="w-full h-full object-contain p-8 lg:p-16"
+              loading="lazy"
             />
           </div>
         </div>

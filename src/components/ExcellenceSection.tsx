@@ -1,44 +1,18 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-
-const pillars = [
-  {
-    number: '01',
-    title: 'Héritage Historique',
-    description: 'Inspirées des symboles de la royauté française, nos collections célèbrent l\'excellence d\'un patrimoine unique.'
-  },
-  {
-    number: '02',
-    title: 'Savoir-Faire Franco-Coréen',
-    description: 'L\'alliance du design parisien et de la précision coréenne pour une qualité d\'exécution irréprochable.'
-  },
-  {
-    number: '03',
-    title: 'Matériaux d\'Exception',
-    description: 'Acétate Mazzucchelli, acier inoxydable haut grade et finitions premium pour des lunettes qui traversent le temps.'
-  },
-  {
-    number: '04',
-    title: 'Engagement Durable',
-    description: 'Contre la fast fashion, nous créons des pièces pensées pour durer, avec transparence et responsabilité.'
-  }
-];
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 export default function ExcellenceSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
+  const { t } = useTranslation('home');
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
-
+  const pillars = [
+    { number: '01', title: t('excellence.pillar1Title'), description: t('excellence.pillar1Desc') },
+    { number: '02', title: t('excellence.pillar2Title'), description: t('excellence.pillar2Desc') },
+    { number: '03', title: t('excellence.pillar3Title'), description: t('excellence.pillar3Desc') },
+    { number: '04', title: t('excellence.pillar4Title'), description: t('excellence.pillar4Desc') },
+  ];
   return (
     <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity }}
-      className="min-h-screen lg:h-screen relative sticky top-0 z-20 bg-white"
+      className="min-h-screen lg:h-screen relative z-20 bg-white"
     >
       <div className="min-h-full py-12 lg:py-0 lg:h-full flex flex-col md:flex-row px-6 md:px-0">
         <div className="w-full md:w-1/2 h-[50vh] md:h-full relative overflow-hidden group md:ml-6">
@@ -49,6 +23,7 @@ export default function ExcellenceSection() {
             src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1440"
             alt="L'Excellence Renaissance"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1500ms]"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent" />
         </div>
@@ -66,14 +41,13 @@ export default function ExcellenceSection() {
               className="mb-12 md:mb-16"
             >
               <p className="font-sans text-bronze text-[10px] tracking-[0.3em] uppercase mb-6 font-bold">
-                L'Excellence Renaissance
+                {t('excellence.label')}
               </p>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9] mb-6">
-                QUATRE PILIERS.
+                {t('excellence.title')}
               </h2>
               <p className="font-sans text-dark-text/60 text-base md:text-lg leading-[1.75] font-light">
-                Renaissance ne fabrique pas de simples lunettes. Nous créons des symboles
-                d'une vision française du luxe, ancrée dans l'histoire et tournée vers l'avenir.
+                {t('excellence.description')}
               </p>
             </motion.div>
 

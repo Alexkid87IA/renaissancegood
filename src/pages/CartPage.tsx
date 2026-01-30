@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import LocaleLink from '../components/LocaleLink';
+import { useTranslation } from 'react-i18next';
 import { Minus, Plus, X, Shield, Truck, Award, Package, ChevronLeft, ChevronRight, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../contexts/CartContext';
 
 export default function CartPage() {
   const { cart, isLoading, updateQuantity, removeItem } = useCart();
+  const { t } = useTranslation('cart');
 
   const cartLines = cart?.lines.edges || [];
 
@@ -17,7 +19,7 @@ export default function CartPage() {
   const subtotal = calculateSubtotal();
   const freeShippingThreshold = 500;
   const shipping = subtotal >= freeShippingThreshold ? 0 : 15;
-  const total = cart ? parseFloat(cart.cost.totalAmount.amount) + shipping : 0;
+  const total = subtotal + shipping;
   const progressToFreeShipping = Math.min((subtotal / freeShippingThreshold) * 100, 100);
   const remainingForFreeShipping = Math.max(freeShippingThreshold - subtotal, 0);
 
@@ -30,7 +32,7 @@ export default function CartPage() {
           className="text-center"
         >
           <div className="w-8 h-8 border-2 border-bronze border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="font-sans text-sm text-dark-text/60">Chargement de votre panier...</p>
+          <p className="font-sans text-sm text-dark-text/60">{t('loading', { ns: 'common' })}</p>
         </motion.div>
       </div>
     );
@@ -47,11 +49,11 @@ export default function CartPage() {
           className="mb-12"
         >
           <h1 className="font-serif text-5xl laptop:text-6xl xl:text-7xl text-dark-text mb-4 leading-[0.9]">
-            Votre Panier
+            {t('title')}
           </h1>
           <div className="flex items-center gap-3">
             <p className="font-sans text-sm text-dark-text/60">
-              {cartLines.length} {cartLines.length === 1 ? 'pièce d\'exception' : 'pièces d\'exception'}
+              {t('pieces', { count: cartLines.length })}
             </p>
             {cartLines.length > 0 && (
               <>
@@ -79,6 +81,7 @@ export default function CartPage() {
                   src="https://renaissance-cdn.b-cdn.net/campgane.png"
                   alt="Renaissance Paris"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/40 via-transparent to-transparent lg:bg-none" />
                 <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#000000] to-transparent hidden lg:block" />
@@ -92,37 +95,36 @@ export default function CartPage() {
                   transition={{ duration: 0.8, delay: 0.3 }}
                 >
                   <p className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-5">
-                    Votre panier
+                    {t('title')}
                   </p>
                   <h2 className="font-display text-3xl lg:text-4xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
-                    RIEN POUR
-                    <br />L'INSTANT.
+                    {t('emptyTitle')}
                   </h2>
                   <p className="font-display text-lg font-light italic text-white/40 tracking-[-0.02em] mb-6">
-                    L'exception vous attend.
+                    {t('emptySubtitle')}
                   </p>
                   <div className="w-10 h-px bg-white/15 mb-6" />
                   <p className="font-sans text-white/30 text-[13px] leading-[1.8] font-light mb-8 max-w-sm">
-                    Découvrez nos collections et trouvez la monture qui révélera votre style unique.
+                    {t('emptyDesc')}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Link
+                    <LocaleLink
                       to="/collections/heritage"
                       className="group relative overflow-hidden border border-white/15 px-8 py-4 transition-all duration-500 hover:border-bronze/60 text-center"
                     >
                       <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
-                        Nos collections
+                        {t('emptyCollections')}
                       </span>
                       <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                    </Link>
-                    <Link
-                      to="/boutique"
+                    </LocaleLink>
+                    <LocaleLink
+                      to="/shop"
                       className="group relative overflow-hidden border border-white/8 px-8 py-4 transition-all duration-500 hover:border-white/20 text-center"
                     >
                       <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/40 group-hover:text-white/70 transition-colors duration-500">
-                        Boutique
+                        {t('emptyExplore')}
                       </span>
-                    </Link>
+                    </LocaleLink>
                   </div>
                 </motion.div>
               </div>
@@ -141,7 +143,7 @@ export default function CartPage() {
                 >
                   <div className="flex items-center justify-between mb-3">
                     <p className="font-sans text-xs text-dark-text">
-                      <span className="font-bold text-bronze">{remainingForFreeShipping.toFixed(0)}€</span> restants pour la livraison gratuite
+                      <span className="font-bold text-bronze">{remainingForFreeShipping.toFixed(0)}€</span> {t('freeShippingRemaining')}
                     </p>
                     <Truck size={18} className="text-bronze" />
                   </div>
@@ -177,25 +179,25 @@ export default function CartPage() {
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12"
               >
                 {[
-                  { 
-                    icon: Shield, 
-                    title: 'Garantie 3 ans',
-                    description: 'Protection complète contre les défauts de fabrication et la casse accidentelle'
+                  {
+                    icon: Shield,
+                    title: t('trustBadgeWarrantyTitle'),
+                    description: t('trustBadgeWarrantyDesc')
                   },
-                  { 
-                    icon: Truck, 
-                    title: 'Livraison suivie',
-                    description: 'Expédition sécurisée avec suivi en temps réel, livrée en 2-4 jours ouvrés'
+                  {
+                    icon: Truck,
+                    title: t('trustBadgeShippingTitle'),
+                    description: t('trustBadgeShippingDesc')
                   },
-                  { 
-                    icon: Award, 
-                    title: 'Création Parisienne',
-                    description: 'Designé dans nos ateliers parisiens avec une attention méticuleuse aux détails'
+                  {
+                    icon: Award,
+                    title: t('trustBadgeParisTitle'),
+                    description: t('trustBadgeParisDesc')
                   },
-                  { 
-                    icon: Package, 
-                    title: 'Étui luxe offert',
-                    description: 'Chaque paire accompagnée d\'un étui premium et d\'un chiffon en microfibre'
+                  {
+                    icon: Package,
+                    title: t('trustBadgeCaseTitle'),
+                    description: t('trustBadgeCaseDesc')
                   }
                 ].map((item, i) => (
                   <motion.div 
@@ -229,26 +231,26 @@ export default function CartPage() {
             >
               <div className="bg-white border border-dark-text/5 p-8 lg:p-10 sticky top-32">
                 <h2 className="font-sans text-[10px] tracking-[0.3em] font-bold text-dark-text uppercase mb-8 pb-4 border-b border-dark-text/10">
-                  Récapitulatif
+                  {t('orderSummary')}
                 </h2>
 
                 <div className="space-y-5 mb-8">
                   <div className="flex justify-between items-baseline">
-                    <span className="font-sans text-sm text-dark-text/60">Sous-total</span>
+                    <span className="font-sans text-sm text-dark-text/60">{t('subtotal')}</span>
                     <span className="font-sans text-lg text-dark-text">{subtotal.toFixed(2)}€</span>
                   </div>
                   <div className="flex justify-between items-baseline">
-                    <span className="font-sans text-sm text-dark-text/60">Livraison</span>
+                    <span className="font-sans text-sm text-dark-text/60">{t('shipping')}</span>
                     <span className="font-sans text-lg text-dark-text">
                       {shipping > 0 ? `${shipping.toFixed(2)}€` : (
-                        <span className="text-bronze font-medium">Gratuite</span>
+                        <span className="text-bronze font-medium">{t('shippingFree')}</span>
                       )}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex justify-between items-baseline mb-8 pt-6 border-t-2 border-dark-text">
-                  <span className="font-serif text-xl text-dark-text">Total</span>
+                  <span className="font-serif text-xl text-dark-text">{t('total')}</span>
                   <span className="font-serif text-3xl font-bold text-bronze">
                     {total.toFixed(2)}€
                   </span>
@@ -259,46 +261,46 @@ export default function CartPage() {
                   <div className="flex items-center gap-2 justify-center text-dark-text/70">
                     <Lock size={14} strokeWidth={2} className="text-bronze" />
                     <p className="font-sans text-xs">
-                      Paiement sécurisé via Stripe
+                      {t('securePayment')}
                     </p>
                   </div>
                 </div>
 
                 {/* Bouton vers Checkout */}
-                <Link
+                <LocaleLink
                   to="/checkout"
                   className="flex items-center justify-center gap-2 w-full bg-dark-text text-white py-5 px-6 text-center font-sans text-[10px] tracking-[0.3em] font-bold hover:bg-bronze transition-all duration-300 mb-4"
                 >
-                  <span>FINALISER LA COMMANDE</span>
-                </Link>
+                  <span>{t('checkout')}</span>
+                </LocaleLink>
 
-                <Link
+                <LocaleLink
                   to="/collections/heritage"
                   className="block w-full text-center py-4 font-sans text-[9px] tracking-[0.2em] font-bold text-dark-text hover:text-bronze transition-colors duration-300 border border-dark-text/20 hover:border-bronze/40"
                 >
-                  CONTINUER MES ACHATS
-                </Link>
+                  {t('continueShopping')}
+                </LocaleLink>
 
                 {/* Trust Indicators */}
                 <div className="mt-8 pt-8 border-t border-dark-text/10 space-y-3">
                   <div className="flex items-center gap-3 text-dark-text/60">
                     <Shield size={16} strokeWidth={1.5} className="flex-shrink-0" />
-                    <p className="font-sans text-xs">Paiement 100% sécurisé</p>
+                    <p className="font-sans text-xs">{t('trustSecure')}</p>
                   </div>
                   <div className="flex items-center gap-3 text-dark-text/60">
                     <Truck size={16} strokeWidth={1.5} className="flex-shrink-0" />
-                    <p className="font-sans text-xs">Livraison gratuite dès 500€</p>
+                    <p className="font-sans text-xs">{t('trustFreeShipping')}</p>
                   </div>
                   <div className="flex items-center gap-3 text-dark-text/60">
                     <Package size={16} strokeWidth={1.5} className="flex-shrink-0" />
-                    <p className="font-sans text-xs">Emballage premium inclus</p>
+                    <p className="font-sans text-xs">{t('trustPackaging')}</p>
                   </div>
                 </div>
 
                 {/* Moyens de paiement */}
                 <div className="mt-8 pt-6 border-t border-dark-text/10">
                   <p className="text-[9px] text-dark-text/40 uppercase tracking-[0.15em] text-center mb-4">
-                    Moyens de paiement
+                    {t('paymentMethods')}
                   </p>
                   <div className="flex items-center justify-center gap-1.5 flex-wrap">
                     {/* Visa */}
@@ -340,8 +342,47 @@ export default function CartPage() {
 }
 
 /* CartItemWithCarousel Component */
+interface CartLineNode {
+  id: string;
+  quantity: number;
+  merchandise: {
+    id: string;
+    title: string;
+    priceV2?: {
+      amount: string;
+      currencyCode: string;
+    };
+    product: {
+      id: string;
+      title: string;
+      handle: string;
+      images: {
+        edges: Array<{
+          node: {
+            url: string;
+            altText: string | null;
+          };
+        }>;
+      };
+      collections?: {
+        edges: Array<{
+          node: {
+            title: string;
+          };
+        }>;
+      };
+    };
+  };
+  cost?: {
+    totalAmount?: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
+}
+
 interface CartItemProps {
-  node: any;
+  node: CartLineNode;
   index: number;
   isLoading: boolean;
   updateQuantity: (lineId: string, quantity: number) => Promise<void>;
@@ -349,6 +390,7 @@ interface CartItemProps {
 }
 
 function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeItem }: CartItemProps) {
+  const { t } = useTranslation('cart');
   const product = node.merchandise.product;
   const price = parseFloat(node.merchandise.priceV2?.amount || node.cost?.totalAmount?.amount || '0');
   const totalPrice = price * node.quantity;
@@ -445,7 +487,7 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
       <div className="flex flex-col lg:flex-row">
         {/* Image Container with Carousel - Full bleed */}
         <div className="w-full lg:w-[500px] xl:w-[560px] flex-shrink-0 flex flex-col">
-          <Link
+          <LocaleLink
             to={`/product/${product?.handle || ''}`}
             className="relative group/image aspect-[4/3] overflow-hidden bg-neutral-100"
           >
@@ -461,6 +503,7 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
                     src={img}
                     alt={`${product?.title || 'Produit'} - Image ${i + 1}`}
                     className="w-full h-full object-cover cursor-pointer"
+                    loading="lazy"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -481,7 +524,7 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
             <div className="absolute inset-0 bg-dark-text/0 group-hover/image:bg-dark-text/10 transition-colors duration-300 flex items-center justify-center pointer-events-none">
               <div className="opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 bg-white px-5 py-2.5">
                 <p className="font-sans text-[9px] tracking-[0.2em] font-bold text-dark-text uppercase">
-                  Voir le produit
+                  {t('viewProduct')}
                 </p>
               </div>
             </div>
@@ -493,7 +536,7 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
                   type="button"
                   onClick={handlePrevImage}
                   className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white w-10 h-10 flex items-center justify-center transition-all duration-200 opacity-0 group-hover/image:opacity-100 z-20"
-                  aria-label="Image précédente"
+                  aria-label={t('prevImage')}
                 >
                   <ChevronLeft size={20} className="text-dark-text" strokeWidth={2} />
                 </button>
@@ -501,13 +544,13 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
                   type="button"
                   onClick={handleNextImage}
                   className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white w-10 h-10 flex items-center justify-center transition-all duration-200 opacity-0 group-hover/image:opacity-100 z-20"
-                  aria-label="Image suivante"
+                  aria-label={t('nextImage')}
                 >
                   <ChevronRight size={20} className="text-dark-text" strokeWidth={2} />
                 </button>
               </>
             )}
-          </Link>
+          </LocaleLink>
 
           {/* Thumbnails - Style épuré */}
           {!loadingImages && allProductImages.length > 1 && (
@@ -525,6 +568,7 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
                     src={img}
                     alt={`${product?.title || 'Produit'} thumbnail ${i + 1}`}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   {i === currentImageIndex && (
                     <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-dark-text" />
@@ -540,14 +584,14 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
           <div className="flex-1">
             <div className="flex justify-between items-start mb-6">
               <div className="flex-1">
-                <Link to={`/product/${product?.handle || ''}`}>
+                <LocaleLink to={`/product/${product?.handle || ''}`}>
                   <h3 className="font-serif text-2xl lg:text-3xl xl:text-4xl text-dark-text mb-3 leading-tight pr-8 hover:text-bronze transition-colors duration-300 cursor-pointer">
                     {product?.title || 'Produit'}
                   </h3>
-                </Link>
+                </LocaleLink>
                 {node.merchandise?.title && node.merchandise.title !== 'Default Title' && (
                   <p className="font-sans text-xs text-dark-text/60 mb-2">
-                    Variante : <span className="text-dark-text">{node.merchandise.title}</span>
+                    {t('variant')} <span className="text-dark-text">{node.merchandise.title}</span>
                   </p>
                 )}
               </div>
@@ -556,7 +600,7 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
                 onClick={() => removeItem(node.id)}
                 disabled={isLoading}
                 className="text-dark-text/30 hover:text-dark-text transition-colors disabled:opacity-50 p-2 flex-shrink-0"
-                aria-label="Retirer du panier"
+                aria-label={t('removeFromCart')}
               >
                 <X size={20} />
               </button>
@@ -564,7 +608,7 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
 
             {/* Prix */}
             <div className="mb-6 pb-6 border-b border-dark-text/5">
-              <p className="font-sans text-xs text-dark-text/50 mb-2">Prix unitaire</p>
+              <p className="font-sans text-xs text-dark-text/50 mb-2">{t('unitPrice')}</p>
               <p className="font-serif text-2xl text-bronze">
                 {price.toFixed(2)}€
               </p>
@@ -585,7 +629,7 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
                 }}
                 disabled={isLoading}
                 className="p-3 hover:bg-beige transition-colors disabled:opacity-50"
-                aria-label="Diminuer la quantité"
+                aria-label={t('decreaseQuantity')}
               >
                 {node.quantity === 1 ? <X size={16} /> : <Minus size={16} />}
               </button>
@@ -602,7 +646,7 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
                 onClick={() => updateQuantity(node.id, node.quantity + 1)}
                 disabled={isLoading}
                 className="p-3 hover:bg-beige transition-colors disabled:opacity-50"
-                aria-label="Augmenter la quantité"
+                aria-label={t('increaseQuantity')}
               >
                 <Plus size={16} />
               </button>

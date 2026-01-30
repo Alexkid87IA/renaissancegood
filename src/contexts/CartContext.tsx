@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useMemo, useCallback, ReactNode } from 'react';
 import { createCart, addToCart as addToCartAPI, updateCartItem, removeFromCart as removeFromCartAPI, getCart } from '../lib/shopify';
 
 // Types pour le panier
@@ -59,6 +59,8 @@ interface CartContextType {
   clearCart: () => Promise<void>;
   openCart: () => void;
   closeCart: () => void;
+  error: string | null;
+  clearError: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -69,6 +71,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<Cart | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Calculer le nombre total d'articles
   const itemCount = cart?.lines.edges.reduce((total, { node }) => total + node.quantity, 0) || 0;
@@ -103,7 +106,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, []);
 
   // Ajouter au panier
-  const addToCart = async (variantId: string, quantity: number = 1) => {
+  const addToCart = useCallback(async (variantId: string, quantity: number = 1) => {
     setIsLoading(true);
     try {
       let currentCart = cart;
@@ -119,14 +122,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
       setCart(updatedCart);
       setIsCartOpen(true); // Ouvrir le panier après ajout
     } catch (error) {
-      alert('Impossible d\'ajouter l\'article au panier. Veuillez réessayer.');
+      setError('Impossible d\'ajouter l\'article au panier. Veuillez réessayer.');
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [cart]);
 
   // Mettre à jour la quantité
-  const updateQuantity = async (lineId: string, quantity: number) => {
+  const updateQuantity = useCallback(async (lineId: string, quantity: number) => {
     if (!cart) return;
     
     setIsLoading(true);
@@ -134,14 +137,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const updatedCart = await updateCartItem(cart.id, lineId, quantity);
       setCart(updatedCart);
     } catch (error) {
-      alert('Impossible de mettre à jour la quantité. Veuillez réessayer.');
+      setError('Impossible de mettre à jour la quantité. Veuillez réessayer.');
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [cart]);
 
   // Supprimer un article
-  const removeItem = async (lineId: string) => {
+  const removeItem = useCallback(async (lineId: string) => {
     if (!cart) return;
     
     setIsLoading(true);
@@ -149,14 +152,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const updatedCart = await removeFromCartAPI(cart.id, lineId);
       setCart(updatedCart);
     } catch (error) {
-      alert('Impossible de supprimer l\'article. Veuillez réessayer.');
+      setError('Impossible de supprimer l\'article. Veuillez réessayer.');
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [cart]);
 
   // Vider le panier (après achat)
-  const clearCart = async () => {
+  const clearCart = useCallback(async () => {
     localStorage.removeItem(CART_ID_KEY);
     try {
       const newCart = await createCart();
@@ -165,26 +168,29 @@ export function CartProvider({ children }: { children: ReactNode }) {
     } catch {
       setCart(null);
     }
-  };
+  }, []);
 
-  const openCart = () => setIsCartOpen(true);
-  const closeCart = () => setIsCartOpen(false);
+  const openCart = useCallback(() => setIsCartOpen(true), []);
+  const closeCart = useCallback(() => setIsCartOpen(false), []);
+  const clearError = useCallback(() => setError(null), []);
+
+  const value = useMemo(() => ({
+    cart,
+    isLoading,
+    isCartOpen,
+    itemCount,
+    addToCart,
+    updateQuantity,
+    removeItem,
+    clearCart,
+    openCart,
+    closeCart,
+    error,
+    clearError,
+  }), [cart, isLoading, isCartOpen, itemCount, addToCart, updateQuantity, removeItem, clearCart, openCart, closeCart, error, clearError]);
 
   return (
-    <CartContext.Provider
-      value={{
-        cart,
-        isLoading,
-        isCartOpen,
-        itemCount,
-        addToCart,
-        updateQuantity,
-        removeItem,
-        clearCart,
-        openCart,
-        closeCart,
-      }}
-    >
+    <CartContext.Provider value={value}>
       {children}
     </CartContext.Provider>
   );

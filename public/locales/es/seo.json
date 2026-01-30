@@ -1,0 +1,46 @@
+{
+  "home": {
+    "title": "Gafas de lujo artesanales | Maestría francesa",
+    "description": "Descubra las gafas RENAISSANCE Paris. Maestría artesanal francesa, materiales nobles y diseño atemporal."
+  },
+  "shop": {
+    "title": "Todos los modelos",
+    "description": "Todos los modelos Renaissance Paris. Gafas artesanales, ediciones limitadas a 300 ejemplares."
+  },
+  "heritage": {
+    "title": "Colección Herencia",
+    "description": "Colección Herencia Renaissance Paris. Monturas atemporales nacidas en nuestros talleres parisinos."
+  },
+  "versailles": {
+    "title": "Colección Versailles",
+    "description": "Colección Versailles Renaissance Paris. Inspirada en el esplendor del palacio, oro de 24 quilates."
+  },
+  "isis": {
+    "title": "Colección Isis",
+    "description": "Colección Isis Renaissance Paris. Inspirada en los símbolos eternos del antiguo Egipto."
+  },
+  "histoire": {
+    "title": "Nuestra historia",
+    "description": "La historia de la Maison Renaissance Paris. Cinco símbolos milenarios, maestría excepcional."
+  },
+  "cart": {
+    "title": "Su carrito",
+    "description": "Su carrito Renaissance Paris."
+  },
+  "contact": {
+    "title": "Contacto",
+    "description": "Contacte con Renaissance Paris. Nuestro equipo está a su disposición."
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Preguntas frecuentes sobre las gafas Renaissance Paris."
+  },
+  "blog": {
+    "title": "Manifiesto",
+    "description": "Novedades y manifiesto de la Maison Renaissance Paris."
+  },
+  "storeLocator": {
+    "title": "Encontrar óptica",
+    "description": "Encuentre una óptica asociada Renaissance Paris cerca de usted."
+  }
+}

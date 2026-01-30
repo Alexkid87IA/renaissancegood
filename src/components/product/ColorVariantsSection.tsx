@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ColorVariant, getColorSwatchStyle, getModelName } from '../../lib/productGrouping';
+import LocaleLink from '../LocaleLink';
 
 interface ColorVariantsSectionProps {
   colorVariants: ColorVariant[];
@@ -16,6 +17,7 @@ export default function ColorVariantsSection({
   onColorVariantChange,
   currentHandle,
 }: ColorVariantsSectionProps) {
+  const { t } = useTranslation('product');
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   // Ne pas afficher s'il n'y a qu'un seul coloris
@@ -42,12 +44,12 @@ export default function ColorVariantsSection({
           className="mb-10 sm:mb-12 lg:mb-14"
         >
           <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/35 uppercase mb-4 font-medium">
-            Autres coloris
+            {t('colorVariantsSection.otherColors')}
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9]">
-            CE MODÈLE
+            {t('colorVariantsSection.thisModel')}
             <br />
-            <span className="font-light italic tracking-[-0.02em]">existe aussi en</span>
+            <span className="font-light italic tracking-[-0.02em]">{t('colorVariantsSection.alsoAvailableIn')}</span>
           </h2>
         </motion.div>
 
@@ -66,7 +68,7 @@ export default function ColorVariantsSection({
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="w-[calc(50%-0.625rem)] sm:w-[260px] lg:w-[280px]"
               >
-                <Link
+                <LocaleLink
                   to={`/product/${variant.handle}`}
                   className="group block"
                   onMouseEnter={() => setHoveredIndex(index)}
@@ -85,7 +87,7 @@ export default function ColorVariantsSection({
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <span className="font-sans text-dark-text/20 text-xs">Image non disponible</span>
+                        <span className="font-sans text-dark-text/20 text-xs">{t('colorVariantsSection.imageUnavailable')}</span>
                       </div>
                     )}
 
@@ -126,7 +128,7 @@ export default function ColorVariantsSection({
                       hoveredIndex === index ? 'w-full' : 'w-0'
                     }`} />
                   </div>
-                </Link>
+                </LocaleLink>
               </motion.div>
             );
           })}

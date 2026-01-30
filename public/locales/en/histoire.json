@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "label": "The House",
+    "title": "RENAISSANCE",
+    "subtitle": "Paris, since always."
+  },
+  "signature": {
+    "label": "Our signature",
+    "title": "FIVE MILLENNIAL\nSYMBOLS",
+    "description": "Each frame carries within it a fragment of eternity. Five symbols spanning civilizations, five signatures of the House of Renaissance."
+  },
+  "savoirFaire": {
+    "label": "Craftsmanship",
+    "title": "ARTISANAL\nEXCELLENCE",
+    "description": "Each frame is the result of more than 40 steps of artisanal craftsmanship. A meticulous process that guarantees exceptional quality."
+  },
+  "fondateurs": {
+    "label": "The founders",
+    "title": "A PARISIAN\nVISION"
+  },
+  "valeurs": {
+    "label": "Our values",
+    "title": "THE RENAISSANCE\nCOMMITMENT"
+  },
+  "engagement": {
+    "label": "Commitment",
+    "title": "SO THAT THIS\nIS NEVER FORGOTTEN"
+  },
+  "ambassadeurs": {
+    "label": "Ambassadors",
+    "title": "THEY WEAR\nRENAISSANCE"
+  },
+  "manifeste": {
+    "label": "Manifesto",
+    "title": "THE RENAISSANCE\nMANIFESTO",
+    "description": "What we create is not just an accessory. It is an act of transmission."
+  },
+  "symboles": {
+    "label": "The symbols",
+    "title": "FIVE ETERNAL\nSYMBOLS"
+  },
+  "page": {
+    "histoire": {
+      "seoTitle": "Our Story",
+      "seoDescription": "Discover the story of RENAISSANCE Paris, a French luxury eyewear house. Our artisanal craftsmanship, values and commitment to excellence."
+    },
+    "savoirFaire": {
+      "seoTitle": "Craftsmanship",
+      "seoDescription": "Discover RENAISSANCE Paris artisanal craftsmanship. French manufacturing, noble materials and techniques of excellence for unique luxury eyewear."
+    },
+    "manifeste": {
+      "seoTitle": "Manifesto",
+      "seoDescription": "Discover the RENAISSANCE Paris manifesto. Our values of excellence, authenticity and French craftsmanship in service of luxury eyewear."
+    },
+    "symboles": {
+      "seoTitle": "Symbols",
+      "seoDescription": "Discover the symbols that inspire RENAISSANCE Paris. Scarab, fleur-de-lis and Maltese cross: emblems steeped in history for unique eyewear."
+    }
+  },
+  "blog": {
+    "seoTitle": "The Manifesto - Blog",
+    "seoDescription": "Discover the RENAISSANCE Paris universe. Articles on our symbols, artisanal craftsmanship and the history of French luxury eyewear.",
+    "heroLabel": "News & Culture",
+    "heroTitleLine1": "THE",
+    "heroTitleLine2": "MANIFESTO.",
+    "heroSubtitle": "Stories, symbols and craftsmanship.",
+    "heroDescription": "Discover the Renaissance universe beyond the object.",
+    "loading": "Loading articles...",
+    "emptyTitle": "First articles coming soon",
+    "emptyDescription": "We are preparing exceptional content about our symbols, craftsmanship and the Renaissance universe.",
+    "readArticle": "Read article",
+    "newsletterLabel": "Newsletter",
+    "newsletterTitle": "Don't miss a thing.",
+    "newsletterSubtitle": "Receive our articles directly.",
+    "emailPlaceholder": "Your email address",
+    "subscribe": "Subscribe"
+  },
+  "article": {
+    "loading": "Loading article...",
+    "notFoundTitle": "Article not found",
+    "notFoundDescription": "This article does not exist or has been removed.",
+    "backToArticles": "Back to articles",
+    "label": "The Manifesto",
+    "share": "Share",
+    "authorBio": "A member of the Renaissance team, passionate about the craftsmanship of excellence and the storytelling that gives meaning to every creation.",
+    "ctaLabel": "Our Creations",
+    "ctaTitle": "Discover our collections.",
+    "ctaSubtitle": "Each symbol tells a story.",
+    "ctaButton": "View collections"
+  }
+}

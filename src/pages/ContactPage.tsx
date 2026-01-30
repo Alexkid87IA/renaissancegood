@@ -1,10 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
 import { Mail, Phone, Clock, Send, MapPin } from 'lucide-react';
 import SEO from '../components/SEO';
 import { stagger, fade } from '../components/shared';
+import LocaleLink from '../components/LocaleLink';
 
 export default function ContactPage() {
+  const { t } = useTranslation('contact');
   const heroRef = useRef<HTMLDivElement>(null);
   const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
   const formRef = useRef<HTMLDivElement>(null);
@@ -43,19 +46,19 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-beige">
       <SEO
-        title="Contact"
-        description="Contactez RENAISSANCE Paris pour toute question sur nos lunettes de luxe. Service client disponible par email et téléphone du lundi au vendredi."
+        title={t('contactPage.seo.title')}
+        description={t('contactPage.seo.description')}
         url="/contact"
       />
 
       {/* HERO — Split éditorial */}
-      <div className="h-screen relative overflow-hidden">
+      <div className="h-[100dvh] lg:h-screen relative overflow-hidden">
         {/* DESKTOP */}
         <div className="relative h-full overflow-hidden hidden lg:flex">
           <div className="w-[42%] bg-[#000000] relative flex flex-col justify-center px-12 xl:px-20 2xl:px-28">
             <div className="absolute top-10 left-12 xl:left-20 2xl:left-28">
               <p className="font-sans text-white/25 text-[9px] tracking-[0.4em] font-medium uppercase">
-                La Maison
+                {t('contactPage.hero.label')}
               </p>
             </div>
 
@@ -67,17 +70,17 @@ export default function ContactPage() {
               className="relative z-10"
             >
               <motion.h1 variants={fade} className="font-display text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white mb-3 tracking-[-0.03em] leading-[0.9]">
-                CONTACTEZ-
-                <br />NOUS.
+                {t('contactPage.hero.titleLine1')}
+                <br />{t('contactPage.hero.titleLine2')}
               </motion.h1>
               <motion.p variants={fade} className="font-display text-2xl xl:text-3xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 xl:mb-10">
-                À votre écoute.
+                {t('contactPage.hero.subtitle')}
               </motion.p>
 
               <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8 xl:mb-10" />
 
               <motion.p variants={fade} className="font-sans text-white/35 text-[13px] xl:text-sm leading-[1.9] font-light max-w-md mb-10 xl:mb-14">
-                Notre équipe est disponible pour répondre à toutes vos questions sur nos collections, vos commandes ou le réseau d'opticiens partenaires.
+                {t('contactPage.hero.description')}
               </motion.p>
 
               <motion.div variants={fade}>
@@ -89,7 +92,7 @@ export default function ContactPage() {
                   className="group relative overflow-hidden border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
                 >
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
-                    Écrire un message
+                    {t('contactPage.hero.cta')}
                   </span>
                   <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </button>
@@ -98,7 +101,7 @@ export default function ContactPage() {
 
             <div className="absolute bottom-10 left-12 xl:left-20 2xl:left-28 flex items-center gap-3">
               <div className="w-8 h-px bg-white/15" />
-              <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">Scroll</span>
+              <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">{t('contactPage.hero.scroll')}</span>
             </div>
           </div>
 
@@ -107,6 +110,7 @@ export default function ContactPage() {
               src="https://renaissance-cdn.b-cdn.net/campgane.png"
               alt="Renaissance Paris - Contact"
               className="absolute inset-0 w-full h-full object-cover"
+              fetchpriority="high"
             />
             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#000000] to-transparent" />
             <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#000000]/20 to-transparent" />
@@ -120,6 +124,7 @@ export default function ContactPage() {
               src="https://renaissance-cdn.b-cdn.net/campgane.png"
               alt="Renaissance Paris - Contact"
               className="w-full h-full object-cover object-center"
+              fetchpriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]" />
             <motion.div
@@ -129,7 +134,7 @@ export default function ContactPage() {
               className="absolute top-24 left-6"
             >
               <p className="text-white/50 text-[9px] tracking-[0.3em] uppercase font-sans font-medium">
-                La Maison
+                {t('contactPage.hero.label')}
               </p>
             </motion.div>
           </div>
@@ -141,14 +146,14 @@ export default function ContactPage() {
               transition={{ duration: 0.8, delay: 0.3 }}
             >
               <h1 className="font-display text-3xl sm:text-4xl font-bold text-white mb-2 tracking-[-0.03em] leading-[0.9]">
-                CONTACTEZ-NOUS.
+                {t('contactPage.hero.titleMobile')}
               </h1>
               <p className="font-display text-lg sm:text-xl font-light italic text-white/50 tracking-[-0.02em] mb-5">
-                À votre écoute.
+                {t('contactPage.hero.subtitle')}
               </p>
               <div className="w-10 h-px bg-white/15 mb-5" />
               <p className="text-white/35 text-sm font-sans leading-relaxed font-light mb-6">
-                Notre équipe est disponible pour répondre à toutes vos questions.
+                {t('contactPage.hero.descriptionMobile')}
               </p>
               <button
                 onClick={() => {
@@ -158,7 +163,7 @@ export default function ContactPage() {
                 className="group relative overflow-hidden w-full border border-white/15 px-8 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98]"
               >
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
-                  Écrire un message
+                  {t('contactPage.hero.cta')}
                 </span>
                 <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </button>
@@ -167,30 +172,30 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* CONTACT INFO CARDS — Section sombre */}
+      {/* CONTACT INFO CARDS */}
       <section className="bg-[#000000]">
         <div className="max-w-[1000px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-3">
             {[
               {
                 icon: Mail,
-                title: 'Email',
-                detail: 'contact@renaissance-eyewear.fr',
-                sub: 'Réponse sous 48h',
+                title: t('contactPage.cards.emailTitle'),
+                detail: t('contactPage.cards.emailDetail'),
+                sub: t('contactPage.cards.emailSub'),
                 href: 'mailto:contact@renaissance-eyewear.fr'
               },
               {
                 icon: Phone,
-                title: 'Téléphone',
-                detail: '+33 1 42 86 82 00',
-                sub: 'Lun — Ven',
+                title: t('contactPage.cards.phoneTitle'),
+                detail: t('contactPage.cards.phoneDetail'),
+                sub: t('contactPage.cards.phoneSub'),
                 href: 'tel:+33142868200'
               },
               {
                 icon: Clock,
-                title: 'Horaires',
-                detail: '9h — 18h',
-                sub: 'Du lundi au vendredi',
+                title: t('contactPage.cards.hoursTitle'),
+                detail: t('contactPage.cards.hoursDetail'),
+                sub: t('contactPage.cards.hoursSub'),
                 href: null
               }
             ].map((item, i) => (
@@ -224,7 +229,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* FORMULAIRE + INFOS — Section beige */}
+      {/* FORMULAIRE + INFOS */}
       <section className="py-20 sm:py-28 lg:py-32" data-contact-form>
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
@@ -237,13 +242,13 @@ export default function ContactPage() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <p className="font-sans text-dark-text/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
-                Message
+                {t('contactPage.formSection.label')}
               </p>
               <h2 className="font-display text-3xl lg:text-4xl xl:text-5xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-3">
-                Écrivez-nous.
+                {t('contactPage.formSection.title')}
               </h2>
               <p className="font-display text-lg lg:text-xl font-light italic text-dark-text/40 tracking-[-0.02em] mb-8">
-                Nous reviendrons vers vous rapidement.
+                {t('contactPage.formSection.subtitle')}
               </p>
               <div className="w-12 h-px bg-dark-text/15 mb-10" />
 
@@ -251,21 +256,21 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text uppercase mb-2">
-                      Nom complet *
+                      {t('contactPage.formSection.nameLabel')}
                     </label>
                     <input
                       type="text" id="name" name="name" value={formData.name} onChange={handleChange} required
-                      placeholder="Votre nom"
+                      placeholder={t('contactPage.formSection.namePlaceholder')}
                       className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
                     />
                   </div>
                   <div>
                     <label htmlFor="email" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text uppercase mb-2">
-                      Email *
+                      {t('contactPage.formSection.emailLabel')}
                     </label>
                     <input
                       type="email" id="email" name="email" value={formData.email} onChange={handleChange} required
-                      placeholder="votre@email.fr"
+                      placeholder={t('contactPage.formSection.emailPlaceholder')}
                       className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
                     />
                   </div>
@@ -274,40 +279,40 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="phone" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text uppercase mb-2">
-                      Téléphone
+                      {t('contactPage.formSection.phoneLabel')}
                     </label>
                     <input
                       type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange}
-                      placeholder="+33 6 12 34 56 78"
+                      placeholder={t('contactPage.formSection.phonePlaceholder')}
                       className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
                     />
                   </div>
                   <div>
                     <label htmlFor="subject" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text uppercase mb-2">
-                      Sujet *
+                      {t('contactPage.formSection.subjectLabel')}
                     </label>
                     <select
                       id="subject" name="subject" value={formData.subject} onChange={handleChange} required
                       className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text focus:outline-none focus:border-bronze transition-colors duration-300 appearance-none cursor-pointer"
                     >
-                      <option value="general">Question générale</option>
-                      <option value="order">Ma commande</option>
-                      <option value="product">Question produit</option>
-                      <option value="return">Retour ou échange</option>
-                      <option value="sav">Service après-vente</option>
-                      <option value="partner">Devenir partenaire</option>
-                      <option value="other">Autre</option>
+                      <option value="general">{t('contactPage.formSection.subjectGeneral')}</option>
+                      <option value="order">{t('contactPage.formSection.subjectOrder')}</option>
+                      <option value="product">{t('contactPage.formSection.subjectProduct')}</option>
+                      <option value="return">{t('contactPage.formSection.subjectReturn')}</option>
+                      <option value="sav">{t('contactPage.formSection.subjectSav')}</option>
+                      <option value="partner">{t('contactPage.formSection.subjectPartner')}</option>
+                      <option value="other">{t('contactPage.formSection.subjectOther')}</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-dark-text uppercase mb-2">
-                    Message *
+                    {t('contactPage.formSection.messageLabel')}
                   </label>
                   <textarea
                     id="message" name="message" value={formData.message} onChange={handleChange} required rows={5}
-                    placeholder="Décrivez votre demande..."
+                    placeholder={t('contactPage.formSection.messagePlaceholder')}
                     className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300 resize-none"
                   />
                 </div>
@@ -332,16 +337,16 @@ export default function ContactPage() {
                         : 'text-dark-text group-hover:text-beige'
                     }`}>
                       {isSubmitted ? (
-                        <>Message envoyé</>
+                        <>{t('contactPage.formSection.sent')}</>
                       ) : isSubmitting ? (
                         <>
                           <div className="w-3 h-3 border border-dark-text/30 border-t-dark-text rounded-full animate-spin" />
-                          Envoi en cours...
+                          {t('contactPage.formSection.sending')}
                         </>
                       ) : (
                         <>
                           <Send size={12} />
-                          Envoyer le message
+                          {t('contactPage.formSection.submit')}
                         </>
                       )}
                     </span>
@@ -352,7 +357,7 @@ export default function ContactPage() {
                 </div>
 
                 <p className="font-sans text-[10px] text-dark-text/30">
-                  * Champs obligatoires
+                  {t('contactPage.formSection.requiredFields')}
                 </p>
               </form>
             </motion.div>
@@ -369,45 +374,45 @@ export default function ContactPage() {
               <div className="border border-dark-text/8 p-8 lg:p-10">
                 <MapPin className="w-5 h-5 text-bronze mb-5" strokeWidth={1.5} />
                 <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/30 mb-3">
-                  Localisation
+                  {t('contactPage.sidebar.locationLabel')}
                 </p>
                 <p className="font-display text-xl font-bold text-dark-text mb-2">
-                  Paris, France
+                  {t('contactPage.sidebar.locationTitle')}
                 </p>
                 <p className="font-sans text-xs text-dark-text/40 font-light leading-relaxed">
-                  La Maison Renaissance est fièrement établie à Paris, capitale de l'élégance et du savoir-faire français.
+                  {t('contactPage.sidebar.locationDescription')}
                 </p>
               </div>
 
               {/* Opticiens */}
               <div className="bg-[#0a0a0a] p-8 lg:p-10">
                 <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/25 mb-4">
-                  Réseau
+                  {t('contactPage.sidebar.networkLabel')}
                 </p>
                 <h3 className="font-display text-2xl font-bold text-white mb-3 tracking-[-0.02em]">
-                  Besoin d'essayer ?
+                  {t('contactPage.sidebar.networkTitle')}
                 </h3>
                 <p className="font-sans text-white/35 text-sm leading-[1.8] font-light mb-8">
-                  Rendez-vous chez l'un de nos 200+ opticiens partenaires pour essayer nos collections et bénéficier de conseils personnalisés.
+                  {t('contactPage.sidebar.networkDescription')}
                 </p>
-                <a
-                  href="/opticiens"
+                <LocaleLink
+                  to="/opticiens"
                   className="group relative overflow-hidden inline-block border border-white/15 px-8 py-3.5 transition-all duration-500 hover:border-bronze/60"
                 >
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
-                    Trouver un opticien
+                    {t('contactPage.sidebar.networkCta')}
                   </span>
                   <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                </a>
+                </LocaleLink>
               </div>
 
               {/* Réseaux sociaux */}
               <div className="border border-dark-text/8 p-8 lg:p-10">
                 <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/30 mb-4">
-                  Suivez-nous
+                  {t('contactPage.sidebar.socialLabel')}
                 </p>
                 <p className="font-sans text-xs text-dark-text/40 font-light leading-relaxed mb-6">
-                  Découvrez nos nouvelles collections et l'actualité de la Maison.
+                  {t('contactPage.sidebar.socialDescription')}
                 </p>
                 <div className="flex gap-3">
                   {[

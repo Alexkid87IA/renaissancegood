@@ -1,0 +1,130 @@
+{
+  "title": "FAQ",
+  "subtitle": "Preguntas frecuentes",
+  "description": "Respuestas a las preguntas más frecuentes.",
+  "categories": {
+    "all": "Todos",
+    "orders": "Pedidos",
+    "shipping": "Envío",
+    "returns": "Devoluciones",
+    "products": "Productos",
+    "warranty": "Garantía",
+    "stores": "Tiendas"
+  },
+  "contactUs": "¿No encuentra su respuesta?",
+  "contactCta": "Contáctenos",
+  "seo": {
+    "title": "Preguntas Frecuentes (FAQ)",
+    "description": "Encuentre respuestas a sus preguntas sobre las gafas RENAISSANCE Paris: pedidos, envíos, devoluciones, cuidado, garantía y ópticos asociados."
+  },
+  "hero": {
+    "label": "Ayuda y Soporte",
+    "titleLine1": "PREGUNTAS",
+    "titleLine2": "FRECUENTES.",
+    "subtitle": "Todo lo que necesita saber.",
+    "answers": "Respuestas",
+    "categoriesCount": "Categorías"
+  },
+  "categoryNames": {
+    "orderPayment": "Pedido y Pago",
+    "delivery": "Entrega",
+    "returnsExchanges": "Devoluciones y Cambios",
+    "productsCare": "Productos y Cuidado",
+    "partnerOpticians": "Ópticos Asociados",
+    "contactSupport": "Contacto y Asistencia"
+  },
+  "questions": {
+    "paymentMethods": {
+      "q": "¿Qué métodos de pago aceptan?",
+      "a": "Aceptamos tarjetas bancarias (Visa, Mastercard, American Express), PayPal y transferencias bancarias. Todos los pagos son seguros y cifrados."
+    },
+    "modifyOrder": {
+      "q": "¿Puedo modificar o cancelar mi pedido?",
+      "a": "Puede modificar o cancelar su pedido en las 2 horas siguientes a su validación contactándonos inmediatamente. Pasado este plazo, su pedido se encuentra en preparación."
+    },
+    "invoice": {
+      "q": "¿Recibiré una factura?",
+      "a": "Sí, se le enviará una factura detallada por correo electrónico en cuanto se expida su pedido."
+    },
+    "deliveryTimes": {
+      "q": "¿Cuáles son los plazos de entrega?",
+      "a": "Los pedidos se envían en 24-48 horas. La entrega en Francia metropolitana tarda 1-2 días laborables, en la UE 2-3 días laborables y a nivel internacional 3-7 días laborables."
+    },
+    "freeShipping": {
+      "q": "¿El envío es gratuito?",
+      "a": "Sí, el envío es gratuito para todos los pedidos, sea cual sea el destino."
+    },
+    "trackOrder": {
+      "q": "¿Puedo hacer seguimiento de mi pedido?",
+      "a": "Sí, recibirá un número de seguimiento por correo electrónico en cuanto se envíe su pedido. Podrá rastrear su paquete en tiempo real."
+    },
+    "internationalShipping": {
+      "q": "¿Realizan envíos internacionales?",
+      "a": "Sí, realizamos envíos a todo el mundo. Pueden aplicarse gastos de aduana según los países, a cargo del destinatario."
+    },
+    "returnPolicy": {
+      "q": "¿Cuál es su política de devoluciones?",
+      "a": "Dispone de 14 días desde la recepción para devolver su pedido. El producto debe estar en su estado original con el embalaje intacto. Los gastos de devolución corren a cargo de Renaissance."
+    },
+    "howToReturn": {
+      "q": "¿Cómo realizar una devolución?",
+      "a": "Contacte con nuestro servicio de atención al cliente en contact@renaissance-eyewear.fr con su número de pedido. Le enviaremos una etiqueta de devolución prepagada y las instrucciones."
+    },
+    "refundDelay": {
+      "q": "¿Cuándo recibiré mi reembolso?",
+      "a": "El reembolso se efectúa en un plazo de 14 días tras la recepción y validación de su devolución, mediante el método de pago utilizado en la compra."
+    },
+    "exchangeFrame": {
+      "q": "¿Puedo cambiar mi montura?",
+      "a": "Sí, ofrecemos cambios gratuitos. Contáctenos para organizar el cambio de su montura."
+    },
+    "chooseSize": {
+      "q": "¿Cómo elegir la talla correcta de montura?",
+      "a": "Consulte nuestra Guía de Tallas que detalla las dimensiones de cada modelo. También puede probar nuestras monturas en uno de nuestros más de 200 ópticos asociados."
+    },
+    "prescriptionLenses": {
+      "q": "¿Las monturas son compatibles con cristales graduados?",
+      "a": "Sí, todas nuestras monturas ópticas pueden recibir sus cristales graduados. Visite un óptico asociado para el montaje."
+    },
+    "cleanGlasses": {
+      "q": "¿Cómo cuidar mis gafas Renaissance?",
+      "a": "Limpie sus gafas con el paño de microfibra proporcionado. Evite los productos químicos agresivos. Guárdelas en su estuche cuando no las use."
+    },
+    "warranty": {
+      "q": "¿Cuál es la garantía de las monturas?",
+      "a": "Todas nuestras monturas tienen una garantía del fabricante de 2 años que cubre los defectos de fabricación."
+    },
+    "tryBeforeBuy": {
+      "q": "¿Puedo probar las gafas antes de comprar?",
+      "a": "Sí, visite uno de nuestros más de 200 ópticos asociados en Francia para probar nuestras colecciones y recibir asesoramiento personalizado."
+    },
+    "findOptician": {
+      "q": "¿Cómo encontrar un óptico asociado?",
+      "a": "Utilice nuestro localizador de ópticos en la página \"Encontrar un Óptico\" para encontrar el punto de venta más cercano."
+    },
+    "samePrices": {
+      "q": "¿Los precios son los mismos en línea y en las ópticas?",
+      "a": "Sí, nuestros precios son idénticos en nuestra web y en nuestros ópticos asociados."
+    },
+    "contactService": {
+      "q": "¿Cómo contactar con el servicio de atención al cliente?",
+      "a": "Puede contactarnos por correo electrónico en contact@renaissance-eyewear.fr o por teléfono al +33 1 42 86 82 00 (Lun-Vie, 9h-18h)."
+    },
+    "responseDelay": {
+      "q": "¿Cuál es el plazo de respuesta del servicio al cliente?",
+      "a": "Nos comprometemos a responder a todas las solicitudes en un máximo de 48 horas laborables."
+    },
+    "customization": {
+      "q": "¿Ofrecen un servicio de personalización?",
+      "a": "Contáctenos para hablar de sus necesidades de personalización. Algunas opciones pueden estar disponibles bajo petición."
+    }
+  },
+  "cta": {
+    "label": "¿Necesita ayuda?",
+    "title": "¿Otra pregunta?",
+    "subtitle": "Estamos aquí para ayudarle.",
+    "description": "Nuestro equipo está a su disposición para responder a todas sus preguntas.",
+    "contactUs": "Contáctenos",
+    "callUs": "+33 1 42 86 82 00"
+  }
+}

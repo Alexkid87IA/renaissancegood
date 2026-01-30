@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Minus, Plus } from 'lucide-react';
 import { useCart } from '../../contexts/CartContext';
@@ -56,6 +57,7 @@ export default function ProductSidebar({
   onColorVariantChange,
   priceRef
 }: ProductSidebarProps) {
+  const { t } = useTranslation('product');
   const [showDimensions, setShowDimensions] = useState(true);
   const [showFabrication, setShowFabrication] = useState(true);
   const [showDescription, setShowDescription] = useState(false);
@@ -66,7 +68,7 @@ export default function ProductSidebar({
     const selectedVariant = product.variants[selectedColorIndex];
     
     if (!selectedVariant || !selectedVariant.availableForSale) {
-      alert('Ce produit n\'est pas disponible');
+      alert(t('sidebar.productUnavailable'));
       return;
     }
 
@@ -74,8 +76,8 @@ export default function ProductSidebar({
       await addToCart(selectedVariant.id);
       setAddedToCart(true);
       setTimeout(() => setAddedToCart(false), 2000);
-    } catch (error) {
-      console.error('Erreur lors de l\'ajout au panier:', error);
+    } catch {
+      // Add to cart error silently handled
     }
   };
 
@@ -104,10 +106,10 @@ export default function ProductSidebar({
           <div className="mb-5 pb-5 border-b border-dark-text/10">
             <div className="flex items-center justify-between mb-3">
               <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
-                COLORIS
+                {t('sidebar.coloris')}
               </span>
               <span className="font-sans text-xs text-dark-text/50">
-                {colorVariants.length} disponibles
+                {t('sidebar.availableCount', { count: colorVariants.length })}
               </span>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -132,6 +134,7 @@ export default function ProductSidebar({
                           src={variant.thumbnail}
                           alt={`Coloris ${variant.colorNumber}`}
                           className="w-full h-full object-cover"
+                          loading="lazy"
                         />
                       ) : (
                         <div
@@ -162,7 +165,7 @@ export default function ProductSidebar({
                   : 'bg-dark-text text-white hover:bg-dark-text/90'
               } disabled:opacity-50 disabled:cursor-not-allowed`}
             >
-              {isLoading ? 'AJOUT...' : addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER'}
+              {isLoading ? t('sidebar.adding') : addedToCart ? t('sidebar.added') : t('sidebar.add')}
             </button>
           </div>
         </div>
@@ -176,7 +179,7 @@ export default function ProductSidebar({
                 <path d="M12 8v4M12 16h.01" />
               </svg>
               <span className="font-sans text-[10px] tracking-[0.1em] font-medium text-bronze uppercase">
-                Solaire uniquement
+                {t('sidebar.sunOnly')}
               </span>
             </div>
           ) : (
@@ -185,7 +188,7 @@ export default function ProductSidebar({
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
               <span className="font-sans text-[10px] tracking-[0.1em] font-medium text-dark-text uppercase">
-                Adaptable à votre vue
+                {t('sidebar.adaptable')}
               </span>
             </div>
           )}
@@ -212,7 +215,7 @@ export default function ProductSidebar({
             onClick={() => setShowDescription(!showDescription)}
             className="font-sans text-xs text-dark-text/40 hover:text-dark-text mt-2 transition-colors"
           >
-            {showDescription ? 'Voir moins' : 'Voir plus'}
+            {showDescription ? t('sidebar.seeLess') : t('sidebar.seeMore')}
           </button>
         </div>
 
@@ -223,10 +226,10 @@ export default function ProductSidebar({
           <div className="mb-8 pb-8 border-b border-dark-text/10">
             <div className="flex items-center justify-between mb-5">
               <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
-                VARIANTE
+                {t('sidebar.variant')}
               </span>
               <span className="font-sans text-sm text-dark-text/70">
-                {product.variants[selectedColorIndex]?.colorName || 'Sélectionner'}
+                {product.variants[selectedColorIndex]?.colorName || t('sidebar.select')}
               </span>
             </div>
 
@@ -245,7 +248,7 @@ export default function ProductSidebar({
                     className={`relative group transition-all duration-300 ${
                       !isAvailable ? 'opacity-40 cursor-not-allowed' : 'hover:scale-110'
                     }`}
-                    title={`${variant.colorName}${!isAvailable ? ' (Épuisé)' : ''}`}
+                    title={`${variant.colorName}${!isAvailable ? ` (${t('sidebar.soldOut')})` : ''}`}
                   >
                     <div
                       className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
@@ -279,7 +282,7 @@ export default function ProductSidebar({
 
             {selectedVariant && !selectedVariant.availableForSale && (
               <p className="mt-4 font-sans text-sm text-red-600">
-                Cette variante est actuellement épuisée
+                {t('sidebar.variantSoldOut')}
               </p>
             )}
           </div>
@@ -292,7 +295,7 @@ export default function ProductSidebar({
             className="w-full flex items-center justify-between group"
           >
             <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
-              DIMENSIONS
+              {t('sidebar.dimensions')}
             </span>
             <motion.div
               animate={{ rotate: showDimensions ? 0 : 45 }}
@@ -313,15 +316,15 @@ export default function ProductSidebar({
               >
                 <div className="grid grid-cols-3 gap-4 mt-4">
                   <div className="text-center p-3 bg-neutral-50 rounded">
-                    <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">Verre</p>
+                    <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">{t('sidebar.lens')}</p>
                     <p className="font-sans text-sm font-medium text-dark-text">{product.dimensions.lens}</p>
                   </div>
                   <div className="text-center p-3 bg-neutral-50 rounded">
-                    <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">Pont</p>
+                    <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">{t('sidebar.bridge')}</p>
                     <p className="font-sans text-sm font-medium text-dark-text">{product.dimensions.bridge}</p>
                   </div>
                   <div className="text-center p-3 bg-neutral-50 rounded">
-                    <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">Branche</p>
+                    <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">{t('sidebar.temple')}</p>
                     <p className="font-sans text-sm font-medium text-dark-text">{product.dimensions.temple}</p>
                   </div>
                 </div>
@@ -337,7 +340,7 @@ export default function ProductSidebar({
             className="w-full flex items-center justify-between group"
           >
             <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
-              FABRICATION
+              {t('sidebar.fabrication')}
             </span>
             <motion.div
               animate={{ rotate: showFabrication ? 0 : 45 }}
@@ -360,33 +363,33 @@ export default function ProductSidebar({
                   <div className="grid grid-cols-2 gap-3">
                     <div className="p-3 bg-neutral-50 rounded">
                       <p className="font-display text-lg font-bold text-dark-text">8-12</p>
-                      <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">Artisans par paire</p>
+                      <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">{t('sidebar.artisansPerPair')}</p>
                     </div>
                     <div className="p-3 bg-neutral-50 rounded">
                       <p className="font-display text-lg font-bold text-dark-text">250</p>
-                      <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">Étapes de fabrication</p>
+                      <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">{t('sidebar.fabricationSteps')}</p>
                     </div>
                     <div className="p-3 bg-neutral-50 rounded">
                       <p className="font-display text-lg font-bold text-dark-text">8-15h</p>
-                      <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">De travail cumulé</p>
+                      <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">{t('sidebar.cumulativeWork')}</p>
                     </div>
                     <div className="p-3 bg-neutral-50 rounded">
                       <p className="font-display text-lg font-bold text-dark-text">2</p>
-                      <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">Pays, un standard</p>
+                      <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">{t('sidebar.countriesOneStandard')}</p>
                     </div>
                   </div>
                   <div className="space-y-2">
                     <p className="font-sans text-xs text-dark-text/60 leading-relaxed">
-                      <span className="font-semibold text-dark-text">Dessinées à Paris.</span> Chaque ligne, chaque courbe.
+                      <span className="font-semibold text-dark-text">{t('sidebar.fab1Title')}</span> {t('sidebar.fab1Desc')}
                     </p>
                     <p className="font-sans text-xs text-dark-text/60 leading-relaxed">
-                      <span className="font-semibold text-dark-text">Usinées en Corée.</span> Là où la précision est une religion.
+                      <span className="font-semibold text-dark-text">{t('sidebar.fab2Title')}</span> {t('sidebar.fab2Desc')}
                     </p>
                     <p className="font-sans text-xs text-dark-text/60 leading-relaxed">
-                      <span className="font-semibold text-dark-text">Acétate Mazzucchelli. Acier haute résistance.</span> Pas de compromis.
+                      <span className="font-semibold text-dark-text">{t('sidebar.fab3Title')}</span> {t('sidebar.fab3Desc')}
                     </p>
                     <p className="font-sans text-xs text-dark-text/60 leading-relaxed">
-                      <span className="font-semibold text-dark-text">Un strass sur la branche gauche.</span> Notre signature. Discrète.
+                      <span className="font-semibold text-dark-text">{t('sidebar.fab4Title')}</span> {t('sidebar.fab4Desc')}
                     </p>
                   </div>
                 </div>

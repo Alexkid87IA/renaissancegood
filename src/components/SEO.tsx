@@ -1,4 +1,6 @@
 import { Helmet } from 'react-helmet-async';
+import { useLocale } from '../contexts/LocaleContext';
+import { SUPPORTED_LOCALES, LOCALE_TO_HREFLANG, LOCALE_TO_OG } from '../lib/i18n';
 
 interface FAQItem {
   question: string;
@@ -67,12 +69,27 @@ export default function SEO({
   localBusiness,
   noIndex = false,
 }: SEOProps) {
+  const { locale } = useLocale();
+
   const fullTitle = title
     ? `${title} | ${SITE_NAME}`
     : `${SITE_NAME} - Lunettes de Luxe Artisanales | Excellence Française`;
 
-  const canonicalUrl = url ? `${BASE_URL}${url}` : BASE_URL;
+  // Build canonical URL with locale prefix
+  const pathForUrl = url || '/';
+  const localizedPath = locale === 'fr' ? pathForUrl : `/${locale}${pathForUrl}`;
+  const canonicalUrl = `${BASE_URL}${localizedPath}`;
   const fullImage = image.startsWith('http') ? image : `${BASE_URL}${image}`;
+
+  // Build hreflang alternates
+  const hreflangLinks = SUPPORTED_LOCALES.map(lang => ({
+    lang: LOCALE_TO_HREFLANG[lang],
+    href: lang === 'fr' ? `${BASE_URL}${pathForUrl}` : `${BASE_URL}/${lang}${pathForUrl}`,
+  }));
+  // x-default points to French
+  const xDefaultHref = `${BASE_URL}${pathForUrl}`;
+
+  const ogLocale = LOCALE_TO_OG[locale];
 
   // JSON-LD pour Organisation (sur toutes les pages)
   const organizationSchema = {
@@ -224,7 +241,16 @@ export default function SEO({
       <meta property="og:description" content={description} />
       <meta property="og:image" content={fullImage} />
       <meta property="og:site_name" content={SITE_NAME} />
-      <meta property="og:locale" content="fr_FR" />
+      <meta property="og:locale" content={ogLocale} />
+
+      {/* hreflang alternates */}
+      {hreflangLinks.map(({ lang, href }) => (
+        <link key={lang} rel="alternate" hrefLang={lang} href={href} />
+      ))}
+      <link rel="alternate" hrefLang="x-default" href={xDefaultHref} />
+
+      {/* Dynamic html lang */}
+      <html lang={locale} />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />

@@ -1,0 +1,704 @@
+{
+  "template": {
+    "legalInfo": "Legal Information",
+    "lastUpdated": "Last updated",
+    "needHelp": "Need help",
+    "question": "Have a question?",
+    "hereForYou": "We are here for you.",
+    "contactUs": "Contact us"
+  },
+
+  "cgv": {
+    "title": "Terms & Conditions of Sale",
+    "lastUpdated": "October 6, 2025",
+    "intro": "These Terms & Conditions of Sale (T&C) govern sales of products made by <strong>Renaissance Eyewear</strong> on the website <strong>renaissanceeyewear.fr</strong>. Any order implies unreserved acceptance of these T&C.",
+    "article1Title": "Article 1 - Legal Information",
+    "article1Text": "<strong>Company name:</strong> Renaissance Eyewear<br /><strong>Registered office:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France<br /><strong>Email:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a><br /><strong>Website:</strong> <a href=\"https://renaissanceeyewear.fr\">renaissanceeyewear.fr</a><br /><strong>Host:</strong> Shopify Inc., 151 O'Connor Street, Ground floor, Ottawa, ON K2P 2L8, Canada",
+    "article2Title": "Article 2 - Purpose",
+    "article2Text": "These T&C define the rights and obligations of the parties in the context of the online sale of luxury eyewear and accessories offered by Renaissance Eyewear.",
+    "article3Title": "Article 3 - Products",
+    "article3_1Title": "3.1 Description",
+    "article3_1Text": "Renaissance Eyewear offers luxury eyewear manufactured in South Korea, characterized by:",
+    "article3_1Items": [
+      "Thick metal frames with precise finishes",
+      "5 iconic symbols: Trident, Fleur de Lys, Ankh, Scarab, Cobra",
+      "Signature rhinestone on the left temple",
+      "Limited editions of 100 to 300 pieces per reference",
+      "Thematic collections: Heritage, Versailles, Isis"
+    ],
+    "article3_2Title": "3.2 Prices",
+    "article3_2Text": "Prices are indicated in euros including all taxes (TTC). The price range extends from 530 EUR to 4000+ EUR depending on models and editions.",
+    "article3_2Items": [
+      "Prices include applicable VAT at the current rate",
+      "Shipping costs are <strong>complimentary</strong> for all destinations",
+      "Renaissance Eyewear reserves the right to modify its prices at any time, but products will be invoiced at the rate in effect at the time of order validation"
+    ],
+    "article3_3Title": "3.3 Availability",
+    "article3_3Text": "Products are offered subject to available stock. In the event of unavailability after placing an order, the customer will be informed as soon as possible and may choose:",
+    "article3_3Items": [
+      "Order cancellation with full refund",
+      "Replacement with an equivalent product",
+      "Registration on a waiting list for the next restock"
+    ],
+    "article4Title": "Article 4 - Orders",
+    "article4_1Title": "4.1 Order Process",
+    "article4_1Items": [
+      "Product selection and addition to cart",
+      "Cart validation and order verification",
+      "Account creation or login",
+      "Entry of shipping and billing information",
+      "Payment method selection",
+      "Final validation and acceptance of T&C",
+      "Secure payment"
+    ],
+    "article4_2Title": "4.2 Order Confirmation",
+    "article4_2Text": "An order confirmation will be sent by email immediately after payment validation. This confirmation summarizes:",
+    "article4_2Items": [
+      "The order number",
+      "The products ordered",
+      "The total amount",
+      "The delivery address",
+      "The estimated delivery time"
+    ],
+    "article4_3Title": "4.3 Legal Capacity",
+    "article4_3Text": "Orders can only be placed by persons of legal age with legal capacity. By placing an order, the customer certifies having the necessary legal capacity.",
+    "article5Title": "Article 5 - Payment",
+    "article5_1Title": "5.1 Accepted Payment Methods",
+    "article5_1Items": [
+      "Credit card (Visa, Mastercard, American Express)",
+      "PayPal",
+      "Other methods offered by Shopify Payments"
+    ],
+    "article5_2Title": "5.2 Payment Security",
+    "article5_2Text": "Payments are secured by Shopify Payments. Renaissance Eyewear does not have access to your full credit card data. Transactions are encrypted and comply with PCI-DSS standards.",
+    "article5_3Title": "5.3 Payment Due Date",
+    "article5_3Text": "Payment is due immediately upon ordering. The order will only be processed after payment confirmation.",
+    "article6Title": "Article 6 - Delivery",
+    "article6_1Title": "6.1 Delivery Areas",
+    "article6_1Text": "Renaissance Eyewear delivers worldwide, with no known geographic restrictions.",
+    "article6_2Title": "6.2 Delivery Times",
+    "article6_2Items": [
+      "<strong>Preparation:</strong> 24 to 48 business hours",
+      "<strong>Metropolitan France:</strong> 1-2 business days after shipping",
+      "<strong>European Union:</strong> 2-3 business days after shipping",
+      "<strong>International:</strong> 3-7 business days after shipping"
+    ],
+    "article6_3Title": "6.3 Carrier",
+    "article6_3Text": "Orders are shipped via Colissimo with a tracking number.",
+    "article6_4Title": "6.4 Shipping Costs",
+    "article6_4Text": "<strong>Shipping is complimentary</strong> for all destinations.",
+    "article6_5Title": "6.5 Order Reception",
+    "article6_5Text": "The customer must check the condition of the package upon reception. Any apparent damage must be reported to the carrier and to Renaissance Eyewear within 48 hours.",
+    "article7Title": "Article 7 - Right of Withdrawal",
+    "article7_1Title": "7.1 Period",
+    "article7_1Text": "In accordance with current legislation, the customer has 14 calendar days from the receipt of products to exercise their right of withdrawal, without having to justify reasons or pay any penalty.",
+    "article7_2Title": "7.2 Procedures",
+    "article7_2Text": "To exercise the right of withdrawal, the customer must:",
+    "article7_2Items": [
+      "Contact customer service at <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "Provide the order number",
+      "Return the product in its original packaging with all labels intact"
+    ],
+    "article7_3Title": "7.3 Return Costs",
+    "article7_3Text": "Return shipping costs are covered by Renaissance Eyewear for orders within France and the European Union.",
+    "article7_4Title": "7.4 Refund",
+    "article7_4Text": "The refund will be made within 14 days of receiving the returned product, using the same payment method used for the purchase.",
+    "article7_5Title": "7.5 Exceptions",
+    "article7_5Text": "The right of withdrawal does not apply to personalized or custom-made products manufactured according to the customer's specifications.",
+    "article8Title": "Article 8 - Warranties",
+    "article8_1Title": "8.1 Legal Warranty of Conformity",
+    "article8_1Text": "All products benefit from the legal warranty of conformity provided for in Articles L. 217-4 and following of the French Consumer Code and the warranty against hidden defects provided for in Articles 1641 and following of the French Civil Code.",
+    "article8_2Title": "8.2 Manufacturer's Warranty",
+    "article8_2Text": "In addition, Renaissance Eyewear offers a manufacturer's warranty of <strong>3 years</strong> covering:",
+    "article8_2Items": [
+      "Manufacturing defects",
+      "Material defects",
+      "Hinge or temple problems"
+    ],
+    "article8_3Title": "8.3 Warranty Exclusions",
+    "article8_3Text": "The warranty does not cover:",
+    "article8_3Items": [
+      "Normal wear and tear of the product",
+      "Damage resulting from abnormal use or accident",
+      "Modifications or repairs performed by unauthorized third parties",
+      "Scratches on lenses (except manufacturing defects)"
+    ],
+    "article8_4Title": "8.4 Warranty Claims",
+    "article8_4Text": "To make a warranty claim, the customer must contact customer service with:",
+    "article8_4Items": [
+      "The order number",
+      "A description of the problem",
+      "Photos if necessary"
+    ],
+    "article9Title": "Article 9 - Liability",
+    "article9_1Title": "9.1 Renaissance Eyewear Liability",
+    "article9_1Text": "Renaissance Eyewear is committed to providing products that conform to descriptions and are of professional quality. Its liability cannot be engaged:",
+    "article9_1Items": [
+      "In case of force majeure",
+      "In case of abnormal or non-conforming use of the product",
+      "In case of modification of the product by the customer or a third party"
+    ],
+    "article9_2Title": "9.2 Limitation of Liability",
+    "article9_2Text": "Renaissance Eyewear's liability is limited to the amount of the order concerned.",
+    "article10Title": "Article 10 - Intellectual Property",
+    "article10Text1": "All elements of the website (texts, images, logos, symbols, designs) are protected by copyright and trademark law. The Renaissance symbols (Trident, Fleur de Lys, Ankh, Scarab, Cobra) and the name \"Renaissance Eyewear\" are registered trademarks.",
+    "article10Text2": "Any reproduction, representation, or use, even partial, is strictly prohibited without prior written authorization.",
+    "article11Title": "Article 11 - Personal Data Protection",
+    "article11Text1": "The information collected is subject to computer processing for order management and customer relations. In accordance with the GDPR, you have the right to access, rectify, delete, and port your data.",
+    "article11Text2": "For more information, please refer to our <a href=\"/confidentialite\">Privacy Policy</a>.",
+    "article12Title": "Article 12 - Mediation and Dispute Resolution",
+    "article12_1Title": "12.1 Claims",
+    "article12_1Text": "For any claim, the customer should first contact customer service at <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>. We commit to responding within 48 business hours.",
+    "article12_2Title": "12.2 Consumer Mediation",
+    "article12_2Text": "In accordance with Article L. 612-1 of the French Consumer Code, in the event of a dispute, the customer may freely resort to a consumer mediator for amicable resolution.",
+    "article12_3Title": "12.3 Applicable Law",
+    "article12_3Text": "These T&C are governed by French law. Any dispute relating to their interpretation or execution falls under the exclusive jurisdiction of French courts.",
+    "article13Title": "Article 13 - Amendments to T&C",
+    "article13Text": "Renaissance Eyewear reserves the right to modify these T&C at any time. The applicable T&C are those in effect at the time of order placement.",
+    "article14Title": "Article 14 - Contact",
+    "article14Text": "For any question regarding these T&C, you may contact us:",
+    "article14Items": [
+      "<strong>Email:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Address:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France",
+      "<strong>Response time:</strong> Within 48 business hours"
+    ]
+  },
+
+  "confidentialite": {
+    "title": "Privacy Policy",
+    "lastUpdated": "October 6, 2025",
+    "intro": "This privacy policy explains how <strong>renaissance-eyewear</strong> (the \"Site\", \"we\", \"our\" or \"us\") collects, uses, and discloses your personal information when you visit, use our services, or make a purchase on <strong>renaissanceeyewear.fr</strong> (the \"Site\") or otherwise communicate with us regarding the Site (collectively, the \"Services\"). For the purposes of this privacy policy, \"you\", \"your\" refers to you as a user of the Services, whether you are a customer, website visitor, or other person whose information we have collected in accordance with this privacy policy.",
+    "readCarefully": "Please read this privacy policy carefully.",
+    "changesTitle": "Changes to This Privacy Policy",
+    "changesText": "We may update this privacy policy from time to time, including to reflect changes to our practices or for other operational, legal, or regulatory reasons. We will post the revised privacy policy on the Site, update the \"Last Updated\" date, and take any other steps required by applicable law.",
+    "howWeCollectTitle": "How We Collect and Use Your Personal Information",
+    "howWeCollectText1": "To provide the Services, we collect and have collected over the past 12 months personal information about you from various sources, as described below. The information we collect and use varies depending on how you interact with us.",
+    "howWeCollectText2": "In addition to the specific uses described below, we may use the information we collect about you to communicate with you, provide or improve the Services, comply with any applicable legal obligations, enforce applicable terms of service, and protect or defend the Services, our rights, and the rights of our users or others.",
+    "personalInfoTitle": "Personal Information We Collect",
+    "personalInfoText": "The types of personal information we obtain about you depend on how you interact with our Site and use our Services. When we use the term \"personal information,\" we refer to information that identifies, relates to, describes, or can be associated with you.",
+    "directInfoTitle": "Information We Collect Directly From You",
+    "directInfoText": "Information you submit directly to us through our Services may include:",
+    "directInfoItems": [
+      "<strong>Contact details</strong> including your name, address, phone number, and email.",
+      "<strong>Order information</strong> including your name, billing address, shipping address, payment confirmation, email and phone number.",
+      "<strong>Account information</strong> including your username, password, security questions, and other information used for account security.",
+      "<strong>Customer service information</strong> including information you choose to include in your communications with us."
+    ],
+    "usageInfoTitle": "Information We Collect About Your Usage",
+    "usageInfoText": "We may also automatically collect certain information about your interaction with the Services (\"Usage Data\"). To do this, we may use cookies, pixels, and similar technologies (\"Cookies\"). Usage Data may include information about how you access and use our Site and your account, including device information, browser information, network connection information, your IP address, and other information about your interaction with the Services.",
+    "thirdPartyInfoTitle": "Information We Obtain From Third Parties",
+    "thirdPartyInfoText": "Finally, we may obtain information about you from third parties, including vendors and service providers who may collect information on our behalf, such as:",
+    "thirdPartyInfoItems": [
+      "Companies that support our Site and Services, such as Shopify.",
+      "Our payment processors, which collect payment information to process your payment in order to fulfill your orders."
+    ],
+    "howWeUseTitle": "How We Use Your Personal Information",
+    "providingServicesTitle": "Providing Products and Services",
+    "providingServicesText": "We use your personal information to provide you with the Services in order to perform the contract we have with you, including to process your payments, fulfill your orders, send you notifications about your account, purchases, returns, exchanges, or other transactions.",
+    "marketingTitle": "Marketing and Advertising",
+    "marketingText": "We may use your personal information for marketing and promotional purposes, such as to send marketing, advertising, and promotional communications by email, SMS, or postal mail, and to show you advertisements for products or services.",
+    "securityTitle": "Security and Fraud Prevention",
+    "securityText": "We use your personal information to detect, investigate, or take action regarding potential fraudulent, illegal, or malicious activities.",
+    "cookiesTitle": "Cookies",
+    "cookiesText1": "Like many websites, we use cookies on our Site. For specific information about the cookies we use in connection with operating our store with Shopify, please visit <a href=\"https://www.shopify.com/legal/cookies\" target=\"_blank\" rel=\"noopener noreferrer\">https://www.shopify.com/legal/cookies</a>.",
+    "cookiesText2": "Most browsers automatically accept cookies by default, but you can choose to configure your browser to remove or reject cookies through your browser controls.",
+    "disclosureTitle": "How We Disclose Personal Information",
+    "disclosureText": "In certain circumstances, we may disclose your personal information to third parties, including:",
+    "disclosureItems": [
+      "Vendors or other third parties who perform services on our behalf (e.g., IT management, payment processing, data analysis, customer service).",
+      "Business and marketing partners to provide you with services and deliver advertising.",
+      "When you ask us to disclose or otherwise consent to our disclosure of certain information to third parties."
+    ],
+    "childrenTitle": "Children's Data",
+    "childrenText": "The Services are not intended for use by children, and we do not knowingly collect any personal information about children.",
+    "retentionTitle": "Security and Retention of Your Information",
+    "retentionText": "Please be aware that no security measures are perfect or impenetrable and we cannot guarantee \"perfect security.\" Additionally, any information you send to us may not be secure during transit.",
+    "rightsTitle": "Your Rights",
+    "rightsText": "Depending on your place of residence, you may benefit from the following rights:",
+    "rightsItems": [
+      "<strong>Right of access/to know</strong>: You may request access to the personal information we hold about you.",
+      "<strong>Right of deletion</strong>: You may request that we delete the personal information we hold about you.",
+      "<strong>Right of correction</strong>: You may request that we correct the personal information we hold about you.",
+      "<strong>Right of portability</strong>: You may receive a copy of the personal information we hold about you.",
+      "<strong>Communication preferences management</strong>: We may send you promotional emails that you can opt out of receiving at any time."
+    ],
+    "internationalTitle": "International Users",
+    "internationalText": "Please note that we may transfer, store, and process your personal information outside the country in which you live.",
+    "contactTitle": "Contact",
+    "contactText": "If you have questions about our privacy practices or this privacy policy, or if you wish to exercise any of your rights, please contact us at:",
+    "contactInfo": "<strong>Email:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a><br /><strong>Address:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France"
+  },
+
+  "cookies": {
+    "title": "Cookie Policy",
+    "lastUpdated": "October 6, 2025",
+    "intro": "This policy explains how <strong>Renaissance Eyewear</strong> uses cookies and similar technologies on our website <strong>renaissanceeyewear.fr</strong>.",
+    "whatIsTitle": "What is a cookie?",
+    "whatIsText": "A cookie is a small text file stored on your computer, tablet, or smartphone when you visit a website. Cookies allow the site to recognize your device and remember your actions and preferences over a period of time.",
+    "whyTitle": "Why do we use cookies?",
+    "whyText": "We use cookies for several reasons:",
+    "whyItems": [
+      "Ensuring the proper technical functioning of the site",
+      "Remembering your preferences (language, currency, items in cart)",
+      "Improving your browsing experience",
+      "Analyzing site traffic and usage",
+      "Personalizing content and advertisements"
+    ],
+    "typesTitle": "Types of Cookies Used",
+    "essentialTitle": "1. Strictly Necessary Cookies",
+    "essentialText": "These cookies are essential for the proper functioning of the site. They allow you to navigate the site and use its basic features.",
+    "essentialExamples": "Examples:",
+    "essentialItems": [
+      "Session cookies for account login",
+      "Shopping cart cookies",
+      "Security and authentication cookies"
+    ],
+    "essentialDuration": "<strong>Retention period:</strong> Session (deleted when the browser is closed) or up to 30 days.",
+    "personalizationTitle": "2. Personalization Cookies",
+    "personalizationText": "These cookies store details about your actions to personalize your next visit to the website.",
+    "personalizationExamples": "Examples:",
+    "personalizationItems": [
+      "Remembering your preferred language",
+      "Remembering your display preferences",
+      "Remembering your currency choices"
+    ],
+    "personalizationDuration": "<strong>Retention period:</strong> Up to 12 months.",
+    "advertisingTitle": "3. Advertising Cookies",
+    "advertisingText": "These cookies are used to optimize commercial communications and show you advertisements on other sites.",
+    "advertisingExamples": "Examples:",
+    "advertisingItems": [
+      "Retargeting cookies (Facebook Pixel, Google Ads)",
+      "Advertising effectiveness measurement cookies"
+    ],
+    "advertisingDuration": "<strong>Retention period:</strong> Up to 13 months.",
+    "analyticsTitle": "4. Analytics Cookies",
+    "analyticsText": "These cookies help us understand how you interact with the site. We use this data to identify areas for improvement.",
+    "analyticsExamples": "Examples:",
+    "analyticsItems": [
+      "Google Analytics (traffic analysis, pages visited, visit duration)",
+      "A/B testing cookies"
+    ],
+    "analyticsDuration": "<strong>Retention period:</strong> Up to 24 months.",
+    "thirdPartyTitle": "Third-Party Cookies",
+    "thirdPartyText": "Some cookies are placed by third-party services we use:",
+    "shopifyTitle": "Shopify",
+    "shopifyText": "Our online store is hosted on Shopify. For more information about Shopify cookies, please visit: <a href=\"https://www.shopify.com/legal/cookies\" target=\"_blank\" rel=\"noopener noreferrer\">https://www.shopify.com/legal/cookies</a>",
+    "googleAnalyticsTitle": "Google Analytics",
+    "googleAnalyticsText": "We use Google Analytics to analyze our site usage. For more information: <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\">Google Privacy Policy</a>",
+    "socialTitle": "Social Networks",
+    "socialText": "Cookies may be placed by social network platforms (Instagram, Facebook) when you interact with our social content.",
+    "manageTitle": "How to Manage Your Cookie Preferences?",
+    "bannerTitle": "Via Our Cookie Banner",
+    "bannerText": "On your first visit, a banner allows you to choose which cookies you accept. You can modify your preferences at any time by clicking the \"Manage my cookies\" link at the bottom of the page.",
+    "browserTitle": "Via Your Browser",
+    "browserText": "Most browsers automatically accept cookies by default, but you can modify your browser settings to:",
+    "browserItems": [
+      "Reject all cookies",
+      "Accept only certain cookies",
+      "Be notified before a cookie is placed",
+      "Delete existing cookies"
+    ],
+    "instructionsTitle": "Browser Instructions",
+    "instructionsItems": [
+      "<strong>Google Chrome:</strong> Menu > Settings > Privacy and security > Cookies",
+      "<strong>Mozilla Firefox:</strong> Menu > Options > Privacy and security",
+      "<strong>Safari:</strong> Preferences > Privacy > Cookies and website data",
+      "<strong>Microsoft Edge:</strong> Settings > Cookies and site permissions"
+    ],
+    "gpcTitle": "Global Privacy Control (GPC) Signal",
+    "gpcText1": "Our site recognizes the Global Privacy Control (GPC) signal. If you enable this signal in your browser, we will treat it as a valid request to opt out of sharing or targeted advertising.",
+    "gpcText2": "Learn more: <a href=\"https://globalprivacycontrol.org/\" target=\"_blank\" rel=\"noopener noreferrer\">https://globalprivacycontrol.org/</a>",
+    "consequencesTitle": "Consequences of Refusing Cookies",
+    "consequencesText": "Please note that blocking or deleting certain cookies may:",
+    "consequencesItems": [
+      "Impair your user experience",
+      "Prevent access to certain site features",
+      "Require re-authentication on each visit",
+      "Not save your shopping cart"
+    ],
+    "updateTitle": "Updates to This Policy",
+    "updateText": "We may update this cookie policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons.",
+    "contactTitle": "Contact",
+    "contactText": "For any questions regarding our use of cookies, you may contact us:",
+    "contactItems": [
+      "<strong>Email:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Address:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France"
+    ]
+  },
+
+  "mentions": {
+    "title": "Legal Notice",
+    "section1Title": "1. Site Publisher",
+    "section1Text": "<strong>Company name:</strong> Renaissance Eyewear<br /><strong>Legal form:</strong> [To be completed]<br /><strong>Share capital:</strong> [To be completed]<br /><strong>Registered office:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France<br /><strong>SIRET:</strong> [To be completed]<br /><strong>Email:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a><br /><strong>Publication director:</strong> [To be completed]",
+    "section2Title": "2. Website Hosting",
+    "section2Text1": "The website <strong>renaissanceeyewear.fr</strong> is hosted by:",
+    "section2Text2": "<strong>Shopify Inc.</strong><br />151 O'Connor Street, Ground floor<br />Ottawa, ON K2P 2L8<br />Canada<br />Website: <a href=\"https://www.shopify.com\" target=\"_blank\" rel=\"noopener noreferrer\">www.shopify.com</a>",
+    "section3Title": "3. Intellectual Property",
+    "section3_1Title": "3.1 Site Content",
+    "section3_1Text": "All content on the website <strong>renaissanceeyewear.fr</strong>, including but not limited to graphics, images, texts, videos, animations, sounds, logos, gifs and icons as well as their layout are the exclusive property of Renaissance Eyewear, with the exception of trademarks, logos or content belonging to other partner companies or authors.",
+    "section3_2Title": "3.2 Registered Trademarks",
+    "section3_2Text": "The following trademarks are registered and protected:",
+    "section3_2Items": [
+      "<strong>Renaissance Eyewear</strong> (name and logo)",
+      "<strong>The 5 Symbols:</strong> Trident, Fleur de Lys, Ankh, Scarab, Cobra",
+      "<strong>Collections:</strong> Heritage, Versailles, Isis",
+      "<strong>Signature:</strong> \"Silent Style\""
+    ],
+    "section3_3Title": "3.3 Prohibited Reproduction",
+    "section3_3Text": "Any reproduction, representation, modification, publication, adaptation of all or part of the elements of the site, by any means or process whatsoever, is prohibited without prior written authorization from Renaissance Eyewear.",
+    "section3_4Title": "3.4 Hyperlinks",
+    "section3_4Text": "Any unauthorized use of the site or any of its elements will be considered as constituting counterfeiting and prosecuted in accordance with Articles L.335-2 and following of the French Intellectual Property Code.",
+    "section4Title": "4. Personal Data",
+    "section4Text1": "The processing of your personal data is governed by our <a href=\"/confidentialite\">Privacy Policy</a>, in accordance with the General Data Protection Regulation (GDPR).",
+    "section4Text2": "<strong>Data controller:</strong> Renaissance Eyewear<br /><strong>Personal data contact:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+    "section5Title": "5. Cookies",
+    "section5Text": "The site uses cookies to improve your browsing experience. For more information about our use of cookies, please refer to our <a href=\"/cookies\">Cookie Policy</a>.",
+    "section6Title": "6. Terms of Use",
+    "section6Text": "Use of the site implies full and complete acceptance of the <a href=\"/conditions-utilisation\">Terms of Service</a> and the <a href=\"/cgv\">Terms & Conditions of Sale</a>.",
+    "section7Title": "7. Limitations of Liability",
+    "section7_1Title": "7.1 Site Content",
+    "section7_1Text": "Renaissance Eyewear strives to ensure the accuracy and updating of information published on this site. However, Renaissance Eyewear cannot guarantee the accuracy, precision, or completeness of information made available on this site.",
+    "section7_2Title": "7.2 Site Availability",
+    "section7_2Text": "Renaissance Eyewear cannot be held responsible for direct and indirect damage caused to the user's equipment when accessing the renaissanceeyewear.fr site. Renaissance Eyewear does not guarantee permanent site availability and may interrupt site access for maintenance operations.",
+    "section7_3Title": "7.3 External Links",
+    "section7_3Text": "The site may contain links to other sites. Renaissance Eyewear has no control over these sites and disclaims all responsibility for their content.",
+    "section8Title": "8. Applicable Law and Jurisdiction",
+    "section8Text": "These legal notices are governed by French law. In the event of a dispute and failing amicable agreement, the dispute will be brought before the competent French courts.",
+    "section9Title": "9. Credits",
+    "section9_1Title": "9.1 Design and Development",
+    "section9_1Text": "<strong>Design:</strong> Renaissance Eyewear<br /><strong>Development:</strong> [To be completed]<br /><strong>Platform:</strong> Shopify",
+    "section9_2Title": "9.2 Fonts",
+    "section9_2Items": [
+      "<strong>Serif:</strong> Playfair Display (Google Fonts)",
+      "<strong>Sans-serif:</strong> DM Sans (Google Fonts)"
+    ],
+    "section9_3Title": "9.3 Photography",
+    "section9_3Text": "All product photographs are the property of Renaissance Eyewear and may not be reproduced without authorization.",
+    "section10Title": "10. Contact",
+    "section10Text": "For any questions regarding legal notices, you may contact us:",
+    "section10Items": [
+      "<strong>Email:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Address:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France",
+      "<strong>Response time:</strong> Within 48 business hours"
+    ],
+    "section11Title": "11. Updates",
+    "section11Text": "These legal notices may be updated at any time. We invite you to consult them regularly."
+  },
+
+  "conditions": {
+    "title": "Terms of Service",
+    "intro": "The use of the <strong>Renaissance Eyewear</strong> website and its services is governed by these Terms of Service. By placing an order, you fully accept these terms.",
+    "section1Title": "1. Access and Orders",
+    "accessTitle": "Site Access",
+    "accessText": "We make every effort to ensure site availability, without guaranteeing permanent access. Interruptions may occur for maintenance or force majeure.",
+    "ordersTitle": "Orders",
+    "ordersItems": [
+      "Only persons of legal age and legal capacity may place orders.",
+      "The information provided must be accurate and complete.",
+      "We reserve the right to refuse any order in case of dispute or non-payment.",
+      "Validation of your order implies acceptance of these terms as well as the prices and descriptions of products available at the time of the order."
+    ],
+    "section2Title": "2. Payment Terms and Prices",
+    "pricesTitle": "Prices",
+    "pricesItems": [
+      "Prices are indicated in euros including all taxes (TTC).",
+      "Prices include complimentary shipping.",
+      "We reserve the right to modify our prices at any time, but products will be invoiced at the rates in effect at the time of order validation."
+    ],
+    "paymentTitle": "Payment",
+    "paymentItems": [
+      "Payment is made by credit card, PayPal, or via any other method offered during the order process.",
+      "Payments are secured via our partner Shopify Payments.",
+      "Your order will only be processed after payment confirmation."
+    ],
+    "section3Title": "3. Intellectual Property",
+    "section3Text": "All elements of the Renaissance Eyewear website (texts, images, graphics, logos, icons, sounds, software) are the exclusive property of Renaissance Eyewear or its partners. Any reproduction, representation, modification, publication, or adaptation of all or part of the elements of the site, by any means or process whatsoever, is prohibited without prior written authorization.",
+    "brandsTitle": "Trademarks and Symbols",
+    "brandsText": "The Renaissance symbols (Trident, Fleur de Lys, Ankh, Scarab, Cobra), the Renaissance Eyewear logo, as well as the collection names (Heritage, Versailles, Isis) are registered trademarks. Any unauthorized use of these trademarks is strictly prohibited.",
+    "section4Title": "4. Liability",
+    "liabilityTitle": "Limitation of Liability",
+    "liabilityText": "Renaissance Eyewear cannot be held liable for:",
+    "liabilityItems": [
+      "Site malfunction due to external causes (internet connection issues, server outages, etc.)",
+      "Delays related to force majeure events (natural disasters, strikes, pandemics, etc.)",
+      "Inappropriate use of products",
+      "Indirect damages resulting from the use of the site or products"
+    ],
+    "warrantyTitle": "Warranties",
+    "warrantyText": "Our products benefit from the legal warranty of conformity and the warranty against hidden defects, in accordance with the provisions of the French Consumer Code.",
+    "section5Title": "5. Personal Data Protection",
+    "section5Text1": "In accordance with the General Data Protection Regulation (GDPR), you have the right to access, rectify, delete, and port your personal data. To exercise these rights or for any questions about the processing of your data, contact us at <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>.",
+    "section5Text2": "For more information, please refer to our <a href=\"/confidentialite\">Privacy Policy</a>.",
+    "section6Title": "6. Applicable Law and Jurisdiction",
+    "section6Text": "These terms of service are governed by French law. In the event of a dispute and failing amicable agreement, the dispute will be brought before the competent French courts.",
+    "section7Title": "7. Customer Service",
+    "section7Text": "For any questions regarding our Terms of Service, you may contact us:",
+    "section7Items": [
+      "<strong>Email:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Address:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France",
+      "<strong>Response time:</strong> Within 48 business hours"
+    ],
+    "section8Title": "8. Amendment of Terms",
+    "section8Text": "Renaissance Eyewear reserves the right to modify these terms of service at any time. The applicable terms are those in effect at the time of your order. Any modification will be published on this page with an updated last modification date.",
+    "section9Title": "9. Acceptance of Terms",
+    "section9Text": "Use of the Renaissance Eyewear website implies full and complete acceptance of these terms of service. If you do not accept these terms, please do not use our website or place any orders."
+  },
+
+  "garantie": {
+    "title": "Warranty & After-Sales Service",
+    "seoTitle": "Warranty & After-Sales Service",
+    "seoDescription": "2-year warranty RENAISSANCE Paris. After-sales service, repairs, maintenance and advice for your luxury eyewear. Satisfaction guaranteed.",
+    "warrantyTitle": "Manufacturer's Warranty",
+    "warrantyText": "All Renaissance products benefit from a <strong>2-year manufacturer's warranty</strong> from the date of purchase, covering manufacturing and material defects.",
+    "coveredTitle": "What is Covered",
+    "coveredItems": [
+      "Manufacturing defects (welding, assembly, finishes)",
+      "Material defects (metal, acetate, components)",
+      "Hinge or temple problems",
+      "Engraving or setting defects"
+    ],
+    "notCoveredTitle": "What is Not Covered",
+    "notCoveredItems": [
+      "Normal wear and tear from daily use",
+      "Accidental damage (drops, impacts, crushing)",
+      "Scratches on lenses or coating",
+      "Modifications or repairs performed by unauthorized third parties",
+      "Inappropriate use or negligence",
+      "Damage caused by exposure to chemicals"
+    ],
+    "afterSalesTitle": "After-Sales Service",
+    "afterSalesText": "Our after-sales service is dedicated to ensuring your complete satisfaction and the longevity of your Renaissance eyewear.",
+    "warrantyRepairTitle": "Warranty Repairs",
+    "warrantyRepairText": "If your frame has a defect covered by the warranty:",
+    "warrantyRepairItems": [
+      "Contact us at <a href=\"mailto:contact@renaissance-eyewear.fr\">contact@renaissance-eyewear.fr</a> with your order number and photos of the defect",
+      "Our team will evaluate your request within 48 hours",
+      "If the warranty applies, we will send you a prepaid return label",
+      "Return the frame in its original packaging",
+      "We will perform the repair or replacement within 15 business days"
+    ],
+    "outOfWarrantyTitle": "Out-of-Warranty Repairs",
+    "outOfWarrantyText": "For damage not covered by the warranty, we offer a paid repair service:",
+    "outOfWarrantyItems": [
+      "Free quote within 48 hours of receiving the frame",
+      "Competitive rates depending on the nature of the repair",
+      "Repair time: 2 to 4 weeks depending on complexity",
+      "Return shipping covered by Renaissance"
+    ],
+    "repairTypesTitle": "Available Repair Types",
+    "repairTypesItems": [
+      "<strong>Hinge replacement</strong>: If your hinges are damaged",
+      "<strong>Temple straightening</strong>: To restore the original shape",
+      "<strong>Nose pad replacement</strong>: For optimal comfort",
+      "<strong>Polishing</strong>: To restore the original metal shine",
+      "<strong>Rhinestone resetting</strong>: If a rhinestone has fallen out",
+      "<strong>Adjustment</strong>: For a perfect fit"
+    ],
+    "maintenanceTitle": "Care and Maintenance",
+    "cleaningTitle": "Daily Cleaning",
+    "cleaningItems": [
+      "Use exclusively the microfiber cloth provided with your glasses",
+      "For deeper cleaning, use warm soapy water",
+      "Gently dry with the microfiber cloth",
+      "Never use chemicals, alcohol, or solvents"
+    ],
+    "storageTitle": "Storage",
+    "storageItems": [
+      "Always store your glasses in their case when not wearing them",
+      "Never place them face down to avoid scratches",
+      "Avoid prolonged exposure to high temperatures (dashboard, radiator)",
+      "Do not leave them in a humid environment"
+    ],
+    "precautionsTitle": "Usage Precautions",
+    "precautionsItems": [
+      "Always handle your glasses with both hands to preserve temple balance",
+      "Do not wear your glasses on top of your head, as this deforms the temples",
+      "Have your glasses regularly adjusted by an optician",
+      "Avoid contact with hairspray, perfume, and cosmetics"
+    ],
+    "opticiansTitle": "At Our Partner Opticians",
+    "opticiansText": "Our 200+ partner opticians in France can help you with:",
+    "opticiansItems": [
+      "Free adjustments and fittings",
+      "Professional cleaning",
+      "Nose pad replacement",
+      "Personalized care advice",
+      "Frame condition assessment"
+    ],
+    "findOptician": "Find your nearest partner optician",
+    "certificateTitle": "Certificate of Authenticity",
+    "certificateText": "Each Renaissance frame comes with a numbered certificate of authenticity. This document is essential for any warranty or after-sales service request. Please keep it carefully along with your purchase invoice.",
+    "contactTitle": "After-Sales Service Contact",
+    "contactText": "Our after-sales team is at your service:",
+    "contactItems": [
+      "<strong>Email:</strong> <a href=\"mailto:contact@renaissance-eyewear.fr\">contact@renaissance-eyewear.fr</a>",
+      "<strong>Phone:</strong> <a href=\"tel:+33142868200\">+33 1 42 86 82 00</a>",
+      "<strong>Hours:</strong> Monday to Friday, 9am - 6pm",
+      "<strong>Response time:</strong> Within 48 business hours"
+    ],
+    "qualityTitle": "Quality Commitment",
+    "qualityText1": "Renaissance is committed to providing the highest quality products. Each frame is handcrafted in South Korea by specialized artisans and undergoes rigorous quality controls before shipping.",
+    "qualityText2": "If despite all our precautions you encounter a problem with your frame, we will do everything in our power to resolve it quickly and to your complete satisfaction."
+  },
+
+  "remboursement": {
+    "title": "Refund Policy",
+    "section1Title": "1. Return and Refund Policy",
+    "section1Text": "Renaissance Eyewear wants to ensure your complete satisfaction. If a product does not suit you, you can benefit from a return, regardless of the reason, under the following conditions:",
+    "returnConditionsTitle": "Return Conditions",
+    "returnConditionsItems": [
+      "<strong>Withdrawal period</strong>: You have 14 days from the receipt of your order to return the product.",
+      "<strong>Product condition</strong>: The product must be returned in perfect condition, with its original packaging and all labels intact.",
+      "<strong>Procedures</strong>: To initiate the return, please contact our customer service by email at <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a> specifying your order number."
+    ],
+    "costsTitle": "Costs and Processing",
+    "costsItems": [
+      "<strong>Return shipping</strong>: Return shipping costs are covered by Renaissance Eyewear.",
+      "<strong>Refund or exchange</strong>: We offer either a full refund or an exchange, at your choice. Processing (verification, refund, or shipment of the new item) is completed within a maximum of 30 days from receipt of the returned product."
+    ],
+    "section2Title": "2. Warranty",
+    "section2Text": "All our products benefit from a 3-year manufacturer's warranty covering manufacturing defects. This warranty does not cover normal wear and tear, accidental damage, or inappropriate use of the product.",
+    "section3Title": "3. After-Sales Service",
+    "section3Text": "For any questions regarding your order, a return, or an exchange, our customer service is at your disposal:",
+    "section3Items": [
+      "<strong>Email:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Response time:</strong> We commit to responding within 48 business hours"
+    ],
+    "section4Title": "4. Special Cases",
+    "customProductsTitle": "Custom or Made-to-Order Products",
+    "customProductsText": "Products manufactured specifically for you (customization, made-to-order adjustments) cannot be returned, except in the case of manufacturing defects.",
+    "damagedProductsTitle": "Damaged or Defective Products",
+    "damagedProductsText": "If you receive a damaged or defective product, please contact us immediately with photos of the product. We will arrange the return and exchange at no cost to you.",
+    "section5Title": "5. Refund",
+    "section5Text": "Once your return is received and inspected, we will send you an email to notify you that we have received the returned product. The refund will be made to the payment method used at the time of purchase, within 14 days of return validation."
+  },
+
+  "expedition": {
+    "title": "Shipping",
+    "seoTitle": "Delivery",
+    "seoDescription": "Free delivery RENAISSANCE Paris. Shipping within 24-48h, Colissimo tracking and international delivery. Discover our times and conditions.",
+    "policyTitle": "Shipping Policy",
+    "policyText": "We are committed to shipping your orders quickly and transparently.",
+    "zoneTitle": "Delivery Zone and Method",
+    "zoneItems": [
+      "<strong>Delivery zone</strong>: Shipping is available internationally, with no known excluded geographic area.",
+      "<strong>Carrier</strong>: Packages are shipped via Colissimo, standard delivery mode."
+    ],
+    "delaysTitle": "Times and Tracking",
+    "delaysItems": [
+      "<strong>Shipping</strong>: Orders are prepared and shipped within 24 to 48 business hours.",
+      "<strong>Delivery</strong>: The estimated delivery time is between 1 and 3 business days after shipping, depending on destination.",
+      "<strong>Tracking</strong>: A tracking number is provided and you can track your package online via the La Poste website."
+    ],
+    "costsTitle": "Shipping Costs",
+    "costsText": "<strong>Free shipping</strong>: We offer standard delivery for all orders, regardless of destination.",
+    "detailedZonesTitle": "Detailed Delivery Zones",
+    "franceTitle": "Metropolitan France",
+    "franceItems": [
+      "<strong>Time</strong>: 1-2 business days after shipping",
+      "<strong>Carrier</strong>: Colissimo",
+      "<strong>Rate</strong>: Free"
+    ],
+    "euTitle": "European Union",
+    "euItems": [
+      "<strong>Time</strong>: 2-3 business days after shipping",
+      "<strong>Carrier</strong>: Colissimo International",
+      "<strong>Rate</strong>: Free"
+    ],
+    "internationalTitle": "International (outside EU)",
+    "internationalItems": [
+      "<strong>Time</strong>: 3-7 business days after shipping (depending on destination)",
+      "<strong>Carrier</strong>: Colissimo International",
+      "<strong>Rate</strong>: Free",
+      "<strong>Note</strong>: Customs duties may apply depending on local legislation. These fees are the responsibility of the recipient."
+    ],
+    "preparationTitle": "Order Preparation",
+    "preparationText": "Each pair of Renaissance glasses is carefully packaged in its original case, accompanied by a certificate of authenticity and a care guide. Our packaging reflects the excellence of our creations and guarantees optimal protection during transport.",
+    "trackingTitle": "Notification and Tracking",
+    "trackingText": "You will receive a shipping confirmation by email as soon as your order has left our workshops. This email will contain:",
+    "trackingItems": [
+      "Your tracking number",
+      "A direct link to the carrier's website",
+      "An estimated delivery date"
+    ],
+    "issuesTitle": "Delivery Issues",
+    "notReceivedTitle": "Package Not Received",
+    "notReceivedText": "If your package has not arrived within the indicated timeframe, please first check the online tracking. If the problem persists, contact us at <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a> with your order number.",
+    "damagedTitle": "Damaged Package",
+    "damagedText": "If your package arrives damaged, please:",
+    "damagedItems": [
+      "Take photos of the package and contents",
+      "Contact our customer service immediately",
+      "Keep the original packaging"
+    ],
+    "damagedResolution": "We will arrange an exchange or refund as quickly as possible.",
+    "partnerTitle": "Delivery to Our Partner Opticians",
+    "partnerText": "For an even more personalized experience, you can choose to have your order delivered directly to one of our 200+ partner opticians in France. Contact us for more information about this option.",
+    "contactTitle": "Customer Service Contact",
+    "contactText": "For any questions regarding your delivery:",
+    "contactItems": [
+      "<strong>Email:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Response time:</strong> Within 48 business hours"
+    ]
+  },
+
+  "guideTailles": {
+    "title": "Size Guide",
+    "seoTitle": "Size Guide",
+    "seoDescription": "Find the RENAISSANCE Paris frame perfectly suited to your face. Size guide, face shapes and tips for choosing your glasses.",
+    "heroSupertitle": "Help & Advice",
+    "heroTitle1": "SIZE",
+    "heroTitle2": "GUIDE.",
+    "heroSubtitle": "Find the ideal frame.",
+    "heroDescription": "A complete guide to understanding our frame dimensions and choosing the one that perfectly fits your face shape.",
+    "section01": "01",
+    "dimensionsTitle": "Understanding dimensions",
+    "measurementsDiagram": "Measurement diagram",
+    "lensWidth": "Lens width",
+    "lensWidthDesc": "Horizontal distance of a lens, measured at its widest point.",
+    "lensWidthRange": "45mm — 58mm",
+    "bridge": "Bridge",
+    "bridgeDesc": "Distance between the two lenses, at the bridge of the nose.",
+    "bridgeRange": "14mm — 24mm",
+    "temples": "Temples",
+    "templesDesc": "Length of the temples, from the hinge to the tip.",
+    "templesRange": "135mm — 150mm",
+    "standardFormat": "Renaissance Standard Format",
+    "standardFormatDesc": "Our dimensions are indicated in this format:",
+    "standardFormatExample": "52-20-145",
+    "lensLabel": "Lens (mm)",
+    "bridgeLabel": "Bridge (mm)",
+    "templesLabel": "Temples (mm)",
+    "section02": "02",
+    "findSizeTitle": "Find your size",
+    "sizeS": "Size S",
+    "sizeSmall": "Small",
+    "sizeSDesc": "Ideal for slim faces and delicate builds.",
+    "sizeM": "Size M",
+    "sizeMedium": "Medium",
+    "sizeMDesc": "The most common size, suitable for the majority of face shapes.",
+    "sizeL": "Size L",
+    "sizeLarge": "Large",
+    "sizeLDesc": "For wide faces and larger builds.",
+    "mostCommon": "Most common",
+    "lensShort": "Lens",
+    "bridgeShort": "Bridge",
+    "templesShort": "Temples",
+    "section03": "03",
+    "faceShapeTitle": "Choose according to face shape",
+    "ovalFace": "Oval Face",
+    "ovalAdvice": "The most balanced shape. All frame shapes suit you well. Choose models that are neither too large nor too small to maintain proportions.",
+    "roundFace": "Round Face",
+    "roundAdvice": "Opt for rectangular or geometric frames to slim the face. Avoid overly round shapes that would accentuate the roundness.",
+    "squareFace": "Square Face",
+    "squareAdvice": "Round or oval frames soften angular features. Butterfly shapes are particularly flattering.",
+    "rectangularFace": "Rectangular Face",
+    "rectangularAdvice": "Choose frames with significant lens height to visually shorten the face. Hexagonal shapes work well.",
+    "ctaSupertitle": "Need to try",
+    "ctaTitle": "Try in store.",
+    "ctaSubtitle": "200+ partner opticians in France.",
+    "ctaDescription": "Visit one of our partner opticians to try our collections and receive personalized advice.",
+    "findOptician": "Find an optician",
+    "contactUs": "Contact us"
+  }
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronUp } from 'lucide-react';
 import { useCart } from '../../contexts/CartContext';
@@ -37,6 +38,7 @@ interface ProductBottomBarProps {
 }
 
 export default function ProductBottomBar({ product, selectedColorIndex, visible = true }: ProductBottomBarProps) {
+  const { t } = useTranslation('product');
   const [addedToCart, setAddedToCart] = useState(false);
   const { addToCart, isLoading } = useCart();
 
@@ -44,7 +46,7 @@ export default function ProductBottomBar({ product, selectedColorIndex, visible 
     const selectedVariant = product.variants[selectedColorIndex];
 
     if (!selectedVariant || !selectedVariant.availableForSale) {
-      alert('Ce produit n\'est pas disponible');
+      alert(t('sidebar.productUnavailable'));
       return;
     }
 
@@ -52,8 +54,8 @@ export default function ProductBottomBar({ product, selectedColorIndex, visible 
       await addToCart(selectedVariant.id);
       setAddedToCart(true);
       setTimeout(() => setAddedToCart(false), 2000);
-    } catch (error) {
-      console.error('Erreur lors de l\'ajout au panier:', error);
+    } catch {
+      // Add to cart error silently handled
     }
   };
 
@@ -82,7 +84,7 @@ export default function ProductBottomBar({ product, selectedColorIndex, visible 
             >
               <ChevronUp size={14} />
               <span className="font-sans text-[10px] tracking-[0.15em] uppercase font-medium">
-                Voir le produit
+                {t('bottomBar.viewProduct')}
               </span>
             </button>
           </div>
@@ -99,6 +101,7 @@ export default function ProductBottomBar({ product, selectedColorIndex, visible 
                       src={thumbnailUrl}
                       alt={product.modelName || product.name}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   ) : (
                     <div className="w-full h-full bg-neutral-100" />
@@ -129,7 +132,7 @@ export default function ProductBottomBar({ product, selectedColorIndex, visible 
                       : 'bg-dark-text text-white hover:bg-dark-text/90'
                   } disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
-                  {isLoading ? 'AJOUT...' : addedToCart ? 'AJOUTÉ ✓' : 'AJOUTER AU PANIER'}
+                  {isLoading ? t('bottomBar.adding') : addedToCart ? t('bottomBar.added') : t('bottomBar.addToCart')}
                 </button>
               </div>
             </div>

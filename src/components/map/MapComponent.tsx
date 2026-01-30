@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { Store } from '../../types/store';
 
 // Clé API Mapbox depuis les variables d'environnement
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
 interface MapComponentProps {
-  stores: any[];
-  selectedStore: any | null;
-  onSelectStore: (store: any | null) => void;
+  stores: Store[];
+  selectedStore: Store | null;
+  onSelectStore: (store: Store | null) => void;
   userLocation?: { lat: number; lng: number } | null;
   initialCenter?: [number, number];
   initialZoom?: number;

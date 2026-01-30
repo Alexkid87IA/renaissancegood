@@ -1,28 +1,17 @@
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { stagger, fade } from './shared';
 import { useDeviceType } from '../../hooks/useDeviceType';
 
 export default function HeroHistoireSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
   const { isMobile } = useDeviceType();
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
-
   return (
     <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity }}
-      className="h-screen relative sticky top-0 z-10"
+      className="h-screen relative z-10"
     >
       {/* DESKTOP */}
       <div className="relative h-full overflow-hidden hidden lg:block">
@@ -30,6 +19,7 @@ export default function HeroHistoireSection() {
           src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
           alt="Renaissance Paris - Notre Histoire"
           className="absolute inset-0 w-full h-full object-cover object-center"
+          fetchpriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
@@ -66,6 +56,7 @@ export default function HeroHistoireSection() {
             src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
             alt="Renaissance Paris - Notre Histoire"
             className="w-full h-full object-cover object-[center_30%]"
+            fetchpriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80" />
         </div>

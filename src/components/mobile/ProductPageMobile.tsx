@@ -77,8 +77,8 @@ export default function ProductPageMobile({
           text: `Découvrez ${product.name} sur Renaissance`,
           url: window.location.href,
         });
-      } catch (error) {
-        console.log('Partage annulé');
+      } catch {
+        // Share cancelled by user
       }
     }
   };
@@ -253,6 +253,7 @@ export default function ProductPageMobile({
                           src={variant.thumbnail}
                           alt={variant.colorName}
                           className="w-full h-full object-cover"
+                          loading="lazy"
                         />
                       ) : (
                         <div className="w-full h-full bg-dark-text/5" />

@@ -1,0 +1,46 @@
+{
+  "home": {
+    "title": "Lunettes de Luxe Artisanales | Excellence Française",
+    "description": "Découvrez les lunettes de luxe RENAISSANCE Paris. Savoir-faire artisanal français, matériaux nobles et design intemporel. Créées à Paris avec passion."
+  },
+  "shop": {
+    "title": "Explorer nos créations",
+    "description": "Parcourez toutes les créations Renaissance Paris. Lunettes artisanales en édition limitée à 300 pièces."
+  },
+  "heritage": {
+    "title": "Collection Héritage",
+    "description": "Découvrez la collection Héritage de Renaissance Paris. Des montures intemporelles façonnées dans nos ateliers parisiens."
+  },
+  "versailles": {
+    "title": "Collection Versailles",
+    "description": "Découvrez la collection Versailles de Renaissance Paris. Inspirée par l'opulence du château, or 24 carats et finitions d'exception."
+  },
+  "isis": {
+    "title": "Collection Isis",
+    "description": "Découvrez la collection Isis de Renaissance Paris. Inspirée des symboles éternels de l'Égypte ancienne."
+  },
+  "histoire": {
+    "title": "Notre Histoire",
+    "description": "Découvrez l'histoire de la Maison Renaissance Paris. Cinq symboles millénaires, un savoir-faire artisanal d'exception."
+  },
+  "cart": {
+    "title": "Votre Panier",
+    "description": "Votre panier Renaissance Paris."
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Contactez la Maison Renaissance Paris. Notre équipe est à votre écoute."
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Questions fréquentes sur les lunettes Renaissance Paris. Commandes, livraison, retours et garantie."
+  },
+  "blog": {
+    "title": "Le Manifeste",
+    "description": "Découvrez les actualités et le manifeste de la Maison Renaissance Paris."
+  },
+  "storeLocator": {
+    "title": "Trouver un Opticien",
+    "description": "Trouvez un opticien partenaire Renaissance Paris près de chez vous. Plus de 200 points de vente en France."
+  }
+}

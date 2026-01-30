@@ -1,0 +1,46 @@
+{
+  "home": {
+    "title": "Luxury Artisanal Eyewear | French Excellence",
+    "description": "Discover RENAISSANCE Paris luxury eyewear. French artisanal craftsmanship, noble materials, and timeless design. Created in Paris with passion."
+  },
+  "shop": {
+    "title": "Explore our creations",
+    "description": "Browse all Renaissance Paris creations. Artisanal eyewear in limited editions of 300 pieces."
+  },
+  "heritage": {
+    "title": "Heritage Collection",
+    "description": "Discover the Heritage collection by Renaissance Paris. Timeless frames crafted in our Parisian workshops."
+  },
+  "versailles": {
+    "title": "Versailles Collection",
+    "description": "Discover the Versailles collection by Renaissance Paris. Inspired by the opulence of the palace, 24-karat gold and exceptional finishes."
+  },
+  "isis": {
+    "title": "Isis Collection",
+    "description": "Discover the Isis collection by Renaissance Paris. Inspired by the eternal symbols of ancient Egypt."
+  },
+  "histoire": {
+    "title": "Our Story",
+    "description": "Discover the story of Renaissance Paris. Five millennial symbols, exceptional artisanal craftsmanship."
+  },
+  "cart": {
+    "title": "Your Cart",
+    "description": "Your Renaissance Paris cart."
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Contact Renaissance Paris. Our team is here to help."
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Frequently asked questions about Renaissance Paris eyewear. Orders, shipping, returns and warranty."
+  },
+  "blog": {
+    "title": "The Manifesto",
+    "description": "Discover the latest news and manifesto from Renaissance Paris."
+  },
+  "storeLocator": {
+    "title": "Find an Optician",
+    "description": "Find a Renaissance Paris partner optician near you. More than 200 retail locations in France."
+  }
+}

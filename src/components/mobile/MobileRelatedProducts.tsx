@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getProducts } from '../../lib/shopify';
 import { getModelName } from '../../lib/productGrouping';
+import LocaleLink from '../LocaleLink';
+
+function resizeShopifyImage(url: string, width: number): string {
+  if (!url || !url.includes('cdn.shopify.com')) return url;
+  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
+}
 
 interface Product {
   id: string;
@@ -44,8 +50,8 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
           .filter((p: Product) => p.id !== currentProductId)
           .slice(0, limit);
         setProducts(filteredProducts);
-      } catch (error) {
-        console.error('Erreur lors du chargement des produits similaires:', error);
+      } catch {
+        // Related products loading error silently handled
       } finally {
         setLoading(false);
       }
@@ -92,12 +98,12 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
               <span className="font-light italic tracking-[-0.02em]">aussi</span>
             </h2>
           </div>
-          <Link
+          <LocaleLink
             to="/shop"
             className="font-sans text-[8px] tracking-[0.2em] text-dark-text/35 uppercase"
           >
             Tout voir &rarr;
-          </Link>
+          </LocaleLink>
         </motion.div>
 
         {/* Featured — premier produit mis en avant */}
@@ -119,11 +125,11 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
               transition={{ duration: 0.5 }}
               className="mb-4"
             >
-              <Link to={`/product/${featured.handle}`} className="block">
+              <LocaleLink to={`/product/${featured.handle}`} className="block">
                 <div className="relative overflow-hidden bg-[#f5f4f0] aspect-[16/9]">
                   {imageUrl && (
                     <img
-                      src={imageUrl}
+                      src={resizeShopifyImage(imageUrl, 600)}
                       alt={featured.title}
                       className="w-full h-full object-cover"
                       loading="lazy"
@@ -149,7 +155,7 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                   </p>
                 </div>
                 <div className="mt-4 h-px bg-dark-text/5" />
-              </Link>
+              </LocaleLink>
             </motion.div>
           );
         })()}
@@ -172,11 +178,11 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Link to={`/product/${product.handle}`} className="block">
+                <LocaleLink to={`/product/${product.handle}`} className="block">
                   <div className="relative overflow-hidden bg-[#f5f4f0] aspect-[4/3]">
                     {imageUrl && (
                       <img
-                        src={imageUrl}
+                        src={resizeShopifyImage(imageUrl, 400)}
                         alt={product.title}
                         className="w-full h-full object-cover"
                         loading="lazy"
@@ -200,7 +206,7 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                     </p>
                   </div>
                   <div className="mt-3 h-px bg-dark-text/5" />
-                </Link>
+                </LocaleLink>
               </motion.div>
             );
           })}

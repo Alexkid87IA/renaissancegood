@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "label": "La Maison",
+    "title": "RENAISSANCE",
+    "subtitle": "París, siempre."
+  },
+  "signature": {
+    "label": "Nuestra firma",
+    "title": "CINCO SÍMBOLOS\nMILENARIOS",
+    "description": "Cada montura lleva en sí una parte de eternidad. Cinco símbolos que atraviesan civilizaciones, cinco firmas de la Maison Renaissance."
+  },
+  "savoirFaire": {
+    "label": "Savoir-faire",
+    "title": "EXCELENCIA\nARTESANAL",
+    "description": "Cada montura es el resultado de más de 40 etapas de fabricación manual. Un proceso meticuloso que garantiza una calidad excepcional."
+  },
+  "fondateurs": {
+    "label": "Fundadores",
+    "title": "UNA VISIÓN\nPARISINA"
+  },
+  "valeurs": {
+    "label": "Nuestros valores",
+    "title": "EL COMPROMISO\nRENAISSANCE"
+  },
+  "engagement": {
+    "label": "Compromiso",
+    "title": "PARA QUE NADA\nSE PIERDA"
+  },
+  "ambassadeurs": {
+    "label": "Embajadores",
+    "title": "LLEVAN\nRENAISSANCE"
+  },
+  "manifeste": {
+    "label": "Manifiesto",
+    "title": "MANIFIESTO\nRENAISSANCE",
+    "description": "Lo que creamos no es un simple accesorio. Es un acto de transmisión."
+  },
+  "symboles": {
+    "label": "Símbolos",
+    "title": "CINCO SÍMBOLOS\nETERNOS"
+  },
+  "page": {
+    "histoire": {
+      "seoTitle": "Nuestra Historia",
+      "seoDescription": "Descubra la historia de RENAISSANCE París, casa francesa de gafas de lujo. Nuestra maestría artesanal, nuestros valores y nuestro compromiso con la excelencia."
+    },
+    "savoirFaire": {
+      "seoTitle": "Savoir-Faire",
+      "seoDescription": "Descubra el savoir-faire artesanal de RENAISSANCE París. Fabricación francesa, materiales nobles y técnicas de excelencia para gafas de lujo únicas."
+    },
+    "manifeste": {
+      "seoTitle": "Manifiesto",
+      "seoDescription": "Descubra el manifiesto de RENAISSANCE París. Nuestros valores de excelencia, autenticidad y savoir-faire francés al servicio de las gafas de lujo."
+    },
+    "symboles": {
+      "seoTitle": "Símbolos",
+      "seoDescription": "Descubra los símbolos que inspiran RENAISSANCE París. Escarabajo, flor de lis y cruz de Malta: emblemas cargados de historia para gafas únicas."
+    }
+  },
+  "blog": {
+    "seoTitle": "El Manifiesto - Blog",
+    "seoDescription": "Descubra el universo de RENAISSANCE París. Artículos sobre nuestros símbolos, nuestra maestría artesanal y la historia de las gafas de lujo francesas.",
+    "heroLabel": "Actualidad y Cultura",
+    "heroTitleLine1": "EL",
+    "heroTitleLine2": "MANIFIESTO.",
+    "heroSubtitle": "Historias, símbolos y savoir-faire.",
+    "heroDescription": "Descubra el universo Renaissance más allá del objeto.",
+    "loading": "Cargando artículos...",
+    "emptyTitle": "Los primeros artículos llegan pronto",
+    "emptyDescription": "Estamos preparando contenido excepcional sobre nuestros símbolos, nuestro savoir-faire y el universo Renaissance.",
+    "readArticle": "Leer el artículo",
+    "newsletterLabel": "Newsletter",
+    "newsletterTitle": "No se pierda nada.",
+    "newsletterSubtitle": "Reciba nuestros artículos directamente.",
+    "emailPlaceholder": "Su dirección de email",
+    "subscribe": "Suscribirse"
+  },
+  "article": {
+    "loading": "Cargando artículo...",
+    "notFoundTitle": "Artículo no encontrado",
+    "notFoundDescription": "Este artículo no existe o ha sido eliminado.",
+    "backToArticles": "Volver a los artículos",
+    "label": "El Manifiesto",
+    "share": "Compartir",
+    "authorBio": "Miembro del equipo Renaissance, apasionado por la artesanía de excelencia y el storytelling que da sentido a cada creación.",
+    "ctaLabel": "Nuestras Creaciones",
+    "ctaTitle": "Descubra nuestras colecciones.",
+    "ctaSubtitle": "Cada símbolo cuenta una historia.",
+    "ctaButton": "Ver las colecciones"
+  }
+}

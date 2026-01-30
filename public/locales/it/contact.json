@@ -1,0 +1,205 @@
+{
+  "title": "Contatti",
+  "subtitle": "Siamo a vostra disposizione",
+  "form": {
+    "name": "Nome",
+    "email": "Email",
+    "subject": "Oggetto",
+    "message": "Messaggio",
+    "send": "Inviare",
+    "sending": "Invio in corso...",
+    "sent": "Messaggio inviato!",
+    "sentDesc": "Vi risponderemo al più presto."
+  },
+  "info": {
+    "email": "Email",
+    "phone": "Telefono",
+    "address": "Indirizzo",
+    "hours": "Orari di apertura"
+  },
+  "storeLocator": {
+    "title": "Trova un ottico",
+    "subtitle": "Più di 200 ottici partner in Francia",
+    "search": "Cerca una città...",
+    "nearMe": "Vicino a me",
+    "noResults": "Nessun ottico trovato in questa zona.",
+    "directions": "Indicazioni",
+    "phone": "Chiamare",
+    "filters": "Filtri"
+  },
+  "guarantee": {
+    "title": "Garanzia",
+    "subtitle": "2 anni di garanzia su tutte le montature"
+  },
+  "sizeGuide": {
+    "title": "Guida alle taglie",
+    "subtitle": "Trovate la montatura perfetta"
+  },
+  "orderTracking": {
+    "title": "Tracciamento ordine",
+    "subtitle": "Seguite il vostro ordine in tempo reale",
+    "orderNumber": "Numero d'ordine",
+    "email": "Email",
+    "track": "Traccia",
+    "status": "Stato"
+  },
+  "contactPage": {
+    "seo": {
+      "title": "Contatti",
+      "description": "Contattate RENAISSANCE Paris per qualsiasi domanda sui nostri occhiali di lusso. Servizio clienti disponibile via email e telefono dal lunedì al venerdì."
+    },
+    "hero": {
+      "label": "La Maison",
+      "titleLine1": "CONTATTATECI",
+      "titleLine2": ".",
+      "titleMobile": "CONTATTATECI.",
+      "subtitle": "A vostra disposizione.",
+      "description": "Il nostro team è disponibile per rispondere a tutte le vostre domande sulle nostre collezioni, i vostri ordini o la rete di ottici partner.",
+      "descriptionMobile": "Il nostro team è disponibile per rispondere a tutte le vostre domande.",
+      "cta": "Scrivere un messaggio",
+      "scroll": "Scroll"
+    },
+    "cards": {
+      "emailTitle": "Email",
+      "emailDetail": "contact@renaissance-eyewear.fr",
+      "emailSub": "Risposta entro 48h",
+      "phoneTitle": "Telefono",
+      "phoneDetail": "+33 1 42 86 82 00",
+      "phoneSub": "Lun — Ven",
+      "hoursTitle": "Orari",
+      "hoursDetail": "9h — 18h",
+      "hoursSub": "Dal lunedì al venerdì"
+    },
+    "formSection": {
+      "label": "Messaggio",
+      "title": "Scriveteci.",
+      "subtitle": "Vi risponderemo rapidamente.",
+      "nameLabel": "Nome completo *",
+      "namePlaceholder": "Il vostro nome",
+      "emailLabel": "Email *",
+      "emailPlaceholder": "vostra@email.it",
+      "phoneLabel": "Telefono",
+      "phonePlaceholder": "+39 3XX XXX XXXX",
+      "subjectLabel": "Oggetto *",
+      "subjectGeneral": "Domanda generale",
+      "subjectOrder": "Il mio ordine",
+      "subjectProduct": "Domanda sul prodotto",
+      "subjectReturn": "Reso o cambio",
+      "subjectSav": "Servizio post-vendita",
+      "subjectPartner": "Diventare partner",
+      "subjectOther": "Altro",
+      "messageLabel": "Messaggio *",
+      "messagePlaceholder": "Descrivete la vostra richiesta...",
+      "sent": "Messaggio inviato",
+      "sending": "Invio in corso...",
+      "submit": "Inviare il messaggio",
+      "requiredFields": "* Campi obbligatori"
+    },
+    "sidebar": {
+      "locationLabel": "Localizzazione",
+      "locationTitle": "Parigi, Francia",
+      "locationDescription": "La Maison Renaissance è orgogliosamente stabilita a Parigi, capitale dell'eleganza e del savoir-faire francese.",
+      "networkLabel": "Rete",
+      "networkTitle": "Bisogno di provare?",
+      "networkDescription": "Recatevi presso uno dei nostri 200+ ottici partner per provare le nostre collezioni e beneficiare di consigli personalizzati.",
+      "networkCta": "Trovare un ottico",
+      "socialLabel": "Seguiteci",
+      "socialDescription": "Scoprite le nostre nuove collezioni e le novità della Maison."
+    }
+  },
+  "storeLocatorPage": {
+    "seo": {
+      "title": "Trovare un Ottico Partner",
+      "description": "Trovate uno dei nostri {{count}}+ ottici partner RENAISSANCE Paris vicino a voi. Provate i nostri occhiali di lusso e beneficiate di consigli personalizzati."
+    },
+    "hero": {
+      "label": "Rete Partner",
+      "titleLine1": "TROVATE IL VOSTRO",
+      "titleLine2": "OTTICO.",
+      "subtitle": "L'eccellenza vicino a voi.",
+      "description": "Ogni boutique incarna i valori Renaissance: eccellenza, simbolismo e savoir-faire francese.",
+      "opticians": "Ottici",
+      "countries": "Paesi",
+      "cta": "Cercare un ottico",
+      "scroll": "Scroll"
+    },
+    "search": {
+      "label": "Localizzare",
+      "title": "Cercare un ottico",
+      "resultsCount": "{{count}} ottico partner in {{countries}} paesi",
+      "resultsCountPlural": "{{count}} ottici partner in {{countries}} paesi"
+    },
+    "cta": {
+      "label": "Diventare partner",
+      "title": "Siete ottici?",
+      "subtitle": "Unitevi all'eccellenza.",
+      "description": "Entrate nella rete Renaissance e proponete ai vostri clienti occhiali d'eccezione, simboli di un'eredità francese e di una visione unica del lusso.",
+      "button": "Diventare partner"
+    }
+  },
+  "suiviCommande": {
+    "seo": {
+      "title": "Tracciamento dell'Ordine",
+      "description": "Seguite il vostro ordine RENAISSANCE Paris in tutta serenità. Inserite il vostro numero d'ordine e la vostra email per accedere allo stato della vostra consegna."
+    },
+    "hero": {
+      "label": "Servizio Clienti",
+      "titleLine1": "SEGUITE IL VOSTRO",
+      "titleLine2": "ORDINE.",
+      "subtitle": "In tutta serenità.",
+      "scroll": "Scroll"
+    },
+    "form": {
+      "orderNumberLabel": "Numero d'ordine",
+      "emailLabel": "Indirizzo email",
+      "orderPlaceholder": "#1001",
+      "emailPlaceholder": "vostra@email.it",
+      "submit": "Tracciare il mio ordine",
+      "error": "Inserite il vostro numero d'ordine e la vostra email."
+    },
+    "reassurance": {
+      "freeShipping": "Spedizione gratuita",
+      "warranty": "Garanzia 2 anni",
+      "returns": "Resi 30 giorni"
+    },
+    "faqSection": {
+      "label": "Domande frequenti",
+      "titleLine1": "VI",
+      "titleLine2": "rispondiamo.",
+      "allQuestions": "Tutte le domande",
+      "questions": {
+        "whereIsOrder": {
+          "q": "Dov'è il mio ordine?",
+          "a": "Dopo la spedizione, riceverete un'email con il vostro numero di tracciamento. La consegna richiede da 1 a 3 giorni lavorativi in Francia metropolitana, 2-3 giorni per l'UE."
+        },
+        "deliveryTimes": {
+          "q": "Quali sono i tempi di consegna?",
+          "a": "Gli ordini sono spediti entro 24-48h. La consegna in Francia metropolitana richiede 1-2 giorni lavorativi, 2-3 giorni per l'UE e 3-7 giorni per l'internazionale."
+        },
+        "noConfirmation": {
+          "q": "Non ho ricevuto la mia email di conferma.",
+          "a": "Controllate lo spam e la posta indesiderata. Se non trovate la vostra conferma, contattateci con il vostro nome e la data dell'ordine a contact@renaissance-eyewear.fr."
+        },
+        "modifyOrder": {
+          "q": "Posso modificare o annullare il mio ordine?",
+          "a": "Potete modificare o annullare il vostro ordine entro 2 ore dalla sua convalida contattandoci immediatamente. Oltre questo termine, il vostro ordine è in fase di preparazione."
+        },
+        "returnPolicy": {
+          "q": "Qual è la vostra politica di reso?",
+          "a": "Disponete di 14 giorni dalla ricezione per restituire il vostro ordine. Il prodotto deve essere nel suo stato originale con l'imballaggio intatto. Le spese di reso sono a carico di Renaissance."
+        },
+        "refundDelay": {
+          "q": "Quando verrò rimborsato?",
+          "a": "Il rimborso viene effettuato entro 14 giorni dalla ricezione e dalla convalida del vostro reso, sul metodo di pagamento utilizzato al momento dell'acquisto."
+        }
+      }
+    },
+    "ctaBottom": {
+      "label": "Servizio Clienti",
+      "title": "Una domanda?",
+      "subtitle": "Il nostro team è a vostra disposizione.",
+      "contactUs": "Contattaci",
+      "viewFaq": "Consultare la FAQ"
+    }
+  }
+}

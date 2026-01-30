@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "label": "La Maison",
+    "title": "RENAISSANCE",
+    "subtitle": "Parigi, sempre."
+  },
+  "signature": {
+    "label": "La nostra firma",
+    "title": "CINQUE SIMBOLI\nMILLENARI",
+    "description": "Ogni montatura porta in s\u00e9 una parte di eternit\u00e0. Cinque simboli che attraversano le civilt\u00e0, cinque firme della Maison Renaissance."
+  },
+  "savoirFaire": {
+    "label": "Savoir-faire",
+    "title": "ECCELLENZA\nARTIGIANALE",
+    "description": "Ogni montatura \u00e8 il risultato di oltre 40 fasi di lavorazione manuale. Un processo meticoloso che garantisce una qualit\u00e0 eccezionale."
+  },
+  "fondateurs": {
+    "label": "Fondatori",
+    "title": "UNA VISIONE\nPARIGINA"
+  },
+  "valeurs": {
+    "label": "I nostri valori",
+    "title": "L'IMPEGNO\nRENAISSANCE"
+  },
+  "engagement": {
+    "label": "Impegno",
+    "title": "PERCH\u00c9 NULLA\nVADA PERDUTO"
+  },
+  "ambassadeurs": {
+    "label": "Ambasciatori",
+    "title": "INDOSSANO\nRENAISSANCE"
+  },
+  "manifeste": {
+    "label": "Manifesto",
+    "title": "MANIFESTO\nRENAISSANCE",
+    "description": "Ci\u00f2 che creiamo non \u00e8 un semplice accessorio. \u00c8 un atto di trasmissione."
+  },
+  "symboles": {
+    "label": "Simboli",
+    "title": "CINQUE SIMBOLI\nETERNI"
+  },
+  "page": {
+    "histoire": {
+      "seoTitle": "La nostra storia",
+      "seoDescription": "Scoprite la storia di RENAISSANCE Paris, maison francese di occhiali di lusso. La nostra maestria artigianale, i nostri valori e il nostro impegno per l'eccellenza."
+    },
+    "savoirFaire": {
+      "seoTitle": "Savoir-Faire",
+      "seoDescription": "Scoprite il savoir-faire artigianale RENAISSANCE Paris. Fabbricazione francese, materiali nobili e tecniche d'eccellenza per occhiali di lusso unici."
+    },
+    "manifeste": {
+      "seoTitle": "Manifesto",
+      "seoDescription": "Scoprite il manifesto RENAISSANCE Paris. I nostri valori di eccellenza, autenticit\u00e0 e savoir-faire francese al servizio dell'occhialeria di lusso."
+    },
+    "symboles": {
+      "seoTitle": "Simboli",
+      "seoDescription": "Scoprite i simboli che ispirano RENAISSANCE Paris. Scarabeo, giglio e croce di Malta: emblemi carichi di storia per occhiali unici."
+    }
+  },
+  "blog": {
+    "seoTitle": "Il Manifesto - Blog",
+    "seoDescription": "Scoprite l'universo RENAISSANCE Paris. Articoli sui nostri simboli, il nostro savoir-faire artigianale e la storia dell'occhialeria di lusso francese.",
+    "heroLabel": "Attualit\u00e0 e cultura",
+    "heroTitleLine1": "IL",
+    "heroTitleLine2": "MANIFESTO.",
+    "heroSubtitle": "Storie, simboli e savoir-faire.",
+    "heroDescription": "Scoprite l'universo Renaissance oltre l'oggetto.",
+    "loading": "Caricamento degli articoli...",
+    "emptyTitle": "I primi articoli arriveranno presto",
+    "emptyDescription": "Stiamo preparando contenuti eccezionali sui nostri simboli, il nostro savoir-faire e l'universo Renaissance.",
+    "readArticle": "Leggere l'articolo",
+    "newsletterLabel": "Newsletter",
+    "newsletterTitle": "Non perdetevi nulla.",
+    "newsletterSubtitle": "Ricevete i nostri articoli direttamente.",
+    "emailPlaceholder": "La vostra email",
+    "subscribe": "Iscriversi"
+  },
+  "article": {
+    "loading": "Caricamento dell'articolo...",
+    "notFoundTitle": "Articolo non trovato",
+    "notFoundDescription": "Questo articolo non esiste o \u00e8 stato rimosso.",
+    "backToArticles": "Torna agli articoli",
+    "label": "Il Manifesto",
+    "share": "Condividere",
+    "authorBio": "Membro del team Renaissance, appassionato di maestria artigianale e storytelling che d\u00e0 senso a ogni creazione.",
+    "ctaLabel": "Le nostre creazioni",
+    "ctaTitle": "Scoprite le nostre collezioni.",
+    "ctaSubtitle": "Ogni simbolo racconta una storia.",
+    "ctaButton": "Vedere le collezioni"
+  }
+}

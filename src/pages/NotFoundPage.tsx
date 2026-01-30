@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Home, Search } from 'lucide-react';
+import LocaleLink from '../components/LocaleLink';
 
 export default function NotFoundPage() {
+  const { t } = useTranslation('common');
+
   return (
     <div className="min-h-screen bg-beige flex items-center justify-center px-6">
       <motion.div
@@ -25,38 +28,38 @@ export default function NotFoundPage() {
 
         {/* Title */}
         <h2 className="font-serif text-4xl sm:text-5xl text-dark-text mb-6">
-          Page Introuvable
+          {t('notFound.pageTitle')}
         </h2>
 
         {/* Description */}
         <p className="font-sans text-dark-text/60 text-lg mb-12 leading-relaxed">
-          La page que vous recherchez semble avoir disparu.<br />
-          Laissez-nous vous guider vers nos collections d'exception.
+          {t('notFound.descriptionLong')}<br />
+          {t('notFound.descriptionSub')}
         </p>
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link to="/">
+          <LocaleLink to="/">
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-3 bg-dark-text text-white px-10 py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-bronze transition-colors duration-300"
             >
               <Home size={16} strokeWidth={2} />
-              Retour à l'Accueil
+              {t('notFound.backToHome')}
             </motion.button>
-          </Link>
+          </LocaleLink>
 
-          <Link to="/shop">
+          <LocaleLink to="/shop">
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-3 border-2 border-dark-text text-dark-text px-10 py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-dark-text hover:text-white transition-colors duration-300"
             >
               <Search size={16} strokeWidth={2} />
-              Explorer la Boutique
+              {t('notFound.explore')}
             </motion.button>
-          </Link>
+          </LocaleLink>
         </div>
 
         {/* Decorative Element */}

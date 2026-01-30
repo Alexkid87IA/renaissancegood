@@ -1,8 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { getProducts } from '../../lib/shopify';
 import { getModelName } from '../../lib/productGrouping';
+import LocaleLink from '../LocaleLink';
+import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
+
+function resizeShopifyImage(url: string, width: number): string {
+  if (!url || !url.includes('cdn.shopify.com')) return url;
+  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
+}
 
 interface Product {
   id: string;
@@ -31,7 +38,8 @@ interface RelatedProductsProps {
 }
 
 export default function RelatedProducts({ currentProductId, limit = 4 }: RelatedProductsProps) {
-  const navigate = useNavigate();
+  const { t } = useTranslation('product');
+  const navigate = useLocalizedNavigate();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -45,8 +53,8 @@ export default function RelatedProducts({ currentProductId, limit = 4 }: Related
           .filter((p: Product) => p.id !== currentProductId)
           .slice(0, limit);
         setProducts(filteredProducts);
-      } catch (error) {
-        console.error('Erreur lors du chargement des produits similaires:', error);
+      } catch {
+        // Related products loading error silently handled
       } finally {
         setLoading(false);
       }
@@ -88,20 +96,20 @@ export default function RelatedProducts({ currentProductId, limit = 4 }: Related
         >
           <div>
             <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/35 uppercase mb-4 font-medium">
-              Poursuivre l'exploration
+              {t('related.continueExploring')}
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] font-bold text-dark-text tracking-[-0.03em] leading-[0.9]">
-              VOUS AIMEREZ
+              {t('related.youWillLove')}
               <br />
-              <span className="font-light italic tracking-[-0.02em]">aussi</span>
+              <span className="font-light italic tracking-[-0.02em]">{t('related.also')}</span>
             </h2>
           </div>
-          <Link
+          <LocaleLink
             to="/shop"
             className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase hover:text-dark-text transition-colors duration-500 self-start sm:self-auto"
           >
-            Tout voir &rarr;
-          </Link>
+            {t('related.viewAll')}
+          </LocaleLink>
         </motion.div>
 
         {/* Produit mis en avant */}
@@ -156,7 +164,7 @@ export default function RelatedProducts({ currentProductId, limit = 4 }: Related
             className="group relative overflow-hidden border border-dark-text px-12 sm:px-16 py-4 sm:py-5"
           >
             <span className="relative z-10 font-sans text-[9px] sm:text-[10px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-white transition-colors duration-500">
-              Explorer la collection
+              {t('related.exploreCollection')}
             </span>
             <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
           </button>
@@ -194,7 +202,7 @@ function ProductCard({
   ) ? 'Solaire' : 'Optique';
 
   return (
-    <Link
+    <LocaleLink
       to={`/product/${product.handle}`}
       className="group block"
       onMouseEnter={onHover}
@@ -207,7 +215,7 @@ function ProductCard({
         {imageUrl && (
           <>
             <img
-              src={imageUrl}
+              src={resizeShopifyImage(imageUrl, 800)}
               alt={product.title}
               loading="lazy"
               className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out ${
@@ -218,7 +226,7 @@ function ProductCard({
             />
             {secondImageUrl && (
               <img
-                src={secondImageUrl}
+                src={resizeShopifyImage(secondImageUrl, 800)}
                 alt={`${product.title} - vue 2`}
                 loading="lazy"
                 className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out ${
@@ -270,6 +278,6 @@ function ProductCard({
           isHovered ? 'w-full' : 'w-0'
         }`} />
       </div>
-    </Link>
+    </LocaleLink>
   );
 }

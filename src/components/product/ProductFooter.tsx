@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Instagram, Facebook } from 'lucide-react';
+import LocaleLink from '../LocaleLink';
 
 export default function ProductFooter() {
+  const { t } = useTranslation('common');
   return (
     <footer className="bg-dark-text text-white">
 
@@ -14,6 +16,7 @@ export default function ProductFooter() {
             src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png"
             alt="Renaissance Eyewear"
             className="h-10 w-auto object-contain brightness-0 invert"
+            loading="lazy"
           />
           <div className="flex items-center gap-2">
             <a
@@ -41,30 +44,30 @@ export default function ProductFooter() {
         {/* Links — compact inline rows */}
         <div className="space-y-4 mb-8">
           <div>
-            <p className="font-sans text-[8px] tracking-[0.3em] text-bronze uppercase font-bold mb-2.5">Collections</p>
+            <p className="font-sans text-[8px] tracking-[0.3em] text-bronze uppercase font-bold mb-2.5">{t('productFooter.collections')}</p>
             <div className="flex flex-wrap gap-x-5 gap-y-1">
-              <Link to="/collections/heritage" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">Héritage</Link>
-              <Link to="/collections/versailles" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">Versailles</Link>
-              <Link to="/collections/isis" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">Isis</Link>
-              <Link to="/shop" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">Boutique</Link>
+              <LocaleLink to="/collections/heritage" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.heritage')}</LocaleLink>
+              <LocaleLink to="/collections/versailles" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.versailles')}</LocaleLink>
+              <LocaleLink to="/collections/isis" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.isis')}</LocaleLink>
+              <LocaleLink to="/shop" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.explore')}</LocaleLink>
             </div>
           </div>
           <div>
-            <p className="font-sans text-[8px] tracking-[0.3em] text-bronze uppercase font-bold mb-2.5">La Maison</p>
+            <p className="font-sans text-[8px] tracking-[0.3em] text-bronze uppercase font-bold mb-2.5">{t('productFooter.theHouse')}</p>
             <div className="flex flex-wrap gap-x-5 gap-y-1">
-              <Link to="/histoire" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">Histoire</Link>
-              <Link to="/symboles" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">Symboles</Link>
-              <Link to="/opticiens" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">Opticiens</Link>
-              <Link to="/contact" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">Contact</Link>
+              <LocaleLink to="/histoire" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.history')}</LocaleLink>
+              <LocaleLink to="/symboles" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.symbols')}</LocaleLink>
+              <LocaleLink to="/opticiens" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.opticians')}</LocaleLink>
+              <LocaleLink to="/contact" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.contact')}</LocaleLink>
             </div>
           </div>
           <div>
-            <p className="font-sans text-[8px] tracking-[0.3em] text-bronze uppercase font-bold mb-2.5">Aide</p>
+            <p className="font-sans text-[8px] tracking-[0.3em] text-bronze uppercase font-bold mb-2.5">{t('productFooter.help')}</p>
             <div className="flex flex-wrap gap-x-5 gap-y-1">
-              <Link to="/faq" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">FAQ</Link>
-              <Link to="/livraison" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">Livraison</Link>
-              <Link to="/garantie" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">Garantie</Link>
-              <Link to="/cgv" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">CGV</Link>
+              <LocaleLink to="/faq" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.faq')}</LocaleLink>
+              <LocaleLink to="/livraison" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.shipping')}</LocaleLink>
+              <LocaleLink to="/garantie" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.warranty')}</LocaleLink>
+              <LocaleLink to="/cgv" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.terms')}</LocaleLink>
             </div>
           </div>
         </div>
@@ -74,15 +77,15 @@ export default function ProductFooter() {
       <div className="px-6 md:px-10 lg:pl-[380px] laptop:pl-[420px] xl:pl-[520px] lg:pr-12 xl:pr-16 py-4 border-t border-white/5">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="font-sans text-white/20 text-[10px] font-light">
-            © 2025 Renaissance Eyewear
+            {t('productFooter.copyright')}
           </p>
           <div className="flex gap-4">
-            <Link to="/mentions-legales" className="font-sans text-white/20 hover:text-white/40 text-[10px] transition-colors font-light">
-              Mentions légales
-            </Link>
-            <Link to="/confidentialite" className="font-sans text-white/20 hover:text-white/40 text-[10px] transition-colors font-light">
-              Confidentialité
-            </Link>
+            <LocaleLink to="/mentions-legales" className="font-sans text-white/20 hover:text-white/40 text-[10px] transition-colors font-light">
+              {t('productFooter.legalNotice')}
+            </LocaleLink>
+            <LocaleLink to="/confidentialite" className="font-sans text-white/20 hover:text-white/40 text-[10px] transition-colors font-light">
+              {t('productFooter.privacy')}
+            </LocaleLink>
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 
 interface ProductImageSectionProps {
   imageUrl: string;
@@ -18,20 +17,10 @@ export default function ProductImageSection({
   onSwipeLeft,
   onSwipeRight
 }: ProductImageSectionProps) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
-
   return (
     <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity, zIndex }}
-      className={`h-screen sticky top-0 ${backgroundColor} ml-0 lg:ml-[400px] xl:ml-[480px]`}
+      style={{ zIndex }}
+      className={`h-screen ${backgroundColor} ml-0 lg:ml-[400px] xl:ml-[480px]`}
       drag="x"
       dragConstraints={{ left: 0, right: 0 }}
       dragElastic={0.2}
@@ -48,6 +37,7 @@ export default function ProductImageSection({
           src={imageUrl}
           alt={alt}
           className="w-full h-full object-cover pointer-events-none"
+          loading="lazy"
         />
       </div>
     </motion.section>

@@ -1,9 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Calendar, User, ArrowLeft, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
 import { getBlogPostByHandle } from '../lib/shopify';
+import { useLocale } from '../contexts/LocaleContext';
 import { createSanitizedMarkup } from '../lib/sanitize';
+import LocaleLink from '../components/LocaleLink';
 import { stagger, fade } from '../components/shared';
 
 interface BlogArticle {
@@ -23,11 +26,15 @@ interface BlogArticle {
 
 export default function BlogArticlePage() {
   const { handle } = useParams<{ handle: string }>();
+  const { t } = useTranslation('histoire');
+  const { locale, shopifyLanguage } = useLocale();
   const [article, setArticle] = useState<BlogArticle | null>(null);
   const [loading, setLoading] = useState(true);
   const [showShareMenu, setShowShareMenu] = useState(false);
   const ctaRef = useRef<HTMLDivElement>(null);
   const ctaInView = useInView(ctaRef, { once: true, amount: 0.3 });
+
+  const dateLocale = locale === 'fr' ? 'fr-FR' : 'en-US';
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,17 +47,17 @@ export default function BlogArticlePage() {
 
       try {
         setLoading(true);
-        const post = await getBlogPostByHandle('actualites-1', handle);
+        const post = await getBlogPostByHandle('actualites-1', handle, shopifyLanguage);
         setArticle(post);
-      } catch (error) {
-        console.error('Erreur lors du chargement de l\'article:', error);
+      } catch {
+        // Article loading error silently handled
       } finally {
         setLoading(false);
       }
     }
 
     loadArticle();
-  }, [handle]);
+  }, [handle, shopifyLanguage]);
 
   const handleShare = (platform: string) => {
     const url = window.location.href;
@@ -73,7 +80,7 @@ export default function BlogArticlePage() {
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-10 w-10 border-b-2 border-dark-text mb-4" />
           <p className="font-sans text-dark-text/30 text-[11px] tracking-[0.2em] uppercase font-medium">
-            Chargement de l'article...
+            {t('article.loading')}
           </p>
         </div>
       </div>
@@ -85,21 +92,21 @@ export default function BlogArticlePage() {
       <div className="min-h-screen bg-[#000000] flex items-center justify-center">
         <div className="text-center px-8">
           <h1 className="font-display text-4xl lg:text-5xl font-bold text-white tracking-[-0.03em] mb-4">
-            Article introuvable
+            {t('article.notFoundTitle')}
           </h1>
           <p className="font-sans text-white/35 text-sm leading-[1.8] font-light mb-8">
-            Cet article n'existe pas ou a été supprimé.
+            {t('article.notFoundDescription')}
           </p>
-          <Link
+          <LocaleLink
             to="/blog"
             className="group relative overflow-hidden inline-flex items-center gap-2 border border-white/15 px-8 py-4 transition-all duration-500 hover:border-bronze/60"
           >
             <ArrowLeft className="w-4 h-4 relative z-10 text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500" />
             <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
-              Retour aux articles
+              {t('article.backToArticles')}
             </span>
             <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-          </Link>
+          </LocaleLink>
         </div>
       </div>
     );
@@ -110,13 +117,13 @@ export default function BlogArticlePage() {
       {/* Back bar */}
       <div className="bg-[#000000] border-b border-white/5">
         <div className="max-w-[900px] mx-auto px-6 md:px-12 py-4">
-          <Link
+          <LocaleLink
             to="/blog"
             className="inline-flex items-center gap-2 font-sans text-[9px] tracking-[0.2em] font-medium uppercase text-white/30 hover:text-bronze transition-colors duration-500"
           >
             <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2} />
-            Retour aux articles
-          </Link>
+            {t('article.backToArticles')}
+          </LocaleLink>
         </div>
       </div>
 
@@ -127,6 +134,7 @@ export default function BlogArticlePage() {
             src={article.image.url}
             alt={article.title}
             className="w-full h-full object-cover opacity-80"
+            fetchpriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/30 via-transparent to-beige" />
         </div>
@@ -141,7 +149,7 @@ export default function BlogArticlePage() {
         >
           {/* Label */}
           <p className="font-sans text-[9px] tracking-[0.3em] font-bold text-bronze uppercase mb-6">
-            Le Manifeste
+            {t('article.label')}
           </p>
 
           {/* Title */}
@@ -173,7 +181,7 @@ export default function BlogArticlePage() {
             <div className="flex items-center gap-2 font-sans text-[10px] tracking-[0.15em] uppercase text-dark-text/30 font-medium">
               <Calendar className="w-3.5 h-3.5" strokeWidth={1.5} />
               <time>
-                {new Date(article.publishedAt).toLocaleDateString('fr-FR', {
+                {new Date(article.publishedAt).toLocaleDateString(dateLocale, {
                   day: 'numeric',
                   month: 'long',
                   year: 'numeric'
@@ -188,7 +196,7 @@ export default function BlogArticlePage() {
                 className="flex items-center gap-2 px-4 py-2 border border-dark-text/10 hover:border-bronze/40 transition-colors duration-500 font-sans text-[9px] tracking-[0.2em] font-medium uppercase text-dark-text/40 hover:text-bronze"
               >
                 <Share2 className="w-3.5 h-3.5" strokeWidth={2} />
-                Partager
+                {t('article.share')}
               </button>
 
               {showShareMenu && (
@@ -233,8 +241,7 @@ export default function BlogArticlePage() {
                 {article.author.name}
               </h3>
               <p className="font-sans text-dark-text/40 text-sm leading-[1.8] font-light">
-                Membre de l'équipe Renaissance, passionné par l'artisanat d'excellence
-                et le storytelling qui donne du sens à chaque création.
+                {t('article.authorBio')}
               </p>
             </div>
           </div>
@@ -251,25 +258,25 @@ export default function BlogArticlePage() {
             animate={ctaInView ? "visible" : "hidden"}
           >
             <motion.p variants={fade} className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
-              Nos Créations
+              {t('article.ctaLabel')}
             </motion.p>
             <motion.h2 variants={fade} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
-              Découvrez nos collections.
+              {t('article.ctaTitle')}
             </motion.h2>
             <motion.p variants={fade} className="font-display text-lg lg:text-xl font-light italic text-white/35 tracking-[-0.02em] mb-8">
-              Chaque symbole raconte une histoire.
+              {t('article.ctaSubtitle')}
             </motion.p>
             <motion.div variants={fade} className="w-12 h-px bg-white/15 mx-auto mb-10" />
             <motion.div variants={fade}>
-              <Link
+              <LocaleLink
                 to="/collections"
                 className="group relative overflow-hidden inline-block border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
               >
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
-                  Voir les collections
+                  {t('article.ctaButton')}
                 </span>
                 <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-              </Link>
+              </LocaleLink>
             </motion.div>
           </motion.div>
         </div>

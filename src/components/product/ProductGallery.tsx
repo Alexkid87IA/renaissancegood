@@ -27,6 +27,7 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
               src={image.url}
               alt={image.alt}
               className="max-w-full max-h-[85vh] object-contain"
+              loading="lazy"
             />
           </div>
         </motion.section>

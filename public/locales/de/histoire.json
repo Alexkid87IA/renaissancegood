@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "label": "Das Haus",
+    "title": "RENAISSANCE",
+    "subtitle": "Paris, immer."
+  },
+  "signature": {
+    "label": "Unsere Signatur",
+    "title": "FÜNF JAHRTAUSENDE-\nALTE SYMBOLE",
+    "description": "Jede Fassung trägt einen Teil der Ewigkeit in sich. Fünf Symbole, die Zivilisationen durchqueren, fünf Signaturen des Hauses Renaissance."
+  },
+  "savoirFaire": {
+    "label": "Handwerkskunst",
+    "title": "HANDWERKLICHE\nEXZELLENZ",
+    "description": "Jede Fassung ist das Ergebnis von über 40 manuellen Fertigungsschritten. Ein akribischer Prozess, der außergewöhnliche Qualität garantiert."
+  },
+  "fondateurs": {
+    "label": "Gründer",
+    "title": "EINE PARISER\nVISION"
+  },
+  "valeurs": {
+    "label": "Unsere Werte",
+    "title": "DAS RENAISSANCE\nVERSPRECHEN"
+  },
+  "engagement": {
+    "label": "Engagement",
+    "title": "DAMIT NICHTS\nVERLOREN GEHT"
+  },
+  "ambassadeurs": {
+    "label": "Botschafter",
+    "title": "SIE TRAGEN\nRENAISSANCE"
+  },
+  "manifeste": {
+    "label": "Manifest",
+    "title": "MANIFEST\nRENAISSANCE",
+    "description": "Was wir schaffen, ist kein bloßes Accessoire. Es ist ein Akt der Weitergabe."
+  },
+  "symboles": {
+    "label": "Symbole",
+    "title": "FÜNF EWIGE\nSYMBOLE"
+  },
+  "page": {
+    "histoire": {
+      "seoTitle": "Unsere Geschichte",
+      "seoDescription": "Entdecken Sie die Geschichte von RENAISSANCE Paris, französisches Haus für Luxusbrillen. Unsere Handwerkskunst, unsere Werte und unser Engagement für Exzellenz."
+    },
+    "savoirFaire": {
+      "seoTitle": "Handwerkskunst",
+      "seoDescription": "Entdecken Sie die Handwerkskunst von RENAISSANCE Paris. Französische Fertigung, edle Materialien und Techniken der Exzellenz für einzigartige Luxusbrillen."
+    },
+    "manifeste": {
+      "seoTitle": "Manifest",
+      "seoDescription": "Entdecken Sie das Manifest von RENAISSANCE Paris. Unsere Werte der Exzellenz, Authentizität und französischen Handwerkskunst im Dienste der Luxusbrillen."
+    },
+    "symboles": {
+      "seoTitle": "Symbole",
+      "seoDescription": "Entdecken Sie die Symbole, die RENAISSANCE Paris inspirieren. Skarabäus, Lilie und Malteserkreuz: geschichtsträchtige Embleme für einzigartige Brillen."
+    }
+  },
+  "blog": {
+    "seoTitle": "Das Manifest - Blog",
+    "seoDescription": "Entdecken Sie die Welt von RENAISSANCE Paris. Artikel über unsere Symbole, unsere Handwerkskunst und die Geschichte der französischen Luxusbrillen.",
+    "heroLabel": "Aktuelles & Kultur",
+    "heroTitleLine1": "DAS",
+    "heroTitleLine2": "MANIFEST.",
+    "heroSubtitle": "Geschichten, Symbole und Handwerkskunst.",
+    "heroDescription": "Entdecken Sie die Welt von Renaissance jenseits des Objekts.",
+    "loading": "Artikel werden geladen...",
+    "emptyTitle": "Die ersten Artikel kommen bald",
+    "emptyDescription": "Wir bereiten außergewöhnliche Inhalte über unsere Symbole, unsere Handwerkskunst und die Welt von Renaissance vor.",
+    "readArticle": "Artikel lesen",
+    "newsletterLabel": "Newsletter",
+    "newsletterTitle": "Verpassen Sie nichts.",
+    "newsletterSubtitle": "Erhalten Sie unsere Artikel direkt.",
+    "emailPlaceholder": "Ihre E-Mail-Adresse",
+    "subscribe": "Abonnieren"
+  },
+  "article": {
+    "loading": "Artikel wird geladen...",
+    "notFoundTitle": "Artikel nicht gefunden",
+    "notFoundDescription": "Dieser Artikel existiert nicht oder wurde entfernt.",
+    "backToArticles": "Zurück zu den Artikeln",
+    "label": "Das Manifest",
+    "share": "Teilen",
+    "authorBio": "Mitglied des Renaissance-Teams, leidenschaftlich für Handwerkskunst der Spitzenklasse und Storytelling, das jeder Kreation Bedeutung verleiht.",
+    "ctaLabel": "Unsere Kreationen",
+    "ctaTitle": "Entdecken Sie unsere Kollektionen.",
+    "ctaSubtitle": "Jedes Symbol erzählt eine Geschichte.",
+    "ctaButton": "Kollektionen ansehen"
+  }
+}

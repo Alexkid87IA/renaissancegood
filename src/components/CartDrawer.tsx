@@ -1,15 +1,32 @@
+import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../contexts/CartContext';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LocaleLink from './LocaleLink';
 import { Shield, Truck, X } from 'lucide-react';
 
 export default function CartDrawer() {
   const { cart, isCartOpen, isLoading, itemCount, updateQuantity, removeItem, closeCart } = useCart();
+  const { t } = useTranslation('cart');
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   const cartLines = cart?.lines.edges || [];
   const subtotal = cart ? parseFloat(cart.cost.subtotalAmount.amount) : 0;
   const freeShippingThreshold = 500;
   const remainingForFreeShipping = Math.max(freeShippingThreshold - subtotal, 0);
+
+  useEffect(() => {
+    if (!isCartOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeCart();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [isCartOpen, closeCart]);
 
   return (
     <AnimatePresence>
@@ -26,6 +43,10 @@ export default function CartDrawer() {
 
           {/* Tiroir du panier */}
           <motion.div
+            ref={drawerRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t('drawer.title', 'Votre Panier')}
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -36,16 +57,16 @@ export default function CartDrawer() {
             <div className="flex items-center justify-between p-6 bg-white border-b border-dark-text/10">
               <div>
                 <h2 className="font-serif text-3xl text-dark-text leading-none mb-2">
-                  Votre Panier
+                  {t('drawer.title', 'Votre Panier')}
                 </h2>
                 <p className="font-sans text-xs text-dark-text/60">
-                  {itemCount} {itemCount > 1 ? 'pièces' : 'pièce'} d'exception
+                  {t('drawer.itemCount', { count: itemCount })}
                 </p>
               </div>
               <button
                 onClick={closeCart}
                 className="p-2 hover:bg-dark-text/5 rounded-full transition-colors"
-                aria-label="Fermer le panier"
+                aria-label={t('drawer.close', 'Fermer le panier')}
               >
                 <X size={24} className="text-dark-text" />
               </button>
@@ -60,7 +81,7 @@ export default function CartDrawer() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <p className="font-sans text-[10px] text-dark-text">
-                    <span className="font-bold text-bronze">{remainingForFreeShipping.toFixed(0)}€</span> restants pour la livraison gratuite
+                    <span className="font-bold text-bronze">{remainingForFreeShipping.toFixed(0)}€</span> {t('drawer.freeShippingRemaining', { amount: remainingForFreeShipping.toFixed(0) })}
                   </p>
                   <Truck size={14} className="text-bronze" />
                 </div>
@@ -87,18 +108,18 @@ export default function CartDrawer() {
                     </svg>
                   </div>
                   <h3 className="font-serif text-xl text-dark-text mb-2">
-                    Votre panier est vide
+                    {t('drawer.emptyTitle', 'Votre panier est vide')}
                   </h3>
                   <p className="font-sans text-dark-text/60 text-sm mb-6 leading-relaxed">
-                    Découvrez nos collections d'exception
+                    {t('drawer.emptyDescription', "Découvrez nos collections d'exception")}
                   </p>
-                  <Link
-                    to="/collections/heritage"
+                  <LocaleLink
+                    to="/shop"
                     onClick={closeCart}
                     className="font-sans text-[10px] tracking-[0.3em] uppercase bg-dark-text text-white px-8 py-4 hover:bg-bronze transition-all duration-300"
                   >
-                    DÉCOUVRIR
-                  </Link>
+                    {t('drawer.discover', 'Découvrir')}
+                  </LocaleLink>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -119,7 +140,7 @@ export default function CartDrawer() {
                       >
                         <div className="flex gap-4">
                           {/* Image avec badge collection */}
-                          <Link
+                          <LocaleLink
                             to={`/product/${product.handle}`}
                             onClick={closeCart}
                             className="flex-shrink-0 relative group"
@@ -130,6 +151,7 @@ export default function CartDrawer() {
                                   src={imageUrl}
                                   alt={product.title}
                                   className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-300"
+                                  loading="lazy"
                                 />
                               ) : (
                                 <svg viewBox="0 0 100 50" className="w-20 h-10 text-dark-text/20">
@@ -145,11 +167,11 @@ export default function CartDrawer() {
                                 {collection}
                               </p>
                             </div>
-                          </Link>
+                          </LocaleLink>
 
                           {/* Infos produit */}
                           <div className="flex-1 min-w-0 flex flex-col">
-                            <Link
+                            <LocaleLink
                               to={`/product/${product.handle}`}
                               onClick={closeCart}
                               className="block mb-2"
@@ -157,8 +179,8 @@ export default function CartDrawer() {
                               <h3 className="font-serif text-base text-dark-text leading-tight hover:text-bronze transition-colors line-clamp-2">
                                 {product.title}
                               </h3>
-                            </Link>
-                            
+                            </LocaleLink>
+
                             {node.merchandise.title !== 'Default Title' && (
                               <p className="font-sans text-[10px] text-dark-text/50 mb-2">
                                 {node.merchandise.title}
@@ -220,18 +242,18 @@ export default function CartDrawer() {
                 <div className="flex items-center justify-center gap-4 pb-4 border-b border-dark-text/5">
                   <div className="flex items-center gap-1.5">
                     <Shield size={12} className="text-bronze" />
-                    <span className="font-sans text-[9px] text-dark-text/60">Garantie 3 ans</span>
+                    <span className="font-sans text-[9px] text-dark-text/60">{t('drawer.warranty', 'Garantie 3 ans')}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Truck size={12} className="text-bronze" />
-                    <span className="font-sans text-[9px] text-dark-text/60">Livraison suivie</span>
+                    <span className="font-sans text-[9px] text-dark-text/60">{t('drawer.trackedShipping', 'Livraison suivie')}</span>
                   </div>
                 </div>
 
                 {/* Sous-total */}
                 <div className="flex items-baseline justify-between pb-4">
                   <span className="font-sans text-xs tracking-[0.2em] uppercase text-dark-text/60">
-                    Sous-total
+                    {t('drawer.subtotal', 'Sous-total')}
                   </span>
                   <span className="font-serif text-2xl text-dark-text">
                     {subtotal.toFixed(2)}€
@@ -241,26 +263,26 @@ export default function CartDrawer() {
                 {/* Boutons d'action */}
                 <div className="space-y-3">
                   {/* Bouton Checkout */}
-                  <Link
+                  <LocaleLink
                     to="/checkout"
                     onClick={closeCart}
                     className="block w-full bg-dark-text text-white text-center font-sans text-[10px] tracking-[0.3em] uppercase py-4 hover:bg-bronze transition-all duration-300"
                   >
-                    FINALISER LA COMMANDE
-                  </Link>
+                    {t('drawer.checkout', 'Finaliser la commande')}
+                  </LocaleLink>
 
                   {/* Bouton Voir le panier complet */}
-                  <Link
+                  <LocaleLink
                     to="/cart"
                     onClick={closeCart}
                     className="block w-full border border-dark-text text-dark-text text-center font-sans text-[10px] tracking-[0.3em] uppercase py-4 hover:bg-dark-text hover:text-white transition-all duration-300"
                   >
-                    VOIR LE PANIER COMPLET
-                  </Link>
+                    {t('drawer.viewCart', 'Voir le panier complet')}
+                  </LocaleLink>
                 </div>
 
                 <p className="font-sans text-[9px] text-dark-text/40 text-center leading-relaxed">
-                  Les taxes et frais de livraison seront calculés à l'étape suivante
+                  {t('drawer.taxesNote', 'Les taxes et frais de livraison seront calculés à l\'étape suivante')}
                 </p>
               </div>
             )}

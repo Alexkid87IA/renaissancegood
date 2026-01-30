@@ -169,6 +169,7 @@ function SymbolCard({
         <img
           src={symbol.image}
           alt={symbol.name}
+          loading="lazy"
           className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-out ${
             isHovered ? 'scale-105' : 'scale-100'
           }`}

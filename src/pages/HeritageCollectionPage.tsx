@@ -1,78 +1,18 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useLocale } from '../contexts/LocaleContext';
 import { getProductsByCollection } from '../lib/shopify';
+import { getGroupedProducts, GroupedProduct } from '../lib/productGrouping';
+import { Product } from '../components/ProductCard';
+import GroupedProductCard from '../components/GroupedProductCard';
 import SEO from '../components/SEO';
 import { stagger, fade } from '../components/shared';
-
-// Interface adaptée pour les produits Shopify
-interface ShopifyProduct {
-  id: string;
-  title: string;
-  handle: string;
-  description: string;
-  availableForSale: boolean;
-  priceRange: {
-    minVariantPrice: {
-      amount: string;
-      currencyCode: string;
-    };
-  };
-  images: {
-    edges: Array<{
-      node: {
-        url: string;
-        altText: string | null;
-      };
-    }>;
-  };
-}
-
-interface Product {
-  id: string;
-  name: string;
-  category: string;
-  material: string;
-  shape: string;
-  images: string[];
-  badge?: string;
-  gridPosition: string;
-  price: string;
-  handle: string;
-}
 
 interface FilterOption {
   label: string;
   value: string;
 }
-
-const materials: FilterOption[] = [
-  { label: 'All', value: 'all' },
-  { label: 'Acétate', value: 'Acétate' },
-  { label: 'Métal', value: 'Métal' },
-  { label: 'Titane', value: 'Titane' }
-];
-
-const shapes: FilterOption[] = [
-  { label: 'All', value: 'all' },
-  { label: 'Rond', value: 'Rond' },
-  { label: 'Ovale', value: 'Ovale' },
-  { label: 'Carré', value: 'Carré' }
-];
-
-// Positions de grille pour les produits (répétitif)
-const gridPositions = [
-  'col-span-8 row-span-2',
-  'col-span-4 row-span-2',
-  'col-span-5 row-span-1',
-  'col-span-7 row-span-1',
-  'col-span-6 row-span-2',
-  'col-span-6 row-span-2',
-  'col-span-8 row-span-1',
-  'col-span-4 row-span-1',
-  'col-span-5 row-span-2',
-  'col-span-7 row-span-2'
-];
 
 function FilterSelect({
   label,
@@ -112,88 +52,13 @@ function FilterSelect({
   );
 }
 
-function ProductCard({ product }: { product: Product }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  return (
-    <motion.div
-      className="group relative overflow-hidden col-span-full sm:col-span-1 md:col-span-6"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5 }}
-    >
-      <Link
-        to={`/product/${product.handle}`}
-        className="block cursor-pointer"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className="relative aspect-[16/9] overflow-hidden bg-beige/20">
-          <motion.img
-            key={currentImageIndex}
-            src={product.images[currentImageIndex]}
-            alt={product.name}
-            className="w-full h-full object-cover"
-            initial={{ scale: 1 }}
-            animate={{ scale: isHovered ? 1.05 : 1 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          />
-
-          {product.badge && (
-            <div className="absolute top-4 left-4 bg-dark-text px-4 py-2">
-              <span className="font-sans text-[8px] tracking-[0.3em] font-bold text-white">
-                {product.badge}
-              </span>
-            </div>
-          )}
-
-          {product.images.length > 1 && (
-            <div className="absolute bottom-4 left-4 flex gap-2">
-              {product.images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setCurrentImageIndex(index);
-                  }}
-                  aria-label={`View image ${index + 1}`}
-                  className={`h-2 rounded-full transition-all ${
-                    currentImageIndex === index
-                      ? 'bg-dark-text w-6'
-                      : 'bg-dark-text/30 w-2'
-                  }`}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="bg-white p-4 sm:p-5">
-          <div className="flex items-center justify-between">
-            <div className="flex-1">
-              <h3 className="font-display text-lg sm:text-xl font-bold text-dark-text leading-tight">
-                {product.name}
-              </h3>
-              <p className="font-sans text-sm sm:text-base font-semibold text-dark-text/70 mt-1">
-                {product.price}
-              </p>
-            </div>
-            <div className="text-dark-text/40 group-hover:text-dark-text group-hover:translate-x-1 transition-all ml-3">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </Link>
-    </motion.div>
-  );
+function matchesTag(product: Product, tag: string): boolean {
+  return product.tags?.some(t => t.toLowerCase() === tag.toLowerCase()) || false;
 }
 
 export default function HeritageCollectionPage() {
+  const { t } = useTranslation('collections');
+  const { shopifyLanguage } = useLocale();
   const heroRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
@@ -206,14 +71,27 @@ export default function HeritageCollectionPage() {
   const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
 
+  const materials: FilterOption[] = [
+    { label: t('filters.all'), value: 'all' },
+    { label: t('filters.acetate'), value: 'Acétate' },
+    { label: t('filters.metal'), value: 'Métal' },
+    { label: t('filters.titanium'), value: 'Titane' }
+  ];
+
+  const shapes: FilterOption[] = [
+    { label: t('filters.all'), value: 'all' },
+    { label: t('filters.round'), value: 'Rond' },
+    { label: t('filters.oval'), value: 'Ovale' },
+    { label: t('filters.square'), value: 'Carré' }
+  ];
+
   const [selectedMaterial, setSelectedMaterial] = useState('all');
   const [selectedShape, setSelectedShape] = useState('all');
   const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [hideFilters, setHideFilters] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   // Charger les produits depuis Shopify au montage du composant
@@ -222,78 +100,59 @@ export default function HeritageCollectionPage() {
       try {
         setLoading(true);
         setError(null);
-        
-        // Récupérer les produits de la collection HERITAGE
-        const shopifyProducts = await getProductsByCollection('HERITAGE');
-        
-        // Transformer les produits Shopify en format utilisé par le composant
-        const transformedProducts: Product[] = shopifyProducts.map((product: ShopifyProduct, index: number) => ({
-          id: product.id,
-          name: product.title,
-          handle: product.handle,
-          category: 'OPTICAL', // Par défaut, peut être enrichi avec des tags Shopify
-          material: 'Métal', // Par défaut, peut être enrichi avec des metafields
-          shape: 'Rond', // Par défaut, peut être enrichi avec des metafields
-          images: product.images.edges.map(edge => edge.node.url),
-          price: `${product.priceRange.minVariantPrice.amount} ${product.priceRange.minVariantPrice.currencyCode}`,
-          gridPosition: gridPositions[index % gridPositions.length]
-        }));
-        
-        setProducts(transformedProducts);
-        setFilteredProducts(transformedProducts);
+        const shopifyProducts = await getProductsByCollection('HERITAGE', shopifyLanguage);
+        setProducts(shopifyProducts as Product[]);
       } catch (err) {
-        console.error('Erreur lors du chargement des produits:', err);
-        setError('Impossible de charger les produits. Veuillez réessayer.');
+        setError(t('errorLoading'));
       } finally {
         setLoading(false);
       }
     }
 
     loadProducts();
-  }, []);
+  }, [shopifyLanguage]);
 
   // Gérer le masquage des filtres au scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Sur desktop seulement, masquer les filtres au scroll vers le bas
       if (window.innerWidth >= 768) {
-        if (currentScrollY > lastScrollY && currentScrollY > 200) {
+        if (currentScrollY > lastScrollYRef.current && currentScrollY > 200) {
           setHideFilters(true);
-        } else if (currentScrollY < lastScrollY) {
+        } else if (currentScrollY < lastScrollYRef.current) {
           setHideFilters(false);
         }
       } else {
         setHideFilters(false);
       }
 
-      setLastScrollY(currentScrollY);
+      lastScrollYRef.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
-  // Filtrer les produits selon les critères sélectionnés
-  useEffect(() => {
-    let filtered = products;
+  // Filtrer et regrouper les produits par modèle
+  const groupedProducts: GroupedProduct[] = useMemo(() => {
+    let filtered = [...products];
 
     if (selectedMaterial !== 'all') {
-      filtered = filtered.filter(p => p.material === selectedMaterial);
+      filtered = filtered.filter(p => matchesTag(p, selectedMaterial));
     }
     if (selectedShape !== 'all') {
-      filtered = filtered.filter(p => p.shape === selectedShape);
+      filtered = filtered.filter(p => matchesTag(p, selectedShape));
     }
 
-    setFilteredProducts(filtered);
+    return getGroupedProducts(filtered);
   }, [selectedMaterial, selectedShape, products]);
 
   return (
-    <div className="bg-beige">
+    <div className="relative bg-beige">
       <SEO
-        title="Collection Héritage"
-        description="Découvrez la collection Héritage de RENAISSANCE Paris. Des lunettes de luxe au design intemporel, alliant tradition et modernité. Fabriquées avec les meilleurs matériaux."
+        title={t('heritage.seoTitle')}
+        description={t('heritage.seoDescription')}
         url="/collections/heritage"
       />
       <div
@@ -308,7 +167,7 @@ export default function HeritageCollectionPage() {
             {/* Top label */}
             <div className="absolute top-10 left-12 xl:left-20 2xl:left-28">
               <p className="font-sans text-white/25 text-[9px] tracking-[0.4em] font-medium uppercase">
-                Collection I
+                {t('heritage.collectionNumber')}
               </p>
             </div>
 
@@ -320,16 +179,16 @@ export default function HeritageCollectionPage() {
               className="relative z-10"
             >
               <motion.h1 variants={fade} className="font-display text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white mb-3 tracking-[-0.03em] leading-[0.9]">
-                HÉRITAGE.
+                {t('heritage.heroTitle')}
               </motion.h1>
               <motion.p variants={fade} className="font-display text-2xl xl:text-3xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 xl:mb-10">
-                Le Trident.
+                {t('heritage.heroSubtitle')}
               </motion.p>
 
               <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8 xl:mb-10" />
 
               <motion.p variants={fade} className="font-sans text-white/35 text-[13px] xl:text-sm leading-[1.9] font-light max-w-md mb-10 xl:mb-14">
-                Ce qui se transmet ne se jette pas. Ce qui se respecte ne s'oublie pas. Trois pointes. Le passé. Le présent. L'avenir.
+                {t('heritage.heroDescription')}
               </motion.p>
 
               <motion.div variants={fade}>
@@ -341,7 +200,7 @@ export default function HeritageCollectionPage() {
                   className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-white"
                 >
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
-                    Explorer la collection
+                    {t('heritage.exploreCollection')}
                   </span>
                   <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </button>
@@ -351,7 +210,7 @@ export default function HeritageCollectionPage() {
             {/* Bottom scroll indicator */}
             <div className="absolute bottom-10 left-12 xl:left-20 2xl:left-28 flex items-center gap-3">
               <div className="w-8 h-px bg-white/15" />
-              <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">Scroll</span>
+              <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">{t('scroll')}</span>
             </div>
           </div>
 
@@ -359,9 +218,10 @@ export default function HeritageCollectionPage() {
           <div className="flex-1 relative overflow-hidden">
             <motion.img
               src="https://renaissance-cdn.b-cdn.net/packshot%20collection%20heritage.png"
-              alt="Collection Héritage"
+              alt={t('heritage.heroImageAlt')}
               className="absolute inset-0 w-full h-full object-cover"
               style={{ y: imageY }}
+              fetchpriority="high"
             />
             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#000000] to-transparent" />
             <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#000000]/20 to-transparent" />
@@ -374,8 +234,9 @@ export default function HeritageCollectionPage() {
           <div className="absolute inset-0">
             <img
               src="https://renaissance-cdn.b-cdn.net/packshot%20collection%20heritage.png"
-              alt="Collection Héritage"
+              alt={t('heritage.heroImageAlt')}
               className="w-full h-full object-cover object-[center_35%]"
+              fetchpriority="high"
             />
             <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-b from-transparent to-[#000000]" />
           </div>
@@ -388,7 +249,7 @@ export default function HeritageCollectionPage() {
             className="absolute top-24 left-6 z-10"
           >
             <p className="text-white/50 text-[9px] tracking-[0.3em] uppercase font-sans font-medium">
-              Collection I
+              {t('heritage.collectionNumber')}
             </p>
           </motion.div>
 
@@ -400,10 +261,10 @@ export default function HeritageCollectionPage() {
             className="absolute bottom-0 left-0 right-0 px-6 pb-8 z-10"
           >
             <h1 className="font-display text-3xl sm:text-4xl font-bold text-white mb-1 tracking-[-0.03em] leading-[0.9]">
-              HÉRITAGE.
+              {t('heritage.heroTitle')}
             </h1>
             <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em] mb-5">
-              Le Trident.
+              {t('heritage.heroSubtitle')}
             </p>
             <button
               onClick={() => {
@@ -413,7 +274,7 @@ export default function HeritageCollectionPage() {
               className="group relative overflow-hidden w-full border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white active:scale-[0.98]"
             >
               <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
-                Explorer la collection
+                {t('heritage.exploreCollection')}
               </span>
               <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </button>
@@ -422,16 +283,19 @@ export default function HeritageCollectionPage() {
       </div>
 
       <div className="relative z-20 bg-beige" data-products-section>
-        <div className="border-b border-dark-text/10 bg-white">
-          <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12">
+        {/* Barre de filtres — fond transparent sur beige */}
+        <div className="border-b border-dark-text/8">
+          <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 laptop:px-16">
             <div className="py-3 md:py-6">
               <div className="flex items-center justify-between">
-                <div className="flex flex-col">
-                  <p className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1">
-                    # PRODUCTS
-                  </p>
-                  <p className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-dark-text leading-none">
-                    {loading ? '...' : filteredProducts.length}
+                {/* Header éditorial */}
+                <div className="flex items-center gap-4">
+                  <span className="font-sans text-[10px] tracking-[0.4em] text-bronze font-medium uppercase">
+                    {String(loading ? 0 : groupedProducts.length).padStart(2, '0')}
+                  </span>
+                  <div className="w-8 h-px bg-dark-text/15 hidden sm:block" />
+                  <p className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text/50 uppercase hidden sm:block">
+                    {t('filters.products')}
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
@@ -442,12 +306,12 @@ export default function HeritageCollectionPage() {
                   </div>
                   <button
                     onClick={() => setShowMobileFilters(true)}
-                    className="md:hidden flex items-center gap-2 px-4 py-2 bg-dark-text text-white"
+                    className="md:hidden flex items-center gap-2 px-4 py-2 border border-dark-text/15 text-dark-text"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <path d="M3 4h18M3 12h18M3 20h18" />
                     </svg>
-                    <span className="font-sans text-[10px] tracking-[0.2em] font-bold">FILTRES</span>
+                    <span className="font-sans text-[10px] tracking-[0.2em] font-bold">{t('filters.filtersButton')}</span>
                   </button>
                 </div>
               </div>
@@ -455,7 +319,7 @@ export default function HeritageCollectionPage() {
               <div className="hidden md:grid md:grid-cols-4 gap-4 mt-5">
                 <div className="hidden md:block">
                   <FilterSelect
-                    label="COLLECTION"
+                    label={t('filters.collection')}
                     options={[{ label: 'Heritage', value: 'heritage' }]}
                     value="heritage"
                     onChange={() => {}}
@@ -463,14 +327,14 @@ export default function HeritageCollectionPage() {
                 </div>
 
                 <FilterSelect
-                  label="MATERIAL"
+                  label={t('filters.material')}
                   options={materials}
                   value={selectedMaterial}
                   onChange={setSelectedMaterial}
                 />
 
                 <FilterSelect
-                  label="SHAPE"
+                  label={t('filters.shape')}
                   options={shapes}
                   value={selectedShape}
                   onChange={setSelectedShape}
@@ -478,8 +342,8 @@ export default function HeritageCollectionPage() {
 
                 <div className="col-span-2 md:col-span-1">
                   <FilterSelect
-                    label="LENS"
-                    options={[{ label: 'All', value: 'all' }]}
+                    label={t('filters.lens')}
+                    options={[{ label: t('filters.all'), value: 'all' }]}
                     value="all"
                     onChange={() => {}}
                   />
@@ -505,7 +369,7 @@ export default function HeritageCollectionPage() {
               <div className="p-6">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="font-sans text-sm tracking-[0.2em] font-bold text-dark-text uppercase">
-                    Filtres
+                    {t('filters.title')}
                   </h3>
                   <button
                     onClick={() => setShowMobileFilters(false)}
@@ -519,22 +383,22 @@ export default function HeritageCollectionPage() {
 
                 <div className="space-y-6">
                   <FilterSelect
-                    label="MATERIAL"
+                    label={t('filters.material')}
                     options={materials}
                     value={selectedMaterial}
                     onChange={setSelectedMaterial}
                   />
 
                   <FilterSelect
-                    label="SHAPE"
+                    label={t('filters.shape')}
                     options={shapes}
                     value={selectedShape}
                     onChange={setSelectedShape}
                   />
 
                   <FilterSelect
-                    label="LENS"
-                    options={[{ label: 'All', value: 'all' }]}
+                    label={t('filters.lens')}
+                    options={[{ label: t('filters.all'), value: 'all' }]}
                     value="all"
                     onChange={() => {}}
                   />
@@ -548,13 +412,13 @@ export default function HeritageCollectionPage() {
                     }}
                     className="flex-1 px-6 py-3 border-2 border-dark-text/20 font-sans text-xs tracking-[0.2em] font-bold text-dark-text uppercase"
                   >
-                    Réinitialiser
+                    {t('filters.reset')}
                   </button>
                   <button
                     onClick={() => setShowMobileFilters(false)}
                     className="flex-1 px-6 py-3 bg-dark-text text-white font-sans text-xs tracking-[0.2em] font-bold uppercase"
                   >
-                    Appliquer
+                    {t('filters.apply')}
                   </button>
                 </div>
               </div>
@@ -562,12 +426,12 @@ export default function HeritageCollectionPage() {
           </>
         )}
 
-        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 pt-4 pb-12">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 laptop:px-16 pt-10 md:pt-16 pb-16 md:pb-24">
           {loading && (
             <div className="text-center py-32">
               <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-dark-text"></div>
               <p className="font-sans text-dark-text/60 text-sm tracking-wider uppercase mt-6">
-                Chargement des produits...
+                {t('loading')}
               </p>
             </div>
           )}
@@ -581,23 +445,53 @@ export default function HeritageCollectionPage() {
                 onClick={() => window.location.reload()}
                 className="font-sans text-xs tracking-wider uppercase border border-dark-text px-6 py-3 hover:bg-dark-text hover:text-white transition-colors"
               >
-                Réessayer
+                {t('retry')}
               </button>
             </div>
           )}
 
           {!loading && !error && (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-4 sm:gap-6 md:gap-4">
-                {filteredProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+              <div className="flex flex-col gap-6 md:gap-0">
+                {groupedProducts.map((groupedProduct, index) => (
+                  <React.Fragment key={groupedProduct.modelName}>
+                    <GroupedProductCard
+                      groupedProduct={groupedProduct}
+                      index={index}
+                      collectionName="Heritage"
+                      layout="editorial"
+                    />
+                    {/* Séparateur entre chaque produit (sauf le dernier) */}
+                    {index < groupedProducts.length - 1 && (
+                      <div className="hidden md:flex items-center gap-4 py-8 lg:py-10">
+                        <div className="flex-1 h-px bg-dark-text/6" />
+                        <span className="font-sans text-[9px] tracking-[0.4em] text-dark-text/15 uppercase">
+                          {String(index + 2).padStart(2, '0')}
+                        </span>
+                        <div className="flex-1 h-px bg-dark-text/6" />
+                      </div>
+                    )}
+                  </React.Fragment>
                 ))}
               </div>
 
-              {filteredProducts.length === 0 && (
+              {/* Closer éditorial */}
+              {groupedProducts.length > 0 && (
+                <div className="flex flex-col items-center mt-16 md:mt-24">
+                  <div className="w-px h-16 md:h-24 bg-gradient-to-b from-bronze/0 via-bronze/30 to-bronze/0" />
+                  <p className="font-display text-5xl md:text-6xl font-bold text-dark-text/15 mt-4 leading-none">
+                    {String(groupedProducts.length).padStart(2, '0')}
+                  </p>
+                  <p className="font-sans text-[8px] tracking-[0.4em] text-dark-text/25 uppercase mt-2">
+                    {t('filters.products')}
+                  </p>
+                </div>
+              )}
+
+              {groupedProducts.length === 0 && (
                 <div className="text-center py-32">
                   <p className="font-sans text-dark-text/40 text-sm tracking-wider uppercase">
-                    No products match your filters
+                    {t('filters.noResults')}
                   </p>
                 </div>
               )}

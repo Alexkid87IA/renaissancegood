@@ -1,11 +1,9 @@
 // ========================================
 // COMPOSANT PRODUCTCARD RÉUTILISABLE
-// Utilisé dans : ShopPage, CollectionsPage, HeritageCollectionPage, VersaillesCollectionPage
 // ========================================
 
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { useState, memo, useCallback } from 'react';
+import LocaleLink from './LocaleLink';
 
 interface ProductImage {
   url: string;
@@ -59,80 +57,71 @@ interface ProductCardProps {
   showNewBadge?: boolean;
 }
 
-export default function ProductCard({ product, index = 0, showNewBadge = true }: ProductCardProps) {
+// Resize Shopify CDN images
+function resizeShopifyImage(url: string, width: number): string {
+  if (!url || !url.includes('cdn.shopify.com')) return url;
+  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
+}
+
+const ProductCard = memo(function ProductCard({ product }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const productImages = product.images.edges.map(edge => edge.node.url);
   const currentImage = productImages[currentImageIndex] || productImages[0];
   const price = parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0);
-  const category = product.tags?.includes('Solaire') ? 'SOLAIRE' : 'OPTICAL';
 
-  // Calculer le stock total de tous les variants
-  const totalStock = product.variants?.edges.reduce((total, edge) => {
-    return total + (edge.node.quantityAvailable || 0);
-  }, 0) || 0;
+  const isOutOfStock = product.availableForSale === false;
 
-  // Rupture de stock si stock total = 0
-  const isOutOfStock = totalStock === 0;
+  const handleMouseEnter = useCallback(() => setIsHovered(true), []);
+  const handleMouseLeave = useCallback(() => setIsHovered(false), []);
+
+  const handleImageChange = useCallback((imgIndex: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentImageIndex(imgIndex);
+  }, []);
 
   return (
-    <motion.div
-      className="group relative bg-white overflow-hidden col-span-full sm:col-span-1 md:col-span-6"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5 }}
-    >
-      <Link
+    <div className="group relative">
+      <LocaleLink
         to={`/product/${product.handle}`}
         className="block cursor-pointer"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        <div className={`relative aspect-[16/9] overflow-hidden bg-beige/20 ${isOutOfStock ? 'opacity-70' : ''}`}>
-          <motion.img
-            key={currentImageIndex}
-            src={currentImage}
+        <div className={`relative aspect-[16/9] overflow-hidden bg-[#f0eeea] ${isOutOfStock ? 'opacity-70' : ''}`}>
+          <img
+            src={resizeShopifyImage(currentImage, 800)}
             alt={product.title}
-            className="w-full h-full object-cover"
-            initial={{ scale: 1 }}
-            animate={{ scale: isHovered ? 1.05 : 1 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className={`w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              isHovered ? 'scale-[1.04]' : 'scale-100'
+            }`}
+            loading="lazy"
           />
 
-          {/* Badge Rupture de stock */}
           {isOutOfStock && (
-            <div className="absolute top-4 right-4 bg-bronze/90 px-4 py-2">
-              <span className="font-sans text-[8px] tracking-[0.2em] font-bold text-white uppercase">
-                Rupture de stock
+            <div className="absolute top-3 right-3 z-10">
+              <span className="inline-block bg-dark-text/80 text-white font-sans text-[8px] tracking-[0.25em] font-medium uppercase px-3 py-1.5">
+                Épuisé
               </span>
             </div>
           )}
 
-
-          {/* Navigation images */}
           {productImages.length > 1 && (
-            <div className="absolute bottom-4 left-4 flex gap-1 z-10">
-              {productImages.map((_, imgIndex) => (
+            <div className={`absolute bottom-2.5 left-3 flex gap-0.5 z-10 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+              {productImages.slice(0, 5).map((_, imgIndex) => (
                 <button
+                  type="button"
                   key={imgIndex}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setCurrentImageIndex(imgIndex);
-                  }}
-                  onMouseDown={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
-                  aria-label={`View image ${imgIndex + 1}`}
-                  className="p-2 -m-1 cursor-pointer"
+                  onClick={(e) => handleImageChange(imgIndex, e)}
+                  aria-label={`Image ${imgIndex + 1}`}
+                  className="p-1 cursor-pointer"
                 >
-                  <span className={`block h-2 rounded-full transition-all ${
+                  <span className={`block h-[2px] rounded-full transition-all duration-300 ${
                     currentImageIndex === imgIndex
-                      ? 'bg-dark-text w-6'
-                      : 'bg-dark-text/30 w-2 hover:bg-dark-text/50'
+                      ? 'bg-dark-text w-4'
+                      : 'bg-dark-text/25 w-2 hover:bg-dark-text/50'
                   }`} />
                 </button>
               ))}
@@ -140,34 +129,18 @@ export default function ProductCard({ product, index = 0, showNewBadge = true }:
           )}
         </div>
 
-        {/* Informations produit */}
-        <div className="p-5 sm:p-6 bg-white">
-          <div className="flex items-start justify-between mb-3">
-            <div className="flex-1">
-              <p className="font-sans text-[9px] tracking-[0.25em] text-dark-text/50 uppercase mb-2">
-                {category}
-              </p>
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-dark-text leading-tight mb-1">
-                {product.title}
-              </h3>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between pt-3 border-t border-dark-text/5">
-            <p className="font-sans text-base sm:text-lg font-semibold text-dark-text">
-              {price}
-            </p>
-            <div className="text-dark-text/40 group-hover:text-dark-text group-hover:translate-x-1 transition-all">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </div>
+        <div className="pt-4 pb-2">
+          <h3 className="font-display text-sm sm:text-base font-bold text-dark-text tracking-[-0.01em] leading-tight uppercase truncate">
+            {product.title}
+          </h3>
+          <p className="font-sans text-sm font-semibold text-dark-text mt-1">
+            {price}&nbsp;€
+          </p>
         </div>
-      </Link>
-    </motion.div>
+      </LocaleLink>
+    </div>
   );
-}
+});
 
-// Export des types pour réutilisation
+export default ProductCard;
 export type { ProductCardProps, ProductImage, ProductVariant, ProductCollection };

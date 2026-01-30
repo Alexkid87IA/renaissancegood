@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { stagger, fade } from './shared';
 import { useDeviceType } from '../../hooks/useDeviceType';
@@ -37,25 +37,14 @@ const valeurs = [
 ];
 
 export default function ValeursSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.2 });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const { isMobile } = useDeviceType();
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0]);
-
   return (
     <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity }}
-      className="min-h-screen md:h-screen relative sticky top-0 z-50 bg-[#0a0a0a]"
+      className="min-h-screen md:h-screen relative z-50 bg-[#0a0a0a]"
     >
       {/* DESKTOP */}
       <div className="hidden md:flex h-full">

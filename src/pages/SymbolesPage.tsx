@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import SymbolesSection from '../components/histoire/SymbolesSection';
 import SEO from '../components/SEO';
 
 export default function SymbolesPage() {
+  const { t } = useTranslation('histoire');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -10,8 +13,8 @@ export default function SymbolesPage() {
   return (
     <div className="bg-beige relative">
       <SEO
-        title="Symboles"
-        description="Découvrez les symboles qui inspirent RENAISSANCE Paris. Scarabée, fleur de lys et croix de Malte : des emblèmes chargés d'histoire pour des lunettes uniques."
+        title={t('page.symboles.seoTitle')}
+        description={t('page.symboles.seoDescription')}
         url="/symboles"
       />
       <SymbolesSection />

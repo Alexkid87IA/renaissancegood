@@ -1,0 +1,46 @@
+{
+  "home": {
+    "title": "Occhiali di lusso artigianali | Maestria francese",
+    "description": "Scoprite gli occhiali RENAISSANCE Paris. Maestria artigianale francese, materiali nobili e design senza tempo."
+  },
+  "shop": {
+    "title": "Tutti i modelli",
+    "description": "Tutti i modelli Renaissance Paris. Occhiali artigianali, edizioni limitate a 300 esemplari."
+  },
+  "heritage": {
+    "title": "Collezione Eredità",
+    "description": "Collezione Eredità Renaissance Paris. Montature senza tempo nate nei nostri atelier parigini."
+  },
+  "versailles": {
+    "title": "Collezione Versailles",
+    "description": "Collezione Versailles Renaissance Paris. Ispirata allo sfarzo del palazzo, oro 24 carati."
+  },
+  "isis": {
+    "title": "Collezione Iside",
+    "description": "Collezione Iside Renaissance Paris. Ispirata ai simboli eterni dell'antico Egitto."
+  },
+  "histoire": {
+    "title": "La nostra storia",
+    "description": "La storia della Maison Renaissance Paris. Cinque simboli millenari, maestria d'eccezione."
+  },
+  "cart": {
+    "title": "Il vostro carrello",
+    "description": "Il vostro carrello Renaissance Paris."
+  },
+  "contact": {
+    "title": "Contatti",
+    "description": "Contattate Renaissance Paris. Il nostro team è a vostra disposizione."
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Domande frequenti sugli occhiali Renaissance Paris."
+  },
+  "blog": {
+    "title": "Manifesto",
+    "description": "Novità e manifesto della Maison Renaissance Paris."
+  },
+  "storeLocator": {
+    "title": "Trova un ottico",
+    "description": "Trovate un ottico partner Renaissance Paris vicino a voi."
+  }
+}

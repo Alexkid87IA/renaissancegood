@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "label": "Parisian eyewear house",
+    "title": "THE HERITAGE\nRENAISSANCE",
+    "subtitle": "Five millennial symbols. Exceptional craftsmanship.",
+    "cta": "Discover the collections",
+    "ctaSecondary": "Our story"
+  },
+  "excellence": {
+    "label": "Artisanal excellence",
+    "title": "EVERY DETAIL\nIS A SIGNATURE.",
+    "subtitle": "Created in Paris, crafted for eternity.",
+    "description": "Our frames are the result of craftsmanship passed down through generations. Each piece is a work of art, designed to enhance your gaze."
+  },
+  "fabrication": {
+    "label": "Craftsmanship",
+    "title": "THE ART OF\nDETAIL",
+    "subtitle": "From the workshop to your gaze.",
+    "step1Title": "Cutting",
+    "step1Desc": "Each acetate plate is selected for its unique veining.",
+    "step2Title": "Polishing",
+    "step2Desc": "48 hours of polishing for an incomparable shine.",
+    "step3Title": "Assembly",
+    "step3Desc": "Each hinge is hand-adjusted with watchmaking precision."
+  },
+  "histoire": {
+    "label": "Our story",
+    "title": "RENAISSANCE",
+    "subtitle": "Paris, since always.",
+    "description": "Five millennial symbols. Exceptional artisanal craftsmanship. Eyewear designed to last and be passed down.",
+    "cta": "Discover our story"
+  },
+  "tryInStore": {
+    "label": "In-store fitting",
+    "title": "TRY AT YOUR\nOPTICIAN",
+    "subtitle": "The Renaissance experience near you.",
+    "description": "More than 200 partner opticians in France. Find the nearest one and try our collections.",
+    "cta": "Find an optician"
+  },
+  "reassurance": {
+    "freeShipping": "Free shipping",
+    "freeShippingDesc": "In metropolitan France",
+    "warranty": "2-year warranty",
+    "warrantyDesc": "On all our frames",
+    "limitedEdition": "Limited edition",
+    "limitedEditionDesc": "300 pieces per series",
+    "madeInFrance": "Made in France",
+    "madeInFranceDesc": "Artisanal craftsmanship"
+  },
+  "seo": {
+    "title": "Artisanal Luxury Eyewear",
+    "description": "Discover RENAISSANCE Paris, a French luxury eyewear house. Exceptional artisanal craftsmanship, noble materials and timeless design. Created in Paris with passion."
+  }
+}

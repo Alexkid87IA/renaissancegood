@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 
 // Import des sections redesignées
@@ -11,6 +12,8 @@ import SignatureSection from '../components/histoire/SignatureSection';
 import EngagementSection from '../components/histoire/EngagementSection';
 
 export default function HistoirePage() {
+  const { t } = useTranslation('histoire');
+
   // Scroll to top au chargement
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,8 +22,8 @@ export default function HistoirePage() {
   return (
     <div className="bg-[#0a0a0a] relative">
       <SEO
-        title="Notre Histoire"
-        description="Découvrez l'histoire de RENAISSANCE Paris, maison française de lunettes de luxe. Notre savoir-faire artisanal, nos valeurs et notre engagement pour l'excellence."
+        title={t('page.histoire.seoTitle')}
+        description={t('page.histoire.seoDescription')}
         url="/histoire"
       />
       <HeroHistoireSection />

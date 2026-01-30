@@ -146,6 +146,7 @@ export default function ProductImageNavigation({ images, productName }: ProductI
                       src={imageUrl}
                       alt={`${productName} - vue ${index + 1}`}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
                 </motion.button>

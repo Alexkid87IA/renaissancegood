@@ -5,6 +5,8 @@
 
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useLocale } from '../contexts/LocaleContext';
 import FilterSelect from '../components/FilterSelect';
 import GroupedProductCard from '../components/GroupedProductCard';
 import { Product } from '../components/ProductCard';
@@ -12,34 +14,36 @@ import { getProducts, getProductsByCollection } from '../lib/shopify';
 import { getGroupedProducts, GroupedProduct } from '../lib/productGrouping';
 import SEO from '../components/SEO';
 
-// Configuration des filtres
-const COLLECTIONS = [
-  { label: 'All', value: 'all' },
-  { label: 'Heritage', value: 'heritage' },
-  { label: 'Versailles', value: 'versailles' },
-  { label: 'Isis', value: 'isis' }
-];
-
-const MATERIALS = [
-  { label: 'All', value: 'all' },
-  { label: 'Acétate', value: 'acetate' },
-  { label: 'Métal', value: 'metal' },
-  { label: 'Titane', value: 'titane' }
-];
-
-const SHAPES = [
-  { label: 'All', value: 'all' },
-  { label: 'Rond', value: 'rond' },
-  { label: 'Ovale', value: 'ovale' },
-  { label: 'Carré', value: 'carre' },
-  { label: 'Hexagonal', value: 'hexagonal' },
-  { label: 'Papillon', value: 'papillon' }
-];
-
 export default function CollectionsPage() {
+  const { t } = useTranslation('collections');
+  const { shopifyLanguage } = useLocale();
   const location = useLocation();
   const pathCollection = location.pathname.split('/').pop();
   const initialCollection = pathCollection && pathCollection !== 'collections' ? pathCollection : 'all';
+
+  // Configuration des filtres
+  const COLLECTIONS = [
+    { label: t('filters.all'), value: 'all' },
+    { label: 'Heritage', value: 'heritage' },
+    { label: 'Versailles', value: 'versailles' },
+    { label: 'Isis', value: 'isis' }
+  ];
+
+  const MATERIALS = [
+    { label: t('filters.all'), value: 'all' },
+    { label: t('filters.acetate'), value: 'acetate' },
+    { label: t('filters.metal'), value: 'metal' },
+    { label: t('filters.titanium'), value: 'titane' }
+  ];
+
+  const SHAPES = [
+    { label: t('filters.all'), value: 'all' },
+    { label: t('filters.round'), value: 'rond' },
+    { label: t('filters.oval'), value: 'ovale' },
+    { label: t('filters.square'), value: 'carre' },
+    { label: t('filters.hexagonal'), value: 'hexagonal' },
+    { label: t('filters.butterfly'), value: 'papillon' }
+  ];
 
   // États
   const [selectedCollection, setSelectedCollection] = useState(initialCollection);
@@ -68,14 +72,14 @@ export default function CollectionsPage() {
         let fetchedProducts: Product[];
 
         if (selectedCollection === 'all') {
-          fetchedProducts = await getProducts() as Product[];
+          fetchedProducts = await getProducts(shopifyLanguage) as Product[];
         } else {
-          fetchedProducts = await getProductsByCollection(selectedCollection) as Product[];
+          fetchedProducts = await getProductsByCollection(selectedCollection, shopifyLanguage) as Product[];
         }
 
         setProducts(fetchedProducts);
       } catch (err) {
-        setError('Erreur lors du chargement des produits');
+        setError(t('errorGeneric'));
         setProducts([]);
       } finally {
         setLoading(false);
@@ -83,7 +87,7 @@ export default function CollectionsPage() {
     }
 
     fetchProducts();
-  }, [selectedCollection]);
+  }, [selectedCollection, shopifyLanguage]);
 
   // Filtrer et regrouper les produits
   useEffect(() => {
@@ -113,8 +117,8 @@ export default function CollectionsPage() {
   return (
     <div className="min-h-screen bg-beige">
       <SEO
-        title="Collections"
-        description="Explorez toutes les collections RENAISSANCE Paris. Héritage, Versailles et Isis : des lunettes de luxe fabriquées en France avec un savoir-faire artisanal d'exception."
+        title={t('page.seoTitle')}
+        description={t('page.seoDescription')}
         url="/collections"
       />
       {/* Barre de filtres */}
@@ -125,15 +129,15 @@ export default function CollectionsPage() {
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
                 <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1.5 sm:mb-2">
-                  # MODÈLES
+                  {t('filters.models')}
                 </p>
                 <p className="font-display text-2xl sm:text-3xl md:text-4xl laptop:text-5xl font-bold text-dark-text leading-none">
-                  {loading ? '—' : groupedProducts.length}
+                  {loading ? '\u2014' : groupedProducts.length}
                 </p>
               </div>
               <div className="md:hidden">
                 <p className="font-sans text-[8px] tracking-[0.25em] font-bold text-dark-text/50 uppercase">
-                  {COLLECTIONS.find(c => c.value === selectedCollection)?.label || 'All'}
+                  {COLLECTIONS.find(c => c.value === selectedCollection)?.label || t('filters.all')}
                 </p>
               </div>
             </div>
@@ -142,29 +146,29 @@ export default function CollectionsPage() {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
               <div className="hidden md:block">
                 <FilterSelect
-                  label="TYPE"
-                  options={[{ label: 'Optical', value: 'optical' }]}
+                  label={t('filters.type')}
+                  options={[{ label: t('filters.optical'), value: 'optical' }]}
                   value="optical"
                   onChange={() => {}}
                 />
               </div>
 
               <FilterSelect
-                label="COLLECTION"
+                label={t('filters.collection')}
                 options={COLLECTIONS}
                 value={selectedCollection}
                 onChange={setSelectedCollection}
               />
 
               <FilterSelect
-                label="MATERIAL"
+                label={t('filters.material')}
                 options={MATERIALS}
                 value={selectedMaterial}
                 onChange={setSelectedMaterial}
               />
 
               <FilterSelect
-                label="SHAPE"
+                label={t('filters.shape')}
                 options={SHAPES}
                 value={selectedShape}
                 onChange={setSelectedShape}
@@ -172,8 +176,8 @@ export default function CollectionsPage() {
 
               <div className="col-span-2 md:col-span-1">
                 <FilterSelect
-                  label="LENS"
-                  options={[{ label: 'All', value: 'all' }]}
+                  label={t('filters.lens')}
+                  options={[{ label: t('filters.all'), value: 'all' }]}
                   value="all"
                   onChange={() => {}}
                 />
@@ -207,7 +211,7 @@ export default function CollectionsPage() {
               onClick={() => window.location.reload()}
               className="font-sans text-xs tracking-widest uppercase bg-dark-text text-white px-6 py-3 hover:bg-bronze transition-colors"
             >
-              Réessayer
+              {t('retry')}
             </button>
           </div>
         ) : groupedProducts.length > 0 ? (
@@ -224,7 +228,7 @@ export default function CollectionsPage() {
         ) : (
           <div className="text-center py-32">
             <p className="font-sans text-dark-text/40 text-sm tracking-wider uppercase">
-              Aucun produit ne correspond à vos filtres
+              {t('filters.noResults')}
             </p>
           </div>
         )}

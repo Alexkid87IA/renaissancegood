@@ -1,0 +1,130 @@
+{
+  "title": "FAQ",
+  "subtitle": "Häufig gestellte Fragen",
+  "description": "Antworten auf die häufigsten Fragen.",
+  "categories": {
+    "all": "Alle",
+    "orders": "Bestellungen",
+    "shipping": "Versand",
+    "returns": "Rücksendung",
+    "products": "Produkte",
+    "warranty": "Garantie",
+    "stores": "Geschäfte"
+  },
+  "contactUs": "Antwort nicht gefunden?",
+  "contactCta": "Kontaktieren Sie uns",
+  "seo": {
+    "title": "Häufig gestellte Fragen (FAQ)",
+    "description": "Finden Sie Antworten auf Ihre Fragen zu den Brillen von RENAISSANCE Paris: Bestellung, Lieferung, Rücksendung, Pflege, Garantie und Partneroptiker."
+  },
+  "hero": {
+    "label": "Hilfe & Support",
+    "titleLine1": "HÄUFIG GESTELLTE",
+    "titleLine2": "FRAGEN.",
+    "subtitle": "Alles, was Sie wissen müssen.",
+    "answers": "Antworten",
+    "categoriesCount": "Kategorien"
+  },
+  "categoryNames": {
+    "orderPayment": "Bestellung & Zahlung",
+    "delivery": "Lieferung",
+    "returnsExchanges": "Rücksendung & Umtausch",
+    "productsCare": "Produkte & Pflege",
+    "partnerOpticians": "Partneroptiker",
+    "contactSupport": "Kontakt & Hilfe"
+  },
+  "questions": {
+    "paymentMethods": {
+      "q": "Welche Zahlungsmethoden akzeptieren Sie?",
+      "a": "Wir akzeptieren Kreditkarten (Visa, Mastercard, American Express), PayPal und Banküberweisungen. Alle Zahlungen sind gesichert und verschlüsselt."
+    },
+    "modifyOrder": {
+      "q": "Kann ich meine Bestellung ändern oder stornieren?",
+      "a": "Sie können Ihre Bestellung innerhalb von 2 Stunden nach der Bestätigung ändern oder stornieren, indem Sie uns umgehend kontaktieren. Nach Ablauf dieser Frist wird Ihre Bestellung bereits vorbereitet."
+    },
+    "invoice": {
+      "q": "Erhalte ich eine Rechnung?",
+      "a": "Ja, eine detaillierte Rechnung wird Ihnen per E-Mail zugesandt, sobald Ihre Bestellung versandt wird."
+    },
+    "deliveryTimes": {
+      "q": "Wie lang sind die Lieferzeiten?",
+      "a": "Bestellungen werden innerhalb von 24-48 Stunden versandt. Die Lieferung in Frankreich dauert 1-2 Werktage, in der EU 2-3 Werktage und international 3-7 Werktage."
+    },
+    "freeShipping": {
+      "q": "Ist die Lieferung kostenlos?",
+      "a": "Ja, die Lieferung ist für alle Bestellungen kostenlos, unabhängig vom Zielort."
+    },
+    "trackOrder": {
+      "q": "Kann ich meine Bestellung verfolgen?",
+      "a": "Ja, Sie erhalten eine Sendungsverfolgungsnummer per E-Mail, sobald Ihre Bestellung versandt wird. Sie können Ihr Paket in Echtzeit verfolgen."
+    },
+    "internationalShipping": {
+      "q": "Liefern Sie international?",
+      "a": "Ja, wir liefern weltweit. Je nach Land können Zollgebühren anfallen, die vom Empfänger zu tragen sind."
+    },
+    "returnPolicy": {
+      "q": "Wie ist Ihre Rückgaberichtlinie?",
+      "a": "Sie haben 14 Tage ab Erhalt, um Ihre Bestellung zurückzugeben. Das Produkt muss im Originalzustand mit intakter Verpackung zurückgesandt werden. Die Rücksendekosten werden von Renaissance übernommen."
+    },
+    "howToReturn": {
+      "q": "Wie veranlasse ich eine Rücksendung?",
+      "a": "Kontaktieren Sie unseren Kundenservice unter contact@renaissance-eyewear.fr mit Ihrer Bestellnummer. Wir senden Ihnen ein vorfrankiertes Rücksendeetikett und die Anweisungen."
+    },
+    "refundDelay": {
+      "q": "Wann werde ich erstattet?",
+      "a": "Die Erstattung erfolgt innerhalb von 14 Tagen nach Erhalt und Validierung Ihrer Rücksendung auf das bei der Bestellung verwendete Zahlungsmittel."
+    },
+    "exchangeFrame": {
+      "q": "Kann ich meine Fassung umtauschen?",
+      "a": "Ja, wir bieten kostenlose Umtausche an. Kontaktieren Sie uns, um den Umtausch Ihrer Fassung zu organisieren."
+    },
+    "chooseSize": {
+      "q": "Wie wähle ich die richtige Fassungsgröße?",
+      "a": "Konsultieren Sie unseren Größenratgeber, der die Abmessungen jedes Modells beschreibt. Sie können unsere Fassungen auch bei einem unserer über 200 Partneroptiker anprobieren."
+    },
+    "prescriptionLenses": {
+      "q": "Sind die Fassungen für Korrekturgläser geeignet?",
+      "a": "Ja, alle unsere optischen Fassungen können Ihre Korrekturgläser aufnehmen. Besuchen Sie einen Partneroptiker für die Verglasung."
+    },
+    "cleanGlasses": {
+      "q": "Wie pflege ich meine Renaissance-Brille?",
+      "a": "Reinigen Sie Ihre Brille mit dem mitgelieferten Mikrofasertuch. Vermeiden Sie aggressive Chemikalien. Bewahren Sie sie in ihrem Etui auf, wenn Sie sie nicht tragen."
+    },
+    "warranty": {
+      "q": "Wie lang ist die Garantie auf die Fassungen?",
+      "a": "Alle unsere Fassungen haben eine 2-jährige Herstellergarantie, die Herstellungsfehler abdeckt."
+    },
+    "tryBeforeBuy": {
+      "q": "Kann ich die Brillen vor dem Kauf anprobieren?",
+      "a": "Ja, besuchen Sie einen unserer über 200 Partneroptiker in Frankreich, um unsere Kollektionen anzuprobieren und persönliche Beratung zu erhalten."
+    },
+    "findOptician": {
+      "q": "Wie finde ich einen Partneroptiker?",
+      "a": "Nutzen Sie unseren Optiker-Finder auf der Seite \"Optiker finden\", um die nächstgelegene Verkaufsstelle zu finden."
+    },
+    "samePrices": {
+      "q": "Sind die Preise online und beim Optiker gleich?",
+      "a": "Ja, unsere Preise sind auf unserer Website und bei unseren Partneroptikern identisch."
+    },
+    "contactService": {
+      "q": "Wie kontaktiere ich den Kundenservice?",
+      "a": "Sie können uns per E-Mail unter contact@renaissance-eyewear.fr oder telefonisch unter +33 1 42 86 82 00 erreichen (Mo-Fr, 9-18 Uhr)."
+    },
+    "responseDelay": {
+      "q": "Wie schnell antwortet der Kundenservice?",
+      "a": "Wir verpflichten uns, alle Anfragen innerhalb von maximal 48 Arbeitsstunden zu beantworten."
+    },
+    "customization": {
+      "q": "Bieten Sie einen Personalisierungsservice an?",
+      "a": "Kontaktieren Sie uns, um Ihre Personalisierungswünsche zu besprechen. Bestimmte Optionen können auf Anfrage verfügbar sein."
+    }
+  },
+  "cta": {
+    "label": "Brauchen Sie Hilfe",
+    "title": "Noch eine Frage?",
+    "subtitle": "Wir sind für Sie da.",
+    "description": "Unser Team steht Ihnen zur Verfügung, um alle Ihre Fragen zu beantworten.",
+    "contactUs": "Kontaktieren Sie uns",
+    "callUs": "+33 1 42 86 82 00"
+  }
+}

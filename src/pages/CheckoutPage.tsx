@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { loadStripe, type Appearance } from '@stripe/stripe-js';
 import { Elements, PaymentElement, ExpressCheckoutElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useCart } from '../contexts/CartContext';
 import { Lock, ArrowLeft, AlertCircle, ChevronDown, Check, Shield, Truck, RotateCcw } from 'lucide-react';
+import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
+import LocaleLink from '../components/LocaleLink';
+
+function resizeShopifyImage(url: string, width: number): string {
+  if (!url || !url.includes('cdn.shopify.com')) return url;
+  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
+}
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '');
 
@@ -92,6 +99,7 @@ function ExpressCheckoutSection({
   onSuccess: (paymentIntentId: string) => void;
   onError: (error: string) => void;
 }) {
+  const { t } = useTranslation('cart');
   const stripe = useStripe();
   const elements = useElements();
   const [hasExpressMethods, setHasExpressMethods] = useState<boolean | null>(null);
@@ -109,12 +117,12 @@ function ExpressCheckoutSection({
       });
 
       if (error) {
-        onError(error.message || 'Erreur de paiement express');
+        onError(error.message || t('checkoutPage.errorExpressPayment'));
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
         onSuccess(paymentIntent.id);
       }
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Erreur inattendue';
+      const message = err instanceof Error ? err.message : t('checkoutPage.errorUnexpected');
       onError(message);
     }
   };
@@ -125,7 +133,7 @@ function ExpressCheckoutSection({
     <div className={hasExpressMethods === null ? 'min-h-[60px]' : ''}>
       <div className={hasExpressMethods === null ? 'opacity-0 h-0 overflow-hidden' : ''}>
         <p className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-4">
-          Paiement express
+          {t('checkoutPage.paymentExpressLabel')}
         </p>
         <ExpressCheckoutElement
           onReady={({ availablePaymentMethods }) => {
@@ -145,8 +153,8 @@ function ExpressCheckoutSection({
               shippingAddressRequired: true,
               allowedShippingCountries: ['FR', 'BE', 'CH', 'LU'],
               shippingRates: shippingFree
-                ? [{ id: 'free', displayName: 'Livraison Express Offerte', amount: 0 }]
-                : [{ id: 'standard', displayName: 'Livraison Express 48h', amount: 1500 }],
+                ? [{ id: 'free', displayName: t('checkoutPage.shippingRateFree'), amount: 0 }]
+                : [{ id: 'standard', displayName: t('checkoutPage.shippingRateStandard'), amount: 1500 }],
             });
           }}
           options={{
@@ -168,7 +176,7 @@ function ExpressCheckoutSection({
         {/* Divider "OU" */}
         <div className="flex items-center gap-4 my-8">
           <div className="flex-1 h-px bg-dark-text/[0.07]" />
-          <span className="font-sans text-[10px] tracking-[0.25em] text-dark-text/25 uppercase">ou</span>
+          <span className="font-sans text-[10px] tracking-[0.25em] text-dark-text/25 uppercase">{t('checkoutPage.orDivider')}</span>
           <div className="flex-1 h-px bg-dark-text/[0.07]" />
         </div>
       </div>
@@ -191,6 +199,7 @@ function StripePaymentForm({
   onSuccess: (paymentIntentId: string) => void;
   onError: (error: string) => void;
 }) {
+  const { t } = useTranslation('cart');
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -214,17 +223,16 @@ function StripePaymentForm({
       });
 
       if (error) {
-        setPaymentError(error.message || 'Une erreur est survenue');
-        onError(error.message || 'Erreur de paiement');
+        setPaymentError(error.message || t('checkoutPage.errorPaymentGeneric'));
+        onError(error.message || t('checkoutPage.errorPayment'));
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
         onSuccess(paymentIntent.id);
       } else if (paymentIntent) {
-        setPaymentError('Le paiement nécessite une action supplémentaire.');
-        onError('Action supplémentaire requise');
+        setPaymentError(t('checkoutPage.errorPaymentAction'));
+        onError(t('checkoutPage.errorPaymentActionRequired'));
       }
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Erreur inattendue';
-      console.error('Payment error:', err);
+      const message = err instanceof Error ? err.message : t('checkoutPage.errorUnexpected');
       setPaymentError(message);
       onError(message);
     } finally {
@@ -244,22 +252,21 @@ function StripePaymentForm({
       {/* CARD PAYMENT */}
       <form onSubmit={handleSubmit}>
         <p className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-4">
-          Paiement par carte
+          {t('checkoutPage.cardPayment')}
         </p>
 
         <div className={isReady ? '' : 'min-h-[200px] flex items-center justify-center'}>
           {!isReady && (
             <div className="text-center">
               <div className="w-5 h-5 border-2 border-dark-text/20 border-t-dark-text rounded-full animate-spin mx-auto mb-2" />
-              <p className="font-sans text-[11px] text-dark-text/30">Chargement du formulaire de paiement...</p>
+              <p className="font-sans text-[11px] text-dark-text/30">{t('checkoutPage.loadingPaymentForm')}</p>
             </div>
           )}
           <div className={isReady ? '' : 'sr-only'}>
             <PaymentElement
               onReady={() => setIsReady(true)}
               onLoadError={(e) => {
-                console.error('PaymentElement load error:', e);
-                setPaymentError(`Erreur de chargement: ${e.error?.message || 'Vérifiez votre connexion.'}`);
+                setPaymentError(t('checkoutPage.loadError', { message: e.error?.message || t('checkoutPage.loadErrorFallback') }));
               }}
               options={{
                 layout: 'tabs',
@@ -300,12 +307,12 @@ function StripePaymentForm({
           {isProcessing ? (
             <>
               <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              <span>Traitement en cours...</span>
+              <span>{t('checkoutPage.processing')}</span>
             </>
           ) : (
             <>
               <Lock className="w-3.5 h-3.5" />
-              <span>Confirmer et payer {total.toFixed(2)}&euro;</span>
+              <span>{t('checkoutPage.confirmAndPay', { total: `${total.toFixed(2)}\u20AC` })}</span>
             </>
           )}
         </button>
@@ -313,7 +320,7 @@ function StripePaymentForm({
         {/* Payment method icons */}
         <div className="flex items-center justify-center gap-2.5 mt-5">
           <span className="font-sans text-[9px] tracking-[0.1em] text-dark-text/20 uppercase mr-1">
-            Moyens accept&eacute;s
+            {t('checkoutPage.acceptedMethods')}
           </span>
           {['VISA', 'MC', 'CB', 'AMEX'].map((brand) => (
             <div key={brand} className="w-8 h-5 border border-dark-text/[0.07] rounded-sm flex items-center justify-center bg-white">
@@ -331,9 +338,10 @@ function StripePaymentForm({
 // ========================================
 
 function StepProgress({ currentStep }: { currentStep: 1 | 2 }) {
+  const { t } = useTranslation('cart');
   const steps = [
-    { num: 1, label: 'Information' },
-    { num: 2, label: 'Paiement' },
+    { num: 1, label: t('checkoutPage.stepInformation') },
+    { num: 2, label: t('checkoutPage.stepPayment') },
   ];
 
   return (
@@ -399,7 +407,8 @@ function StepProgress({ currentStep }: { currentStep: 1 | 2 }) {
 // ========================================
 
 export default function CheckoutPage() {
-  const navigate = useNavigate();
+  const { t } = useTranslation('cart');
+  const navigate = useLocalizedNavigate();
   const { cart, isLoading, clearCart } = useCart();
 
   const [currentStep, setCurrentStep] = useState<1 | 2>(1);
@@ -475,12 +484,12 @@ export default function CheckoutPage() {
       const data = await response.json();
 
       if (!response.ok || data.error) {
-        setPaymentError('Impossible de préparer le paiement.');
+        setPaymentError(t('checkoutPage.errorPreparePayment'));
         return;
       }
       setClientSecret(data.clientSecret);
     } catch {
-      setPaymentError('Erreur de connexion au serveur de paiement.');
+      setPaymentError(t('checkoutPage.errorServerConnection'));
     }
   };
 
@@ -490,13 +499,13 @@ export default function CheckoutPage() {
 
     if (step === 1) {
       if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-        errors.email = 'Adresse email invalide';
+        errors.email = t('checkoutPage.validationEmailInvalid');
       }
-      if (!formData.firstName.trim()) errors.firstName = 'Prénom requis';
-      if (!formData.lastName.trim()) errors.lastName = 'Nom requis';
-      if (!formData.address.trim()) errors.address = 'Adresse requise';
-      if (!formData.city.trim()) errors.city = 'Ville requise';
-      if (!formData.postalCode.trim()) errors.postalCode = 'Code postal requis';
+      if (!formData.firstName.trim()) errors.firstName = t('checkoutPage.validationFirstNameRequired');
+      if (!formData.lastName.trim()) errors.lastName = t('checkoutPage.validationLastNameRequired');
+      if (!formData.address.trim()) errors.address = t('checkoutPage.validationAddressRequired');
+      if (!formData.city.trim()) errors.city = t('checkoutPage.validationCityRequired');
+      if (!formData.postalCode.trim()) errors.postalCode = t('checkoutPage.validationPostalCodeRequired');
     }
 
     setFormErrors(errors);
@@ -521,7 +530,7 @@ export default function CheckoutPage() {
 
   const handlePaymentSuccess = async (paymentIntentId: string) => {
     setOrderComplete(true);
-    localStorage.setItem('renaissance_last_order', JSON.stringify({
+    sessionStorage.setItem('renaissance_last_order', JSON.stringify({
       email: formData.email,
       name: `${formData.firstName} ${formData.lastName}`,
       total,
@@ -538,7 +547,7 @@ export default function CheckoutPage() {
       <div className="min-h-screen bg-beige flex items-center justify-center">
         <div className="text-center">
           <div className="w-8 h-8 border-2 border-dark-text/20 border-t-dark-text rounded-full animate-spin mx-auto mb-4" />
-          <p className="font-sans text-xs tracking-[0.2em] text-dark-text/50 uppercase">Chargement</p>
+          <p className="font-sans text-xs tracking-[0.2em] text-dark-text/50 uppercase">{t('checkoutPage.loading')}</p>
         </div>
       </div>
     );
@@ -551,23 +560,24 @@ export default function CheckoutPage() {
       {/* ==================== HEADER ==================== */}
       <header className="sticky top-0 bg-white/95 backdrop-blur-sm z-50 border-b border-dark-text/[0.07]">
         <div className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
-          <Link to="/cart" className="flex items-center gap-2 text-dark-text/40 hover:text-dark-text transition-colors">
+          <LocaleLink to="/cart" className="flex items-center gap-2 text-dark-text/40 hover:text-dark-text transition-colors">
             <ArrowLeft className="w-4 h-4" />
-            <span className="font-sans text-xs tracking-[0.1em] hidden sm:inline">Panier</span>
-          </Link>
+            <span className="font-sans text-xs tracking-[0.1em] hidden sm:inline">{t('checkoutPage.backToCart')}</span>
+          </LocaleLink>
 
-          <Link to="/" className="absolute left-1/2 -translate-x-1/2">
+          <LocaleLink to="/" className="absolute left-1/2 -translate-x-1/2">
             <img
               src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png"
               alt="Renaissance Paris"
               className="h-6 md:h-7 object-contain"
+              loading="eager"
             />
-          </Link>
+          </LocaleLink>
 
           <div className="flex items-center gap-1.5 text-dark-text/30">
             <Lock className="w-3 h-3" />
             <span className="font-sans text-[9px] tracking-[0.15em] uppercase hidden sm:inline">
-              Paiement sécurisé
+              {t('checkoutPage.securePayment')}
             </span>
           </div>
         </div>
@@ -584,10 +594,10 @@ export default function CheckoutPage() {
             className="text-center mb-8 md:mb-10"
           >
             <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/30 uppercase mb-3 font-medium">
-              Finaliser votre commande
+              {t('checkoutPage.finalizeLabel')}
             </p>
             <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-dark-text tracking-[-0.02em]">
-              CHECKOUT
+              {t('checkoutPage.titleCheckout')}
             </h1>
           </motion.div>
 
@@ -601,7 +611,7 @@ export default function CheckoutPage() {
               className="w-full bg-white border border-dark-text/[0.07] p-4 flex items-center justify-between"
             >
               <span className="font-sans text-xs tracking-[0.15em] uppercase text-dark-text/60">
-                Votre commande ({cartLines.length} {cartLines.length > 1 ? 'articles' : 'article'})
+                {t('checkoutPage.yourOrder')} ({t('checkoutPage.articles', { count: cartLines.length })})
               </span>
               <div className="flex items-center gap-3">
                 <span className="font-display text-lg font-bold text-dark-text">{total.toFixed(2)}&euro;</span>
@@ -628,14 +638,12 @@ export default function CheckoutPage() {
 
             {/* COLONNE GAUCHE — Formulaire en étapes */}
             <div>
-              <AnimatePresence mode="wait">
                 {/* ===== ÉTAPE 1 : INFORMATION + LIVRAISON ===== */}
-                {currentStep === 1 && (
-                  <motion.div key="step1" variants={fadeIn} initial="hidden" animate="visible" exit="exit">
+                <div className={currentStep === 1 ? '' : 'hidden'}>
                     <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8">
                       {/* Contact */}
                       <h2 className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-6">
-                        Vos coordonnées
+                        {t('checkoutPage.yourCoordinates')}
                       </h2>
                       <div className="space-y-4">
                         <InputField
@@ -643,7 +651,7 @@ export default function CheckoutPage() {
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          placeholder="Adresse email *"
+                          placeholder={t('checkoutPage.emailPlaceholder')}
                           error={formErrors.email}
                         />
                         <InputField
@@ -651,7 +659,7 @@ export default function CheckoutPage() {
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          placeholder="Téléphone (pour la livraison)"
+                          placeholder={t('checkoutPage.phonePlaceholder')}
                           error={formErrors.phone}
                         />
                       </div>
@@ -661,7 +669,7 @@ export default function CheckoutPage() {
 
                       {/* Shipping Address */}
                       <h2 className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-6">
-                        Adresse de livraison
+                        {t('checkoutPage.shippingAddress')}
                       </h2>
                       <div className="space-y-4">
                         <div className="grid grid-cols-2 gap-4">
@@ -669,14 +677,14 @@ export default function CheckoutPage() {
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleInputChange}
-                            placeholder="Prénom *"
+                            placeholder={t('checkoutPage.firstNamePlaceholder')}
                             error={formErrors.firstName}
                           />
                           <InputField
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleInputChange}
-                            placeholder="Nom *"
+                            placeholder={t('checkoutPage.lastNamePlaceholder')}
                             error={formErrors.lastName}
                           />
                         </div>
@@ -684,28 +692,28 @@ export default function CheckoutPage() {
                           name="address"
                           value={formData.address}
                           onChange={handleInputChange}
-                          placeholder="Adresse *"
+                          placeholder={t('checkoutPage.addressPlaceholder')}
                           error={formErrors.address}
                         />
                         <InputField
                           name="addressComplement"
                           value={formData.addressComplement}
                           onChange={handleInputChange}
-                          placeholder="Complément d'adresse (optionnel)"
+                          placeholder={t('checkoutPage.addressComplementPlaceholder')}
                         />
                         <div className="grid grid-cols-2 gap-4">
                           <InputField
                             name="postalCode"
                             value={formData.postalCode}
                             onChange={handleInputChange}
-                            placeholder="Code postal *"
+                            placeholder={t('checkoutPage.postalCodePlaceholder')}
                             error={formErrors.postalCode}
                           />
                           <InputField
                             name="city"
                             value={formData.city}
                             onChange={handleInputChange}
-                            placeholder="Ville *"
+                            placeholder={t('checkoutPage.cityPlaceholder')}
                             error={formErrors.city}
                           />
                         </div>
@@ -726,30 +734,28 @@ export default function CheckoutPage() {
                         onClick={() => goToStep(2)}
                         className="w-full mt-8 bg-dark-text text-white py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-bronze transition-all duration-300"
                       >
-                        Continuer vers le paiement
+                        {t('checkoutPage.continueToPayment')}
                       </button>
                     </div>
-                  </motion.div>
-                )}
+                </div>
 
                 {/* ===== ÉTAPE 2 : PAIEMENT ===== */}
-                {currentStep === 2 && (
-                  <motion.div key="step2" variants={fadeIn} initial="hidden" animate="visible" exit="exit">
+                <div className={currentStep === 2 ? '' : 'hidden'}>
                     {/* Résumés des infos précédentes */}
                     <StepSummary
-                      label="Contact"
+                      label={t('checkoutPage.contact')}
                       value={`${formData.email}${formData.phone ? ` · ${formData.phone}` : ''}`}
                       onEdit={() => setCurrentStep(1)}
                     />
                     <StepSummary
-                      label="Livraison"
+                      label={t('checkoutPage.delivery')}
                       value={`${formData.firstName} ${formData.lastName}, ${formData.address}, ${formData.postalCode} ${formData.city}`}
                       onEdit={() => setCurrentStep(1)}
                     />
 
                     <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8 mt-4">
                       <h2 className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-6">
-                        Paiement sécurisé
+                        {t('checkoutPage.securePaymentTitle')}
                       </h2>
 
                       {clientSecret && stripeOptions ? (
@@ -769,13 +775,13 @@ export default function CheckoutPage() {
                             onClick={createPaymentIntent}
                             className="font-sans text-xs text-dark-text/50 hover:text-dark-text underline transition-colors"
                           >
-                            Réessayer
+                            {t('checkoutPage.retry')}
                           </button>
                         </div>
                       ) : (
                         <div className="py-14 flex flex-col items-center justify-center">
                           <div className="w-6 h-6 border-2 border-dark-text/20 border-t-dark-text rounded-full animate-spin mb-3" />
-                          <p className="font-sans text-xs text-dark-text/40">Préparation du paiement...</p>
+                          <p className="font-sans text-xs text-dark-text/40">{t('checkoutPage.preparingPayment')}</p>
                         </div>
                       )}
                     </div>
@@ -786,18 +792,16 @@ export default function CheckoutPage() {
                       className="mt-4 flex items-center gap-2 text-dark-text/35 hover:text-dark-text transition-colors font-sans text-xs"
                     >
                       <ArrowLeft className="w-3.5 h-3.5" />
-                      Modifier mes informations
+                      {t('checkoutPage.editInfo')}
                     </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                </div>
 
               {/* ===== MENTIONS LÉGALES ===== */}
               <p className="mt-8 font-sans text-[11px] text-dark-text/25 leading-relaxed text-center">
-                En passant commande, vous acceptez nos{' '}
-                <Link to="/cgv" className="underline hover:text-dark-text/40">CGV</Link>
-                {' '}et notre{' '}
-                <Link to="/confidentialite" className="underline hover:text-dark-text/40">politique de confidentialité</Link>.
+                {t('checkoutPage.legalAcceptCgv')}{' '}
+                <LocaleLink to="/cgv" className="underline hover:text-dark-text/40">{t('checkoutPage.cgv')}</LocaleLink>
+                {' '}{t('checkoutPage.legalAnd')}{' '}
+                <LocaleLink to="/confidentialite" className="underline hover:text-dark-text/40">{t('checkoutPage.privacyPolicy')}</LocaleLink>.
               </p>
             </div>
 
@@ -810,9 +814,9 @@ export default function CheckoutPage() {
                 <div className="mt-4 bg-white border border-dark-text/[0.07] p-6">
                   <div className="space-y-4">
                     {[
-                      { Icon: Truck, label: 'Livraison Express', desc: 'Sous 48h dans toute la France' },
-                      { Icon: Shield, label: 'Garantie 2 ans', desc: 'Fabrication artisanale certifiée' },
-                      { Icon: RotateCcw, label: 'Retours gratuits', desc: '30 jours pour changer d\'avis' },
+                      { Icon: Truck, label: t('checkoutPage.expressDelivery'), desc: t('checkoutPage.expressDeliveryDesc') },
+                      { Icon: Shield, label: t('checkoutPage.warranty2years'), desc: t('checkoutPage.warranty2yearsDesc') },
+                      { Icon: RotateCcw, label: t('checkoutPage.freeReturns'), desc: t('checkoutPage.freeReturnsDesc') },
                     ].map(({ Icon, label, desc }) => (
                       <div key={label} className="flex items-center gap-4">
                         <div className="w-9 h-9 border border-dark-text/[0.07] flex items-center justify-center flex-shrink-0">
@@ -828,13 +832,13 @@ export default function CheckoutPage() {
                 </div>
 
                 {/* Retour panier */}
-                <Link
+                <LocaleLink
                   to="/cart"
                   className="mt-4 flex items-center justify-center gap-2 text-dark-text/30 hover:text-dark-text transition-colors font-sans text-xs py-3"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
-                  Modifier mon panier
-                </Link>
+                  {t('checkoutPage.editCart')}
+                </LocaleLink>
               </div>
             </div>
           </div>
@@ -893,6 +897,7 @@ function StepSummary({
   value: string;
   onEdit: () => void;
 }) {
+  const { t } = useTranslation('cart');
   return (
     <div className="bg-white border border-dark-text/[0.07] px-6 py-4 flex items-center justify-between mb-0">
       <div className="min-w-0">
@@ -903,7 +908,7 @@ function StepSummary({
         onClick={onEdit}
         className="font-sans text-[10px] text-dark-text/40 hover:text-dark-text uppercase tracking-[0.1em] transition-colors flex-shrink-0 ml-4"
       >
-        Modifier
+        {t('checkoutPage.edit')}
       </button>
     </div>
   );
@@ -920,10 +925,11 @@ function OrderSummary({
   shipping: number;
   total: number;
 }) {
+  const { t } = useTranslation('cart');
   return (
     <div className="bg-white border border-dark-text/[0.07] p-6">
       <h2 className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-6">
-        Votre commande
+        {t('checkoutPage.yourOrderSummary')}
       </h2>
 
       {/* Produits */}
@@ -938,9 +944,10 @@ function OrderSummary({
               <div className="w-20 h-20 bg-[#f5f5f3] border border-dark-text/[0.05] flex-shrink-0 relative overflow-hidden">
                 {image && (
                   <img
-                    src={image}
+                    src={resizeShopifyImage(image, 160)}
                     alt={node.merchandise.product.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 )}
                 {node.quantity > 1 && (
@@ -966,14 +973,14 @@ function OrderSummary({
       {/* Totaux */}
       <div className="border-t border-dark-text/[0.07] pt-5 space-y-2.5">
         <div className="flex justify-between">
-          <span className="font-sans text-sm text-dark-text/45">Sous-total</span>
+          <span className="font-sans text-sm text-dark-text/45">{t('subtotal')}</span>
           <span className="font-sans text-sm text-dark-text">{subtotal.toFixed(2)}&euro;</span>
         </div>
         <div className="flex justify-between">
-          <span className="font-sans text-sm text-dark-text/45">Livraison</span>
+          <span className="font-sans text-sm text-dark-text/45">{t('shipping')}</span>
           <span className="font-sans text-sm text-dark-text">
             {shipping === 0 ? (
-              <span className="text-green-700">Offerte</span>
+              <span className="text-green-700">{t('checkoutPage.shippingFree')}</span>
             ) : (
               `${shipping.toFixed(2)}€`
             )}

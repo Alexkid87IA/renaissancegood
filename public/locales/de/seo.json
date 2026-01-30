@@ -1,0 +1,46 @@
+{
+  "home": {
+    "title": "Handgefertigte Luxusbrillen | Französische Meisterschaft",
+    "description": "Entdecken Sie die Brillen von RENAISSANCE Paris. Französische Handwerkskunst, edle Materialien und zeitloses Design."
+  },
+  "shop": {
+    "title": "Alle Modelle",
+    "description": "Alle Modelle von Renaissance Paris. Handgefertigte Brillen, limitierte Auflagen von 300 Exemplaren."
+  },
+  "heritage": {
+    "title": "Kollektion Erbe",
+    "description": "Kollektion Erbe von Renaissance Paris. Zeitlose Fassungen aus unseren Pariser Werkstätten."
+  },
+  "versailles": {
+    "title": "Kollektion Versailles",
+    "description": "Kollektion Versailles von Renaissance Paris. Inspiriert von der Pracht des Schlosses, 24 Karat Gold."
+  },
+  "isis": {
+    "title": "Kollektion Isis",
+    "description": "Kollektion Isis von Renaissance Paris. Inspiriert von den ewigen Symbolen des alten Ägypten."
+  },
+  "histoire": {
+    "title": "Unsere Geschichte",
+    "description": "Die Geschichte des Hauses Renaissance Paris. Fünf jahrtausendealte Symbole, außergewöhnliche Meisterschaft."
+  },
+  "cart": {
+    "title": "Ihr Warenkorb",
+    "description": "Ihr Warenkorb bei Renaissance Paris."
+  },
+  "contact": {
+    "title": "Kontakt",
+    "description": "Kontaktieren Sie Renaissance Paris. Unser Team steht Ihnen zur Verfügung."
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Häufig gestellte Fragen zu den Brillen von Renaissance Paris."
+  },
+  "blog": {
+    "title": "Manifest",
+    "description": "Neuigkeiten und Manifest des Hauses Renaissance Paris."
+  },
+  "storeLocator": {
+    "title": "Optiker finden",
+    "description": "Finden Sie einen Renaissance Paris Partneroptiker in Ihrer Nähe."
+  }
+}

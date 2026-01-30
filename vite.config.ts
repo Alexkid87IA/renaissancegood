@@ -14,7 +14,7 @@ export default defineConfig({
           // Vendor chunks
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-motion': ['framer-motion'],
-          'vendor-mapbox': ['mapbox-gl'],
+          // mapbox-gl chargé uniquement via lazy-load des pages store
           'vendor-shopify': ['@shopify/hydrogen-react'],
         },
       },

@@ -1,0 +1,46 @@
+{
+  "home": {
+    "title": "Люксовые очки ручной работы | Французское мастерство",
+    "description": "Откройте для себя очки RENAISSANCE Paris. Французское ремесленное мастерство, благородные материалы и вневременной дизайн."
+  },
+  "shop": {
+    "title": "Все модели",
+    "description": "Все модели Renaissance Paris. Очки ручной работы, лимитированные серии из 300 экземпляров."
+  },
+  "heritage": {
+    "title": "Коллекция Наследие",
+    "description": "Коллекция Наследие Renaissance Paris. Вневременные оправы из наших парижских мастерских."
+  },
+  "versailles": {
+    "title": "Коллекция Версаль",
+    "description": "Коллекция Версаль Renaissance Paris. Вдохновлённая роскошью дворца, золото 24 карата."
+  },
+  "isis": {
+    "title": "Коллекция Исида",
+    "description": "Коллекция Исида Renaissance Paris. Вдохновлённая вечными символами Древнего Египта."
+  },
+  "histoire": {
+    "title": "Наша история",
+    "description": "История Дома Renaissance Paris. Пять тысячелетних символов, исключительное мастерство."
+  },
+  "cart": {
+    "title": "Ваша корзина",
+    "description": "Ваша корзина Renaissance Paris."
+  },
+  "contact": {
+    "title": "Контакты",
+    "description": "Свяжитесь с Renaissance Paris. Наша команда к вашим услугам."
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Часто задаваемые вопросы об очках Renaissance Paris."
+  },
+  "blog": {
+    "title": "Манифест",
+    "description": "Новости и манифест Дома Renaissance Paris."
+  },
+  "storeLocator": {
+    "title": "Найти оптику",
+    "description": "Найдите оптику-партнёра Renaissance Paris рядом с вами."
+  }
+}

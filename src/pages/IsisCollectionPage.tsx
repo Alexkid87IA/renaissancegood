@@ -1,10 +1,12 @@
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LocaleLink from '../components/LocaleLink';
 import SEO from '../components/SEO';
 import { stagger, fade } from '../components/shared';
 
 export default function IsisCollectionPage() {
+  const { t } = useTranslation('collections');
   const heroRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
@@ -17,10 +19,10 @@ export default function IsisCollectionPage() {
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
 
   return (
-    <div className="bg-beige">
+    <div className="relative bg-beige">
       <SEO
-        title="Collection Isis"
-        description="Découvrez la collection Isis de RENAISSANCE Paris. Des lunettes de luxe audacieuses inspirées de la déesse égyptienne, alliant mystère et raffinement."
+        title={t('isis.seoTitle')}
+        description={t('isis.seoDescription')}
         url="/collections/isis"
       />
 
@@ -36,7 +38,7 @@ export default function IsisCollectionPage() {
             {/* Top label */}
             <div className="absolute top-10 left-12 xl:left-20 2xl:left-28">
               <p className="font-sans text-white/25 text-[9px] tracking-[0.4em] font-medium uppercase">
-                Collection III
+                {t('isis.collectionNumber')}
               </p>
             </div>
 
@@ -48,21 +50,21 @@ export default function IsisCollectionPage() {
               className="relative z-10"
             >
               <motion.h1 variants={fade} className="font-display text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white mb-3 tracking-[-0.03em] leading-[0.9]">
-                ISIS.
+                {t('isis.heroTitle')}
               </motion.h1>
               <motion.p variants={fade} className="font-display text-2xl xl:text-3xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 xl:mb-10">
-                Le Scarabée.
+                {t('isis.heroSubtitle')}
               </motion.p>
 
               <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8 xl:mb-10" />
 
               <motion.p variants={fade} className="font-sans text-white/35 text-[13px] xl:text-sm leading-[1.9] font-light max-w-md mb-8">
-                L'éternité se porte au quotidien. Le Cobra, le Scarabée, l'Œil. Ce qui traverse 5 000 ans ne se porte pas par hasard.
+                {t('isis.heroDescription')}
               </motion.p>
 
               <motion.div variants={fade} className="mb-10 xl:mb-14">
                 <span className="inline-block border border-bronze/40 text-bronze text-[8px] px-4 py-1.5 tracking-[0.3em] font-medium uppercase">
-                  Bientôt Disponible
+                  {t('isis.availableSoon')}
                 </span>
               </motion.div>
 
@@ -75,7 +77,7 @@ export default function IsisCollectionPage() {
                   className="group relative overflow-hidden border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
                 >
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
-                    En savoir plus
+                    {t('isis.learnMore')}
                   </span>
                   <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </button>
@@ -85,7 +87,7 @@ export default function IsisCollectionPage() {
             {/* Bottom scroll indicator */}
             <div className="absolute bottom-10 left-12 xl:left-20 2xl:left-28 flex items-center gap-3">
               <div className="w-8 h-px bg-white/15" />
-              <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">Scroll</span>
+              <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">{t('scroll')}</span>
             </div>
           </div>
 
@@ -93,9 +95,10 @@ export default function IsisCollectionPage() {
           <div className="flex-1 relative overflow-hidden">
             <motion.img
               src="https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg"
-              alt="Collection Isis"
+              alt={t('isis.heroImageAlt')}
               className="absolute inset-0 w-full h-full object-cover"
               style={{ y: imageY }}
+              fetchpriority="high"
             />
             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#000000] to-transparent" />
             <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#000000]/20 to-transparent" />
@@ -108,8 +111,9 @@ export default function IsisCollectionPage() {
           <div className="relative h-[55%] overflow-hidden">
             <img
               src="https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg"
-              alt="Collection Isis"
+              alt={t('isis.heroImageAlt')}
               className="w-full h-full object-cover object-center"
+              fetchpriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]" />
             <motion.div
@@ -119,7 +123,7 @@ export default function IsisCollectionPage() {
               className="absolute top-24 left-6"
             >
               <p className="text-white/50 text-[9px] tracking-[0.3em] uppercase font-sans font-medium">
-                Collection III
+                {t('isis.collectionNumber')}
               </p>
             </motion.div>
           </div>
@@ -132,17 +136,17 @@ export default function IsisCollectionPage() {
               transition={{ duration: 0.8, delay: 0.3 }}
             >
               <h1 className="font-display text-3xl sm:text-4xl font-bold text-white mb-2 tracking-[-0.03em] leading-[0.9]">
-                ISIS.
+                {t('isis.heroTitle')}
               </h1>
               <p className="font-display text-lg sm:text-xl font-light italic text-white/50 tracking-[-0.02em] mb-5">
-                Le Scarabée.
+                {t('isis.heroSubtitle')}
               </p>
               <div className="w-10 h-px bg-white/15 mb-5" />
               <p className="text-white/35 text-sm font-sans leading-relaxed font-light mb-4">
-                L'éternité se porte au quotidien.
+                {t('isis.heroDescriptionShort')}
               </p>
               <span className="inline-block border border-bronze/40 text-bronze text-[8px] px-4 py-1.5 tracking-[0.3em] font-medium uppercase mb-6">
-                Bientôt Disponible
+                {t('isis.availableSoon')}
               </span>
               <button
                 onClick={() => {
@@ -152,7 +156,7 @@ export default function IsisCollectionPage() {
                 className="group relative overflow-hidden w-full border border-white/15 px-8 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98]"
               >
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
-                  En savoir plus
+                  {t('isis.learnMore')}
                 </span>
                 <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </button>
@@ -172,9 +176,9 @@ export default function IsisCollectionPage() {
           >
             <div className="mb-8 sm:mb-12">
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[0.95] mb-3">
-                Bientôt Disponible.
+                {t('isis.comingSoonTitle')}
                 <br />
-                <span className="font-light italic">Patience.</span>
+                <span className="font-light italic">{t('isis.comingSoonSubtitle')}</span>
               </h2>
 
               <div className="w-12 h-px bg-dark-text/15 mx-auto mt-8 mb-8" />
@@ -188,29 +192,28 @@ export default function IsisCollectionPage() {
               className="max-w-2xl mx-auto"
             >
               <p className="font-sans text-dark-text/50 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10 sm:mb-12">
-                La collection ISIS est actuellement en préparation. Découvrez bientôt des montures inspirées
-                par les symboles éternels de l'Égypte ancienne, où l'artisanat français rencontre le mystère millénaire.
+                {t('isis.comingSoonDescription')}
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link
+                <LocaleLink
                   to="/collections/versailles"
                   className="group relative overflow-hidden border border-dark-text px-10 py-4 transition-all duration-500"
                 >
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
-                    Découvrir Versailles
+                    {t('isis.discoverVersailles')}
                   </span>
                   <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                </Link>
-                <Link
+                </LocaleLink>
+                <LocaleLink
                   to="/collections/heritage"
                   className="group relative overflow-hidden border border-dark-text/30 px-10 py-4 transition-all duration-500 hover:border-dark-text"
                 >
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/70 group-hover:text-beige transition-colors duration-500">
-                    Découvrir Héritage
+                    {t('isis.discoverHeritage')}
                   </span>
                   <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                </Link>
+                </LocaleLink>
               </div>
             </motion.div>
           </motion.div>

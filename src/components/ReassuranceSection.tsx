@@ -1,33 +1,19 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { stagger, fade } from './shared';
-
-const guarantees = [
-  {
-    number: '200+',
-    title: 'Opticiens',
-    description: 'Partout en France',
-  },
-  {
-    number: '0€',
-    title: 'Livraison',
-    description: 'Offerte dès 500€',
-  },
-  {
-    number: '2 ans',
-    title: 'Garantie',
-    description: 'On assume ce qu\'on fabrique',
-  },
-  {
-    number: '100%',
-    title: 'Sécurisé',
-    description: 'Paiement crypté',
-  },
-];
 
 export default function ReassuranceSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });
+  const { t } = useTranslation('home');
+
+  const guarantees = [
+    { number: '200+', title: t('reassurance.item1Title'), description: t('reassurance.item1Desc') },
+    { number: '0€', title: t('reassurance.item2Title'), description: t('reassurance.item2Desc') },
+    { number: '2 ans', title: t('reassurance.item3Title'), description: t('reassurance.item3Desc') },
+    { number: '100%', title: t('reassurance.item4Title'), description: t('reassurance.item4Desc') },
+  ];
 
   return (
     <section className="relative z-[90] bg-beige">
@@ -45,12 +31,12 @@ export default function ReassuranceSection() {
           >
             <motion.div variants={fade} className="mb-12 lg:mb-16">
               <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/30 uppercase mb-4 font-medium">
-                Nos engagements
+                {t('reassurance.label')}
               </p>
               <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9]">
-                À VOS CÔTÉS.
+                {t('reassurance.title')}
                 <br />
-                <span className="font-light italic tracking-[-0.02em]">Toujours.</span>
+                <span className="font-light italic tracking-[-0.02em]">{t('reassurance.subtitle')}</span>
               </h2>
             </motion.div>
 
@@ -105,12 +91,12 @@ export default function ReassuranceSection() {
 
         <div className="absolute bottom-0 left-0 right-0 px-6 pb-8">
           <p className="font-sans text-white/50 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
-            Nos engagements
+            {t('reassurance.label')}
           </p>
           <h2 className="font-display text-3xl font-bold text-white tracking-[-0.03em] leading-[0.9] mb-1.5">
-            À VOS CÔTÉS.
+            {t('reassurance.title')}
             <br />
-            <span className="font-light italic tracking-[-0.02em]">Toujours.</span>
+            <span className="font-light italic tracking-[-0.02em]">{t('reassurance.subtitle')}</span>
           </h2>
 
           <div className="w-10 h-px bg-white/15 my-6" />

@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "label": "La Maison",
+    "title": "RENAISSANCE",
+    "subtitle": "Paris, depuis toujours."
+  },
+  "signature": {
+    "label": "Notre signature",
+    "title": "CINQ SYMBOLES\nMILLÉNAIRES",
+    "description": "Chaque monture porte en elle un fragment d'éternité. Cinq symboles traversant les civilisations, cinq signatures de la Maison Renaissance."
+  },
+  "savoirFaire": {
+    "label": "Savoir-faire",
+    "title": "L'EXCELLENCE\nARTISANALE",
+    "description": "Chaque monture est le fruit de plus de 40 étapes de fabrication artisanale. Un processus méticuleux qui garantit une qualité exceptionnelle."
+  },
+  "fondateurs": {
+    "label": "Les fondateurs",
+    "title": "UNE VISION\nPARISIENNE"
+  },
+  "valeurs": {
+    "label": "Nos valeurs",
+    "title": "L'ENGAGEMENT\nRENAISSANCE"
+  },
+  "engagement": {
+    "label": "Engagement",
+    "title": "POUR QUE CELA\nNE S'OUBLIE JAMAIS"
+  },
+  "ambassadeurs": {
+    "label": "Ambassadeurs",
+    "title": "ILS PORTENT\nRENAISSANCE"
+  },
+  "manifeste": {
+    "label": "Manifeste",
+    "title": "LE MANIFESTE\nRENAISSANCE",
+    "description": "Ce que nous créons n'est pas seulement un accessoire. C'est un acte de transmission."
+  },
+  "symboles": {
+    "label": "Les symboles",
+    "title": "CINQ SYMBOLES\nÉTERNELS"
+  },
+  "page": {
+    "histoire": {
+      "seoTitle": "Notre Histoire",
+      "seoDescription": "Découvrez l'histoire de RENAISSANCE Paris, maison française de lunettes de luxe. Notre savoir-faire artisanal, nos valeurs et notre engagement pour l'excellence."
+    },
+    "savoirFaire": {
+      "seoTitle": "Savoir-Faire",
+      "seoDescription": "Découvrez le savoir-faire artisanal RENAISSANCE Paris. Fabrication française, matériaux nobles et techniques d'excellence pour des lunettes de luxe uniques."
+    },
+    "manifeste": {
+      "seoTitle": "Manifeste",
+      "seoDescription": "Découvrez le manifeste RENAISSANCE Paris. Nos valeurs d'excellence, d'authenticité et de savoir-faire français au service de la lunetterie de luxe."
+    },
+    "symboles": {
+      "seoTitle": "Symboles",
+      "seoDescription": "Découvrez les symboles qui inspirent RENAISSANCE Paris. Scarabée, fleur de lys et croix de Malte : des emblèmes chargés d'histoire pour des lunettes uniques."
+    }
+  },
+  "blog": {
+    "seoTitle": "Le Manifeste - Blog",
+    "seoDescription": "Découvrez l'univers RENAISSANCE Paris. Articles sur nos symboles, notre savoir-faire artisanal et l'histoire de la lunetterie de luxe française.",
+    "heroLabel": "Actualités & Culture",
+    "heroTitleLine1": "LE",
+    "heroTitleLine2": "MANIFESTE.",
+    "heroSubtitle": "Histoires, symboles et savoir-faire.",
+    "heroDescription": "Découvrez l'univers Renaissance au-delà de l'objet.",
+    "loading": "Chargement des articles...",
+    "emptyTitle": "Les premiers articles arrivent bientôt",
+    "emptyDescription": "Nous préparons du contenu exceptionnel sur nos symboles, notre savoir-faire et l'univers Renaissance.",
+    "readArticle": "Lire l'article",
+    "newsletterLabel": "Newsletter",
+    "newsletterTitle": "Ne manquez rien.",
+    "newsletterSubtitle": "Recevez nos articles directement.",
+    "emailPlaceholder": "Votre adresse email",
+    "subscribe": "S'inscrire"
+  },
+  "article": {
+    "loading": "Chargement de l'article...",
+    "notFoundTitle": "Article introuvable",
+    "notFoundDescription": "Cet article n'existe pas ou a été supprimé.",
+    "backToArticles": "Retour aux articles",
+    "label": "Le Manifeste",
+    "share": "Partager",
+    "authorBio": "Membre de l'équipe Renaissance, passionné par l'artisanat d'excellence et le storytelling qui donne du sens à chaque création.",
+    "ctaLabel": "Nos Créations",
+    "ctaTitle": "Découvrez nos collections.",
+    "ctaSubtitle": "Chaque symbole raconte une histoire.",
+    "ctaButton": "Voir les collections"
+  }
+}

@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { stagger, fade } from './shared';
@@ -26,19 +26,12 @@ const engagements = [
 ];
 
 export default function EngagementSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
   const { isMobile } = useDeviceType();
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
   return (
     <motion.section
-      ref={sectionRef}
       className="min-h-screen md:h-screen relative z-[70] bg-[#0a0a0a]"
     >
       {/* DESKTOP */}

@@ -1,28 +1,12 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
+import { useTranslation } from 'react-i18next';
 
 export default function CollectionAllFrames() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
+  const { t } = useTranslation('home');
   const [isLoading, setIsLoading] = useState(false);
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== 'undefined' ? window.innerWidth < 768 : false
-  );
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 0.6], [1, isMobile ? 1 : 0.92]);
-  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, isMobile ? 1 : 0]);
 
   const handleNavigate = () => {
     setIsLoading(true);
@@ -33,9 +17,7 @@ export default function CollectionAllFrames() {
 
   return (
     <motion.section
-      ref={sectionRef}
-      style={{ scale, opacity }}
-      className="min-h-screen lg:h-screen relative sticky top-0 z-50"
+      className="min-h-screen lg:h-screen relative z-50"
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-white hidden md:flex flex-row">
@@ -44,6 +26,7 @@ export default function CollectionAllFrames() {
             src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
             alt="Nos créations"
             className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
           />
         </div>
 
@@ -51,14 +34,13 @@ export default function CollectionAllFrames() {
           <div className="max-w-2xl">
             <div className="mb-6 sm:mb-8">
               <h3 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-5xl laptop:text-[3.5rem] xl:text-6xl font-bold tracking-[-0.03em] leading-[0.9]">
-                TOUTES NOS<br />
-                <span className="font-light italic">Créations.</span>
+                {t('allFrames.title')}<br />
+                <span className="font-light italic">{t('allFrames.subtitle')}</span>
               </h3>
             </div>
             <div className="w-12 h-px bg-dark-text/15 mb-8" />
             <p className="font-sans text-dark-text/50 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-14">
-              Collections, hors-série et pièces uniques.<br />
-              Un seul geste : celui qui refuse l'oubli.
+              {t('allFrames.description')}
             </p>
             <button
               onClick={handleNavigate}
@@ -66,7 +48,7 @@ export default function CollectionAllFrames() {
               className="group relative border border-dark-text/60 px-8 sm:px-10 laptop:px-11 py-3 sm:py-3.5 laptop:py-4 font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-medium text-dark-text hover:bg-dark-text hover:text-white transition-all duration-500 disabled:opacity-50 overflow-hidden"
             >
               <span className="relative z-10">
-                {isLoading ? 'CHARGEMENT...' : 'VOIR LA BOUTIQUE'}
+                {isLoading ? t('allFrames.loading') : t('allFrames.cta')}
               </span>
               <motion.div
                 className="absolute inset-0 bg-dark-text"
@@ -79,40 +61,71 @@ export default function CollectionAllFrames() {
         </div>
       </div>
 
-      {/* MOBILE */}
-      <div className="md:hidden relative h-screen bg-[#000000] overflow-hidden" onClick={handleNavigate}>
-        {/* Image — remontée */}
+      {/* MOBILE — Éditorial luxe */}
+      <div className="md:hidden relative h-[100dvh] bg-[#000000] overflow-hidden" onClick={handleNavigate}>
         <div className="absolute inset-0">
           <img
             src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
             alt="Nos créations"
             className="w-full h-full object-cover object-[center_35%]"
+            loading="lazy"
           />
-          <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-b from-transparent to-[#000000]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]/60" />
         </div>
 
-        {/* Content — bas */}
-        <div className="absolute bottom-0 left-0 right-0 px-6 pb-8">
-          <p className="font-sans text-white/50 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
-            Boutique
-          </p>
-          <h3 className="font-display text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[0.9] text-white mb-1">
-            TOUTES NOS
-          </h3>
-          <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em] mb-5">
-            Créations.
-          </p>
-          <button
-            disabled={isLoading}
-            className="group relative overflow-hidden w-full border border-white/20 px-6 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98] disabled:opacity-50"
+        <div className="relative h-full flex flex-col justify-end px-7 pb-14">
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="font-sans text-white/40 text-[8px] tracking-[0.5em] uppercase font-medium mb-4"
           >
-            <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
-              {isLoading ? 'CHARGEMENT...' : 'VOIR LA BOUTIQUE'}
+            {t('allFrames.mobileLabel')}
+          </motion.p>
+
+          <motion.h3
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.35 }}
+            className="font-display text-[2.6rem] sm:text-5xl font-bold text-white tracking-[-0.04em] leading-[0.88] mb-2"
+          >
+            {t('allFrames.mobileTitle')}
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.5 }}
+            className="font-display text-[2.6rem] sm:text-5xl font-light italic text-white/80 tracking-[-0.04em] leading-[0.88]"
+          >
+            {t('allFrames.mobileSubtitle')}
+          </motion.p>
+
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="w-10 h-px bg-white/25 origin-left mt-5 mb-5"
+          />
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="flex items-center gap-5"
+          >
+            <span className="font-display text-[13px] italic text-white/70 tracking-[-0.01em]">
+              {isLoading ? '...' : t('allFrames.mobileCta')}
             </span>
-            {!isLoading && (
-              <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-            )}
-          </button>
+            <span className="w-px h-3 bg-white/15" />
+            <span className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/35 font-medium">
+              {t('allFrames.mobileTag')}
+            </span>
+          </motion.div>
         </div>
 
         {isLoading && (

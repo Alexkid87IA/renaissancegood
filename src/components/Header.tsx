@@ -5,9 +5,14 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useCart } from '../contexts/CartContext';
+import { useLocale } from '../contexts/LocaleContext';
 import { getProductsByCollection } from '../lib/shopify';
+import { SUPPORTED_LOCALES, isSupportedLocale } from '../lib/i18n';
+import type { SupportedLocale } from '../lib/i18n';
+import LocaleLink from './LocaleLink';
 
 // Sous-composants
 import MegaMenu, { MenuProduct } from './header/MegaMenu';
@@ -40,20 +45,6 @@ interface ShopifyProduct {
 
 type ActiveMenu = 'heritage' | 'versailles' | 'isis' | 'histoire' | null;
 
-// Configuration des collections
-const COLLECTION_CONFIG = {
-  versailles: {
-    title: 'La splendeur\nde Versailles',
-    description: 'Inspirée par l\'opulence du château, chaque monture capture l\'essence du luxe à la française. Or 24 carats et finitions artisanales d\'exception.',
-    link: '/collections/versailles'
-  },
-  heritage: {
-    title: 'Un siècle\nde savoir-faire',
-    description: 'Chaque monture perpétue l\'excellence artisanale parisienne. Des créations intemporelles façonnées dans nos ateliers.',
-    link: '/collections/heritage'
-  }
-};
-
 // Fonction pour formater les produits Shopify
 function formatProducts(products: ShopifyProduct[], defaultDescription: string): MenuProduct[] {
   return products.slice(0, 3).map((product) => ({
@@ -73,25 +64,41 @@ const LOGO_WHITE = 'https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%
 const LOGO_DARK = 'https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png';
 
 export default function Header() {
+  const { t } = useTranslation('common');
+  const { locale } = useLocale();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   // États
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<ActiveMenu>(null);
   const [languageOpen, setLanguageOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState('FR');
   const [opticiensOpen, setOpticiensOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { itemCount } = useCart();
-  const location = useLocation();
 
-  // Header transparent uniquement sur certaines pages
-  const isTransparentPage = TRANSPARENT_PAGES.includes(location.pathname);
-  const isTransparent = isTransparentPage && !scrolled;
+  // Helper to prefix paths with locale
+  const localePath = useCallback((path: string) => {
+    return locale === 'fr' ? path : `/${locale}${path}`;
+  }, [locale]);
 
-  // Collections
+  // Check transparent pages (account for locale prefix)
+  const rawPath = locale !== 'fr' && location.pathname.startsWith(`/${locale}`)
+    ? location.pathname.slice(locale.length + 1) || '/'
+    : location.pathname;
+  const isTransparentPage = TRANSPARENT_PAGES.includes(rawPath);
+
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 1024 : false
+  );
+  const isTransparent = isMobile || (isTransparentPage && !scrolled);
+
+  // Collections (lazy-loaded au hover)
   const [versaillesCollection, setVersaillesCollection] = useState<MenuProduct[]>([]);
   const [heritageCollection, setHeritageCollection] = useState<MenuProduct[]>([]);
-  const [loadingProducts, setLoadingProducts] = useState(true);
+  const [loadingProducts, setLoadingProducts] = useState(false);
+  const collectionsFetched = useRef(false);
 
   // Mobile: hide header on scroll, show on stop/scroll-up
   const [mobileHidden, setMobileHidden] = useState(false);
@@ -106,25 +113,10 @@ export default function Header() {
     requestAnimationFrame(() => {
       const currentY = window.scrollY;
       setScrolled(currentY > 20);
+      setIsMobile(window.innerWidth < 1024);
 
-      // Mobile hide/show logic (only beyond 80px to avoid hero flicker)
-      const isMobile = window.innerWidth < 1024;
-      if (isMobile && currentY > 80) {
-        const isScrollingDown = currentY > lastScrollY.current + 5;
-        const isScrollingUp = currentY < lastScrollY.current - 5;
-
-        if (isScrollingDown) {
-          setMobileHidden(true);
-        } else if (isScrollingUp) {
-          setMobileHidden(false);
-        }
-
-        // Also show on scroll stop
-        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-        scrollTimeout.current = setTimeout(() => {
-          setMobileHidden(false);
-        }, 300);
-      } else if (isMobile && currentY <= 80) {
+      const mobile = window.innerWidth < 1024;
+      if (mobile) {
         setMobileHidden(false);
       }
 
@@ -142,32 +134,52 @@ export default function Header() {
     };
   }, [handleScroll]);
 
-  // Charger les collections
-  useEffect(() => {
-    async function fetchAllCollections() {
-      try {
-        setLoadingProducts(true);
-        const [versaillesData, heritageData] = await Promise.all([
-          getProductsByCollection('versailles'),
-          getProductsByCollection('heritage')
-        ]);
-
-        setVersaillesCollection(formatProducts(versaillesData, 'Édition limitée'));
-        setHeritageCollection(formatProducts(heritageData, 'Fait main'));
-      } catch {
-        setVersaillesCollection([]);
-        setHeritageCollection([]);
-      } finally {
-        setLoadingProducts(false);
-      }
+  // Charger les collections au premier hover sur un menu collection
+  const fetchCollections = useCallback(async () => {
+    if (collectionsFetched.current) return;
+    collectionsFetched.current = true;
+    try {
+      setLoadingProducts(true);
+      const [versaillesData, heritageData] = await Promise.all([
+        getProductsByCollection('versailles'),
+        getProductsByCollection('heritage')
+      ]);
+      setVersaillesCollection(formatProducts(versaillesData, 'Édition limitée'));
+      setHeritageCollection(formatProducts(heritageData, 'Fait main'));
+    } catch {
+      setVersaillesCollection([]);
+      setHeritageCollection([]);
+      collectionsFetched.current = false;
+    } finally {
+      setLoadingProducts(false);
     }
-    fetchAllCollections();
   }, []);
 
   // Fermer le mega menu au changement de page
   useEffect(() => {
     setActiveMenu(null);
   }, [location.pathname]);
+
+  // Handle language change — navigate to the same page with new locale prefix
+  const handleLanguageChange = useCallback((langCode: string) => {
+    const newLocale = langCode.toLowerCase() as SupportedLocale;
+    if (!isSupportedLocale(newLocale)) return;
+
+    // Strip current locale prefix to get the raw path
+    let currentPath = location.pathname;
+    const currentLocalePrefix = SUPPORTED_LOCALES.find(
+      l => l !== 'fr' && currentPath.startsWith(`/${l}/`)
+    );
+    if (currentLocalePrefix) {
+      currentPath = currentPath.slice(currentLocalePrefix.length + 1);
+    } else if (locale !== 'fr' && currentPath === `/${locale}`) {
+      currentPath = '/';
+    }
+
+    // Build new path
+    const newPath = newLocale === 'fr' ? (currentPath || '/') : `/${newLocale}${currentPath || '/'}`;
+    navigate(newPath);
+  }, [locale, location.pathname, navigate]);
 
   return (
     <>
@@ -187,22 +199,22 @@ export default function Header() {
 
             {/* Navigation Desktop Gauche */}
             <nav className="hidden lg:flex items-center gap-3 laptop:gap-4 xl:gap-6 2xl:gap-10 flex-1">
-              <NavLink to="/shop" transparent={isTransparent} onMouseEnter={() => setActiveMenu(null)}>BOUTIQUE</NavLink>
-              <NavLink to="/collections/heritage" transparent={isTransparent} onMouseEnter={() => setActiveMenu('heritage')}>
-                HÉRITAGE
+              <NavLink to={localePath('/collections/heritage')} transparent={isTransparent} onMouseEnter={() => { fetchCollections(); setActiveMenu('heritage'); }}>
+                {t('nav.heritage')}
               </NavLink>
-              <NavLink to="/collections/versailles" transparent={isTransparent} onMouseEnter={() => setActiveMenu('versailles')}>
-                VERSAILLES
+              <NavLink to={localePath('/collections/versailles')} transparent={isTransparent} onMouseEnter={() => { fetchCollections(); setActiveMenu('versailles'); }}>
+                {t('nav.versailles')}
               </NavLink>
-              <NavLink to="/collections/isis" transparent={isTransparent} onMouseEnter={() => setActiveMenu('isis')}>
-                ISIS
+              <NavLink to={localePath('/collections/isis')} transparent={isTransparent} onMouseEnter={() => setActiveMenu('isis')}>
+                {t('nav.isis')}
               </NavLink>
-              <NavLink to="/histoire" transparent={isTransparent} onMouseEnter={() => setActiveMenu('histoire')}>HISTOIRE</NavLink>
+              <NavLink to={localePath('/shop')} transparent={isTransparent} onMouseEnter={() => setActiveMenu(null)}>{t('nav.explorer')}</NavLink>
+              <NavLink to={localePath('/histoire')} transparent={isTransparent} onMouseEnter={() => setActiveMenu('histoire')}>{t('nav.histoire')}</NavLink>
             </nav>
 
             {/* Logo — Dual crossfade (no flicker) */}
             <div className="flex-shrink-0 mx-2 sm:mx-4 md:mx-6 lg:mx-8">
-              <Link to="/">
+              <LocaleLink to="/">
                 <motion.div
                   className="relative focus:outline-none block"
                   initial={{ opacity: 0 }}
@@ -215,6 +227,8 @@ export default function Header() {
                   <img
                     src={LOGO_WHITE}
                     alt="Renaissance Paris"
+                    loading="eager"
+                    fetchpriority="high"
                     className={`h-36 sm:h-36 md:h-40 lg:h-40 xl:h-44 w-auto object-contain transition-opacity duration-700 ${
                       isTransparent ? 'opacity-100' : 'opacity-0'
                     }`}
@@ -223,12 +237,14 @@ export default function Header() {
                   <img
                     src={LOGO_DARK}
                     alt="Renaissance Paris"
+                    loading="eager"
+                    fetchpriority="high"
                     className={`absolute inset-0 h-36 sm:h-36 md:h-40 lg:h-40 xl:h-44 w-auto object-contain transition-opacity duration-700 ${
                       isTransparent ? 'opacity-0' : 'opacity-100'
                     }`}
                   />
                 </motion.div>
-              </Link>
+              </LocaleLink>
             </div>
 
             {/* Navigation Desktop Droite */}
@@ -237,31 +253,31 @@ export default function Header() {
               <LanguageSelector
                 isOpen={languageOpen}
                 onToggle={setLanguageOpen}
-                currentLang={currentLang}
+                currentLang={locale.toUpperCase()}
                 languages={SUPPORTED_LANGUAGES}
-                onSelect={setCurrentLang}
+                onSelect={handleLanguageChange}
                 transparent={isTransparent}
               />
               <IconButton onClick={() => setSearchOpen(!searchOpen)} icon="search" transparent={isTransparent} />
-              <CartIcon itemCount={itemCount} transparent={isTransparent} />
-              <Link
+              <CartIcon itemCount={itemCount} transparent={isTransparent} localePath={localePath} />
+              <LocaleLink
                 to="/suivi-commande"
                 className={`transition-colors duration-500 ${
                   isTransparent
                     ? 'text-white/90 hover:text-white/50'
                     : 'text-dark-text hover:text-dark-text/50'
                 }`}
-                title="Suivre ma commande"
+                title={t('header.orderTracking')}
               >
                 <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                 </svg>
-              </Link>
+              </LocaleLink>
             </div>
 
             {/* Navigation Mobile — Hamburger asymétrique 2 lignes */}
             <div className="lg:hidden flex items-center gap-4">
-              <CartIcon itemCount={itemCount} transparent={isTransparent} />
+              <CartIcon itemCount={itemCount} transparent={isTransparent} localePath={localePath} />
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className={`relative w-6 h-5 flex flex-col justify-center items-end gap-[6px] transition-colors duration-500 focus:outline-none ${
@@ -298,10 +314,10 @@ export default function Header() {
             <MegaMenu
               products={versaillesCollection}
               loading={loadingProducts}
-              title={COLLECTION_CONFIG.versailles.title}
-              subtitle="Collection Versailles"
-              description={COLLECTION_CONFIG.versailles.description}
-              collectionLink={COLLECTION_CONFIG.versailles.link}
+              title={t('megaMenu.versaillesTitle')}
+              subtitle={t('megaMenu.versaillesSubtitle')}
+              description={t('megaMenu.versaillesDescription')}
+              collectionLink={localePath('/collections/versailles')}
               onClose={() => setActiveMenu(null)}
             />
           </MegaMenuWrapper>
@@ -315,10 +331,10 @@ export default function Header() {
             <MegaMenu
               products={heritageCollection}
               loading={loadingProducts}
-              title={COLLECTION_CONFIG.heritage.title}
-              subtitle="Collection Héritage"
-              description={COLLECTION_CONFIG.heritage.description}
-              collectionLink={COLLECTION_CONFIG.heritage.link}
+              title={t('megaMenu.heritageTitle')}
+              subtitle={t('megaMenu.heritageSubtitle')}
+              description={t('megaMenu.heritageDescription')}
+              collectionLink={localePath('/collections/heritage')}
               onClose={() => setActiveMenu(null)}
             />
           </MegaMenuWrapper>
@@ -337,6 +353,7 @@ export default function Header() {
                     src="https://renaissance-cdn.b-cdn.net/collection%20isis%20comming%20soon.png"
                     alt="Collection Isis"
                     className="w-full h-full object-cover grayscale-[20%]"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 to-transparent" />
                 </div>
@@ -344,25 +361,25 @@ export default function Header() {
                 {/* Content */}
                 <div className="flex-1">
                   <p className="font-sans text-[9px] tracking-[0.4em] text-dark-text/30 uppercase font-medium mb-3">
-                    Prochainement
+                    {t('megaMenu.isisComingSoon')}
                   </p>
                   <h3 className="font-display text-4xl lg:text-5xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9] mb-2">
                     ISIS
                   </h3>
                   <p className="font-display text-xl lg:text-2xl font-light italic text-dark-text/50 tracking-[-0.02em] mb-6">
-                    Le Cobra. Le Scarabée. L'Œil.
+                    {t('megaMenu.isisSubtitle')}
                   </p>
 
                   <div className="w-10 h-px bg-dark-text/10 mb-6" />
 
                   <p className="font-sans text-[13px] text-dark-text/40 leading-[1.8] font-light max-w-md mb-8">
-                    Ce qui traverse 5 000 ans ne se porte pas par hasard. Une collection inspirée des symboles éternels de l'Égypte ancienne.
+                    {t('megaMenu.isisDescription')}
                   </p>
 
                   <div className="inline-flex items-center gap-2.5 border border-dark-text/12 px-5 py-2.5">
                     <span className="w-1.5 h-1.5 bg-dark-text/30 rounded-full animate-pulse" />
                     <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/40">
-                      Bientôt disponible
+                      {t('megaMenu.availableSoon')}
                     </span>
                   </div>
                 </div>
@@ -382,7 +399,7 @@ export default function Header() {
                 <div className="w-[280px] lg:w-[340px] h-[200px] lg:h-[240px] flex-shrink-0 relative overflow-hidden">
                   <img
                     src="https://renaissance-cdn.b-cdn.net/page%20histoire.png"
-                    alt="Notre Histoire"
+                    alt={t('megaMenu.ourHistory')}
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -392,35 +409,35 @@ export default function Header() {
                 {/* Content */}
                 <div className="flex-1 max-w-lg">
                   <p className="font-sans text-[9px] tracking-[0.4em] text-dark-text/30 uppercase font-medium mb-3">
-                    La Maison
+                    {t('megaMenu.histoireLabel')}
                   </p>
                   <h3 className="font-display text-4xl lg:text-5xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9] mb-2">
                     RENAISSANCE
                   </h3>
                   <p className="font-display text-xl lg:text-2xl font-light italic text-dark-text/50 tracking-[-0.02em] mb-6">
-                    Paris, depuis toujours.
+                    {t('megaMenu.histoireSubtitle')}
                   </p>
                   <div className="w-10 h-px bg-dark-text/10 mb-6" />
                   <p className="font-sans text-[13px] text-dark-text/40 leading-[1.8] font-light mb-8">
-                    Cinq symboles millénaires. Un savoir-faire artisanal d'exception. Des lunettes conçues pour durer et se transmettre.
+                    {t('megaMenu.histoireDescription')}
                   </p>
                   <div className="flex gap-3">
-                    <Link to="/histoire" onClick={() => setActiveMenu(null)}>
+                    <LocaleLink to="/histoire" onClick={() => setActiveMenu(null)}>
                       <button className="group relative overflow-hidden border border-dark-text px-8 py-3 transition-all duration-500">
                         <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-white transition-colors duration-500">
-                          Notre histoire
+                          {t('megaMenu.ourHistory')}
                         </span>
                         <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                       </button>
-                    </Link>
-                    <Link to="/savoir-faire" onClick={() => setActiveMenu(null)}>
+                    </LocaleLink>
+                    <LocaleLink to="/savoir-faire" onClick={() => setActiveMenu(null)}>
                       <button className="group relative overflow-hidden border border-dark-text/20 px-8 py-3 transition-all duration-500 hover:border-dark-text">
                         <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/50 group-hover:text-white transition-colors duration-500">
-                          Savoir-faire
+                          {t('megaMenu.savoirFaire')}
                         </span>
                         <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                       </button>
-                    </Link>
+                    </LocaleLink>
                   </div>
                 </div>
               </div>
@@ -436,8 +453,8 @@ export default function Header() {
           onClose={() => setMobileMenuOpen(false)}
           itemCount={itemCount}
           languages={SUPPORTED_LANGUAGES}
-          currentLang={currentLang}
-          onLanguageChange={setCurrentLang}
+          currentLang={locale.toUpperCase()}
+          onLanguageChange={handleLanguageChange}
         />
       </AnimatePresence>
 
@@ -514,11 +531,11 @@ function IconButton({ onClick, icon, transparent }: { onClick?: () => void; icon
   );
 }
 
-// Icône panier — badge carré (pas de rounded-full, cohérent avec le design system sans rayon)
-function CartIcon({ itemCount, transparent }: { itemCount: number; transparent?: boolean }) {
+// Icône panier — badge carré
+function CartIcon({ itemCount, transparent, localePath }: { itemCount: number; transparent?: boolean; localePath: (path: string) => string }) {
   return (
     <Link
-      to="/cart"
+      to={localePath('/cart')}
       className={`relative transition-colors duration-500 ${
         transparent
           ? 'text-white/90 hover:text-white/50'

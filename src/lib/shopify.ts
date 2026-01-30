@@ -19,7 +19,14 @@ interface GraphQLResponse<T> {
 // ========================================
 // FONCTION UTILITAIRE POUR LES REQUÊTES AVEC TIMEOUT ET VALIDATION
 // ========================================
-async function shopifyFetch<T>(query: string, variables?: Record<string, unknown>): Promise<T> {
+async function shopifyFetch<T>(query: string, variables?: Record<string, unknown>, language?: string): Promise<T> {
+  // Inject @inContext directive for localized content
+  if (language && language !== 'FR') {
+    query = query.replace(
+      /^(\s*(?:query|mutation)\s+\w+)/m,
+      `$1 @inContext(language: ${language})`
+    );
+  }
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 secondes timeout
 
@@ -56,9 +63,32 @@ async function shopifyFetch<T>(query: string, variables?: Record<string, unknown
 }
 
 // ========================================
+// CACHE MÉMOIRE AVEC TTL
+// ========================================
+const cache = new Map<string, { data: unknown; timestamp: number }>();
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+function getCached<T>(key: string): T | null {
+  const entry = cache.get(key);
+  if (!entry) return null;
+  if (Date.now() - entry.timestamp > CACHE_TTL) {
+    cache.delete(key);
+    return null;
+  }
+  return entry.data as T;
+}
+
+function setCache(key: string, data: unknown) {
+  cache.set(key, { data, timestamp: Date.now() });
+}
+
+// ========================================
 // FONCTION POUR RÉCUPÉRER TOUS LES PRODUITS
 // ========================================
-export async function getProducts() {
+export async function getProducts(language?: string) {
+  const cacheKey = `all-products-${language || 'FR'}`;
+  const cached = getCached<ReturnType<typeof getProducts>>(cacheKey);
+  if (cached) return cached;
   const query = `
     query GetProducts {
       products(first: 250) {
@@ -68,7 +98,6 @@ export async function getProducts() {
             title
             handle
             description
-            descriptionHtml
             availableForSale
             tags
             priceRange {
@@ -77,7 +106,7 @@ export async function getProducts() {
                 currencyCode
               }
             }
-            images(first: 20) {
+            images(first: 6) {
               edges {
                 node {
                   url
@@ -85,25 +114,12 @@ export async function getProducts() {
                 }
               }
             }
-            variants(first: 20) {
+            variants(first: 10) {
               edges {
                 node {
                   id
                   title
-                  quantityAvailable
-                  priceV2 {
-                    amount
-                    currencyCode
-                  }
                   availableForSale
-                  selectedOptions {
-                    name
-                    value
-                  }
-                  image {
-                    url
-                    altText
-                  }
                 }
               }
             }
@@ -121,14 +137,19 @@ export async function getProducts() {
     }
   `;
 
-  const data = await shopifyFetch<{ products: { edges: Array<{ node: unknown }> } }>(query);
-  return data.products.edges.map((edge) => edge.node);
+  const data = await shopifyFetch<{ products: { edges: Array<{ node: unknown }> } }>(query, undefined, language);
+  const products = data.products.edges.map((edge) => edge.node);
+  setCache(cacheKey, products);
+  return products;
 }
 
 // ========================================
 // FONCTION POUR RÉCUPÉRER UN PRODUIT PAR HANDLE
 // ========================================
-export async function getProduct(handle: string) {
+export async function getProduct(handle: string, language?: string) {
+  const cacheKey = `product-${handle}-${language || 'FR'}`;
+  const cached = getCached<ReturnType<typeof getProduct>>(cacheKey);
+  if (cached) return cached;
   const query = `
     query GetProduct($handle: String!) {
       productByHandle(handle: $handle) {
@@ -198,14 +219,18 @@ export async function getProduct(handle: string) {
     }
   `;
 
-  const data = await shopifyFetch<{ productByHandle: unknown }>(query, { handle });
+  const data = await shopifyFetch<{ productByHandle: unknown }>(query, { handle }, language);
+  setCache(cacheKey, data.productByHandle);
   return data.productByHandle;
 }
 
 // ========================================
 // FONCTION POUR RÉCUPÉRER LES PRODUITS PAR COLLECTION
 // ========================================
-export async function getProductsByCollection(collectionHandle: string) {
+export async function getProductsByCollection(collectionHandle: string, language?: string) {
+  const cacheKey = `collection-${collectionHandle}-${language || 'FR'}`;
+  const cached = getCached<ReturnType<typeof getProductsByCollection>>(cacheKey);
+  if (cached) return cached;
   const query = `
     query GetProductsByCollection($handle: String!) {
       collection(handle: $handle) {
@@ -217,7 +242,6 @@ export async function getProductsByCollection(collectionHandle: string) {
               title
               handle
               description
-              descriptionHtml
               availableForSale
               tags
               priceRange {
@@ -226,7 +250,7 @@ export async function getProductsByCollection(collectionHandle: string) {
                   currencyCode
                 }
               }
-              images(first: 20) {
+              images(first: 6) {
                 edges {
                   node {
                     url
@@ -234,25 +258,12 @@ export async function getProductsByCollection(collectionHandle: string) {
                   }
                 }
               }
-              variants(first: 20) {
+              variants(first: 10) {
                 edges {
                   node {
                     id
                     title
-                    quantityAvailable
-                    priceV2 {
-                      amount
-                      currencyCode
-                    }
                     availableForSale
-                    selectedOptions {
-                      name
-                      value
-                    }
-                    image {
-                      url
-                      altText
-                    }
                   }
                 }
               }
@@ -273,14 +284,17 @@ export async function getProductsByCollection(collectionHandle: string) {
 
   const data = await shopifyFetch<{ collection: { products: { edges: Array<{ node: unknown }> } } | null }>(
     query,
-    { handle: collectionHandle }
+    { handle: collectionHandle },
+    language
   );
 
   if (!data.collection) {
     return [];
   }
 
-  return data.collection.products.edges.map((edge) => edge.node);
+  const products = data.collection.products.edges.map((edge) => edge.node);
+  setCache(cacheKey, products);
+  return products;
 }
 
 // ========================================
@@ -442,7 +456,7 @@ export async function getCart(cartId: string) {
 // ========================================
 // FONCTIONS POUR LE BLOG
 // ========================================
-export async function getBlogPosts(blogHandle: string = 'actualites') {
+export async function getBlogPosts(blogHandle: string = 'actualites', language?: string) {
   const query = `
     query GetBlogPosts($handle: String!) {
       blog(handle: $handle) {
@@ -473,7 +487,8 @@ export async function getBlogPosts(blogHandle: string = 'actualites') {
 
   const data = await shopifyFetch<{ blog: { articles: { edges: Array<{ node: unknown }> } } | null }>(
     query,
-    { handle: blogHandle }
+    { handle: blogHandle },
+    language
   );
 
   if (!data.blog) {
@@ -483,7 +498,7 @@ export async function getBlogPosts(blogHandle: string = 'actualites') {
   return data.blog.articles.edges.map((edge) => edge.node);
 }
 
-export async function getBlogPostByHandle(blogHandle: string = 'actualites', articleHandle: string) {
+export async function getBlogPostByHandle(blogHandle: string = 'actualites', articleHandle: string, language?: string) {
   const query = `
     query GetBlogPostByHandle($blogHandle: String!, $articleHandle: String!) {
       blog(handle: $blogHandle) {
@@ -511,7 +526,7 @@ export async function getBlogPostByHandle(blogHandle: string = 'actualites', art
   const data = await shopifyFetch<{ blog: { articleByHandle: unknown } | null }>(query, {
     blogHandle,
     articleHandle
-  });
+  }, language);
 
   if (!data.blog || !data.blog.articleByHandle) {
     return null;
@@ -520,7 +535,7 @@ export async function getBlogPostByHandle(blogHandle: string = 'actualites', art
   return data.blog.articleByHandle;
 }
 
-export async function getRecentBlogPosts(blogHandle: string = 'actualites', limit: number = 3) {
+export async function getRecentBlogPosts(blogHandle: string = 'actualites', limit: number = 3, language?: string) {
   const query = `
     query GetRecentBlogPosts($handle: String!, $limit: Int!) {
       blog(handle: $handle) {
@@ -545,7 +560,8 @@ export async function getRecentBlogPosts(blogHandle: string = 'actualites', limi
 
   const data = await shopifyFetch<{ blog: { articles: { edges: Array<{ node: unknown }> } } | null }>(
     query,
-    { handle: blogHandle, limit }
+    { handle: blogHandle, limit },
+    language
   );
 
   if (!data.blog) {
@@ -649,7 +665,7 @@ export async function updateCheckoutShippingAddress(cartId: string, shippingAddr
 // ========================================
 // FONCTION POUR RÉCUPÉRER LES IMAGES D'UN PRODUIT (utilisée par CartPage)
 // ========================================
-export async function getProductImages(handle: string) {
+export async function getProductImages(handle: string, language?: string) {
   const query = `
     query GetProductImages($handle: String!) {
       productByHandle(handle: $handle) {
@@ -667,7 +683,8 @@ export async function getProductImages(handle: string) {
 
   const data = await shopifyFetch<{ productByHandle: { images: { edges: Array<{ node: { url: string; altText: string | null } }> } } | null }>(
     query,
-    { handle }
+    { handle },
+    language
   );
 
   if (!data.productByHandle) {

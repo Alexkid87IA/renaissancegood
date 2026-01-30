@@ -34,8 +34,8 @@ export default function MobileBottomBar({ selectedVariant, productPrice, isOutOf
       await addToCart(selectedVariant.id);
       setAddedToCart(true);
       setTimeout(() => setAddedToCart(false), 2500);
-    } catch (error) {
-      console.error('Erreur lors de l\'ajout au panier:', error);
+    } catch {
+      // Add to cart error silently handled
     }
   };
 
