@@ -5,10 +5,46 @@ import { useTranslation } from 'react-i18next';
 import { stagger, fade } from './shared';
 import LocaleLink from './LocaleLink';
 
+const KLAVIYO_COMPANY_ID = 'SXVdnD';
+const KLAVIYO_LIST_ID = 'YA9SMX';
+
+async function subscribeToKlaviyo(email: string): Promise<boolean> {
+  try {
+    const res = await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=SXVdnD', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'revision': '2024-10-15' },
+      body: JSON.stringify({
+        data: {
+          type: 'subscription',
+          attributes: {
+            custom_source: 'Website Footer',
+            profile: {
+              data: {
+                type: 'profile',
+                attributes: { email },
+              },
+            },
+          },
+          relationships: {
+            list: {
+              data: { type: 'list', id: KLAVIYO_LIST_ID },
+            },
+          },
+        },
+      }),
+    });
+    return res.ok || res.status === 202;
+  } catch {
+    return false;
+  }
+}
+
 export default function Footer() {
   const { t } = useTranslation('common');
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
   const newsletterRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLDivElement>(null);
@@ -18,9 +54,18 @@ export default function Footer() {
   const mainInView = useInView(mainRef, { once: true, amount: 0.15 });
   const trustInView = useInView(trustRef, { once: true, amount: 0.3 });
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) setSubscribed(true);
+    if (!email || submitting) return;
+    setSubmitting(true);
+    setError(false);
+    const success = await subscribeToKlaviyo(email);
+    if (success) {
+      setSubscribed(true);
+    } else {
+      setError(true);
+    }
+    setSubmitting(false);
   };
 
   const scrollToTop = () => {
@@ -67,15 +112,17 @@ export default function Footer() {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder={t('footer.emailPlaceholder')}
                       required
-                      className="flex-1 px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-sm font-sans placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-all duration-500"
+                      disabled={submitting}
+                      className="flex-1 px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-sm font-sans placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-all duration-500 disabled:opacity-50"
                     />
                     <button
                       type="submit"
-                      className="group relative overflow-hidden border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white"
+                      disabled={submitting}
+                      className="group relative overflow-hidden border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white disabled:opacity-50"
                     >
                       <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#000000] transition-colors duration-500 flex items-center gap-2">
-                        {t('footer.subscribe')}
-                        <ArrowRight className="w-3.5 h-3.5" />
+                        {submitting ? t('footer.subscribing', { defaultValue: 'Envoi...' }) : t('footer.subscribe')}
+                        {!submitting && <ArrowRight className="w-3.5 h-3.5" />}
                       </span>
                       <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                     </button>
@@ -94,6 +141,11 @@ export default function Footer() {
                       {t('footer.subscribeSuccessDetail')}
                     </p>
                   </motion.div>
+                )}
+                {error && (
+                  <p className="font-sans text-xs text-red-400 mt-3">
+                    {t('footer.subscribeError', { defaultValue: 'Une erreur est survenue. Veuillez réessayer.' })}
+                  </p>
                 )}
               </motion.div>
             </motion.div>
@@ -307,17 +359,24 @@ export default function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t('footer.emailPlaceholder')}
                   required
-                  className="w-full px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-sm font-sans placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-all duration-500 text-center"
+                  disabled={submitting}
+                  className="w-full px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-sm font-sans placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-all duration-500 text-center disabled:opacity-50"
                 />
                 <button
                   type="submit"
-                  className="w-full bg-white py-4"
+                  disabled={submitting}
+                  className="w-full bg-white py-4 disabled:opacity-50"
                 >
                   <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-[#000000] flex items-center justify-center gap-2">
-                    {t('footer.subscribe')}
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    {submitting ? t('footer.subscribing', { defaultValue: 'Envoi...' }) : t('footer.subscribe')}
+                    {!submitting && <ArrowRight className="w-3.5 h-3.5" />}
                   </span>
                 </button>
+                {error && (
+                  <p className="font-sans text-xs text-red-400 mt-2 text-center">
+                    {t('footer.subscribeError', { defaultValue: 'Une erreur est survenue. Veuillez réessayer.' })}
+                  </p>
+                )}
               </form>
             ) : (
               <div className="py-4">
