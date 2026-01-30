@@ -15,7 +15,8 @@
     "cart": "Panier",
     "orderTracking": "Suivre ma commande",
     "closeMenu": "Fermer le menu",
-    "findOptician": "Trouver un opticien"
+    "findOptician": "Trouver un opticien",
+    "language": "Langue"
   },
   "footer": {
     "newsletterLabel": "Le Cercle Renaissance",

@@ -47,6 +47,7 @@ const GridCard = memo(function GridCard({
 }: {
   groupedProduct: GroupedProduct;
 }) {
+  const { t } = useTranslation('product');
   const [isHovered, setIsHovered] = useState(false);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -116,7 +117,7 @@ const GridCard = memo(function GridCard({
           {isOutOfStock && (
             <div className="absolute top-3 right-3 z-10">
               <span className="inline-block bg-dark-text/80 text-white font-sans text-[8px] tracking-[0.25em] font-medium uppercase px-3 py-1.5">
-                Épuisé
+                {t('sidebar.soldOut')}
               </span>
             </div>
           )}
@@ -163,13 +164,13 @@ const GridCard = memo(function GridCard({
                       ? 'ring-2 ring-dark-text ring-offset-2'
                       : 'ring-1 ring-dark-text/15 hover:ring-dark-text/40'
                   }`}
-                  title={`Coloris ${variant.colorNumber}`}
-                  aria-label={`Coloris ${variant.colorNumber}`}
+                  title={`${t('sidebar.color')} ${variant.colorNumber}`}
+                  aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
                 >
                   {variant.thumbnail ? (
                     <img
                       src={resizeShopifyImage(variant.thumbnail, 100)}
-                      alt={`Coloris ${variant.colorNumber}`}
+                      alt={`${t('sidebar.color')} ${variant.colorNumber}`}
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />
@@ -370,11 +371,11 @@ const EditorialCard = memo(function EditorialCard({
                         ? 'ring-2 ring-dark-text ring-offset-2'
                         : 'ring-1 ring-dark-text/10 hover:ring-dark-text/30'
                     }`}
-                    title={`Coloris ${variant.colorNumber}`}
-                    aria-label={`Coloris ${variant.colorNumber}`}
+                    title={`${t('sidebar.color')} ${variant.colorNumber}`}
+                    aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
                   >
                     {variant.thumbnail ? (
-                      <img src={resizeShopifyImage(variant.thumbnail, 100)} alt={`Coloris ${variant.colorNumber}`} className="w-full h-full object-cover" loading="lazy" />
+                      <img src={resizeShopifyImage(variant.thumbnail, 100)} alt={`${t('sidebar.color')} ${variant.colorNumber}`} className="w-full h-full object-cover" loading="lazy" />
                     ) : (
                       <div className="w-full h-full" style={getColorSwatchStyle(variant.colorNumber, variant.colorName)} />
                     )}
@@ -386,7 +387,7 @@ const EditorialCard = memo(function EditorialCard({
             <div className="mt-8">
               <span className="group/btn relative inline-flex overflow-hidden border border-dark-text px-8 py-3.5">
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover/btn:text-beige transition-colors duration-500">
-                  {t('sidebar.discover', { defaultValue: 'Découvrir' })}
+                  {t('sidebar.discover')}
                 </span>
                 <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-500 origin-left" />
               </span>
@@ -464,11 +465,11 @@ const EditorialCard = memo(function EditorialCard({
                         ? 'ring-2 ring-dark-text ring-offset-2'
                         : 'ring-1 ring-dark-text/10 hover:ring-dark-text/30'
                     }`}
-                    title={`Coloris ${variant.colorNumber}`}
-                    aria-label={`Coloris ${variant.colorNumber}`}
+                    title={`${t('sidebar.color')} ${variant.colorNumber}`}
+                    aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
                   >
                     {variant.thumbnail ? (
-                      <img src={resizeShopifyImage(variant.thumbnail, 100)} alt={`Coloris ${variant.colorNumber}`} className="w-full h-full object-cover" loading="lazy" />
+                      <img src={resizeShopifyImage(variant.thumbnail, 100)} alt={`${t('sidebar.color')} ${variant.colorNumber}`} className="w-full h-full object-cover" loading="lazy" />
                     ) : (
                       <div className="w-full h-full" style={getColorSwatchStyle(variant.colorNumber, variant.colorName)} />
                     )}

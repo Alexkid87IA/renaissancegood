@@ -50,6 +50,8 @@
     "variant": "VARIANTE",
     "select": "Auswählen",
     "soldOut": "Ausverkauft",
+    "color": "Farbe",
+    "discover": "Entdecken",
     "variantSoldOut": "Diese Variante ist derzeit ausverkauft",
     "dimensions": "MASSE",
     "lens": "Glas",

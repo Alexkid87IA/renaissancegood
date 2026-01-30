@@ -4,6 +4,7 @@
 // ========================================
 
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 export interface Language {
   code: string;
@@ -28,6 +29,7 @@ export default function LanguageSelector({
   onSelect,
   transparent
 }: LanguageSelectorProps) {
+  const { t } = useTranslation('common');
   const currentLanguage = languages.find(l => l.code === currentLang);
 
   return (
@@ -57,7 +59,7 @@ export default function LanguageSelector({
           >
             <div className="px-4 pt-3 pb-2">
               <p className="font-sans text-[7px] tracking-[0.4em] uppercase text-dark-text/25 font-medium">
-                Langue
+                {t('header.language')}
               </p>
             </div>
             {languages.map((lang) => (

@@ -15,7 +15,8 @@
     "cart": "Cart",
     "orderTracking": "Track my order",
     "closeMenu": "Close menu",
-    "findOptician": "Find an optician"
+    "findOptician": "Find an optician",
+    "language": "Language"
   },
   "footer": {
     "newsletterLabel": "The Renaissance Circle",

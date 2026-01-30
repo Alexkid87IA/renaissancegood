@@ -15,7 +15,8 @@
     "cart": "Корзина",
     "orderTracking": "Отследить заказ",
     "closeMenu": "Закрыть меню",
-    "findOptician": "Найти оптику"
+    "findOptician": "Найти оптику",
+    "language": "Язык"
   },
   "footer": {
     "newsletterLabel": "Круг Ренессанс",
@@ -160,5 +161,9 @@
     "copyright": "© 2025 Renaissance Eyewear",
     "legalNotice": "Юридическая информация",
     "privacy": "Конфиденциальность"
+  },
+  "errorBoundary": {
+    "message": "Произошла ошибка. Пожалуйста, обновите страницу.",
+    "refresh": "Обновить страницу"
   }
 }

@@ -15,7 +15,8 @@
     "cart": "Carrito",
     "orderTracking": "Seguir pedido",
     "closeMenu": "Cerrar menú",
-    "findOptician": "Encontrar óptica"
+    "findOptician": "Encontrar óptica",
+    "language": "Idioma"
   },
   "footer": {
     "newsletterLabel": "Círculo Renaissance",
@@ -160,5 +161,9 @@
     "copyright": "© 2025 Renaissance Eyewear",
     "legalNotice": "Aviso legal",
     "privacy": "Privacidad"
+  },
+  "errorBoundary": {
+    "message": "Se ha producido un error. Actualice la página.",
+    "refresh": "Actualizar la página"
   }
 }

@@ -50,6 +50,8 @@
     "variant": "VARIANTE",
     "select": "Sélectionner",
     "soldOut": "Épuisé",
+    "color": "Coloris",
+    "discover": "Découvrir",
     "variantSoldOut": "Cette variante est actuellement épuisée",
     "dimensions": "DIMENSIONS",
     "lens": "Verre",

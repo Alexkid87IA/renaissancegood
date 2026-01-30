@@ -50,6 +50,8 @@
     "variant": "VARIANTE",
     "select": "Seleccionar",
     "soldOut": "Agotado",
+    "color": "Color",
+    "discover": "Descubrir",
     "variantSoldOut": "Esta variante está actualmente agotada",
     "dimensions": "DIMENSIONES",
     "lens": "Lente",

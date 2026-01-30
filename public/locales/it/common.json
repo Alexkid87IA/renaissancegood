@@ -15,7 +15,8 @@
     "cart": "Carrello",
     "orderTracking": "Traccia ordine",
     "closeMenu": "Chiudi menu",
-    "findOptician": "Trova un ottico"
+    "findOptician": "Trova un ottico",
+    "language": "Lingua"
   },
   "footer": {
     "newsletterLabel": "Cerchio Renaissance",
@@ -160,5 +161,9 @@
     "copyright": "\u00a9 2025 Renaissance Eyewear",
     "legalNotice": "Note legali",
     "privacy": "Privacy"
+  },
+  "errorBoundary": {
+    "message": "Si è verificato un errore. Aggiorna la pagina.",
+    "refresh": "Aggiorna la pagina"
   }
 }

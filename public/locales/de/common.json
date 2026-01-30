@@ -15,7 +15,8 @@
     "cart": "Warenkorb",
     "orderTracking": "Bestellung verfolgen",
     "closeMenu": "Menü schließen",
-    "findOptician": "Optiker finden"
+    "findOptician": "Optiker finden",
+    "language": "Sprache"
   },
   "footer": {
     "newsletterLabel": "Renaissance Kreis",
@@ -160,5 +161,9 @@
     "copyright": "© 2025 Renaissance Eyewear",
     "legalNotice": "Impressum",
     "privacy": "Datenschutz"
+  },
+  "errorBoundary": {
+    "message": "Ein Fehler ist aufgetreten. Bitte laden Sie die Seite neu.",
+    "refresh": "Seite neu laden"
   }
 }

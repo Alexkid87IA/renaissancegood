@@ -247,7 +247,7 @@ export default function MobileMenu({
         {/* Langue */}
         <motion.div variants={itemVariants}>
           <p className="font-sans text-[8px] tracking-[0.4em] uppercase text-white/25 font-medium mb-3">
-            Langue
+            {t('header.language')}
           </p>
           <div className="flex items-center gap-2 flex-wrap">
             {languages.map((lang) => (
