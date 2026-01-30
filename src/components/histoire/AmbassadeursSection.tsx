@@ -1,39 +1,41 @@
 import { motion } from 'framer-motion';
-
-const ambassadors = [
-  {
-    name: 'Sophie Marceau',
-    role: 'Actrice & Réalisatrice',
-    image: 'https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    collection: 'Collection Héritage'
-  },
-  {
-    name: 'Omar Sy',
-    role: 'Acteur & Producteur',
-    image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    collection: 'Collection Versailles'
-  },
-  {
-    name: 'Léa Seydoux',
-    role: 'Actrice',
-    image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    collection: 'Collection Isis'
-  },
-  {
-    name: 'Vincent Cassel',
-    role: 'Acteur',
-    image: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    collection: 'Collection Héritage'
-  },
-  {
-    name: 'Marion Cotillard',
-    role: 'Actrice',
-    image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    collection: 'Collection Versailles'
-  }
-];
+import { useTranslation } from 'react-i18next';
 
 export default function AmbassadeursSection() {
+  const { t } = useTranslation('histoire');
+
+  const ambassadors = [
+    {
+      name: t('ambassadeursSection.ambassador1Name'),
+      role: t('ambassadeursSection.ambassador1Role'),
+      image: 'https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      collection: t('ambassadeursSection.ambassador1Collection')
+    },
+    {
+      name: t('ambassadeursSection.ambassador2Name'),
+      role: t('ambassadeursSection.ambassador2Role'),
+      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      collection: t('ambassadeursSection.ambassador2Collection')
+    },
+    {
+      name: t('ambassadeursSection.ambassador3Name'),
+      role: t('ambassadeursSection.ambassador3Role'),
+      image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      collection: t('ambassadeursSection.ambassador3Collection')
+    },
+    {
+      name: t('ambassadeursSection.ambassador4Name'),
+      role: t('ambassadeursSection.ambassador4Role'),
+      image: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      collection: t('ambassadeursSection.ambassador4Collection')
+    },
+    {
+      name: t('ambassadeursSection.ambassador5Name'),
+      role: t('ambassadeursSection.ambassador5Role'),
+      image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      collection: t('ambassadeursSection.ambassador5Collection')
+    }
+  ];
   return (
     <section className="min-h-screen z-[80] relative bg-white overflow-hidden">
       <div className="h-full w-full relative flex flex-col">
@@ -44,10 +46,10 @@ export default function AmbassadeursSection() {
             <div className="flex items-center gap-3">
               <span className="font-sans text-bronze text-sm font-bold tracking-[0.4em] uppercase">08</span>
               <div className="w-8 h-px bg-bronze/30" />
-              <span className="font-sans text-dark-text/40 text-xs font-medium tracking-[0.3em] uppercase">Ambassadeurs</span>
+              <span className="font-sans text-dark-text/40 text-xs font-medium tracking-[0.3em] uppercase">{t('ambassadeursSection.label')}</span>
             </div>
             <div className="hidden md:block text-right">
-              <p className="font-sans text-dark-text/30 text-[10px] tracking-[0.25em] uppercase">Ils portent Renaissance</p>
+              <p className="font-sans text-dark-text/30 text-[10px] tracking-[0.25em] uppercase">{t('ambassadeursSection.rightLabel')}</p>
             </div>
           </div>
         </div>
@@ -63,10 +65,10 @@ export default function AmbassadeursSection() {
               className="text-center mb-12 md:mb-16"
             >
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl laptop:text-7xl font-bold text-dark-text mb-4 sm:mb-6 leading-[1.1]">
-                Ils portent Renaissance
+                {t('ambassadeursSection.title')}
               </h2>
               <p className="font-sans text-dark-text/60 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-                Des visages connus. Des parcours différents. Un point commun : ils portent ce qui dure.
+                {t('ambassadeursSection.description')}
               </p>
             </motion.div>
 
@@ -116,7 +118,7 @@ export default function AmbassadeursSection() {
               className="text-center"
             >
               <p className="font-sans text-dark-text/50 text-sm italic max-w-2xl mx-auto leading-relaxed">
-                Ils ne portent pas Renaissance pour se montrer. Ils le portent parce que ça leur ressemble. Parce que ça dit quelque chose d'eux.
+                {t('ambassadeursSection.quote')}
               </p>
             </motion.div>
 

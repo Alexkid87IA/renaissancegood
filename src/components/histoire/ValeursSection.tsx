@@ -1,42 +1,44 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { stagger, fade } from './shared';
 import { useDeviceType } from '../../hooks/useDeviceType';
 
-const valeurs = [
-  {
-    number: '01',
-    title: 'La Justesse',
-    description: 'Chaque mot vrai. Chaque geste nécessaire. Chaque matière juste.',
-    keyword: 'Vérité'
-  },
-  {
-    number: '02',
-    title: 'Le Respect',
-    description: 'On ne traite personne comme un chiffre. Ni client, ni partenaire, ni artisan.',
-    keyword: 'Dignité'
-  },
-  {
-    number: '03',
-    title: 'Le Silence',
-    description: "La vraie élégance, c'est ne pas forcer l'attention. Être reconnu par ceux qui savent.",
-    keyword: 'Discrétion'
-  },
-  {
-    number: '04',
-    title: 'La Transmission',
-    description: "On construit pour que dans 20 ans, quelqu'un hérite d'une paire et la garde.",
-    keyword: 'Héritage'
-  },
-  {
-    number: '05',
-    title: 'La Maîtrise',
-    description: 'On ne fait pas vite. On fait bien. Le temps est un allié, pas un ennemi.',
-    keyword: 'Excellence'
-  }
-];
-
 export default function ValeursSection() {
+  const { t } = useTranslation('histoire');
+
+  const valeurs = [
+    {
+      number: '01',
+      title: t('valeursSection.valeur1Title'),
+      description: t('valeursSection.valeur1Desc'),
+      keyword: t('valeursSection.valeur1Keyword')
+    },
+    {
+      number: '02',
+      title: t('valeursSection.valeur2Title'),
+      description: t('valeursSection.valeur2Desc'),
+      keyword: t('valeursSection.valeur2Keyword')
+    },
+    {
+      number: '03',
+      title: t('valeursSection.valeur3Title'),
+      description: t('valeursSection.valeur3Desc'),
+      keyword: t('valeursSection.valeur3Keyword')
+    },
+    {
+      number: '04',
+      title: t('valeursSection.valeur4Title'),
+      description: t('valeursSection.valeur4Desc'),
+      keyword: t('valeursSection.valeur4Keyword')
+    },
+    {
+      number: '05',
+      title: t('valeursSection.valeur5Title'),
+      description: t('valeursSection.valeur5Desc'),
+      keyword: t('valeursSection.valeur5Keyword')
+    }
+  ];
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.2 });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -69,13 +71,13 @@ export default function ValeursSection() {
             className="w-full max-w-2xl"
           >
             <motion.p variants={fade} className="font-sans text-white/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-3">
-              Nos Valeurs
+              {t('valeursSection.label')}
             </motion.p>
             <motion.h2 variants={fade} className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.9] mb-2">
-              CINQ PILIERS.
+              {t('valeursSection.title')}
             </motion.h2>
             <motion.p variants={fade} className="font-display text-2xl lg:text-3xl xl:text-4xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 lg:mb-10">
-              Non-négociables.
+              {t('valeursSection.subtitle')}
             </motion.p>
 
             <div className="border-t border-white/[0.07]">
@@ -136,13 +138,13 @@ export default function ValeursSection() {
             transition={{ duration: 0.8 }}
           >
             <p className="font-sans text-white/40 text-[8px] tracking-[0.4em] font-medium uppercase mb-4">
-              Nos Valeurs
+              {t('valeursSection.label')}
             </p>
             <h2 className="font-display text-3xl font-bold text-white tracking-[-0.02em] leading-[0.9] mb-2">
-              CINQ PILIERS.
+              {t('valeursSection.title')}
             </h2>
             <p className="font-display text-xl font-light italic text-white/60 tracking-[-0.02em] mb-5">
-              Non-négociables.
+              {t('valeursSection.subtitle')}
             </p>
 
             <div className="border-t border-white/[0.07]">

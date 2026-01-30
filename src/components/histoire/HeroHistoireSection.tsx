@@ -1,10 +1,12 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ChevronDown } from 'lucide-react';
 import { stagger, fade } from './shared';
 import { useDeviceType } from '../../hooks/useDeviceType';
 
 export default function HeroHistoireSection() {
+  const { t } = useTranslation('histoire');
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
   const { isMobile } = useDeviceType();
@@ -31,19 +33,19 @@ export default function HeroHistoireSection() {
             animate={contentInView ? "visible" : "hidden"}
           >
             <motion.p variants={fade} className="font-sans text-white/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
-              Notre Histoire
+              {t('heroHistoire.label')}
             </motion.p>
 
             <motion.h1 variants={fade} className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-3 tracking-[-0.03em] leading-[0.95]">
-              UN MOT OUBLIÉ.
+              {t('heroHistoire.title')}
               <br />
-              <span className="font-light italic">Parfait pour restaurer.</span>
+              <span className="font-light italic">{t('heroHistoire.subtitle')}</span>
             </motion.h1>
 
             <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8" />
 
             <motion.p variants={fade} className="font-sans text-white/40 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light">
-              Un mot trop grand pour ceux qui n'ont rien à dire. Mais parfait pour ceux qui ont quelque chose à restaurer.
+              {t('heroHistoire.description')}
             </motion.p>
           </motion.div>
         </div>
@@ -69,12 +71,12 @@ export default function HeroHistoireSection() {
             className="max-w-sm mb-6"
           >
             <h1 className="font-display text-3xl sm:text-4xl font-bold text-white mb-4 tracking-[-0.03em] leading-[0.95]">
-              Un mot oublié.
+              {t('heroHistoire.mobileTitle')}
               <br />
-              <span className="font-light italic">Parfait pour restaurer.</span>
+              <span className="font-light italic">{t('heroHistoire.mobileSubtitle')}</span>
             </h1>
             <p className="text-white/80 text-sm font-sans leading-relaxed mb-8">
-              Un mot trop grand pour ceux qui n'ont rien à dire. Mais parfait pour ceux qui ont quelque chose à restaurer.
+              {t('heroHistoire.mobileDescription')}
             </p>
           </motion.div>
 

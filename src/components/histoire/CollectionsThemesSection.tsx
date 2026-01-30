@@ -1,30 +1,32 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-
-const collections = [
-  {
-    name: 'Les Origines',
-    description: 'Là où tout commence. Les stries. La signature.',
-    image: 'https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png'
-  },
-  {
-    name: 'Héritage',
-    description: 'Le Trident. Ce qu\'on transmet.',
-    image: 'https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg'
-  },
-  {
-    name: 'Versailles',
-    description: 'La Fleur de Lys. Ce qu\'on bâtit.',
-    image: 'https://renaissance-cdn.b-cdn.net/VERSAILLES-COLLECTION.jpeg'
-  },
-  {
-    name: 'Isis',
-    description: 'L\'Ankh, le Scarabée, l\'Œil. Ce qui traverse 5 000 ans.',
-    image: 'https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg'
-  }
-];
+import { useTranslation } from 'react-i18next';
 
 export default function CollectionsThemesSection() {
+  const { t } = useTranslation('histoire');
+
+  const collections = [
+    {
+      name: t('collectionsSection.collection1Name'),
+      description: t('collectionsSection.collection1Desc'),
+      image: 'https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png'
+    },
+    {
+      name: t('collectionsSection.collection2Name'),
+      description: t('collectionsSection.collection2Desc'),
+      image: 'https://26.staticbtf.eno.do/v1/102-default/a9196205ca905cce262edae0edd1a1ef/media.jpg'
+    },
+    {
+      name: t('collectionsSection.collection3Name'),
+      description: t('collectionsSection.collection3Desc'),
+      image: 'https://renaissance-cdn.b-cdn.net/VERSAILLES-COLLECTION.jpeg'
+    },
+    {
+      name: t('collectionsSection.collection4Name'),
+      description: t('collectionsSection.collection4Desc'),
+      image: 'https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg'
+    }
+  ];
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { 
     once: true,
@@ -62,10 +64,10 @@ export default function CollectionsThemesSection() {
             <div className="flex items-center gap-2.5">
               <span className="font-sans text-bronze text-[0.65rem] font-bold tracking-[0.4em] uppercase">06</span>
               <div className="w-5 h-px bg-bronze/30" />
-              <span className="font-sans text-dark-text/40 text-[0.55rem] font-medium tracking-[0.3em] uppercase">Les Collections</span>
+              <span className="font-sans text-dark-text/40 text-[0.55rem] font-medium tracking-[0.3em] uppercase">{t('collectionsSection.label')}</span>
             </div>
             <div className="hidden md:block text-right">
-              <p className="font-sans text-dark-text/30 text-[7px] tracking-[0.25em] uppercase">4 Collections</p>
+              <p className="font-sans text-dark-text/30 text-[7px] tracking-[0.25em] uppercase">{t('collectionsSection.countLabel')}</p>
             </div>
           </div>
         </div>
@@ -79,7 +81,7 @@ export default function CollectionsThemesSection() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="font-display text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-dark-text tracking-[-0.03em] leading-[1.05] mb-4"
               >
-                Une maison. Quatre collections. Zéro hasard.
+                {t('collectionsSection.title')}
               </motion.h2>
             </div>
 
@@ -130,7 +132,7 @@ export default function CollectionsThemesSection() {
               className="text-center"
             >
               <p className="font-sans text-dark-text/70 text-base md:text-lg lg:text-xl font-light leading-[1.7] italic">
-                On ne collectionne pas les modèles. On collectionne les symboles.
+                {t('collectionsSection.quote')}
               </p>
             </motion.div>
           </div>
@@ -146,7 +148,7 @@ export default function CollectionsThemesSection() {
               </div>
               <div className="flex flex-col items-center gap-1">
                 <div className="w-px h-8 bg-gradient-to-b from-bronze via-bronze/50 to-transparent" />
-                <span className="font-sans text-dark-text/30 text-[6px] tracking-[0.4em] uppercase">Défiler</span>
+                <span className="font-sans text-dark-text/30 text-[6px] tracking-[0.4em] uppercase">{t('collectionsSection.scroll')}</span>
               </div>
               <div className="hidden md:block text-right">
                 <p className="font-sans text-dark-text/20 text-[6px] tracking-wider">© 2019-2025 Renaissance</p>

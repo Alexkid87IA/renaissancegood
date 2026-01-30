@@ -1,42 +1,44 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { stagger, fade } from './shared';
 import { useDeviceType } from '../../hooks/useDeviceType';
 
-const symbols = [
-  {
-    name: 'Le Trident',
-    subtitle: 'Souveraineté',
-    description: 'Trois pointes, trois dimensions : force, vision, justesse. Le symbole du pouvoir maîtrisé.',
-    image: 'https://renaissance-cdn.b-cdn.net/TRIDENT%20SYMBOL.png'
-  },
-  {
-    name: 'La Fleur de Lys',
-    subtitle: 'Excellence',
-    description: "L'excellence héritée. Pureté du geste et exigence du détail.",
-    image: 'https://renaissance-cdn.b-cdn.net/FLEUR%20DE%20LYS%20SYMBOL.png'
-  },
-  {
-    name: "L'Ankh",
-    subtitle: 'Éternité',
-    description: "La clé de vie éternelle. Ce qu'on construit aujourd'hui doit traverser le temps.",
-    image: 'https://renaissance-cdn.b-cdn.net/ANKH%20SYMBOL.png'
-  },
-  {
-    name: 'Le Scarabée',
-    subtitle: 'Renaissance',
-    description: 'La renaissance perpétuelle. Transformation et renouveau constant.',
-    image: 'https://renaissance-cdn.b-cdn.net/SCARABEE%20SYMBOL.png'
-  },
-  {
-    name: 'Le Cobra',
-    subtitle: 'Protection',
-    description: 'La protection vigilante. Élégant et puissant. Présence affirmée, force contenue.',
-    image: 'https://renaissance-cdn.b-cdn.net/COBRA%20SYMBOL.png'
-  }
-];
-
 export default function SymbolesSection() {
+  const { t } = useTranslation('histoire');
+
+  const symbols = [
+    {
+      name: t('symbolesSection.symbol1Name'),
+      subtitle: t('symbolesSection.symbol1Subtitle'),
+      description: t('symbolesSection.symbol1Desc'),
+      image: 'https://renaissance-cdn.b-cdn.net/TRIDENT%20SYMBOL.png'
+    },
+    {
+      name: t('symbolesSection.symbol2Name'),
+      subtitle: t('symbolesSection.symbol2Subtitle'),
+      description: t('symbolesSection.symbol2Desc'),
+      image: 'https://renaissance-cdn.b-cdn.net/FLEUR%20DE%20LYS%20SYMBOL.png'
+    },
+    {
+      name: t('symbolesSection.symbol3Name'),
+      subtitle: t('symbolesSection.symbol3Subtitle'),
+      description: t('symbolesSection.symbol3Desc'),
+      image: 'https://renaissance-cdn.b-cdn.net/ANKH%20SYMBOL.png'
+    },
+    {
+      name: t('symbolesSection.symbol4Name'),
+      subtitle: t('symbolesSection.symbol4Subtitle'),
+      description: t('symbolesSection.symbol4Desc'),
+      image: 'https://renaissance-cdn.b-cdn.net/SCARABEE%20SYMBOL.png'
+    },
+    {
+      name: t('symbolesSection.symbol5Name'),
+      subtitle: t('symbolesSection.symbol5Subtitle'),
+      description: t('symbolesSection.symbol5Desc'),
+      image: 'https://renaissance-cdn.b-cdn.net/COBRA%20SYMBOL.png'
+    }
+  ];
   const contentRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
@@ -57,20 +59,20 @@ export default function SymbolesSection() {
             className="max-w-lg"
           >
             <motion.p variants={fade} className="font-sans text-dark-text/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
-              Nos Symboles
+              {t('symbolesSection.label')}
             </motion.p>
 
             <motion.h2 variants={fade} className="font-display text-4xl md:text-5xl laptop:text-[3.5rem] xl:text-6xl font-bold tracking-[-0.03em] leading-[0.9] mb-3">
-              CINQ SYMBOLES.
+              {t('symbolesSection.title')}
             </motion.h2>
             <motion.p variants={fade} className="font-display text-2xl md:text-3xl laptop:text-[2rem] xl:text-4xl font-light italic text-dark-text/70 tracking-[-0.02em] leading-[1] mb-8">
-              Gravés dans le métal.
+              {t('symbolesSection.subtitle')}
             </motion.p>
 
             <motion.div variants={fade} className="w-12 h-px bg-dark-text/15 mb-8" />
 
             <motion.p variants={fade} className="font-sans text-dark-text/50 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10">
-              Chaque symbole porte un sens, une histoire, une promesse. Des signes qui parlent depuis des millénaires. On ne les a pas inventés. On les porte.
+              {t('symbolesSection.description')}
             </motion.p>
 
             <motion.div variants={fade} className="flex flex-wrap gap-2 mb-8">
@@ -134,13 +136,13 @@ export default function SymbolesSection() {
             transition={{ duration: 0.8 }}
           >
             <p className="font-sans text-white/40 text-[8px] tracking-[0.4em] font-medium uppercase mb-4">
-              Nos Symboles
+              {t('symbolesSection.label')}
             </p>
             <h2 className="font-display text-3xl font-bold tracking-[-0.02em] leading-[0.9] text-white mb-2">
-              CINQ SYMBOLES.
+              {t('symbolesSection.title')}
             </h2>
             <p className="font-display text-xl font-light italic text-white/60 tracking-[-0.02em] mb-5">
-              Gravés dans le métal.
+              {t('symbolesSection.subtitle')}
             </p>
 
             <div className="flex flex-wrap gap-1.5 mb-4">

@@ -1,10 +1,12 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LocaleLink from '../LocaleLink';
 import { stagger, fade } from './shared';
 import { useDeviceType } from '../../hooks/useDeviceType';
 
 export default function SignatureSection() {
+  const { t } = useTranslation('histoire');
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
   const { isMobile } = useDeviceType();
@@ -25,31 +27,31 @@ export default function SignatureSection() {
             className="max-w-lg"
           >
             <motion.p variants={fade} className="font-sans text-dark-text/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
-              La Signature
+              {t('signatureSection.label')}
             </motion.p>
 
             <motion.h2 variants={fade} className="font-display text-4xl md:text-5xl laptop:text-[3.5rem] xl:text-6xl font-bold tracking-[-0.03em] leading-[0.9] mb-3">
-              ZÉRO LOGO.
+              {t('signatureSection.title')}
             </motion.h2>
             <motion.p variants={fade} className="font-display text-2xl md:text-3xl laptop:text-[2rem] xl:text-4xl font-light italic text-dark-text/70 tracking-[-0.02em] leading-[1] mb-8">
-              Juste toi et ce que tu sais.
+              {t('signatureSection.subtitle')}
             </motion.p>
 
             <motion.div variants={fade} className="w-12 h-px bg-dark-text/15 mb-8" />
 
             <motion.p variants={fade} className="font-sans text-dark-text/50 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-14">
-              Branche gauche. Un strass. Plus petit qu'une tête d'épingle. Approche-toi. Des symboles apparaissent. Gravés dans le métal. Retourne la pièce. Un numéro. Gravé pour toi. Il n'existera qu'une fois. Comme toi.
+              {t('signatureSection.description')}
             </motion.p>
 
             <motion.div variants={fade}>
-              <Link to="/shop">
+              <LocaleLink to="/shop">
                 <button className="group relative overflow-hidden border border-dark-text px-10 py-4 transition-all duration-500">
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
-                    Découvrir le secret
+                    {t('signatureSection.cta')}
                   </span>
                   <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </button>
-              </Link>
+              </LocaleLink>
             </motion.div>
           </motion.div>
         </div>
@@ -85,22 +87,22 @@ export default function SignatureSection() {
             transition={{ duration: 0.8 }}
           >
             <p className="font-sans text-white/40 text-[8px] tracking-[0.4em] font-medium uppercase mb-4">
-              La Signature
+              {t('signatureSection.label')}
             </p>
             <h2 className="font-display text-3xl font-bold tracking-[-0.02em] leading-[0.9] text-white mb-2">
-              ZÉRO LOGO.
+              {t('signatureSection.title')}
             </h2>
             <p className="font-display text-xl font-light italic text-white/60 tracking-[-0.02em] mb-5">
-              Juste toi et ce que tu sais.
+              {t('signatureSection.subtitle')}
             </p>
             <p className="font-sans text-white/50 text-xs leading-[1.7] font-light mb-6">
-              Branche gauche. Un strass. Plus petit qu'une tête d'épingle. Des symboles gravés dans le métal. Un numéro unique. Comme toi.
+              {t('signatureSection.mobileDescription')}
             </p>
-            <Link to="/shop" className="block">
+            <LocaleLink to="/shop" className="block">
               <button className="w-full bg-white text-dark-text px-8 py-4 font-sans text-[9px] tracking-[0.25em] uppercase font-bold hover:bg-white/90 transition-all duration-300 active:scale-[0.98]">
-                Découvrir le secret
+                {t('signatureSection.cta')}
               </button>
-            </Link>
+            </LocaleLink>
           </motion.div>
         </div>
       </div>
