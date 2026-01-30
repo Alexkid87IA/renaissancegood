@@ -3,9 +3,9 @@ import { useRef, useCallback, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 
-const HERO_VIDEO = 'https://renaissance-cdn.b-cdn.net/hf_20260130_004530_d119ca84-4199-4afb-97d8-1008bc8ad4e8.mp4';
+const HERO_VIDEO = 'https://renaissance-cdn.b-cdn.net/hf_20260130_124034_0ed82220-23c4-4752-a1c3-00af6106e2ce.mp4';
 const HERO_POSTER = 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2030%2C%202026%20-%2012_05AM.jpeg';
-const VIDEO_SPEED = 0.85;
+const VIDEO_SPEED = 0.7;
 
 /** Détecte si la connexion est lente (2G/3G lent ou saveData activé) */
 function useSlowConnection(): boolean {
