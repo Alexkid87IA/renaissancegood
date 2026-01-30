@@ -4,6 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronUp } from 'lucide-react';
 import { useCart } from '../../contexts/CartContext';
 
+function resizeShopifyImage(url: string, width: number): string {
+  if (!url || !url.includes('cdn.shopify.com')) return url;
+  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
+}
+
 interface Variant {
   id: string;
   title: string;
@@ -98,10 +103,9 @@ export default function ProductBottomBar({ product, selectedColorIndex, visible 
                 <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-lg border border-dark-text/10 shadow-sm overflow-hidden bg-neutral-50 flex-shrink-0">
                   {thumbnailUrl ? (
                     <img
-                      src={thumbnailUrl}
+                      src={resizeShopifyImage(thumbnailUrl, 100)}
                       alt={product.modelName || product.name}
                       className="w-full h-full object-cover"
-                      loading="lazy"
                     />
                   ) : (
                     <div className="w-full h-full bg-neutral-100" />

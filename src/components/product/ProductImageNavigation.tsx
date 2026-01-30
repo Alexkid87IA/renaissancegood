@@ -1,6 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+function resizeShopifyImage(url: string, width: number): string {
+  if (!url || !url.includes('cdn.shopify.com')) return url;
+  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
+}
+
 interface ProductImageNavigationProps {
   images: string[];
   productName: string;
@@ -143,10 +148,9 @@ export default function ProductImageNavigation({ images, productName }: ProductI
                     }`}
                   >
                     <img
-                      src={imageUrl}
+                      src={resizeShopifyImage(imageUrl, 100)}
                       alt={`${productName} - vue ${index + 1}`}
                       className="w-full h-full object-cover"
-                      loading="lazy"
                     />
                   </div>
                 </motion.button>

@@ -19,6 +19,11 @@ import ProductPageMobile from '../components/mobile/ProductPageMobile';
 import { Product as ShopifyProductType } from '../components/ProductCard';
 import SEO from '../components/SEO';
 
+function resizeShopifyImage(url: string, width: number): string {
+  if (!url || !url.includes('cdn.shopify.com')) return url;
+  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
+}
+
 // Interface pour les images
 interface ProductImage {
   url: string;
@@ -460,10 +465,10 @@ export default function ProductPage() {
                 data-image-index={index}
               >
                 <img
-                  src={imageUrl}
+                  src={resizeShopifyImage(imageUrl, 1200)}
                   alt={`${product.modelName} - vue ${index + 1}`}
                   className="w-full block"
-                  loading="lazy"
+                  loading={index === 0 ? 'eager' : 'lazy'}
                 />
               </section>
             ))
@@ -490,10 +495,9 @@ export default function ProductPage() {
                   aria-label={`Image ${thumbIndex + 1}`}
                 >
                   <img
-                    src={thumbUrl}
+                    src={resizeShopifyImage(thumbUrl, 100)}
                     alt={`${product.modelName} - miniature ${thumbIndex + 1}`}
                     className="w-full h-full object-cover"
-                    loading="lazy"
                   />
                 </button>
               ))}

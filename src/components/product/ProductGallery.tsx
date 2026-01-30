@@ -1,5 +1,10 @@
 import { motion } from 'framer-motion';
 
+function resizeShopifyImage(url: string, width: number): string {
+  if (!url || !url.includes('cdn.shopify.com')) return url;
+  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
+}
+
 interface ProductImage {
   url: string;
   alt: string;
@@ -24,7 +29,7 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
         >
           <div className="w-full h-screen flex items-center justify-center p-8 lg:p-16">
             <img
-              src={image.url}
+              src={resizeShopifyImage(image.url, 1200)}
               alt={image.alt}
               className="max-w-full max-h-[85vh] object-contain"
               loading="lazy"

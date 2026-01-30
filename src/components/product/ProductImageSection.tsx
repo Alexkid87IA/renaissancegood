@@ -1,5 +1,10 @@
 import { motion } from 'framer-motion';
 
+function resizeShopifyImage(url: string, width: number): string {
+  if (!url || !url.includes('cdn.shopify.com')) return url;
+  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
+}
+
 interface ProductImageSectionProps {
   imageUrl: string;
   alt: string;
@@ -34,10 +39,9 @@ export default function ProductImageSection({
     >
       <div className="h-full w-full flex items-center justify-center">
         <img
-          src={imageUrl}
+          src={resizeShopifyImage(imageUrl, 1200)}
           alt={alt}
           className="w-full h-full object-cover pointer-events-none"
-          loading="lazy"
         />
       </div>
     </motion.section>
