@@ -14,39 +14,58 @@ import ScrollToTop from './components/ScrollToTop';
 import LangLayout from './components/LangLayout';
 import ErrorBoundary from './components/ErrorBoundary';
 
+// Auto-reload on stale chunk after deployment
+function lazyWithRetry(importFn: () => Promise<any>) {
+  return lazy(() =>
+    importFn().catch(() => {
+      const key = 'chunk-retry';
+      const retryCount = Number(sessionStorage.getItem(key) || '0');
+      if (retryCount < 2) {
+        sessionStorage.setItem(key, String(retryCount + 1));
+        window.location.reload();
+        // reload() navigates away — return a never-resolving promise to prevent React errors
+        return new Promise(() => {});
+      }
+      // After 2 retries, give up and let ErrorBoundary handle it
+      sessionStorage.removeItem(key);
+      throw new Error('Failed to load page after retries');
+    })
+  );
+}
+
 // Lazy load all pages for code splitting
-const HomePage = lazy(() => import('./pages/HomePage'));
-const CollectionsPage = lazy(() => import('./pages/CollectionsPage'));
-const HeritageCollectionPage = lazy(() => import('./pages/HeritageCollectionPage'));
-const VersaillesCollectionPage = lazy(() => import('./pages/VersaillesCollectionPage'));
-const IsisCollectionPage = lazy(() => import('./pages/IsisCollectionPage'));
-const ProductPage = lazy(() => import('./pages/ProductPage'));
-const HistoirePage = lazy(() => import('./pages/HistoirePage'));
-const CartPage = lazy(() => import('./pages/CartPage'));
-const ShopPage = lazy(() => import('./pages/ShopPage'));
-const BlogPage = lazy(() => import('./pages/BlogPage'));
-const BlogArticlePage = lazy(() => import('./pages/BlogArticlePage'));
-const StoreLocatorPage = lazy(() => import('./pages/StoreLocatorPage'));
-const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
-const CheckoutConfirmationPage = lazy(() => import('./pages/CheckoutConfirmationPage'));
+const HomePage = lazyWithRetry(() => import('./pages/HomePage'));
+const CollectionsPage = lazyWithRetry(() => import('./pages/CollectionsPage'));
+const HeritageCollectionPage = lazyWithRetry(() => import('./pages/HeritageCollectionPage'));
+const VersaillesCollectionPage = lazyWithRetry(() => import('./pages/VersaillesCollectionPage'));
+const IsisCollectionPage = lazyWithRetry(() => import('./pages/IsisCollectionPage'));
+const ProductPage = lazyWithRetry(() => import('./pages/ProductPage'));
+const HistoirePage = lazyWithRetry(() => import('./pages/HistoirePage'));
+const CartPage = lazyWithRetry(() => import('./pages/CartPage'));
+const ShopPage = lazyWithRetry(() => import('./pages/ShopPage'));
+const BlogPage = lazyWithRetry(() => import('./pages/BlogPage'));
+const BlogArticlePage = lazyWithRetry(() => import('./pages/BlogArticlePage'));
+const StoreLocatorPage = lazyWithRetry(() => import('./pages/StoreLocatorPage'));
+const CheckoutPage = lazyWithRetry(() => import('./pages/CheckoutPage'));
+const CheckoutConfirmationPage = lazyWithRetry(() => import('./pages/CheckoutConfirmationPage'));
 
 // Pages légales et service client (lazy loaded)
-const ConfidentialitePage = lazy(() => import('./pages/ConfidentialitePage'));
-const RemboursementPage = lazy(() => import('./pages/RemboursementPage'));
-const ExpeditionPage = lazy(() => import('./pages/ExpeditionPage'));
-const ConditionsUtilisationPage = lazy(() => import('./pages/ConditionsUtilisationPage'));
-const CookiesPage = lazy(() => import('./pages/CookiesPage'));
-const CGVPage = lazy(() => import('./pages/CGVPage'));
-const MentionsLegalesPage = lazy(() => import('./pages/MentionsLegalesPage'));
-const FAQPage = lazy(() => import('./pages/FAQPage'));
-const ContactPage = lazy(() => import('./pages/ContactPage'));
-const GarantiePage = lazy(() => import('./pages/GarantiePage'));
-const GuideTaillesPage = lazy(() => import('./pages/GuideTaillesPage'));
-const SuiviCommandePage = lazy(() => import('./pages/SuiviCommandePage'));
-const ManifestePage = lazy(() => import('./pages/ManifestePage'));
-const SavoirFairePage = lazy(() => import('./pages/SavoirFairePage'));
-const SymbolesPage = lazy(() => import('./pages/SymbolesPage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const ConfidentialitePage = lazyWithRetry(() => import('./pages/ConfidentialitePage'));
+const RemboursementPage = lazyWithRetry(() => import('./pages/RemboursementPage'));
+const ExpeditionPage = lazyWithRetry(() => import('./pages/ExpeditionPage'));
+const ConditionsUtilisationPage = lazyWithRetry(() => import('./pages/ConditionsUtilisationPage'));
+const CookiesPage = lazyWithRetry(() => import('./pages/CookiesPage'));
+const CGVPage = lazyWithRetry(() => import('./pages/CGVPage'));
+const MentionsLegalesPage = lazyWithRetry(() => import('./pages/MentionsLegalesPage'));
+const FAQPage = lazyWithRetry(() => import('./pages/FAQPage'));
+const ContactPage = lazyWithRetry(() => import('./pages/ContactPage'));
+const GarantiePage = lazyWithRetry(() => import('./pages/GarantiePage'));
+const GuideTaillesPage = lazyWithRetry(() => import('./pages/GuideTaillesPage'));
+const SuiviCommandePage = lazyWithRetry(() => import('./pages/SuiviCommandePage'));
+const ManifestePage = lazyWithRetry(() => import('./pages/ManifestePage'));
+const SavoirFairePage = lazyWithRetry(() => import('./pages/SavoirFairePage'));
+const SymbolesPage = lazyWithRetry(() => import('./pages/SymbolesPage'));
+const NotFoundPage = lazyWithRetry(() => import('./pages/NotFoundPage'));
 
 // Loading component for Suspense
 function PageLoader() {
@@ -114,6 +133,11 @@ function AppContent() {
   const location = useLocation();
   const { i18n } = useTranslation();
 
+  // Clear chunk-retry flag on successful load
+  useEffect(() => {
+    sessionStorage.removeItem('chunk-retry');
+  }, []);
+
   // Check for checkout path with or without lang prefix
   const pathParts = location.pathname.split('/').filter(Boolean);
   const isCheckout = pathParts.includes('checkout');
@@ -142,19 +166,21 @@ function AppContent() {
       <div className="relative bg-beige">
         {!isCheckout && <Header />}
         <main className="relative">
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              {/* Non-prefixed routes (French default) */}
-              <Route element={<LangLayout />}>
-                {AppRoutes()}
-              </Route>
+          <ErrorBoundary fallbackLevel="page">
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                {/* Non-prefixed routes (French default) */}
+                <Route element={<LangLayout />}>
+                  {AppRoutes()}
+                </Route>
 
-              {/* Language-prefixed routes */}
-              <Route path=":lang" element={<LangLayout />}>
-                {AppRoutes()}
-              </Route>
-            </Routes>
-          </Suspense>
+                {/* Language-prefixed routes */}
+                <Route path=":lang" element={<LangLayout />}>
+                  {AppRoutes()}
+                </Route>
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
         </main>
         {!isCheckout && (
           <div className="relative z-10">
