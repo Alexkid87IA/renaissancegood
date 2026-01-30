@@ -6,6 +6,7 @@ import { useCart } from '../../contexts/CartContext';
 import { getColorFromName, isLightColor, metallicGradient } from '../../lib/colorMap';
 import { createSanitizedMarkup } from '../../lib/sanitize';
 import { ColorVariant, getColorSwatchStyle } from '../../lib/productGrouping';
+import { useAutoTranslate, useAutoTranslateHtml } from '../../hooks/useAutoTranslate';
 
 interface Variant {
   id: string;
@@ -58,6 +59,9 @@ export default function ProductSidebar({
   priceRef
 }: ProductSidebarProps) {
   const { t } = useTranslation('product');
+  const translatedName = useAutoTranslate(product.modelName || product.name);
+  const translatedDescription = useAutoTranslate(product.description);
+  const translatedDescriptionHtml = useAutoTranslateHtml(product.descriptionHtml || null);
   const [showDimensions, setShowDimensions] = useState(true);
   const [showFabrication, setShowFabrication] = useState(true);
   const [showDescription, setShowDescription] = useState(false);
@@ -97,7 +101,7 @@ export default function ProductSidebar({
         {/* Product Header */}
         <div className="mb-5">
           <h1 className="font-display text-3xl laptop:text-4xl xl:text-5xl font-bold text-dark-text mb-1 leading-[0.95] uppercase">
-            {product.modelName || product.name}
+            {translatedName}
           </h1>
         </div>
 
@@ -197,14 +201,14 @@ export default function ProductSidebar({
         {/* Description (preview + Voir plus) */}
         <div className="mb-6 pb-6 border-b border-dark-text/10">
           <div className={`relative ${!showDescription ? 'max-h-[3.5em] overflow-hidden' : ''}`}>
-            {product.descriptionHtml ? (
+            {translatedDescriptionHtml ? (
               <div
                 className="font-sans text-sm text-dark-text/70 leading-relaxed description-content"
-                dangerouslySetInnerHTML={createSanitizedMarkup(product.descriptionHtml)}
+                dangerouslySetInnerHTML={createSanitizedMarkup(translatedDescriptionHtml)}
               />
             ) : (
               <p className="font-sans text-sm text-dark-text/70 leading-relaxed">
-                {product.description}
+                {translatedDescription}
               </p>
             )}
             {!showDescription && (

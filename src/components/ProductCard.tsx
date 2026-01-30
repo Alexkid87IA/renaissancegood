@@ -4,6 +4,7 @@
 
 import { useState, memo, useCallback } from 'react';
 import LocaleLink from './LocaleLink';
+import T from './TranslatedText';
 
 interface ProductImage {
   url: string;
@@ -103,7 +104,7 @@ const ProductCard = memo(function ProductCard({ product }: ProductCardProps) {
           {isOutOfStock && (
             <div className="absolute top-3 right-3 z-10">
               <span className="inline-block bg-dark-text/80 text-white font-sans text-[8px] tracking-[0.25em] font-medium uppercase px-3 py-1.5">
-                Épuisé
+                <T>Épuisé</T>
               </span>
             </div>
           )}
@@ -131,7 +132,7 @@ const ProductCard = memo(function ProductCard({ product }: ProductCardProps) {
 
         <div className="pt-4 pb-2">
           <h3 className="font-display text-sm sm:text-base font-bold text-dark-text tracking-[-0.01em] leading-tight uppercase truncate">
-            {product.title}
+            <T>{product.title}</T>
           </h3>
           <p className="font-sans text-sm font-semibold text-dark-text mt-1">
             {price}&nbsp;€

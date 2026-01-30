@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../contexts/CartContext';
 import { useTranslation } from 'react-i18next';
 import LocaleLink from './LocaleLink';
+import T from './TranslatedText';
 import { Shield, Truck, X } from 'lucide-react';
 
 export default function CartDrawer() {
@@ -177,13 +178,13 @@ export default function CartDrawer() {
                               className="block mb-2"
                             >
                               <h3 className="font-serif text-base text-dark-text leading-tight hover:text-bronze transition-colors line-clamp-2">
-                                {product.title}
+                                <T>{product.title}</T>
                               </h3>
                             </LocaleLink>
 
                             {node.merchandise.title !== 'Default Title' && (
                               <p className="font-sans text-[10px] text-dark-text/50 mb-2">
-                                {node.merchandise.title}
+                                <T>{node.merchandise.title}</T>
                               </p>
                             )}
 

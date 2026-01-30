@@ -7,6 +7,7 @@ import { useCart } from '../contexts/CartContext';
 import { Lock, ArrowLeft, AlertCircle, ChevronDown, Check, Shield, Truck, RotateCcw } from 'lucide-react';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import LocaleLink from '../components/LocaleLink';
+import T from '../components/TranslatedText';
 
 function resizeShopifyImage(url: string, width: number): string {
   if (!url || !url.includes('cdn.shopify.com')) return url;
@@ -958,10 +959,10 @@ function OrderSummary({
               </div>
               <div className="flex-1 min-w-0 flex flex-col justify-center">
                 <p className="font-sans text-sm text-dark-text truncate">
-                  {node.merchandise.product.title}
+                  <T>{node.merchandise.product.title}</T>
                 </p>
                 {node.merchandise.title !== 'Default Title' && (
-                  <p className="font-sans text-[11px] text-dark-text/35 mt-0.5">{node.merchandise.title}</p>
+                  <p className="font-sans text-[11px] text-dark-text/35 mt-0.5"><T>{node.merchandise.title}</T></p>
                 )}
                 <p className="font-sans text-sm text-dark-text mt-1.5 font-medium">{itemTotal.toFixed(2)}&euro;</p>
               </div>

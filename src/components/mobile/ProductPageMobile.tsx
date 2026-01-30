@@ -9,6 +9,7 @@ import MobileBottomBar from './MobileBottomBar';
 import MobileRelatedProducts from './MobileRelatedProducts';
 import { createSanitizedMarkup } from '../../lib/sanitize';
 import { ColorVariant, getColorSwatchStyle } from '../../lib/productGrouping';
+import { useAutoTranslate, useAutoTranslateHtml } from '../../hooks/useAutoTranslate';
 
 interface Variant {
   id: string;
@@ -54,6 +55,9 @@ export default function ProductPageMobile({
 }: ProductPageMobileProps) {
   const navigate = useNavigate();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+  const translatedName = useAutoTranslate(product.name);
+  const translatedDescription = useAutoTranslate(product.description);
+  const translatedDescriptionHtml = useAutoTranslateHtml(product.descriptionHtml || null);
 
   // Vérifier si le produit est adaptable en optique
   const isNonAdaptable = product.tags?.some(tag =>
@@ -73,8 +77,8 @@ export default function ProductPageMobile({
     if (navigator.share) {
       try {
         await navigator.share({
-          title: product.name,
-          text: `Découvrez ${product.name} sur Renaissance`,
+          title: translatedName,
+          text: `Découvrez ${translatedName} sur Renaissance`,
           url: window.location.href,
         });
       } catch {
@@ -89,7 +93,7 @@ export default function ProductPageMobile({
       content: (
         <div
           className="font-sans text-sm text-dark-text/60 leading-[1.8] font-light description-content"
-          dangerouslySetInnerHTML={createSanitizedMarkup(product.descriptionHtml || product.description)}
+          dangerouslySetInnerHTML={createSanitizedMarkup(translatedDescriptionHtml || translatedDescription)}
         />
       ),
     },
@@ -166,7 +170,7 @@ export default function ProductPageMobile({
         {/* Gallery */}
         <MobileImageGallery
           images={product.images || []}
-          productName={product.name}
+          productName={translatedName}
         />
 
         {/* Product Info */}

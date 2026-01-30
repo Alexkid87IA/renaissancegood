@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { getProducts } from '../../lib/shopify';
 import { getModelName } from '../../lib/productGrouping';
 import LocaleLink from '../LocaleLink';
+import T from '../TranslatedText';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 
 function resizeShopifyImage(url: string, width: number): string {
@@ -261,7 +262,7 @@ function ProductCard({
           <h3 className={`font-display font-bold text-dark-text leading-tight uppercase tracking-[-0.01em] transition-all duration-500 ${
             featured ? 'text-xl sm:text-2xl lg:text-3xl' : 'text-base sm:text-lg lg:text-xl'
           } ${isHovered ? 'translate-x-1' : ''}`}>
-            {modelName}
+            <T>{modelName}</T>
           </h3>
         </div>
 

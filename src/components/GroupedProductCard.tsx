@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { GroupedProduct, getColorSwatchStyle } from '../lib/productGrouping';
 import LocaleLink from './LocaleLink';
+import T from './TranslatedText';
 
 interface GroupedProductCardProps {
   groupedProduct: GroupedProduct;
@@ -145,7 +146,7 @@ const GridCard = memo(function GridCard({
 
         <div className="pt-4 pb-2">
           <h3 className="font-display text-sm sm:text-base font-bold text-dark-text tracking-[-0.01em] leading-tight uppercase truncate">
-            {groupedProduct.modelName}
+            <T>{groupedProduct.modelName}</T>
           </h3>
           <p className="font-sans text-sm font-semibold text-dark-text mt-1">
             {price}&nbsp;€
@@ -347,7 +348,7 @@ const EditorialCard = memo(function EditorialCard({
             <h3 className={`font-display text-2xl xl:text-3xl font-bold text-dark-text tracking-[-0.02em] leading-[0.95] uppercase transition-colors duration-500 ${
               isHovered ? 'text-bronze' : ''
             }`}>
-              {groupedProduct.modelName}
+              <T>{groupedProduct.modelName}</T>
             </h3>
 
             <div className={`w-12 h-px mt-6 mb-5 transition-all duration-500 ${
@@ -447,7 +448,7 @@ const EditorialCard = memo(function EditorialCard({
               </p>
             )}
             <h3 className="font-display text-lg font-bold text-dark-text tracking-[-0.01em] leading-tight uppercase">
-              {groupedProduct.modelName}
+              <T>{groupedProduct.modelName}</T>
             </h3>
             <div className="w-8 h-px bg-dark-text/15 mt-3 mb-3" />
             <p className="font-sans text-base font-semibold text-dark-text">
