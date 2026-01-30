@@ -3,7 +3,8 @@
 // Lien direct vers le store locator
 // ========================================
 
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LocaleLink from '../LocaleLink';
 
 interface OpticianDropdownProps {
   isOpen: boolean;
@@ -12,8 +13,10 @@ interface OpticianDropdownProps {
 }
 
 export default function OpticianDropdown({ transparent }: OpticianDropdownProps) {
+  const { t } = useTranslation('common');
+
   return (
-    <Link
+    <LocaleLink
       to="/store-locator"
       className={`inline-flex items-center font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium transition-colors duration-500 uppercase whitespace-nowrap ${
         transparent
@@ -21,7 +24,7 @@ export default function OpticianDropdown({ transparent }: OpticianDropdownProps)
           : 'text-dark-text hover:text-bronze'
       }`}
     >
-      ESSAYEZ CHEZ VOTRE OPTICIEN
-    </Link>
+      {t('header.findOptician')}
+    </LocaleLink>
   );
 }
