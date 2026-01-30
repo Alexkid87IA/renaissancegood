@@ -19,14 +19,7 @@ interface GraphQLResponse<T> {
 // ========================================
 // FONCTION UTILITAIRE POUR LES REQUÊTES AVEC TIMEOUT ET VALIDATION
 // ========================================
-async function shopifyFetch<T>(query: string, variables?: Record<string, unknown>, language?: string): Promise<T> {
-  // Inject @inContext directive for localized content
-  if (language && language !== 'FR') {
-    query = query.replace(
-      /^(\s*(?:query|mutation)\s+\w+)/m,
-      `$1 @inContext(language: ${language})`
-    );
-  }
+async function shopifyFetch<T>(query: string, variables?: Record<string, unknown>, _language?: string): Promise<T> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 secondes timeout
 
