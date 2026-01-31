@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useCallback, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 
@@ -13,7 +13,7 @@ function useSlowConnection(): boolean {
 
   useEffect(() => {
     const conn = (navigator as any).connection;
-    if (!conn) return; // API non supportée → on suppose rapide
+    if (!conn) return;
 
     const check = () => {
       const slow =
@@ -46,12 +46,13 @@ export default function HeroSection() {
   const scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
   const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
 
-  // Applique la vitesse réduite dès que la vidéo est montée
-  const handleVideoRef = useCallback((el: HTMLVideoElement | null) => {
-    if (el) {
-      el.playbackRate = VIDEO_SPEED;
-    }
-  }, []);
+  // Appliquer la vitesse de lecture sur les vidéos
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const videos = section.querySelectorAll<HTMLVideoElement>('video');
+    videos.forEach((v) => { v.playbackRate = VIDEO_SPEED; });
+  }, [slowConnection]);
 
   return (
     <motion.section
@@ -69,12 +70,10 @@ export default function HeroSection() {
           />
         ) : (
           <video
-            ref={handleVideoRef}
             src={HERO_VIDEO}
             poster={HERO_POSTER}
             autoPlay
             muted
-            loop
             playsInline
             preload="metadata"
             className="absolute inset-0 w-full h-full object-cover object-center"
@@ -121,12 +120,10 @@ export default function HeroSection() {
             />
           ) : (
             <motion.video
-              ref={handleVideoRef}
               src={HERO_VIDEO}
               poster={HERO_POSTER}
               autoPlay
               muted
-              loop
               playsInline
               preload="metadata"
               className="w-full h-full object-cover object-[center_30%]"
