@@ -92,7 +92,7 @@ export default function Header() {
   const [isMobile, setIsMobile] = useState(() =>
     typeof window !== 'undefined' ? window.innerWidth < 1024 : false
   );
-  const isTransparent = isMobile || (isTransparentPage && !scrolled);
+  const isTransparent = isTransparentPage && !scrolled;
 
   // Collections (lazy-loaded au hover)
   const [versaillesCollection, setVersaillesCollection] = useState<MenuProduct[]>([]);
