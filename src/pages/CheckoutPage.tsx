@@ -14,7 +14,7 @@ function resizeShopifyImage(url: string, width: number): string {
   return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
 }
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '');
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_live_51M81InDM3N8LuUBORDbT0YN8Fm9oL8RmM0RiKlNQT2oWPih9n1wfBQ5ew5s2EPtF7CUnJ2Lvf03E8QJec87eA4DJ00MIjpF07g');
 
 const COUNTRY_CODES: Record<string, string> = {
   'France': 'FR',
