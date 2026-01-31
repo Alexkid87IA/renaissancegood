@@ -4,11 +4,12 @@ import { motion, useInView } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { stagger, fade } from './shared';
 import LocaleLink from './LocaleLink';
+import { useLocale } from '../contexts/LocaleContext';
 
 const KLAVIYO_COMPANY_ID = 'SXVdnD';
 const KLAVIYO_LIST_ID = 'YA9SMX';
 
-async function subscribeToKlaviyo(email: string): Promise<boolean> {
+async function subscribeToKlaviyo(email: string, language: string): Promise<boolean> {
   try {
     const res = await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=SXVdnD', {
       method: 'POST',
@@ -21,7 +22,10 @@ async function subscribeToKlaviyo(email: string): Promise<boolean> {
             profile: {
               data: {
                 type: 'profile',
-                attributes: { email },
+                attributes: {
+                  email,
+                  properties: { language },
+                },
               },
             },
           },
@@ -41,6 +45,7 @@ async function subscribeToKlaviyo(email: string): Promise<boolean> {
 
 export default function Footer() {
   const { t } = useTranslation('common');
+  const { locale } = useLocale();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -59,7 +64,7 @@ export default function Footer() {
     if (!email || submitting) return;
     setSubmitting(true);
     setError(false);
-    const success = await subscribeToKlaviyo(email);
+    const success = await subscribeToKlaviyo(email, locale);
     if (success) {
       setSubscribed(true);
     } else {

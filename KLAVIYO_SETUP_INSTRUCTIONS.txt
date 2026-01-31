@@ -1,0 +1,240 @@
+===============================================================
+  INSTRUCTIONS KLAVIYO - RENAISSANCE PARIS
+  A suivre dans l'interface Klaviyo (klaviyo.com)
+===============================================================
+
+COMPTE : Renaissance Paris
+PUBLIC API KEY : SXVdnD
+LISTE NEWSLETTER : YA9SMX
+
+===============================================================
+TEMPLATES DISPONIBLES (deja crees)
+===============================================================
+
+FRANCAIS :
+  Welcome Email FR              : QUyiDG
+  Abandoned Cart 1h FR          : VhNSSv
+  Abandoned Cart 24h FR         : X6eLnY
+  Abandoned Cart 72h FR         : R5W5eU
+  Browse Abandonment FR         : SSmWKp
+  Post-Purchase J+1 FR          : WtdHLm
+  Post-Purchase J+7 FR          : U3LMDf
+  Post-Purchase J+30 FR         : VQcF9J
+  Winback 90j FR                : RCjRw9
+  VIP Repeat Buyer FR           : TqKK2C
+
+ANGLAIS :
+  Welcome Email EN              : VNUqTu
+  Abandoned Cart 1h EN          : TptuLn
+  Abandoned Cart 24h EN         : WYjfMk
+  Abandoned Cart 72h EN         : QY2yDg
+  Browse Abandonment EN         : SLss9K
+  Post-Purchase J+1 EN          : UySjEe
+  Post-Purchase J+7 EN          : Y9J6Fc
+  Post-Purchase J+30 EN         : TVRh3B
+  Winback 90 days EN            : TRe2Gd
+  VIP Repeat Buyer EN           : RrM6z7
+
+Tous les templates ont le meme design luxe : fond noir, images
+produits/lifestyle, accents dores, responsive mobile.
+
+===============================================================
+ETAPE 1 : CONNECTER SHOPIFY A KLAVIYO
+===============================================================
+
+1. Aller dans Klaviyo > Settings (engrenage) > Integrations
+2. Cliquer "Add Integration" > chercher "Shopify"
+3. Entrer l'URL de la boutique Shopify Renaissance
+4. Autoriser la connexion
+5. Activer la synchronisation :
+   - Placed Order (commandes)
+   - Started Checkout (panier abandonne)
+   - Viewed Product (navigation)
+   - Customer data (profils)
+6. Sauvegarder
+
+Sans cette etape, les flows abandoned cart et post-purchase
+ne fonctionneront pas.
+
+===============================================================
+ETAPE 2 : FLOW "WELCOME EMAIL" (bienvenue newsletter)
+===============================================================
+
+1. Aller dans Flows > Create Flow > "Build your own"
+2. Nom : "Welcome Series - Renaissance"
+3. Trigger : "When someone is added to a list" > "Newsletter" (YA9SMX)
+
+4. AJOUTER UN CONDITIONAL SPLIT (pour la langue) :
+   - Condition : Profile property "language" equals "en"
+   - Branche YES (anglais) :
+     -> Email avec template "Welcome Email EN" (VNUqTu)
+        Subject : "Welcome to the Maison Renaissance"
+        From : Renaissance Paris <contact@renaissance-eyewear.fr>
+   - Branche NO (francais, par defaut) :
+     -> Email avec template "Welcome Email FR" (QUyiDG)
+        Subject : "Bienvenue dans la Maison Renaissance"
+        From : Renaissance Paris <contact@renaissance-eyewear.fr>
+
+5. Passer le flow en "Live"
+
+COMMENT CA MARCHE : Le site envoie automatiquement la propriete
+"language" (fr ou en) a Klaviyo quand quelqu'un s'inscrit via
+le footer. Le conditional split route vers le bon template.
+
+===============================================================
+ETAPE 3 : FLOW "ABANDONED CART" (panier abandonne)
+===============================================================
+
+1. Flows > Create Flow > "Build your own"
+2. Nom : "Abandoned Cart - Renaissance"
+3. Trigger : "Started Checkout" (evenement Shopify)
+   - Filtre : "Has not Placed Order since starting this flow"
+
+4. Delai : 1 heure
+
+5. CONDITIONAL SPLIT : property "language" equals "en"
+   - YES -> Email "Abandoned Cart 1h EN" (TptuLn)
+            Subject: "Your selection awaits"
+   - NO  -> Email "Abandoned Cart 1h FR" (VhNSSv)
+            Subject: "Votre selection vous attend"
+
+6. Delai : 23 heures (total = 24h)
+
+7. CONDITIONAL SPLIT : property "language" equals "en"
+   - YES -> Email "Abandoned Cart 24h EN" (WYjfMk)
+            Subject: "Your cart expires soon"
+   - NO  -> Email "Abandoned Cart 24h FR" (X6eLnY)
+            Subject: "Votre panier expire bientot"
+
+8. Delai : 48 heures (total = 72h)
+
+9. CONDITIONAL SPLIT : property "language" equals "en"
+   - YES -> Email "Abandoned Cart 72h EN" (QY2yDg)
+            Subject: "Final opportunity"
+   - NO  -> Email "Abandoned Cart 72h FR" (R5W5eU)
+            Subject: "Derniere opportunite"
+
+10. From pour tous : Renaissance Paris <contact@renaissance-eyewear.fr>
+11. Passer le flow en "Live"
+
+===============================================================
+ETAPE 4 : FLOW "BROWSE ABANDONMENT"
+===============================================================
+
+1. Flows > Create Flow > "Build your own"
+2. Nom : "Browse Abandonment - Renaissance"
+3. Trigger : "Viewed Product" (evenement Shopify)
+   - Filtre : "Has not Started Checkout since starting this flow"
+   - Filtre : "Has not been in this flow in the last 7 days"
+
+4. Delai : 2 heures
+
+5. CONDITIONAL SPLIT : property "language" equals "en"
+   - YES -> Email "Browse Abandonment EN" (SLss9K)
+            Subject: "Did a model catch your eye?"
+   - NO  -> Email "Browse Abandonment FR" (SSmWKp)
+            Subject: "Un modele vous a plu ?"
+
+6. From : Renaissance Paris <contact@renaissance-eyewear.fr>
+7. Passer le flow en "Live"
+
+===============================================================
+ETAPE 5 : FLOW "POST-PURCHASE" (apres achat)
+===============================================================
+
+1. Flows > Create Flow > "Build your own"
+2. Nom : "Post-Purchase - Renaissance"
+3. Trigger : "Placed Order" (evenement Shopify)
+
+4. Delai : 1 jour
+
+5. CONDITIONAL SPLIT : property "language" equals "en"
+   - YES -> Email "Post-Purchase J+1 EN" (UySjEe)
+            Subject: "Welcome to the Maison"
+   - NO  -> Email "Post-Purchase J+1 FR" (WtdHLm)
+            Subject: "Bienvenue dans la Maison"
+
+6. Delai : 6 jours (total J+7)
+
+7. CONDITIONAL SPLIT : property "language" equals "en"
+   - YES -> Email "Post-Purchase J+7 EN" (Y9J6Fc)
+            Subject: "Taking care of your Renaissance piece"
+   - NO  -> Email "Post-Purchase J+7 FR" (U3LMDf)
+            Subject: "Prendre soin de votre piece Renaissance"
+
+8. Delai : 23 jours (total J+30)
+
+9. CONDITIONAL SPLIT : property "language" equals "en"
+   - YES -> Email "Post-Purchase J+30 EN" (TVRh3B)
+            Subject: "Your opinion matters"
+   - NO  -> Email "Post-Purchase J+30 FR" (VQcF9J)
+            Subject: "Votre avis compte"
+
+10. From pour tous : Renaissance Paris <contact@renaissance-eyewear.fr>
+11. Passer le flow en "Live"
+
+===============================================================
+ETAPE 6 : FLOW "WINBACK" (reconquete 90 jours)
+===============================================================
+
+1. Flows > Create Flow > "Build your own"
+2. Nom : "Winback - Renaissance"
+3. Trigger : "Placed Order" avec un delai de 90 jours
+   OU creer un Segment "Commande > 90 jours sans rachat"
+
+4. CONDITIONAL SPLIT : property "language" equals "en"
+   - YES -> Email "Winback 90 days EN" (TRe2Gd)
+            Subject: "New creations await you"
+   - NO  -> Email "Winback 90j FR" (RCjRw9)
+            Subject: "De nouvelles creations vous attendent"
+
+5. From : Renaissance Paris <contact@renaissance-eyewear.fr>
+6. Passer le flow en "Live"
+
+===============================================================
+ETAPE 7 : FLOW "VIP / REPEAT BUYER"
+===============================================================
+
+1. Flows > Create Flow > "Build your own"
+2. Nom : "VIP Repeat Buyer - Renaissance"
+3. Trigger : "Placed Order" (evenement Shopify)
+   - Filtre : "Person has placed order at least 2 times over all time"
+
+4. CONDITIONAL SPLIT : property "language" equals "en"
+   - YES -> Email "VIP Repeat Buyer EN" (RrM6z7)
+            Subject: "Thank you for your loyalty"
+   - NO  -> Email "VIP Repeat Buyer FR" (TqKK2C)
+            Subject: "Merci pour votre fidelite"
+
+5. From : Renaissance Paris <contact@renaissance-eyewear.fr>
+6. Passer le flow en "Live"
+
+===============================================================
+CHECKLIST FINALE
+===============================================================
+
+[ ] Shopify connecte a Klaviyo (Etape 1)
+[ ] Flow Welcome active avec split FR/EN (Etape 2)
+[ ] Flow Abandoned Cart active avec 3 emails x 2 langues (Etape 3)
+[ ] Flow Browse Abandonment active avec split FR/EN (Etape 4)
+[ ] Flow Post-Purchase active avec 3 emails x 2 langues (Etape 5)
+[ ] Flow Winback active avec split FR/EN (Etape 6)
+[ ] Flow VIP Repeat Buyer active avec split FR/EN (Etape 7)
+[ ] Tester FR : s'inscrire depuis renaissance-eyewear.fr (version FR)
+[ ] Tester EN : s'inscrire depuis renaissance-eyewear.fr/en
+[ ] Verifier que la propriete "language" apparait sur le profil Klaviyo
+
+===============================================================
+NOTES
+===============================================================
+
+- Tous les templates (20 au total : 10 FR + 10 EN) sont deja crees
+  dans Klaviyo avec le meme design luxe
+- Le site envoie automatiquement la propriete "language" du profil
+  a Klaviyo lors de l'inscription newsletter
+- Pour les clients Shopify qui n'ont pas cette propriete,
+  le conditional split ira dans la branche "NO" = francais par defaut
+- Adresse d'envoi : contact@renaissance-eyewear.fr
+- Pour la delivrabilite : Settings > Domains > ajouter domaine d'envoi
+- Les variables Shopify (checkout_url, line_items) fonctionnent
+  automatiquement une fois Shopify connecte
