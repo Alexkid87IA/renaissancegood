@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-import { Instagram, Facebook, ArrowUp, MapPin, Phone, Mail, ArrowRight } from 'lucide-react';
-import { motion, useInView } from 'framer-motion';
+import { Instagram, Facebook, ArrowUp, MapPin, Phone, Mail, ArrowRight, ChevronDown } from 'lucide-react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { stagger, fade } from './shared';
 import LocaleLink from './LocaleLink';
@@ -14,6 +14,7 @@ export default function Footer() {
   const [subscribed, setSubscribed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
+  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
 
   const newsletterRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLDivElement>(null);
@@ -189,7 +190,6 @@ export default function Footer() {
                 { title: t('nav.services'), links: [
                   { to: '/livraison', label: t('footerLinks.shipping') },
                   { to: '/garantie', label: t('footerLinks.warranty') },
-                  { to: '/guide-tailles', label: t('footerLinks.sizeGuide') },
                   { to: '/store-locator', label: t('footerLinks.ourOpticians') },
                   { to: '/suivi-commande', label: t('footerLinks.orderTracking') },
                 ]},
@@ -299,29 +299,29 @@ export default function Footer() {
       </div>
 
       {/* ═══════════════════════════════════════ */}
-      {/* MOBILE FOOTER — Kubrick symmetry        */}
+      {/* MOBILE FOOTER                           */}
       {/* ═══════════════════════════════════════ */}
       <div className="md:hidden">
 
         {/* Newsletter */}
-        <div className="border-b border-white/[0.06] px-6 py-16">
+        <div className="px-6 py-20">
           <div className="text-center">
-            <p className="font-sans text-[8px] tracking-[0.4em] text-white/30 uppercase font-medium mb-4">
+            <p className="font-sans text-[8px] tracking-[0.4em] text-white/30 uppercase font-medium mb-5">
               {t('footer.newsletterLabel')}
             </p>
-            <h2 className="font-display text-[26px] font-bold text-white tracking-[-0.03em] leading-[0.95] mb-2">
+            <h2 className="font-display text-3xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-2">
               {t('footer.newsletterTitle')}
             </h2>
-            <p className="font-display text-base font-light italic text-white/45 tracking-[-0.02em] mb-6">
+            <p className="font-display text-lg font-light italic text-white/40 tracking-[-0.02em] mb-8">
               {t('footer.newsletterSubtitle')}
             </p>
-            <div className="w-10 h-px bg-white/15 mx-auto mb-6" />
-            <p className="font-sans text-white/30 text-[12px] leading-[1.8] font-light mb-8 max-w-[260px] mx-auto">
+            <div className="w-10 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-8" />
+            <p className="font-sans text-white/30 text-[12px] leading-[1.9] font-light mb-10 max-w-[280px] mx-auto">
               {t('footer.newsletterDescriptionMobile')}
             </p>
 
             {!subscribed ? (
-              <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+              <form onSubmit={handleNewsletterSubmit} className="space-y-3.5">
                 <input
                   type="email"
                   value={email}
@@ -329,14 +329,14 @@ export default function Footer() {
                   placeholder={t('footer.emailPlaceholder')}
                   required
                   disabled={submitting}
-                  className="w-full px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-sm font-sans placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-all duration-500 text-center disabled:opacity-50"
+                  className="w-full px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-[13px] font-sans placeholder:text-white/20 focus:outline-none focus:border-white/25 transition-all duration-500 text-center disabled:opacity-50 rounded-none"
                 />
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-white py-4 disabled:opacity-50"
+                  className="w-full bg-white py-4 disabled:opacity-50 active:bg-white/90 transition-colors"
                 >
-                  <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-[#000000] flex items-center justify-center gap-2">
+                  <span className="font-sans text-[9px] tracking-[0.3em] font-semibold uppercase text-[#000000] flex items-center justify-center gap-2">
                     {submitting ? t('footer.subscribing', { defaultValue: 'Envoi...' }) : t('footer.subscribe')}
                     {!submitting && <ArrowRight className="w-3.5 h-3.5" />}
                   </span>
@@ -360,110 +360,145 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Navigation — 2x2 centered grid */}
-        <div className="border-b border-white/[0.06] px-6 py-12">
-          <div className="grid grid-cols-2 gap-y-10 gap-x-6">
-            {[
-              { title: t('nav.collections'), links: [
-                { to: '/collections/heritage', label: t('footerLinks.heritage') },
-                { to: '/collections/versailles', label: t('footerLinks.versailles') },
-                { to: '/collections/isis', label: t('footerLinks.isis') },
-                { to: '/shop', label: t('nav.explorer') },
-              ]},
-              { title: t('nav.laMaison'), links: [
-                { to: '/histoire', label: t('footerLinks.ourHistory') },
-                { to: '/savoir-faire', label: t('footerLinks.savoirFaire') },
-                { to: '/symboles', label: t('footerLinks.fiveSymbols') },
-                { to: '/blog', label: t('footerLinks.manifeste') },
-              ]},
-              { title: t('nav.services'), links: [
-                { to: '/livraison', label: t('footerLinks.shipping') },
-                { to: '/garantie', label: t('footerLinks.warranty') },
-                { to: '/guide-tailles', label: t('footerLinks.sizeGuide') },
-                { to: '/store-locator', label: t('footerLinks.ourOpticians') },
-                { to: '/suivi-commande', label: t('footerLinks.orderTracking') },
-              ]},
-              { title: t('nav.aide'), links: [
-                { to: '/faq', label: t('footerLinks.faq') },
-                { to: '/contact', label: t('footerLinks.contact') },
-                { to: '/cgv', label: t('footerLinks.cgv') },
-                { to: '/confidentialite', label: t('footerLinks.privacy') },
-              ]},
-            ].map((col) => (
-              <div key={col.title} className="text-center">
-                <h4 className="font-sans text-[9px] tracking-[0.3em] text-white/40 uppercase mb-4 font-medium">
+        {/* Séparateur doré */}
+        <div className="h-px bg-gradient-to-r from-transparent via-bronze/30 to-transparent" />
+
+        {/* Navigation — Accordéons */}
+        <div>
+          {[
+            { key: 'collections', title: t('nav.collections'), links: [
+              { to: '/collections/heritage', label: t('footerLinks.heritage') },
+              { to: '/collections/versailles', label: t('footerLinks.versailles') },
+              { to: '/collections/isis', label: t('footerLinks.isis') },
+              { to: '/shop', label: t('nav.explorer') },
+            ]},
+            { key: 'laMaison', title: t('nav.laMaison'), links: [
+              { to: '/histoire', label: t('footerLinks.ourHistory') },
+              { to: '/savoir-faire', label: t('footerLinks.savoirFaire') },
+              { to: '/symboles', label: t('footerLinks.fiveSymbols') },
+              { to: '/blog', label: t('footerLinks.manifeste') },
+            ]},
+            { key: 'services', title: t('nav.services'), links: [
+              { to: '/livraison', label: t('footerLinks.shipping') },
+              { to: '/garantie', label: t('footerLinks.warranty') },
+              { to: '/store-locator', label: t('footerLinks.ourOpticians') },
+              { to: '/suivi-commande', label: t('footerLinks.orderTracking') },
+            ]},
+            { key: 'aide', title: t('nav.aide'), links: [
+              { to: '/faq', label: t('footerLinks.faq') },
+              { to: '/contact', label: t('footerLinks.contact') },
+              { to: '/cgv', label: t('footerLinks.cgv') },
+              { to: '/confidentialite', label: t('footerLinks.privacy') },
+            ]},
+          ].map((col) => (
+            <div key={col.key} className="border-b border-white/[0.06]">
+              <button
+                onClick={() => setOpenAccordion(openAccordion === col.key ? null : col.key)}
+                className="w-full flex items-center justify-between px-6 py-5"
+              >
+                <h4 className="font-sans text-[10px] tracking-[0.3em] text-white/50 uppercase font-semibold">
                   {col.title}
                 </h4>
-                <ul className="space-y-3">
-                  {col.links.map(({ to, label }) => (
-                    <li key={to}>
-                      <LocaleLink to={to} className="font-sans text-[12px] text-white/30 font-light">
-                        {label}
-                      </LocaleLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+                <motion.div
+                  animate={{ rotate: openAccordion === col.key ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ChevronDown size={14} className="text-white/25" />
+                </motion.div>
+              </button>
+              <AnimatePresence>
+                {openAccordion === col.key && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <ul className="px-6 pb-6 space-y-4">
+                      {col.links.map(({ to, label }) => (
+                        <li key={to}>
+                          <LocaleLink to={to} className="font-sans text-[13px] text-white/35 hover:text-white/60 font-light transition-colors duration-300">
+                            {label}
+                          </LocaleLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
 
-        {/* Brand — Big centered logo */}
-        <div className="border-b border-white/[0.06] px-6 py-14">
+        {/* Brand — Logo + description */}
+        <div className="px-6 py-16">
           <div className="flex flex-col items-center text-center">
             <img
               src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png"
               alt="Renaissance Paris"
-              className="h-32 w-auto object-contain mb-6"
+              className="h-20 w-auto object-contain mb-6"
               loading="lazy"
             />
-            <p className="font-sans text-[11px] text-white/25 leading-[1.8] font-light max-w-[240px] mb-8">
+            <p className="font-sans text-[11px] text-white/25 leading-[1.9] font-light max-w-[260px] mb-8">
               {t('footer.brandDescriptionMobile')}
             </p>
 
-            {/* Contact centered */}
-            <div className="space-y-3 mb-8">
-              <a href="mailto:contact@renaissance-eyewear.fr" className="flex items-center justify-center gap-2.5">
-                <Mail className="w-3 h-3 text-white/20" />
-                <span className="font-sans text-[10px] text-white/30">contact@renaissance-eyewear.fr</span>
+            {/* Socials */}
+            <div className="flex items-center justify-center gap-4 mb-10">
+              <a href="https://instagram.com/renaissance.eyewear" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/[0.08] flex items-center justify-center hover:border-white/20 transition-colors duration-300" aria-label="Instagram">
+                <Instagram size={15} className="text-white/30" />
               </a>
-              <a href="tel:+33142868200" className="flex items-center justify-center gap-2.5">
-                <Phone className="w-3 h-3 text-white/20" />
-                <span className="font-sans text-[10px] text-white/30">+33 1 42 86 82 00</span>
+              <a href="https://facebook.com/renaissance.eyewear" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/[0.08] flex items-center justify-center hover:border-white/20 transition-colors duration-300" aria-label="Facebook">
+                <Facebook size={15} className="text-white/30" />
               </a>
             </div>
 
-            {/* Socials centered */}
-            <div className="flex items-center justify-center gap-3">
-              <a href="https://instagram.com/renaissance.eyewear" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/[0.08] flex items-center justify-center" aria-label="Instagram">
-                <Instagram size={14} className="text-white/30" />
+            {/* Contact */}
+            <div className="space-y-3">
+              <a href="mailto:contact@renaissance-eyewear.fr" className="flex items-center justify-center gap-2.5">
+                <Mail className="w-3.5 h-3.5 text-white/15" />
+                <span className="font-sans text-[11px] text-white/30">contact@renaissance-eyewear.fr</span>
               </a>
-              <a href="https://facebook.com/renaissance.eyewear" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/[0.08] flex items-center justify-center" aria-label="Facebook">
-                <Facebook size={14} className="text-white/30" />
+              <a href="tel:+33142868200" className="flex items-center justify-center gap-2.5">
+                <Phone className="w-3.5 h-3.5 text-white/15" />
+                <span className="font-sans text-[11px] text-white/30">+33 1 42 86 82 00</span>
               </a>
             </div>
           </div>
         </div>
 
-        {/* Trust stats — 2x2 centered */}
-        <div className="border-b border-white/[0.06] px-6 py-10">
-          <div className="grid grid-cols-2 gap-0">
+        {/* Séparateur doré */}
+        <div className="h-px bg-gradient-to-r from-transparent via-bronze/30 to-transparent" />
+
+        {/* CTA Opticien */}
+        <div className="px-6 py-8">
+          <LocaleLink
+            to="/store-locator"
+            className="flex items-center justify-center gap-3 w-full border border-white/[0.1] py-4 hover:border-white/20 active:bg-white/[0.03] transition-all duration-300"
+          >
+            <MapPin className="w-4 h-4 text-white/25" />
+            <span className="font-sans text-[10px] tracking-[0.2em] font-medium uppercase text-white/40">
+              {t('footer.findOptician')}
+            </span>
+          </LocaleLink>
+        </div>
+
+        {/* Trust stats — ligne horizontale */}
+        <div className="border-t border-white/[0.06] px-6 py-8">
+          <div className="flex items-center justify-between">
             {[
               { number: '300', label: t('trust.editions') },
               { number: '48h', label: t('trust.delivery') },
               { number: '2 ans', label: t('trust.warranty') },
               { number: '200+', label: t('trust.opticians') },
             ].map((item, index) => (
-              <div
-                key={item.label}
-                className={`text-center py-5 ${
-                  index % 2 !== 0 ? 'border-l border-white/[0.06]' : ''
-                } ${index >= 2 ? 'border-t border-white/[0.06]' : ''}`}
-              >
-                <p className="font-display text-2xl font-bold text-white tracking-[-0.02em] leading-none mb-1">
+              <div key={item.label} className="flex-1 text-center">
+                {index > 0 && <div className="sr-only" />}
+                <p className="font-display text-lg font-bold text-white/80 tracking-[-0.02em] leading-none mb-1">
                   {item.number}
                 </p>
-                <p className="font-sans text-[8px] tracking-[0.25em] text-white/25 uppercase font-medium">
+                <p className="font-sans text-[7px] tracking-[0.2em] text-white/20 uppercase font-medium">
                   {item.label}
                 </p>
               </div>
@@ -471,35 +506,42 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Payment centered */}
-        <div className="border-b border-white/[0.06] px-6 py-8">
-          <div className="grid grid-cols-3 gap-2.5">
+        {/* Payment */}
+        <div className="border-t border-white/[0.06] px-6 py-6">
+          <div className="flex flex-wrap items-center justify-center gap-2">
             {['Visa', 'Mastercard', 'CB', 'Amex', 'Apple Pay', 'Google Pay'].map((method) => (
-              <div key={method} className="h-10 border border-white/[0.08] flex items-center justify-center">
-                <span className="font-sans text-[10px] font-semibold tracking-wider text-white/30 uppercase">{method}</span>
+              <div key={method} className="h-8 px-3.5 border border-white/[0.06] flex items-center justify-center">
+                <span className="font-sans text-[9px] font-semibold tracking-wider text-white/20 uppercase">{method}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Bottom — Legal centered */}
-        <div className="px-6 py-6">
-          <div className="flex flex-col items-center text-center gap-3">
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+        {/* Bottom — Legal */}
+        <div className="border-t border-white/[0.06] px-6 py-8">
+          <div className="flex flex-col items-center text-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
               {[
                 { to: '/cgv', label: t('footerLinks.cgv') },
                 { to: '/mentions-legales', label: t('footerLinks.legalNotice') },
                 { to: '/confidentialite', label: t('footerLinks.privacy') },
                 { to: '/cookies', label: t('footerLinks.cookies') },
               ].map(({ to, label }) => (
-                <LocaleLink key={to} to={to} className="font-sans text-[9px] text-white/20">
+                <LocaleLink key={to} to={to} className="font-sans text-[10px] text-white/20 hover:text-white/40 transition-colors duration-300">
                   {label}
                 </LocaleLink>
               ))}
             </div>
-            <p className="font-sans text-[9px] text-white/15">
-              &copy; {new Date().getFullYear()} Renaissance Paris &mdash; {t('footer.allRightsReserved')}
+            <p className="font-sans text-[10px] text-white/15">
+              &copy; {new Date().getFullYear()} Renaissance Paris
             </p>
+            <button
+              onClick={scrollToTop}
+              className="w-10 h-10 border border-white/[0.08] flex items-center justify-center hover:border-white/20 transition-all duration-300 group"
+              aria-label={t('footer.backToTop')}
+            >
+              <ArrowUp className="w-3.5 h-3.5 text-white/20 group-hover:text-white/50 transition-colors duration-300" />
+            </button>
           </div>
         </div>
       </div>
