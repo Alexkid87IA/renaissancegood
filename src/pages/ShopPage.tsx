@@ -261,7 +261,7 @@ export default function ShopPage() {
       </div>
 
       {/* ─── BARRE FILTRES STICKY ─── */}
-      <div id="products" className="sticky top-16 sm:top-20 z-30 bg-beige border-b border-dark-text/[0.06]">
+      <div id="products" className="sticky top-16 sm:top-20 z-30 bg-white border-b border-dark-text/10 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 laptop:px-16">
 
           {/* Desktop */}
@@ -334,34 +334,36 @@ export default function ShopPage() {
 
           {/* Mobile */}
           <div className="md:hidden">
-            <div className="flex items-center py-2 overflow-x-auto scrollbar-hide -mx-4 px-4 gap-0.5">
-              {tabs.map((tab) => (
-                <button
-                  type="button"
-                  key={tab.key}
-                  onClick={() => setActiveTab(tab.key)}
-                  className={`relative whitespace-nowrap px-3 py-2 font-sans text-[10px] tracking-[0.15em] uppercase shrink-0 transition-colors duration-200 ${
-                    activeTab === tab.key ? 'text-dark-text font-medium' : 'text-dark-text/30'
-                  }`}
-                >
-                  {tab.label}
-                  <span className={`absolute bottom-0 left-3 right-3 h-[1.5px] bg-dark-text transition-transform duration-200 origin-left ${
-                    activeTab === tab.key ? 'scale-x-100' : 'scale-x-0'
-                  }`} />
-                </button>
-              ))}
+            <div className="flex items-center py-3 gap-0">
+              <div className="flex items-center overflow-x-auto scrollbar-hide flex-1 min-w-0">
+                {tabs.map((tab) => (
+                  <button
+                    type="button"
+                    key={tab.key}
+                    onClick={() => setActiveTab(tab.key)}
+                    className={`relative whitespace-nowrap px-3 py-2 font-sans text-[11px] tracking-[0.12em] uppercase shrink-0 transition-all duration-200 ${
+                      activeTab === tab.key ? 'text-dark-text font-semibold' : 'text-dark-text/40'
+                    }`}
+                  >
+                    {tab.label}
+                    <span className={`absolute bottom-0 left-3 right-3 h-[2px] bg-dark-text transition-transform duration-200 origin-left ${
+                      activeTab === tab.key ? 'scale-x-100' : 'scale-x-0'
+                    }`} />
+                  </button>
+                ))}
+              </div>
               <button
                 type="button"
                 onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-                className={`ml-auto shrink-0 flex items-center gap-1.5 px-3 py-1.5 border transition-colors duration-200 ${
-                  hasActiveFilters || mobileFiltersOpen ? 'border-dark-text/25 text-dark-text' : 'border-dark-text/8 text-dark-text/35'
+                className={`shrink-0 ml-2 flex items-center gap-1.5 px-3.5 py-2 border rounded-full transition-colors duration-200 ${
+                  hasActiveFilters || mobileFiltersOpen ? 'border-dark-text bg-dark-text text-white' : 'border-dark-text/15 text-dark-text/50'
                 }`}
               >
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                 </svg>
-                <span className="font-sans text-[9px] tracking-[0.15em] uppercase font-medium">{t('filters')}</span>
-                {hasActiveFilters && <span className="w-1.5 h-1.5 rounded-full bg-bronze" />}
+                <span className="font-sans text-[10px] tracking-[0.12em] uppercase font-medium">{t('filters')}</span>
+                {hasActiveFilters && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
               </button>
             </div>
 
