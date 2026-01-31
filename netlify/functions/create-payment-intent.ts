@@ -74,12 +74,11 @@ const handler: Handler = async (event: HandlerEvent) => {
       ? `${shippingAddress.address}, ${shippingAddress.postalCode} ${shippingAddress.city}, ${shippingAddress.country}`
       : '';
 
-    // Créer le PaymentIntent
-    const paymentIntent = await stripe.paymentIntents.create({
+    // Construire les options du PaymentIntent
+    const piOptions: Stripe.PaymentIntentCreateParams = {
       amount,
       currency: currency || 'eur',
       automatic_payment_methods: { enabled: true },
-      receipt_email: metadata?.customerEmail || undefined,
       description: `Renaissance Paris — Commande de ${metadata?.customerName || 'client'}`,
       metadata: {
         source: metadata?.source || 'checkout',
@@ -90,19 +89,29 @@ const handler: Handler = async (event: HandlerEvent) => {
         items_count: String((cartItems || []).length),
         cart_items: JSON.stringify((cartItems || []).slice(0, 5)),
       },
-      ...(shippingAddress && {
-        shipping: {
-          name: metadata?.customerName || '',
-          address: {
-            line1: (shippingAddress as ShippingAddress).address || '',
-            line2: (shippingAddress as ShippingAddress).addressComplement || '',
-            city: (shippingAddress as ShippingAddress).city || '',
-            postal_code: (shippingAddress as ShippingAddress).postalCode || '',
-            country: (shippingAddress as ShippingAddress).countryCode || 'FR',
-          },
+    };
+
+    // Ajouter receipt_email uniquement si présent
+    if (metadata?.customerEmail) {
+      piOptions.receipt_email = metadata.customerEmail;
+    }
+
+    // Ajouter shipping uniquement si l'adresse est remplie
+    if (shippingAddress && (shippingAddress as ShippingAddress).address) {
+      piOptions.shipping = {
+        name: metadata?.customerName || 'Client',
+        address: {
+          line1: (shippingAddress as ShippingAddress).address,
+          line2: (shippingAddress as ShippingAddress).addressComplement || undefined,
+          city: (shippingAddress as ShippingAddress).city || undefined,
+          postal_code: (shippingAddress as ShippingAddress).postalCode || undefined,
+          country: (shippingAddress as ShippingAddress).countryCode || 'FR',
         },
-      }),
-    });
+      };
+    }
+
+    // Créer le PaymentIntent
+    const paymentIntent = await stripe.paymentIntents.create(piOptions);
 
     return {
       statusCode: 200,
