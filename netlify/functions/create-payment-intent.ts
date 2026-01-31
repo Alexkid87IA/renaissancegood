@@ -1,12 +1,23 @@
 import type { Handler, HandlerEvent } from '@netlify/functions';
 import Stripe from 'stripe';
 
-const headers = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Content-Type': 'application/json',
-};
+const ALLOWED_ORIGINS = [
+  'https://www.renaissance-paris.com',
+  'https://renaissance-paris.com',
+  'https://renaissance-paris.netlify.app',
+  'http://localhost:4444',
+  'http://localhost:3000',
+];
+
+function getCorsHeaders(origin?: string) {
+  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Content-Type': 'application/json',
+  };
+}
 
 interface CartItem {
   title: string;
@@ -24,6 +35,9 @@ interface ShippingAddress {
 }
 
 const handler: Handler = async (event: HandlerEvent) => {
+  const origin = event.headers?.origin || event.headers?.Origin;
+  const headers = getCorsHeaders(origin);
+
   // CORS preflight
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 200, headers, body: '' };

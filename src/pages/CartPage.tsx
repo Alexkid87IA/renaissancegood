@@ -39,7 +39,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-beige pt-32 pb-20">
+    <div className="min-h-screen bg-beige pt-32 pb-20 overflow-x-hidden">
       <div className="max-w-[1600px] mx-auto px-6 laptop:px-12 xl:px-16">
         {/* Header */}
         <motion.div
@@ -133,7 +133,7 @@ export default function CartPage() {
         ) : (
           <div className="grid lg:grid-cols-[1fr,420px] xl:grid-cols-[1fr,480px] gap-8 lg:gap-12 xl:gap-16">
             {/* Cart Items */}
-            <div>
+            <div className="min-w-0">
               {/* Free Shipping Progress */}
               {subtotal < freeShippingThreshold && (
                 <motion.div
@@ -486,7 +486,7 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
     >
       <div className="flex flex-col lg:flex-row">
         {/* Image Container with Carousel - Full bleed */}
-        <div className="w-full lg:w-[500px] xl:w-[560px] flex-shrink-0 flex flex-col">
+        <div className="w-full lg:w-[400px] xl:w-[480px] flex-shrink flex flex-col">
           <LocaleLink
             to={`/product/${product?.handle || ''}`}
             className="relative group/image aspect-[4/3] overflow-hidden bg-neutral-100"

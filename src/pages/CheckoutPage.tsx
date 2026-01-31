@@ -159,6 +159,11 @@ function ExpressCheckoutSection({
             });
           }}
           options={{
+            paymentMethods: {
+              applePay: 'always',
+              googlePay: 'always',
+              link: 'always',
+            },
             buttonType: {
               applePay: 'buy',
               googlePay: 'buy',
@@ -168,7 +173,7 @@ function ExpressCheckoutSection({
               googlePay: 'black',
             },
             layout: {
-              maxColumns: 2,
+              maxColumns: 3,
               maxRows: 1,
             },
           }}
@@ -445,12 +450,12 @@ export default function CheckoutPage() {
   const shipping = subtotal >= 500 ? 0 : 15;
   const total = subtotal + shipping;
 
-  // Créer le PaymentIntent à l'étape 2
+  // Créer le PaymentIntent dès que le total est disponible (pour Express Checkout en étape 1)
   useEffect(() => {
-    if (currentStep === 2 && !clientSecret && total > 0) {
+    if (!clientSecret && total > 0) {
       createPaymentIntent();
     }
-  }, [currentStep, clientSecret, total]);
+  }, [clientSecret, total]);
 
   const createPaymentIntent = async () => {
     try {
@@ -641,6 +646,21 @@ export default function CheckoutPage() {
             <div>
                 {/* ===== ÉTAPE 1 : INFORMATION + LIVRAISON ===== */}
                 <div className={currentStep === 1 ? '' : 'hidden'}>
+                    {/* Express Checkout (Apple Pay / Google Pay) en haut de l'étape 1 */}
+                    {clientSecret && stripeOptions && (
+                      <div className="mb-6">
+                        <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8">
+                          <Elements stripe={stripePromise} options={stripeOptions} key={`express-step1-${clientSecret}`}>
+                            <ExpressCheckoutSection
+                              total={total}
+                              onSuccess={handlePaymentSuccess}
+                              onError={(e) => setPaymentError(e)}
+                            />
+                          </Elements>
+                        </div>
+                      </div>
+                    )}
+
                     <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8">
                       {/* Contact */}
                       <h2 className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-6">
