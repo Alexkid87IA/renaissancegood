@@ -15,18 +15,19 @@ import LangLayout from './components/LangLayout';
 import ErrorBoundary from './components/ErrorBoundary';
 
 // Auto-reload on stale chunk after deployment
+// Forces a cache-busting reload by appending a timestamp query param
 function lazyWithRetry(importFn: () => Promise<any>) {
   return lazy(() =>
     importFn().catch(() => {
-      const key = 'chunk-retry';
+      const key = '_reload_stale';
       const retryCount = Number(sessionStorage.getItem(key) || '0');
       if (retryCount < 2) {
         sessionStorage.setItem(key, String(retryCount + 1));
-        window.location.reload();
-        // reload() navigates away — return a never-resolving promise to prevent React errors
+        // Force cache-busting by adding a unique query param
+        const url = window.location.href.split('?')[0];
+        window.location.href = `${url}?_r=${Date.now()}`;
         return new Promise(() => {});
       }
-      // After 2 retries, give up and let ErrorBoundary handle it
       sessionStorage.removeItem(key);
       throw new Error('Failed to load page after retries');
     })
@@ -133,9 +134,9 @@ function AppContent() {
   const location = useLocation();
   const { i18n } = useTranslation();
 
-  // Clear chunk-retry flag on successful load
+  // Clear stale-reload flag on successful load
   useEffect(() => {
-    sessionStorage.removeItem('chunk-retry');
+    sessionStorage.removeItem('_reload_stale');
   }, []);
 
   // Check for checkout path with or without lang prefix

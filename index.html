@@ -44,6 +44,45 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Intercepte les erreurs de chargement de modules (cache périmé après déploiement)
+      // et force un rechargement propre de la page.
+      window.addEventListener('error', function(e) {
+        if (e.message && (
+          e.message.includes('Failed to fetch dynamically imported module') ||
+          e.message.includes('Importing a module script failed') ||
+          e.message.includes('error loading dynamically imported module')
+        )) {
+          var key = '_reload_stale';
+          var count = parseInt(sessionStorage.getItem(key) || '0', 10);
+          if (count < 2) {
+            sessionStorage.setItem(key, String(count + 1));
+            window.location.href = window.location.href.split('?')[0] + '?_r=' + Date.now();
+            return;
+          }
+          sessionStorage.removeItem(key);
+        }
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        var msg = e.reason && (e.reason.message || String(e.reason));
+        if (msg && (
+          msg.includes('Failed to fetch dynamically imported module') ||
+          msg.includes('Importing a module script failed') ||
+          msg.includes('error loading dynamically imported module') ||
+          msg.includes('Loading chunk') ||
+          msg.includes('Loading CSS chunk')
+        )) {
+          var key = '_reload_stale';
+          var count = parseInt(sessionStorage.getItem(key) || '0', 10);
+          if (count < 2) {
+            sessionStorage.setItem(key, String(count + 1));
+            window.location.href = window.location.href.split('?')[0] + '?_r=' + Date.now();
+            return;
+          }
+          sessionStorage.removeItem(key);
+        }
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
