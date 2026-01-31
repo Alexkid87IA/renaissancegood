@@ -467,8 +467,8 @@ export default function CheckoutPage() {
           currency: 'eur',
           metadata: {
             source: 'checkout',
-            customerEmail: formData.email,
-            customerName: `${formData.firstName} ${formData.lastName}`,
+            ...(formData.email && { customerEmail: formData.email }),
+            ...(formData.firstName && { customerName: `${formData.firstName} ${formData.lastName}` }),
           },
           cartItems: cartLines.slice(0, 5).map(({ node }) => ({
             id: node.merchandise.product.id,
@@ -476,14 +476,16 @@ export default function CheckoutPage() {
             quantity: node.quantity,
             price: parseFloat(node.merchandise.priceV2?.amount || '0'),
           })),
-          shippingAddress: {
-            address: formData.address,
-            addressComplement: formData.addressComplement,
-            city: formData.city,
-            postalCode: formData.postalCode,
-            country: formData.country,
-            countryCode: COUNTRY_CODES[formData.country] || 'FR',
-          },
+          ...(formData.address && {
+            shippingAddress: {
+              address: formData.address,
+              addressComplement: formData.addressComplement,
+              city: formData.city,
+              postalCode: formData.postalCode,
+              country: formData.country,
+              countryCode: COUNTRY_CODES[formData.country] || 'FR',
+            },
+          }),
         }),
       });
 
