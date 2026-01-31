@@ -165,5 +165,17 @@
     "butterfly": "Butterfly",
     "helpText": "Use filters to refine your search",
     "viewAll": "View all products"
+  },
+  "newsletterPopup": {
+    "title": "JOIN THE HOUSE",
+    "subtitle": "-10% on your first order",
+    "description": "Sign up and receive your welcome code by email.",
+    "emailPlaceholder": "Your email address",
+    "cta": "Get my code",
+    "success": "Welcome!",
+    "successDetail": "Your code WELCOME10 has been sent by email.",
+    "successCode": "WELCOME10",
+    "error": "An error occurred. Please try again.",
+    "noThanks": "No thanks"
   }
 }

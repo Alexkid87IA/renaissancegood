@@ -165,5 +165,17 @@
     "butterfly": "Papillon",
     "helpText": "Utilisez les filtres pour affiner votre recherche",
     "viewAll": "Voir tous les produits"
+  },
+  "newsletterPopup": {
+    "title": "REJOIGNEZ LA MAISON",
+    "subtitle": "-10% sur votre première commande",
+    "description": "Inscrivez-vous et recevez votre code de bienvenue par email.",
+    "emailPlaceholder": "Votre adresse email",
+    "cta": "Recevoir mon code",
+    "success": "Bienvenue !",
+    "successDetail": "Votre code WELCOME10 a été envoyé par email.",
+    "successCode": "WELCOME10",
+    "error": "Une erreur est survenue. Veuillez réessayer.",
+    "noThanks": "Non merci"
   }
 }

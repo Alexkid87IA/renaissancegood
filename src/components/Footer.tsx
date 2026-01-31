@@ -5,43 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { stagger, fade } from './shared';
 import LocaleLink from './LocaleLink';
 import { useLocale } from '../contexts/LocaleContext';
-
-const KLAVIYO_COMPANY_ID = 'SXVdnD';
-const KLAVIYO_LIST_ID = 'YA9SMX';
-
-async function subscribeToKlaviyo(email: string, language: string): Promise<boolean> {
-  try {
-    const res = await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=SXVdnD', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'revision': '2024-10-15' },
-      body: JSON.stringify({
-        data: {
-          type: 'subscription',
-          attributes: {
-            custom_source: 'Website Footer',
-            profile: {
-              data: {
-                type: 'profile',
-                attributes: {
-                  email,
-                  properties: { language },
-                },
-              },
-            },
-          },
-          relationships: {
-            list: {
-              data: { type: 'list', id: KLAVIYO_LIST_ID },
-            },
-          },
-        },
-      }),
-    });
-    return res.ok || res.status === 202;
-  } catch {
-    return false;
-  }
-}
+import { subscribeToKlaviyo } from '../lib/klaviyo';
 
 export default function Footer() {
   const { t } = useTranslation('common');

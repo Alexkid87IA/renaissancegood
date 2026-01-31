@@ -165,5 +165,17 @@
   "errorBoundary": {
     "message": "Ein Fehler ist aufgetreten. Bitte laden Sie die Seite neu.",
     "refresh": "Seite neu laden"
+  },
+  "newsletterPopup": {
+    "title": "TRETEN SIE DEM HAUS BEI",
+    "subtitle": "-10% auf Ihre erste Bestellung",
+    "description": "Melden Sie sich an und erhalten Sie Ihren Willkommenscode per E-Mail.",
+    "emailPlaceholder": "Ihre E-Mail-Adresse",
+    "cta": "Code erhalten",
+    "success": "Willkommen!",
+    "successDetail": "Ihr Code WELCOME10 wurde per E-Mail gesendet.",
+    "successCode": "WELCOME10",
+    "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "noThanks": "Nein danke"
   }
 }

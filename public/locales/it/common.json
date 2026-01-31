@@ -165,5 +165,17 @@
   "errorBoundary": {
     "message": "Si è verificato un errore. Aggiorna la pagina.",
     "refresh": "Aggiorna la pagina"
+  },
+  "newsletterPopup": {
+    "title": "ENTRATE NELLA MAISON",
+    "subtitle": "-10% sul primo ordine",
+    "description": "Iscrivetevi e ricevete il vostro codice di benvenuto via email.",
+    "emailPlaceholder": "La vostra email",
+    "cta": "Ricevi il mio codice",
+    "success": "Benvenuti!",
+    "successDetail": "Il vostro codice WELCOME10 è stato inviato via email.",
+    "successCode": "WELCOME10",
+    "error": "Si è verificato un errore. Riprovate.",
+    "noThanks": "No grazie"
   }
 }

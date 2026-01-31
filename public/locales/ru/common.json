@@ -165,5 +165,17 @@
   "errorBoundary": {
     "message": "Произошла ошибка. Пожалуйста, обновите страницу.",
     "refresh": "Обновить страницу"
+  },
+  "newsletterPopup": {
+    "title": "ПРИСОЕДИНЯЙТЕСЬ К ДОМУ",
+    "subtitle": "-10% на первый заказ",
+    "description": "Подпишитесь и получите приветственный код на email.",
+    "emailPlaceholder": "Ваш email",
+    "cta": "Получить код",
+    "success": "Добро пожаловать!",
+    "successDetail": "Ваш код WELCOME10 отправлен на email.",
+    "successCode": "WELCOME10",
+    "error": "Произошла ошибка. Попробуйте ещё раз.",
+    "noThanks": "Нет, спасибо"
   }
 }

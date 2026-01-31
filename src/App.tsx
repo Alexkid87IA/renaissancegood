@@ -10,6 +10,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
 import CookieBanner from './components/CookieBanner';
+import NewsletterPopup from './components/NewsletterPopup';
 import ScrollToTop from './components/ScrollToTop';
 import LangLayout from './components/LangLayout';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -189,6 +190,7 @@ function AppContent() {
           </div>
         )}
       </div>
+      <NewsletterPopup />
     </LocaleProvider>
   );
 }
