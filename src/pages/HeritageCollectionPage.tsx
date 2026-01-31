@@ -217,7 +217,7 @@ export default function HeritageCollectionPage() {
           {/* Right Panel — Image */}
           <div className="flex-1 relative overflow-hidden">
             <motion.img
-              src="https://renaissance-cdn.b-cdn.net/packshot%20collection%20heritage.png"
+              src="https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%203_58AM.jpeg"
               alt={t('heritage.heroImageAlt')}
               className="absolute inset-0 w-full h-full object-cover"
               style={{ y: imageY }}
@@ -233,7 +233,7 @@ export default function HeritageCollectionPage() {
           {/* Image — plein écran */}
           <div className="absolute inset-0">
             <img
-              src="https://renaissance-cdn.b-cdn.net/packshot%20collection%20heritage.png"
+              src="https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%203_58AM.jpeg"
               alt={t('heritage.heroImageAlt')}
               className="w-full h-full object-cover object-[center_35%]"
               fetchpriority="high"

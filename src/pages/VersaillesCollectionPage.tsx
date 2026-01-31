@@ -218,7 +218,7 @@ export default function VersaillesCollectionPage() {
           {/* Right Panel — Image */}
           <div className="flex-1 relative overflow-hidden">
             <motion.img
-              src="https://renaissance-cdn.b-cdn.net/VERSAILLES-COLLECTION.jpeg"
+              src="https://renaissance-cdn.b-cdn.net/campgane.png"
               alt={t('versailles.heroImageAlt')}
               className="absolute inset-0 w-full h-full object-cover"
               style={{ y: imageY }}
@@ -234,7 +234,7 @@ export default function VersaillesCollectionPage() {
           {/* Image — plein écran */}
           <div className="absolute inset-0">
             <img
-              src="https://renaissance-cdn.b-cdn.net/VERSAILLES-COLLECTION.jpeg"
+              src="https://renaissance-cdn.b-cdn.net/campgane.png"
               alt={t('versailles.heroImageAlt')}
               className="w-full h-full object-cover object-[center_35%]"
               fetchpriority="high"
