@@ -58,18 +58,18 @@ export default function SearchBar({
 
   return (
     <div>
-      <div className="flex flex-col lg:flex-row gap-3">
+      <div className="flex flex-col lg:flex-row gap-2.5">
         {/* Search Input */}
         <div className="flex-1 relative">
           <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-            <Search className="w-4 h-4 text-white/25" />
+            <Search className="w-4 h-4 text-dark-text/25" />
           </div>
           <input
             type="text"
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder="Ville, code postal ou nom d'opticien..."
-            className="w-full pl-11 pr-4 py-4 border border-white/10 bg-white/5 font-sans text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-bronze/60 transition-colors duration-300"
+            className="w-full pl-11 pr-4 py-3.5 border border-dark-text/[0.08] bg-white font-sans text-sm text-dark-text placeholder:text-dark-text/30 focus:outline-none focus:border-dark-text/25 transition-colors duration-300"
           />
         </div>
 
@@ -77,19 +77,19 @@ export default function SearchBar({
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full lg:w-auto px-5 py-4 border border-white/10 bg-white/5 hover:border-bronze/40 transition-colors duration-300 flex items-center justify-between gap-4 min-w-[200px]"
+            className="w-full lg:w-auto px-5 py-3.5 border border-dark-text/[0.08] bg-white hover:border-dark-text/20 transition-colors duration-300 flex items-center justify-between gap-4 min-w-[200px]"
           >
-            <span className="font-sans text-[11px] tracking-[0.15em] font-medium uppercase text-white/60">
+            <span className="font-sans text-[11px] tracking-[0.15em] font-medium uppercase text-dark-text/55">
               {selectedCountryData.label}
             </span>
             <ChevronDown
-              className={`w-3.5 h-3.5 text-white/30 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
+              className={`w-3.5 h-3.5 text-dark-text/25 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
             />
           </button>
 
           {/* Dropdown Menu */}
           {isDropdownOpen && (
-            <div className="absolute top-full left-0 right-0 mt-1 bg-[#1a1a1a] border border-white/10 shadow-2xl z-50 max-h-[300px] overflow-y-auto">
+            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-dark-text/[0.08] shadow-lg z-50 max-h-[300px] overflow-y-auto">
               {availableCountries.map((country) => {
                 const count = country.code === 'ALL'
                   ? Object.values(countryCounts).reduce((a, b) => a + b, 0)
@@ -102,14 +102,14 @@ export default function SearchBar({
                       onCountryChange(country.code);
                       setIsDropdownOpen(false);
                     }}
-                    className={`w-full px-5 py-3 flex items-center justify-between hover:bg-white/5 transition-colors duration-200 ${
-                      selectedCountry === country.code ? 'bg-white/8' : ''
+                    className={`w-full px-5 py-3 flex items-center justify-between hover:bg-beige transition-colors duration-200 ${
+                      selectedCountry === country.code ? 'bg-beige' : ''
                     }`}
                   >
-                    <span className="font-sans text-[11px] tracking-[0.1em] font-medium uppercase text-white/60">
+                    <span className="font-sans text-[11px] tracking-[0.1em] font-medium uppercase text-dark-text/55">
                       {country.label}
                     </span>
-                    <span className="font-sans text-[10px] text-white/20 tracking-wider">
+                    <span className="font-sans text-[10px] text-dark-text/20 tracking-wider">
                       {count}
                     </span>
                   </button>
@@ -122,14 +122,13 @@ export default function SearchBar({
         {/* Geolocation Button */}
         <button
           onClick={onGetLocation}
-          className="group relative overflow-hidden px-6 py-4 border border-white/10 bg-white/5 transition-all duration-500 hover:border-bronze/60 flex items-center justify-center gap-2"
+          className="group relative overflow-hidden px-5 py-3.5 border border-dark-text/[0.08] bg-white transition-all duration-500 hover:border-dark-text/20 flex items-center justify-center gap-2"
           title="Utiliser ma position actuelle"
         >
-          <MapPin className="w-4 h-4 relative z-10 text-white/40 group-hover:text-[#0a0a0a] transition-colors duration-500" />
-          <span className="lg:hidden relative z-10 font-sans text-[9px] tracking-[0.2em] font-medium uppercase text-white/40 group-hover:text-[#0a0a0a] transition-colors duration-500">
+          <MapPin className="w-4 h-4 relative z-10 text-dark-text/35 group-hover:text-dark-text transition-colors duration-300" />
+          <span className="lg:hidden relative z-10 font-sans text-[9px] tracking-[0.2em] font-medium uppercase text-dark-text/40 group-hover:text-dark-text transition-colors duration-300">
             Ma position
           </span>
-          <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
         </button>
       </div>
     </div>

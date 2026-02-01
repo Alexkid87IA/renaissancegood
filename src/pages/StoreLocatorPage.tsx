@@ -259,33 +259,32 @@ export default function StoreLocatorPage() {
       </div>
 
       {/* SEARCH BAR SECTION */}
-      <section className="bg-[#000000] relative" data-search-section>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-10 lg:py-14">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:gap-12 mb-8 lg:mb-10">
-            <div className="mb-6 lg:mb-0">
-              <p className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-3">
-                {t('storeLocatorPage.search.label')}
-              </p>
-              <h2 className="font-display text-2xl lg:text-3xl font-bold text-white tracking-[-0.03em] leading-[0.95]">
+      <section className="bg-beige relative border-b border-dark-text/[0.06]" data-search-section>
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 lg:py-10">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-10">
+            <div className="hidden lg:flex items-center gap-6 shrink-0">
+              <h2 className="font-display text-lg font-bold text-dark-text tracking-[-0.02em]">
                 {t('storeLocatorPage.search.title')}
               </h2>
+              <div className="w-px h-5 bg-dark-text/10" />
+              <p className="font-sans text-dark-text/35 text-[11px] leading-[1.7] font-light">
+                {filteredStores.length > 1
+                  ? t('storeLocatorPage.search.resultsCountPlural', { count: filteredStores.length, countries: Object.keys(countryCounts).length })
+                  : t('storeLocatorPage.search.resultsCount', { count: filteredStores.length, countries: Object.keys(countryCounts).length })
+                }
+              </p>
             </div>
-            <div className="hidden lg:block w-px h-10 bg-white/10" />
-            <p className="font-sans text-white/25 text-[12px] lg:text-[13px] leading-[1.7] font-light max-w-md">
-              {filteredStores.length > 1
-                ? t('storeLocatorPage.search.resultsCountPlural', { count: filteredStores.length, countries: Object.keys(countryCounts).length })
-                : t('storeLocatorPage.search.resultsCount', { count: filteredStores.length, countries: Object.keys(countryCounts).length })
-              }
-            </p>
+            <div className="flex-1">
+              <SearchBar
+                value={searchQuery}
+                onChange={setSearchQuery}
+                onGetLocation={getUserLocation}
+                selectedCountry={selectedCountry}
+                onCountryChange={setSelectedCountry}
+                countryCounts={countryCounts}
+              />
+            </div>
           </div>
-          <SearchBar
-            value={searchQuery}
-            onChange={setSearchQuery}
-            onGetLocation={getUserLocation}
-            selectedCountry={selectedCountry}
-            onCountryChange={setSelectedCountry}
-            countryCounts={countryCounts}
-          />
         </div>
       </section>
 
