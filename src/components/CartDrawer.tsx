@@ -20,9 +20,27 @@ export default function CartDrawer() {
     if (!isCartOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeCart();
+      // Focus trap
+      if (e.key === 'Tab' && drawerRef.current) {
+        const focusable = drawerRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last?.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first?.focus(); }
+        }
+      }
     };
     document.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
+    // Focus first focusable element on open
+    requestAnimationFrame(() => {
+      const firstFocusable = drawerRef.current?.querySelector<HTMLElement>('button, [href], input');
+      firstFocusable?.focus();
+    });
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';

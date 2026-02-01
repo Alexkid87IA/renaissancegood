@@ -3,7 +3,7 @@
 // Menu de navigation pour mobile — fond noir, fullscreen
 // ========================================
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, Package } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -70,6 +70,7 @@ export default function MobileMenu({
   onLanguageChange
 }: MobileMenuProps) {
   const { t } = useTranslation('common');
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -84,8 +85,26 @@ export default function MobileMenu({
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
+      // Focus trap
+      if (e.key === 'Tab' && menuRef.current) {
+        const focusable = menuRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last?.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first?.focus(); }
+        }
+      }
     };
     document.addEventListener('keydown', handleKeyDown);
+    // Focus first element
+    requestAnimationFrame(() => {
+      const firstFocusable = menuRef.current?.querySelector<HTMLElement>('button, a');
+      firstFocusable?.focus();
+    });
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
@@ -105,12 +124,14 @@ export default function MobileMenu({
 
   return (
     <motion.div
+      ref={menuRef}
       variants={overlayVariants}
       initial="hidden"
       animate="visible"
       exit="exit"
       role="dialog"
       aria-modal="true"
+      aria-label={t('header.menu', { defaultValue: 'Menu de navigation' })}
       className="fixed inset-0 z-[150] w-full bg-[#000000] lg:hidden overflow-y-auto"
     >
       {/* Header bar — close button */}

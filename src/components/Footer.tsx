@@ -60,7 +60,7 @@ export default function Footer() {
               animate={newsletterInView ? "visible" : "hidden"}
               className="max-w-2xl mx-auto text-center"
             >
-              <motion.p variants={fade} className="font-sans text-[9px] tracking-[0.4em] text-white/30 uppercase font-medium mb-4">
+              <motion.p variants={fade} className="font-sans text-[9px] tracking-[0.4em] text-white/50 uppercase font-medium mb-4">
                 {t('footer.newsletterLabel')}
               </motion.p>
               <motion.h2 variants={fade} className="font-display text-5xl lg:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
@@ -70,7 +70,7 @@ export default function Footer() {
                 {t('footer.newsletterSubtitle')}
               </motion.p>
               <motion.div variants={fade} className="w-12 h-px bg-white/15 mx-auto mb-10" />
-              <motion.p variants={fade} className="font-sans text-white/35 text-sm leading-[1.9] font-light mb-12 max-w-lg mx-auto">
+              <motion.p variants={fade} className="font-sans text-white/60 text-sm leading-[1.9] font-light mb-12 max-w-lg mx-auto">
                 {t('footer.newsletterDescription')}
               </motion.p>
               <motion.div variants={fade}>
@@ -82,8 +82,9 @@ export default function Footer() {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder={t('footer.emailPlaceholder')}
                       required
+                      aria-label={t('footer.emailPlaceholder')}
                       disabled={submitting}
-                      className="flex-1 px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-sm font-sans placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-all duration-500 disabled:opacity-50"
+                      className="flex-1 px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-sm font-sans placeholder:text-white/50 focus:outline-none focus:border-white/30 transition-all duration-500 disabled:opacity-50"
                     />
                     <button
                       type="submit"
@@ -107,13 +108,13 @@ export default function Footer() {
                     <p className="font-sans text-sm text-white font-medium">
                       {t('footer.subscribeSuccess')}
                     </p>
-                    <p className="font-sans text-xs text-white/30 mt-2">
+                    <p className="font-sans text-xs text-white/50 mt-2">
                       {t('footer.subscribeSuccessDetail')}
                     </p>
                   </motion.div>
                 )}
                 {error && (
-                  <p className="font-sans text-xs text-red-400 mt-3">
+                  <p className="font-sans text-xs text-red-400 mt-3" role="alert" aria-live="polite">
                     {t('footer.subscribeError', { defaultValue: 'Une erreur est survenue. Veuillez réessayer.' })}
                   </p>
                 )}
@@ -139,35 +140,35 @@ export default function Footer() {
                 className="h-20 lg:h-24 w-auto object-contain mb-8"
                 loading="lazy"
               />
-              <p className="font-sans text-xs text-white/30 leading-[1.9] max-w-[260px] font-light mb-10">
+              <p className="font-sans text-xs text-white/50 leading-[1.9] max-w-[260px] font-light mb-10">
                 {t('footer.brandDescription')}
               </p>
               <div className="space-y-3.5 mb-10">
                 <a href="mailto:contact@renaissance-eyewear.fr" className="flex items-center gap-3 group">
-                  <Mail className="w-3.5 h-3.5 text-white/20 group-hover:text-white/50 transition-colors duration-500" />
-                  <span className="font-sans text-[11px] text-white/35 group-hover:text-white/60 transition-colors duration-500">
+                  <Mail className="w-3.5 h-3.5 text-white/50 group-hover:text-white/50 transition-colors duration-500" />
+                  <span className="font-sans text-[11px] text-white/60 group-hover:text-white/60 transition-colors duration-500">
                     contact@renaissance-eyewear.fr
                   </span>
                 </a>
                 <a href="tel:+33142868200" className="flex items-center gap-3 group">
-                  <Phone className="w-3.5 h-3.5 text-white/20 group-hover:text-white/50 transition-colors duration-500" />
-                  <span className="font-sans text-[11px] text-white/35 group-hover:text-white/60 transition-colors duration-500">
+                  <Phone className="w-3.5 h-3.5 text-white/50 group-hover:text-white/50 transition-colors duration-500" />
+                  <span className="font-sans text-[11px] text-white/60 group-hover:text-white/60 transition-colors duration-500">
                     +33 1 42 86 82 00
                   </span>
                 </a>
                 <LocaleLink to="/store-locator" className="flex items-center gap-3 group">
-                  <MapPin className="w-3.5 h-3.5 text-white/20 group-hover:text-white/50 transition-colors duration-500" />
-                  <span className="font-sans text-[11px] text-white/35 group-hover:text-white/60 transition-colors duration-500">
+                  <MapPin className="w-3.5 h-3.5 text-white/50 group-hover:text-white/50 transition-colors duration-500" />
+                  <span className="font-sans text-[11px] text-white/60 group-hover:text-white/60 transition-colors duration-500">
                     {t('footer.findOptician')}
                   </span>
                 </LocaleLink>
               </div>
               <div className="flex items-center gap-2.5">
                 <a href="https://instagram.com/renaissance.eyewear" target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-white/[0.08] flex items-center justify-center hover:border-white/30 hover:bg-white/[0.03] transition-all duration-500" aria-label="Instagram">
-                  <Instagram size={14} className="text-white/35" />
+                  <Instagram size={14} className="text-white/60" />
                 </a>
                 <a href="https://facebook.com/renaissance.eyewear" target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-white/[0.08] flex items-center justify-center hover:border-white/30 hover:bg-white/[0.03] transition-all duration-500" aria-label="Facebook">
-                  <Facebook size={14} className="text-white/35" />
+                  <Facebook size={14} className="text-white/60" />
                 </a>
               </div>
             </motion.div>
@@ -206,7 +207,7 @@ export default function Footer() {
                   <ul className="space-y-3.5">
                     {col.links.map(({ to, label }) => (
                       <li key={to}>
-                        <LocaleLink to={to} className="font-sans text-[12px] text-white/35 hover:text-white/70 hover:translate-x-1 transition-all duration-500 font-light inline-block">
+                        <LocaleLink to={to} className="font-sans text-[12px] text-white/60 hover:text-white/70 hover:translate-x-1 transition-all duration-500 font-light inline-block">
                           {label}
                         </LocaleLink>
                       </li>
@@ -250,7 +251,7 @@ export default function Footer() {
                   className={`text-center ${index > 0 ? 'border-l border-white/[0.07]' : ''}`}
                 >
                   <p className="font-display text-4xl font-bold text-white tracking-[-0.02em] leading-none mb-2">{item.number}</p>
-                  <p className="font-sans text-[9px] tracking-[0.25em] text-white/25 uppercase font-medium mb-2">{item.label}</p>
+                  <p className="font-sans text-[9px] tracking-[0.25em] text-white/50 uppercase font-medium mb-2">{item.label}</p>
                   <p className="font-sans text-xs text-white/40 font-light">{item.description}</p>
                 </motion.div>
               ))}
@@ -265,7 +266,7 @@ export default function Footer() {
               <div className="flex flex-wrap items-center gap-2">
                 {['Visa', 'Mastercard', 'CB', 'Amex', 'Apple Pay', 'Google Pay'].map((method) => (
                   <div key={method} className="h-8 px-4 border border-white/[0.06] flex items-center justify-center">
-                    <span className="font-sans text-[10px] font-semibold tracking-wider text-white/30 uppercase">{method}</span>
+                    <span className="font-sans text-[10px] font-semibold tracking-wider text-white/50 uppercase">{method}</span>
                   </div>
                 ))}
               </div>
@@ -277,12 +278,12 @@ export default function Footer() {
                     { to: '/confidentialite', label: t('footerLinks.privacy') },
                     { to: '/cookies', label: t('footerLinks.cookies') },
                   ].map(({ to, label }) => (
-                    <LocaleLink key={to} to={to} className="font-sans text-[11px] text-white/25 hover:text-white/50 transition-colors duration-300">
+                    <LocaleLink key={to} to={to} className="font-sans text-[11px] text-white/50 hover:text-white/50 transition-colors duration-300">
                       {label}
                     </LocaleLink>
                   ))}
                 </div>
-                <p className="font-sans text-[11px] text-white/20">
+                <p className="font-sans text-[11px] text-white/50">
                   &copy; {new Date().getFullYear()} Renaissance Paris
                 </p>
                 <button
@@ -290,7 +291,7 @@ export default function Footer() {
                   className="w-9 h-9 border border-white/[0.08] flex items-center justify-center hover:border-white/30 hover:bg-white/[0.03] transition-all duration-500 group"
                   aria-label={t('footer.backToTop')}
                 >
-                  <ArrowUp className="w-3.5 h-3.5 text-white/25 group-hover:text-white/60 transition-colors duration-500" />
+                  <ArrowUp className="w-3.5 h-3.5 text-white/50 group-hover:text-white/60 transition-colors duration-500" />
                 </button>
               </div>
             </div>
@@ -306,7 +307,7 @@ export default function Footer() {
         {/* Newsletter */}
         <div className="px-6 py-20">
           <div className="text-center">
-            <p className="font-sans text-[8px] tracking-[0.4em] text-white/30 uppercase font-medium mb-5">
+            <p className="font-sans text-[8px] tracking-[0.4em] text-white/50 uppercase font-medium mb-5">
               {t('footer.newsletterLabel')}
             </p>
             <h2 className="font-display text-3xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-2">
@@ -316,7 +317,7 @@ export default function Footer() {
               {t('footer.newsletterSubtitle')}
             </p>
             <div className="w-10 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-8" />
-            <p className="font-sans text-white/30 text-[12px] leading-[1.9] font-light mb-10 max-w-[280px] mx-auto">
+            <p className="font-sans text-white/50 text-[12px] leading-[1.9] font-light mb-10 max-w-[280px] mx-auto">
               {t('footer.newsletterDescriptionMobile')}
             </p>
 
@@ -328,8 +329,9 @@ export default function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t('footer.emailPlaceholder')}
                   required
+                  aria-label={t('footer.emailPlaceholder')}
                   disabled={submitting}
-                  className="w-full px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-[13px] font-sans placeholder:text-white/20 focus:outline-none focus:border-white/25 transition-all duration-500 text-center disabled:opacity-50 rounded-none"
+                  className="w-full px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-[13px] font-sans placeholder:text-white/50 focus:outline-none focus:border-white/25 transition-all duration-500 text-center disabled:opacity-50 rounded-none"
                 />
                 <button
                   type="submit"
@@ -342,7 +344,7 @@ export default function Footer() {
                   </span>
                 </button>
                 {error && (
-                  <p className="font-sans text-xs text-red-400 mt-2 text-center">
+                  <p className="font-sans text-xs text-red-400 mt-2 text-center" role="alert" aria-live="polite">
                     {t('footer.subscribeError', { defaultValue: 'Une erreur est survenue. Veuillez réessayer.' })}
                   </p>
                 )}
@@ -352,7 +354,7 @@ export default function Footer() {
                 <p className="font-sans text-sm text-white font-medium">
                   {t('footer.subscribeSuccess')}
                 </p>
-                <p className="font-sans text-xs text-white/30 mt-2">
+                <p className="font-sans text-xs text-white/50 mt-2">
                   {t('footer.subscribeSuccessDetail')}
                 </p>
               </div>
@@ -394,7 +396,9 @@ export default function Footer() {
             <div key={col.key} className="border-b border-white/[0.06]">
               <button
                 onClick={() => setOpenAccordion(openAccordion === col.key ? null : col.key)}
-                className="w-full flex items-center justify-between px-6 py-5"
+                className="w-full flex items-center justify-between px-6 py-5 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-bronze"
+                aria-expanded={openAccordion === col.key}
+                aria-controls={`footer-accordion-${col.key}`}
               >
                 <h4 className="font-sans text-[10px] tracking-[0.3em] text-white/50 uppercase font-semibold">
                   {col.title}
@@ -402,13 +406,17 @@ export default function Footer() {
                 <motion.div
                   animate={{ rotate: openAccordion === col.key ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
+                  aria-hidden="true"
                 >
-                  <ChevronDown size={14} className="text-white/25" />
+                  <ChevronDown size={14} className="text-white/50" />
                 </motion.div>
               </button>
               <AnimatePresence>
                 {openAccordion === col.key && (
                   <motion.div
+                    id={`footer-accordion-${col.key}`}
+                    role="region"
+                    aria-labelledby={`footer-accordion-btn-${col.key}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
@@ -418,7 +426,7 @@ export default function Footer() {
                     <ul className="px-6 pb-6 space-y-4">
                       {col.links.map(({ to, label }) => (
                         <li key={to}>
-                          <LocaleLink to={to} className="font-sans text-[13px] text-white/35 hover:text-white/60 font-light transition-colors duration-300">
+                          <LocaleLink to={to} className="font-sans text-[13px] text-white/60 hover:text-white/60 font-light transition-colors duration-300">
                             {label}
                           </LocaleLink>
                         </li>
@@ -440,29 +448,29 @@ export default function Footer() {
               className="h-20 w-auto object-contain mb-6"
               loading="lazy"
             />
-            <p className="font-sans text-[11px] text-white/25 leading-[1.9] font-light max-w-[260px] mb-8">
+            <p className="font-sans text-[11px] text-white/50 leading-[1.9] font-light max-w-[260px] mb-8">
               {t('footer.brandDescriptionMobile')}
             </p>
 
             {/* Socials */}
             <div className="flex items-center justify-center gap-4 mb-10">
               <a href="https://instagram.com/renaissance.eyewear" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/[0.08] flex items-center justify-center hover:border-white/20 transition-colors duration-300" aria-label="Instagram">
-                <Instagram size={15} className="text-white/30" />
+                <Instagram size={15} className="text-white/50" />
               </a>
               <a href="https://facebook.com/renaissance.eyewear" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/[0.08] flex items-center justify-center hover:border-white/20 transition-colors duration-300" aria-label="Facebook">
-                <Facebook size={15} className="text-white/30" />
+                <Facebook size={15} className="text-white/50" />
               </a>
             </div>
 
             {/* Contact */}
             <div className="space-y-3">
               <a href="mailto:contact@renaissance-eyewear.fr" className="flex items-center justify-center gap-2.5">
-                <Mail className="w-3.5 h-3.5 text-white/15" />
-                <span className="font-sans text-[11px] text-white/30">contact@renaissance-eyewear.fr</span>
+                <Mail className="w-3.5 h-3.5 text-white/50" />
+                <span className="font-sans text-[11px] text-white/50">contact@renaissance-eyewear.fr</span>
               </a>
               <a href="tel:+33142868200" className="flex items-center justify-center gap-2.5">
-                <Phone className="w-3.5 h-3.5 text-white/15" />
-                <span className="font-sans text-[11px] text-white/30">+33 1 42 86 82 00</span>
+                <Phone className="w-3.5 h-3.5 text-white/50" />
+                <span className="font-sans text-[11px] text-white/50">+33 1 42 86 82 00</span>
               </a>
             </div>
           </div>
@@ -477,7 +485,7 @@ export default function Footer() {
             to="/store-locator"
             className="flex items-center justify-center gap-3 w-full border border-white/[0.1] py-4 hover:border-white/20 active:bg-white/[0.03] transition-all duration-300"
           >
-            <MapPin className="w-4 h-4 text-white/25" />
+            <MapPin className="w-4 h-4 text-white/50" />
             <span className="font-sans text-[10px] tracking-[0.2em] font-medium uppercase text-white/40">
               {t('footer.findOptician')}
             </span>
@@ -498,7 +506,7 @@ export default function Footer() {
                 <p className="font-display text-lg font-bold text-white/80 tracking-[-0.02em] leading-none mb-1">
                   {item.number}
                 </p>
-                <p className="font-sans text-[7px] tracking-[0.2em] text-white/20 uppercase font-medium">
+                <p className="font-sans text-[7px] tracking-[0.2em] text-white/50 uppercase font-medium">
                   {item.label}
                 </p>
               </div>
@@ -511,7 +519,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-2">
             {['Visa', 'Mastercard', 'CB', 'Amex', 'Apple Pay', 'Google Pay'].map((method) => (
               <div key={method} className="h-8 px-3.5 border border-white/[0.06] flex items-center justify-center">
-                <span className="font-sans text-[9px] font-semibold tracking-wider text-white/20 uppercase">{method}</span>
+                <span className="font-sans text-[9px] font-semibold tracking-wider text-white/50 uppercase">{method}</span>
               </div>
             ))}
           </div>
@@ -527,12 +535,12 @@ export default function Footer() {
                 { to: '/confidentialite', label: t('footerLinks.privacy') },
                 { to: '/cookies', label: t('footerLinks.cookies') },
               ].map(({ to, label }) => (
-                <LocaleLink key={to} to={to} className="font-sans text-[10px] text-white/20 hover:text-white/40 transition-colors duration-300">
+                <LocaleLink key={to} to={to} className="font-sans text-[10px] text-white/50 hover:text-white/40 transition-colors duration-300">
                   {label}
                 </LocaleLink>
               ))}
             </div>
-            <p className="font-sans text-[10px] text-white/15">
+            <p className="font-sans text-[10px] text-white/50">
               &copy; {new Date().getFullYear()} Renaissance Paris
             </p>
             <button
@@ -540,7 +548,7 @@ export default function Footer() {
               className="w-10 h-10 border border-white/[0.08] flex items-center justify-center hover:border-white/20 transition-all duration-300 group"
               aria-label={t('footer.backToTop')}
             >
-              <ArrowUp className="w-3.5 h-3.5 text-white/20 group-hover:text-white/50 transition-colors duration-300" />
+              <ArrowUp className="w-3.5 h-3.5 text-white/50 group-hover:text-white/50 transition-colors duration-300" />
             </button>
           </div>
         </div>

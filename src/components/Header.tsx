@@ -280,10 +280,11 @@ export default function Header() {
               <CartIcon itemCount={itemCount} transparent={isTransparent} localePath={localePath} />
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`relative w-6 h-5 flex flex-col justify-center items-end gap-[6px] transition-colors duration-500 focus:outline-none ${
+                className={`relative w-6 h-5 flex flex-col justify-center items-end gap-[6px] transition-colors duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2 ${
                   isTransparent ? 'text-white/90' : 'text-dark-text'
                 }`}
                 aria-label="Menu"
+                aria-expanded={mobileMenuOpen}
               >
                 <motion.span
                   className="block h-[1.5px] bg-current origin-right"
@@ -520,7 +521,8 @@ function IconButton({ onClick, icon, transparent }: { onClick?: () => void; icon
   return (
     <button
       onClick={onClick}
-      className={`transition-colors duration-500 ${
+      aria-label={icon === 'search' ? 'Rechercher' : icon}
+      className={`transition-colors duration-500 focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2 ${
         transparent
           ? 'text-white/90 hover:text-white/50'
           : 'text-dark-text hover:text-bronze'
@@ -536,7 +538,8 @@ function CartIcon({ itemCount, transparent, localePath }: { itemCount: number; t
   return (
     <Link
       to={localePath('/cart')}
-      className={`relative transition-colors duration-500 ${
+      aria-label={`Panier${itemCount > 0 ? ` (${itemCount} article${itemCount > 1 ? 's' : ''})` : ''}`}
+      className={`relative transition-colors duration-500 focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2 ${
         transparent
           ? 'text-white/90 hover:text-white/50'
           : 'text-dark-text hover:text-bronze'

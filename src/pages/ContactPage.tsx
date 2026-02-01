@@ -259,7 +259,7 @@ export default function ContactPage() {
                       {t('contactPage.formSection.nameLabel')}
                     </label>
                     <input
-                      type="text" id="name" name="name" value={formData.name} onChange={handleChange} required
+                      type="text" id="name" name="name" value={formData.name} onChange={handleChange} required aria-required="true"
                       placeholder={t('contactPage.formSection.namePlaceholder')}
                       className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
                     />
@@ -269,7 +269,7 @@ export default function ContactPage() {
                       {t('contactPage.formSection.emailLabel')}
                     </label>
                     <input
-                      type="email" id="email" name="email" value={formData.email} onChange={handleChange} required
+                      type="email" id="email" name="email" value={formData.email} onChange={handleChange} required aria-required="true"
                       placeholder={t('contactPage.formSection.emailPlaceholder')}
                       className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
                     />
@@ -292,7 +292,7 @@ export default function ContactPage() {
                       {t('contactPage.formSection.subjectLabel')}
                     </label>
                     <select
-                      id="subject" name="subject" value={formData.subject} onChange={handleChange} required
+                      id="subject" name="subject" value={formData.subject} onChange={handleChange} required aria-required="true"
                       className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text focus:outline-none focus:border-bronze transition-colors duration-300 appearance-none cursor-pointer"
                     >
                       <option value="general">{t('contactPage.formSection.subjectGeneral')}</option>
@@ -311,7 +311,7 @@ export default function ContactPage() {
                     {t('contactPage.formSection.messageLabel')}
                   </label>
                   <textarea
-                    id="message" name="message" value={formData.message} onChange={handleChange} required rows={5}
+                    id="message" name="message" value={formData.message} onChange={handleChange} required aria-required="true" rows={5}
                     placeholder={t('contactPage.formSection.messagePlaceholder')}
                     className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300 resize-none"
                   />

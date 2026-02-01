@@ -107,7 +107,7 @@ function AppRoutes() {
       <Route path="contact" element={<ContactPage />} />
       <Route path="garantie" element={<GarantiePage />} />
       <Route path="guide-tailles" element={<GuideTaillesPage />} />
-      <Route path="livraison" element={<ExpeditionPage />} />
+      <Route path="livraison" element={<ExpeditionPage />} />  {/* canonical: /livraison */}
       <Route path="suivi-commande" element={<SuiviCommandePage />} />
 
       {/* Pages magazine/histoire */}
@@ -122,7 +122,7 @@ function AppRoutes() {
       <Route path="cgv" element={<CGVPage />} />
       <Route path="cookies" element={<CookiesPage />} />
       <Route path="remboursement" element={<RemboursementPage />} />
-      <Route path="expedition" element={<ExpeditionPage />} />
+      {/* /expedition redirects handled by /livraison route above */}
       <Route path="conditions-utilisation" element={<ConditionsUtilisationPage />} />
 
       {/* 404 - Catch all */}
@@ -166,8 +166,15 @@ function AppContent() {
   return (
     <LocaleProvider value={topLevelLocale}>
       <div className="relative bg-beige">
+        {/* Skip navigation link for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-dark-text focus:text-white focus:px-6 focus:py-3 focus:font-sans focus:text-sm focus:tracking-wide"
+        >
+          Aller au contenu principal
+        </a>
         {!isCheckout && <Header />}
-        <main className="relative">
+        <main id="main-content" className="relative">
           <ErrorBoundary fallbackLevel="page">
             <Suspense fallback={<PageLoader />}>
               <Routes>

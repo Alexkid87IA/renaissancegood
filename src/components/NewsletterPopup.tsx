@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -15,6 +15,7 @@ export default function NewsletterPopup() {
   const [submitting, setSubmitting] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
   const [error, setError] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   // Trigger logic: scroll 30% OR 5s timeout (whichever first)
   useEffect(() => {
@@ -49,15 +50,36 @@ export default function NewsletterPopup() {
     setVisible(false);
   }, []);
 
-  // Escape key
+  // Escape key + focus trap
   useEffect(() => {
+    if (!visible) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') handleClose();
+      // Focus trap
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last?.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first?.focus(); }
+        }
+      }
     };
-    if (visible) {
-      document.addEventListener('keydown', onKey);
-      return () => document.removeEventListener('keydown', onKey);
-    }
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    // Focus first element
+    requestAnimationFrame(() => {
+      const firstFocusable = modalRef.current?.querySelector<HTMLElement>('button, input');
+      firstFocusable?.focus();
+    });
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
   }, [visible, handleClose]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -93,6 +115,10 @@ export default function NewsletterPopup() {
 
           {/* Modal */}
           <motion.div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t('newsletterPopup.title')}
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -161,7 +187,7 @@ export default function NewsletterPopup() {
                     </form>
 
                     {error && (
-                      <p className="font-sans text-xs text-red-500 mt-3">
+                      <p className="font-sans text-xs text-red-500 mt-3" role="alert" aria-live="polite">
                         {t('newsletterPopup.error')}
                       </p>
                     )}
