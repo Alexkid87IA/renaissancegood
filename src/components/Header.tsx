@@ -45,15 +45,55 @@ interface ShopifyProduct {
 
 type ActiveMenu = 'heritage' | 'versailles' | 'isis' | 'histoire' | null;
 
-// Fonction pour formater les produits Shopify
+// Extraire le nom de modèle (sans "COLORI X") pour dédupliquer
+function getModelName(title: string): string {
+  return title.replace(/\s*COLORI\s*\d+/i, '').trim();
+}
+
+// Shuffle Fisher-Yates
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+// Produits à exclure du mega menu (par titre exact ou partiel)
+const MEGA_MENU_EXCLUDED = ['RENAISSANCE XXX COLORI 1'];
+
+// Formater les produits Shopify — TOUJOURS 4 cartes, variées, garanti
 function formatProducts(products: ShopifyProduct[], defaultDescription: string): MenuProduct[] {
-  return products.slice(0, 3).map((product) => ({
+  if (products.length === 0) return [];
+
+  // Exclure les produits blacklistés
+  const filtered = products.filter(p =>
+    !MEGA_MENU_EXCLUDED.some(ex => p.title.includes(ex))
+  );
+
+  // Shuffle les produits filtrés
+  const shuffled = shuffleArray(filtered.length > 0 ? filtered : products);
+
+  // Convertir tous les produits en MenuProduct
+  const all: MenuProduct[] = shuffled.map((product) => ({
     name: product.title,
     image: product.images.edges[0]?.node.url || '',
     description: product.description.substring(0, 50) || defaultDescription,
     price: `€${parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0)}`,
     handle: product.handle
   }));
+
+  // Prendre les 4 premiers (ou tous si < 4)
+  const result = all.slice(0, 4);
+
+  // GARANTIE : si < 4 produits, dupliquer en boucle pour remplir
+  while (result.length < 4) {
+    const source = all[result.length % all.length];
+    result.push({ ...source });
+  }
+
+  return result;
 }
 
 // Pages où le header est transparent au top
@@ -92,7 +132,8 @@ export default function Header() {
   const [isMobile, setIsMobile] = useState(() =>
     typeof window !== 'undefined' ? window.innerWidth < 1024 : false
   );
-  const isTransparent = isTransparentPage && !scrolled;
+  // Fond toujours blanc flou — texte et logo toujours dark
+  const isTransparent = false;
 
   // Collections (lazy-loaded au hover)
   const [versaillesCollection, setVersaillesCollection] = useState<MenuProduct[]>([]);
@@ -188,9 +229,9 @@ export default function Header() {
         initial={{ y: -100 }}
         animate={{ y: mobileHidden ? -100 : 0 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-[100] transition-colors duration-700 ${
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ${
           isTransparent
-            ? 'bg-transparent border-b border-transparent'
+            ? 'bg-white/70 backdrop-blur-xl border-b border-dark-text/[0.04]'
             : 'bg-white/95 backdrop-blur-xl border-b border-dark-text/[0.06]'
         }`}
       >
@@ -319,6 +360,7 @@ export default function Header() {
               subtitle={t('megaMenu.versaillesSubtitle')}
               description={t('megaMenu.versaillesDescription')}
               collectionLink={localePath('/collections/versailles')}
+              collectionImage="https://renaissance-cdn.b-cdn.net/campgane.png"
               onClose={() => setActiveMenu(null)}
             />
           </MegaMenuWrapper>
@@ -336,6 +378,7 @@ export default function Header() {
               subtitle={t('megaMenu.heritageSubtitle')}
               description={t('megaMenu.heritageDescription')}
               collectionLink={localePath('/collections/heritage')}
+              collectionImage="https://renaissance-cdn.b-cdn.net/packshot%202.png"
               onClose={() => setActiveMenu(null)}
             />
           </MegaMenuWrapper>
@@ -346,45 +389,103 @@ export default function Header() {
       <AnimatePresence>
         {activeMenu === 'isis' && (
           <MegaMenuWrapper onMouseLeave={() => setActiveMenu(null)}>
-            <div className="max-w-[1600px] mx-auto px-8 md:px-12 lg:px-16 py-10 lg:py-14">
-              <div className="flex items-center gap-12 lg:gap-16">
-                {/* Image */}
-                <div className="w-[280px] lg:w-[340px] h-[200px] lg:h-[240px] flex-shrink-0 relative overflow-hidden">
-                  <img
-                    src="https://renaissance-cdn.b-cdn.net/collection%20isis%20comming%20soon.png"
-                    alt="Collection Isis"
-                    className="w-full h-full object-cover grayscale-[20%]"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 to-transparent" />
-                </div>
+            <div className="relative max-w-[1600px] mx-auto px-8 md:px-12 lg:px-16 py-10 lg:py-14 overflow-hidden">
+              {/* Lignes diagonales — motif géométrique signature Isis */}
+              <div className="absolute inset-0 pointer-events-none opacity-25" style={{
+                backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 79px, rgba(255,255,255,0.015) 79px, rgba(255,255,255,0.015) 80px)',
+              }} />
 
-                {/* Content */}
-                <div className="flex-1">
-                  <p className="font-sans text-[9px] tracking-[0.4em] text-dark-text/30 uppercase font-medium mb-3">
+              {/* Grain texture */}
+              <div
+                className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+                  backgroundSize: '128px 128px',
+                }}
+              />
+
+              {/* Halo bronze subtil — signature Isis */}
+              <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-bronze/[0.02] blur-[120px] pointer-events-none" />
+
+              <motion.div
+                className="flex items-center gap-12 lg:gap-16 relative z-10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {/* Image avec cadrage luxe */}
+                <motion.div
+                  className="w-[260px] lg:w-[300px] flex-shrink-0 relative"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="relative aspect-[3/4] overflow-hidden">
+                    <img
+                      src="https://renaissance-cdn.b-cdn.net/collection%20isis%20comming%20soon.png"
+                      alt="Collection Isis"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/50 via-transparent to-[#0a0a0a]/10" />
+                    <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.25)] pointer-events-none" />
+                    {/* Filet lumineux bas */}
+                    <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+                  </div>
+                </motion.div>
+
+                {/* Contenu éditorial */}
+                <motion.div
+                  className="flex-1"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <p className="font-sans text-[7px] tracking-[0.5em] text-bronze/30 uppercase font-medium mb-4">
                     {t('megaMenu.isisComingSoon')}
                   </p>
-                  <h3 className="font-display text-4xl lg:text-5xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9] mb-2">
+                  <h3 className="font-display text-5xl lg:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.85] mb-2">
                     ISIS
                   </h3>
-                  <p className="font-display text-xl lg:text-2xl font-light italic text-dark-text/50 tracking-[-0.02em] mb-6">
+                  <p className="font-display text-lg lg:text-xl font-light italic text-bronze/30 tracking-[-0.02em] mb-6">
                     {t('megaMenu.isisSubtitle')}
                   </p>
 
-                  <div className="w-10 h-px bg-dark-text/10 mb-6" />
+                  {/* Séparateur avec point bronze */}
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="w-10 h-px bg-white/[0.08]" />
+                    <div className="w-[3px] h-[3px] bg-bronze/25 rounded-full" />
+                  </div>
 
-                  <p className="font-sans text-[13px] text-dark-text/40 leading-[1.8] font-light max-w-md mb-8">
+                  <p className="font-sans text-[11.5px] text-white/20 leading-[2] font-light max-w-md mb-8">
                     {t('megaMenu.isisDescription')}
                   </p>
 
-                  <div className="inline-flex items-center gap-2.5 border border-dark-text/12 px-5 py-2.5">
-                    <span className="w-1.5 h-1.5 bg-dark-text/30 rounded-full animate-pulse" />
-                    <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/40">
+                  {/* Badge "Bientôt disponible" avec dot pulsant bronze */}
+                  <div className="inline-flex items-center gap-3 border border-bronze/15 px-6 py-3">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-bronze/40 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-bronze/50" />
+                    </span>
+                    <span className="font-sans text-[8px] tracking-[0.35em] font-medium uppercase text-white/25">
                       {t('megaMenu.availableSoon')}
                     </span>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
+
+              {/* Ligne décorative bas */}
+              <motion.div
+                className="flex items-center mt-10 relative z-10"
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformOrigin: 'center' }}
+              >
+                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-white/[0.06]" />
+                <div className="w-1.5 h-1.5 border border-white/[0.08] mx-4" style={{ transform: 'rotate(45deg)' }} />
+                <div className="flex-1 h-px bg-gradient-to-l from-transparent via-white/[0.06] to-white/[0.06]" />
+              </motion.div>
             </div>
           </MegaMenuWrapper>
         )}
@@ -394,54 +495,102 @@ export default function Header() {
       <AnimatePresence>
         {activeMenu === 'histoire' && (
           <MegaMenuWrapper onMouseLeave={() => setActiveMenu(null)}>
-            <div className="max-w-[1600px] mx-auto px-8 md:px-12 lg:px-16 py-10 lg:py-14">
-              <div className="flex items-center gap-12 lg:gap-16">
-                {/* Image */}
-                <div className="w-[280px] lg:w-[340px] h-[200px] lg:h-[240px] flex-shrink-0 relative overflow-hidden">
-                  <img
-                    src="https://renaissance-cdn.b-cdn.net/page%20histoire.png"
-                    alt={t('megaMenu.ourHistory')}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 to-transparent" />
-                </div>
+            <div className="relative max-w-[1600px] mx-auto px-8 md:px-12 lg:px-16 py-10 lg:py-14 overflow-hidden">
+              {/* Grain texture */}
+              <div
+                className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+                  backgroundSize: '128px 128px',
+                }}
+              />
 
-                {/* Content */}
-                <div className="flex-1 max-w-lg">
-                  <p className="font-sans text-[9px] tracking-[0.4em] text-dark-text/30 uppercase font-medium mb-3">
+              <motion.div
+                className="flex items-center gap-12 lg:gap-16 relative z-10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {/* Image avec cadrage luxe */}
+                <motion.div
+                  className="w-[260px] lg:w-[300px] flex-shrink-0 relative"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="relative aspect-[3/4] overflow-hidden group/hero">
+                    <img
+                      src="https://renaissance-cdn.b-cdn.net/page%20histoire.png"
+                      alt={t('megaMenu.ourHistory')}
+                      className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover/hero:scale-[1.03]"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/50 via-transparent to-[#0a0a0a]/10" />
+                    <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.25)] pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+                  </div>
+                </motion.div>
+
+                {/* Contenu éditorial */}
+                <motion.div
+                  className="flex-1 max-w-lg"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <p className="font-sans text-[7px] tracking-[0.5em] text-white/15 uppercase font-medium mb-4">
                     {t('megaMenu.histoireLabel')}
                   </p>
-                  <h3 className="font-display text-4xl lg:text-5xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9] mb-2">
+                  <h3 className="font-display text-5xl lg:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.85] mb-2">
                     RENAISSANCE
                   </h3>
-                  <p className="font-display text-xl lg:text-2xl font-light italic text-dark-text/50 tracking-[-0.02em] mb-6">
+                  <p className="font-display text-lg lg:text-xl font-light italic text-white/25 tracking-[-0.02em] mb-6">
                     {t('megaMenu.histoireSubtitle')}
                   </p>
-                  <div className="w-10 h-px bg-dark-text/10 mb-6" />
-                  <p className="font-sans text-[13px] text-dark-text/40 leading-[1.8] font-light mb-8">
+
+                  {/* Séparateur avec point */}
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="w-10 h-px bg-white/[0.08]" />
+                    <div className="w-[3px] h-[3px] bg-white/[0.12] rounded-full" />
+                  </div>
+
+                  <p className="font-sans text-[11.5px] text-white/20 leading-[2] font-light mb-8">
                     {t('megaMenu.histoireDescription')}
                   </p>
+
                   <div className="flex gap-3">
                     <LocaleLink to="/histoire" onClick={() => setActiveMenu(null)}>
-                      <button className="group relative overflow-hidden border border-dark-text px-8 py-3 transition-all duration-500">
-                        <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-white transition-colors duration-500">
+                      <button className="group/btn relative overflow-hidden border border-white/15 px-8 py-3.5 transition-all duration-500 hover:border-white/40">
+                        <span className="relative z-10 font-sans text-[8px] tracking-[0.35em] font-medium uppercase text-white/50 group-hover/btn:text-[#0a0a0a] transition-colors duration-500">
                           {t('megaMenu.ourHistory')}
                         </span>
-                        <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                        <span className="absolute inset-0 bg-white transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-500 origin-left" />
                       </button>
                     </LocaleLink>
                     <LocaleLink to="/savoir-faire" onClick={() => setActiveMenu(null)}>
-                      <button className="group relative overflow-hidden border border-dark-text/20 px-8 py-3 transition-all duration-500 hover:border-dark-text">
-                        <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/50 group-hover:text-white transition-colors duration-500">
+                      <button className="group/btn relative overflow-hidden border border-white/[0.08] px-8 py-3.5 transition-all duration-500 hover:border-white/25">
+                        <span className="relative z-10 font-sans text-[8px] tracking-[0.35em] font-medium uppercase text-white/30 group-hover/btn:text-[#0a0a0a] transition-colors duration-500">
                           {t('megaMenu.savoirFaire')}
                         </span>
-                        <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                        <span className="absolute inset-0 bg-white transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-500 origin-left" />
                       </button>
                     </LocaleLink>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
+
+              {/* Ligne décorative bas */}
+              <motion.div
+                className="flex items-center mt-10 relative z-10"
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformOrigin: 'center' }}
+              >
+                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-white/[0.06]" />
+                <div className="w-1.5 h-1.5 border border-white/[0.08] mx-4" style={{ transform: 'rotate(45deg)' }} />
+                <div className="flex-1 h-px bg-gradient-to-l from-transparent via-white/[0.06] to-white/[0.06]" />
+              </motion.div>
             </div>
           </MegaMenuWrapper>
         )}
@@ -492,18 +641,39 @@ function NavLink({ to, children, onMouseEnter, transparent }: { to: string; chil
   );
 }
 
-// Wrapper pour Mega Menu — apparition instantanée
+// Wrapper pour Mega Menu — fond noir avec bouton fermer, effet rideau
 function MegaMenuWrapper({ children, onMouseLeave }: { children: React.ReactNode; onMouseLeave: () => void }) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.08 }}
-      className="fixed top-[64px] sm:top-[64px] md:top-[72px] lg:top-[80px] left-0 right-0 z-[90] bg-beige border-t border-dark-text/[0.06]"
+      initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+      animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+      exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed top-[64px] sm:top-[64px] md:top-[72px] lg:top-[80px] left-0 right-0 z-[90] bg-[#0a0a0a] border-t border-white/[0.04]"
       onMouseLeave={onMouseLeave}
     >
+      {/* Gradient lumineux supérieur — ligne de lumière */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+
+      {/* Bouton fermer — coin supérieur droit, design raffiné */}
+      <button
+        onClick={onMouseLeave}
+        className="absolute top-5 right-6 xl:right-10 z-20 group flex items-center gap-3 text-white/20 hover:text-white/60 transition-all duration-400"
+        aria-label="Fermer le menu"
+      >
+        <span className="font-sans text-[7px] tracking-[0.4em] uppercase opacity-0 group-hover:opacity-100 transition-all duration-400 translate-x-2 group-hover:translate-x-0">
+          Fermer
+        </span>
+        <div className="relative w-5 h-5 flex items-center justify-center">
+          <span className="absolute w-4 h-px bg-current rotate-45 transition-transform duration-300 group-hover:w-5" />
+          <span className="absolute w-4 h-px bg-current -rotate-45 transition-transform duration-300 group-hover:w-5" />
+        </div>
+      </button>
+
       {children}
+
+      {/* Ombre portée vers le bas — profondeur */}
+      <div className="absolute bottom-0 left-0 right-0 h-8 translate-y-full bg-gradient-to-b from-black/20 to-transparent pointer-events-none" />
     </motion.div>
   );
 }

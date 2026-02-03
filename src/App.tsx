@@ -12,6 +12,7 @@ import CartDrawer from './components/CartDrawer';
 import CookieBanner from './components/CookieBanner';
 import NewsletterPopup from './components/NewsletterPopup';
 import ScrollToTop from './components/ScrollToTop';
+import NavigationProgress from './components/NavigationProgress';
 import LangLayout from './components/LangLayout';
 import ErrorBoundary from './components/ErrorBoundary';
 
@@ -208,6 +209,7 @@ function App() {
       <ErrorBoundary>
         <Router>
           <ScrollToTop />
+          <NavigationProgress />
           <CartProvider>
             <AppContent />
             <CartDrawer />

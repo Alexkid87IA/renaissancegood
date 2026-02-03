@@ -3,7 +3,7 @@
 // Carte produit — mode grille (vertical) ou éditorial (horizontal single-col)
 // ========================================
 
-import { useState, useMemo, memo, useCallback } from 'react';
+import { useState, useMemo, memo, useCallback, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { GroupedProduct, getColorSwatchStyle } from '../lib/productGrouping';
@@ -52,6 +52,9 @@ const GridCard = memo(function GridCard({
   const [isHovered, setIsHovered] = useState(false);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [imageReady, setImageReady] = useState(true);
+  const safetyTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const currentVariant = groupedProduct.colorVariants[selectedVariantIndex];
   const currentProduct = currentVariant.product;
@@ -68,6 +71,19 @@ const GridCard = memo(function GridCard({
   );
 
   const isOutOfStock = currentProduct.availableForSale === false;
+
+  const finishLoading = useCallback(() => {
+    setImageLoading(false);
+    setImageReady(true);
+    if (safetyTimerRef.current) clearTimeout(safetyTimerRef.current);
+  }, []);
+
+  // Safety timeout: force show after 2s if onLoad doesn't fire
+  useEffect(() => {
+    if (!imageLoading) return;
+    safetyTimerRef.current = setTimeout(finishLoading, 2000);
+    return () => { if (safetyTimerRef.current) clearTimeout(safetyTimerRef.current); };
+  }, [imageLoading, currentImage, finishLoading]);
 
   // Preload le coloris actuel au hover de la carte
   const handleMouseEnter = useCallback(() => {
@@ -87,6 +103,8 @@ const GridCard = memo(function GridCard({
   const handleColorChange = useCallback((variantIndex: number, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    setImageLoading(true);
+    setImageReady(false);
     setSelectedVariantIndex(variantIndex);
     setCurrentImageIndex(0);
   }, []);
@@ -94,6 +112,8 @@ const GridCard = memo(function GridCard({
   const handleImageChange = useCallback((imgIndex: number, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    setImageLoading(true);
+    setImageReady(false);
     setCurrentImageIndex(imgIndex);
   }, []);
 
@@ -107,13 +127,22 @@ const GridCard = memo(function GridCard({
       >
         <div className="relative aspect-[16/9] overflow-hidden bg-[#f0eeea]">
           <img
+            key={`${selectedVariantIndex}-${currentImageIndex}`}
             src={resizeShopifyImage(currentImage, 800)}
             alt={groupedProduct.modelName}
-            className={`w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            onLoad={finishLoading}
+            className={`w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
               isHovered ? 'scale-[1.04]' : 'scale-100'
-            }`}
+            } ${imageReady ? 'opacity-100' : 'opacity-0'}`}
             loading="lazy"
           />
+
+          {/* Loading bar — bronze sweep */}
+          {imageLoading && (
+            <div className="absolute inset-x-0 bottom-0 h-[2px] z-30 overflow-hidden">
+              <div className="h-full bg-bronze animate-[loadingSweep_1.2s_ease-in-out_infinite]" />
+            </div>
+          )}
 
           {isOutOfStock && (
             <div className="absolute top-3 right-3 z-10">
@@ -160,17 +189,17 @@ const GridCard = memo(function GridCard({
                   key={variant.handle}
                   onClick={(e) => handleColorChange(variantIndex, e)}
                   onMouseEnter={() => handleSwatchHover(variantIndex)}
-                  className={`w-8 h-8 rounded-full overflow-hidden transition-all duration-200 ${
+                  className={`flex-1 max-w-[56px] aspect-square overflow-hidden transition-all duration-200 ${
                     selectedVariantIndex === variantIndex
-                      ? 'ring-2 ring-dark-text ring-offset-2'
-                      : 'ring-1 ring-dark-text/15 hover:ring-dark-text/40'
+                      ? 'ring-2 ring-dark-text ring-offset-2 opacity-100'
+                      : 'ring-1 ring-dark-text/10 opacity-50 hover:opacity-80 hover:ring-dark-text/30'
                   }`}
                   title={`${t('sidebar.color')} ${variant.colorNumber}`}
                   aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
                 >
                   {variant.thumbnail ? (
                     <img
-                      src={resizeShopifyImage(variant.thumbnail, 100)}
+                      src={resizeShopifyImage(variant.thumbnail, 150)}
                       alt={`${t('sidebar.color')} ${variant.colorNumber}`}
                       className="w-full h-full object-cover"
                       loading="lazy"
@@ -218,6 +247,9 @@ const EditorialCard = memo(function EditorialCard({
   const [isHovered, setIsHovered] = useState(false);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [imageReady, setImageReady] = useState(true);
+  const safetyTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const currentVariant = groupedProduct.colorVariants[selectedVariantIndex];
   const currentProduct = currentVariant.product;
@@ -238,6 +270,19 @@ const EditorialCard = memo(function EditorialCard({
   const thumbnailImages = productImages.slice(0, 5);
   const isEven = index % 2 === 0;
 
+  const finishLoading = useCallback(() => {
+    setImageLoading(false);
+    setImageReady(true);
+    if (safetyTimerRef.current) clearTimeout(safetyTimerRef.current);
+  }, []);
+
+  // Safety timeout: force show after 2s if onLoad doesn't fire
+  useEffect(() => {
+    if (!imageLoading) return;
+    safetyTimerRef.current = setTimeout(finishLoading, 2000);
+    return () => { if (safetyTimerRef.current) clearTimeout(safetyTimerRef.current); };
+  }, [imageLoading, currentImage, finishLoading]);
+
   // Preload le coloris actuel au hover de la carte
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
@@ -255,6 +300,8 @@ const EditorialCard = memo(function EditorialCard({
   const handleColorChange = useCallback((variantIndex: number, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    setImageLoading(true);
+    setImageReady(false);
     setSelectedVariantIndex(variantIndex);
     setCurrentImageIndex(0);
   }, []);
@@ -262,6 +309,8 @@ const EditorialCard = memo(function EditorialCard({
   const handleImageChange = useCallback((imgIndex: number, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    setImageLoading(true);
+    setImageReady(false);
     setCurrentImageIndex(imgIndex);
   }, []);
 
@@ -285,13 +334,22 @@ const EditorialCard = memo(function EditorialCard({
           <div className="relative w-[60%] bg-[#f0eeea]">
             <div className="relative aspect-[16/10] overflow-hidden">
               <img
+                key={`desktop-${selectedVariantIndex}-${currentImageIndex}`}
                 src={resizeShopifyImage(currentImage, 1000)}
                 alt={groupedProduct.modelName}
+                onLoad={finishLoading}
                 className={`w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   isHovered ? 'scale-[1.03]' : 'scale-100'
-                }`}
+                } ${imageReady ? 'opacity-100' : 'opacity-0'}`}
                 loading="lazy"
               />
+
+              {/* Loading bar — bronze sweep */}
+              {imageLoading && (
+                <div className="absolute inset-x-0 bottom-0 h-[2px] z-30 overflow-hidden">
+                  <div className="h-full bg-bronze animate-[loadingSweep_1.2s_ease-in-out_infinite]" />
+                </div>
+              )}
               <div className="absolute top-4 left-4 z-10 w-8 h-8 border border-white/30 flex items-center justify-center">
                 <span className="font-sans text-[10px] font-medium text-white tracking-wide">
                   {counterLabel}
@@ -360,28 +418,33 @@ const EditorialCard = memo(function EditorialCard({
             </p>
 
             {groupedProduct.colorVariants.length > 1 && (
-              <div className="flex items-center gap-3 mt-6">
-                {groupedProduct.colorVariants.map((variant, variantIndex) => (
-                  <button
-                    type="button"
-                    key={variant.handle}
-                    onClick={(e) => handleColorChange(variantIndex, e)}
-                    onMouseEnter={() => handleSwatchHover(variantIndex)}
-                    className={`w-10 h-10 rounded-full overflow-hidden transition-all duration-200 ${
-                      selectedVariantIndex === variantIndex
-                        ? 'ring-2 ring-dark-text ring-offset-2'
-                        : 'ring-1 ring-dark-text/10 hover:ring-dark-text/30'
-                    }`}
-                    title={`${t('sidebar.color')} ${variant.colorNumber}`}
-                    aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
-                  >
-                    {variant.thumbnail ? (
-                      <img src={resizeShopifyImage(variant.thumbnail, 100)} alt={`${t('sidebar.color')} ${variant.colorNumber}`} className="w-full h-full object-cover" loading="lazy" />
-                    ) : (
-                      <div className="w-full h-full" style={getColorSwatchStyle(variant.colorNumber, variant.colorName)} />
-                    )}
-                  </button>
-                ))}
+              <div className="mt-6">
+                <p className="font-sans text-[8px] tracking-[0.2em] text-dark-text/30 uppercase mb-3">
+                  {t('sidebar.coloris')} — {groupedProduct.colorVariants.length}
+                </p>
+                <div className="flex gap-2.5">
+                  {groupedProduct.colorVariants.map((variant, variantIndex) => (
+                    <button
+                      type="button"
+                      key={variant.handle}
+                      onClick={(e) => handleColorChange(variantIndex, e)}
+                      onMouseEnter={() => handleSwatchHover(variantIndex)}
+                      className={`flex-1 max-w-[72px] aspect-square overflow-hidden transition-all duration-300 ${
+                        selectedVariantIndex === variantIndex
+                          ? 'ring-2 ring-dark-text ring-offset-2 opacity-100'
+                          : 'ring-1 ring-dark-text/10 opacity-40 hover:opacity-75 hover:ring-dark-text/30'
+                      }`}
+                      title={`${t('sidebar.color')} ${variant.colorNumber}`}
+                      aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
+                    >
+                      {variant.thumbnail ? (
+                        <img src={resizeShopifyImage(variant.thumbnail, 200)} alt={`${t('sidebar.color')} ${variant.colorNumber}`} className="w-full h-full object-cover" loading="lazy" />
+                      ) : (
+                        <div className="w-full h-full" style={getColorSwatchStyle(variant.colorNumber, variant.colorName)} />
+                      )}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
 
@@ -401,11 +464,20 @@ const EditorialCard = memo(function EditorialCard({
           <div className="relative bg-[#f0eeea]">
             <div className="relative aspect-[16/10] overflow-hidden">
               <img
+                key={`mobile-${selectedVariantIndex}-${currentImageIndex}`}
                 src={resizeShopifyImage(currentImage, 600)}
                 alt={groupedProduct.modelName}
-                className="w-full h-full object-cover"
+                onLoad={finishLoading}
+                className={`w-full h-full object-cover transition-opacity duration-500 ${imageReady ? 'opacity-100' : 'opacity-0'}`}
                 loading="lazy"
               />
+
+              {/* Loading bar — bronze sweep */}
+              {imageLoading && (
+                <div className="absolute inset-x-0 bottom-0 h-[2px] z-30 overflow-hidden">
+                  <div className="h-full bg-bronze animate-[loadingSweep_1.2s_ease-in-out_infinite]" />
+                </div>
+              )}
               <div className="absolute top-3 left-3 z-10 w-7 h-7 border border-white/30 flex items-center justify-center">
                 <span className="font-sans text-[9px] font-medium text-white tracking-wide">
                   {counterLabel}
@@ -455,27 +527,32 @@ const EditorialCard = memo(function EditorialCard({
               {price}&nbsp;€
             </p>
             {groupedProduct.colorVariants.length > 1 && (
-              <div className="flex items-center gap-2.5 mt-4">
-                {groupedProduct.colorVariants.map((variant, variantIndex) => (
-                  <button
-                    type="button"
-                    key={variant.handle}
-                    onClick={(e) => handleColorChange(variantIndex, e)}
-                    className={`w-9 h-9 rounded-full overflow-hidden transition-all duration-200 ${
-                      selectedVariantIndex === variantIndex
-                        ? 'ring-2 ring-dark-text ring-offset-2'
-                        : 'ring-1 ring-dark-text/10 hover:ring-dark-text/30'
-                    }`}
-                    title={`${t('sidebar.color')} ${variant.colorNumber}`}
-                    aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
-                  >
-                    {variant.thumbnail ? (
-                      <img src={resizeShopifyImage(variant.thumbnail, 100)} alt={`${t('sidebar.color')} ${variant.colorNumber}`} className="w-full h-full object-cover" loading="lazy" />
-                    ) : (
-                      <div className="w-full h-full" style={getColorSwatchStyle(variant.colorNumber, variant.colorName)} />
-                    )}
-                  </button>
-                ))}
+              <div className="mt-4">
+                <p className="font-sans text-[7px] tracking-[0.2em] text-dark-text/30 uppercase mb-2.5">
+                  {t('sidebar.coloris')} — {groupedProduct.colorVariants.length}
+                </p>
+                <div className="flex gap-2">
+                  {groupedProduct.colorVariants.map((variant, variantIndex) => (
+                    <button
+                      type="button"
+                      key={variant.handle}
+                      onClick={(e) => handleColorChange(variantIndex, e)}
+                      className={`flex-1 max-w-[64px] aspect-square overflow-hidden transition-all duration-300 ${
+                        selectedVariantIndex === variantIndex
+                          ? 'ring-2 ring-dark-text ring-offset-2 opacity-100'
+                          : 'ring-1 ring-dark-text/10 opacity-40 hover:opacity-75'
+                      }`}
+                      title={`${t('sidebar.color')} ${variant.colorNumber}`}
+                      aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
+                    >
+                      {variant.thumbnail ? (
+                        <img src={resizeShopifyImage(variant.thumbnail, 150)} alt={`${t('sidebar.color')} ${variant.colorNumber}`} className="w-full h-full object-cover" loading="lazy" />
+                      ) : (
+                        <div className="w-full h-full" style={getColorSwatchStyle(variant.colorNumber, variant.colorName)} />
+                      )}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
           </div>

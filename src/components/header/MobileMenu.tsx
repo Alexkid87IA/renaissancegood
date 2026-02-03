@@ -270,24 +270,34 @@ export default function MobileMenu({
           <p className="font-sans text-[8px] tracking-[0.4em] uppercase text-white/25 font-medium mb-3">
             {t('header.language')}
           </p>
-          <div className="flex items-center gap-2 flex-wrap">
-            {languages.map((lang) => (
-              <button
-                key={lang.code}
-                onClick={() => {
-                  onLanguageChange(lang.code);
-                  onClose();
-                }}
-                className={`py-2 px-3.5 border flex items-center gap-2 transition-all duration-300 ${
-                  currentLang === lang.code
-                    ? 'border-white/40 text-white'
-                    : 'border-white/8 text-white/25 hover:text-white/50 hover:border-white/20'
-                }`}
-              >
-                <span className="text-sm leading-none">{lang.flag}</span>
-                <span className="font-sans text-[9px] tracking-[0.2em] uppercase">{lang.code}</span>
-              </button>
-            ))}
+          <div className="grid grid-cols-3 gap-x-4 gap-y-1">
+            {languages.map((lang) => {
+              const isActive = currentLang === lang.code;
+              return (
+                <button
+                  key={lang.code}
+                  onClick={() => {
+                    onLanguageChange(lang.code);
+                    onClose();
+                  }}
+                  className={`py-2 flex items-baseline gap-2 transition-all duration-300 ${
+                    isActive
+                      ? 'text-white'
+                      : 'text-white/25 hover:text-white/50'
+                  }`}
+                >
+                  <span className={`font-sans text-[9px] tracking-[0.2em] uppercase ${isActive ? 'font-bold' : 'font-medium'}`}>
+                    {lang.code}
+                  </span>
+                  <span className="font-display text-sm tracking-[-0.01em]">
+                    {lang.label}
+                  </span>
+                  {isActive && (
+                    <span className="w-1 h-1 rounded-full bg-bronze ml-auto" />
+                  )}
+                </button>
+              );
+            })}
           </div>
         </motion.div>
       </motion.div>

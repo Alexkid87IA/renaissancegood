@@ -37,7 +37,7 @@ export default function NewsletterPopup() {
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    const timer = setTimeout(show, 5000);
+    const timer = setTimeout(show, 60000);
 
     return () => {
       window.removeEventListener('scroll', onScroll);

@@ -39,26 +39,26 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-beige pt-32 pb-20 overflow-x-hidden">
-      <div className="max-w-[1600px] mx-auto px-6 laptop:px-12 xl:px-16">
+    <div className="min-h-screen bg-beige pt-24 sm:pt-32 pb-32 lg:pb-20 overflow-x-hidden">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 laptop:px-12 xl:px-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-8 sm:mb-12"
         >
-          <h1 className="font-serif text-5xl laptop:text-6xl xl:text-7xl text-dark-text mb-4 leading-[0.9]">
+          <h1 className="font-serif text-3xl sm:text-5xl laptop:text-6xl xl:text-7xl text-dark-text mb-2 sm:mb-4 leading-[0.9]">
             {t('title')}
           </h1>
           <div className="flex items-center gap-3">
-            <p className="font-sans text-sm text-dark-text/60">
+            <p className="font-sans text-xs sm:text-sm text-dark-text/60">
               {t('pieces', { count: cartLines.length })}
             </p>
             {cartLines.length > 0 && (
               <>
                 <span className="text-dark-text/20">•</span>
-                <p className="font-sans text-sm text-bronze font-medium">
+                <p className="font-sans text-xs sm:text-sm text-bronze font-medium">
                   {subtotal.toFixed(0)}€
                 </p>
               </>
@@ -88,7 +88,7 @@ export default function CartPage() {
               </div>
 
               {/* Right — Content */}
-              <div className="bg-[#000000] px-8 lg:px-12 py-12 lg:py-0 flex flex-col justify-center">
+              <div className="bg-[#000000] px-5 sm:px-8 lg:px-12 py-10 sm:py-12 lg:py-0 flex flex-col justify-center">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -110,18 +110,18 @@ export default function CartPage() {
                   <div className="flex flex-col sm:flex-row gap-3">
                     <LocaleLink
                       to="/collections/heritage"
-                      className="group relative overflow-hidden border border-white/15 px-8 py-4 transition-all duration-500 hover:border-bronze/60 text-center"
+                      className="group relative overflow-hidden border border-white/15 px-5 sm:px-8 py-3.5 sm:py-4 transition-all duration-500 hover:border-bronze/60 text-center"
                     >
-                      <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                      <span className="relative z-10 font-sans text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
                         {t('emptyCollections')}
                       </span>
                       <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                     </LocaleLink>
                     <LocaleLink
                       to="/shop"
-                      className="group relative overflow-hidden border border-white/8 px-8 py-4 transition-all duration-500 hover:border-white/20 text-center"
+                      className="group relative overflow-hidden border border-white/8 px-5 sm:px-8 py-3.5 sm:py-4 transition-all duration-500 hover:border-white/20 text-center"
                     >
-                      <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/40 group-hover:text-white/70 transition-colors duration-500">
+                      <span className="relative z-10 font-sans text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.3em] font-medium uppercase text-white/40 group-hover:text-white/70 transition-colors duration-500">
                         {t('emptyExplore')}
                       </span>
                     </LocaleLink>
@@ -139,7 +139,7 @@ export default function CartPage() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-white border border-bronze/20 p-6 mb-8"
+                  className="bg-white border border-bronze/20 p-4 sm:p-6 mb-4 sm:mb-8"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <p className="font-sans text-xs text-dark-text">
@@ -171,63 +171,121 @@ export default function CartPage() {
                 ))}
               </AnimatePresence>
 
-              {/* Trust Badges - Premium Version */}
+              {/* Trust Badges — Mobile: horizontal scroll / Desktop: grid */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12"
+                className="mt-8 lg:mt-12"
               >
-                {[
-                  {
-                    icon: Shield,
-                    title: t('trustBadgeWarrantyTitle'),
-                    description: t('trustBadgeWarrantyDesc')
-                  },
-                  {
-                    icon: Truck,
-                    title: t('trustBadgeShippingTitle'),
-                    description: t('trustBadgeShippingDesc')
-                  },
-                  {
-                    icon: Award,
-                    title: t('trustBadgeParisTitle'),
-                    description: t('trustBadgeParisDesc')
-                  },
-                  {
-                    icon: Package,
-                    title: t('trustBadgeCaseTitle'),
-                    description: t('trustBadgeCaseDesc')
-                  }
-                ].map((item, i) => (
-                  <motion.div 
-                    key={i} 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 + (i * 0.1) }}
-                    className="bg-white border border-dark-text/10 p-6 text-center hover:border-bronze/30 transition-all duration-500 group"
-                  >
-                    <div className="mb-4 flex justify-center">
-                      <div className="w-12 h-12 rounded-full bg-beige flex items-center justify-center group-hover:bg-bronze/10 transition-colors duration-500">
-                        <item.icon size={24} className="text-bronze" strokeWidth={1.5} />
-                      </div>
+                {/* Mobile: 2x2 grid */}
+                <div className="lg:hidden grid grid-cols-2 gap-2">
+                  {[
+                    { icon: Shield, title: t('trustBadgeWarrantyTitle') },
+                    { icon: Truck, title: t('trustBadgeShippingTitle') },
+                    { icon: Award, title: t('trustBadgeParisTitle') },
+                    { icon: Package, title: t('trustBadgeCaseTitle') }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 bg-white border border-dark-text/8 px-3 py-2.5">
+                      <item.icon size={14} className="text-bronze flex-shrink-0" strokeWidth={1.5} />
+                      <span className="font-sans text-[8px] tracking-[0.05em] font-medium text-dark-text/60 uppercase leading-tight">
+                        {item.title}
+                      </span>
                     </div>
-                    <h4 className="font-sans text-xs tracking-[0.2em] font-bold text-dark-text uppercase mb-3">
-                      {item.title}
-                    </h4>
-                    <p className="font-sans text-xs leading-relaxed text-dark-text/60">
-                      {item.description}
-                    </p>
-                  </motion.div>
-                ))}
+                  ))}
+                </div>
+                {/* Desktop: full grid */}
+                <div className="hidden lg:grid grid-cols-4 gap-6">
+                  {[
+                    { icon: Shield, title: t('trustBadgeWarrantyTitle'), description: t('trustBadgeWarrantyDesc') },
+                    { icon: Truck, title: t('trustBadgeShippingTitle'), description: t('trustBadgeShippingDesc') },
+                    { icon: Award, title: t('trustBadgeParisTitle'), description: t('trustBadgeParisDesc') },
+                    { icon: Package, title: t('trustBadgeCaseTitle'), description: t('trustBadgeCaseDesc') }
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.4 + (i * 0.1) }}
+                      className="bg-white border border-dark-text/10 p-6 text-center hover:border-bronze/30 transition-all duration-500 group"
+                    >
+                      <div className="mb-4 flex justify-center">
+                        <div className="w-12 h-12 rounded-full bg-beige flex items-center justify-center group-hover:bg-bronze/10 transition-colors duration-500">
+                          <item.icon size={24} className="text-bronze" strokeWidth={1.5} />
+                        </div>
+                      </div>
+                      <h4 className="font-sans text-xs tracking-[0.2em] font-bold text-dark-text uppercase mb-3">
+                        {item.title}
+                      </h4>
+                      <p className="font-sans text-xs leading-relaxed text-dark-text/60">
+                        {item.description}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
+
+              {/* Order Summary — Mobile inline (simplified) */}
+              <div className="lg:hidden mt-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-white border border-dark-text/5 p-5"
+              >
+                <div className="flex justify-between items-baseline mb-3">
+                  <span className="font-sans text-xs text-dark-text/60">{t('subtotal')}</span>
+                  <span className="font-sans text-sm text-dark-text">{subtotal.toFixed(2)}€</span>
+                </div>
+                <div className="flex justify-between items-baseline mb-4">
+                  <span className="font-sans text-xs text-dark-text/60">{t('shipping')}</span>
+                  <span className="font-sans text-sm text-dark-text">
+                    {shipping > 0 ? `${shipping.toFixed(2)}€` : (
+                      <span className="text-bronze font-medium">{t('shippingFree')}</span>
+                    )}
+                  </span>
+                </div>
+                <div className="flex justify-between items-baseline pt-3 border-t-2 border-dark-text mb-4">
+                  <span className="font-serif text-base text-dark-text">{t('total')}</span>
+                  <span className="font-serif text-2xl font-bold text-bronze">
+                    {total.toFixed(2)}€
+                  </span>
+                </div>
+
+                {/* Payment methods — compact */}
+                <div className="flex items-center justify-center gap-1.5 flex-wrap pt-3 border-t border-dark-text/8">
+                  <div className="h-5 px-1.5 bg-white border border-dark-text/10 rounded flex items-center justify-center">
+                    <span className="text-[8px] font-bold text-[#1A1F71]">VISA</span>
+                  </div>
+                  <div className="w-7 h-5 bg-white border border-dark-text/10 rounded flex items-center justify-center">
+                    <div className="flex items-center -space-x-1">
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#EB001B]"></div>
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#F79E1B]"></div>
+                    </div>
+                  </div>
+                  <div className="h-5 px-1.5 bg-black rounded flex items-center justify-center">
+                    <span className="text-[8px] font-medium text-white">Pay</span>
+                  </div>
+                  <div className="h-5 px-1.5 bg-white border border-dark-text/10 rounded flex items-center justify-center">
+                    <span className="text-[8px] font-medium text-[#5F6368]">G Pay</span>
+                  </div>
+                  <div className="h-5 px-1.5 bg-[#0070BA] rounded flex items-center justify-center">
+                    <span className="text-[8px] font-bold text-white">PayPal</span>
+                  </div>
+                  <div className="h-5 px-1.5 bg-white border border-dark-text/10 rounded flex items-center justify-center">
+                    <span className="text-[8px] font-bold text-[#1A4298]">CB</span>
+                  </div>
+                </div>
+              </motion.div>
+              </div>
             </div>
 
-            {/* Order Summary - Sticky Sidebar */}
+            {/* Order Summary - Sticky Sidebar (Desktop only) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="hidden lg:block"
             >
               <div className="bg-white border border-dark-text/5 p-8 lg:p-10 sticky top-32">
                 <h2 className="font-sans text-[10px] tracking-[0.3em] font-bold text-dark-text uppercase mb-8 pb-4 border-b border-dark-text/10">
@@ -337,6 +395,43 @@ export default function CartPage() {
           </div>
         )}
       </div>
+
+      {/* ═══ FIXED BOTTOM CHECKOUT BAR — Mobile only ═══ */}
+      {cartLines.length > 0 && (
+        <motion.div
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-white border-t border-dark-text/10 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]"
+        >
+          {/* Free shipping progress — mini (top of bar) */}
+          {subtotal < freeShippingThreshold && (
+            <div className="px-4 pt-2">
+              <div className="flex items-center gap-2">
+                <div className="flex-1 bg-dark-text/5 h-1 rounded-full overflow-hidden">
+                  <div className="h-full bg-bronze" style={{ width: `${progressToFreeShipping}%` }} />
+                </div>
+                <span className="font-sans text-[9px] text-dark-text/40 flex-shrink-0">
+                  {remainingForFreeShipping.toFixed(0)}€
+                </span>
+              </div>
+            </div>
+          )}
+          <div className="px-4 py-3 flex items-center gap-3">
+            <div className="flex-shrink-0 min-w-0">
+              <p className="font-sans text-[8px] tracking-[0.1em] text-dark-text/40 uppercase">{t('total')}</p>
+              <p className="font-serif text-lg font-bold text-dark-text">{total.toFixed(2)}€</p>
+            </div>
+            <LocaleLink
+              to="/checkout"
+              className="flex-1 flex items-center justify-center gap-1.5 bg-dark-text text-white py-3.5 px-4 text-center font-sans text-[9px] tracking-[0.15em] font-bold uppercase active:bg-bronze transition-colors duration-200 min-w-0"
+            >
+              <Lock size={11} strokeWidth={2} className="flex-shrink-0" />
+              <span className="truncate">{t('checkout')}</span>
+            </LocaleLink>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 }
@@ -482,162 +577,112 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-white border border-dark-text/5 overflow-hidden mb-6"
+      className="bg-white border border-dark-text/5 overflow-hidden mb-4 lg:mb-6"
     >
-      <div className="flex flex-col lg:flex-row">
-        {/* Image Container with Carousel - Full bleed */}
-        <div className="w-full lg:w-[400px] xl:w-[480px] flex-shrink flex flex-col">
-          <LocaleLink
-            to={`/product/${product?.handle || ''}`}
-            className="relative group/image aspect-[4/3] overflow-hidden bg-neutral-100"
+      {/* ═══ MOBILE LAYOUT — Premium card ═══ */}
+      <div className="lg:hidden">
+        {/* Image 16:9 — cinematic crop */}
+        <LocaleLink
+          to={`/product/${product?.handle || ''}`}
+          className="relative block aspect-[16/9] overflow-hidden bg-neutral-100"
+        >
+          {loadingImages ? (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-6 h-6 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
+            </div>
+          ) : allProductImages[currentImageIndex] ? (
+            <img
+              src={allProductImages[currentImageIndex]}
+              alt={product?.title || 'Produit'}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          ) : null}
+
+          {/* Collection badge — top left */}
+          <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 z-10 pointer-events-none">
+            <p className="font-sans text-[7px] tracking-[0.2em] font-bold text-dark-text uppercase">
+              {collection}
+            </p>
+          </div>
+
+          {/* Remove button — top right */}
+          <button
+            type="button"
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); removeItem(node.id); }}
+            disabled={isLoading}
+            className="absolute top-3 right-3 w-7 h-7 bg-white/90 backdrop-blur-sm flex items-center justify-center text-dark-text/40 hover:text-dark-text transition-colors disabled:opacity-50 z-10"
+            aria-label={t('removeFromCart')}
           >
-            {loadingImages ? (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-8 h-8 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
-              </div>
-            ) : (
-              <AnimatePresence mode="wait">
-                {allProductImages.map((img, i) => i === currentImageIndex && (
-                  <motion.img
-                    key={i}
-                    src={img}
-                    alt={`${product?.title || 'Produit'} - Image ${i + 1}`}
-                    className="w-full h-full object-cover cursor-pointer"
-                    loading="lazy"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                ))}
-              </AnimatePresence>
-            )}
+            <X size={14} />
+          </button>
 
-            {/* Badge Collection */}
-            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 z-10 pointer-events-none">
-              <p className="font-sans text-[8px] tracking-[0.2em] font-bold text-dark-text uppercase">
-                {collection}
-              </p>
-            </div>
-
-            {/* Hover overlay */}
-            <div className="absolute inset-0 bg-dark-text/0 group-hover/image:bg-dark-text/10 transition-colors duration-300 flex items-center justify-center pointer-events-none">
-              <div className="opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 bg-white px-5 py-2.5">
-                <p className="font-sans text-[9px] tracking-[0.2em] font-bold text-dark-text uppercase">
-                  {t('viewProduct')}
-                </p>
-              </div>
-            </div>
-
-            {/* Navigation Arrows */}
-            {!loadingImages && allProductImages.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  onClick={handlePrevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white w-10 h-10 flex items-center justify-center transition-all duration-200 opacity-0 group-hover/image:opacity-100 z-20"
-                  aria-label={t('prevImage')}
-                >
-                  <ChevronLeft size={20} className="text-dark-text" strokeWidth={2} />
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white w-10 h-10 flex items-center justify-center transition-all duration-200 opacity-0 group-hover/image:opacity-100 z-20"
-                  aria-label={t('nextImage')}
-                >
-                  <ChevronRight size={20} className="text-dark-text" strokeWidth={2} />
-                </button>
-              </>
-            )}
-          </LocaleLink>
-
-          {/* Thumbnails - Style épuré */}
+          {/* Dot indicators — bottom center */}
           {!loadingImages && allProductImages.length > 1 && (
-            <div className="flex bg-white border-t border-dark-text/5">
-              {allProductImages.map((img, i) => (
+            <div className="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-1.5 z-10">
+              {allProductImages.map((_, i) => (
                 <button
                   key={i}
                   type="button"
-                  onClick={(e) => handleThumbnailClick(e, i)}
-                  className={`flex-1 aspect-[4/3] transition-all duration-200 overflow-hidden relative ${
-                    i === currentImageIndex ? 'opacity-100' : 'opacity-40 hover:opacity-70'
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); setCurrentImageIndex(i); }}
+                  className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
+                    i === currentImageIndex ? 'bg-white' : 'bg-white/40'
                   }`}
-                >
-                  <img
-                    src={img}
-                    alt={`${product?.title || 'Produit'} thumbnail ${i + 1}`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  {i === currentImageIndex && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-dark-text" />
-                  )}
-                </button>
+                />
               ))}
             </div>
           )}
-        </div>
 
-        {/* Product Details */}
-        <div className="flex-1 p-6 lg:p-8 flex flex-col">
-          <div className="flex-1">
-            <div className="flex justify-between items-start mb-6">
-              <div className="flex-1">
-                <LocaleLink to={`/product/${product?.handle || ''}`}>
-                  <h3 className="font-serif text-2xl lg:text-3xl xl:text-4xl text-dark-text mb-3 leading-tight pr-8 hover:text-bronze transition-colors duration-300 cursor-pointer">
-                    {product?.title || 'Produit'}
-                  </h3>
-                </LocaleLink>
-                {node.merchandise?.title && node.merchandise.title !== 'Default Title' && (
-                  <p className="font-sans text-xs text-dark-text/60 mb-2">
-                    {t('variant')} <span className="text-dark-text">{node.merchandise.title}</span>
-                  </p>
-                )}
-              </div>
-              <button
-                type="button"
-                onClick={() => removeItem(node.id)}
-                disabled={isLoading}
-                className="text-dark-text/30 hover:text-dark-text transition-colors disabled:opacity-50 p-2 flex-shrink-0"
-                aria-label={t('removeFromCart')}
-              >
-                <X size={20} />
-              </button>
-            </div>
+          {/* Subtle gradient for dots readability */}
+          {!loadingImages && allProductImages.length > 1 && (
+            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+          )}
+        </LocaleLink>
 
-            {/* Prix */}
-            <div className="mb-6 pb-6 border-b border-dark-text/5">
-              <p className="font-sans text-xs text-dark-text/50 mb-2">{t('unitPrice')}</p>
-              <p className="font-serif text-2xl text-bronze">
-                {price.toFixed(2)}€
-              </p>
-            </div>
+        {/* Details — clean editorial layout */}
+        <div className="px-4 py-4">
+          {/* Title + price row */}
+          <div className="flex items-start justify-between gap-3 mb-1">
+            <LocaleLink to={`/product/${product?.handle || ''}`} className="flex-1 min-w-0">
+              <h3 className="font-serif text-lg text-dark-text leading-tight">
+                {product?.title || 'Produit'}
+              </h3>
+            </LocaleLink>
+            <p className="font-serif text-lg text-bronze flex-shrink-0">
+              {price.toFixed(2)}€
+            </p>
           </div>
 
-          <div className="flex items-end justify-between flex-wrap gap-4">
-            {/* Quantity Controls */}
-            <div className="flex items-center border border-dark-text/20">
+          {/* Variant */}
+          {node.merchandise?.title && node.merchandise.title !== 'Default Title' && (
+            <p className="font-sans text-[10px] text-dark-text/40 tracking-[0.05em] uppercase mb-3">
+              {node.merchandise.title}
+            </p>
+          )}
+
+          {/* Separator */}
+          <div className="w-full h-px bg-dark-text/6 my-3" />
+
+          {/* Quantity + Total row */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center border border-dark-text/12">
               <button
                 type="button"
                 onClick={() => {
-                  if (node.quantity > 1) {
-                    updateQuantity(node.id, node.quantity - 1);
-                  } else {
-                    removeItem(node.id);
-                  }
+                  if (node.quantity > 1) updateQuantity(node.id, node.quantity - 1);
+                  else removeItem(node.id);
                 }}
                 disabled={isLoading}
-                className="p-3 hover:bg-beige transition-colors disabled:opacity-50"
+                className="w-9 h-9 flex items-center justify-center hover:bg-beige transition-colors disabled:opacity-50"
                 aria-label={t('decreaseQuantity')}
               >
-                {node.quantity === 1 ? <X size={16} /> : <Minus size={16} />}
+                {node.quantity === 1 ? <X size={13} /> : <Minus size={13} />}
               </button>
               <motion.span
                 key={node.quantity}
                 initial={{ scale: 1.2, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="px-6 font-sans text-base font-medium min-w-[60px] text-center"
+                className="w-9 h-9 flex items-center justify-center font-sans text-sm font-medium border-x border-dark-text/12"
               >
                 {node.quantity}
               </motion.span>
@@ -645,21 +690,199 @@ function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeIt
                 type="button"
                 onClick={() => updateQuantity(node.id, node.quantity + 1)}
                 disabled={isLoading}
-                className="p-3 hover:bg-beige transition-colors disabled:opacity-50"
+                className="w-9 h-9 flex items-center justify-center hover:bg-beige transition-colors disabled:opacity-50"
                 aria-label={t('increaseQuantity')}
               >
-                <Plus size={16} />
+                <Plus size={13} />
               </button>
             </div>
 
-            {/* Total Price */}
             <div className="text-right">
-              <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">
-                Total
-              </p>
-              <p className="font-serif text-3xl lg:text-4xl font-bold text-dark-text">
+              <p className="font-sans text-[8px] tracking-[0.15em] text-dark-text/35 uppercase mb-0.5">Total</p>
+              <p className="font-serif text-xl font-bold text-dark-text">
                 {totalPrice.toFixed(2)}€
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ═══ DESKTOP LAYOUT ═══ */}
+      <div className="hidden lg:block">
+        <div className="flex flex-row">
+          {/* Image Container with Carousel - Full bleed */}
+          <div className="w-[400px] xl:w-[480px] flex-shrink flex flex-col">
+            <LocaleLink
+              to={`/product/${product?.handle || ''}`}
+              className="relative group/image aspect-[4/3] overflow-hidden bg-neutral-100"
+            >
+              {loadingImages ? (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-8 h-8 border-2 border-bronze border-t-transparent rounded-full animate-spin" />
+                </div>
+              ) : (
+                <AnimatePresence mode="wait">
+                  {allProductImages.map((img, i) => i === currentImageIndex && (
+                    <motion.img
+                      key={i}
+                      src={img}
+                      alt={`${product?.title || 'Produit'} - Image ${i + 1}`}
+                      className="w-full h-full object-cover cursor-pointer"
+                      loading="lazy"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  ))}
+                </AnimatePresence>
+              )}
+
+              {/* Badge Collection */}
+              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 z-10 pointer-events-none">
+                <p className="font-sans text-[8px] tracking-[0.2em] font-bold text-dark-text uppercase">
+                  {collection}
+                </p>
+              </div>
+
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-dark-text/0 group-hover/image:bg-dark-text/10 transition-colors duration-300 flex items-center justify-center pointer-events-none">
+                <div className="opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 bg-white px-5 py-2.5">
+                  <p className="font-sans text-[9px] tracking-[0.2em] font-bold text-dark-text uppercase">
+                    {t('viewProduct')}
+                  </p>
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              {!loadingImages && allProductImages.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={handlePrevImage}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white w-10 h-10 flex items-center justify-center transition-all duration-200 opacity-0 group-hover/image:opacity-100 z-20"
+                    aria-label={t('prevImage')}
+                  >
+                    <ChevronLeft size={20} className="text-dark-text" strokeWidth={2} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleNextImage}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white w-10 h-10 flex items-center justify-center transition-all duration-200 opacity-0 group-hover/image:opacity-100 z-20"
+                    aria-label={t('nextImage')}
+                  >
+                    <ChevronRight size={20} className="text-dark-text" strokeWidth={2} />
+                  </button>
+                </>
+              )}
+            </LocaleLink>
+
+            {/* Thumbnails */}
+            {!loadingImages && allProductImages.length > 1 && (
+              <div className="flex bg-white border-t border-dark-text/5">
+                {allProductImages.map((img, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={(e) => handleThumbnailClick(e, i)}
+                    className={`flex-1 aspect-[4/3] transition-all duration-200 overflow-hidden relative ${
+                      i === currentImageIndex ? 'opacity-100' : 'opacity-40 hover:opacity-70'
+                    }`}
+                  >
+                    <img
+                      src={img}
+                      alt={`${product?.title || 'Produit'} thumbnail ${i + 1}`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    {i === currentImageIndex && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-dark-text" />
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Product Details */}
+          <div className="flex-1 p-8 flex flex-col">
+            <div className="flex-1">
+              <div className="flex justify-between items-start mb-6">
+                <div className="flex-1">
+                  <LocaleLink to={`/product/${product?.handle || ''}`}>
+                    <h3 className="font-serif text-3xl xl:text-4xl text-dark-text mb-3 leading-tight pr-8 hover:text-bronze transition-colors duration-300 cursor-pointer">
+                      {product?.title || 'Produit'}
+                    </h3>
+                  </LocaleLink>
+                  {node.merchandise?.title && node.merchandise.title !== 'Default Title' && (
+                    <p className="font-sans text-xs text-dark-text/60 mb-2">
+                      {t('variant')} <span className="text-dark-text">{node.merchandise.title}</span>
+                    </p>
+                  )}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => removeItem(node.id)}
+                  disabled={isLoading}
+                  className="text-dark-text/30 hover:text-dark-text transition-colors disabled:opacity-50 p-2 flex-shrink-0"
+                  aria-label={t('removeFromCart')}
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Prix */}
+              <div className="mb-6 pb-6 border-b border-dark-text/5">
+                <p className="font-sans text-xs text-dark-text/50 mb-2">{t('unitPrice')}</p>
+                <p className="font-serif text-2xl text-bronze">
+                  {price.toFixed(2)}€
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-end justify-between flex-wrap gap-4">
+              {/* Quantity Controls */}
+              <div className="flex items-center border border-dark-text/20">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (node.quantity > 1) updateQuantity(node.id, node.quantity - 1);
+                    else removeItem(node.id);
+                  }}
+                  disabled={isLoading}
+                  className="p-3 hover:bg-beige transition-colors disabled:opacity-50"
+                  aria-label={t('decreaseQuantity')}
+                >
+                  {node.quantity === 1 ? <X size={16} /> : <Minus size={16} />}
+                </button>
+                <motion.span
+                  key={node.quantity}
+                  initial={{ scale: 1.2, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  className="px-6 font-sans text-base font-medium min-w-[60px] text-center"
+                >
+                  {node.quantity}
+                </motion.span>
+                <button
+                  type="button"
+                  onClick={() => updateQuantity(node.id, node.quantity + 1)}
+                  disabled={isLoading}
+                  className="p-3 hover:bg-beige transition-colors disabled:opacity-50"
+                  aria-label={t('increaseQuantity')}
+                >
+                  <Plus size={16} />
+                </button>
+              </div>
+
+              {/* Total Price */}
+              <div className="text-right">
+                <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">
+                  Total
+                </p>
+                <p className="font-serif text-4xl font-bold text-dark-text">
+                  {totalPrice.toFixed(2)}€
+                </p>
+              </div>
             </div>
           </div>
         </div>

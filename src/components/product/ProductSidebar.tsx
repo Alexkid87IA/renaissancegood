@@ -105,32 +105,32 @@ export default function ProductSidebar({
           </h1>
         </div>
 
-        {/* Coloris — directement sous le nom */}
+        {/* Coloris — selection premium */}
         {colorVariants.length > 1 && onColorVariantChange && (
-          <div className="mb-5 pb-5 border-b border-dark-text/10">
-            <div className="flex items-center justify-between mb-3">
+          <div className="mb-6 pb-6 border-b border-dark-text/10">
+            <div className="flex items-center justify-between mb-4">
               <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
                 {t('sidebar.coloris')}
               </span>
-              <span className="font-sans text-xs text-dark-text/50">
-                {t('sidebar.availableCount', { count: colorVariants.length })}
+              <span className="font-sans text-[10px] tracking-[0.1em] text-dark-text/40 uppercase">
+                {selectedColorVariantIndex + 1} / {colorVariants.length}
               </span>
             </div>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex gap-3">
               {colorVariants.map((variant, index) => {
                 const isSelected = selectedColorVariantIndex === index;
                 return (
                   <button
                     key={variant.handle}
                     onClick={() => onColorVariantChange(index)}
-                    className="relative group transition-all duration-300 hover:scale-105"
+                    className={`relative group flex-1 transition-all duration-300 ${isSelected ? '' : 'opacity-50 hover:opacity-80'}`}
                     title={`Coloris ${variant.colorNumber}`}
                   >
                     <div
-                      className={`w-12 h-12 rounded-lg overflow-hidden transition-all duration-300 ${
+                      className={`w-full aspect-square rounded-none overflow-hidden transition-all duration-300 ${
                         isSelected
                           ? 'ring-2 ring-dark-text ring-offset-2'
-                          : 'ring-1 ring-dark-text/20 hover:ring-dark-text/40'
+                          : 'ring-1 ring-dark-text/10 hover:ring-dark-text/30'
                       }`}
                     >
                       {variant.thumbnail ? (
@@ -147,6 +147,12 @@ export default function ProductSidebar({
                         />
                       )}
                     </div>
+                    {/* Label underneath */}
+                    <p className={`font-sans text-[8px] tracking-[0.15em] uppercase text-center mt-2 transition-colors duration-300 ${
+                      isSelected ? 'text-dark-text font-bold' : 'text-dark-text/30'
+                    }`}>
+                      {variant.colorName || `Col. ${variant.colorNumber}`}
+                    </p>
                   </button>
                 );
               })}

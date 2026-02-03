@@ -157,37 +157,65 @@ export default function HeritageCollectionPage() {
       />
       <div
         ref={heroRef}
-        className="h-screen relative overflow-hidden"
+        className="h-screen relative overflow-hidden bg-[#000000]"
       >
-        {/* DESKTOP — Split éditorial */}
+        {/* DESKTOP — Géométrique avec clip-path (même layout qu'Isis) */}
         <div className="relative h-full overflow-hidden hidden lg:flex">
-          {/* Left Panel — Content */}
-          <div className="w-[42%] bg-[#000000] relative flex flex-col justify-center px-12 xl:px-20 2xl:px-28">
 
-            {/* Top label */}
-            <div className="absolute top-10 left-12 xl:left-20 2xl:left-28">
+          {/* Zone gauche — Contenu */}
+          <div className="w-[50%] relative flex flex-col justify-center pl-10 xl:pl-24 2xl:pl-32 pr-8 xl:pr-12 overflow-hidden">
+
+            {/* Ligne diagonale décorative derrière le texte */}
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+              style={{ transformOrigin: 'center' }}
+            >
+              <div className="w-[140%] h-px bg-white/[0.04] rotate-[20deg]" />
+            </motion.div>
+
+            {/* Collection number — top */}
+            <motion.div
+              className="absolute top-10 left-10 xl:left-24 2xl:left-32"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
               <p className="font-sans text-white/25 text-[9px] tracking-[0.4em] font-medium uppercase">
                 {t('heritage.collectionNumber')}
               </p>
-            </div>
+            </motion.div>
 
+            {/* Contenu texte */}
             <motion.div
               ref={contentRef}
-              variants={stagger}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.15, delayChildren: 0.8 } }
+              }}
               initial="hidden"
               animate={contentInView ? "visible" : "hidden"}
               className="relative z-10"
             >
-              <motion.h1 variants={fade} className="font-display text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white mb-3 tracking-[-0.03em] leading-[0.9]">
+              <motion.h1
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } }
+                }}
+                className="font-display text-[4.5rem] xl:text-[7rem] 2xl:text-[9rem] font-bold text-white tracking-[-0.03em] leading-[0.8] mb-4"
+              >
                 {t('heritage.heroTitle')}
               </motion.h1>
-              <motion.p variants={fade} className="font-display text-2xl xl:text-3xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 xl:mb-10">
+
+              <motion.p variants={fade} className="font-display text-lg xl:text-xl 2xl:text-2xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-6 xl:mb-8">
                 {t('heritage.heroSubtitle')}
               </motion.p>
 
-              <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8 xl:mb-10" />
+              <motion.div variants={fade} className="w-10 h-px bg-white/10 mb-6 xl:mb-8" />
 
-              <motion.p variants={fade} className="font-sans text-white/35 text-[13px] xl:text-sm leading-[1.9] font-light max-w-md mb-10 xl:mb-14">
+              <motion.p variants={fade} className="font-sans text-white/25 text-xs xl:text-[13px] 2xl:text-sm leading-[2] font-light max-w-xs mb-8 xl:mb-10">
                 {t('heritage.heroDescription')}
               </motion.p>
 
@@ -207,15 +235,25 @@ export default function HeritageCollectionPage() {
               </motion.div>
             </motion.div>
 
-            {/* Bottom scroll indicator */}
-            <div className="absolute bottom-10 left-12 xl:left-20 2xl:left-28 flex items-center gap-3">
+            {/* Scroll indicator — bottom left */}
+            <motion.div
+              className="absolute bottom-10 left-10 xl:left-24 2xl:left-32 flex items-center gap-3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.4 }}
+            >
               <div className="w-8 h-px bg-white/15" />
               <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">{t('scroll')}</span>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Right Panel — Image */}
-          <div className="flex-1 relative overflow-hidden">
+          {/* Zone droite — Image avec clip-path trapèze */}
+          <motion.div
+            className="w-[50%] relative overflow-hidden"
+            initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
+            animate={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          >
             <motion.img
               src="https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%203_58AM.jpeg"
               alt={t('heritage.heroImageAlt')}
@@ -223,62 +261,109 @@ export default function HeritageCollectionPage() {
               style={{ y: imageY }}
               fetchpriority="high"
             />
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#000000] to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#000000]/20 to-transparent" />
-          </div>
+            {/* Grille géométrique overlay */}
+            <motion.div
+              className="absolute inset-0 pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2, delay: 0.8 }}
+              style={{
+                backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 79px, rgba(255,255,255,0.03) 79px, rgba(255,255,255,0.03) 80px)',
+              }}
+            />
+          </motion.div>
+
+          {/* Ligne décorative bas — losange central */}
+          <motion.div
+            className="absolute bottom-20 left-[20%] right-[20%] flex items-center z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+          >
+            <div className="flex-1 h-px bg-white/[0.06]" />
+            <motion.div
+              className="w-2 h-2 bg-white/[0.06] mx-3"
+              style={{ transform: 'rotate(45deg)' }}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 1.4 }}
+            />
+            <div className="flex-1 h-px bg-white/[0.06]" />
+          </motion.div>
         </div>
 
-        {/* MOBILE */}
-        <div className="relative h-full overflow-hidden lg:hidden bg-[#000000]">
-          {/* Image — plein écran */}
-          <div className="absolute inset-0">
+        {/* MOBILE — Image clip diagonale + contenu bas */}
+        <div className="relative h-full overflow-hidden lg:hidden flex flex-col">
+
+          {/* Image haute avec clip diagonal bas */}
+          <motion.div
+            className="relative h-[50%] overflow-hidden"
+            initial={{ clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
+            animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0% 100%)' }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          >
             <img
               src="https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%203_58AM.jpeg"
               alt={t('heritage.heroImageAlt')}
-              className="w-full h-full object-cover object-[center_35%]"
+              className="w-full h-full object-cover object-center"
               fetchpriority="high"
             />
-            <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-b from-transparent to-[#000000]" />
-          </div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
 
-          {/* Label top */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="absolute top-24 left-6 z-10"
-          >
-            <p className="text-white/50 text-[9px] tracking-[0.3em] uppercase font-sans font-medium">
-              {t('heritage.collectionNumber')}
-            </p>
-          </motion.div>
-
-          {/* Content — bas */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="absolute bottom-0 left-0 right-0 px-6 pb-8 z-10"
-          >
-            <h1 className="font-display text-3xl sm:text-4xl font-bold text-white mb-1 tracking-[-0.03em] leading-[0.9]">
-              {t('heritage.heroTitle')}
-            </h1>
-            <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em] mb-5">
-              {t('heritage.heroSubtitle')}
-            </p>
-            <button
-              onClick={() => {
-                const section = document.querySelector('[data-products-section]');
-                section?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="group relative overflow-hidden w-full border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white active:scale-[0.98]"
+            {/* Collection number */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="absolute top-24 left-6 font-sans text-white/50 text-[9px] tracking-[0.3em] font-medium uppercase"
             >
-              <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
-                {t('heritage.exploreCollection')}
-              </span>
-              <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-            </button>
+              {t('heritage.collectionNumber')}
+            </motion.p>
           </motion.div>
+
+          {/* Contenu bas */}
+          <div className="flex-1 px-6 flex flex-col justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <h1 className="font-display text-4xl sm:text-5xl font-bold text-white mb-2 tracking-[-0.03em] leading-[0.85]">
+                {t('heritage.heroTitle')}
+              </h1>
+              <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em] mb-4">
+                {t('heritage.heroSubtitle')}
+              </p>
+              <div className="w-8 h-px bg-white/10 mb-4" />
+              <p className="text-white/30 text-sm font-sans leading-relaxed font-light mb-6">
+                {t('heritage.heroDescription')}
+              </p>
+              <button
+                onClick={() => {
+                  const section = document.querySelector('[data-products-section]');
+                  section?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="group relative overflow-hidden w-full border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white active:scale-[0.98]"
+              >
+                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
+                  {t('heritage.exploreCollection')}
+                </span>
+                <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              </button>
+            </motion.div>
+
+            {/* Losange décoratif */}
+            <motion.div
+              className="flex items-center mt-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+            >
+              <div className="flex-1 h-px bg-white/[0.06]" />
+              <div className="w-1.5 h-1.5 bg-white/[0.06] mx-2" style={{ transform: 'rotate(45deg)' }} />
+              <div className="flex-1 h-px bg-white/[0.06]" />
+            </motion.div>
+          </div>
         </div>
       </div>
 

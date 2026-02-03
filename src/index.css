@@ -13,3 +13,19 @@
     padding-bottom: calc(2rem + env(safe-area-inset-bottom));
   }
 }
+
+/* Loading sweep animation for color variant transitions */
+@keyframes loadingSweep {
+  0% {
+    width: 0%;
+    margin-left: 0%;
+  }
+  50% {
+    width: 60%;
+    margin-left: 20%;
+  }
+  100% {
+    width: 0%;
+    margin-left: 100%;
+  }
+}
