@@ -201,6 +201,16 @@ export default function Header() {
     setActiveMenu(null);
   }, [location.pathname]);
 
+  // Bloquer le scroll quand le mega menu est ouvert
+  useEffect(() => {
+    if (activeMenu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [activeMenu]);
+
   // Handle language change — navigate to the same page with new locale prefix
   const handleLanguageChange = useCallback((langCode: string) => {
     const newLocale = langCode.toLowerCase() as SupportedLocale;
@@ -641,40 +651,52 @@ function NavLink({ to, children, onMouseEnter, transparent }: { to: string; chil
   );
 }
 
-// Wrapper pour Mega Menu — fond noir avec bouton fermer, effet rideau
+// Wrapper pour Mega Menu — fond noir avec bouton fermer, effet rideau, backdrop
 function MegaMenuWrapper({ children, onMouseLeave }: { children: React.ReactNode; onMouseLeave: () => void }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
-      animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
-      exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-[64px] sm:top-[64px] md:top-[72px] lg:top-[80px] left-0 right-0 z-[90] bg-[#0a0a0a] border-t border-white/[0.04]"
-      onMouseLeave={onMouseLeave}
-    >
-      {/* Gradient lumineux supérieur — ligne de lumière */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
-
-      {/* Bouton fermer — coin supérieur droit, design raffiné */}
-      <button
+    <>
+      {/* Backdrop — couvre toute la page, cliquable pour fermer */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        className="fixed inset-0 z-[85] bg-black/60 backdrop-blur-sm"
         onClick={onMouseLeave}
-        className="absolute top-5 right-6 xl:right-10 z-20 group flex items-center gap-3 text-white/20 hover:text-white/60 transition-all duration-400"
-        aria-label="Fermer le menu"
+        aria-hidden="true"
+      />
+
+      {/* Menu content */}
+      <motion.div
+        initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+        animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+        exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed top-[64px] sm:top-[64px] md:top-[72px] lg:top-[80px] left-0 right-0 z-[90] bg-[#0a0a0a] border-t border-white/[0.04]"
       >
-        <span className="font-sans text-[7px] tracking-[0.4em] uppercase opacity-0 group-hover:opacity-100 transition-all duration-400 translate-x-2 group-hover:translate-x-0">
-          Fermer
-        </span>
-        <div className="relative w-5 h-5 flex items-center justify-center">
-          <span className="absolute w-4 h-px bg-current rotate-45 transition-transform duration-300 group-hover:w-5" />
-          <span className="absolute w-4 h-px bg-current -rotate-45 transition-transform duration-300 group-hover:w-5" />
-        </div>
-      </button>
+        {/* Gradient lumineux supérieur — ligne de lumière */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
-      {children}
+        {/* Bouton fermer — coin supérieur droit, plus visible */}
+        <button
+          onClick={onMouseLeave}
+          className="absolute top-4 right-5 xl:right-8 z-20 group flex items-center gap-2.5 px-3 py-2 rounded-sm bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/[0.15] text-white/40 hover:text-white/80 transition-all duration-300"
+          aria-label="Fermer le menu"
+        >
+          <span className="font-sans text-[8px] tracking-[0.3em] uppercase">
+            Fermer
+          </span>
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
 
-      {/* Ombre portée vers le bas — profondeur */}
-      <div className="absolute bottom-0 left-0 right-0 h-8 translate-y-full bg-gradient-to-b from-black/20 to-transparent pointer-events-none" />
-    </motion.div>
+        {children}
+
+        {/* Ombre portée vers le bas — profondeur */}
+        <div className="absolute bottom-0 left-0 right-0 h-12 translate-y-full bg-gradient-to-b from-black/40 to-transparent pointer-events-none" />
+      </motion.div>
+    </>
   );
 }
 

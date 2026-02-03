@@ -191,12 +191,12 @@ export default function MegaMenu({
                         </div>
                       </div>
 
-                      {/* Nom sous l'image — typographie épurée */}
-                      <div className="mt-2.5 flex items-baseline justify-between">
-                        <p className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/20 font-medium group-hover:text-white/45 transition-colors duration-400">
+                      {/* Nom + prix sous l'image */}
+                      <div className="mt-3 flex items-baseline justify-between gap-2">
+                        <p className="font-sans text-[9px] tracking-[0.2em] uppercase text-white/50 font-medium group-hover:text-white/80 transition-colors duration-300">
                           {item.name}
                         </p>
-                        <span className="font-sans text-[8px] text-white/10 group-hover:text-white/25 transition-colors duration-400 font-light">
+                        <span className="font-sans text-[10px] text-white/40 group-hover:text-white/70 transition-colors duration-300 font-medium tabular-nums">
                           {item.price}
                         </span>
                       </div>
