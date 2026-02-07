@@ -69,16 +69,6 @@ export default function SavoirFaireSection() {
               </div>
             </motion.div>
 
-            <motion.div variants={fade}>
-              <LocaleLink to="/savoir-faire">
-                <button className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-bronze/60">
-                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#0a0a0a] transition-colors duration-500">
-                    {t('savoirFaireSection.cta')}
-                  </span>
-                  <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                </button>
-              </LocaleLink>
-            </motion.div>
           </div>
         </motion.div>
       </div>
@@ -125,11 +115,6 @@ export default function SavoirFaireSection() {
               </div>
             </div>
 
-            <LocaleLink to="/savoir-faire" className="block w-full">
-              <button className="w-full bg-white text-dark-text px-8 py-4 font-sans text-[9px] tracking-[0.25em] uppercase font-bold hover:bg-white/90 transition-all duration-300 active:scale-[0.98]">
-                {t('savoirFaireSection.cta')}
-              </button>
-            </LocaleLink>
           </motion.div>
         </div>
       </div>

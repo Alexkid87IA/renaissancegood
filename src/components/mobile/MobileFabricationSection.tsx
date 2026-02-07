@@ -60,15 +60,15 @@ export default function MobileFabricationSection({ frame, lens }: MobileFabricat
 
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div>
-              <p className="font-display text-3xl text-white font-bold">8-12</p>
+              <p className="font-display text-3xl text-white font-bold">6-8</p>
               <p className="font-sans text-white/70 text-[10px] tracking-wide uppercase">
                 Artisans par paire
               </p>
             </div>
             <div>
-              <p className="font-display text-3xl text-white font-bold">250</p>
+              <p className="font-display text-3xl text-white font-bold">100+</p>
               <p className="font-sans text-white/70 text-[10px] tracking-wide uppercase">
-                Étapes de fabrication
+                Gestes de fabrication
               </p>
             </div>
             <div>

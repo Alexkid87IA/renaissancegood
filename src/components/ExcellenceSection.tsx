@@ -9,6 +9,7 @@ export default function ExcellenceSection() {
     { number: '02', title: t('excellence.pillar2Title'), description: t('excellence.pillar2Desc') },
     { number: '03', title: t('excellence.pillar3Title'), description: t('excellence.pillar3Desc') },
     { number: '04', title: t('excellence.pillar4Title'), description: t('excellence.pillar4Desc') },
+    { number: '05', title: t('excellence.pillar5Title'), description: t('excellence.pillar5Desc') },
   ];
   return (
     <motion.section

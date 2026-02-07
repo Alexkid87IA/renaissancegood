@@ -7,6 +7,7 @@ import { useState, useMemo, memo, useCallback, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { GroupedProduct, getColorSwatchStyle } from '../lib/productGrouping';
+import { getProductDescription } from '../data/productDescriptions';
 import LocaleLink from './LocaleLink';
 import T from './TranslatedText';
 
@@ -180,6 +181,15 @@ const GridCard = memo(function GridCard({
           <p className="font-sans text-sm font-semibold text-dark-text mt-1">
             {price}&nbsp;€
           </p>
+
+          {(() => {
+            const desc = getProductDescription(groupedProduct.modelName);
+            return desc ? (
+              <p className="font-sans text-[11px] sm:text-xs text-dark-text/50 leading-[1.6] font-light mt-2 line-clamp-2">
+                {desc}
+              </p>
+            ) : null;
+          })()}
 
           {groupedProduct.colorVariants.length > 1 && (
             <div className="flex items-center gap-2 mt-3">
@@ -416,6 +426,15 @@ const EditorialCard = memo(function EditorialCard({
             <p className="font-sans text-base sm:text-lg font-semibold text-dark-text">
               {price}&nbsp;€
             </p>
+
+            {(() => {
+              const desc = getProductDescription(groupedProduct.modelName);
+              return desc ? (
+                <p className="font-sans text-xs xl:text-sm text-dark-text/45 leading-[1.7] font-light mt-4 line-clamp-3">
+                  {desc}
+                </p>
+              ) : null;
+            })()}
 
             {groupedProduct.colorVariants.length > 1 && (
               <div className="mt-6">

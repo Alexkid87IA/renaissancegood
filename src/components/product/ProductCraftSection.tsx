@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const STATS = [
-  { value: '8-12', label: 'Artisans par paire' },
-  { value: '250', label: 'Étapes de fabrication' },
+  { value: '6-8', label: 'Artisans par paire' },
+  { value: '100+', label: 'Gestes de fabrication' },
   { value: '8-15h', label: 'De travail cumulé' },
-  { value: '2', label: 'Pays, un standard' },
+  { value: '3', label: 'Pays d\'excellence' },
 ];
 
 const DETAILS = [
@@ -50,8 +50,7 @@ export default function ProductCraftSection() {
           </h2>
 
           <p className="font-sans text-white/80 text-sm sm:text-base lg:text-lg leading-[1.8] font-light max-w-2xl mb-8 sm:mb-10 lg:mb-12">
-            Une paire de Renaissance, c'est 250 étapes. Des mains françaises pour la vision.
-            Des mains coréennes pour la précision. Deux pays. Un seul standard&nbsp;: celui qui dure.
+            Entre Paris, la Corée et l'Italie, nos montures prennent forme dans des ateliers où le geste prime sur la cadence. Nous ne produisons pas vite. Nous produisons juste.
           </p>
 
           {/* Stats */}

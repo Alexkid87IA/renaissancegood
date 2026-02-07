@@ -28,8 +28,8 @@
     "subscribe": "S'inscrire",
     "subscribeSuccess": "Bienvenue dans le Cercle Renaissance.",
     "subscribeSuccessDetail": "Vous recevrez nos prochaines communications.",
-    "brandDescription": "Lunetterie parisienne d'exception. Cinq symboles millénaires, un savoir-faire artisanal, des éditions limitées à 300 pièces.",
-    "brandDescriptionMobile": "Lunetterie parisienne d'exception. Savoir-faire artisanal, éditions limitées à 300 pièces.",
+    "brandDescription": "Lunetterie parisienne d'exception. Cinq symboles millénaires, un savoir-faire artisanal. Ce qui se porte. Ce qui se transmet.",
+    "brandDescriptionMobile": "Lunetterie parisienne d'exception. Ce qui se porte. Ce qui se transmet.",
     "findOptician": "Trouver un opticien",
     "allRightsReserved": "Tous droits réservés",
     "backToTop": "Retour en haut"
@@ -56,8 +56,8 @@
     "cookies": "Cookies"
   },
   "trust": {
-    "editions": "Éditions",
-    "editionsDesc": "Pièces par série",
+    "editions": "Points de vente",
+    "editionsDesc": "En France et à l'international",
     "delivery": "Livraison",
     "deliveryDesc": "Express offerte",
     "warranty": "Garantie",

@@ -240,10 +240,10 @@ export default function Footer() {
               className="grid grid-cols-4 gap-0"
             >
               {[
-                { number: '300', label: t('trust.editions'), description: t('trust.editionsDesc') },
+                { number: '100+', label: t('trust.editions'), description: t('trust.editionsDesc') },
                 { number: '48h', label: t('trust.delivery'), description: t('trust.deliveryDesc') },
                 { number: '2 ans', label: t('trust.warranty'), description: t('trust.warrantyDesc') },
-                { number: '200+', label: t('trust.opticians'), description: t('trust.opticiansDesc') },
+                { number: '100+', label: t('trust.opticians'), description: t('trust.opticiansDesc') },
               ].map((item, index) => (
                 <motion.div
                   key={item.label}
@@ -496,10 +496,10 @@ export default function Footer() {
         <div className="border-t border-white/[0.06] px-6 py-8">
           <div className="flex items-center justify-between">
             {[
-              { number: '300', label: t('trust.editions') },
+              { number: '100+', label: t('trust.editions') },
               { number: '48h', label: t('trust.delivery') },
               { number: '2 ans', label: t('trust.warranty') },
-              { number: '200+', label: t('trust.opticians') },
+              { number: '100+', label: t('trust.opticians') },
             ].map((item, index) => (
               <div key={item.label} className="flex-1 text-center">
                 {index > 0 && <div className="sr-only" />}

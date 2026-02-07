@@ -38,7 +38,7 @@ interface RelatedProductsProps {
   limit?: number;
 }
 
-export default function RelatedProducts({ currentProductId, limit = 4 }: RelatedProductsProps) {
+export default function RelatedProducts({ currentProductId, limit = 6 }: RelatedProductsProps) {
   const { t } = useTranslation('product');
   const navigate = useLocalizedNavigate();
   const [products, setProducts] = useState<Product[]>([]);
@@ -75,10 +75,6 @@ export default function RelatedProducts({ currentProductId, limit = 4 }: Related
 
   if (products.length === 0) return null;
 
-  // Premier produit = mise en avant, les autres en grille
-  const featured = products[0];
-  const rest = products.slice(1);
-
   return (
     <section className="bg-white">
       {/* Séparateur haut */}
@@ -113,27 +109,9 @@ export default function RelatedProducts({ currentProductId, limit = 4 }: Related
           </LocaleLink>
         </motion.div>
 
-        {/* Produit mis en avant */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="mb-6 sm:mb-8"
-        >
-          <ProductCard
-            product={featured}
-            index={0}
-            isHovered={hoveredIndex === 0}
-            onHover={() => setHoveredIndex(0)}
-            onLeave={() => setHoveredIndex(null)}
-            featured
-          />
-        </motion.div>
-
-        {/* Grille secondaire */}
+        {/* Grille produits */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-5 lg:gap-6">
-          {rest.map((product, index) => (
+          {products.map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 25 }}
@@ -143,9 +121,9 @@ export default function RelatedProducts({ currentProductId, limit = 4 }: Related
             >
               <ProductCard
                 product={product}
-                index={index + 1}
-                isHovered={hoveredIndex === index + 1}
-                onHover={() => setHoveredIndex(index + 1)}
+                index={index}
+                isHovered={hoveredIndex === index}
+                onHover={() => setHoveredIndex(index)}
                 onLeave={() => setHoveredIndex(null)}
               />
             </motion.div>
@@ -211,7 +189,7 @@ function ProductCard({
     >
       {/* Image */}
       <div className={`relative overflow-hidden bg-[#f5f4f0] ${
-        featured ? 'aspect-[21/9]' : 'aspect-[4/3]'
+        featured ? 'aspect-[16/9]' : 'aspect-[16/10]'
       }`}>
         {imageUrl && (
           <>

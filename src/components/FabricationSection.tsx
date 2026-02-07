@@ -12,10 +12,10 @@ export default function FabricationSection() {
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
 
   const STATS = [
-    { value: '8-12', label: t('fabrication.stat1') },
-    { value: '250', label: t('fabrication.stat2') },
+    { value: '6-8', label: t('fabrication.stat1') },
+    { value: '100+', label: t('fabrication.stat2') },
     { value: '15h', label: t('fabrication.stat3') },
-    { value: '2', label: t('fabrication.stat4') },
+    { value: '3', label: t('fabrication.stat4') },
   ];
   const DETAILS = [
     { label: t('fabrication.detail1Label'), location: t('fabrication.detail1Location') },

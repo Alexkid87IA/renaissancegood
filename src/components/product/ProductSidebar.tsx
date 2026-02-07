@@ -372,11 +372,11 @@ export default function ProductSidebar({
                 <div className="mt-4 space-y-4">
                   <div className="grid grid-cols-2 gap-3">
                     <div className="p-3 bg-neutral-50 rounded">
-                      <p className="font-display text-lg font-bold text-dark-text">8-12</p>
+                      <p className="font-display text-lg font-bold text-dark-text">6-8</p>
                       <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">{t('sidebar.artisansPerPair')}</p>
                     </div>
                     <div className="p-3 bg-neutral-50 rounded">
-                      <p className="font-display text-lg font-bold text-dark-text">250</p>
+                      <p className="font-display text-lg font-bold text-dark-text">100+</p>
                       <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">{t('sidebar.fabricationSteps')}</p>
                     </div>
                     <div className="p-3 bg-neutral-50 rounded">
@@ -384,7 +384,7 @@ export default function ProductSidebar({
                       <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">{t('sidebar.cumulativeWork')}</p>
                     </div>
                     <div className="p-3 bg-neutral-50 rounded">
-                      <p className="font-display text-lg font-bold text-dark-text">2</p>
+                      <p className="font-display text-lg font-bold text-dark-text">3</p>
                       <p className="font-sans text-[9px] tracking-[0.15em] text-dark-text/50 uppercase mt-0.5">{t('sidebar.countriesOneStandard')}</p>
                     </div>
                   </div>
