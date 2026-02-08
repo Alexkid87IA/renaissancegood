@@ -281,9 +281,9 @@ export default function CartDrawer() {
 
                 {/* Boutons d'action */}
                 <div className="space-y-3">
-                  {/* Bouton Checkout */}
+                  {/* Bouton Checkout → Cart page */}
                   <LocaleLink
-                    to="/checkout"
+                    to="/cart"
                     onClick={closeCart}
                     className="block w-full bg-dark-text text-white text-center font-sans text-[10px] tracking-[0.3em] uppercase py-4 hover:bg-bronze transition-all duration-300"
                   >

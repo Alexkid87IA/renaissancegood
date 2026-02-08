@@ -8,6 +8,7 @@ import { Lock, ArrowLeft, AlertCircle, ChevronDown, Check, Shield, Truck, Rotate
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import LocaleLink from '../components/LocaleLink';
 import T from '../components/TranslatedText';
+import { PaymentLogos } from '../components/PaymentLogos';
 
 function resizeShopifyImage(url: string, width: number): string {
   if (!url || !url.includes('cdn.shopify.com')) return url;
@@ -88,6 +89,28 @@ const stripeAppearance: Appearance = {
 };
 
 // ========================================
+// TRUST BAR COMPONENT
+// ========================================
+
+function TrustBar() {
+  const { t } = useTranslation('cart');
+  return (
+    <div className="grid grid-cols-3 gap-3 my-6">
+      {[
+        { Icon: Shield, label: t('checkoutPage.trustBarSecure') },
+        { Icon: Lock, label: t('checkoutPage.trustBarEncrypted') },
+        { Icon: Truck, label: t('checkoutPage.trustBarShipping') },
+      ].map(({ Icon, label }) => (
+        <div key={label} className="flex items-center justify-center gap-2 py-3 bg-bronze/[0.04] border border-bronze/10">
+          <Icon className="w-3.5 h-3.5 text-bronze/60" />
+          <span className="font-sans text-[9px] tracking-[0.1em] text-dark-text/50 uppercase">{label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ========================================
 // EXPRESS CHECKOUT (Apple Pay / Google Pay)
 // ========================================
 
@@ -133,9 +156,6 @@ function ExpressCheckoutSection({
   return (
     <div className={hasExpressMethods === null ? 'min-h-[60px]' : ''}>
       <div className={hasExpressMethods === null ? 'opacity-0 h-0 overflow-hidden' : ''}>
-        <p className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-4">
-          {t('checkoutPage.paymentExpressLabel')}
-        </p>
         <ExpressCheckoutElement
           onReady={({ availablePaymentMethods }) => {
             if (availablePaymentMethods) {
@@ -179,10 +199,14 @@ function ExpressCheckoutSection({
           }}
         />
 
-        {/* Divider "OU" */}
+        {/* Divider "OU" with bronze ornament */}
         <div className="flex items-center gap-4 my-8">
           <div className="flex-1 h-px bg-dark-text/[0.07]" />
-          <span className="font-sans text-[10px] tracking-[0.25em] text-dark-text/25 uppercase">{t('checkoutPage.orDivider')}</span>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-px bg-bronze/30" />
+            <span className="font-sans text-[10px] tracking-[0.25em] text-dark-text/25 uppercase">{t('checkoutPage.orDivider')}</span>
+            <div className="w-4 h-px bg-bronze/30" />
+          </div>
           <div className="flex-1 h-px bg-dark-text/[0.07]" />
         </div>
       </div>
@@ -248,18 +272,20 @@ function StripePaymentForm({
 
   return (
     <div>
-      {/* EXPRESS CHECKOUT */}
-      <ExpressCheckoutSection
-        total={total}
-        onSuccess={onSuccess}
-        onError={onError}
-      />
-
-      {/* CARD PAYMENT */}
+      {/* CARD PAYMENT — No Express here, it's at top of page */}
       <form onSubmit={handleSubmit}>
-        <p className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-4">
-          {t('checkoutPage.cardPayment')}
-        </p>
+        <div className="flex items-center gap-3 mb-5">
+          <div className="w-6 h-px bg-bronze/40" />
+          <p className="font-display text-lg font-medium text-dark-text">
+            {t('checkoutPage.cardPayment')}
+          </p>
+        </div>
+
+        {/* Stripe security note */}
+        <div className="flex items-center gap-2 mb-5 px-3 py-2.5 bg-bronze/[0.04] border border-bronze/10">
+          <Lock className="w-3 h-3 text-bronze/50" />
+          <span className="font-sans text-[10px] text-dark-text/40">{t('checkoutPage.stripeSecurityNote')}</span>
+        </div>
 
         <div className={isReady ? '' : 'min-h-[200px] flex items-center justify-center'}>
           {!isReady && (
@@ -305,34 +331,35 @@ function StripePaymentForm({
           </motion.div>
         )}
 
+        {/* CTA with bronze sweep */}
         <button
           type="submit"
           disabled={!stripe || !isReady || isProcessing}
-          className="w-full mt-8 bg-dark-text text-white py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-bronze transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+          className="group relative w-full mt-8 bg-dark-text text-white py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold overflow-hidden transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
         >
+          <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left group-disabled:scale-x-0" />
           {isProcessing ? (
             <>
-              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              <span>{t('checkoutPage.processing')}</span>
+              <div className="relative z-10 w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              <span className="relative z-10">{t('checkoutPage.processing')}</span>
             </>
           ) : (
             <>
-              <Lock className="w-3.5 h-3.5" />
-              <span>{t('checkoutPage.confirmAndPay', { total: `${total.toFixed(2)}\u20AC` })}</span>
+              <Lock className="relative z-10 w-3.5 h-3.5" />
+              <span className="relative z-10">{t('checkoutPage.confirmAndPay', { total: `${total.toFixed(2)}\u20AC` })}</span>
             </>
           )}
         </button>
 
+        {/* Trust bar under confirm button */}
+        <TrustBar />
+
         {/* Payment method icons */}
-        <div className="flex items-center justify-center gap-2.5 mt-5">
-          <span className="font-sans text-[9px] tracking-[0.1em] text-dark-text/20 uppercase mr-1">
+        <div className="mt-2">
+          <p className="font-sans text-[9px] tracking-[0.1em] text-dark-text/20 uppercase text-center mb-2">
             {t('checkoutPage.acceptedMethods')}
-          </span>
-          {['VISA', 'MC', 'CB', 'AMEX'].map((brand) => (
-            <div key={brand} className="w-8 h-5 border border-dark-text/[0.07] rounded-sm flex items-center justify-center bg-white">
-              <span className="font-sans text-[7px] font-bold text-dark-text/50">{brand}</span>
-            </div>
-          ))}
+          </p>
+          <PaymentLogos size="compact" />
         </div>
       </form>
     </div>
@@ -340,7 +367,7 @@ function StripePaymentForm({
 }
 
 // ========================================
-// BARRE DE PROGRESSION (2 étapes)
+// BARRE DE PROGRESSION PREMIUM (typographic)
 // ========================================
 
 function StepProgress({ currentStep }: { currentStep: 1 | 2 }) {
@@ -351,59 +378,167 @@ function StepProgress({ currentStep }: { currentStep: 1 | 2 }) {
   ];
 
   return (
-    <div className="flex items-center justify-center gap-0 mb-10 md:mb-14">
-      {steps.map((step, index) => (
-        <div key={step.num} className="flex items-center">
-          <div className="flex flex-col items-center">
-            <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${
-                step.num < currentStep
-                  ? 'bg-dark-text'
-                  : step.num === currentStep
-                  ? 'bg-dark-text'
-                  : 'border border-dark-text/20'
-              }`}
-            >
-              {step.num < currentStep ? (
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                >
-                  <Check className="w-3.5 h-3.5 text-white" />
-                </motion.div>
-              ) : (
-                <span
-                  className={`font-sans text-[11px] font-medium ${
-                    step.num === currentStep ? 'text-white' : 'text-dark-text/30'
-                  }`}
-                >
-                  {step.num}
-                </span>
-              )}
-            </div>
+    <>
+      {/* Desktop */}
+      <div className="hidden md:flex items-center justify-center gap-0 mb-10 md:mb-14">
+        {steps.map((step, index) => (
+          <div key={step.num} className="flex items-center">
             <span
-              className={`font-sans text-[9px] tracking-[0.15em] uppercase mt-2 transition-colors duration-300 ${
-                step.num <= currentStep ? 'text-dark-text' : 'text-dark-text/30'
+              className={`transition-all duration-500 ${
+                step.num === currentStep
+                  ? 'font-display text-lg font-medium text-dark-text'
+                  : step.num < currentStep
+                  ? 'font-display text-lg font-medium text-dark-text'
+                  : 'font-sans text-sm text-dark-text/30'
               }`}
             >
               {step.label}
+              {step.num < currentStep && (
+                <Check className="inline-block w-4 h-4 text-bronze ml-2" />
+              )}
             </span>
-          </div>
 
-          {index < steps.length - 1 && (
-            <div className="w-24 sm:w-32 md:w-40 h-px mx-4 sm:mx-5 relative -mt-5">
-              <div className="absolute inset-0 bg-dark-text/10" />
-              <motion.div
-                className="absolute inset-y-0 left-0 bg-dark-text"
-                initial={false}
-                animate={{ width: step.num < currentStep ? '100%' : '0%' }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              />
-            </div>
-          )}
+            {index < steps.length - 1 && (
+              <div className="w-24 sm:w-32 md:w-40 h-px mx-6 relative">
+                <div className="absolute inset-0 bg-dark-text/10" />
+                <motion.div
+                  className="absolute inset-y-0 left-0 bg-bronze"
+                  initial={false}
+                  animate={{ width: step.num < currentStep ? '100%' : '0%' }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile — "Étape X sur Y" + bronze bar */}
+      <div className="md:hidden mb-8">
+        <p className="font-sans text-[11px] tracking-[0.1em] text-dark-text/50 text-center mb-3">
+          {t('checkoutPage.stepXofY', { current: currentStep, total: 2 })}
+        </p>
+        <div className="h-[2px] bg-dark-text/10 relative">
+          <motion.div
+            className="absolute inset-y-0 left-0 bg-bronze"
+            initial={false}
+            animate={{ width: currentStep === 1 ? '50%' : '100%' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          />
         </div>
-      ))}
+      </div>
+    </>
+  );
+}
+
+// ========================================
+// FLOATING LABEL INPUT
+// ========================================
+
+function FloatingInput({
+  type = 'text',
+  name,
+  value,
+  onChange,
+  label,
+  error,
+}: {
+  type?: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  label: string;
+  error?: string;
+}) {
+  return (
+    <div>
+      <div className="relative">
+        <input
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
+          placeholder=" "
+          className={`peer w-full px-4 pt-5 pb-2 border focus:outline-none transition-colors duration-300 text-sm font-sans ${
+            error
+              ? 'border-red-400 focus:border-red-500'
+              : 'border-dark-text/10 focus:border-dark-text'
+          }`}
+          id={`field-${name}`}
+        />
+        <label
+          htmlFor={`field-${name}`}
+          className={`absolute left-4 transition-all duration-300 pointer-events-none
+            peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-dark-text/30
+            peer-focus:top-2 peer-focus:-translate-y-0 peer-focus:text-[10px] peer-focus:tracking-[0.1em] peer-focus:text-bronze peer-focus:uppercase
+            ${value ? 'top-2 -translate-y-0 text-[10px] tracking-[0.1em] text-dark-text/40 uppercase' : 'top-1/2 -translate-y-1/2 text-sm text-dark-text/30'}`}
+        >
+          {label}
+        </label>
+      </div>
+      {error && (
+        <motion.p
+          initial={{ opacity: 0, x: -4 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="font-sans text-[11px] text-red-500 mt-1.5"
+        >
+          {error}
+        </motion.p>
+      )}
+    </div>
+  );
+}
+
+// ========================================
+// FLOATING LABEL SELECT
+// ========================================
+
+function FloatingSelect({
+  name,
+  value,
+  onChange,
+  label,
+  options,
+}: {
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  label: string;
+  options: { value: string; label: string }[];
+}) {
+  return (
+    <div className="relative">
+      <select
+        name={name}
+        value={value}
+        onChange={onChange}
+        className="peer w-full px-4 pt-5 pb-2 border border-dark-text/10 focus:border-dark-text focus:outline-none transition-colors duration-300 text-sm font-sans bg-white text-dark-text appearance-none"
+        id={`field-${name}`}
+      >
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value}>{opt.label}</option>
+        ))}
+      </select>
+      <label
+        htmlFor={`field-${name}`}
+        className="absolute left-4 top-2 text-[10px] tracking-[0.1em] text-dark-text/40 uppercase pointer-events-none"
+      >
+        {label}
+      </label>
+      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-text/30 pointer-events-none" />
+    </div>
+  );
+}
+
+// ========================================
+// SECTION HEADER EDITORIAL
+// ========================================
+
+function SectionHeader({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-3 mb-6">
+      <div className="w-6 h-px bg-bronze/40" />
+      <h2 className="font-display text-lg font-medium text-dark-text">{children}</h2>
     </div>
   );
 }
@@ -540,6 +675,7 @@ export default function CheckoutPage() {
     setOrderComplete(true);
     sessionStorage.setItem('renaissance_last_order', JSON.stringify({
       email: formData.email,
+      firstName: formData.firstName,
       name: `${formData.firstName} ${formData.lastName}`,
       total,
       paymentIntentId,
@@ -566,8 +702,8 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-beige">
       {/* ==================== HEADER ==================== */}
-      <header className="sticky top-0 bg-white/95 backdrop-blur-sm z-50 border-b border-dark-text/[0.07]">
-        <div className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+      <header className="sticky top-0 bg-white/95 backdrop-blur-sm z-50 border-b border-bronze/15">
+        <div className="max-w-[1400px] mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
           <LocaleLink to="/cart" className="flex items-center gap-2 text-dark-text/40 hover:text-dark-text transition-colors">
             <ArrowLeft className="w-4 h-4" />
             <span className="font-sans text-xs tracking-[0.1em] hidden sm:inline">{t('checkoutPage.backToCart')}</span>
@@ -577,16 +713,17 @@ export default function CheckoutPage() {
             <img
               src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png"
               alt="Renaissance Paris"
-              className="h-6 md:h-7 object-contain"
+              className="h-28 sm:h-32 md:h-36 object-contain"
               loading="eager"
             />
           </LocaleLink>
 
-          <div className="flex items-center gap-1.5 text-dark-text/30">
-            <Lock className="w-3 h-3" />
-            <span className="font-sans text-[9px] tracking-[0.15em] uppercase hidden sm:inline">
-              {t('checkoutPage.securePayment')}
+          <div className="flex items-center gap-1.5 bg-bronze/[0.06] px-3 py-1.5 border border-bronze/10">
+            <Lock className="w-3 h-3 text-bronze/60" />
+            <span className="font-sans text-[9px] tracking-[0.15em] uppercase text-dark-text/50 hidden sm:inline">
+              {t('checkoutPage.sslSecure')}
             </span>
+            <Lock className="w-3 h-3 text-bronze/60 sm:hidden" />
           </div>
         </div>
       </header>
@@ -635,6 +772,26 @@ export default function CheckoutPage() {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
+                  {/* Horizontal scrollable product strip */}
+                  <div className="bg-white border border-t-0 border-dark-text/[0.07] p-4">
+                    <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide">
+                      {cartLines.map(({ node }) => {
+                        const image = node.merchandise.product.images.edges[0]?.node.url;
+                        return (
+                          <div key={node.id} className="flex-shrink-0 w-20 h-20 bg-[#f5f5f3] border border-dark-text/[0.05] overflow-hidden">
+                            {image && (
+                              <img
+                                src={resizeShopifyImage(image, 160)}
+                                alt={node.merchandise.product.title}
+                                className="w-full h-full object-cover"
+                                loading="lazy"
+                              />
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                   <OrderSummary cartLines={cartLines} subtotal={subtotal} shipping={shipping} total={total} />
                 </motion.div>
               )}
@@ -648,10 +805,16 @@ export default function CheckoutPage() {
             <div>
                 {/* ===== ÉTAPE 1 : INFORMATION + LIVRAISON ===== */}
                 <div className={currentStep === 1 ? '' : 'hidden'}>
-                    {/* Express Checkout (Apple Pay / Google Pay) en haut de l'étape 1 */}
+                    {/* Express Checkout Panel */}
                     {clientSecret && stripeOptions && (
                       <div className="mb-6">
                         <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8">
+                          <div className="mb-5">
+                            <h2 className="font-display text-lg font-medium text-dark-text mb-1">
+                              {t('checkoutPage.expressHeadline')}
+                            </h2>
+                            <p className="font-sans text-[12px] text-dark-text/35">{t('checkoutPage.expressMicrocopy')}</p>
+                          </div>
                           <Elements stripe={stripePromise} options={stripeOptions} key={`express-step1-${clientSecret}`}>
                             <ExpressCheckoutSection
                               total={total}
@@ -660,29 +823,29 @@ export default function CheckoutPage() {
                             />
                           </Elements>
                         </div>
+                        {/* Trust bar under express checkout */}
+                        <TrustBar />
                       </div>
                     )}
 
                     <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8">
                       {/* Contact */}
-                      <h2 className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-6">
-                        {t('checkoutPage.yourCoordinates')}
-                      </h2>
-                      <div className="space-y-4">
-                        <InputField
+                      <SectionHeader>{t('checkoutPage.yourCoordinates')}</SectionHeader>
+                      <div className="space-y-5">
+                        <FloatingInput
                           type="email"
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          placeholder={t('checkoutPage.emailPlaceholder')}
+                          label={t('checkoutPage.emailPlaceholder')}
                           error={formErrors.email}
                         />
-                        <InputField
+                        <FloatingInput
                           type="tel"
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          placeholder={t('checkoutPage.phonePlaceholder')}
+                          label={t('checkoutPage.phonePlaceholder')}
                           error={formErrors.phone}
                         />
                       </div>
@@ -691,74 +854,78 @@ export default function CheckoutPage() {
                       <div className="h-px bg-dark-text/[0.07] my-8" />
 
                       {/* Shipping Address */}
-                      <h2 className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-6">
-                        {t('checkoutPage.shippingAddress')}
-                      </h2>
-                      <div className="space-y-4">
+                      <SectionHeader>{t('checkoutPage.shippingAddress')}</SectionHeader>
+                      <div className="space-y-5">
                         <div className="grid grid-cols-2 gap-4">
-                          <InputField
+                          <FloatingInput
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleInputChange}
-                            placeholder={t('checkoutPage.firstNamePlaceholder')}
+                            label={t('checkoutPage.firstNamePlaceholder')}
                             error={formErrors.firstName}
                           />
-                          <InputField
+                          <FloatingInput
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleInputChange}
-                            placeholder={t('checkoutPage.lastNamePlaceholder')}
+                            label={t('checkoutPage.lastNamePlaceholder')}
                             error={formErrors.lastName}
                           />
                         </div>
-                        <InputField
+                        <FloatingInput
                           name="address"
                           value={formData.address}
                           onChange={handleInputChange}
-                          placeholder={t('checkoutPage.addressPlaceholder')}
+                          label={t('checkoutPage.addressPlaceholder')}
                           error={formErrors.address}
                         />
-                        <InputField
+                        <FloatingInput
                           name="addressComplement"
                           value={formData.addressComplement}
                           onChange={handleInputChange}
-                          placeholder={t('checkoutPage.addressComplementPlaceholder')}
+                          label={t('checkoutPage.addressComplementPlaceholder')}
                         />
                         <div className="grid grid-cols-2 gap-4">
-                          <InputField
+                          <FloatingInput
                             name="postalCode"
                             value={formData.postalCode}
                             onChange={handleInputChange}
-                            placeholder={t('checkoutPage.postalCodePlaceholder')}
+                            label={t('checkoutPage.postalCodePlaceholder')}
                             error={formErrors.postalCode}
                           />
-                          <InputField
+                          <FloatingInput
                             name="city"
                             value={formData.city}
                             onChange={handleInputChange}
-                            placeholder={t('checkoutPage.cityPlaceholder')}
+                            label={t('checkoutPage.cityPlaceholder')}
                             error={formErrors.city}
                           />
                         </div>
-                        <select
+                        <FloatingSelect
                           name="country"
                           value={formData.country}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3.5 border border-dark-text/15 focus:border-dark-text focus:outline-none transition-colors text-sm font-sans bg-white text-dark-text"
-                        >
-                          <option value="France">France</option>
-                          <option value="Belgique">Belgique</option>
-                          <option value="Suisse">Suisse</option>
-                          <option value="Luxembourg">Luxembourg</option>
-                        </select>
+                          label="Pays"
+                          options={[
+                            { value: 'France', label: 'France' },
+                            { value: 'Belgique', label: 'Belgique' },
+                            { value: 'Suisse', label: 'Suisse' },
+                            { value: 'Luxembourg', label: 'Luxembourg' },
+                          ]}
+                        />
                       </div>
 
+                      {/* CTA with bronze sweep */}
                       <button
                         onClick={() => goToStep(2)}
-                        className="w-full mt-8 bg-dark-text text-white py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-bronze transition-all duration-300"
+                        className="group relative w-full mt-8 bg-dark-text text-white py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold overflow-hidden transition-all duration-300"
                       >
-                        {t('checkoutPage.continueToPayment')}
+                        <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                        <span className="relative z-10">{t('checkoutPage.continueToPayment')}</span>
                       </button>
+
+                      {/* Trust bar under continue button */}
+                      <TrustBar />
                     </div>
                 </div>
 
@@ -777,9 +944,7 @@ export default function CheckoutPage() {
                     />
 
                     <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8 mt-4">
-                      <h2 className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-6">
-                        {t('checkoutPage.securePaymentTitle')}
-                      </h2>
+                      <SectionHeader>{t('checkoutPage.securePaymentTitle')}</SectionHeader>
 
                       {clientSecret && stripeOptions ? (
                         <Elements stripe={stripePromise} options={stripeOptions}>
@@ -867,6 +1032,30 @@ export default function CheckoutPage() {
           </div>
         </div>
       </main>
+
+      {/* ==================== MOBILE BOTTOM BAR — Step 1 only ==================== */}
+      {currentStep === 1 && (
+        <motion.div
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-white border-t border-dark-text/10 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]"
+        >
+          <div className="px-4 py-3 flex items-center gap-3">
+            <div className="flex-shrink-0">
+              <p className="font-sans text-[8px] tracking-[0.1em] text-dark-text/40 uppercase">Total</p>
+              <p className="font-display text-lg font-bold text-dark-text">{total.toFixed(2)}&euro;</p>
+            </div>
+            <button
+              onClick={() => goToStep(2)}
+              className="group relative flex-1 flex items-center justify-center gap-1.5 bg-dark-text text-white py-3.5 px-4 text-center font-sans text-[9px] tracking-[0.15em] font-bold uppercase overflow-hidden transition-colors duration-200"
+            >
+              <span className="absolute inset-0 bg-bronze transform scale-x-0 group-active:scale-x-100 transition-transform duration-500 origin-left" />
+              <span className="relative z-10">{t('checkoutPage.continueToPayment')}</span>
+            </button>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 }
@@ -874,42 +1063,6 @@ export default function CheckoutPage() {
 // ========================================
 // COMPOSANTS UTILITAIRES
 // ========================================
-
-function InputField({
-  type = 'text',
-  name,
-  value,
-  onChange,
-  placeholder,
-  error,
-}: {
-  type?: string;
-  name: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
-  error?: string;
-}) {
-  return (
-    <div>
-      <input
-        type={type}
-        name={name}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        className={`w-full px-4 py-3.5 border focus:outline-none transition-colors text-sm font-sans placeholder:text-dark-text/30 ${
-          error
-            ? 'border-red-400 focus:border-red-500'
-            : 'border-dark-text/15 focus:border-dark-text'
-        }`}
-      />
-      {error && (
-        <p className="font-sans text-[11px] text-red-500 mt-1.5">{error}</p>
-      )}
-    </div>
-  );
-}
 
 function StepSummary({
   label,
@@ -950,7 +1103,7 @@ function OrderSummary({
 }) {
   const { t } = useTranslation('cart');
   return (
-    <div className="bg-white border border-dark-text/[0.07] p-6">
+    <div className="bg-[#f8f6f1] border border-dark-text/[0.07] p-6">
       <h2 className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-6">
         {t('checkoutPage.yourOrderSummary')}
       </h2>
@@ -963,11 +1116,11 @@ function OrderSummary({
           const image = node.merchandise.product.images.edges[0]?.node.url;
 
           return (
-            <div key={node.id} className="flex gap-4">
-              <div className="w-20 h-20 bg-[#f5f5f3] border border-dark-text/[0.05] flex-shrink-0 relative overflow-hidden">
+            <div key={node.id} className="flex gap-4 group">
+              <div className="w-28 h-28 bg-white border border-dark-text/[0.05] flex-shrink-0 relative overflow-hidden transition-transform duration-300 group-hover:scale-[1.05]">
                 {image && (
                   <img
-                    src={resizeShopifyImage(image, 160)}
+                    src={resizeShopifyImage(image, 224)}
                     alt={node.merchandise.product.title}
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -992,6 +1145,11 @@ function OrderSummary({
           );
         })}
       </div>
+
+      {/* Artisanal message */}
+      <p className="font-display text-[12px] italic text-dark-text/35 leading-relaxed mb-5 border-l-2 border-bronze/20 pl-3">
+        {t('checkoutPage.artisanalMessage')}
+      </p>
 
       {/* Totaux */}
       <div className="border-t border-dark-text/[0.07] pt-5 space-y-2.5">

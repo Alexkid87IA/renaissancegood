@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Minus, Plus, X, Shield, Truck, Award, Package, ChevronLeft, ChevronRight, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../contexts/CartContext';
+import { PaymentLogos } from '../components/PaymentLogos';
 
 export default function CartPage() {
   const { cart, isLoading, updateQuantity, removeItem } = useCart();
@@ -125,7 +126,18 @@ export default function CartPage() {
                         {t('emptyExplore')}
                       </span>
                     </LocaleLink>
+                    <LocaleLink
+                      to="/shop"
+                      className="group relative overflow-hidden border border-white/8 px-5 sm:px-8 py-3.5 sm:py-4 transition-all duration-500 hover:border-white/20 text-center"
+                    >
+                      <span className="relative z-10 font-sans text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.3em] font-medium uppercase text-white/40 group-hover:text-white/70 transition-colors duration-500">
+                        {t('checkoutPage.bestSellers')}
+                      </span>
+                    </LocaleLink>
                   </div>
+                  <p className="mt-6 font-sans text-[11px] text-white/20 tracking-[0.05em]">
+                    {t('checkoutPage.socialProof')}
+                  </p>
                 </motion.div>
               </div>
             </div>
@@ -196,6 +208,9 @@ export default function CartPage() {
                 </div>
                 {/* Desktop: full grid */}
                 <div className="hidden lg:grid grid-cols-4 gap-6">
+                  <p className="col-span-4 font-sans text-[9px] tracking-[0.2em] text-dark-text/25 uppercase font-medium text-center mb-1">
+                    {t('checkoutPage.engagementTitle')}
+                  </p>
                   {[
                     { icon: Shield, title: t('trustBadgeWarrantyTitle'), description: t('trustBadgeWarrantyDesc') },
                     { icon: Truck, title: t('trustBadgeShippingTitle'), description: t('trustBadgeShippingDesc') },
@@ -205,13 +220,14 @@ export default function CartPage() {
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.4 + (i * 0.1) }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 + (i * 0.1) }}
+                      viewport={{ once: true }}
                       className="bg-white border border-dark-text/10 p-6 text-center hover:border-bronze/30 transition-all duration-500 group"
                     >
                       <div className="mb-4 flex justify-center">
                         <div className="w-12 h-12 rounded-full bg-beige flex items-center justify-center group-hover:bg-bronze/10 transition-colors duration-500">
-                          <item.icon size={24} className="text-bronze" strokeWidth={1.5} />
+                          <item.icon size={24} className="text-bronze transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} />
                         </div>
                       </div>
                       <h4 className="font-sans text-xs tracking-[0.2em] font-bold text-dark-text uppercase mb-3">
@@ -253,28 +269,8 @@ export default function CartPage() {
                 </div>
 
                 {/* Payment methods — compact */}
-                <div className="flex items-center justify-center gap-1.5 flex-wrap pt-3 border-t border-dark-text/8">
-                  <div className="h-5 px-1.5 bg-white border border-dark-text/10 rounded flex items-center justify-center">
-                    <span className="text-[8px] font-bold text-[#1A1F71]">VISA</span>
-                  </div>
-                  <div className="w-7 h-5 bg-white border border-dark-text/10 rounded flex items-center justify-center">
-                    <div className="flex items-center -space-x-1">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#EB001B]"></div>
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#F79E1B]"></div>
-                    </div>
-                  </div>
-                  <div className="h-5 px-1.5 bg-black rounded flex items-center justify-center">
-                    <span className="text-[8px] font-medium text-white">Pay</span>
-                  </div>
-                  <div className="h-5 px-1.5 bg-white border border-dark-text/10 rounded flex items-center justify-center">
-                    <span className="text-[8px] font-medium text-[#5F6368]">G Pay</span>
-                  </div>
-                  <div className="h-5 px-1.5 bg-[#0070BA] rounded flex items-center justify-center">
-                    <span className="text-[8px] font-bold text-white">PayPal</span>
-                  </div>
-                  <div className="h-5 px-1.5 bg-white border border-dark-text/10 rounded flex items-center justify-center">
-                    <span className="text-[8px] font-bold text-[#1A4298]">CB</span>
-                  </div>
+                <div className="pt-3 border-t border-dark-text/8">
+                  <PaymentLogos size="compact" />
                 </div>
               </motion.div>
               </div>
@@ -314,6 +310,16 @@ export default function CartPage() {
                   </span>
                 </div>
 
+                {/* Value banner */}
+                <div className="mb-4 p-4 bg-bronze/5 border border-bronze/15">
+                  <div className="flex items-center gap-2 justify-center text-dark-text/70">
+                    <Package size={14} strokeWidth={1.5} className="text-bronze" />
+                    <p className="font-sans text-xs font-medium">
+                      {t('checkoutPage.valueBanner')}
+                    </p>
+                  </div>
+                </div>
+
                 {/* Message de réassurance */}
                 <div className="mb-4 p-4 bg-beige border border-bronze/20">
                   <div className="flex items-center gap-2 justify-center text-dark-text/70">
@@ -324,12 +330,13 @@ export default function CartPage() {
                   </div>
                 </div>
 
-                {/* Bouton vers Checkout */}
+                {/* Bouton vers Checkout — bronze sweep */}
                 <LocaleLink
                   to="/checkout"
-                  className="flex items-center justify-center gap-2 w-full bg-dark-text text-white py-5 px-6 text-center font-sans text-[10px] tracking-[0.3em] font-bold hover:bg-bronze transition-all duration-300 mb-4"
+                  className="group relative flex items-center justify-center gap-2 w-full bg-dark-text text-white py-5 px-6 text-center font-sans text-[10px] tracking-[0.3em] font-bold overflow-hidden transition-all duration-300 mb-4"
                 >
-                  <span>{t('checkout')}</span>
+                  <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <span className="relative z-10">{t('checkout')}</span>
                 </LocaleLink>
 
                 <LocaleLink
@@ -339,19 +346,34 @@ export default function CartPage() {
                   {t('continueShopping')}
                 </LocaleLink>
 
+                {/* Satisfaction guarantee */}
+                <p className="text-center mt-3 font-sans text-[10px] text-dark-text/35 tracking-[0.05em]">
+                  {t('checkoutPage.satisfactionGuarantee')}
+                </p>
+
                 {/* Trust Indicators */}
-                <div className="mt-8 pt-8 border-t border-dark-text/10 space-y-3">
-                  <div className="flex items-center gap-3 text-dark-text/60">
-                    <Shield size={16} strokeWidth={1.5} className="flex-shrink-0" />
-                    <p className="font-sans text-xs">{t('trustSecure')}</p>
-                  </div>
-                  <div className="flex items-center gap-3 text-dark-text/60">
-                    <Truck size={16} strokeWidth={1.5} className="flex-shrink-0" />
-                    <p className="font-sans text-xs">{t('trustFreeShipping')}</p>
-                  </div>
-                  <div className="flex items-center gap-3 text-dark-text/60">
-                    <Package size={16} strokeWidth={1.5} className="flex-shrink-0" />
-                    <p className="font-sans text-xs">{t('trustPackaging')}</p>
+                <div className="mt-8 pt-8 border-t border-dark-text/10">
+                  <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/25 uppercase font-medium mb-4 text-center">
+                    {t('checkoutPage.engagementTitle')}
+                  </p>
+                  <div className="space-y-3">
+                    {[
+                      { icon: Shield, text: t('trustSecure') },
+                      { icon: Truck, text: t('trustFreeShipping') },
+                      { icon: Package, text: t('trustPackaging') },
+                    ].map(({ icon: Icon, text }, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -8 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.1, duration: 0.4 }}
+                        viewport={{ once: true }}
+                        className="flex items-center gap-3 text-dark-text/60 group"
+                      >
+                        <Icon size={16} strokeWidth={1.5} className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                        <p className="font-sans text-xs">{text}</p>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
 
@@ -360,35 +382,7 @@ export default function CartPage() {
                   <p className="text-[9px] text-dark-text/40 uppercase tracking-[0.15em] text-center mb-4">
                     {t('paymentMethods')}
                   </p>
-                  <div className="flex items-center justify-center gap-1.5 flex-wrap">
-                    {/* Visa */}
-                    <div className="h-6 px-2 bg-white border border-dark-text/10 rounded flex items-center justify-center">
-                      <span className="text-[9px] font-bold text-[#1A1F71] tracking-wide">VISA</span>
-                    </div>
-                    {/* Mastercard */}
-                    <div className="w-9 h-6 bg-white border border-dark-text/10 rounded flex items-center justify-center">
-                      <div className="flex items-center -space-x-1.5">
-                        <div className="w-3 h-3 rounded-full bg-[#EB001B]"></div>
-                        <div className="w-3 h-3 rounded-full bg-[#F79E1B]"></div>
-                      </div>
-                    </div>
-                    {/* Apple Pay */}
-                    <div className="h-6 px-2 bg-black rounded flex items-center justify-center">
-                      <span className="text-[9px] font-medium text-white">Pay</span>
-                    </div>
-                    {/* Google Pay */}
-                    <div className="h-6 px-2 bg-white border border-dark-text/10 rounded flex items-center justify-center">
-                      <span className="text-[9px] font-medium text-[#5F6368]">G Pay</span>
-                    </div>
-                    {/* PayPal */}
-                    <div className="h-6 px-2 bg-[#0070BA] rounded flex items-center justify-center">
-                      <span className="text-[9px] font-bold text-white">PayPal</span>
-                    </div>
-                    {/* CB */}
-                    <div className="h-6 px-2 bg-white border border-dark-text/10 rounded flex items-center justify-center">
-                      <span className="text-[9px] font-bold text-[#1A4298]">CB</span>
-                    </div>
-                  </div>
+                  <PaymentLogos />
                 </div>
               </div>
             </motion.div>
