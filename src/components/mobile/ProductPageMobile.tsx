@@ -280,7 +280,7 @@ export default function ProductPageMobile({
         )}
 
         {/* Related products */}
-        <MobileRelatedProducts currentProductId={product.id} limit={5} />
+        <MobileRelatedProducts currentProductId={product.id} limit={3} />
       </div>
 
       {/* Bottom bar */}

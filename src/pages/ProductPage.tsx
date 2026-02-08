@@ -528,7 +528,7 @@ export default function ProductPage() {
       />
 
       {/* Related products */}
-      <RelatedProducts currentProductId={product.id} limit={4} />
+      <RelatedProducts currentProductId={product.id} limit={6} />
 
       <ProductBottomBar product={product} selectedColorIndex={selectedColorIndex} visible={showBottomBar} />
     </div>
