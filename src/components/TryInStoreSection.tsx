@@ -2,19 +2,24 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import LocaleLink from './LocaleLink';
 import { useTranslation } from 'react-i18next';
+import { useStackedScroll } from '../hooks/useStackedScroll';
 import { stagger, fade } from './shared';
 
 export default function TryInStoreSection() {
   const { t } = useTranslation('home');
+  const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
+  const contentInView = useInView(contentRef, { once: false, amount: 0.3 });
+  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
 
   return (
     <motion.section
-      className="min-h-screen sticky top-0 z-[60] bg-[#000000]"
+      ref={sectionRef}
+      style={{ scale, opacity, filter }}
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-[60] bg-[#000000] overflow-hidden"
     >
       {/* DESKTOP */}
-      <div className="h-screen hidden md:flex flex-row">
+      <div className="h-full hidden md:flex flex-row">
         {/* Left - Content */}
         <motion.div
           ref={contentRef}
@@ -63,9 +68,10 @@ export default function TryInStoreSection() {
 
         {/* Right - Image */}
         <div className="w-1/2 h-full relative overflow-hidden">
-          <img
+          <motion.img
             src="https://renaissance-cdn.b-cdn.net/page%20histoire.png"
             alt="Essayez en boutique"
+            style={{ y: imageY, scale: imageScale }}
             className="w-full h-full object-cover"
             loading="lazy"
           />
@@ -75,8 +81,8 @@ export default function TryInStoreSection() {
       </div>
 
       {/* MOBILE — Éditorial luxe */}
-      <div className="md:hidden relative h-[100dvh] bg-[#000000] overflow-hidden">
-        <div className="absolute inset-0">
+      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden">
+        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
           <img
             src="https://renaissance-cdn.b-cdn.net/page%20histoire.png"
             alt="Essayez en boutique"
@@ -84,13 +90,13 @@ export default function TryInStoreSection() {
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]/60" />
-        </div>
+        </motion.div>
 
         <div className="relative h-full flex flex-col justify-end px-7 pb-14">
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-sans text-white/40 text-[8px] tracking-[0.5em] uppercase font-medium mb-4"
           >
@@ -100,7 +106,7 @@ export default function TryInStoreSection() {
           <motion.h2
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.9, delay: 0.35 }}
             className="font-display text-[2.6rem] sm:text-5xl font-bold text-white tracking-[-0.04em] leading-[0.88] mb-2"
           >
@@ -109,7 +115,7 @@ export default function TryInStoreSection() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.9, delay: 0.5 }}
             className="font-display text-[2.6rem] sm:text-5xl font-light italic text-white/80 tracking-[-0.04em] leading-[0.88]"
           >
@@ -119,7 +125,7 @@ export default function TryInStoreSection() {
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.7 }}
             className="w-10 h-px bg-white/25 origin-left mt-5 mb-5"
           />
@@ -127,7 +133,7 @@ export default function TryInStoreSection() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.9 }}
             className="flex items-center gap-5"
           >

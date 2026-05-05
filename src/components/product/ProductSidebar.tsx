@@ -6,37 +6,8 @@ import { useCart } from '../../contexts/CartContext';
 import { getColorFromName, isLightColor, metallicGradient } from '../../lib/colorMap';
 import { createSanitizedMarkup } from '../../lib/sanitize';
 import { ColorVariant, getColorSwatchStyle } from '../../lib/productGrouping';
-import { useAutoTranslate, useAutoTranslateHtml } from '../../hooks/useAutoTranslate';
-
-interface Variant {
-  id: string;
-  title: string;
-  price: string;
-  availableForSale: boolean;
-  colorName: string;
-  image: string | null;
-}
-
-interface Product {
-  id: string;
-  name: string;
-  modelName?: string;
-  collection: string;
-  badge?: string;
-  price: string;
-  frame: string;
-  lens: string;
-  colors: { name: string }[];
-  dimensions: {
-    lens: string;
-    bridge: string;
-    temple: string;
-  };
-  description: string;
-  descriptionHtml?: string;
-  variants: Variant[];
-  tags?: string[];
-}
+import { useProductData } from '../../hooks/useProductData';
+import { Product } from '../../types/product';
 
 interface ProductSidebarProps {
   product: Product;
@@ -59,9 +30,14 @@ export default function ProductSidebar({
   priceRef
 }: ProductSidebarProps) {
   const { t } = useTranslation('product');
-  const translatedName = useAutoTranslate(product.modelName || product.name);
-  const translatedDescription = useAutoTranslate(product.description);
-  const translatedDescriptionHtml = useAutoTranslateHtml(product.descriptionHtml || null);
+  const {
+    translatedName,
+    translatedDescription,
+    translatedDescriptionHtml,
+    isNonAdaptable,
+    selectedVariant,
+    displayPrice,
+  } = useProductData(product, selectedColorIndex);
   const [showDimensions, setShowDimensions] = useState(true);
   const [showFabrication, setShowFabrication] = useState(true);
   const [showDescription, setShowDescription] = useState(false);
@@ -69,8 +45,6 @@ export default function ProductSidebar({
   const { addToCart, isLoading } = useCart();
 
   const handleAddToCart = async () => {
-    const selectedVariant = product.variants[selectedColorIndex];
-    
     if (!selectedVariant || !selectedVariant.availableForSale) {
       alert(t('sidebar.productUnavailable'));
       return;
@@ -84,16 +58,6 @@ export default function ProductSidebar({
       // Add to cart error silently handled
     }
   };
-
-  // Obtenir la variante et le prix sélectionné
-  const selectedVariant = product.variants[selectedColorIndex];
-  const displayPrice = selectedVariant?.price || product.price;
-
-  // Vérifier si le produit est adaptable en optique
-  const isNonAdaptable = product.tags?.some(tag =>
-    tag.toLowerCase() === 'non-adaptable' ||
-    tag.toLowerCase() === 'solaire-uniquement'
-  );
 
   return (
     <div>
@@ -246,7 +210,7 @@ export default function ProductSidebar({
             {/* Grille des boutons de variante */}
             <div className="flex flex-wrap gap-3">
               {product.variants.map((variant, index) => {
-                const colorValue = getColorFromName(variant.colorName);
+                const colorValue = getColorFromName(variant.colorName || '');
                 const isSelected = selectedColorIndex === index;
                 const isAvailable = variant.availableForSale;
 

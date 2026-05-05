@@ -1,24 +1,5 @@
 import { motion } from 'framer-motion';
-
-interface Variant {
-  id: string;
-  title: string;
-  price: string;
-  availableForSale: boolean;
-}
-
-interface Product {
-  id: string;
-  name: string;
-  modelName?: string;
-  badge?: string;
-  price: string;
-  collection: string;
-  colors: { name: string }[];
-  variants: Variant[];
-  description: string;
-  descriptionHtml?: string;
-}
+import { Product } from '../../types/product';
 
 interface MobileProductInfoProps {
   product: Product;

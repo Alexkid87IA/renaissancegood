@@ -5,6 +5,7 @@
 import { useState, memo, useCallback } from 'react';
 import LocaleLink from './LocaleLink';
 import T from './TranslatedText';
+import { resizeShopifyImage } from '../lib/imageUtils';
 
 interface ProductImage {
   url: string;
@@ -56,12 +57,6 @@ interface ProductCardProps {
   product: Product;
   index?: number;
   showNewBadge?: boolean;
-}
-
-// Resize Shopify CDN images
-function resizeShopifyImage(url: string, width: number): string {
-  if (!url || !url.includes('cdn.shopify.com')) return url;
-  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
 }
 
 const ProductCard = memo(function ProductCard({ product }: ProductCardProps) {

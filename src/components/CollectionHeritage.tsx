@@ -3,15 +3,18 @@ import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import LocaleLink from './LocaleLink';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
+import { useStackedScroll } from '../hooks/useStackedScroll';
 import { stagger, fade } from './shared';
 
 export default function CollectionHeritage() {
+  const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const navigate = useLocalizedNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation('collections');
 
-  const textInView = useInView(textRef, { once: true, amount: 0.3 });
+  const textInView = useInView(textRef, { once: false, amount: 0.3 });
+  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
 
   const handleNavigate = () => {
     setIsLoading(true);
@@ -20,7 +23,9 @@ export default function CollectionHeritage() {
 
   return (
     <motion.section
-      className="min-h-screen lg:h-screen sticky top-0 z-20"
+      ref={sectionRef}
+      style={{ scale, opacity, filter }}
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-20 overflow-hidden"
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">
@@ -76,10 +81,11 @@ export default function CollectionHeritage() {
           onClick={handleNavigate}
           className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
         >
-          <img
+          <motion.img
             src="https://renaissance-cdn.b-cdn.net/packshot%20collection%20heritage.png"
             alt="Collection Héritage - Trident"
             loading="lazy"
+            style={{ y: imageY, scale: imageScale }}
             className="w-full h-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.03] group-hover:brightness-[1.05]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 via-transparent to-transparent pointer-events-none" />
@@ -109,16 +115,16 @@ export default function CollectionHeritage() {
       </div>
 
       {/* MOBILE */}
-      <div className="md:hidden relative h-[100dvh] bg-[#000000] overflow-hidden" onClick={handleNavigate}>
+      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate}>
         {/* Image — sans overlay */}
-        <div className="absolute inset-0">
+        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
           <img
             src="https://renaissance-cdn.b-cdn.net/packshot%20collection%20heritage.png"
             alt="Collection Héritage"
             className="w-full h-full object-cover object-[center_35%]"
             loading="lazy"
           />
-        </div>
+        </motion.div>
 
         {/* Content — centré verticalement */}
         <div className="relative h-full flex flex-col justify-center px-6 pt-20">

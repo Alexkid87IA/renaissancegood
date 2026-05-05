@@ -2,14 +2,17 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import LocaleLink from './LocaleLink';
 import { useTranslation } from 'react-i18next';
+import { useStackedScroll } from '../hooks/useStackedScroll';
 import { stagger, fade } from './shared';
 
 const FABRICATION_IMAGE = 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_06AM.jpeg';
 
 export default function FabricationSection() {
   const { t } = useTranslation('home');
+  const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
+  const contentInView = useInView(contentRef, { once: false, amount: 0.3 });
+  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
 
   const STATS = [
     { value: '6-8', label: t('fabrication.stat1') },
@@ -25,14 +28,17 @@ export default function FabricationSection() {
 
   return (
     <motion.section
-      className="sticky top-0 z-[80] bg-[#000000]"
+      ref={sectionRef}
+      style={{ scale, opacity, filter }}
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-[80] bg-[#000000] overflow-hidden"
       id="fabrication"
     >
       {/* DESKTOP */}
-      <div className="relative h-screen hidden md:block overflow-hidden">
-        <img
+      <div className="relative h-full hidden md:block overflow-hidden">
+        <motion.img
           src={FABRICATION_IMAGE}
           alt="Renaissance Paris - Fabrication"
+          style={{ y: imageY, scale: imageScale }}
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
@@ -104,10 +110,11 @@ export default function FabricationSection() {
       </div>
 
       {/* MOBILE */}
-      <div className="md:hidden relative h-screen bg-[#000000] overflow-hidden">
-        <img
+      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden">
+        <motion.img
           src={FABRICATION_IMAGE}
           alt="Renaissance Paris - Fabrication"
+          style={{ y: imageY, scale: imageScale }}
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />

@@ -50,13 +50,13 @@
     "step3Desc": "Chaque charnière est ajustée à la main avec une précision horlogère."
   },
   "histoire": {
-    "label": "Notre histoire",
-    "title": "LE MONDE OUBLIE.",
-    "subtitle": "Nous, on se souvient.",
-    "description": "Renaissance. Un mot pour ceux qui refusent que tout disparaisse. Que les gestes se perdent. Que le beau devienne jetable.",
+    "label": "L'Origine",
+    "title": "NÉE D'UN REFUS.",
+    "subtitle": "Celui de voir disparaître ce qui doit durer.",
+    "description": "Trois hommes du métier ont vu la qualité reculer pendant dix ans. Ils ont décidé de faire l'inverse. Concevoir des montures qui accompagnent une vie, pas une saison. Exiger ce que le marché a cessé d'exiger.",
     "cta": "Découvrir notre histoire",
-    "mobileTitle1": "Le monde oublie.",
-    "mobileTitle2": "Nous, on se souvient.",
+    "mobileTitle1": "Née d'un refus.",
+    "mobileTitle2": "Celui de voir disparaître ce qui doit durer.",
     "mobileCta": "Découvrir",
     "since": "Depuis 2024"
   },
@@ -92,7 +92,7 @@
     "item2Title": "Livraison",
     "item2Desc": "Offerte dès 500€",
     "item3Title": "Garantie",
-    "item3Desc": "On assume ce qu'on fabrique",
+    "item3Desc": "Ce qui est bien fait se répare. Nous l'appliquons.",
     "item4Title": "Sécurisé",
     "item4Desc": "Paiement crypté",
     "freeShipping": "Livraison offerte",

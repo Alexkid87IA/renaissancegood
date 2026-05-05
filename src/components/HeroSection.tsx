@@ -1,7 +1,8 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
+import { useStackedScroll } from '../hooks/useStackedScroll';
 
 const HERO_VIDEO = 'https://renaissance-cdn.b-cdn.net/hf_20260130_124034_0ed82220-23c4-4752-a1c3-00af6106e2ce.mp4';
 const HERO_POSTER = 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2030%2C%202026%20-%2012_05AM.jpeg';
@@ -33,18 +34,12 @@ function useSlowConnection(): boolean {
 }
 
 export default function HeroSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const navigate = useLocalizedNavigate();
   const { t } = useTranslation('home');
   const slowConnection = useSlowConnection();
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
-  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
+  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
 
   // Appliquer la vitesse de lecture sur les vidéos
   useEffect(() => {
@@ -57,25 +52,27 @@ export default function HeroSection() {
   return (
     <motion.section
       ref={sectionRef}
-      style={{ scale, opacity }}
-      className="h-[100dvh] lg:h-screen sticky top-0 z-10"
+      style={{ scale, opacity, filter }}
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-10"
     >
       {/* DESKTOP VERSION */}
       <div className="relative h-full overflow-hidden hidden lg:block">
         {slowConnection ? (
-          <img
+          <motion.img
             src={HERO_POSTER}
             alt="Renaissance Paris"
+            style={{ y: imageY, scale: imageScale }}
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
         ) : (
-          <video
+          <motion.video
             src={HERO_VIDEO}
             poster={HERO_POSTER}
             autoPlay
             muted
             playsInline
             preload="metadata"
+            style={{ y: imageY, scale: imageScale }}
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
         )}
@@ -108,7 +105,7 @@ export default function HeroSection() {
 
       {/* MOBILE VERSION — Éditorial luxe */}
       <div className="relative h-full overflow-hidden lg:hidden">
-        <div className="absolute inset-0">
+        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
           {slowConnection ? (
             <motion.img
               src={HERO_POSTER}
@@ -134,7 +131,7 @@ export default function HeroSection() {
           )}
           <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-[#000000]/70 to-transparent" />
-        </div>
+        </motion.div>
 
         {/* Contenu */}
         <div className="relative h-full flex flex-col justify-end px-7 pb-14">

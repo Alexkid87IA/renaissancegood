@@ -3,38 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronUp } from 'lucide-react';
 import { useCart } from '../../contexts/CartContext';
-
-function resizeShopifyImage(url: string, width: number): string {
-  if (!url || !url.includes('cdn.shopify.com')) return url;
-  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
-}
-
-interface Variant {
-  id: string;
-  title: string;
-  price: string;
-  availableForSale: boolean;
-  colorName: string;
-  image: string | null;
-}
-
-interface ProductImage {
-  url: string;
-  altText: string | null;
-}
-
-interface Product {
-  id: string;
-  name: string;
-  modelName?: string;
-  collection: string;
-  price: string;
-  frame: string;
-  lens: string;
-  colors: { name: string }[];
-  variants: Variant[];
-  allImages?: ProductImage[];
-}
+import { resizeShopifyImage } from '../../lib/imageUtils';
+import { Product } from '../../types/product';
 
 interface ProductBottomBarProps {
   product: Product;

@@ -175,7 +175,7 @@ function AppContent() {
           Aller au contenu principal
         </a>
         {!isCheckout && <Header />}
-        <main id="main-content" className="relative">
+        <main id="main-content" className="relative isolate">
           <ErrorBoundary fallbackLevel="page">
             <Suspense fallback={<PageLoader />}>
               <Routes>

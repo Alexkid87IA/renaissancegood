@@ -1,23 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Minus } from 'lucide-react';
-
-interface Product {
-  id: string;
-  name: string;
-  collection: string;
-  badge: string;
-  price: string;
-  frame: string;
-  lens: string;
-  colors: { name: string; icon?: string }[];
-  dimensions: {
-    lens: string;
-    bridge: string;
-    temple: string;
-  };
-  description: string;
-}
+import { Product } from '../../types/product';
 
 interface ProductHeroSectionProps {
   product: Product;

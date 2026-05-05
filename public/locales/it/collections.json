@@ -1,29 +1,29 @@
 {
   "heritage": {
     "label": "Collezione",
-    "title": "EREDIT\u00c0",
+    "title": "EREDITÀ",
     "subtitle": "Il Tridente.",
-    "description": "Ci\u00f2 che si trasmette non si getta. Ci\u00f2 che si rispetta non si dimentica. Tre punte. Il passato. Il presente. Il futuro.",
+    "description": "Ciò che si trasmette non si getta. Ciò che si rispetta non si dimentica. Tre punte. Il passato. Il presente. Il futuro.",
     "discover": "Scoprire",
     "collectionNumber": "Collezione I",
-    "heroTitle": "EREDIT\u00c0.",
+    "heroTitle": "EREDITÀ.",
     "heroSubtitle": "Il Tridente.",
-    "heroDescription": "Ci\u00f2 che si trasmette non si getta. Ci\u00f2 che si rispetta non si dimentica. Tre punte. Il passato. Il presente. Il futuro.",
+    "heroDescription": "Ciò che si trasmette non si getta. Ciò che si rispetta non si dimentica. Tre punte. Il passato. Il presente. Il futuro.",
     "exploreCollection": "Esplorare la collezione",
-    "seoTitle": "Collezione Eredit\u00e0",
-    "seoDescription": "Scoprite la collezione Eredit\u00e0 di RENAISSANCE Paris. Occhiali di lusso dal design senza tempo, che uniscono tradizione e modernit\u00e0. Realizzati con i migliori materiali.",
-    "heroImageAlt": "Collezione Eredit\u00e0"
+    "seoTitle": "Collezione Eredità",
+    "seoDescription": "Scoprite la collezione Eredità di RENAISSANCE Paris. Occhiali di lusso dal design senza tempo, che uniscono tradizione e modernità. Realizzati con i migliori materiali.",
+    "heroImageAlt": "Collezione Eredità"
   },
   "versailles": {
     "label": "Collezione",
     "title": "VERSAILLES",
     "subtitle": "Il Giglio.",
-    "description": "I re sono andati. Il simbolo \u00e8 rimasto. Il Giglio. Per chi costruisce. Non per chi sfila.",
+    "description": "I re sono andati. Il simbolo è rimasto. Il Giglio. Per chi costruisce. Non per chi sfila.",
     "discover": "Scoprire",
     "collectionNumber": "Collezione II",
     "heroTitle": "VERSAILLES.",
     "heroSubtitle": "Il Giglio.",
-    "heroDescription": "I re sono andati. Il simbolo \u00e8 rimasto. Il Giglio. Per chi costruisce. Non per chi sfila.",
+    "heroDescription": "I re sono andati. Il simbolo è rimasto. Il Giglio. Per chi costruisce. Non per chi sfila.",
     "exploreCollection": "Esplorare la collezione",
     "seoTitle": "Collezione Versailles",
     "seoDescription": "Scoprite la collezione Versailles di RENAISSANCE Paris. L'eleganza alla francese incarnata in occhiali di lusso raffinati, ispirati alla reggia di Versailles.",
@@ -33,23 +33,25 @@
     "label": "Collezione",
     "title": "ISIDE",
     "subtitle": "Il Cobra. Lo Scarabeo. L'Occhio.",
-    "description": "Il Cobra: la guardia. Lo Scarabeo: la rinascita. L'Occhio: quello che vede tutto. Ci\u00f2 che attraversa 5 000 anni non si indossa per caso.",
+    "description": "Il Cobra: la guardia. Lo Scarabeo: la rinascita. L'Occhio: quello che vede tutto. Ciò che attraversa 5 000 anni non si indossa per caso.",
     "comingSoon": "Prossimamente",
     "availableSoon": "Disponibile a breve",
     "collectionNumber": "Collezione III",
     "heroTitle": "ISIDE.",
     "heroSubtitle": "Lo Scarabeo.",
-    "heroDescription": "L'eternit\u00e0 si indossa ogni giorno. Il Cobra, lo Scarabeo, l'Occhio. Ci\u00f2 che attraversa 5 000 anni non si indossa per caso.",
-    "heroDescriptionShort": "L'eternit\u00e0 si indossa ogni giorno.",
-    "learnMore": "Scopri di pi\u00f9",
+    "heroDescription": "L'eternità si indossa ogni giorno. Il Cobra, lo Scarabeo, l'Occhio. Ciò che attraversa 5 000 anni non si indossa per caso.",
+    "heroDescriptionShort": "L'eternità si indossa ogni giorno.",
+    "learnMore": "Scopri di più",
     "seoTitle": "Collezione Iside",
     "seoDescription": "Scoprite la collezione Iside di RENAISSANCE Paris. Occhiali di lusso audaci ispirati alla dea egizia, che uniscono mistero e raffinatezza.",
     "heroImageAlt": "Collezione Iside",
     "comingSoonTitle": "Disponibile a breve.",
     "comingSoonSubtitle": "Pazienza.",
-    "comingSoonDescription": "La collezione ISIDE \u00e8 attualmente in preparazione. Scoprite presto montature ispirate ai simboli eterni dell'antico Egitto, dove l'artigianato francese incontra il mistero millenario.",
+    "comingSoonDescription": "La collezione ISIDE è attualmente in preparazione. Scoprite presto montature ispirate ai simboli eterni dell'antico Egitto, dove l'artigianato francese incontra il mistero millenario.",
     "discoverVersailles": "Scoprire Versailles",
-    "discoverHeritage": "Scoprire Eredit\u00e0"
+    "discoverHeritage": "Scoprire Eredità",
+    "exploreCollection": "Esplorare la collezione",
+    "discover": "Scoprire"
   },
   "allCollections": "Tutte le collezioni",
   "seeAll": "Vedi tutto",
@@ -85,6 +87,6 @@
   "retry": "Riprovare",
   "page": {
     "seoTitle": "Collezioni",
-    "seoDescription": "Esplorate tutte le collezioni RENAISSANCE Paris. Eredit\u00e0, Versailles e Iside: occhiali di lusso fabbricati in Francia con maestria artigianale d'eccezione."
+    "seoDescription": "Esplorate tutte le collezioni RENAISSANCE Paris. Eredità, Versailles e Iside: occhiali di lusso fabbricati in Francia con maestria artigianale d'eccezione."
   }
 }

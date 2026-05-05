@@ -10,6 +10,7 @@ import { GroupedProduct, getColorSwatchStyle } from '../lib/productGrouping';
 import { getProductDescription } from '../data/productDescriptions';
 import LocaleLink from './LocaleLink';
 import T from './TranslatedText';
+import { resizeShopifyImage } from '../lib/imageUtils';
 
 interface GroupedProductCardProps {
   groupedProduct: GroupedProduct;
@@ -36,13 +37,6 @@ function preloadVariantImages(variant: ColorVariant) {
   }
 }
 
-// Resize Shopify CDN images — ajoute _WIDTHx au nom de fichier
-function resizeShopifyImage(url: string, width: number): string {
-  if (!url || !url.includes('cdn.shopify.com')) return url;
-  // Pattern: filename.ext → filename_WIDTHx.ext
-  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
-}
-
 // ── Mode grille : composant léger, memoized ──
 const GridCard = memo(function GridCard({
   groupedProduct,
@@ -54,7 +48,9 @@ const GridCard = memo(function GridCard({
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageLoading, setImageLoading] = useState(false);
-  const [imageReady, setImageReady] = useState(true);
+  // Démarre à `false` : tant que l'image lazy n'a pas appelé onLoad,
+  // on affiche le shimmer skeleton plutôt qu'un bg flat.
+  const [imageReady, setImageReady] = useState(false);
   const safetyTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const currentVariant = groupedProduct.colorVariants[selectedVariantIndex];
@@ -127,15 +123,23 @@ const GridCard = memo(function GridCard({
         onMouseLeave={handleMouseLeave}
       >
         <div className="relative aspect-[16/9] overflow-hidden bg-[#f0eeea]">
+          {/* Shimmer skeleton — visible tant que l'image n'est pas chargée */}
+          {!imageReady && (
+            <div className="absolute inset-0 skeleton-shimmer pointer-events-none z-10" />
+          )}
+
           <img
             key={`${selectedVariantIndex}-${currentImageIndex}`}
-            src={resizeShopifyImage(currentImage, 800)}
+            src={resizeShopifyImage(currentImage, 700)}
             alt={groupedProduct.modelName}
             onLoad={finishLoading}
-            className={`w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            onError={finishLoading}
+            className={`w-full h-full object-cover transition-[transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
               isHovered ? 'scale-[1.04]' : 'scale-100'
             } ${imageReady ? 'opacity-100' : 'opacity-0'}`}
             loading="lazy"
+            decoding="async"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
 
           {/* Loading bar — bronze sweep */}
@@ -258,7 +262,6 @@ const EditorialCard = memo(function EditorialCard({
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageLoading, setImageLoading] = useState(false);
-  const [imageReady, setImageReady] = useState(true);
   const safetyTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const currentVariant = groupedProduct.colorVariants[selectedVariantIndex];
@@ -277,6 +280,14 @@ const EditorialCard = memo(function EditorialCard({
 
   const isOutOfStock = currentProduct.availableForSale === false;
   const counterLabel = String(index + 1).padStart(2, '0');
+  // Toutes les images sont preloadées via CollectionPageTemplate.
+  // Les 6 premières sont en eager + les 4 premières en fetchPriority high.
+  const isAboveFold = index < 6;
+  const isLcpCandidate = index < 4;
+  // Puisque toutes les images sont preloadées, on démarre visible
+  // (pas de shimmer flash pour les images déjà en cache).
+  // Le shimmer ne s'active que sur changement de coloris (imageLoading).
+  const [imageReady, setImageReady] = useState(true);
   const thumbnailImages = productImages.slice(0, 5);
   const isEven = index % 2 === 0;
 
@@ -327,10 +338,11 @@ const EditorialCard = memo(function EditorialCard({
   return (
     <motion.div
       className="group relative"
-      initial={{ opacity: 0, y: 30 }}
+      style={{ contain: 'layout paint', willChange: 'transform' }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.8, delay: 0.1 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <LocaleLink
         to={`/product/${currentVariant.handle}`}
@@ -343,15 +355,24 @@ const EditorialCard = memo(function EditorialCard({
           {/* Image — 60% */}
           <div className="relative w-[60%] bg-[#f0eeea]">
             <div className="relative aspect-[16/10] overflow-hidden">
+              {/* Shimmer skeleton — visible tant que l'image n'est pas chargée */}
+              {!imageReady && (
+                <div className="absolute inset-0 skeleton-shimmer pointer-events-none z-10" />
+              )}
+
               <img
                 key={`desktop-${selectedVariantIndex}-${currentImageIndex}`}
-                src={resizeShopifyImage(currentImage, 1000)}
+                src={resizeShopifyImage(currentImage, 800)}
                 alt={groupedProduct.modelName}
                 onLoad={finishLoading}
-                className={`w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                onError={finishLoading}
+                className={`w-full h-full object-cover transition-[transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   isHovered ? 'scale-[1.03]' : 'scale-100'
                 } ${imageReady ? 'opacity-100' : 'opacity-0'}`}
-                loading="lazy"
+                loading={isAboveFold ? 'eager' : 'lazy'}
+                fetchPriority={isLcpCandidate ? 'high' : 'auto'}
+                decoding="async"
+                sizes="(max-width: 768px) 100vw, 60vw"
               />
 
               {/* Loading bar — bronze sweep */}
@@ -360,7 +381,7 @@ const EditorialCard = memo(function EditorialCard({
                   <div className="h-full bg-bronze animate-[loadingSweep_1.2s_ease-in-out_infinite]" />
                 </div>
               )}
-              <div className="absolute top-4 left-4 z-10 w-8 h-8 border border-white/30 flex items-center justify-center">
+              <div className="absolute top-4 left-4 z-10 w-9 h-9 bg-black/30 border border-white/20 rounded-[3px] flex items-center justify-center">
                 <span className="font-sans text-[10px] font-medium text-white tracking-wide">
                   {counterLabel}
                 </span>
@@ -368,7 +389,7 @@ const EditorialCard = memo(function EditorialCard({
 
               {isOutOfStock && (
                 <div className="absolute top-4 right-4 z-10">
-                  <span className="inline-block bg-dark-text/80 text-white font-sans text-[9px] tracking-[0.25em] font-medium uppercase px-4 py-2">
+                  <span className="inline-block bg-dark-text/70 border border-white/10 text-white font-sans text-[9px] tracking-[0.25em] font-medium uppercase px-4 py-2 rounded-[3px]">
                     {t('sidebar.soldOut')}
                   </span>
                 </div>
@@ -401,8 +422,10 @@ const EditorialCard = memo(function EditorialCard({
             )}
           </div>
 
-          {/* Infos — 40% */}
-          <div className={`w-[40%] bg-white flex flex-col justify-center ${isEven ? 'pl-10 xl:pl-14 pr-8' : 'pr-10 xl:pr-14 pl-8'}`}>
+          {/* Infos — 40% glassmorphism */}
+          {/* Note perf : pas de backdrop-blur ici — trop coûteux multiplié par N cards.
+              Utilise un bg solide blanc cassé qui imite l'effet glass sans cost GPU. */}
+          <div className={`w-[40%] bg-white/85 border border-white/60 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.7),0_4px_30px_rgba(0,0,0,0.03)] flex flex-col justify-center ${isEven ? 'pl-10 xl:pl-14 pr-8' : 'pr-10 xl:pr-14 pl-8'}`}>
             {collectionName && (
               <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/30 uppercase mb-4">
                 {collectionName}
@@ -468,11 +491,11 @@ const EditorialCard = memo(function EditorialCard({
             )}
 
             <div className="mt-8">
-              <span className="group/btn relative inline-flex overflow-hidden border border-dark-text px-8 py-3.5">
+              <span className="group/btn relative inline-flex overflow-hidden bg-white/70 border border-dark-text/15 px-8 py-3.5 rounded-[3px] shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover/btn:text-beige transition-colors duration-500">
                   {t('sidebar.discover')}
                 </span>
-                <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-500 origin-left" />
+                <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-500 origin-left rounded-[3px]" />
               </span>
             </div>
           </div>
@@ -482,13 +505,22 @@ const EditorialCard = memo(function EditorialCard({
         <div className="md:hidden">
           <div className="relative bg-[#f0eeea]">
             <div className="relative aspect-[16/10] overflow-hidden">
+              {/* Shimmer skeleton — visible tant que l'image n'est pas chargée */}
+              {!imageReady && (
+                <div className="absolute inset-0 skeleton-shimmer pointer-events-none z-10" />
+              )}
+
               <img
                 key={`mobile-${selectedVariantIndex}-${currentImageIndex}`}
                 src={resizeShopifyImage(currentImage, 600)}
                 alt={groupedProduct.modelName}
                 onLoad={finishLoading}
-                className={`w-full h-full object-cover transition-opacity duration-500 ${imageReady ? 'opacity-100' : 'opacity-0'}`}
-                loading="lazy"
+                onError={finishLoading}
+                className={`w-full h-full object-cover ${imageReady ? 'opacity-100' : 'opacity-0'}`}
+                loading={isAboveFold ? 'eager' : 'lazy'}
+                fetchPriority={isLcpCandidate ? 'high' : 'auto'}
+                decoding="async"
+                sizes="100vw"
               />
 
               {/* Loading bar — bronze sweep */}
@@ -497,14 +529,14 @@ const EditorialCard = memo(function EditorialCard({
                   <div className="h-full bg-bronze animate-[loadingSweep_1.2s_ease-in-out_infinite]" />
                 </div>
               )}
-              <div className="absolute top-3 left-3 z-10 w-7 h-7 border border-white/30 flex items-center justify-center">
+              <div className="absolute top-3 left-3 z-10 w-7 h-7 bg-black/30 border border-white/20 rounded-[3px] flex items-center justify-center">
                 <span className="font-sans text-[9px] font-medium text-white tracking-wide">
                   {counterLabel}
                 </span>
               </div>
               {isOutOfStock && (
                 <div className="absolute top-3 right-3 z-10">
-                  <span className="inline-block bg-dark-text/80 text-white font-sans text-[8px] tracking-[0.25em] font-medium uppercase px-3 py-1.5">
+                  <span className="inline-block bg-dark-text/70 border border-white/10 text-white font-sans text-[8px] tracking-[0.25em] font-medium uppercase px-3 py-1.5 rounded-[3px]">
                     {t('sidebar.soldOut')}
                   </span>
                 </div>
@@ -532,7 +564,7 @@ const EditorialCard = memo(function EditorialCard({
             )}
           </div>
 
-          <div className="bg-white px-4 pt-4 pb-4">
+          <div className="bg-white/85 border border-white/60 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.7)] px-4 pt-4 pb-4">
             {collectionName && (
               <p className="font-sans text-[8px] tracking-[0.35em] text-dark-text/30 uppercase mb-1.5">
                 {collectionName}

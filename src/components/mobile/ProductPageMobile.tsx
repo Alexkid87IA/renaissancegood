@@ -9,36 +9,8 @@ import MobileBottomBar from './MobileBottomBar';
 import MobileRelatedProducts from './MobileRelatedProducts';
 import { createSanitizedMarkup } from '../../lib/sanitize';
 import { ColorVariant, getColorSwatchStyle } from '../../lib/productGrouping';
-import { useAutoTranslate, useAutoTranslateHtml } from '../../hooks/useAutoTranslate';
-
-interface Variant {
-  id: string;
-  title: string;
-  price: string;
-  availableForSale: boolean;
-}
-
-interface Product {
-  id: string;
-  name: string;
-  modelName?: string;
-  collection: string;
-  badge?: string;
-  price: string;
-  frame: string;
-  lens: string;
-  colors: { name: string }[];
-  dimensions: {
-    lens: string;
-    bridge: string;
-    temple: string;
-  };
-  description: string;
-  descriptionHtml?: string;
-  variants: Variant[];
-  images?: string[];
-  tags?: string[];
-}
+import { useProductData } from '../../hooks/useProductData';
+import { Product } from '../../types/product';
 
 interface ProductPageMobileProps {
   product: Product;
@@ -55,19 +27,13 @@ export default function ProductPageMobile({
 }: ProductPageMobileProps) {
   const navigate = useNavigate();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
-  const translatedName = useAutoTranslate(product.name);
-  const translatedDescription = useAutoTranslate(product.description);
-  const translatedDescriptionHtml = useAutoTranslateHtml(product.descriptionHtml || null);
-
-  // Vérifier si le produit est adaptable en optique
-  const isNonAdaptable = product.tags?.some(tag =>
-    tag.toLowerCase() === 'non-adaptable' ||
-    tag.toLowerCase() === 'solaire-uniquement'
-  );
-
-  // Vérifier si le variant sélectionné est en rupture de stock
-  const selectedVariant = product.variants[selectedColorIndex];
-  const isOutOfStock = !selectedVariant?.availableForSale;
+  const {
+    translatedName,
+    translatedDescription,
+    translatedDescriptionHtml,
+    isNonAdaptable,
+    isOutOfStock,
+  } = useProductData(product, selectedColorIndex);
 
   const handleShare = async () => {
     if ('vibrate' in navigator) {

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import HeroSection from '../components/HeroSection';
 import CollectionHeritage from '../components/CollectionHeritage';
@@ -9,9 +10,22 @@ import TryInStoreSection from '../components/TryInStoreSection';
 import FabricationSection from '../components/FabricationSection';
 import ReassuranceSection from '../components/ReassuranceSection';
 import SEO from '../components/SEO';
+import SectionIndicator from '../components/SectionIndicator';
+import { useSectionSnap } from '../hooks/useSectionSnap';
 
 export default function HomePage() {
   const { t } = useTranslation('home');
+
+  // Active le scroll-snap CSS (soft fallback) uniquement sur la homepage.
+  useEffect(() => {
+    document.documentElement.classList.add('homepage-snap');
+    return () => {
+      document.documentElement.classList.remove('homepage-snap');
+    };
+  }, []);
+
+  // Snap JS custom : 1 molette = 1 section (desktop wheel/trackpad).
+  useSectionSnap(true);
 
   return (
     <>
@@ -29,6 +43,7 @@ export default function HomePage() {
       <HistoireSection />
       <FabricationSection />
       <ReassuranceSection />
+      <SectionIndicator />
     </>
   );
 }

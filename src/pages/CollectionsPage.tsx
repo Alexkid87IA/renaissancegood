@@ -121,8 +121,8 @@ export default function CollectionsPage() {
         description={t('page.seoDescription')}
         url="/collections"
       />
-      {/* Barre de filtres */}
-      <div className="border-b border-dark-text/10 bg-white sticky top-20 z-30">
+      {/* Barre de filtres — glassmorphism */}
+      <div className="border-b border-white/30 bg-white/60 backdrop-blur-2xl sticky top-20 z-30 shadow-[0_4px_30px_rgba(0,0,0,0.03)]">
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-4 sm:py-6 laptop:py-8">
           <div className="flex flex-col gap-6">
             {/* En-tête avec compteur */}

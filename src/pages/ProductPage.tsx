@@ -18,19 +18,10 @@ import ColorVariantsSection from '../components/product/ColorVariantsSection';
 import ProductPageMobile from '../components/mobile/ProductPageMobile';
 import { Product as ShopifyProductType } from '../components/ProductCard';
 import SEO from '../components/SEO';
+import { resizeShopifyImage } from '../lib/imageUtils';
+import { Product, ProductVariant, ProductImage } from '../types/product';
 
-function resizeShopifyImage(url: string, width: number): string {
-  if (!url || !url.includes('cdn.shopify.com')) return url;
-  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
-}
-
-// Interface pour les images
-interface ProductImage {
-  url: string;
-  altText: string | null;
-}
-
-// Interface pour les produits Shopify
+// Interface pour les produits Shopify (API response)
 interface ShopifyProduct {
   id: string;
   title: string;
@@ -68,39 +59,6 @@ interface ShopifyProduct {
       };
     }>;
   };
-}
-
-// Interface pour les variantes avec image
-interface Variant {
-  id: string;
-  title: string;
-  price: string;
-  availableForSale: boolean;
-  colorName: string;
-  image: string | null;
-}
-
-// Interface pour le produit formaté
-interface Product {
-  id: string;
-  name: string;
-  modelName: string;
-  collection: string;
-  badge?: string;
-  price: string;
-  frame: string;
-  lens: string;
-  colors: Array<{ name: string }>;
-  dimensions: {
-    lens: string;
-    bridge: string;
-    temple: string;
-  };
-  description: string;
-  descriptionHtml?: string;
-  allImages: ProductImage[];
-  variants: Variant[];
-  tags?: string[];
 }
 
 export default function ProductPage() {
@@ -160,7 +118,7 @@ export default function ProductPage() {
         }));
 
         // Extraire les variantes internes (tailles, etc.)
-        const variants: Variant[] = shopifyProduct.variants.edges.map(edge => {
+        const variants: ProductVariant[] = shopifyProduct.variants.edges.map(edge => {
           const colorOption = edge.node.selectedOptions.find(
             opt => opt.name.toLowerCase() === 'color' ||
                    opt.name.toLowerCase() === 'couleur' ||
@@ -178,7 +136,7 @@ export default function ProductPage() {
           };
         });
 
-        const colors = variants.map(v => ({ name: v.colorName }));
+        const colors = variants.map(v => ({ name: v.colorName || '' }));
         const modelName = getModelName(shopifyProduct.title);
 
         const formattedProduct: Product = {
@@ -228,12 +186,13 @@ export default function ProductPage() {
     if (!product) return [];
 
     const selectedVariant = product.variants[selectedColorIndex];
-    if (!selectedVariant) return product.allImages.map(img => img.url);
+    const images = product.allImages || [];
+    if (!selectedVariant) return images.map(img => img.url);
 
-    const selectedColorName = selectedVariant.colorName.toLowerCase().trim();
+    const selectedColorName = (selectedVariant.colorName || '').toLowerCase().trim();
 
     // Filtrer par alt text
-    const filteredByAltText = product.allImages.filter(img => {
+    const filteredByAltText = images.filter(img => {
       if (!img.altText) return false;
       const altLower = img.altText.toLowerCase().trim();
       return altLower.includes(selectedColorName) ||
@@ -250,9 +209,9 @@ export default function ProductPage() {
     if (selectedVariant.image) {
       const otherColorNames = product.variants
         .filter((_, idx) => idx !== selectedColorIndex)
-        .map(v => v.colorName.toLowerCase().trim());
+        .map(v => (v.colorName || '').toLowerCase().trim());
 
-      const neutralImages = product.allImages.filter(img => {
+      const neutralImages = images.filter(img => {
         if (!img.altText) return true;
         const altLower = img.altText.toLowerCase().trim();
         const belongsToOtherColor = otherColorNames.some(otherColor =>
@@ -273,9 +232,9 @@ export default function ProductPage() {
     // Fallback
     const otherColorNames = product.variants
       .filter((_, idx) => idx !== selectedColorIndex)
-      .map(v => v.colorName.toLowerCase().trim());
+      .map(v => (v.colorName || '').toLowerCase().trim());
 
-    const genericImages = product.allImages.filter(img => {
+    const genericImages = images.filter(img => {
       if (!img.altText) return true;
       const altLower = img.altText.toLowerCase().trim();
       const belongsToOtherColor = otherColorNames.some(otherColor =>
@@ -285,7 +244,7 @@ export default function ProductPage() {
     });
 
     if (genericImages.length === 0) {
-      return product.allImages.map(img => img.url);
+      return images.map(img => img.url);
     }
 
     return genericImages.map(img => img.url);

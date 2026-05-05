@@ -1,12 +1,15 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useStackedScroll } from '../hooks/useStackedScroll';
 import { stagger, fade } from './shared';
 
 export default function ReassuranceSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.3 });
+  const inView = useInView(ref, { once: false, amount: 0.3 });
   const { t } = useTranslation('home');
+  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
 
   const guarantees = [
     { number: '200+', title: t('reassurance.item1Title'), description: t('reassurance.item1Desc') },
@@ -16,10 +19,15 @@ export default function ReassuranceSection() {
   ];
 
   return (
-    <section className="sticky top-0 z-[90] bg-beige">
+    <motion.section
+      ref={sectionRef}
+      style={{ scale, opacity, filter }}
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-[90] bg-beige overflow-hidden"
+      data-indicator-theme="dark"
+    >
 
       {/* DESKTOP — layout 2 colonnes : texte à gauche, image à droite */}
-      <div className="hidden md:flex">
+      <div className="hidden md:flex h-full">
         {/* Left — Content */}
         <div className="w-1/2 flex items-center justify-center px-10 lg:px-16 xl:px-20 py-24 lg:py-32">
           <motion.div
@@ -67,9 +75,10 @@ export default function ReassuranceSection() {
 
         {/* Right — Image */}
         <div className="w-1/2 relative overflow-hidden">
-          <img
+          <motion.img
             src="https://renaissance-cdn.b-cdn.net/packshot.png"
             alt="Renaissance Paris - Nos engagements"
+            style={{ y: imageY, scale: imageScale }}
             className="w-full h-full object-cover"
             loading="lazy"
           />
@@ -77,8 +86,8 @@ export default function ReassuranceSection() {
       </div>
 
       {/* MOBILE — fullscreen image + overlay */}
-      <div className="md:hidden relative h-screen bg-[#000000] overflow-hidden">
-        <div className="absolute inset-0">
+      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden">
+        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
           <img
             src="https://renaissance-cdn.b-cdn.net/packshot%20copie.png"
             alt="Nos engagements"
@@ -87,7 +96,7 @@ export default function ReassuranceSection() {
           />
           <div className="absolute inset-0 bg-[#000000]/45" />
           <div className="absolute bottom-0 left-0 right-0 h-[65%] bg-gradient-to-b from-transparent to-[#000000]" />
-        </div>
+        </motion.div>
 
         <div className="absolute bottom-0 left-0 right-0 px-6 pb-8">
           <p className="font-sans text-white/50 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
@@ -119,6 +128,6 @@ export default function ReassuranceSection() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

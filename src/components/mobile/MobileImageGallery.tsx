@@ -1,10 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import { PanInfo } from 'framer-motion';
-
-function resizeShopifyImage(url: string, width: number): string {
-  if (!url || !url.includes('cdn.shopify.com')) return url;
-  return url.replace(/(\.\w+)(\?|$)/, `_${width}x$1$2`);
-}
+import { resizeShopifyImage } from '../../lib/imageUtils';
 
 interface MobileImageGalleryProps {
   images: string[];

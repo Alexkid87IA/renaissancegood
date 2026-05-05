@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import LocaleLink from './LocaleLink';
 import T from './TranslatedText';
 import { Shield, Truck, X } from 'lucide-react';
+import { SHIPPING } from '../constants/shipping';
 
 export default function CartDrawer() {
   const { cart, isCartOpen, isLoading, itemCount, updateQuantity, removeItem, closeCart } = useCart();
@@ -13,7 +14,7 @@ export default function CartDrawer() {
 
   const cartLines = cart?.lines.edges || [];
   const subtotal = cart ? parseFloat(cart.cost.subtotalAmount.amount) : 0;
-  const freeShippingThreshold = 500;
+  const freeShippingThreshold = SHIPPING.FREE_THRESHOLD;
   const remainingForFreeShipping = Math.max(freeShippingThreshold - subtotal, 0);
 
   useEffect(() => {

@@ -1,16 +1,31 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import LocaleLink from './LocaleLink';
+import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
+import { useStackedScroll } from '../hooks/useStackedScroll';
 import { stagger, fade } from './shared';
 
 export default function CollectionIsis() {
+  const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const textInView = useInView(textRef, { once: true, amount: 0.3 });
+  const navigate = useLocalizedNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation('collections');
+
+  const textInView = useInView(textRef, { once: false, amount: 0.3 });
+  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
+
+  const handleNavigate = () => {
+    setIsLoading(true);
+    setTimeout(() => navigate('/collections/isis'), 800);
+  };
 
   return (
     <motion.section
-      className="min-h-screen lg:h-screen sticky top-0 z-40"
+      ref={sectionRef}
+      style={{ scale, opacity, filter }}
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-40 overflow-hidden"
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">
@@ -38,13 +53,6 @@ export default function CollectionIsis() {
               {t('isis.subtitle')}
             </motion.p>
 
-            {/* Status badge */}
-            <motion.div variants={fade} className="mb-8">
-              <span className="inline-block border border-dark-text/15 text-dark-text/40 text-[8px] px-4 py-1.5 tracking-[0.3em] font-medium uppercase">
-                {t('isis.availableSoon')}
-              </span>
-            </motion.div>
-
             {/* Line */}
             <motion.div variants={fade} className="w-12 h-px bg-dark-text/15 mb-8" />
 
@@ -53,46 +61,73 @@ export default function CollectionIsis() {
               {t('isis.description')}
             </motion.p>
 
-            {/* CTA - disabled */}
+            {/* CTA */}
             <motion.div variants={fade}>
-              <button className="border border-dark-text/15 px-10 py-4 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/30 cursor-not-allowed">
-                {t('isis.availableSoon')}
-              </button>
+              <LocaleLink to="/collections/isis">
+                <button className="group relative overflow-hidden border border-dark-text px-10 py-4 transition-all duration-500">
+                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
+                    {t('isis.discover')}
+                  </span>
+                  <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </button>
+              </LocaleLink>
             </motion.div>
 
           </motion.div>
         </div>
 
         {/* IMAGE SIDE */}
-        <div className="w-full md:w-1/2 h-full relative overflow-hidden">
-          <img
+        <div
+          onClick={handleNavigate}
+          className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
+        >
+          <motion.img
             src="https://renaissance-cdn.b-cdn.net/collection%20isis%20comming%20soon.png"
-            alt="Collection Isis - Egyptian inspiration"
-            className="w-full h-full object-cover grayscale-[30%]"
+            alt="Collection Isis"
             loading="lazy"
+            style={{ y: imageY, scale: imageScale }}
+            className="w-full h-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.03] group-hover:brightness-[1.05]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark-text/15 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-dark-text/0 group-hover:bg-dark-text/10 transition-all duration-700 pointer-events-none" />
+
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-3 group-hover:translate-y-0">
+              <span className="font-sans text-white text-[10px] tracking-[0.3em] font-medium uppercase">
+                {t('isis.discover')}
+              </span>
+            </div>
+          </div>
+
+          {isLoading && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="absolute inset-0 bg-beige/95 backdrop-blur-md flex items-center justify-center"
+            >
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-12 h-12 border border-bronze/30 border-t-bronze rounded-full animate-spin" />
+                <p className="text-dark-text text-[10px] tracking-[0.3em] font-light uppercase">{t('loading', { ns: 'common' })}</p>
+              </div>
+            </motion.div>
+          )}
         </div>
       </div>
 
       {/* MOBILE */}
-      <div className="md:hidden relative h-[100dvh] bg-[#000000] overflow-hidden">
-        {/* Image — avec overlay */}
-        <div className="absolute inset-0">
+      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate}>
+        {/* Image */}
+        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
           <img
             src="https://renaissance-cdn.b-cdn.net/collection%20isis%20comming%20soon.png"
             alt="Collection Isis"
-            className="w-full h-full object-cover object-[center_35%] grayscale-[30%] opacity-80"
+            className="w-full h-full object-cover object-[center_35%]"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-[#000000]/30" />
-        </div>
+        </motion.div>
 
-        {/* Gradient localisé derrière le texte */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/80 via-[#000000]/40 to-transparent pointer-events-none" />
-
-        {/* Content — centré verticalement */}
-        <div className="relative h-full flex flex-col justify-center px-6 pt-20" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.9), 0 0px 30px rgba(0,0,0,0.7)' }}>
+        {/* Content */}
+        <div className="relative h-full flex flex-col justify-center px-6 pt-20">
           <p className="font-sans text-white/50 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
             {t('isis.label')}
           </p>
@@ -106,13 +141,27 @@ export default function CollectionIsis() {
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-white/40 rounded-full animate-pulse" />
-              <span className="font-sans text-[8px] tracking-[0.2em] font-medium uppercase text-white/50">
-                {t('isis.comingSoon')}
+              <span className="font-display text-sm italic text-white/50 font-light">
+                {isLoading ? '...' : t('isis.discover')}
               </span>
+              {!isLoading && (
+                <svg className="w-4 h-4 text-white/35" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              )}
             </div>
           </div>
         </div>
+
+        {isLoading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="absolute inset-0 bg-[#000000]/90 flex items-center justify-center z-10"
+          >
+            <div className="w-8 h-8 border border-bronze/30 border-t-bronze rounded-full animate-spin" />
+          </motion.div>
+        )}
       </div>
     </motion.section>
   );

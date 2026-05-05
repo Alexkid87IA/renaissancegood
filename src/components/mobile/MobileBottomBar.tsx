@@ -2,16 +2,10 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../../contexts/CartContext';
 import { ShoppingBag, Check } from 'lucide-react';
-
-interface Variant {
-  id: string;
-  title: string;
-  price: string;
-  availableForSale: boolean;
-}
+import { ProductVariant } from '../../types/product';
 
 interface MobileBottomBarProps {
-  selectedVariant: Variant | undefined;
+  selectedVariant: ProductVariant | undefined;
   productPrice: string;
   isOutOfStock?: boolean;
 }

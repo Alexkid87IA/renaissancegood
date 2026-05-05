@@ -6,31 +6,31 @@ const symbols = [
   {
     name: 'Le Trident',
     subtitle: 'Pouvoir',
-    description: 'Trois pointes : force, vision, justesse. Celui qui tient le trident ne suit pas. Il trace.',
+    description: "L'équilibre entre hier, aujourd'hui et demain. L'ancrage dans ce qui fonde, ce qui construit, ce qui perdure.",
     image: 'https://renaissance-cdn.b-cdn.net/TRIDENT%20SYMBOL.png'
   },
   {
     name: 'La Fleur de Lys',
     subtitle: 'Exigence',
-    description: "Le symbole de ceux qui ne lâchent rien. Chaque détail compte. Chaque geste aussi.",
+    description: "L'héritage français. La noblesse d'un geste transmis, la fierté d'une origine assumée.",
     image: 'https://renaissance-cdn.b-cdn.net/FLEUR%20DE%20LYS%20SYMBOL.png'
   },
   {
     name: 'Le Cobra',
     subtitle: 'Protection',
-    description: 'Élégant. Dangereux. Le cobra ne menace pas. Il veille.',
+    description: "L'éveil silencieux. Celui qui voit avant d'être vu.",
     image: 'https://renaissance-cdn.b-cdn.net/COBRA%20SYMBOL.png'
   },
   {
     name: "L'Ankh",
     subtitle: 'Éternité',
-    description: "La clé de vie des pharaons. Ce qu'on construit bien traverse le temps.",
+    description: "Le souffle qui relie. Ce qui connecte ceux qui construisent à ceux qui continueront.",
     image: 'https://renaissance-cdn.b-cdn.net/ANKH%20SYMBOL.png'
   },
   {
     name: 'Le Scarabée',
     subtitle: 'Renaissance',
-    description: 'Chaque matin, il renaît. Comme nous. Comme tout ce qui refuse de mourir.',
+    description: 'Le passage et la transformation. Ce qui traverse les épreuves, ce qui renaît plus fort qu'avant.',
     image: 'https://renaissance-cdn.b-cdn.net/SCARABEE%20SYMBOL.png'
   }
 ];
@@ -63,7 +63,7 @@ export default function SymbolesHomeSection() {
             <div className="flex items-end justify-between gap-8">
               <div>
                 <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.35em] text-white/30 uppercase mb-2 font-medium">
-                  Gravés dans le métal
+                  Nos symboles
                 </p>
                 <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white tracking-[-0.03em] leading-[0.9]">
                   Cinq symboles.{' '}
@@ -71,7 +71,7 @@ export default function SymbolesHomeSection() {
                 </h2>
               </div>
               <p className="hidden sm:block font-sans text-white/35 text-xs lg:text-sm leading-[1.6] max-w-sm flex-shrink-0">
-                Des signes qui parlent depuis des millénaires. On ne les a pas inventés. On les porte.
+                Ce que l'on porte raconte ce que l'on croit.
               </p>
             </div>
           </div>

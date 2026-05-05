@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
+import { useStackedScroll } from '../hooks/useStackedScroll';
 import { useTranslation } from 'react-i18next';
 
 export default function CollectionAllFrames() {
+  const sectionRef = useRef<HTMLElement>(null);
   const navigate = useLocalizedNavigate();
   const { t } = useTranslation('home');
   const [isLoading, setIsLoading] = useState(false);
+  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
 
   const handleNavigate = () => {
     setIsLoading(true);
@@ -17,14 +20,18 @@ export default function CollectionAllFrames() {
 
   return (
     <motion.section
-      className="min-h-screen lg:h-screen sticky top-0 z-50"
+      ref={sectionRef}
+      style={{ scale, opacity, filter }}
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-50 overflow-hidden"
+      data-indicator-theme="light"
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-white hidden md:flex flex-row">
         <div className="w-full md:w-1/2 h-full relative overflow-hidden">
-          <img
+          <motion.img
             src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
             alt="Nos créations"
+            style={{ y: imageY, scale: imageScale }}
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
@@ -62,8 +69,8 @@ export default function CollectionAllFrames() {
       </div>
 
       {/* MOBILE — Éditorial luxe */}
-      <div className="md:hidden relative h-[100dvh] bg-[#000000] overflow-hidden" onClick={handleNavigate}>
-        <div className="absolute inset-0">
+      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate}>
+        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
           <img
             src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
             alt="Nos créations"
@@ -71,13 +78,13 @@ export default function CollectionAllFrames() {
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]/60" />
-        </div>
+        </motion.div>
 
         <div className="relative h-full flex flex-col justify-end px-7 pb-14">
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-sans text-white/40 text-[8px] tracking-[0.5em] uppercase font-medium mb-4"
           >
@@ -87,7 +94,7 @@ export default function CollectionAllFrames() {
           <motion.h3
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.9, delay: 0.35 }}
             className="font-display text-[2.6rem] sm:text-5xl font-bold text-white tracking-[-0.04em] leading-[0.88] mb-2"
           >
@@ -96,7 +103,7 @@ export default function CollectionAllFrames() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.9, delay: 0.5 }}
             className="font-display text-[2.6rem] sm:text-5xl font-light italic text-white/80 tracking-[-0.04em] leading-[0.88]"
           >
@@ -106,7 +113,7 @@ export default function CollectionAllFrames() {
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.7 }}
             className="w-10 h-px bg-white/25 origin-left mt-5 mb-5"
           />
@@ -114,7 +121,7 @@ export default function CollectionAllFrames() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.9 }}
             className="flex items-center gap-5"
           >
