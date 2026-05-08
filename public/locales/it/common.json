@@ -1,6 +1,6 @@
 {
   "nav": {
-    "heritage": "EREDIT\u00c0",
+    "heritage": "EREDITÀ",
     "versailles": "VERSAILLES",
     "isis": "ISIDE",
     "explorer": "ESPLORARE",
@@ -27,7 +27,7 @@
     "emailPlaceholder": "La vostra email",
     "subscribe": "Iscriversi",
     "subscribeSuccess": "Benvenuti nel Cerchio Renaissance.",
-    "subscribeSuccessDetail": "Riceverete le nostre novit\u00e0.",
+    "subscribeSuccessDetail": "Riceverete le nostre novità.",
     "brandDescription": "Occhialeria parigina d'eccellenza. Cinque simboli millenari, maestria artigianale, edizioni limitate a 300 esemplari.",
     "brandDescriptionMobile": "Occhialeria parigina d'eccellenza. Maestria artigianale, edizioni limitate a 300 esemplari.",
     "findOptician": "Trova un ottico",
@@ -35,7 +35,7 @@
     "backToTop": "Torna su"
   },
   "footerLinks": {
-    "heritage": "Eredit\u00e0",
+    "heritage": "Eredità",
     "versailles": "Versailles",
     "isis": "Iside",
     "allCreations": "Tutti i modelli",
@@ -70,11 +70,11 @@
     "versaillesSubtitle": "Collezione Versailles",
     "versaillesDescription": "Ispirata allo sfarzo del palazzo, ogni montatura incarna l'essenza del lusso francese. Oro 24 carati e finitura manuale d'eccezione.",
     "heritageTitle": "Un secolo\ndi maestria",
-    "heritageSubtitle": "Collezione Eredit\u00e0",
+    "heritageSubtitle": "Collezione Eredità",
     "heritageDescription": "Ogni montatura perpetua la tradizione dell'eccellenza artigianale parigina. Creazioni senza tempo, nate nei nostri atelier.",
     "isisComingSoon": "Prossimamente",
     "isisSubtitle": "Cobra. Scarabeo. Occhio.",
-    "isisDescription": "Ci\u00f2 che \u00e8 sopravvissuto a 5000 anni non si indossa per caso. Una collezione ispirata ai simboli eterni dell'antico Egitto.",
+    "isisDescription": "Ciò che è sopravvissuto a 5000 anni non si indossa per caso. Una collezione ispirata ai simboli eterni dell'antico Egitto.",
     "availableSoon": "Disponibile a breve",
     "histoireLabel": "La Maison",
     "histoireSubtitle": "Parigi, sempre.",
@@ -88,7 +88,7 @@
     "laMaison": "La Maison",
     "cart": "Carrello",
     "tracking": "Ordine",
-    "heritage": "Eredit\u00e0",
+    "heritage": "Eredità",
     "heritageSubtitle": "Tridente",
     "versailles": "Versailles",
     "versaillesSubtitle": "Giglio",
@@ -103,7 +103,7 @@
   "retry": "Riprovare",
   "notFound": {
     "title": "Pagina non trovata",
-    "description": "La pagina richiesta non esiste o \u00e8 stata spostata.",
+    "description": "La pagina richiesta non esiste o è stata spostata.",
     "backHome": "Torna alla home",
     "pageTitle": "Pagina non trovata",
     "descriptionLong": "La pagina che cercate sembra essere scomparsa.",
@@ -115,7 +115,7 @@
     "message": "Utilizziamo i cookie per migliorare la vostra esperienza.",
     "accept": "Accetta tutto",
     "decline": "Rifiuta",
-    "learnMore": "Scopri di pi\u00f9"
+    "learnMore": "Scopri di più"
   },
   "seo": {
     "defaultDescription": "Scopri gli occhiali di lusso RENAISSANCE Paris. Artigianato francese, materiali nobili e design senza tempo.",
@@ -144,7 +144,7 @@
   },
   "productFooter": {
     "collections": "Collezioni",
-    "heritage": "Eredit\u00e0",
+    "heritage": "Eredità",
     "versailles": "Versailles",
     "isis": "Iside",
     "explore": "Esplorare",
@@ -158,7 +158,7 @@
     "shipping": "Spedizione",
     "warranty": "Garanzia",
     "terms": "Condizioni di vendita",
-    "copyright": "\u00a9 2025 Renaissance Eyewear",
+    "copyright": "© 2025 Renaissance Eyewear",
     "legalNotice": "Note legali",
     "privacy": "Privacy"
   },
@@ -177,5 +177,21 @@
     "successCode": "WELCOME10",
     "error": "Si è verificato un errore. Riprovate.",
     "noThanks": "No grazie"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "collections": "Collezioni",
+    "shop": "Negozio",
+    "blog": "Diario",
+    "faq": "FAQ",
+    "contact": "Contatto",
+    "sizeGuide": "Guida taglie",
+    "shipping": "Spedizione",
+    "warranty": "Garanzia",
+    "orderTracking": "Tracciamento",
+    "story": "Storia",
+    "manifesto": "Manifesto",
+    "craftsmanship": "Artigianato",
+    "symbols": "Simboli"
   }
 }

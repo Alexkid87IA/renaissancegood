@@ -193,7 +193,7 @@ function AppContent() {
           </ErrorBoundary>
         </main>
         {!isCheckout && (
-          <div className="relative z-10">
+          <div className="relative z-[100]">
             <Footer />
           </div>
         )}

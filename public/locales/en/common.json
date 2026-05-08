@@ -137,7 +137,7 @@
     "shipping": "Shipping",
     "warranty": "Warranty",
     "terms": "Terms & Conditions",
-    "copyright": "\u00a9 2025 Renaissance Eyewear",
+    "copyright": "© 2025 Renaissance Eyewear",
     "legalNotice": "Legal Notice",
     "privacy": "Privacy Policy"
   },
@@ -177,5 +177,21 @@
     "successCode": "WELCOME10",
     "error": "An error occurred. Please try again.",
     "noThanks": "No thanks"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "collections": "Collections",
+    "shop": "Shop",
+    "blog": "Journal",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "sizeGuide": "Size Guide",
+    "shipping": "Shipping",
+    "warranty": "Warranty",
+    "orderTracking": "Order Tracking",
+    "story": "Our Story",
+    "manifesto": "Manifesto",
+    "craftsmanship": "Craftsmanship",
+    "symbols": "Symbols"
   }
 }

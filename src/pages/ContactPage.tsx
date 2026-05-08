@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
 import { Mail, Phone, Clock, Send, MapPin } from 'lucide-react';
 import SEO from '../components/SEO';
+import Breadcrumb from '../components/Breadcrumb';
 import { stagger, fade } from '../components/shared';
 import LocaleLink from '../components/LocaleLink';
 
 export default function ContactPage() {
   const { t } = useTranslation('contact');
+  const { t: tc } = useTranslation('common');
   const heroRef = useRef<HTMLDivElement>(null);
   const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
   const formRef = useRef<HTMLDivElement>(null);
@@ -57,9 +59,10 @@ export default function ContactPage() {
         <div className="relative h-full overflow-hidden hidden lg:flex">
           <div className="w-[42%] bg-[#000000] relative flex flex-col justify-center px-12 xl:px-20 2xl:px-28">
             <div className="absolute top-10 left-12 xl:left-20 2xl:left-28">
-              <p className="font-sans text-white/25 text-[9px] tracking-[0.4em] font-medium uppercase">
-                {t('contactPage.hero.label')}
-              </p>
+              <Breadcrumb items={[
+                { label: tc('breadcrumb.home'), to: '/' },
+                { label: tc('breadcrumb.contact') },
+              ]} variant="light" />
             </div>
 
             <motion.div

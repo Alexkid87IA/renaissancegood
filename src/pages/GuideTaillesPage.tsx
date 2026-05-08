@@ -4,9 +4,11 @@ import { motion, useInView } from 'framer-motion';
 import { Ruler, Eye, ArrowLeftRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import { stagger, fade } from '../components/shared';
+import Breadcrumb from '../components/Breadcrumb';
 
 export default function GuideTaillesPage() {
   const { t } = useTranslation('legal');
+  const { t: tc } = useTranslation('common');
   const heroRef = useRef<HTMLDivElement>(null);
   const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -86,9 +88,12 @@ export default function GuideTaillesPage() {
             initial="hidden"
             animate={heroInView ? "visible" : "hidden"}
           >
-            <motion.p variants={fade} className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
-              {t('guideTailles.heroSupertitle')}
-            </motion.p>
+            <motion.div variants={fade} className="mb-6">
+              <Breadcrumb items={[
+                { label: tc('breadcrumb.home'), to: '/' },
+                { label: tc('breadcrumb.sizeGuide') },
+              ]} variant="light" />
+            </motion.div>
             <motion.h1 variants={fade} className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
               {t('guideTailles.heroTitle1')}
               <br />{t('guideTailles.heroTitle2')}

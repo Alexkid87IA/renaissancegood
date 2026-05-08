@@ -8,6 +8,7 @@ import { useLocale } from '../contexts/LocaleContext';
 import { createSanitizedMarkup } from '../lib/sanitize';
 import LocaleLink from '../components/LocaleLink';
 import { stagger, fade } from '../components/shared';
+import Breadcrumb from '../components/Breadcrumb';
 
 interface BlogArticle {
   id: string;
@@ -114,16 +115,14 @@ export default function BlogArticlePage() {
 
   return (
     <div className="min-h-screen bg-beige">
-      {/* Back bar */}
+      {/* Breadcrumb bar */}
       <div className="bg-[#000000] border-b border-white/5">
         <div className="max-w-[900px] mx-auto px-6 md:px-12 py-4">
-          <LocaleLink
-            to="/blog"
-            className="inline-flex items-center gap-2 font-sans text-[9px] tracking-[0.2em] font-medium uppercase text-white/30 hover:text-bronze transition-colors duration-500"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2} />
-            {t('article.backToArticles')}
-          </LocaleLink>
+          <Breadcrumb items={[
+            { label: t('breadcrumb.home', { ns: 'common' }), to: '/' },
+            { label: t('breadcrumb.blog', { ns: 'common' }), to: '/blog' },
+            { label: article.title },
+          ]} variant="light" />
         </div>
       </div>
 

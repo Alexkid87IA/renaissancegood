@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
+import Breadcrumb from '../components/Breadcrumb';
 import { stagger, fade } from '../components/shared';
 import LocaleLink from '../components/LocaleLink';
 
@@ -12,6 +13,7 @@ const HERO_IMAGE = 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20Januar
 
 export default function SuiviCommandePage() {
   const { t } = useTranslation('contact');
+  const { t: tc } = useTranslation('common');
   const heroRef = useRef<HTMLDivElement>(null);
   const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
   const infoRef = useRef<HTMLDivElement>(null);
@@ -56,9 +58,10 @@ export default function SuiviCommandePage() {
         <div className="w-[44%] bg-[#000000] relative flex flex-col justify-center px-12 xl:px-20 2xl:px-28">
           {/* Top label */}
           <div className="absolute top-10 left-12 xl:left-20 2xl:left-28">
-            <p className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase">
-              {t('suiviCommande.hero.label')}
-            </p>
+            <Breadcrumb items={[
+              { label: tc('breadcrumb.home'), to: '/' },
+              { label: tc('breadcrumb.orderTracking') },
+            ]} variant="light" />
           </div>
 
           <motion.div

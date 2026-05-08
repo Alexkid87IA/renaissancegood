@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { getBlogPosts } from '../lib/shopify';
+import Breadcrumb from '../components/Breadcrumb';
 import { useLocale } from '../contexts/LocaleContext';
 import LocaleLink from '../components/LocaleLink';
 import SEO from '../components/SEO';
@@ -25,6 +26,7 @@ interface BlogArticle {
 
 export default function BlogPage() {
   const { t } = useTranslation('histoire');
+  const { t: tc } = useTranslation('common');
   const { locale, shopifyLanguage } = useLocale();
   const [articles, setArticles] = useState<BlogArticle[]>([]);
   const [loading, setLoading] = useState(true);
@@ -70,9 +72,12 @@ export default function BlogPage() {
             initial="hidden"
             animate={heroInView ? "visible" : "hidden"}
           >
-            <motion.p variants={fade} className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
-              {t('blog.heroLabel')}
-            </motion.p>
+            <motion.div variants={fade} className="mb-6">
+              <Breadcrumb items={[
+                { label: tc('breadcrumb.home'), to: '/' },
+                { label: tc('breadcrumb.blog') },
+              ]} variant="light" />
+            </motion.div>
             <motion.h1 variants={fade} className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
               {t('blog.heroTitleLine1')}
               <br />{t('blog.heroTitleLine2')}

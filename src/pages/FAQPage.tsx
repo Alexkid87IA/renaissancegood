@@ -5,6 +5,7 @@ import { ChevronDown } from 'lucide-react';
 import SEO from '../components/SEO';
 import { stagger, fade } from '../components/shared';
 import LocaleLink from '../components/LocaleLink';
+import Breadcrumb from '../components/Breadcrumb';
 
 const FAQ_QUESTION_KEYS = [
   'paymentMethods', 'modifyOrder', 'invoice',
@@ -77,6 +78,7 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
 
 export default function FAQPage() {
   const { t } = useTranslation('faq');
+  const { t: tc } = useTranslation('common');
   const heroRef = useRef<HTMLDivElement>(null);
   const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -113,9 +115,12 @@ export default function FAQPage() {
             initial="hidden"
             animate={heroInView ? "visible" : "hidden"}
           >
-            <motion.p variants={fade} className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
-              {t('hero.label')}
-            </motion.p>
+            <motion.div variants={fade} className="mb-6">
+              <Breadcrumb items={[
+                { label: tc('breadcrumb.home'), to: '/' },
+                { label: tc('breadcrumb.faq') },
+              ]} variant="light" />
+            </motion.div>
             <motion.h1 variants={fade} className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
               {t('hero.titleLine1')}
               <br />{t('hero.titleLine2')}

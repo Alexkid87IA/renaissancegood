@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 
-const HERO_VIDEO = 'https://renaissance-cdn.b-cdn.net/hf_20260130_124034_0ed82220-23c4-4752-a1c3-00af6106e2ce.mp4';
+const HERO_VIDEO = 'https://renaissance-cdn.b-cdn.net/lunettes_montage_final.mp4';
 const HERO_POSTER = 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2030%2C%202026%20-%2012_05AM.jpeg';
 const VIDEO_SPEED = 0.7;
 
@@ -39,7 +39,7 @@ export default function HeroSection() {
   const { t } = useTranslation('home');
   const slowConnection = useSlowConnection();
 
-  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
+  const { scale, opacity, filter, imageY } = useStackedScroll(sectionRef);
 
   // Appliquer la vitesse de lecture sur les vidéos
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function HeroSection() {
           <motion.img
             src={HERO_POSTER}
             alt="Renaissance Paris"
-            style={{ y: imageY, scale: imageScale }}
+            style={{ y: imageY }}
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
         ) : (
@@ -72,7 +72,7 @@ export default function HeroSection() {
             muted
             playsInline
             preload="metadata"
-            style={{ y: imageY, scale: imageScale }}
+            style={{ y: imageY }}
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
         )}
@@ -105,13 +105,13 @@ export default function HeroSection() {
 
       {/* MOBILE VERSION — Éditorial luxe */}
       <div className="relative h-full overflow-hidden lg:hidden">
-        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
+        <motion.div className="absolute inset-0" style={{ y: imageY }}>
           {slowConnection ? (
             <motion.img
               src={HERO_POSTER}
               alt="RENAISSANCE Paris"
               className="w-full h-full object-cover object-[center_30%]"
-              initial={{ scale: 1.08 }}
+              initial={{ scale: 1.03 }}
               animate={{ scale: 1 }}
               transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
             />
@@ -124,7 +124,7 @@ export default function HeroSection() {
               playsInline
               preload="metadata"
               className="w-full h-full object-cover object-[center_30%]"
-              initial={{ scale: 1.08 }}
+              initial={{ scale: 1.03 }}
               animate={{ scale: 1 }}
               transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
             />

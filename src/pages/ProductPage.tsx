@@ -20,6 +20,7 @@ import { Product as ShopifyProductType } from '../components/ProductCard';
 import SEO from '../components/SEO';
 import { resizeShopifyImage } from '../lib/imageUtils';
 import { Product, ProductVariant, ProductImage } from '../types/product';
+import Breadcrumb from '../components/Breadcrumb';
 
 // Interface pour les produits Shopify (API response)
 interface ShopifyProduct {
@@ -75,6 +76,8 @@ export default function ProductPage() {
   // Variantes de couleur (autres produits du même modèle)
   const [colorVariants, setColorVariants] = useState<ColorVariant[]>([]);
   const [selectedColorVariantIndex, setSelectedColorVariantIndex] = useState(0);
+  const [productCollection, setProductCollection] = useState<{ handle: string; title: string } | null>(null);
+  const { t: tc } = useTranslation('common');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -160,6 +163,12 @@ export default function ProductPage() {
           variants: variants,
           tags: shopifyProduct.tags || []
         };
+
+        const knownCollections = ['heritage', 'versailles', 'isis'];
+        const primaryCollection = (shopifyProduct as any).collections?.edges
+          ?.map((e: any) => e.node)
+          ?.find((c: any) => knownCollections.includes(c.handle));
+        if (primaryCollection) setProductCollection(primaryCollection);
 
         setProduct(formattedProduct);
       } catch (err) {
@@ -409,6 +418,18 @@ export default function ProductPage() {
           }}
         />
       )}
+
+      {/* Breadcrumb */}
+      <div className="pt-6 pb-2 px-6 md:px-12 lg:px-16">
+        <Breadcrumb items={[
+          { label: tc('breadcrumb.home'), to: '/' },
+          ...(productCollection ? [{
+            label: productCollection.title,
+            to: `/collections/${productCollection.handle}`
+          }] : [{ label: tc('breadcrumb.shop'), to: '/shop' }]),
+          { label: product?.modelName || product?.name || '' },
+        ]} />
+      </div>
 
       {/* Two-column layout: Gallery (left) + Product Info (right) */}
       <div className="lg:grid lg:grid-cols-[1fr,440px] xl:grid-cols-[1fr,500px]">

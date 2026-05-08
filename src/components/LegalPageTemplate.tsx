@@ -2,6 +2,7 @@ import { ReactNode, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
 import { stagger, fade } from './shared';
+import Breadcrumb from './Breadcrumb';
 
 interface LegalPageTemplateProps {
   title: string;
@@ -11,6 +12,7 @@ interface LegalPageTemplateProps {
 
 export default function LegalPageTemplate({ title, lastUpdated, children }: LegalPageTemplateProps) {
   const { t } = useTranslation('legal');
+  const { t: tc } = useTranslation('common');
   const heroRef = useRef<HTMLDivElement>(null);
   const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
 
@@ -29,9 +31,12 @@ export default function LegalPageTemplate({ title, lastUpdated, children }: Lega
             initial="hidden"
             animate={heroInView ? "visible" : "hidden"}
           >
-            <motion.p variants={fade} className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
-              {t('template.legalInfo')}
-            </motion.p>
+            <motion.div variants={fade} className="mb-6">
+              <Breadcrumb items={[
+                { label: tc('breadcrumb.home'), to: '/' },
+                { label: title },
+              ]} variant="light" />
+            </motion.div>
             <motion.h1 variants={fade} className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
               {title.toUpperCase().replace(/ /g, '\n').split('\n').map((word, i, arr) => (
                 <span key={i}>

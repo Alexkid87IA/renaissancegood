@@ -177,5 +177,21 @@
     "successCode": "WELCOME10",
     "error": "Une erreur est survenue. Veuillez réessayer.",
     "noThanks": "Non merci"
+  },
+  "breadcrumb": {
+    "home": "Accueil",
+    "collections": "Collections",
+    "shop": "Boutique",
+    "blog": "Journal",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "sizeGuide": "Guide des tailles",
+    "shipping": "Livraison",
+    "warranty": "Garantie",
+    "orderTracking": "Suivi commande",
+    "story": "Histoire",
+    "manifesto": "Manifeste",
+    "craftsmanship": "Savoir-Faire",
+    "symbols": "Symboles"
   }
 }

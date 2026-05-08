@@ -9,6 +9,7 @@ import GroupedProductCard from './GroupedProductCard';
 import SEO from './SEO';
 import { fade } from './shared';
 import { resizeShopifyImage } from '../lib/imageUtils';
+import Breadcrumb from './Breadcrumb';
 
 interface FilterOption {
   label: string;
@@ -216,7 +217,14 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
   });
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
 
+  const { t: tc } = useTranslation('common');
   const prefix = config.translationPrefix;
+
+  const breadcrumbItems = [
+    { label: tc('breadcrumb.home'), to: '/' },
+    { label: tc('breadcrumb.collections'), to: '/collections' },
+    { label: config.collectionName },
+  ];
 
   const materials: FilterOption[] = [
     { label: t('filters.all'), value: 'all' },
@@ -324,11 +332,12 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
             </motion.div>
 
             <motion.div
-              className="absolute top-10 left-10 xl:left-24 2xl:left-32"
+              className="absolute top-10 left-10 xl:left-24 2xl:left-32 flex flex-col gap-3"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
+              <Breadcrumb items={breadcrumbItems} variant="light" />
               <p className="font-sans text-white/25 text-[9px] tracking-[0.4em] font-medium uppercase">
                 {t(`${prefix}.collectionNumber`)}
               </p>
@@ -450,14 +459,17 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
               loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
-            <motion.p
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="absolute top-24 left-6 font-sans text-white/50 text-[9px] tracking-[0.3em] font-medium uppercase"
+              className="absolute top-24 left-6 flex flex-col gap-2"
             >
-              {t(`${prefix}.collectionNumber`)}
-            </motion.p>
+              <Breadcrumb items={breadcrumbItems} variant="light" />
+              <p className="font-sans text-white/50 text-[9px] tracking-[0.3em] font-medium uppercase">
+                {t(`${prefix}.collectionNumber`)}
+              </p>
+            </motion.div>
           </motion.div>
 
           <div className="flex-1 px-6 flex flex-col justify-center">

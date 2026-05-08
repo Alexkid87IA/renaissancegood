@@ -177,5 +177,21 @@
     "successCode": "WELCOME10",
     "error": "Произошла ошибка. Попробуйте ещё раз.",
     "noThanks": "Нет, спасибо"
+  },
+  "breadcrumb": {
+    "home": "Главная",
+    "collections": "Коллекции",
+    "shop": "Магазин",
+    "blog": "Журнал",
+    "faq": "FAQ",
+    "contact": "Контакт",
+    "sizeGuide": "Размеры",
+    "shipping": "Доставка",
+    "warranty": "Гарантия",
+    "orderTracking": "Отслеживание",
+    "story": "История",
+    "manifesto": "Манифест",
+    "craftsmanship": "Мастерство",
+    "symbols": "Символы"
   }
 }
