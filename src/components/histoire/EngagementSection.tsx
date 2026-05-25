@@ -3,13 +3,11 @@ import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import LocaleLink from '../LocaleLink';
 import { stagger, fade } from './shared';
-import { useDeviceType } from '../../hooks/useDeviceType';
 
 export default function EngagementSection() {
   const { t } = useTranslation('histoire');
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
-  const { isMobile } = useDeviceType();
 
   const engagements = [
     {

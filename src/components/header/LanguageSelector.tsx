@@ -38,9 +38,11 @@ export default function LanguageSelector({
       onMouseLeave={() => onToggle(false)}
     >
       <button
+        type="button"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
         aria-label={`${t('header.language')}: ${currentLang}`}
+        onClick={() => onToggle(!isOpen)}
         className={`flex items-center gap-1.5 font-sans text-[9px] laptop:text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.25em] font-medium transition-colors duration-500 uppercase leading-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2 ${
         transparent
           ? 'text-white/90 hover:text-white/50'
@@ -59,6 +61,8 @@ export default function LanguageSelector({
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="absolute top-full right-0 mt-3 bg-white border border-dark-text/[0.08] overflow-hidden min-w-[160px] shadow-lg shadow-dark-text/5"
+            role="listbox"
+            aria-label={t('header.language')}
           >
             <div className="px-5 pt-4 pb-2">
               <p className="font-sans text-[7px] tracking-[0.4em] uppercase text-dark-text/25 font-medium">
@@ -70,7 +74,10 @@ export default function LanguageSelector({
                 const isActive = currentLang === lang.code;
                 return (
                   <button
+                    type="button"
                     key={lang.code}
+                    role="option"
+                    aria-selected={isActive}
                     onClick={() => {
                       onSelect(lang.code);
                       onToggle(false);

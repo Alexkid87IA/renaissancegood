@@ -99,17 +99,30 @@ export function useSectionSnap(enabled: boolean = true) {
       // Ignore micro-deltas (jitter trackpad)
       if (Math.abs(e.deltaY) < 4) return;
 
-      // Tue toujours le scroll natif pour éviter l'inertie macOS qui fight
-      e.preventDefault();
-
-      if (locked) return;
       if (positions.length === 0) refresh();
       if (positions.length === 0) return;
 
       const current = getCurrentIndex();
       const direction = e.deltaY > 0 ? 1 : -1;
       const next = current + direction;
-      if (next < 0 || next >= positions.length) return;
+
+      // Aux bornes, laisser le navigateur reprendre la main afin que le footer
+      // et les zones hors sections restent accessibles au scroll naturel.
+      if (next < 0 || next >= positions.length) {
+        return;
+      }
+
+      // Si l'utilisateur est déjà descendu sous la dernière section (footer),
+      // ne pas le renvoyer brutalement vers la section précédente.
+      const lastIndex = positions.length - 1;
+      if (current === lastIndex && direction < 0 && window.scrollY > positions[lastIndex] + 8) {
+        return;
+      }
+
+      // Tue le scroll natif uniquement quand on déclenche vraiment un snap.
+      e.preventDefault();
+
+      if (locked) return;
       snapTo(next);
     };
 
@@ -152,8 +165,9 @@ export function useSectionSnap(enabled: boolean = true) {
           next = 0;
           break;
         case 'End':
-          next = positions.length - 1;
-          break;
+          // Laisser le comportement natif atteindre le vrai bas de page,
+          // y compris le footer placé après les sections snap.
+          return;
         default:
           return;
       }

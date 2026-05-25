@@ -6,6 +6,8 @@ import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import { stagger, fade } from './shared';
 
+const ISIS_IMAGE = 'https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg';
+
 export default function CollectionIsis() {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -82,7 +84,7 @@ export default function CollectionIsis() {
           className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
         >
           <motion.img
-            src="https://renaissance-cdn.b-cdn.net/collection%20isis%20comming%20soon.png"
+            src={ISIS_IMAGE}
             alt="Collection Isis"
             loading="lazy"
             style={{ y: imageY, scale: imageScale }}
@@ -119,7 +121,7 @@ export default function CollectionIsis() {
         {/* Image */}
         <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
           <img
-            src="https://renaissance-cdn.b-cdn.net/collection%20isis%20comming%20soon.png"
+            src={ISIS_IMAGE}
             alt="Collection Isis"
             className="w-full h-full object-cover object-[center_35%]"
             loading="lazy"

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronLeft, Share2 } from 'lucide-react';
 import MobileImageGallery from './MobileImageGallery';
 import MobileProductInfo from './MobileProductInfo';
@@ -10,6 +10,7 @@ import MobileRelatedProducts from './MobileRelatedProducts';
 import { createSanitizedMarkup } from '../../lib/sanitize';
 import { ColorVariant, getColorSwatchStyle } from '../../lib/productGrouping';
 import { useProductData } from '../../hooks/useProductData';
+import { resizeShopifyImage } from '../../lib/imageUtils';
 import { Product } from '../../types/product';
 
 interface ProductPageMobileProps {
@@ -220,10 +221,12 @@ export default function ProductPageMobile({
                     <div className="w-full aspect-[4/3] overflow-hidden ring-1 ring-dark-text/10 bg-[#f5f4f0]">
                       {variant.thumbnail ? (
                         <img
-                          src={variant.thumbnail}
+                          src={resizeShopifyImage(variant.thumbnail, 520)}
                           alt={variant.colorName}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain p-2.5"
                           loading="lazy"
+                          decoding="async"
+                          sizes="(max-width: 640px) 45vw, 240px"
                         />
                       ) : (
                         <div className="w-full h-full bg-dark-text/5" />

@@ -7,6 +7,7 @@ import { useState, useMemo, memo, useCallback, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { GroupedProduct, getColorSwatchStyle } from '../lib/productGrouping';
+import type { ColorVariant } from '../lib/productGrouping';
 import { getProductDescription } from '../data/productDescriptions';
 import LocaleLink from './LocaleLink';
 import T from './TranslatedText';
@@ -22,6 +23,13 @@ interface GroupedProductCardProps {
 
 // Set global pour ne pas preloader deux fois la même URL
 const preloaded = new Set<string>();
+let productPagePreloaded = false;
+
+function preloadProductPage() {
+  if (productPagePreloaded) return;
+  productPagePreloaded = true;
+  void import('../pages/ProductPage');
+}
 
 function preloadImage(url: string) {
   if (preloaded.has(url)) return;
@@ -40,8 +48,10 @@ function preloadVariantImages(variant: ColorVariant) {
 // ── Mode grille : composant léger, memoized ──
 const GridCard = memo(function GridCard({
   groupedProduct,
+  index = 0,
 }: {
   groupedProduct: GroupedProduct;
+  index?: number;
 }) {
   const { t } = useTranslation('product');
   const [isHovered, setIsHovered] = useState(false);
@@ -50,7 +60,9 @@ const GridCard = memo(function GridCard({
   const [imageLoading, setImageLoading] = useState(false);
   // Démarre à `false` : tant que l'image lazy n'a pas appelé onLoad,
   // on affiche le shimmer skeleton plutôt qu'un bg flat.
-  const [imageReady, setImageReady] = useState(false);
+  const isAboveFold = index < 6;
+  const isLcpCandidate = index < 4;
+  const [imageReady, setImageReady] = useState(isAboveFold);
   const safetyTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const currentVariant = groupedProduct.colorVariants[selectedVariantIndex];
@@ -85,6 +97,7 @@ const GridCard = memo(function GridCard({
   // Preload le coloris actuel au hover de la carte
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
+    preloadProductPage();
     preloadVariantImages(groupedProduct.colorVariants[selectedVariantIndex]);
   }, [groupedProduct, selectedVariantIndex]);
 
@@ -137,7 +150,8 @@ const GridCard = memo(function GridCard({
             className={`w-full h-full object-cover transition-[transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
               isHovered ? 'scale-[1.04]' : 'scale-100'
             } ${imageReady ? 'opacity-100' : 'opacity-0'}`}
-            loading="lazy"
+            loading={isAboveFold ? 'eager' : 'lazy'}
+            fetchpriority={isLcpCandidate ? 'high' : 'auto'}
             decoding="async"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
@@ -179,31 +193,28 @@ const GridCard = memo(function GridCard({
         </div>
 
         <div className="pt-4 pb-2">
-          <h3 className="font-display text-sm sm:text-base font-bold text-dark-text tracking-[-0.01em] leading-tight uppercase truncate">
-            <T>{groupedProduct.modelName}</T>
-          </h3>
-          <p className="font-sans text-sm font-semibold text-dark-text mt-1">
-            {price}&nbsp;€
+          <div className="flex items-start justify-between gap-4">
+            <h3 className="font-display text-xl sm:text-2xl font-bold text-dark-text tracking-normal leading-[0.95] uppercase break-words">
+              <T>{groupedProduct.modelName}</T>
+            </h3>
+            <p className="font-sans text-sm font-semibold text-dark-text whitespace-nowrap pt-0.5">
+              {price}&nbsp;€
+            </p>
+          </div>
+
+          <p className="font-sans text-[10px] tracking-[0.22em] uppercase text-dark-text/45 mt-3">
+            {groupedProduct.colorVariants.length} {groupedProduct.colorVariants.length > 1 ? 'coloris' : 'coloris'}
           </p>
 
-          {(() => {
-            const desc = getProductDescription(groupedProduct.modelName);
-            return desc ? (
-              <p className="font-sans text-[11px] sm:text-xs text-dark-text/50 leading-[1.6] font-light mt-2 line-clamp-2">
-                {desc}
-              </p>
-            ) : null;
-          })()}
-
           {groupedProduct.colorVariants.length > 1 && (
-            <div className="flex items-center gap-2 mt-3">
+            <div className="flex flex-wrap items-center gap-2 mt-4">
               {groupedProduct.colorVariants.map((variant, variantIndex) => (
                 <button
                   type="button"
                   key={variant.handle}
                   onClick={(e) => handleColorChange(variantIndex, e)}
                   onMouseEnter={() => handleSwatchHover(variantIndex)}
-                  className={`flex-1 max-w-[56px] aspect-square overflow-hidden transition-all duration-200 ${
+                  className={`h-12 w-12 sm:h-14 sm:w-14 overflow-hidden transition-all duration-200 ${
                     selectedVariantIndex === variantIndex
                       ? 'ring-2 ring-dark-text ring-offset-2 opacity-100'
                       : 'ring-1 ring-dark-text/10 opacity-50 hover:opacity-80 hover:ring-dark-text/30'
@@ -215,8 +226,10 @@ const GridCard = memo(function GridCard({
                     <img
                       src={resizeShopifyImage(variant.thumbnail, 150)}
                       alt={`${t('sidebar.color')} ${variant.colorNumber}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain bg-[#f5f4f0] p-1.5"
                       loading="lazy"
+                      decoding="async"
+                      sizes="56px"
                     />
                   ) : (
                     <div
@@ -242,7 +255,7 @@ function GroupedProductCard({
   layout = 'grid',
 }: GroupedProductCardProps) {
   if (layout === 'grid') {
-    return <GridCard groupedProduct={groupedProduct} />;
+    return <GridCard groupedProduct={groupedProduct} index={index} />;
   }
   return <EditorialCard groupedProduct={groupedProduct} index={index} collectionName={collectionName} />;
 }
@@ -307,6 +320,7 @@ const EditorialCard = memo(function EditorialCard({
   // Preload le coloris actuel au hover de la carte
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
+    preloadProductPage();
     preloadVariantImages(groupedProduct.colorVariants[selectedVariantIndex]);
   }, [groupedProduct, selectedVariantIndex]);
 
@@ -370,7 +384,7 @@ const EditorialCard = memo(function EditorialCard({
                   isHovered ? 'scale-[1.03]' : 'scale-100'
                 } ${imageReady ? 'opacity-100' : 'opacity-0'}`}
                 loading={isAboveFold ? 'eager' : 'lazy'}
-                fetchPriority={isLcpCandidate ? 'high' : 'auto'}
+                fetchpriority={isLcpCandidate ? 'high' : 'auto'}
                 decoding="async"
                 sizes="(max-width: 768px) 100vw, 60vw"
               />
@@ -413,8 +427,10 @@ const EditorialCard = memo(function EditorialCard({
                     <img
                       src={resizeShopifyImage(imgUrl, 300)}
                       alt={`${groupedProduct.modelName} - ${imgIndex + 1}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain bg-[#f5f4f0] p-2"
                       loading="lazy"
+                      decoding="async"
+                      sizes="160px"
                     />
                   </button>
                 ))}
@@ -480,7 +496,14 @@ const EditorialCard = memo(function EditorialCard({
                       aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
                     >
                       {variant.thumbnail ? (
-                        <img src={resizeShopifyImage(variant.thumbnail, 200)} alt={`${t('sidebar.color')} ${variant.colorNumber}`} className="w-full h-full object-cover" loading="lazy" />
+                        <img
+                          src={resizeShopifyImage(variant.thumbnail, 200)}
+                          alt={`${t('sidebar.color')} ${variant.colorNumber}`}
+                          className="w-full h-full object-contain bg-[#f5f4f0] p-1.5"
+                          loading="lazy"
+                          decoding="async"
+                          sizes="72px"
+                        />
                       ) : (
                         <div className="w-full h-full" style={getColorSwatchStyle(variant.colorNumber, variant.colorName)} />
                       )}
@@ -518,7 +541,7 @@ const EditorialCard = memo(function EditorialCard({
                 onError={finishLoading}
                 className={`w-full h-full object-cover ${imageReady ? 'opacity-100' : 'opacity-0'}`}
                 loading={isAboveFold ? 'eager' : 'lazy'}
-                fetchPriority={isLcpCandidate ? 'high' : 'auto'}
+                fetchpriority={isLcpCandidate ? 'high' : 'auto'}
                 decoding="async"
                 sizes="100vw"
               />
@@ -557,7 +580,14 @@ const EditorialCard = memo(function EditorialCard({
                         : 'opacity-40 hover:opacity-80'
                     }`}
                   >
-                    <img src={resizeShopifyImage(imgUrl, 200)} alt={`${groupedProduct.modelName} - ${imgIndex + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                    <img
+                      src={resizeShopifyImage(imgUrl, 200)}
+                      alt={`${groupedProduct.modelName} - ${imgIndex + 1}`}
+                      className="w-full h-full object-contain bg-[#f5f4f0] p-2"
+                      loading="lazy"
+                      decoding="async"
+                      sizes="33vw"
+                    />
                   </button>
                 ))}
               </div>
@@ -597,7 +627,14 @@ const EditorialCard = memo(function EditorialCard({
                       aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
                     >
                       {variant.thumbnail ? (
-                        <img src={resizeShopifyImage(variant.thumbnail, 150)} alt={`${t('sidebar.color')} ${variant.colorNumber}`} className="w-full h-full object-cover" loading="lazy" />
+                        <img
+                          src={resizeShopifyImage(variant.thumbnail, 150)}
+                          alt={`${t('sidebar.color')} ${variant.colorNumber}`}
+                          className="w-full h-full object-contain bg-[#f5f4f0] p-1.5"
+                          loading="lazy"
+                          decoding="async"
+                          sizes="64px"
+                        />
                       ) : (
                         <div className="w-full h-full" style={getColorSwatchStyle(variant.colorNumber, variant.colorName)} />
                       )}

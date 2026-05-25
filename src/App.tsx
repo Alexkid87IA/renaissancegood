@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { lazy, Suspense, useMemo, useEffect } from 'react';
+import { lazy, Suspense, useMemo, useEffect, type ComponentType } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HelmetProvider } from 'react-helmet-async';
 import { CartProvider } from './contexts/CartContext';
@@ -18,7 +18,9 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 // Auto-reload on stale chunk after deployment
 // Forces a cache-busting reload by appending a timestamp query param
-function lazyWithRetry(importFn: () => Promise<any>) {
+type LazyPage = { default: ComponentType };
+
+function lazyWithRetry(importFn: () => Promise<LazyPage>) {
   return lazy(() =>
     importFn().catch(() => {
       const key = '_reload_stale';
@@ -142,7 +144,7 @@ function AppContent() {
   }, []);
 
   // Check for checkout path with or without lang prefix
-  const pathParts = location.pathname.split('/').filter(Boolean);
+  const pathParts = useMemo(() => location.pathname.split('/').filter(Boolean), [location.pathname]);
   const isCheckout = pathParts.includes('checkout');
 
   // Derive locale from URL so Header/Footer (outside Routes) get the correct locale
@@ -150,7 +152,7 @@ function AppContent() {
     const firstSegment = pathParts[0];
     if (firstSegment && isSupportedLocale(firstSegment)) return firstSegment;
     return 'fr';
-  }, [location.pathname]);
+  }, [pathParts]);
 
   // Keep i18n in sync at top level
   useEffect(() => {

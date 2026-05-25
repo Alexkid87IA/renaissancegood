@@ -1,52 +1,6 @@
 import { createContext, useContext, useState, useEffect, useMemo, useCallback, ReactNode } from 'react';
 import { createCart, addToCart as addToCartAPI, updateCartItem, removeFromCart as removeFromCartAPI, getCart } from '../lib/shopify';
-
-// Types pour le panier
-interface CartLine {
-  id: string;
-  quantity: number;
-  merchandise: {
-    id: string;
-    title: string;
-    priceV2: {
-      amount: string;
-      currencyCode: string;
-    };
-    product: {
-      id: string;
-      title: string;
-      handle: string;
-      images: {
-        edges: Array<{
-          node: {
-            url: string;
-            altText: string | null;
-          };
-        }>;
-      };
-    };
-  };
-}
-
-interface Cart {
-  id: string;
-  checkoutUrl: string;
-  lines: {
-    edges: Array<{
-      node: CartLine;
-    }>;
-  };
-  cost: {
-    totalAmount: {
-      amount: string;
-      currencyCode: string;
-    };
-    subtotalAmount: {
-      amount: string;
-      currencyCode: string;
-    };
-  };
-}
+import type { Cart } from '../lib/shopify';
 
 interface CartContextType {
   cart: Cart | null;
@@ -88,7 +42,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
             setCart(existingCart);
             return;
           }
-        } catch (error) {
+        } catch {
           localStorage.removeItem(CART_ID_KEY);
         }
       }
@@ -98,7 +52,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         const newCart = await createCart();
         setCart(newCart);
         localStorage.setItem(CART_ID_KEY, newCart.id);
-      } catch (error) {
+      } catch {
+        setError('Impossible d\'initialiser le panier.');
       }
     };
 
@@ -121,7 +76,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const updatedCart = await addToCartAPI(currentCart.id, variantId, quantity);
       setCart(updatedCart);
       setIsCartOpen(true); // Ouvrir le panier après ajout
-    } catch (error) {
+    } catch {
       setError('Impossible d\'ajouter l\'article au panier. Veuillez réessayer.');
     } finally {
       setIsLoading(false);
@@ -136,7 +91,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       const updatedCart = await updateCartItem(cart.id, lineId, quantity);
       setCart(updatedCart);
-    } catch (error) {
+    } catch {
       setError('Impossible de mettre à jour la quantité. Veuillez réessayer.');
     } finally {
       setIsLoading(false);
@@ -151,7 +106,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       const updatedCart = await removeFromCartAPI(cart.id, lineId);
       setCart(updatedCart);
-    } catch (error) {
+    } catch {
       setError('Impossible de supprimer l\'article. Veuillez réessayer.');
     } finally {
       setIsLoading(false);

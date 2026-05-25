@@ -2,7 +2,6 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { stagger, fade } from './shared';
-import { useDeviceType } from '../../hooks/useDeviceType';
 
 export default function SymbolesSection() {
   const { t } = useTranslation('histoire');
@@ -42,7 +41,6 @@ export default function SymbolesSection() {
   const contentRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
-  const { isMobile } = useDeviceType();
 
   return (
     <motion.section

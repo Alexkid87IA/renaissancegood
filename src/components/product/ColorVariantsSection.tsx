@@ -16,8 +16,6 @@ interface ColorVariantsSectionProps {
 export default function ColorVariantsSection({
   colorVariants,
   selectedColorVariantIndex,
-  onColorVariantChange,
-  currentHandle,
 }: ColorVariantsSectionProps) {
   const { t } = useTranslation('product');
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -80,12 +78,14 @@ export default function ColorVariantsSection({
                   <div className="relative aspect-[4/3] overflow-hidden bg-[#f5f4f0]">
                     {variant.thumbnail ? (
                       <img
-                        src={resizeShopifyImage(variant.thumbnail, 400)}
+                        src={resizeShopifyImage(variant.thumbnail, 560)}
                         alt={variant.colorName}
-                        className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out ${
+                        className={`absolute inset-0 w-full h-full object-contain p-3 transition-transform duration-700 ease-out ${
                           hoveredIndex === index ? 'scale-[1.04]' : 'scale-100'
                         }`}
                         loading="lazy"
+                        decoding="async"
+                        sizes="(max-width: 640px) 45vw, (max-width: 1024px) 260px, 280px"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">

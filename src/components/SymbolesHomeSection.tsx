@@ -30,7 +30,7 @@ const symbols = [
   {
     name: 'Le Scarabée',
     subtitle: 'Renaissance',
-    description: 'Le passage et la transformation. Ce qui traverse les épreuves, ce qui renaît plus fort qu'avant.',
+    description: "Le passage et la transformation. Ce qui traverse les épreuves, ce qui renaît plus fort qu'avant.",
     image: 'https://renaissance-cdn.b-cdn.net/SCARABEE%20SYMBOL.png'
   }
 ];

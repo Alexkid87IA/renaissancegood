@@ -4,7 +4,8 @@
 // ========================================
 
 import { useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import { ShoppingBag, Package } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import LocaleLink from '../LocaleLink';
@@ -24,15 +25,17 @@ interface MobileMenuProps {
   onLanguageChange: (code: string) => void;
 }
 
+const menuEase = [0.22, 1, 0.36, 1] as const;
+
 // Overlay animation
-const overlayVariants = {
+const overlayVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
-  exit: { opacity: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }
+  visible: { opacity: 1, transition: { duration: 0.4, ease: menuEase } },
+  exit: { opacity: 0, transition: { duration: 0.3, ease: menuEase } }
 };
 
 // Container stagger
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -48,12 +51,12 @@ const containerVariants = {
 };
 
 // Item fade up
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.45, ease: menuEase }
   },
   exit: {
     opacity: 0,
@@ -184,8 +187,8 @@ export default function MobileMenu({
             {COLLECTIONS.map((collection) => (
               <LocaleLink
                 key={collection.slug}
-                to={collection.slug === 'isis' ? '#' : `/collections/${collection.slug}`}
-                onClick={collection.slug === 'isis' ? undefined : onClose}
+                to={`/collections/${collection.slug}`}
+                onClick={onClose}
                 className="group flex items-center justify-between py-2.5"
               >
                 <div className="flex items-baseline gap-3">
@@ -196,9 +199,7 @@ export default function MobileMenu({
                     {collection.subtitle}
                   </span>
                 </div>
-                {collection.slug !== 'isis' && (
-                  <span className="w-0 group-hover:w-4 h-px bg-white/30 transition-all duration-500" />
-                )}
+                <span className="w-0 group-hover:w-4 h-px bg-white/30 transition-all duration-500" />
               </LocaleLink>
             ))}
           </div>

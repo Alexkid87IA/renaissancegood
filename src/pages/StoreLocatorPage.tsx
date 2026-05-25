@@ -1,7 +1,6 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { lazy, Suspense, useState, useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
-import MapComponent from '../components/map/MapComponent';
 import StoreList from '../components/map/StoreList';
 import SearchBar from '../components/map/SearchBar';
 import SEO from '../components/SEO';
@@ -15,6 +14,77 @@ import opticiansData from '../data/opticians.json';
 // Codes pays DOM-TOM
 const DOM_TOM_CODES = ['GUA', 'MTQ', 'GUF', 'REU'];
 
+const MapComponent = lazy(() => import('../components/map/MapComponent'));
+const MAP_PLACEHOLDER_MARKERS = [
+  ['18%', '28%'],
+  ['31%', '54%'],
+  ['43%', '35%'],
+  ['56%', '63%'],
+  ['68%', '26%'],
+  ['78%', '48%'],
+  ['86%', '68%'],
+];
+
+function MapLoadingState({ count, loading }: { count: number; loading: boolean }) {
+  return (
+    <>
+      <div className="relative h-full min-h-[50vh] lg:min-h-0 overflow-hidden bg-[#ece8df]" aria-live="polite">
+        <div
+          className="absolute inset-0 opacity-70"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(26,26,26,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(26,26,26,0.055) 1px, transparent 1px)',
+            backgroundSize: '56px 56px',
+          }}
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_42%,rgba(139,115,85,0.16),transparent_28%),radial-gradient(circle_at_72%_55%,rgba(26,26,26,0.08),transparent_30%)]" />
+
+        {MAP_PLACEHOLDER_MARKERS.map(([left, top], index) => (
+          <span
+            key={`${left}-${top}`}
+            className="absolute h-3 w-3 rounded-full border border-bronze/50 bg-beige shadow-[0_0_0_6px_rgba(139,115,85,0.08)]"
+            style={{
+              left,
+              top,
+              animation: `mapMarkerPulse 2.4s ease-in-out ${index * 120}ms infinite`,
+            }}
+          />
+        ))}
+
+        <div className="absolute inset-0 flex items-center justify-center px-6">
+          <div className="max-w-[340px] text-center">
+            <div className="mx-auto mb-5 h-10 w-10 rounded-full border border-dark-text/15 flex items-center justify-center">
+              {loading ? (
+                <span className="h-5 w-5 rounded-full border border-dark-text/20 border-t-dark-text animate-spin" />
+              ) : (
+                <span className="h-2 w-2 rounded-full bg-bronze" />
+              )}
+            </div>
+            <p className="font-sans text-[9px] tracking-[0.34em] uppercase font-bold text-bronze mb-3">
+              Carte interactive
+            </p>
+            <p className="font-display text-3xl font-bold text-dark-text leading-none tracking-normal mb-3 tabular-nums">
+              {count}
+            </p>
+            <p className="font-sans text-xs text-dark-text/50 leading-[1.7]">
+              {loading
+                ? 'Chargement de la carte et des opticiens filtrés.'
+                : 'La carte se charge dès que vous arrivez sur cette zone.'}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes mapMarkerPulse {
+          0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.55; }
+          50% { transform: translate3d(0, -2px, 0) scale(1.15); opacity: 1; }
+        }
+      `}</style>
+    </>
+  );
+}
+
 export default function StoreLocatorPage() {
   const { t } = useTranslation('contact');
   const navigate = useLocalizedNavigate();
@@ -26,6 +96,8 @@ export default function StoreLocatorPage() {
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
   const ctaRef = useRef<HTMLDivElement>(null);
   const ctaInView = useInView(ctaRef, { once: true, amount: 0.3 });
+  const mapRef = useRef<HTMLDivElement>(null);
+  const mapInView = useInView(mapRef, { once: true, amount: 0.05 });
 
   // Scroll to top on mount
   useEffect(() => {
@@ -75,6 +147,8 @@ export default function StoreLocatorPage() {
 
     return filtered;
   }, [searchQuery, selectedCountry]);
+
+  const shouldLoadMap = mapInView || userLocation !== null || selectedStore !== null;
 
   // Get user's location
   const getUserLocation = () => {
@@ -292,13 +366,19 @@ export default function StoreLocatorPage() {
       <section>
         <div className="flex flex-col lg:flex-row lg:h-[80vh]">
           {/* Map */}
-          <div className="w-full lg:w-[65%] h-[50vh] lg:h-full">
-            <MapComponent
-              stores={filteredStores}
-              selectedStore={selectedStore}
-              onSelectStore={setSelectedStore}
-              userLocation={userLocation}
-            />
+          <div ref={mapRef} className="w-full lg:w-[65%] h-[50vh] lg:h-full">
+            {shouldLoadMap ? (
+              <Suspense fallback={<MapLoadingState count={filteredStores.length} loading />}>
+                <MapComponent
+                  stores={filteredStores}
+                  selectedStore={selectedStore}
+                  onSelectStore={setSelectedStore}
+                  userLocation={userLocation}
+                />
+              </Suspense>
+            ) : (
+              <MapLoadingState count={filteredStores.length} loading={false} />
+            )}
           </div>
 
           {/* Store List */}

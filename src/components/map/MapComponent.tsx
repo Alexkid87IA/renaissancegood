@@ -1,10 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { Store } from '../../types/store';
-
-// Clé API Mapbox depuis les variables d'environnement
-mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
 interface MapComponentProps {
   stores: Store[];
@@ -16,50 +11,103 @@ interface MapComponentProps {
   disableAutoBounds?: boolean;
 }
 
+function markerIcon(isSelected: boolean): string {
+  const fill = isSelected ? '#8b7355' : 'none';
+  return `
+    <svg viewBox="0 0 100 50" style="width: 100%; height: 100%;">
+      <ellipse cx="20" cy="25" rx="18" ry="22" fill="${fill}" stroke="#8b7355" stroke-width="3" />
+      <ellipse cx="80" cy="25" rx="18" ry="22" fill="${fill}" stroke="#8b7355" stroke-width="3" />
+      <line x1="38" y1="25" x2="62" y2="25" stroke="#8b7355" stroke-width="3" />
+    </svg>
+  `;
+}
+
+function setMarkerSelected(element: HTMLElement, isSelected: boolean) {
+  const nextValue = String(isSelected);
+  if (element.dataset.selected === nextValue) return;
+  element.dataset.selected = nextValue;
+  element.innerHTML = markerIcon(isSelected);
+}
+
 export default function MapComponent({ stores, selectedStore, onSelectStore, userLocation, initialCenter, initialZoom, disableAutoBounds = false }: MapComponentProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
-  const markers = useRef<mapboxgl.Marker[]>([]);
+  const mapboxModule = useRef<typeof import('mapbox-gl') | null>(null);
+  const map = useRef<import('mapbox-gl').Map | null>(null);
+  const markers = useRef<import('mapbox-gl').Marker[]>([]);
+  const markerElements = useRef<Map<string, HTMLElement>>(new Map());
+  const selectedStoreId = useRef<string | null>(null);
+  const userLocationMarker = useRef<import('mapbox-gl').Marker | null>(null);
+  const initialView = useRef({
+    center: initialCenter,
+    zoom: initialZoom,
+  });
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [mapError, setMapError] = useState(false);
 
   // Initialize map
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
 
-    // Créer la carte centrée sur la France
-    const isMobile = window.innerWidth < 768;
+    let cancelled = false;
 
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/light-v11',
-      center: initialCenter || [2.3522, 46.6],
-      zoom: initialZoom || (isMobile ? 4.5 : 5.8),
-      attributionControl: false,
-      logoPosition: 'bottom-left',
-      scrollZoom: false,
-      projection: 'mercator'
-    });
+    async function initializeMap() {
+      const token = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
+      if (!token) {
+        setMapError(true);
+        return;
+      }
 
-    // Ajouter les contrôles de navigation (zoom +/-)
-    map.current.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+      try {
+        await import('mapbox-gl/dist/mapbox-gl.css');
+        const loadedMapbox = await import('mapbox-gl');
+        const mapboxgl = loadedMapbox.default;
 
-    // Ajouter le contrôle de géolocalisation
-    map.current.addControl(
-      new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        trackUserLocation: true,
-        showUserHeading: true
-      }),
-      'bottom-right'
-    );
+        if (cancelled || !mapContainer.current) return;
 
-    map.current.on('load', () => {
-      setMapLoaded(true);
-    });
+        mapboxgl.accessToken = token;
+        mapboxModule.current = loadedMapbox;
+
+        // Créer la carte centrée sur la France
+        const isMobile = window.innerWidth < 768;
+
+        map.current = new mapboxgl.Map({
+          container: mapContainer.current,
+          style: 'mapbox://styles/mapbox/light-v11',
+          center: initialView.current.center || [2.3522, 46.6],
+          zoom: initialView.current.zoom || (isMobile ? 4.5 : 5.8),
+          attributionControl: false,
+          logoPosition: 'bottom-left',
+          scrollZoom: false,
+          projection: 'mercator'
+        });
+
+        // Ajouter les contrôles de navigation (zoom +/-)
+        map.current.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+
+        // Ajouter le contrôle de géolocalisation
+        map.current.addControl(
+          new mapboxgl.GeolocateControl({
+            positionOptions: {
+              enableHighAccuracy: true
+            },
+            trackUserLocation: true,
+            showUserHeading: true
+          }),
+          'bottom-right'
+        );
+
+        map.current.on('load', () => {
+          if (!cancelled) setMapLoaded(true);
+        });
+      } catch {
+        if (!cancelled) setMapError(true);
+      }
+    }
+
+    void initializeMap();
 
     return () => {
+      cancelled = true;
       if (map.current) {
         map.current.remove();
         map.current = null;
@@ -69,11 +117,13 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
 
   // Add markers for stores
   useEffect(() => {
-    if (!map.current || !mapLoaded) return;
+    const mapboxgl = mapboxModule.current?.default;
+    if (!map.current || !mapLoaded || !mapboxgl) return;
 
     // Supprimer les anciens marqueurs
     markers.current.forEach(marker => marker.remove());
     markers.current = [];
+    markerElements.current.clear();
 
     // Ajouter les nouveaux marqueurs
     stores.forEach((store) => {
@@ -85,27 +135,8 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
       el.style.width = '32px';
       el.style.height = '32px';
       el.style.cursor = 'pointer';
-      
-      // Icône lunettes SVG en bronze
-      el.innerHTML = `
-        <svg viewBox="0 0 100 50" style="width: 100%; height: 100%;">
-          <ellipse cx="20" cy="25" rx="18" ry="22" fill="none" stroke="#8b7355" stroke-width="3" />
-          <ellipse cx="80" cy="25" rx="18" ry="22" fill="none" stroke="#8b7355" stroke-width="3" />
-          <line x1="38" y1="25" x2="62" y2="25" stroke="#8b7355" stroke-width="3" />
-        </svg>
-      `;
-
-      // Si c'est le magasin sélectionné, changer la couleur
-      if (selectedStore && selectedStore.id === store.id) {
-        el.style.transform = 'scale(1.3)';
-        el.innerHTML = `
-          <svg viewBox="0 0 100 50" style="width: 100%; height: 100%;">
-            <ellipse cx="20" cy="25" rx="18" ry="22" fill="#8b7355" stroke="#8b7355" stroke-width="3" />
-            <ellipse cx="80" cy="25" rx="18" ry="22" fill="#8b7355" stroke="#8b7355" stroke-width="3" />
-            <line x1="38" y1="25" x2="62" y2="25" stroke="#8b7355" stroke-width="3" />
-          </svg>
-        `;
-      }
+      setMarkerSelected(el, false);
+      markerElements.current.set(store.id, el);
 
       // Créer le popup
       const popup = new mapboxgl.Popup({
@@ -148,6 +179,12 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
       markers.current.push(marker);
     });
 
+    const currentSelectedId = selectedStoreId.current;
+    if (currentSelectedId) {
+      const selectedElement = markerElements.current.get(currentSelectedId);
+      if (selectedElement) setMarkerSelected(selectedElement, true);
+    }
+
     // Ajuster la vue pour montrer tous les marqueurs
     if (!disableAutoBounds && stores.length > 0 && stores.some(s => s.latitude && s.longitude)) {
       const bounds = new mapboxgl.LngLatBounds();
@@ -163,7 +200,16 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
         maxZoom: 12
       });
     }
-  }, [stores, selectedStore, mapLoaded, onSelectStore]);
+  }, [stores, mapLoaded, onSelectStore, disableAutoBounds]);
+
+  // Mettre à jour l'état visuel du marqueur sélectionné sans reconstruire
+  // toute la couche de marqueurs Mapbox.
+  useEffect(() => {
+    selectedStoreId.current = selectedStore?.id || null;
+    markerElements.current.forEach((element, storeId) => {
+      setMarkerSelected(element, storeId === selectedStoreId.current);
+    });
+  }, [selectedStore]);
 
   // Zoom on selected store
   useEffect(() => {
@@ -180,21 +226,34 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
 
   // Show user location
   useEffect(() => {
-    if (!map.current || !userLocation) return;
+    const mapboxgl = mapboxModule.current?.default;
+    if (!map.current || !mapboxgl) return;
 
-    // Ajouter un marqueur pour la position de l'utilisateur
-    const el = document.createElement('div');
-    el.className = 'user-location-marker';
-    el.style.width = '20px';
-    el.style.height = '20px';
-    el.style.borderRadius = '50%';
-    el.style.background = '#4A90E2';
-    el.style.border = '3px solid white';
-    el.style.boxShadow = '0 0 10px rgba(0,0,0,0.3)';
+    if (!userLocation) {
+      if (userLocationMarker.current) {
+        userLocationMarker.current.remove();
+        userLocationMarker.current = null;
+      }
+      return;
+    }
 
-    new mapboxgl.Marker({ element: el })
-      .setLngLat([userLocation.lng, userLocation.lat])
-      .addTo(map.current);
+    if (!userLocationMarker.current) {
+      // Ajouter un marqueur pour la position de l'utilisateur
+      const el = document.createElement('div');
+      el.className = 'user-location-marker';
+      el.style.width = '20px';
+      el.style.height = '20px';
+      el.style.borderRadius = '50%';
+      el.style.background = '#4A90E2';
+      el.style.border = '3px solid white';
+      el.style.boxShadow = '0 0 10px rgba(0,0,0,0.3)';
+
+      userLocationMarker.current = new mapboxgl.Marker({ element: el })
+        .setLngLat([userLocation.lng, userLocation.lat])
+        .addTo(map.current);
+    } else {
+      userLocationMarker.current.setLngLat([userLocation.lng, userLocation.lat]);
+    }
 
     // Centrer sur la position de l'utilisateur
     map.current.flyTo({
@@ -208,8 +267,21 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
     <div className="relative w-full h-full">
       <div ref={mapContainer} className="w-full h-full" />
       
+      {mapError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-beige px-6">
+          <div className="max-w-sm text-center">
+            <p className="font-sans text-[9px] tracking-[0.32em] uppercase font-bold text-bronze mb-3">
+              Carte indisponible
+            </p>
+            <p className="font-sans text-sm text-dark-text/55 leading-[1.7]">
+              La liste des opticiens reste disponible ci-contre.
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Loading overlay */}
-      {!mapLoaded && (
+      {!mapLoaded && !mapError && (
         <div className="absolute inset-0 flex items-center justify-center bg-beige">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-dark-text mb-4"></div>
@@ -233,8 +305,14 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
         .custom-marker {
           transition: transform 0.2s ease;
         }
+        .custom-marker[data-selected="true"] {
+          transform: scale(1.3);
+        }
         .custom-marker:hover {
           transform: scale(1.2);
+        }
+        .custom-marker[data-selected="true"]:hover {
+          transform: scale(1.35);
         }
         .mapboxgl-canvas {
           outline: none;

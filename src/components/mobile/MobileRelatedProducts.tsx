@@ -39,10 +39,13 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let cancelled = false;
+
     async function loadRelatedProducts() {
       try {
         setLoading(true);
         const allProducts = await getProducts();
+        if (cancelled) return;
         const filteredProducts = allProducts
           .filter((p: Product) => p.id !== currentProductId)
           .slice(0, limit);
@@ -50,11 +53,14 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
       } catch {
         // Related products loading error silently handled
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     }
 
     loadRelatedProducts();
+    return () => {
+      cancelled = true;
+    };
   }, [currentProductId, limit]);
 
   if (loading) {
@@ -107,7 +113,6 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
         {products.length > 0 && (() => {
           const featured = products[0];
           const imageUrl = featured.images.edges[0]?.node.url;
-          const secondImageUrl = featured.images.edges[1]?.node.url;
           const price = parseFloat(featured.priceRange.minVariantPrice.amount).toFixed(0);
           const modelName = getModelName(featured.title);
           const category = featured.tags?.some(t =>
@@ -126,10 +131,12 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                 <div className="relative overflow-hidden bg-[#f5f4f0] aspect-[16/9]">
                   {imageUrl && (
                     <img
-                      src={resizeShopifyImage(imageUrl, 600)}
+                      src={resizeShopifyImage(imageUrl, 520)}
                       alt={featured.title}
                       className="w-full h-full object-cover"
                       loading="lazy"
+                      decoding="async"
+                      sizes="(max-width: 640px) 100vw, 520px"
                     />
                   )}
                   <div className="absolute top-3 left-3">
@@ -179,10 +186,12 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                   <div className="relative overflow-hidden bg-[#f5f4f0] aspect-[4/3]">
                     {imageUrl && (
                       <img
-                        src={resizeShopifyImage(imageUrl, 400)}
+                        src={resizeShopifyImage(imageUrl, 280)}
                         alt={product.title}
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        decoding="async"
+                        sizes="(max-width: 640px) 45vw, 220px"
                       />
                     )}
                     <div className="absolute top-3 left-3">

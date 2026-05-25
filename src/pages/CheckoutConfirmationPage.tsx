@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import { Check, Package, Truck, Mail, Shield, Award, Star } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import LocaleLink from '../components/LocaleLink';
@@ -14,12 +15,14 @@ interface OrderInfo {
   date: string;
 }
 
-const fadeIn = {
+const easeOutExpo = [0.22, 1, 0.36, 1] as const;
+
+const fadeIn: Variants = {
   hidden: { opacity: 0, y: 16 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.15 },
+    transition: { duration: 0.6, ease: easeOutExpo, delay: i * 0.15 },
   }),
 };
 

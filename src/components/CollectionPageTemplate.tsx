@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
 import { getProductsByCollection } from '../lib/shopify';
@@ -209,8 +209,6 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
   const { t } = useTranslation('collections');
   const { shopifyLanguage } = useLocale();
   const heroRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
@@ -262,7 +260,7 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
       }
     }
     loadProducts();
-  }, [shopifyLanguage, config.collectionId]);
+  }, [shopifyLanguage, config.collectionId, t]);
 
   const groupedProducts: GroupedProduct[] = useMemo(() => {
     let filtered = [...products];
@@ -320,7 +318,7 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
         {/* DESKTOP — Géométrique avec clip-path */}
         <div className="relative h-full overflow-hidden hidden lg:flex">
           {/* Zone gauche — Contenu */}
-          <div className="w-[50%] relative flex flex-col justify-center pl-10 xl:pl-24 2xl:pl-32 pr-8 xl:pr-12 overflow-hidden">
+          <div className="w-[52%] relative flex flex-col justify-center pl-10 xl:pl-20 2xl:pl-28 pr-10 xl:pr-12 overflow-hidden">
             <motion.div
               className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
               initial={{ scaleX: 0 }}
@@ -332,7 +330,7 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
             </motion.div>
 
             <motion.div
-              className="absolute top-10 left-10 xl:left-24 2xl:left-32 flex flex-col gap-3"
+              className="absolute top-10 left-10 xl:left-20 2xl:left-28 flex flex-col gap-3"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -344,13 +342,12 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
             </motion.div>
 
             <motion.div
-              ref={contentRef}
               variants={{
                 hidden: {},
                 visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } }
               }}
               initial="hidden"
-              animate={contentInView ? "visible" : "hidden"}
+              animate="visible"
               className="relative z-10"
             >
               <motion.h1
@@ -358,7 +355,7 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
                 }}
-                className="font-display text-[4.5rem] xl:text-[7rem] 2xl:text-[9rem] font-bold text-white tracking-[-0.03em] leading-[0.8] mb-4"
+                className="font-display text-[clamp(4.25rem,5.75vw,8rem)] font-bold text-white tracking-normal leading-[0.84] mb-4 max-w-full break-words"
               >
                 {t(`${prefix}.heroTitle`)}
               </motion.h1>
@@ -390,7 +387,7 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
             </motion.div>
 
             <motion.div
-              className="absolute bottom-10 left-10 xl:left-24 2xl:left-32 flex items-center gap-3"
+              className="absolute bottom-10 left-10 xl:left-20 2xl:left-28 flex items-center gap-3"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
@@ -402,7 +399,7 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
 
           {/* Zone droite — Image avec clip-path trapèze */}
           <motion.div
-            className="w-[50%] relative overflow-hidden"
+            className="w-[48%] relative overflow-hidden"
             initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
             animate={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -412,7 +409,7 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
               alt={t(`${prefix}.heroImageAlt`)}
               className="absolute inset-0 w-full h-full object-cover"
               style={{ y: imageY }}
-              fetchPriority="high"
+              fetchpriority="high"
               decoding="sync"
               loading="eager"
             />
@@ -454,7 +451,7 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
               src={config.heroImage}
               alt={t(`${prefix}.heroImageAlt`)}
               className="w-full h-full object-cover object-center"
-              fetchPriority="high"
+              fetchpriority="high"
               decoding="sync"
               loading="eager"
             />
@@ -478,7 +475,7 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h1 className="font-display text-4xl sm:text-5xl font-bold text-white mb-2 tracking-[-0.03em] leading-[0.85]">
+              <h1 className="font-display text-[clamp(2.5rem,12vw,3.75rem)] font-bold text-white mb-2 tracking-normal leading-[0.88] max-w-full break-words">
                 {t(`${prefix}.heroTitle`)}
               </h1>
               <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em] mb-4">

@@ -1,4 +1,5 @@
 import type { MenuProduct } from './MegaMenu';
+import { resizeShopifyImage } from '../../lib/imageUtils';
 
 interface ShopifyProduct {
   id: string;
@@ -46,7 +47,7 @@ export function formatProducts(products: ShopifyProduct[], defaultDescription: s
 
   const all: MenuProduct[] = shuffled.map((product) => ({
     name: product.title,
-    image: product.images.edges[0]?.node.url || '',
+    image: resizeShopifyImage(product.images.edges[0]?.node.url || '', 720),
     description: product.description.substring(0, 50) || defaultDescription,
     price: `€${parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0)}`,
     handle: product.handle

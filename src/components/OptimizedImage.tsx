@@ -182,6 +182,8 @@ export function OptimizedBackgroundImage({
   return (
     <div
       ref={containerRef}
+      role={alt ? 'img' : undefined}
+      aria-label={alt || undefined}
       className={`relative ${className}`}
       style={{
         backgroundColor: '#f5f5f0',

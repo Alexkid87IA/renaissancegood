@@ -5,7 +5,9 @@
 // ========================================
 
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import LocaleLink from '../LocaleLink';
 
 export interface MenuProduct {
   name: string;
@@ -26,8 +28,17 @@ interface MegaMenuProps {
   onClose: () => void;
 }
 
+const menuEase = [0.22, 1, 0.36, 1] as const;
+let productPagePreloaded = false;
+
+function preloadProductPage() {
+  if (productPagePreloaded) return;
+  productPagePreloaded = true;
+  void import('../../pages/ProductPage');
+}
+
 // Orchestration : révélation séquentielle comme un rideau de scène
-const curtainVariants = {
+const curtainVariants: Variants = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.08, delayChildren: 0.06 }
@@ -35,28 +46,28 @@ const curtainVariants = {
 };
 
 // Colonne hero — slide depuis la gauche
-const heroVariants = {
+const heroVariants: Variants = {
   hidden: { opacity: 0, x: -20, scale: 0.98 },
   visible: {
     opacity: 1,
     x: 0,
     scale: 1,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.5, ease: menuEase }
   }
 };
 
 // Bloc éditorial — fondu élégant
-const editorialVariants = {
+const editorialVariants: Variants = {
   hidden: { opacity: 0, x: 20 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 0.5, ease: menuEase }
   }
 };
 
 // Produits — cascade avec scale
-const productCardVariants = {
+const productCardVariants: Variants = {
   hidden: { opacity: 0, y: 14, scale: 0.96 },
   visible: (i: number) => ({
     opacity: 1,
@@ -64,19 +75,19 @@ const productCardVariants = {
     scale: 1,
     transition: {
       duration: 0.4,
-      ease: [0.22, 1, 0.36, 1],
+      ease: menuEase,
       delay: 0.12 + i * 0.07
     }
   })
 };
 
 // Ligne décorative
-const lineVariants = {
+const lineVariants: Variants = {
   hidden: { scaleX: 0, opacity: 0 },
   visible: {
     scaleX: 1,
     opacity: 1,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.4 }
+    transition: { duration: 0.6, ease: menuEase, delay: 0.4 }
   }
 };
 
@@ -138,7 +149,9 @@ export default function MegaMenu({
                     src={collectionImage}
                     alt={title}
                     className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover/hero:scale-[1.03]"
-                    loading="lazy"
+                    loading="eager"
+                    decoding="async"
+                    sizes="(max-width: 1280px) 260px, 280px"
                   />
                   {/* Vignette subtile — encadrement photo */}
                   <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.3)] pointer-events-none" />
@@ -160,7 +173,12 @@ export default function MegaMenu({
                   initial="hidden"
                   animate="visible"
                 >
-                  <Link to={`/product/${item.handle}`} onClick={onClose}>
+                  <LocaleLink
+                    to={`/product/${item.handle}`}
+                    onClick={onClose}
+                    onMouseEnter={preloadProductPage}
+                    onFocus={preloadProductPage}
+                  >
                     <div className="group cursor-pointer relative">
                       {/* Conteneur image avec cadre subtil */}
                       <div className="relative aspect-[4/3] overflow-hidden bg-white/[0.02] border border-white/[0.04] group-hover:border-white/[0.1] transition-all duration-500">
@@ -168,7 +186,9 @@ export default function MegaMenu({
                           src={item.image}
                           alt={item.name}
                           className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-[1.04] group-hover:brightness-110"
-                          loading="lazy"
+                          loading="eager"
+                          decoding="async"
+                          sizes="(max-width: 1280px) 34vw, 420px"
                         />
 
                         {/* Overlay gradient au hover */}
@@ -201,7 +221,7 @@ export default function MegaMenu({
                         </span>
                       </div>
                     </div>
-                  </Link>
+                  </LocaleLink>
                 </motion.div>
               ))}
             </div>

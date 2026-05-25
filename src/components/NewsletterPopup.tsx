@@ -142,7 +142,7 @@ export default function NewsletterPopup() {
                 <button
                   onClick={handleClose}
                   className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-dark-text/40 hover:text-dark-text transition-colors duration-300"
-                  aria-label="Close"
+                  aria-label={t('newsletterPopup.close', { defaultValue: 'Fermer la fenêtre newsletter' })}
                 >
                   <X className="w-5 h-5" />
                 </button>

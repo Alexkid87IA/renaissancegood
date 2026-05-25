@@ -67,7 +67,7 @@ export default function ShopPage() {
     }
     load();
     return () => { cancelled = true; };
-  }, [shopifyLanguage]); // ← t retiré : sa référence change au chargement du namespace et relançait l'effet
+  }, [shopifyLanguage, t]);
 
   // Single-pass tab counts — avoid calling getGroupedProducts 5 times
   const tabCounts = useMemo(() => {

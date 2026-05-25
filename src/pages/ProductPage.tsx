@@ -3,14 +3,14 @@
 // Affiche un produit avec navigation entre les variantes de couleur
 // ========================================
 
-import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
 import { getProduct, getProducts } from '../lib/shopify';
 import { useDeviceType } from '../hooks/useDeviceType';
-import { findRelatedColorVariants, getModelName, ColorVariant, getColorSwatchStyle } from '../lib/productGrouping';
+import { findRelatedColorVariants, getModelName, ColorVariant } from '../lib/productGrouping';
 import ProductSidebar from '../components/product/ProductSidebar';
 import ProductBottomBar from '../components/product/ProductBottomBar';
 import RelatedProducts from '../components/product/RelatedProducts';
@@ -21,46 +21,6 @@ import SEO from '../components/SEO';
 import { resizeShopifyImage } from '../lib/imageUtils';
 import { Product, ProductVariant, ProductImage } from '../types/product';
 import Breadcrumb from '../components/Breadcrumb';
-
-// Interface pour les produits Shopify (API response)
-interface ShopifyProduct {
-  id: string;
-  title: string;
-  handle: string;
-  description: string;
-  descriptionHtml: string;
-  availableForSale: boolean;
-  tags?: string[];
-  priceRange: {
-    minVariantPrice: {
-      amount: string;
-      currencyCode: string;
-    };
-  };
-  images: {
-    edges: Array<{
-      node: ProductImage;
-    }>;
-  };
-  variants: {
-    edges: Array<{
-      node: {
-        id: string;
-        title: string;
-        priceV2: {
-          amount: string;
-          currencyCode: string;
-        };
-        availableForSale: boolean;
-        selectedOptions: Array<{
-          name: string;
-          value: string;
-        }>;
-        image: ProductImage | null;
-      };
-    }>;
-  };
-}
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -85,6 +45,8 @@ export default function ProductPage() {
 
   // Charger le produit et ses variantes de couleur
   useEffect(() => {
+    let cancelled = false;
+
     async function loadProduct() {
       if (!id) {
         setError(t('notFound', { ns: 'common' }));
@@ -95,24 +57,21 @@ export default function ProductPage() {
       try {
         setLoading(true);
         setError(null);
+        setColorVariants([]);
+        setProductCollection(null);
 
-        // Charger le produit actuel
-        const shopifyProduct: ShopifyProduct = await getProduct(id, shopifyLanguage);
+        // L'index global sert uniquement aux coloris apparentés: on le lance
+        // tout de suite, mais on ne bloque pas le rendu de la fiche produit.
+        const allProductsPromise = (getProducts(shopifyLanguage) as Promise<ShopifyProductType[]>)
+          .catch(() => [] as ShopifyProductType[]);
+        const shopifyProduct = await getProduct(id, shopifyLanguage);
 
+        if (cancelled) return;
         if (!shopifyProduct) {
           setError(t('notFound', { ns: 'common' }));
           setLoading(false);
           return;
         }
-
-        // Charger tous les produits pour trouver les variantes de couleur
-        const allProducts = await getProducts(shopifyLanguage) as ShopifyProductType[];
-        const relatedVariants = findRelatedColorVariants(allProducts, id);
-        setColorVariants(relatedVariants);
-
-        // Trouver l'index de la variante actuelle
-        const currentIndex = relatedVariants.findIndex(v => v.handle === id);
-        setSelectedColorVariantIndex(currentIndex >= 0 ? currentIndex : 0);
 
         // Extraire toutes les images
         const allImages: ProductImage[] = shopifyProduct.images.edges.map(edge => ({
@@ -165,21 +124,33 @@ export default function ProductPage() {
         };
 
         const knownCollections = ['heritage', 'versailles', 'isis'];
-        const primaryCollection = (shopifyProduct as any).collections?.edges
-          ?.map((e: any) => e.node)
-          ?.find((c: any) => knownCollections.includes(c.handle));
+        const primaryCollection = shopifyProduct.collections?.edges
+          ?.map((edge) => edge.node)
+          ?.find((collection) => knownCollections.includes(collection.handle));
         if (primaryCollection) setProductCollection(primaryCollection);
 
         setProduct(formattedProduct);
-      } catch (err) {
-        setError(t('loadError'));
+
+        void allProductsPromise.then((allProducts) => {
+          if (cancelled || allProducts.length === 0) return;
+          const relatedVariants = findRelatedColorVariants(allProducts, id);
+          setColorVariants(relatedVariants);
+
+          const currentIndex = relatedVariants.findIndex(v => v.handle === id);
+          setSelectedColorVariantIndex(currentIndex >= 0 ? currentIndex : 0);
+        });
+      } catch {
+        if (!cancelled) setError(t('loadError'));
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     }
 
     loadProduct();
-  }, [id, shopifyLanguage]);
+    return () => {
+      cancelled = true;
+    };
+  }, [id, shopifyLanguage, t]);
 
   // Gérer le changement de variante de couleur (navigation vers un autre produit)
   const handleColorVariantChange = (index: number) => {
@@ -258,6 +229,25 @@ export default function ProductPage() {
 
     return genericImages.map(img => img.url);
   }, [product, selectedColorIndex]);
+
+  useEffect(() => {
+    if (displayImages.length === 0) return;
+    const links: HTMLLinkElement[] = [];
+
+    for (const [index, imageUrl] of displayImages.slice(0, 2).entries()) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = resizeShopifyImage(imageUrl, 1200);
+      link.fetchPriority = index === 0 ? 'high' : 'auto';
+      document.head.appendChild(link);
+      links.push(link);
+    }
+
+    return () => {
+      for (const link of links) link.remove();
+    };
+  }, [displayImages]);
 
   // Refs pour synchroniser le scroll du panneau info avec le scroll de la galerie
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -449,6 +439,9 @@ export default function ProductPage() {
                   alt={`${product.modelName} - vue ${index + 1}`}
                   className="w-full block"
                   loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={index === 0 ? 'high' : 'auto'}
+                  decoding={index === 0 ? 'sync' : 'async'}
+                  sizes="(max-width: 1024px) 100vw, (max-width: 1280px) calc(100vw - 440px), calc(100vw - 500px)"
                 />
               </section>
             ))
@@ -477,7 +470,10 @@ export default function ProductPage() {
                   <img
                     src={resizeShopifyImage(thumbUrl, 100)}
                     alt={`${product.modelName} - miniature ${thumbIndex + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain bg-[#f5f4f0] p-1"
+                    loading="lazy"
+                    decoding="async"
+                    sizes="44px"
                   />
                 </button>
               ))}

@@ -1,12 +1,7 @@
 import { motion } from 'framer-motion';
 import { useRef, useEffect } from 'react';
 
-interface MobileFabricationSectionProps {
-  frame: string;
-  lens: string;
-}
-
-export default function MobileFabricationSection({ frame, lens }: MobileFabricationSectionProps) {
+export default function MobileFabricationSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Forcer l'autoplay sur mobile

@@ -20,7 +20,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '../contexts/CartContext';
 import { useLocale } from '../contexts/LocaleContext';
-import { getProductsByCollection } from '../lib/shopify';
+import type { Product } from './ProductCard';
+import { getProducts } from '../lib/shopify';
 import { SUPPORTED_LOCALES, isSupportedLocale } from '../lib/i18n';
 import type { SupportedLocale } from '../lib/i18n';
 import LocaleLink from './LocaleLink';
@@ -37,10 +38,54 @@ type ActiveMenu = 'heritage' | 'versailles' | 'isis' | 'histoire' | null;
 
 // URL logo (wordmark noir sur fond clair)
 const LOGO_DARK = 'https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png';
+const MENU_HERO_IMAGES = [
+  'https://renaissance-cdn.b-cdn.net/campgane.png',
+  'https://renaissance-cdn.b-cdn.net/packshot%202.png',
+];
+const warmedMenuImages = new Set<string>();
+
+function warmMenuImages(products: MenuProduct[]) {
+  if (typeof window === 'undefined') return;
+  if (!window.matchMedia('(min-width: 1024px)').matches) return;
+
+  for (const src of [...MENU_HERO_IMAGES, ...products.map((product) => product.image)].filter(Boolean)) {
+    if (warmedMenuImages.has(src)) continue;
+    warmedMenuImages.add(src);
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = src;
+  }
+}
+
+function normalizeCollectionValue(value: string): string {
+  return value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+function productBelongsToCollection(product: Product, collectionHandle: 'heritage' | 'versailles' | 'isis'): boolean {
+  const wantedCollection = normalizeCollectionValue(collectionHandle);
+  const collectionEdges = product.collections?.edges || [];
+  const collectionMatch = collectionEdges.some(({ node }) => {
+    return normalizeCollectionValue(node.handle) === wantedCollection ||
+      normalizeCollectionValue(node.title) === wantedCollection;
+  });
+
+  if (collectionMatch) return true;
+
+  const fallbackText = normalizeCollectionValue([
+    product.title,
+    product.handle,
+    ...(product.tags || []),
+  ].join(' '));
+
+  return fallbackText.includes(wantedCollection);
+}
 
 export default function Header() {
   const { t } = useTranslation('common');
-  const { locale } = useLocale();
+  const { locale, shopifyLanguage } = useLocale();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -63,40 +108,28 @@ export default function Header() {
     ? location.pathname.slice(locale.length + 1) || '/'
     : location.pathname;
 
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== 'undefined' ? window.innerWidth < 1024 : false
-  );
-
   // Collections (lazy-loaded au hover)
   const [versaillesCollection, setVersaillesCollection] = useState<MenuProduct[]>([]);
   const [heritageCollection, setHeritageCollection] = useState<MenuProduct[]>([]);
+  const [isisCollection, setIsisCollection] = useState<MenuProduct[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const collectionsFetched = useRef(false);
 
   // Hover intent — ref déclaré ici, handlers après fetchCollections
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
-  // Mobile: hide header on scroll, show on stop/scroll-up
-  const [mobileHidden, setMobileHidden] = useState(false);
-  const lastScrollY = useRef(0);
-  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-
   // Effet scroll (throttled via rAF)
   const scrollTicking = useRef(false);
+  const scrolledRef = useRef(false);
   const handleScroll = useCallback(() => {
     if (scrollTicking.current) return;
     scrollTicking.current = true;
     requestAnimationFrame(() => {
-      const currentY = window.scrollY;
-      setScrolled(currentY > 20);
-      setIsMobile(window.innerWidth < 1024);
-
-      const mobile = window.innerWidth < 1024;
-      if (mobile) {
-        setMobileHidden(false);
+      const nextScrolled = window.scrollY > 20;
+      if (scrolledRef.current !== nextScrolled) {
+        scrolledRef.current = nextScrolled;
+        setScrolled(nextScrolled);
       }
-
-      lastScrollY.current = currentY;
       scrollTicking.current = false;
     });
   }, []);
@@ -106,36 +139,72 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
     };
   }, [handleScroll]);
 
-  // Charger les collections au premier hover sur un menu collection
+  // Charger les collections: au hover si besoin, mais aussi en idle après le
+  // premier rendu pour que le mega-menu soit instantané au moment du geste.
   const fetchCollections = useCallback(async () => {
     if (collectionsFetched.current) return;
     collectionsFetched.current = true;
     try {
       setLoadingProducts(true);
-      const [versaillesData, heritageData] = await Promise.all([
-        getProductsByCollection('versailles'),
-        getProductsByCollection('heritage')
-      ]);
-      setVersaillesCollection(formatProducts(versaillesData, 'Édition limitée'));
-      setHeritageCollection(formatProducts(heritageData, 'Fait main'));
+      const products = await getProducts(shopifyLanguage);
+      const nextVersailles = formatProducts(
+        products.filter((product) => productBelongsToCollection(product, 'versailles')),
+        'Édition limitée'
+      );
+      const nextHeritage = formatProducts(
+        products.filter((product) => productBelongsToCollection(product, 'heritage')),
+        'Fait main'
+      );
+      const nextIsis = formatProducts(
+        products.filter((product) => productBelongsToCollection(product, 'isis')),
+        'Titane'
+      );
+      setVersaillesCollection(nextVersailles);
+      setHeritageCollection(nextHeritage);
+      setIsisCollection(nextIsis);
+      warmMenuImages([...nextVersailles, ...nextHeritage, ...nextIsis]);
     } catch {
       setVersaillesCollection([]);
       setHeritageCollection([]);
+      setIsisCollection([]);
       collectionsFetched.current = false;
     } finally {
       setLoadingProducts(false);
     }
-  }, []);
+  }, [shopifyLanguage]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    if (connection?.saveData) return;
+
+    let cancelled = false;
+    const run = () => {
+      if (!cancelled) void fetchCollections();
+    };
+    const hasNativeIdle = 'requestIdleCallback' in window && 'cancelIdleCallback' in window;
+    const handle = hasNativeIdle
+      ? window.requestIdleCallback(run, { timeout: 2500 })
+      : window.setTimeout(run, 1400);
+
+    return () => {
+      cancelled = true;
+      if (hasNativeIdle) {
+        window.cancelIdleCallback(handle);
+      } else {
+        window.clearTimeout(handle);
+      }
+    };
+  }, [fetchCollections]);
 
   // Hover intent — handlers pour ouverture/fermeture douce du mega menu
   const handleMenuEnter = useCallback((menu: ActiveMenu) => {
     if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
-    if (menu === 'heritage' || menu === 'versailles') fetchCollections();
-    setActiveMenu(menu);
+    if (menu === 'heritage' || menu === 'versailles' || menu === 'isis') fetchCollections();
+    setActiveMenu((current) => current === menu ? current : menu);
   }, [fetchCollections]);
 
   const handleMenuLeave = useCallback(() => {
@@ -146,6 +215,11 @@ export default function Header() {
 
   const handleMenuContentEnter = useCallback(() => {
     if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    setActiveMenu(null);
   }, []);
 
   // Fermer le mega menu au changement de page + cleanup timeout
@@ -188,10 +262,7 @@ export default function Header() {
   return (
     <>
       {/* Header principal — solid bg beige, no backdrop-blur, no heavy transitions */}
-      <motion.header
-        initial={false}
-        animate={{ y: mobileHidden ? -100 : 0 }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      <header
         className="fixed top-0 left-0 right-0 z-[100] bg-beige border-b border-dark-text/[0.08]"
         data-scrolled={scrolled ? 'true' : 'false'}
       >
@@ -236,7 +307,7 @@ export default function Header() {
                 src={LOGO_DARK}
                 alt="Renaissance Paris"
                 loading="eager"
-                fetchPriority="high"
+                fetchpriority="high"
                 decoding="sync"
                 className={`w-auto object-contain transition-[height,opacity] duration-500 ease-out group-hover/logo:opacity-75 ${
                   scrolled
@@ -303,12 +374,12 @@ export default function Header() {
             </div>
           </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mega Menu - Versailles */}
       <AnimatePresence>
         {activeMenu === 'versailles' && (
-          <MegaMenuWrapper onMouseLeave={handleMenuLeave} onMouseEnter={handleMenuContentEnter}>
+          <MegaMenuWrapper onMouseLeave={handleMenuLeave} onMouseEnter={handleMenuContentEnter} onClose={closeMenu}>
             <MegaMenu
               products={versaillesCollection}
               loading={loadingProducts}
@@ -326,7 +397,7 @@ export default function Header() {
       {/* Mega Menu - Héritage */}
       <AnimatePresence>
         {activeMenu === 'heritage' && (
-          <MegaMenuWrapper onMouseLeave={handleMenuLeave} onMouseEnter={handleMenuContentEnter}>
+          <MegaMenuWrapper onMouseLeave={handleMenuLeave} onMouseEnter={handleMenuContentEnter} onClose={closeMenu}>
             <MegaMenu
               products={heritageCollection}
               loading={loadingProducts}
@@ -344,105 +415,17 @@ export default function Header() {
       {/* Mega Menu - Isis (Coming Soon) */}
       <AnimatePresence>
         {activeMenu === 'isis' && (
-          <MegaMenuWrapper onMouseLeave={handleMenuLeave} onMouseEnter={handleMenuContentEnter}>
-            <div className="relative max-w-[1600px] mx-auto px-8 md:px-12 lg:px-16 py-10 lg:py-14 overflow-hidden">
-              {/* Lignes diagonales — motif géométrique signature Isis */}
-              <div className="absolute inset-0 pointer-events-none opacity-25" style={{
-                backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 79px, rgba(255,255,255,0.015) 79px, rgba(255,255,255,0.015) 80px)',
-              }} />
-
-              {/* Grain texture */}
-              <div
-                className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-                  backgroundSize: '128px 128px',
-                }}
-              />
-
-              {/* Halo bronze subtil — signature Isis */}
-              <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-bronze/[0.02] blur-[120px] pointer-events-none" />
-
-              <motion.div
-                className="flex items-center gap-12 lg:gap-16 relative z-10"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {/* Image avec cadrage luxe */}
-                <motion.div
-                  className="w-[260px] lg:w-[300px] flex-shrink-0 relative"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <img
-                      src="https://renaissance-cdn.b-cdn.net/collection%20isis%20comming%20soon.png"
-                      alt="Collection Isis"
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/50 via-transparent to-[#0a0a0a]/10" />
-                    <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.25)] pointer-events-none" />
-                    {/* Filet lumineux bas */}
-                    <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
-                  </div>
-                </motion.div>
-
-                {/* Contenu éditorial */}
-                <motion.div
-                  className="flex-1"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <p className="font-sans text-[7px] tracking-[0.5em] text-bronze/30 uppercase font-medium mb-4">
-                    {t('megaMenu.isisComingSoon')}
-                  </p>
-                  <h3 className="font-display text-5xl lg:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.85] mb-2">
-                    ISIS
-                  </h3>
-                  <p className="font-display text-lg lg:text-xl font-light italic text-bronze/30 tracking-[-0.02em] mb-6">
-                    {t('megaMenu.isisSubtitle')}
-                  </p>
-
-                  {/* Séparateur avec point bronze */}
-                  <div className="flex items-center gap-2 mb-6">
-                    <div className="w-10 h-px bg-white/[0.08]" />
-                    <div className="w-[3px] h-[3px] bg-bronze/25 rounded-full" />
-                  </div>
-
-                  <p className="font-sans text-[11.5px] text-white/20 leading-[2] font-light max-w-md mb-8">
-                    {t('megaMenu.isisDescription')}
-                  </p>
-
-                  {/* Badge "Bientôt disponible" avec dot pulsant bronze */}
-                  <div className="inline-flex items-center gap-3 border border-bronze/15 px-6 py-3">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-bronze/40 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-bronze/50" />
-                    </span>
-                    <span className="font-sans text-[8px] tracking-[0.35em] font-medium uppercase text-white/25">
-                      {t('megaMenu.availableSoon')}
-                    </span>
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              {/* Ligne décorative bas */}
-              <motion.div
-                className="flex items-center mt-10 relative z-10"
-                initial={{ scaleX: 0, opacity: 0 }}
-                animate={{ scaleX: 1, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                style={{ transformOrigin: 'center' }}
-              >
-                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-white/[0.06]" />
-                <div className="w-1.5 h-1.5 border border-white/[0.08] mx-4" style={{ transform: 'rotate(45deg)' }} />
-                <div className="flex-1 h-px bg-gradient-to-l from-transparent via-white/[0.06] to-white/[0.06]" />
-              </motion.div>
-            </div>
+          <MegaMenuWrapper onMouseLeave={handleMenuLeave} onMouseEnter={handleMenuContentEnter} onClose={closeMenu}>
+            <MegaMenu
+              products={isisCollection}
+              loading={loadingProducts}
+              title="ISIS"
+              subtitle="Collection Isis"
+              description={t('megaMenu.isisDescription')}
+              collectionLink={localePath('/collections/isis')}
+              collectionImage={isisCollection[0]?.image}
+              onClose={() => setActiveMenu(null)}
+            />
           </MegaMenuWrapper>
         )}
       </AnimatePresence>
@@ -450,7 +433,7 @@ export default function Header() {
       {/* Mega Menu - Histoire */}
       <AnimatePresence>
         {activeMenu === 'histoire' && (
-          <MegaMenuWrapper onMouseLeave={handleMenuLeave} onMouseEnter={handleMenuContentEnter}>
+          <MegaMenuWrapper onMouseLeave={handleMenuLeave} onMouseEnter={handleMenuContentEnter} onClose={closeMenu}>
             <div className="relative max-w-[1600px] mx-auto px-8 md:px-12 lg:px-16 py-10 lg:py-14 overflow-hidden">
               {/* Grain texture */}
               <div
@@ -598,6 +581,9 @@ function NavLink({
     <Link
       to={to}
       onMouseEnter={onMouseEnter}
+      onPointerEnter={onMouseEnter}
+      onMouseMove={onMouseEnter}
+      onFocus={onMouseEnter}
       className={`group relative font-sans text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.32em] font-medium uppercase pb-1 transition-colors duration-300 ${
         isActive ? 'text-bronze' : 'text-dark-text hover:text-bronze'
       }`}
@@ -615,7 +601,17 @@ function NavLink({
 }
 
 // Wrapper pour Mega Menu — fond noir avec bouton fermer, effet rideau, backdrop
-function MegaMenuWrapper({ children, onMouseLeave, onMouseEnter }: { children: React.ReactNode; onMouseLeave: () => void; onMouseEnter?: () => void }) {
+function MegaMenuWrapper({
+  children,
+  onMouseLeave,
+  onMouseEnter,
+  onClose,
+}: {
+  children: React.ReactNode;
+  onMouseLeave: () => void;
+  onMouseEnter?: () => void;
+  onClose: () => void;
+}) {
   return (
     <>
       {/* Backdrop — couvre toute la page, cliquable pour fermer */}
@@ -625,7 +621,7 @@ function MegaMenuWrapper({ children, onMouseLeave, onMouseEnter }: { children: R
         exit={{ opacity: 0 }}
         transition={{ duration: 0.25 }}
         className="fixed inset-0 z-[85] bg-black/60 backdrop-blur-sm"
-        onClick={onMouseLeave}
+        onClick={onClose}
         aria-hidden="true"
       />
 
@@ -644,7 +640,7 @@ function MegaMenuWrapper({ children, onMouseLeave, onMouseEnter }: { children: R
 
         {/* Bouton fermer — coin supérieur droit, plus visible */}
         <button
-          onClick={onMouseLeave}
+          onClick={onClose}
           className="absolute top-4 right-5 xl:right-8 z-20 group flex items-center gap-2.5 px-3 py-2 rounded-sm bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/[0.15] text-white/40 hover:text-white/80 transition-all duration-300"
           aria-label="Fermer le menu"
         >

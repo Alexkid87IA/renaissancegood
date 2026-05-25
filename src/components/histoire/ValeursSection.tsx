@@ -2,7 +2,6 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { stagger, fade } from './shared';
-import { useDeviceType } from '../../hooks/useDeviceType';
 
 export default function ValeursSection() {
   const { t } = useTranslation('histoire');
@@ -42,7 +41,6 @@ export default function ValeursSection() {
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.2 });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const { isMobile } = useDeviceType();
 
   return (
     <motion.section

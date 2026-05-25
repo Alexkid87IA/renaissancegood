@@ -1,5 +1,4 @@
 import { useState, useRef, useCallback } from 'react';
-import { PanInfo } from 'framer-motion';
 import { resizeShopifyImage } from '../../lib/imageUtils';
 
 interface MobileImageGalleryProps {
@@ -49,6 +48,9 @@ export default function MobileImageGallery({ images, productName }: MobileImageG
               index === currentIndex ? 'opacity-100' : 'opacity-0'
             }`}
             loading={index === 0 ? 'eager' : 'lazy'}
+            fetchpriority={index === 0 ? 'high' : 'auto'}
+            decoding={index === 0 ? 'sync' : 'async'}
+            sizes="100vw"
           />
         ))}
 
@@ -92,7 +94,10 @@ export default function MobileImageGallery({ images, productName }: MobileImageG
               <img
                 src={resizeShopifyImage(image, 100)}
                 alt={`Miniature ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain bg-[#f5f4f0] p-1"
+                loading="lazy"
+                decoding="async"
+                sizes="56px"
               />
             </button>
           ))}

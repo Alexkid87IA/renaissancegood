@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Minus, Plus, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LocaleLink from '../LocaleLink';
+import { resizeShopifyImage } from '../../lib/imageUtils';
+import { getProductImages } from '../../lib/shopify';
 
 interface CartLineNode {
   id: string;
@@ -51,12 +53,32 @@ interface CartItemProps {
   removeItem: (lineId: string) => Promise<void>;
 }
 
+const productImagesCache = new Map<string, Promise<string[]>>();
+
+function loadProductImages(handle: string): Promise<string[]> {
+  const cached = productImagesCache.get(handle);
+  if (cached) return cached;
+
+  const request = getProductImages(handle)
+    .then((images) => images.map((image) => image.url))
+    .catch((error) => {
+      productImagesCache.delete(handle);
+      throw error;
+    });
+  productImagesCache.set(handle, request);
+  return request;
+}
+
 export default function CartItemWithCarousel({ node, index, isLoading, updateQuantity, removeItem }: CartItemProps) {
   const { t } = useTranslation('cart');
   const product = node.merchandise.product;
   const price = parseFloat(node.merchandise.priceV2?.amount || node.cost?.totalAmount?.amount || '0');
   const totalPrice = price * node.quantity;
   const collection = product?.collections?.edges?.[0]?.node?.title || 'Exclusive';
+  const fallbackProductImages = useMemo(
+    () => product?.images?.edges?.map(edge => edge.node.url) || [],
+    [product?.images?.edges]
+  );
 
   // États pour le carrousel
   const [allProductImages, setAllProductImages] = useState<string[]>([]);
@@ -65,57 +87,34 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
 
   // Charger TOUTES les images du produit via GraphQL
   useEffect(() => {
+    setCurrentImageIndex(0);
+    setAllProductImages(fallbackProductImages);
+
     if (!product?.handle) {
-      const fallbackImages = product?.images?.edges?.map(edge => edge.node.url) || [];
-      setAllProductImages(fallbackImages);
       setLoadingImages(false);
       return;
     }
 
+    let cancelled = false;
     const fetchAllImages = async () => {
       try {
-        const response = await fetch(`https://${import.meta.env.VITE_SHOPIFY_STORE_DOMAIN}/api/2025-07/graphql.json`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Shopify-Storefront-Access-Token': import.meta.env.VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN
-          },
-          body: JSON.stringify({
-            query: `
-              query GetProductImages($handle: String!) {
-                product(handle: $handle) {
-                  images(first: 10) {
-                    edges {
-                      node {
-                        url
-                        altText
-                      }
-                    }
-                  }
-                }
-              }
-            `,
-            variables: {
-              handle: product.handle
-            }
-          })
-        });
-
-        const data = await response.json();
-        if (data.data?.product?.images?.edges) {
-          const images = data.data.product.images.edges.map((edge: { node: { url: string } }) => edge.node.url);
-          setAllProductImages(images);
+        setLoadingImages(fallbackProductImages.length === 0);
+        const images = await loadProductImages(product.handle);
+        if (!cancelled) {
+          setAllProductImages(images.length > 0 ? images : fallbackProductImages);
         }
       } catch {
-        const fallbackImages = product.images.edges.map(edge => edge.node.url);
-        setAllProductImages(fallbackImages);
+        if (!cancelled) setAllProductImages(fallbackProductImages);
       } finally {
-        setLoadingImages(false);
+        if (!cancelled) setLoadingImages(false);
       }
     };
 
-    fetchAllImages();
-  }, [product?.handle]);
+    void fetchAllImages();
+    return () => {
+      cancelled = true;
+    };
+  }, [product?.handle, fallbackProductImages]);
 
   const handleNextImage = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -156,10 +155,12 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
             </div>
           ) : allProductImages[currentImageIndex] ? (
             <img
-              src={allProductImages[currentImageIndex]}
+              src={resizeShopifyImage(allProductImages[currentImageIndex], 760)}
               alt={product?.title || 'Produit'}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain p-4"
               loading="lazy"
+              decoding="async"
+              sizes="100vw"
             />
           ) : null}
 
@@ -279,10 +280,12 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
                   {allProductImages.map((img, i) => i === currentImageIndex && (
                     <motion.img
                       key={i}
-                      src={img}
+                      src={resizeShopifyImage(img, 960)}
                       alt={`${product?.title || 'Produit'} - Image ${i + 1}`}
-                      className="w-full h-full object-cover cursor-pointer"
+                      className="w-full h-full object-contain p-6 cursor-pointer"
                       loading="lazy"
+                      decoding="async"
+                      sizes="(max-width: 1280px) 400px, 480px"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -340,10 +343,12 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
                     }`}
                   >
                     <img
-                      src={img}
+                      src={resizeShopifyImage(img, 260)}
                       alt={`${product?.title || 'Produit'} thumbnail ${i + 1}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain p-2"
                       loading="lazy"
+                      decoding="async"
+                      sizes="120px"
                     />
                     {i === currentImageIndex && (
                       <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-dark-text" />

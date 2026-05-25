@@ -1,4 +1,5 @@
 import { createStorefrontClient } from '@shopify/hydrogen-react';
+import type { Product } from '../components/ProductCard';
 
 const client = createStorefrontClient({
   storeDomain: import.meta.env.VITE_SHOPIFY_STORE_DOMAIN,
@@ -16,10 +17,134 @@ interface GraphQLResponse<T> {
   errors?: Array<{ message: string; locations?: Array<{ line: number; column: number }> }>;
 }
 
+interface ShopifyProductDetail {
+  id: string;
+  title: string;
+  handle: string;
+  description: string;
+  descriptionHtml: string;
+  availableForSale: boolean;
+  tags?: string[];
+  priceRange: {
+    minVariantPrice: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
+  images: {
+    edges: Array<{
+      node: {
+        url: string;
+        altText: string | null;
+      };
+    }>;
+  };
+  variants: {
+    edges: Array<{
+      node: {
+        id: string;
+        title: string;
+        priceV2: {
+          amount: string;
+          currencyCode: string;
+        };
+        availableForSale: boolean;
+        selectedOptions: Array<{
+          name: string;
+          value: string;
+        }>;
+        image: {
+          url: string;
+          altText: string | null;
+        } | null;
+      };
+    }>;
+  };
+  collections?: {
+    edges: Array<{
+      node: {
+        handle: string;
+        title: string;
+      };
+    }>;
+  };
+  lensWidth?: { value: string; type: string } | null;
+  bridgeWidth?: { value: string; type: string } | null;
+  templeLength?: { value: string; type: string } | null;
+}
+
+export interface CartLine {
+  id: string;
+  quantity: number;
+  merchandise: {
+    id: string;
+    title: string;
+    priceV2: {
+      amount: string;
+      currencyCode: string;
+    };
+    product: {
+      id: string;
+      title: string;
+      handle: string;
+      productType?: string;
+      images: {
+        edges: Array<{
+          node: {
+            url: string;
+            altText: string | null;
+          };
+        }>;
+      };
+    };
+  };
+}
+
+export interface Cart {
+  id: string;
+  checkoutUrl: string;
+  lines: {
+    edges: Array<{
+      node: CartLine;
+    }>;
+  };
+  cost: {
+    totalAmount: {
+      amount: string;
+      currencyCode: string;
+    };
+    subtotalAmount: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
+}
+
+export interface BlogArticle {
+  id: string;
+  title: string;
+  handle: string;
+  excerpt: string;
+  excerptHtml?: string;
+  contentHtml: string;
+  image: {
+    url: string;
+    altText?: string | null;
+  } | null;
+  publishedAt: string;
+  author: {
+    name: string;
+  };
+  tags?: string[];
+}
+
+export type RecentBlogArticle = Pick<BlogArticle, 'id' | 'title' | 'handle' | 'excerpt' | 'image' | 'publishedAt'>;
+
 // ========================================
 // FONCTION UTILITAIRE POUR LES REQUÊTES AVEC TIMEOUT ET VALIDATION
 // ========================================
 async function shopifyFetch<T>(query: string, variables?: Record<string, unknown>, _language?: string): Promise<T> {
+  void _language;
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 secondes timeout
 
@@ -59,6 +184,7 @@ async function shopifyFetch<T>(query: string, variables?: Record<string, unknown
 // CACHE MÉMOIRE AVEC TTL
 // ========================================
 const cache = new Map<string, { data: unknown; timestamp: number }>();
+const pendingRequests = new Map<string, Promise<unknown>>();
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
 function getCached<T>(key: string): T | null {
@@ -75,13 +201,31 @@ function setCache(key: string, data: unknown) {
   cache.set(key, { data, timestamp: Date.now() });
 }
 
+async function getCachedOrFetch<T>(key: string, fetcher: () => Promise<T>): Promise<T> {
+  const cached = getCached<T>(key);
+  if (cached !== null) return cached;
+
+  const pending = pendingRequests.get(key) as Promise<T> | undefined;
+  if (pending) return pending;
+
+  const request = fetcher()
+    .then((data) => {
+      setCache(key, data);
+      return data;
+    })
+    .finally(() => {
+      pendingRequests.delete(key);
+    });
+
+  pendingRequests.set(key, request);
+  return request;
+}
+
 // ========================================
 // FONCTION POUR RÉCUPÉRER TOUS LES PRODUITS
 // ========================================
-export async function getProducts(language?: string) {
+export async function getProducts(language?: string): Promise<Product[]> {
   const cacheKey = `all-products-${language || 'FR'}`;
-  const cached = getCached<ReturnType<typeof getProducts>>(cacheKey);
-  if (cached) return cached;
   const query = `
     query GetProducts {
       products(first: 250) {
@@ -130,19 +274,17 @@ export async function getProducts(language?: string) {
     }
   `;
 
-  const data = await shopifyFetch<{ products: { edges: Array<{ node: unknown }> } }>(query, undefined, language);
-  const products = data.products.edges.map((edge) => edge.node);
-  setCache(cacheKey, products);
-  return products;
+  return getCachedOrFetch(cacheKey, async () => {
+    const data = await shopifyFetch<{ products: { edges: Array<{ node: Product }> } }>(query, undefined, language);
+    return data.products.edges.map((edge) => edge.node);
+  });
 }
 
 // ========================================
 // FONCTION POUR RÉCUPÉRER UN PRODUIT PAR HANDLE
 // ========================================
-export async function getProduct(handle: string, language?: string) {
+export async function getProduct(handle: string, language?: string): Promise<ShopifyProductDetail | null> {
   const cacheKey = `product-${handle}-${language || 'FR'}`;
-  const cached = getCached<ReturnType<typeof getProduct>>(cacheKey);
-  if (cached) return cached;
   const query = `
     query GetProduct($handle: String!) {
       productByHandle(handle: $handle) {
@@ -212,18 +354,17 @@ export async function getProduct(handle: string, language?: string) {
     }
   `;
 
-  const data = await shopifyFetch<{ productByHandle: unknown }>(query, { handle }, language);
-  setCache(cacheKey, data.productByHandle);
-  return data.productByHandle;
+  return getCachedOrFetch(cacheKey, async () => {
+    const data = await shopifyFetch<{ productByHandle: ShopifyProductDetail | null }>(query, { handle }, language);
+    return data.productByHandle;
+  });
 }
 
 // ========================================
 // FONCTION POUR RÉCUPÉRER LES PRODUITS PAR COLLECTION
 // ========================================
-export async function getProductsByCollection(collectionHandle: string, language?: string) {
+export async function getProductsByCollection(collectionHandle: string, language?: string): Promise<Product[]> {
   const cacheKey = `collection-${collectionHandle}-${language || 'FR'}`;
-  const cached = getCached<ReturnType<typeof getProductsByCollection>>(cacheKey);
-  if (cached) return cached;
   const query = `
     query GetProductsByCollection($handle: String!) {
       collection(handle: $handle) {
@@ -275,19 +416,19 @@ export async function getProductsByCollection(collectionHandle: string, language
     }
   `;
 
-  const data = await shopifyFetch<{ collection: { products: { edges: Array<{ node: unknown }> } } | null }>(
-    query,
-    { handle: collectionHandle },
-    language
-  );
+  return getCachedOrFetch(cacheKey, async () => {
+    const data = await shopifyFetch<{ collection: { products: { edges: Array<{ node: Product }> } } | null }>(
+      query,
+      { handle: collectionHandle },
+      language
+    );
 
-  if (!data.collection) {
-    return [];
-  }
+    if (!data.collection) {
+      return [];
+    }
 
-  const products = data.collection.products.edges.map((edge) => edge.node);
-  setCache(cacheKey, products);
-  return products;
+    return data.collection.products.edges.map((edge) => edge.node);
+  });
 }
 
 // ========================================
@@ -314,6 +455,7 @@ const CART_FRAGMENT = `
                 id
                 title
                 handle
+                productType
                 images(first: 1) {
                   edges {
                     node {
@@ -344,7 +486,7 @@ const CART_FRAGMENT = `
 // ========================================
 // CRÉATION DU PANIER
 // ========================================
-export async function createCart() {
+export async function createCart(): Promise<Cart> {
   const query = `
     ${CART_FRAGMENT}
     mutation CreateCart {
@@ -356,14 +498,14 @@ export async function createCart() {
     }
   `;
 
-  const data = await shopifyFetch<{ cartCreate: { cart: unknown } }>(query);
+  const data = await shopifyFetch<{ cartCreate: { cart: Cart } }>(query);
   return data.cartCreate.cart;
 }
 
 // ========================================
 // AJOUTER AU PANIER
 // ========================================
-export async function addToCart(cartId: string, variantId: string, quantity: number = 1) {
+export async function addToCart(cartId: string, variantId: string, quantity: number = 1): Promise<Cart> {
   const query = `
     ${CART_FRAGMENT}
     mutation AddToCart($cartId: ID!, $lines: [CartLineInput!]!) {
@@ -375,7 +517,7 @@ export async function addToCart(cartId: string, variantId: string, quantity: num
     }
   `;
 
-  const data = await shopifyFetch<{ cartLinesAdd: { cart: unknown } }>(query, {
+  const data = await shopifyFetch<{ cartLinesAdd: { cart: Cart } }>(query, {
     cartId,
     lines: [{ merchandiseId: variantId, quantity }]
   });
@@ -386,7 +528,7 @@ export async function addToCart(cartId: string, variantId: string, quantity: num
 // ========================================
 // METTRE À JOUR UN ARTICLE DU PANIER
 // ========================================
-export async function updateCartItem(cartId: string, lineId: string, quantity: number) {
+export async function updateCartItem(cartId: string, lineId: string, quantity: number): Promise<Cart> {
   const query = `
     ${CART_FRAGMENT}
     mutation UpdateCartItem($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
@@ -398,7 +540,7 @@ export async function updateCartItem(cartId: string, lineId: string, quantity: n
     }
   `;
 
-  const data = await shopifyFetch<{ cartLinesUpdate: { cart: unknown } }>(query, {
+  const data = await shopifyFetch<{ cartLinesUpdate: { cart: Cart } }>(query, {
     cartId,
     lines: [{ id: lineId, quantity }]
   });
@@ -409,7 +551,7 @@ export async function updateCartItem(cartId: string, lineId: string, quantity: n
 // ========================================
 // SUPPRIMER DU PANIER
 // ========================================
-export async function removeFromCart(cartId: string, lineId: string) {
+export async function removeFromCart(cartId: string, lineId: string): Promise<Cart> {
   const query = `
     ${CART_FRAGMENT}
     mutation RemoveFromCart($cartId: ID!, $lineIds: [ID!]!) {
@@ -421,7 +563,7 @@ export async function removeFromCart(cartId: string, lineId: string) {
     }
   `;
 
-  const data = await shopifyFetch<{ cartLinesRemove: { cart: unknown } }>(query, {
+  const data = await shopifyFetch<{ cartLinesRemove: { cart: Cart } }>(query, {
     cartId,
     lineIds: [lineId]
   });
@@ -432,7 +574,7 @@ export async function removeFromCart(cartId: string, lineId: string) {
 // ========================================
 // RÉCUPÉRER LE PANIER
 // ========================================
-export async function getCart(cartId: string) {
+export async function getCart(cartId: string): Promise<Cart | null> {
   const query = `
     ${CART_FRAGMENT}
     query GetCart($cartId: ID!) {
@@ -442,14 +584,14 @@ export async function getCart(cartId: string) {
     }
   `;
 
-  const data = await shopifyFetch<{ cart: unknown }>(query, { cartId });
+  const data = await shopifyFetch<{ cart: Cart | null }>(query, { cartId });
   return data.cart;
 }
 
 // ========================================
 // FONCTIONS POUR LE BLOG
 // ========================================
-export async function getBlogPosts(blogHandle: string = 'actualites', language?: string) {
+export async function getBlogPosts(blogHandle: string = 'actualites', language?: string): Promise<BlogArticle[]> {
   const query = `
     query GetBlogPosts($handle: String!) {
       blog(handle: $handle) {
@@ -478,7 +620,7 @@ export async function getBlogPosts(blogHandle: string = 'actualites', language?:
     }
   `;
 
-  const data = await shopifyFetch<{ blog: { articles: { edges: Array<{ node: unknown }> } } | null }>(
+  const data = await shopifyFetch<{ blog: { articles: { edges: Array<{ node: BlogArticle }> } } | null }>(
     query,
     { handle: blogHandle },
     language
@@ -491,7 +633,7 @@ export async function getBlogPosts(blogHandle: string = 'actualites', language?:
   return data.blog.articles.edges.map((edge) => edge.node);
 }
 
-export async function getBlogPostByHandle(blogHandle: string = 'actualites', articleHandle: string, language?: string) {
+export async function getBlogPostByHandle(blogHandle: string = 'actualites', articleHandle: string, language?: string): Promise<BlogArticle | null> {
   const query = `
     query GetBlogPostByHandle($blogHandle: String!, $articleHandle: String!) {
       blog(handle: $blogHandle) {
@@ -516,7 +658,7 @@ export async function getBlogPostByHandle(blogHandle: string = 'actualites', art
     }
   `;
 
-  const data = await shopifyFetch<{ blog: { articleByHandle: unknown } | null }>(query, {
+  const data = await shopifyFetch<{ blog: { articleByHandle: BlogArticle | null } | null }>(query, {
     blogHandle,
     articleHandle
   }, language);
@@ -528,7 +670,7 @@ export async function getBlogPostByHandle(blogHandle: string = 'actualites', art
   return data.blog.articleByHandle;
 }
 
-export async function getRecentBlogPosts(blogHandle: string = 'actualites', limit: number = 3, language?: string) {
+export async function getRecentBlogPosts(blogHandle: string = 'actualites', limit: number = 3, language?: string): Promise<RecentBlogArticle[]> {
   const query = `
     query GetRecentBlogPosts($handle: String!, $limit: Int!) {
       blog(handle: $handle) {
@@ -551,7 +693,7 @@ export async function getRecentBlogPosts(blogHandle: string = 'actualites', limi
     }
   `;
 
-  const data = await shopifyFetch<{ blog: { articles: { edges: Array<{ node: unknown }> } } | null }>(
+  const data = await shopifyFetch<{ blog: { articles: { edges: Array<{ node: RecentBlogArticle }> } } | null }>(
     query,
     { handle: blogHandle, limit },
     language

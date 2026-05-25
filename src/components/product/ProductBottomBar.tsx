@@ -75,7 +75,10 @@ export default function ProductBottomBar({ product, selectedColorIndex, visible 
                     <img
                       src={resizeShopifyImage(thumbnailUrl, 100)}
                       alt={product.modelName || product.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain p-1.5"
+                      loading="lazy"
+                      decoding="async"
+                      sizes="56px"
                     />
                   ) : (
                     <div className="w-full h-full bg-neutral-100" />

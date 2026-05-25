@@ -6,6 +6,7 @@ import LocaleLink from './LocaleLink';
 import T from './TranslatedText';
 import { Shield, Truck, X } from 'lucide-react';
 import { SHIPPING } from '../constants/shipping';
+import { resizeShopifyImage } from '../lib/imageUtils';
 
 export default function CartDrawer() {
   const { cart, isCartOpen, isLoading, itemCount, updateQuantity, removeItem, closeCart } = useCart();
@@ -168,10 +169,12 @@ export default function CartDrawer() {
                             <div className="w-28 h-20 bg-beige flex items-center justify-center overflow-hidden">
                               {imageUrl ? (
                                 <img
-                                  src={imageUrl}
+                                  src={resizeShopifyImage(imageUrl, 240)}
                                   alt={product.title}
                                   className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-300"
                                   loading="lazy"
+                                  decoding="async"
+                                  sizes="112px"
                                 />
                               ) : (
                                 <svg viewBox="0 0 100 50" className="w-20 h-10 text-dark-text/20">

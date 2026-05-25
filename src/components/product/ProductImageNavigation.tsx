@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { resizeShopifyImage } from '../../lib/imageUtils';
 
 interface ProductImageNavigationProps {
@@ -67,7 +67,7 @@ export default function ProductImageNavigation({ images, productName }: ProductI
   }, [images]);
 
   // Fonction pour scroller vers une image spécifique
-  const scrollToImage = (index: number) => {
+  const scrollToImage = useCallback((index: number) => {
     const imageElements = document.querySelectorAll('[data-image-section]');
     if (imageElements.length === 0) return;
 
@@ -83,18 +83,18 @@ export default function ProductImageNavigation({ images, productName }: ProductI
     });
 
     setActiveIndex(index);
-  };
+  }, []);
 
   // Navigation précédent/suivant pour les touches clavier
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     const newIndex = activeIndex > 0 ? activeIndex - 1 : images.length - 1;
     scrollToImage(newIndex);
-  };
+  }, [activeIndex, images.length, scrollToImage]);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     const newIndex = activeIndex < images.length - 1 ? activeIndex + 1 : 0;
     scrollToImage(newIndex);
-  };
+  }, [activeIndex, images.length, scrollToImage]);
 
   // Gestion des touches clavier
   useEffect(() => {
@@ -105,7 +105,7 @@ export default function ProductImageNavigation({ images, productName }: ProductI
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [activeIndex, images.length]);
+  }, [goToPrevious, goToNext]);
 
   if (!images || images.length === 0) {
     return null;

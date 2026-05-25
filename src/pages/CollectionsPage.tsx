@@ -10,10 +10,38 @@ import { useLocale } from '../contexts/LocaleContext';
 import FilterSelect from '../components/FilterSelect';
 import GroupedProductCard from '../components/GroupedProductCard';
 import { Product } from '../components/ProductCard';
-import { getProducts, getProductsByCollection } from '../lib/shopify';
+import { getProducts } from '../lib/shopify';
 import { getGroupedProducts, GroupedProduct } from '../lib/productGrouping';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
+
+function normalizeFilterValue(value: string): string {
+  return value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+function productMatchesCollection(product: Product, collectionHandle: string): boolean {
+  if (collectionHandle === 'all') return true;
+
+  const wantedCollection = normalizeFilterValue(collectionHandle);
+  const collectionEdges = product.collections?.edges || [];
+  const hasCollection = collectionEdges.some(({ node }) => {
+    return normalizeFilterValue(node.handle) === wantedCollection ||
+      normalizeFilterValue(node.title) === wantedCollection;
+  });
+
+  if (hasCollection) return true;
+
+  const fallbackText = normalizeFilterValue([
+    product.title,
+    product.handle,
+    ...(product.tags || []),
+  ].join(' '));
+
+  return fallbackText.includes(wantedCollection);
+}
 
 export default function CollectionsPage() {
   const { t } = useTranslation('collections');
@@ -64,23 +92,15 @@ export default function CollectionsPage() {
     }
   }, [location.pathname]);
 
-  // Charger les produits depuis Shopify
+  // Charger le catalogue une seule fois, puis filtrer localement.
   useEffect(() => {
     async function fetchProducts() {
       try {
         setLoading(true);
         setError(null);
-
-        let fetchedProducts: Product[];
-
-        if (selectedCollection === 'all') {
-          fetchedProducts = await getProducts(shopifyLanguage) as Product[];
-        } else {
-          fetchedProducts = await getProductsByCollection(selectedCollection, shopifyLanguage) as Product[];
-        }
-
+        const fetchedProducts = await getProducts(shopifyLanguage) as Product[];
         setProducts(fetchedProducts);
-      } catch (err) {
+      } catch {
         setError(t('errorGeneric'));
         setProducts([]);
       } finally {
@@ -89,11 +109,11 @@ export default function CollectionsPage() {
     }
 
     fetchProducts();
-  }, [selectedCollection, shopifyLanguage]);
+  }, [shopifyLanguage, t]);
 
   // Filtrer et regrouper les produits
   useEffect(() => {
-    let filtered = [...products];
+    let filtered = products.filter(product => productMatchesCollection(product, selectedCollection));
 
     // Filtrer par material via les tags
     if (selectedMaterial !== 'all') {
@@ -114,7 +134,7 @@ export default function CollectionsPage() {
     // Regrouper par modèle
     const grouped = getGroupedProducts(filtered);
     setGroupedProducts(grouped);
-  }, [products, selectedMaterial, selectedShape]);
+  }, [products, selectedCollection, selectedMaterial, selectedShape]);
 
   return (
     <div className="min-h-screen bg-beige">
@@ -123,17 +143,30 @@ export default function CollectionsPage() {
         description={t('page.seoDescription')}
         url="/collections"
       />
-      {/* Breadcrumb */}
-      <div className="bg-beige pt-24 md:pt-28 lg:pt-32 pb-4 px-4 sm:px-6 md:px-8 laptop:px-12">
-        <Breadcrumb items={[
-          { label: tc('breadcrumb.home'), to: '/' },
-          { label: tc('breadcrumb.collections') },
-        ]} />
-      </div>
+      <section className="bg-beige pt-24 md:pt-28 lg:pt-32 pb-8 md:pb-10 px-4 sm:px-6 md:px-8 laptop:px-12 border-b border-dark-text/[0.08]">
+        <div className="max-w-[1800px] mx-auto">
+          <Breadcrumb items={[
+            { label: tc('breadcrumb.home'), to: '/' },
+            { label: tc('breadcrumb.collections') },
+          ]} />
 
-      {/* Barre de filtres — glassmorphism */}
-      <div className="border-b border-white/30 bg-white/60 backdrop-blur-2xl sticky top-20 z-30 shadow-[0_4px_30px_rgba(0,0,0,0.03)]">
-        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-4 sm:py-6 laptop:py-8">
+          <div className="mt-7 max-w-3xl">
+            <p className="font-sans text-[9px] tracking-[0.42em] uppercase text-bronze font-bold mb-4">
+              Renaissance Paris
+            </p>
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-dark-text leading-[0.86] tracking-normal">
+              Collections
+            </h1>
+            <p className="mt-5 font-sans text-sm sm:text-base text-dark-text/58 leading-[1.75]">
+              Tous les modèles disponibles, avec leurs coloris, leurs prix et leurs filtres essentiels.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Barre de filtres */}
+      <div className="border-b border-dark-text/[0.08] bg-beige/95 backdrop-blur-md sticky top-20 z-30">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-5 sm:py-6">
           <div className="flex flex-col gap-6">
             {/* En-tête avec compteur */}
             <div className="flex items-center justify-between">
@@ -141,7 +174,7 @@ export default function CollectionsPage() {
                 <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1.5 sm:mb-2">
                   {t('filters.models')}
                 </p>
-                <p className="font-display text-2xl sm:text-3xl md:text-4xl laptop:text-5xl font-bold text-dark-text leading-none">
+                <p className="font-display text-4xl sm:text-5xl laptop:text-6xl font-bold text-dark-text leading-none tracking-normal">
                   {loading ? '\u2014' : groupedProducts.length}
                 </p>
               </div>
@@ -153,7 +186,7 @@ export default function CollectionsPage() {
             </div>
 
             {/* Filtres */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 lg:gap-7">
               <div className="hidden md:block">
                 <FilterSelect
                   label={t('filters.type')}
@@ -198,16 +231,16 @@ export default function CollectionsPage() {
       </div>
 
       {/* Grille de produits groupés */}
-      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-6 sm:py-8 md:py-10 laptop:py-12">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-8 sm:py-10 md:py-12 laptop:py-14">
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-4 sm:gap-6 md:gap-4">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="col-span-full sm:col-span-1 md:col-span-6 animate-pulse">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-7 gap-y-14">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="animate-pulse">
                 <div className="aspect-[16/9] bg-dark-text/10" />
-                <div className="p-5 sm:p-6 bg-white">
+                <div className="pt-5">
                   <div className="h-3 bg-dark-text/10 w-16 mb-3" />
-                  <div className="h-6 bg-dark-text/10 w-32 mb-4" />
-                  <div className="h-4 bg-dark-text/10 w-20" />
+                  <div className="h-7 bg-dark-text/10 w-44 mb-4" />
+                  <div className="h-4 bg-dark-text/10 w-24" />
                 </div>
               </div>
             ))}
@@ -225,7 +258,7 @@ export default function CollectionsPage() {
             </button>
           </div>
         ) : groupedProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-4 sm:gap-6 md:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-7 gap-y-16">
             {groupedProducts.map((groupedProduct, index) => (
               <GroupedProductCard
                 key={groupedProduct.modelName}

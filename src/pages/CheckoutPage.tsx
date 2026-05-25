@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { loadStripe, type Appearance } from '@stripe/stripe-js';
@@ -95,7 +95,8 @@ export default function CheckoutPage() {
     phone: '',
   });
 
-  const cartLines = cart?.lines.edges || [];
+  const cartEdges = cart?.lines.edges;
+  const cartLines = useMemo(() => cartEdges || [], [cartEdges]);
 
   // Rediriger si panier vide
   useEffect(() => {
@@ -109,14 +110,7 @@ export default function CheckoutPage() {
   const shipping = subtotal >= SHIPPING.FREE_THRESHOLD ? 0 : SHIPPING.STANDARD_RATE;
   const total = subtotal + shipping;
 
-  // Créer le PaymentIntent dès que le total est disponible (pour Express Checkout en étape 1)
-  useEffect(() => {
-    if (!clientSecret && total > 0) {
-      createPaymentIntent();
-    }
-  }, [clientSecret, total]);
-
-  const createPaymentIntent = async () => {
+  const createPaymentIntent = useCallback(async () => {
     try {
       const response = await fetch('/.netlify/functions/create-payment-intent', {
         method: 'POST',
@@ -158,7 +152,26 @@ export default function CheckoutPage() {
     } catch {
       setPaymentError(t('checkoutPage.errorServerConnection'));
     }
-  };
+  }, [
+    cartLines,
+    formData.address,
+    formData.addressComplement,
+    formData.city,
+    formData.country,
+    formData.email,
+    formData.firstName,
+    formData.lastName,
+    formData.postalCode,
+    t,
+    total,
+  ]);
+
+  // Créer le PaymentIntent dès que le total est disponible (pour Express Checkout en étape 1)
+  useEffect(() => {
+    if (!clientSecret && total > 0) {
+      void createPaymentIntent();
+    }
+  }, [clientSecret, createPaymentIntent, total]);
 
   // Validation fusionnée — étape 1 valide contact + adresse
   const validateStep = (step: number): boolean => {
@@ -307,8 +320,10 @@ export default function CheckoutPage() {
                               <img
                                 src={resizeShopifyImage(image, 160)}
                                 alt={node.merchandise.product.title}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-contain p-2"
                                 loading="lazy"
+                                decoding="async"
+                                sizes="80px"
                               />
                             )}
                           </div>

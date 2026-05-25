@@ -4,16 +4,23 @@ import { useTranslation } from 'react-i18next';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 
-const HERO_VIDEO = 'https://renaissance-cdn.b-cdn.net/lunettes_montage_final.mp4';
+const HERO_VIDEO = 'https://renaissance-cdn.b-cdn.net/hf_20260130_124034_0ed82220-23c4-4752-a1c3-00af6106e2ce.mp4';
 const HERO_POSTER = 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2030%2C%202026%20-%2012_05AM.jpeg';
 const VIDEO_SPEED = 0.7;
+
+interface NetworkInformationLike {
+  saveData?: boolean;
+  effectiveType?: 'slow-2g' | '2g' | '3g' | '4g' | string;
+  addEventListener?: (type: 'change', listener: () => void) => void;
+  removeEventListener?: (type: 'change', listener: () => void) => void;
+}
 
 /** Détecte si la connexion est lente (2G/3G lent ou saveData activé) */
 function useSlowConnection(): boolean {
   const [isSlow, setIsSlow] = useState(false);
 
   useEffect(() => {
-    const conn = (navigator as any).connection;
+    const conn = (navigator as Navigator & { connection?: NetworkInformationLike }).connection;
     if (!conn) return;
 
     const check = () => {

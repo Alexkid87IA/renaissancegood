@@ -42,10 +42,13 @@ export default function RelatedProducts({ currentProductId, limit = 6 }: Related
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
+    let cancelled = false;
+
     async function loadRelatedProducts() {
       try {
         setLoading(true);
         const allProducts = await getProducts();
+        if (cancelled) return;
         const filteredProducts = allProducts
           .filter((p: Product) => p.id !== currentProductId)
           .slice(0, limit);
@@ -53,10 +56,14 @@ export default function RelatedProducts({ currentProductId, limit = 6 }: Related
       } catch {
         // Related products loading error silently handled
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     }
+
     loadRelatedProducts();
+    return () => {
+      cancelled = true;
+    };
   }, [currentProductId, limit]);
 
   if (loading) {
@@ -190,9 +197,11 @@ function ProductCard({
         {imageUrl && (
           <>
             <img
-              src={resizeShopifyImage(imageUrl, 800)}
+              src={resizeShopifyImage(imageUrl, 640)}
               alt={product.title}
               loading="lazy"
+              decoding="async"
+              sizes={featured ? '(max-width: 1024px) 100vw, 66vw' : '(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 30vw'}
               className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out ${
                 isHovered
                   ? secondImageUrl ? 'opacity-0 scale-[1.02]' : 'scale-[1.04]'
@@ -201,9 +210,11 @@ function ProductCard({
             />
             {secondImageUrl && (
               <img
-                src={resizeShopifyImage(secondImageUrl, 800)}
+                src={resizeShopifyImage(secondImageUrl, 640)}
                 alt={`${product.title} - vue 2`}
                 loading="lazy"
+                decoding="async"
+                sizes={featured ? '(max-width: 1024px) 100vw, 66vw' : '(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 30vw'}
                 className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out ${
                   isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.02]'
                 }`}

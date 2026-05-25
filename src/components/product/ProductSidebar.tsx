@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Minus, Plus } from 'lucide-react';
 import { useCart } from '../../contexts/CartContext';
-import { getColorFromName, isLightColor, metallicGradient } from '../../lib/colorMap';
+import { getColorFromName } from '../../lib/colorMap';
 import { createSanitizedMarkup } from '../../lib/sanitize';
 import { ColorVariant, getColorSwatchStyle } from '../../lib/productGrouping';
 import { useProductData } from '../../hooks/useProductData';
+import { resizeShopifyImage } from '../../lib/imageUtils';
 import { Product } from '../../types/product';
 
 interface ProductSidebarProps {
@@ -17,7 +18,7 @@ interface ProductSidebarProps {
   colorVariants?: ColorVariant[];
   selectedColorVariantIndex?: number;
   onColorVariantChange?: (index: number) => void;
-  priceRef?: React.RefObject<HTMLDivElement | null>;
+  priceRef?: React.Ref<HTMLDivElement>;
 }
 
 export default function ProductSidebar({
@@ -80,18 +81,18 @@ export default function ProductSidebar({
                 {selectedColorVariantIndex + 1} / {colorVariants.length}
               </span>
             </div>
-            <div className="flex gap-3">
+            <div className="grid grid-cols-2 gap-3">
               {colorVariants.map((variant, index) => {
                 const isSelected = selectedColorVariantIndex === index;
                 return (
                   <button
                     key={variant.handle}
                     onClick={() => onColorVariantChange(index)}
-                    className={`relative group flex-1 transition-all duration-300 ${isSelected ? '' : 'opacity-50 hover:opacity-80'}`}
+                    className={`relative group min-w-0 transition-all duration-300 ${isSelected ? '' : 'opacity-70 hover:opacity-100'}`}
                     title={`Coloris ${variant.colorNumber}`}
                   >
                     <div
-                      className={`w-full aspect-square rounded-none overflow-hidden transition-all duration-300 ${
+                      className={`w-full aspect-[4/3] rounded-none overflow-hidden bg-[#f5f4f0] transition-all duration-300 ${
                         isSelected
                           ? 'ring-2 ring-dark-text ring-offset-2'
                           : 'ring-1 ring-dark-text/10 hover:ring-dark-text/30'
@@ -99,10 +100,12 @@ export default function ProductSidebar({
                     >
                       {variant.thumbnail ? (
                         <img
-                          src={variant.thumbnail}
+                          src={resizeShopifyImage(variant.thumbnail, 520)}
                           alt={`Coloris ${variant.colorNumber}`}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
+                          className="w-full h-full object-contain p-2.5"
+                          loading={isSelected ? 'eager' : 'lazy'}
+                          decoding="async"
+                          sizes="(max-width: 1024px) 45vw, (max-width: 1280px) 180px, 220px"
                         />
                       ) : (
                         <div
@@ -113,7 +116,7 @@ export default function ProductSidebar({
                     </div>
                     {/* Label underneath */}
                     <p className={`font-sans text-[8px] tracking-[0.15em] uppercase text-center mt-2 transition-colors duration-300 ${
-                      isSelected ? 'text-dark-text font-bold' : 'text-dark-text/30'
+                      isSelected ? 'text-dark-text font-bold' : 'text-dark-text/45'
                     }`}>
                       {variant.colorName || `Col. ${variant.colorNumber}`}
                     </p>
