@@ -5,7 +5,7 @@ import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 
 const HERO_VIDEO = 'https://renaissance-cdn.b-cdn.net/hf_20260130_124034_0ed82220-23c4-4752-a1c3-00af6106e2ce.mp4';
-const HERO_POSTER = 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2030%2C%202026%20-%2012_05AM.jpeg';
+const HERO_POSTER = 'https://renaissance-cdn.b-cdn.net/hero-poster.png';
 const VIDEO_SPEED = 0.7;
 
 interface NetworkInformationLike {
