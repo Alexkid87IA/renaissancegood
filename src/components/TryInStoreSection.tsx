@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import LocaleLink from './LocaleLink';
 import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
-import { stagger, fade } from './shared';
+import HomeEditorialBlock from './HomeEditorialBlock';
 
 export default function TryInStoreSection() {
   const { t } = useTranslation('home');
@@ -21,50 +21,27 @@ export default function TryInStoreSection() {
       {/* DESKTOP */}
       <div className="h-full hidden md:flex flex-row">
         {/* Left - Content */}
-        <motion.div
-          ref={contentRef}
-          variants={stagger}
-          initial="hidden"
-          animate={contentInView ? "visible" : "hidden"}
-          className="w-1/2 flex items-center justify-center px-16 lg:px-20"
-        >
-          <div className="max-w-xl">
-            <motion.h2 variants={fade} className="font-display text-4xl md:text-5xl laptop:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
-              {t('tryInStore.title')}
-            </motion.h2>
-            <motion.p variants={fade} className="font-display text-2xl md:text-3xl laptop:text-4xl xl:text-5xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 md:mb-10">
-              {t('tryInStore.subtitle')}
-            </motion.p>
-
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8 md:mb-10" />
-
-            <motion.p variants={fade} className="font-sans text-white/40 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10 md:mb-14 max-w-lg">
-              {t('tryInStore.description')}
-            </motion.p>
-
-            <motion.div variants={fade} className="flex flex-wrap items-start gap-3 lg:gap-5 mb-10 md:mb-14">
-              <LocaleLink to="/store-locator">
-                <button className="group relative overflow-hidden bg-white border border-white px-6 lg:px-10 py-3 lg:py-4 transition-all duration-500">
-                  <span className="relative z-10 font-sans text-[9px] tracking-[0.2em] lg:tracking-[0.3em] font-medium uppercase text-[#000000] whitespace-nowrap">
-                    {t('tryInStore.cta')}
-                  </span>
-                </button>
-              </LocaleLink>
-              <LocaleLink to="/shop">
-                <button className="group relative overflow-hidden border border-white/20 px-6 lg:px-10 py-3 lg:py-4 transition-all duration-500 hover:border-bronze/60">
-                  <span className="relative z-10 font-sans text-[9px] tracking-[0.2em] lg:tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#000000] transition-colors duration-500 whitespace-nowrap">
-                    {t('tryInStore.ctaShop')}
-                  </span>
-                  <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                </button>
-              </LocaleLink>
-            </motion.div>
-
-            <motion.p variants={fade} className="font-sans text-white/20 text-[9px] tracking-[0.3em] font-medium uppercase">
-              {t('tryInStore.guarantees')}
-            </motion.p>
-          </div>
-        </motion.div>
+        <div className="relative w-1/2 overflow-hidden bg-[#080808] flex items-center justify-center px-12 lg:px-20 xl:px-24">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] [background-size:76px_76px]"
+          />
+          <div aria-hidden="true" className="absolute inset-8 border border-white/[0.055]" />
+          <HomeEditorialBlock
+            panelRef={contentRef}
+            active={contentInView}
+            index="05"
+            label={t('tryInStore.label')}
+            title={t('tryInStore.title')}
+            subtitle={t('tryInStore.subtitle')}
+            description={t('tryInStore.description')}
+            actions={[
+              { label: t('tryInStore.cta'), href: '/store-locator' },
+              { label: t('tryInStore.ctaShop'), href: '/shop', variant: 'secondary' },
+            ]}
+            meta={t('tryInStore.guarantees')}
+          />
+        </div>
 
         {/* Right - Image */}
         <div className="w-1/2 h-full relative overflow-hidden">

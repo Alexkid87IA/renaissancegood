@@ -10,7 +10,6 @@ import TryInStoreSection from '../components/TryInStoreSection';
 import FabricationSection from '../components/FabricationSection';
 import ReassuranceSection from '../components/ReassuranceSection';
 import SEO from '../components/SEO';
-import SectionIndicator from '../components/SectionIndicator';
 import { useSectionSnap } from '../hooks/useSectionSnap';
 
 export default function HomePage() {
@@ -43,7 +42,6 @@ export default function HomePage() {
       <HistoireSection />
       <FabricationSection />
       <ReassuranceSection />
-      <SectionIndicator />
     </>
   );
 }

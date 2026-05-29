@@ -7,25 +7,16 @@
     @apply font-sans text-dark-text antialiased;
   }
 
-  /* Homepage scroll-snap — uniquement sur mobile/touch.
-     Sur desktop (pointer: fine), le hook JS useSectionSnap gère le snap.
-     Garder les deux actifs en même temps provoque un conflit :
-     le CSS proximity re-snape à la section courante et bloque le scroll up. */
+  /* CSS scroll-snap désactivé partout — provoque des blocages scroll-up
+     sur les sections sticky (le navigateur re-snape à la section courante).
+     Le hook JS useSectionSnap gère le snap sur desktop (wheel).
+     Sur mobile, le scroll est libre (les sections sticky suffisent). */
   html.homepage-snap {
-    scroll-snap-type: y proximity;
+    scroll-snap-type: none;
   }
 
   .snap-section {
-    scroll-snap-align: start;
-  }
-
-  @media (pointer: fine) {
-    html.homepage-snap {
-      scroll-snap-type: none;
-    }
-    .snap-section {
-      scroll-snap-align: none;
-    }
+    scroll-snap-align: none;
   }
 
   @media (prefers-reduced-motion: reduce) {

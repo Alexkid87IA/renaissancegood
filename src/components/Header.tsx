@@ -277,19 +277,19 @@ export default function Header() {
 
             {/* Navigation Desktop Gauche */}
             <nav className="hidden lg:flex items-center gap-6 xl:gap-9 2xl:gap-12 flex-1" onMouseLeave={handleMenuLeave}>
-              <NavLink to={localePath('/collections/heritage')} rawPath={rawPath} routeMatch="/collections/heritage" onMouseEnter={() => handleMenuEnter('heritage')}>
+              <NavLink to={localePath('/collections/heritage')} rawPath={rawPath} routeMatch="/collections/heritage" onMouseEnter={() => handleMenuEnter('heritage')} onClick={closeMenu}>
                 {t('nav.heritage')}
               </NavLink>
-              <NavLink to={localePath('/collections/versailles')} rawPath={rawPath} routeMatch="/collections/versailles" onMouseEnter={() => handleMenuEnter('versailles')}>
+              <NavLink to={localePath('/collections/versailles')} rawPath={rawPath} routeMatch="/collections/versailles" onMouseEnter={() => handleMenuEnter('versailles')} onClick={closeMenu}>
                 {t('nav.versailles')}
               </NavLink>
-              <NavLink to={localePath('/collections/isis')} rawPath={rawPath} routeMatch="/collections/isis" onMouseEnter={() => handleMenuEnter('isis')}>
+              <NavLink to={localePath('/collections/isis')} rawPath={rawPath} routeMatch="/collections/isis" onMouseEnter={() => handleMenuEnter('isis')} onClick={closeMenu}>
                 {t('nav.isis')}
               </NavLink>
-              <NavLink to={localePath('/shop')} rawPath={rawPath} routeMatch="/shop" onMouseEnter={() => handleMenuEnter(null)}>
+              <NavLink to={localePath('/shop')} rawPath={rawPath} routeMatch="/shop" onMouseEnter={() => handleMenuEnter(null)} onClick={closeMenu}>
                 {t('nav.explorer')}
               </NavLink>
-              <NavLink to={localePath('/histoire')} rawPath={rawPath} routeMatch="/histoire" onMouseEnter={() => handleMenuEnter('histoire')}>
+              <NavLink to={localePath('/histoire')} rawPath={rawPath} routeMatch="/histoire" onMouseEnter={() => handleMenuEnter('histoire')} onClick={closeMenu}>
                 {t('nav.histoire')}
               </NavLink>
             </nav>
@@ -568,12 +568,14 @@ function NavLink({
   to,
   children,
   onMouseEnter,
+  onClick,
   rawPath,
   routeMatch,
 }: {
   to: string;
   children: React.ReactNode;
   onMouseEnter?: () => void;
+  onClick?: () => void;
   rawPath: string;
   routeMatch: string;
 }) {
@@ -582,6 +584,7 @@ function NavLink({
   return (
     <Link
       to={to}
+      onClick={onClick}
       onMouseEnter={onMouseEnter}
       onPointerEnter={onMouseEnter}
       onMouseMove={onMouseEnter}
@@ -592,7 +595,6 @@ function NavLink({
       aria-current={isActive ? 'page' : undefined}
     >
       {children}
-      {/* Underline — active: w-full permanent, hover: 0 → 100% */}
       <span
         className={`absolute bottom-0 left-0 h-[1.5px] bg-bronze origin-left transition-[transform,width] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
           isActive ? 'w-full scale-x-100' : 'w-full scale-x-0 group-hover:scale-x-100'

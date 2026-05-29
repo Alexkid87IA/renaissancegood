@@ -114,16 +114,16 @@ export function useSectionSnap(enabled: boolean = true) {
         return;
       }
 
-      e.preventDefault();
-
       if (locked) {
         if (direction !== lastSnapDirection) {
+          e.preventDefault();
           locked = false;
           if (unlockTimer !== null) window.clearTimeout(unlockTimer);
           snapTo(next, direction);
         }
         return;
       }
+      e.preventDefault();
       snapTo(next, direction);
     };
 

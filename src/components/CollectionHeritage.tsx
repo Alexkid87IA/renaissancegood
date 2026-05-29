@@ -1,10 +1,9 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import LocaleLink from './LocaleLink';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useStackedScroll } from '../hooks/useStackedScroll';
-import { stagger, fade } from './shared';
+import CollectionStoryPanel from './CollectionStoryPanel';
 
 export default function CollectionHeritage() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -31,50 +30,17 @@ export default function CollectionHeritage() {
       <div className="h-full bg-beige hidden md:flex flex-row">
 
         {/* TEXT SIDE */}
-        <div className="w-full md:w-1/2 flex items-center justify-center p-10 md:p-16 lg:p-20 xl:p-28">
-          <motion.div
-            ref={textRef}
-            variants={stagger}
-            initial="hidden"
-            animate={textInView ? "visible" : "hidden"}
-            className="max-w-lg"
-          >
-
-            {/* Label */}
-            <motion.p variants={fade} className="font-sans text-dark-text/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
-              {t('heritage.label')}
-            </motion.p>
-
-            {/* Title */}
-            <motion.h3 variants={fade} className="font-display text-4xl md:text-5xl laptop:text-[3.5rem] xl:text-6xl font-bold tracking-[-0.03em] leading-[0.9] mb-3">
-              {t('heritage.title')}
-            </motion.h3>
-            <motion.p variants={fade} className="font-display text-2xl md:text-3xl laptop:text-[2rem] xl:text-4xl font-light italic text-dark-text/70 tracking-[-0.02em] leading-[1] mb-8">
-              {t('heritage.subtitle')}
-            </motion.p>
-
-            {/* Line */}
-            <motion.div variants={fade} className="w-12 h-px bg-dark-text/15 mb-8" />
-
-            {/* Description */}
-            <motion.p variants={fade} className="font-sans text-dark-text/50 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-14">
-              {t('heritage.description')}
-            </motion.p>
-
-            {/* CTA */}
-            <motion.div variants={fade}>
-              <LocaleLink to="/collections/heritage">
-                <button className="group relative overflow-hidden border border-dark-text px-10 py-4 transition-all duration-500">
-                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
-                    {t('heritage.discover')}
-                  </span>
-                  <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                </button>
-              </LocaleLink>
-            </motion.div>
-
-          </motion.div>
-        </div>
+        <CollectionStoryPanel
+          panelRef={textRef}
+          active={textInView}
+          index="01"
+          label={t('heritage.label')}
+          title={t('heritage.title')}
+          subtitle={t('heritage.subtitle')}
+          description={t('heritage.description')}
+          ctaLabel={t('heritage.discover')}
+          href="/collections/heritage"
+        />
 
         {/* IMAGE SIDE */}
         <div

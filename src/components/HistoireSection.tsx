@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import LocaleLink from './LocaleLink';
 import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
-import { stagger, fade } from './shared';
+import HomeEditorialBlock from './HomeEditorialBlock';
 
 export default function HistoireSection() {
   const { t } = useTranslation('home');
@@ -36,41 +36,23 @@ export default function HistoireSection() {
 
         {/* Content */}
         <div className="relative w-full max-w-[1600px] mx-auto flex items-center px-12 lg:px-20 xl:px-28">
-          <motion.div
-            ref={contentRef}
-            variants={stagger}
-            initial="hidden"
-            animate={contentInView ? "visible" : "hidden"}
-            className="w-[55%] flex flex-col justify-center"
-          >
-            <motion.p variants={fade} className="font-sans text-white/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
-              {t('histoire.label')}
-            </motion.p>
-
-            <motion.h2 variants={fade} className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
-              {t('histoire.title')}
-            </motion.h2>
-            <motion.p variants={fade} className="font-display text-2xl lg:text-3xl xl:text-4xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-10">
-              {t('histoire.subtitle')}
-            </motion.p>
-
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-10" />
-
-            <motion.p variants={fade} className="font-sans text-white/40 text-[13px] lg:text-sm xl:text-base leading-[1.9] font-light mb-12 xl:mb-16 max-w-md">
-              {t('histoire.description')}
-            </motion.p>
-
-            <motion.div variants={fade}>
-              <LocaleLink to="/histoire">
-                <button className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-white/50">
-                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#0a0a0a] transition-colors duration-500">
-                    {t('histoire.cta')}
-                  </span>
-                  <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                </button>
-              </LocaleLink>
-            </motion.div>
-          </motion.div>
+          <div className="relative w-[55%] max-w-2xl">
+            <div
+              aria-hidden="true"
+              className="absolute -inset-10 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] [background-size:76px_76px]"
+            />
+            <HomeEditorialBlock
+              panelRef={contentRef}
+              active={contentInView}
+              index="06"
+              label={t('histoire.label')}
+              title={t('histoire.title')}
+              subtitle={t('histoire.subtitle')}
+              description={t('histoire.description')}
+              actions={[{ label: t('histoire.cta'), href: '/histoire' }]}
+              meta={t('histoire.since')}
+            />
+          </div>
         </div>
       </div>
 

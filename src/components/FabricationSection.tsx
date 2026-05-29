@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import LocaleLink from './LocaleLink';
 import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
-import { stagger, fade } from './shared';
+import HomeEditorialBlock from './HomeEditorialBlock';
 
 const FABRICATION_IMAGE = 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_06AM.jpeg';
 
@@ -47,65 +47,44 @@ export default function FabricationSection() {
 
         {/* Content */}
         <div className="relative h-full flex items-center px-12 lg:px-20 xl:px-28">
-          <motion.div
-            ref={contentRef}
-            variants={stagger}
-            initial="hidden"
-            animate={contentInView ? "visible" : "hidden"}
-            className="max-w-xl"
-          >
-            <motion.p variants={fade} className="font-sans text-white/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
-              {t('fabrication.label')}
-            </motion.p>
-            <motion.h2 variants={fade} className="font-display text-5xl laptop:text-6xl xl:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
-              {t('fabrication.title')}
-            </motion.h2>
-            <motion.p variants={fade} className="font-display text-3xl laptop:text-4xl xl:text-5xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-10">
-              {t('fabrication.subtitle')}
-            </motion.p>
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-10" />
-            <motion.p variants={fade} className="font-sans text-white/40 text-[13px] lg:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-12 max-w-md">
-              {t('fabrication.description')}
-            </motion.p>
-
-            {/* Stats */}
-            <motion.div variants={fade} className="flex items-start gap-0 mb-10 xl:mb-12">
-              {STATS.map((stat, i) => (
-                <div key={stat.label} className={`${i > 0 ? 'border-l border-white/10 pl-6 lg:pl-8' : ''} ${i < STATS.length - 1 ? 'pr-6 lg:pr-8' : ''}`}>
-                  <p className="font-display text-2xl lg:text-3xl xl:text-4xl text-white font-bold tracking-tight leading-none mb-2">
-                    {stat.value}
-                  </p>
-                  <p className="font-sans text-white/40 text-[7px] lg:text-[8px] tracking-[0.2em] uppercase font-medium">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </motion.div>
-
-            {/* Origin details */}
-            <motion.div variants={fade} className="flex items-center gap-6 mb-10 xl:mb-12">
-              {DETAILS.map((detail, i) => (
-                <div key={detail.label} className={`flex items-center ${i > 0 ? 'border-l border-white/10 pl-6' : ''}`}>
-                  <div>
-                    <span className="font-sans text-white/60 text-[11px] font-medium">{detail.label}</span>
-                    <span className="font-sans text-white/30 text-[11px] font-light"> — {detail.location}</span>
+          <div className="relative max-w-2xl">
+            <div
+              aria-hidden="true"
+              className="absolute -inset-10 opacity-28 [background-image:linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] [background-size:76px_76px]"
+            />
+            <HomeEditorialBlock
+              panelRef={contentRef}
+              active={contentInView}
+              index="07"
+              label={t('fabrication.label')}
+              title={t('fabrication.title')}
+              subtitle={t('fabrication.subtitle')}
+              description={t('fabrication.description')}
+              actions={[{ label: t('fabrication.cta'), href: '/savoir-faire', variant: 'secondary' }]}
+            >
+              <div className="grid grid-cols-4 gap-0 border-y border-white/[0.08]">
+                {STATS.map((stat, i) => (
+                  <div key={stat.label} className={`${i > 0 ? 'border-l border-white/[0.08] pl-5 lg:pl-6' : 'pr-5 lg:pr-6'} py-5`}>
+                    <p className="font-display text-2xl lg:text-3xl xl:text-4xl text-white font-bold tracking-normal leading-none mb-2">
+                      {stat.value}
+                    </p>
+                    <p className="font-sans text-white/38 text-[7px] lg:text-[8px] tracking-[0.2em] uppercase font-medium leading-[1.5]">
+                      {stat.label}
+                    </p>
                   </div>
-                </div>
-              ))}
-            </motion.div>
+                ))}
+              </div>
 
-            {/* CTA */}
-            <motion.div variants={fade}>
-              <LocaleLink to="/savoir-faire">
-                <button className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-bronze/60">
-                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#000000] transition-colors duration-500">
-                    {t('fabrication.cta')}
-                  </span>
-                  <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                </button>
-              </LocaleLink>
-            </motion.div>
-          </motion.div>
+              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+                {DETAILS.map((detail) => (
+                  <p key={detail.label} className="font-sans text-[11px] tracking-[0.03em]">
+                    <span className="text-white/62 font-medium">{detail.label}</span>
+                    <span className="text-white/30 font-light"> — {detail.location}</span>
+                  </p>
+                ))}
+              </div>
+            </HomeEditorialBlock>
+          </div>
         </div>
       </div>
 

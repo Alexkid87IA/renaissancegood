@@ -1,15 +1,18 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import { useTranslation } from 'react-i18next';
+import CollectionStoryPanel from './CollectionStoryPanel';
 
 export default function CollectionAllFrames() {
   const sectionRef = useRef<HTMLElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
   const navigate = useLocalizedNavigate();
   const { t } = useTranslation('home');
   const [isLoading, setIsLoading] = useState(false);
   const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
+  const textInView = useInView(textRef, { once: false, amount: 0.3 });
 
   const handleNavigate = () => {
     setIsLoading(true);
@@ -37,35 +40,18 @@ export default function CollectionAllFrames() {
           />
         </div>
 
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-10 md:p-16 lg:p-20 laptop:p-20">
-          <div className="max-w-2xl">
-            <div className="mb-6 sm:mb-8">
-              <h3 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-5xl laptop:text-[3.5rem] xl:text-6xl font-bold tracking-[-0.03em] leading-[0.9]">
-                {t('allFrames.title')}<br />
-                <span className="font-light italic">{t('allFrames.subtitle')}</span>
-              </h3>
-            </div>
-            <div className="w-12 h-px bg-dark-text/15 mb-8" />
-            <p className="font-sans text-dark-text/50 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-14">
-              {t('allFrames.description')}
-            </p>
-            <button
-              onClick={handleNavigate}
-              disabled={isLoading}
-              className="group relative border border-dark-text/60 px-8 sm:px-10 laptop:px-11 py-3 sm:py-3.5 laptop:py-4 font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-medium text-dark-text hover:bg-dark-text hover:text-white transition-all duration-500 disabled:opacity-50 overflow-hidden"
-            >
-              <span className="relative z-10">
-                {isLoading ? t('allFrames.loading') : t('allFrames.cta')}
-              </span>
-              <motion.div
-                className="absolute inset-0 bg-dark-text"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              />
-            </button>
-          </div>
-        </div>
+        <CollectionStoryPanel
+          panelRef={textRef}
+          active={textInView}
+          index="04"
+          label={t('allFrames.mobileLabel')}
+          title={t('allFrames.title')}
+          subtitle={t('allFrames.subtitle')}
+          description={t('allFrames.description')}
+          ctaLabel={isLoading ? t('allFrames.loading') : t('allFrames.cta')}
+          onClick={handleNavigate}
+          disabled={isLoading}
+        />
       </div>
 
       {/* MOBILE — Éditorial luxe */}
