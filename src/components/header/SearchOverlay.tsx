@@ -22,6 +22,14 @@ interface FilterOption {
   value: string;
 }
 
+let productPagePreloaded = false;
+
+function preloadProductPage() {
+  if (productPagePreloaded) return;
+  productPagePreloaded = true;
+  void import('../../pages/ProductPage');
+}
+
 function normalizeFilterValue(value: string): string {
   return value
     .toLowerCase()
@@ -282,7 +290,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                 </p>
               ) : searchResults.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                  {searchResults.map((product) => {
+                  {searchResults.map((product, index) => {
                     const image = product.images.edges[0]?.node.url;
                     const price = parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0);
 
@@ -291,6 +299,8 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                         key={product.id}
                         to={`/product/${product.handle}`}
                         onClick={handleClose}
+                        onMouseEnter={preloadProductPage}
+                        onFocus={preloadProductPage}
                         className="group grid grid-cols-[72px_1fr] gap-3 items-center border border-dark-text/[0.06] p-2 hover:border-dark-text/20 transition-colors"
                       >
                         <div className="aspect-square bg-[#f0eeea] overflow-hidden">
@@ -298,15 +308,15 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                             <img
                               src={resizeShopifyImage(image, 180)}
                               alt={product.title}
-                              loading="lazy"
+                              loading={index < 4 ? 'eager' : 'lazy'}
                               decoding="async"
                               sizes="72px"
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                              className="w-full h-full object-contain bg-[#f5f4f0] p-1.5 transition-transform duration-500 group-hover:scale-[1.04]"
                             />
                           )}
                         </div>
                         <div className="min-w-0">
-                          <p className="font-display text-sm font-bold text-dark-text truncate">
+                          <p className="font-display text-sm font-bold text-dark-text leading-tight line-clamp-2">
                             {product.title}
                           </p>
                           <p className="font-sans text-[10px] text-dark-text/45 mt-1">

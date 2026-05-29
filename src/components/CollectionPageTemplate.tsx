@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
 import { getProductsByCollection } from '../lib/shopify';
@@ -204,10 +204,10 @@ export interface CollectionPageConfig {
 }
 
 interface HeroProps {
-  heroRef: React.RefObject<HTMLDivElement | null>;
+  heroRef: React.Ref<HTMLDivElement>;
   config: CollectionPageConfig;
   prefix: string;
-  imageY: ReturnType<typeof useTransform>;
+  imageY: MotionValue<string>;
   breadcrumbItems: { label: string; to?: string }[];
 }
 

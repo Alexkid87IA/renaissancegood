@@ -247,7 +247,7 @@ export default function ProductPage() {
     return () => {
       for (const link of links) link.remove();
     };
-  }, [displayImages]);
+  }, [displayImages, product?.name]);
 
   // Refs pour synchroniser le scroll du panneau info avec le scroll de la galerie
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -277,7 +277,7 @@ export default function ProductPage() {
 
     sections.forEach((el) => observer.observe(el));
     return () => { sections.forEach((el) => observer.unobserve(el)); };
-  }, [displayImages]);
+  }, [displayImages, product?.name]);
 
   const scrollToImage = useCallback((index: number) => {
     const gallery = galleryRef.current;
@@ -315,7 +315,7 @@ export default function ProductPage() {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [displayImages]);
+  }, [displayImages, product?.name]);
 
   // Afficher la bottom bar dès que le prix dans la sidebar disparaît du viewport
   const [showBottomBar, setShowBottomBar] = useState(false);

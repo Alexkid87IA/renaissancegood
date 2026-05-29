@@ -11,7 +11,7 @@ export default function FondateursSection() {
 
   return (
     <motion.section
-      className="min-h-screen lg:h-screen relative z-20 bg-beige"
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-20 bg-beige overflow-hidden"
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">

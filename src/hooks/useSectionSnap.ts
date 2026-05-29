@@ -117,7 +117,7 @@ export function useSectionSnap(enabled: boolean = true) {
       e.preventDefault();
 
       if (locked) {
-        if (direction !== lastSnapDirection && direction !== 0) {
+        if (direction !== lastSnapDirection) {
           locked = false;
           if (unlockTimer !== null) window.clearTimeout(unlockTimer);
           snapTo(next, direction);

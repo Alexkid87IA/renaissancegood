@@ -477,32 +477,32 @@ const EditorialCard = memo(function EditorialCard({
 
             {groupedProduct.colorVariants.length > 1 && (
               <div className="mt-6">
-                <p className="font-sans text-[8px] tracking-[0.2em] text-dark-text/30 uppercase mb-3">
+                <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-3">
                   {t('sidebar.coloris')} — {groupedProduct.colorVariants.length}
                 </p>
-                <div className="flex gap-2.5">
+                <div className="flex gap-3">
                   {groupedProduct.colorVariants.map((variant, variantIndex) => (
                     <button
                       type="button"
                       key={variant.handle}
                       onClick={(e) => handleColorChange(variantIndex, e)}
                       onMouseEnter={() => handleSwatchHover(variantIndex)}
-                      className={`flex-1 max-w-[72px] aspect-square overflow-hidden transition-all duration-300 ${
+                      className={`flex-1 max-w-[96px] aspect-[4/3] overflow-hidden transition-all duration-300 ${
                         selectedVariantIndex === variantIndex
                           ? 'ring-2 ring-dark-text ring-offset-2 opacity-100'
-                          : 'ring-1 ring-dark-text/10 opacity-40 hover:opacity-75 hover:ring-dark-text/30'
+                          : 'ring-1 ring-dark-text/15 opacity-65 hover:opacity-90 hover:ring-dark-text/30'
                       }`}
-                      title={`${t('sidebar.color')} ${variant.colorNumber}`}
-                      aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
+                      title={variant.colorName || `${t('sidebar.color')} ${variant.colorNumber}`}
+                      aria-label={variant.colorName || `${t('sidebar.color')} ${variant.colorNumber}`}
                     >
                       {variant.thumbnail ? (
                         <img
-                          src={resizeShopifyImage(variant.thumbnail, 200, variant.product.title, 0)}
-                          alt={`${t('sidebar.color')} ${variant.colorNumber}`}
-                          className="w-full h-full object-contain bg-[#f5f4f0] p-1.5"
+                          src={resizeShopifyImage(variant.thumbnail, 250, variant.product.title, 0)}
+                          alt={variant.colorName || `${t('sidebar.color')} ${variant.colorNumber}`}
+                          className="w-full h-full object-contain bg-[#f5f4f0] p-2"
                           loading="lazy"
                           decoding="async"
-                          sizes="72px"
+                          sizes="96px"
                         />
                       ) : (
                         <div className="w-full h-full" style={getColorSwatchStyle(variant.colorNumber, variant.colorName)} />
@@ -609,31 +609,31 @@ const EditorialCard = memo(function EditorialCard({
             </p>
             {groupedProduct.colorVariants.length > 1 && (
               <div className="mt-4">
-                <p className="font-sans text-[7px] tracking-[0.2em] text-dark-text/30 uppercase mb-2.5">
+                <p className="font-sans text-[8px] tracking-[0.2em] text-dark-text/50 uppercase mb-2.5">
                   {t('sidebar.coloris')} — {groupedProduct.colorVariants.length}
                 </p>
-                <div className="flex gap-2">
+                <div className="flex gap-2.5">
                   {groupedProduct.colorVariants.map((variant, variantIndex) => (
                     <button
                       type="button"
                       key={variant.handle}
                       onClick={(e) => handleColorChange(variantIndex, e)}
-                      className={`flex-1 max-w-[64px] aspect-square overflow-hidden transition-all duration-300 ${
+                      className={`flex-1 max-w-[76px] aspect-[4/3] overflow-hidden transition-all duration-300 ${
                         selectedVariantIndex === variantIndex
                           ? 'ring-2 ring-dark-text ring-offset-2 opacity-100'
-                          : 'ring-1 ring-dark-text/10 opacity-40 hover:opacity-75'
+                          : 'ring-1 ring-dark-text/15 opacity-65 hover:opacity-90'
                       }`}
-                      title={`${t('sidebar.color')} ${variant.colorNumber}`}
-                      aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
+                      title={variant.colorName || `${t('sidebar.color')} ${variant.colorNumber}`}
+                      aria-label={variant.colorName || `${t('sidebar.color')} ${variant.colorNumber}`}
                     >
                       {variant.thumbnail ? (
                         <img
-                          src={resizeShopifyImage(variant.thumbnail, 150, variant.product.title, 0)}
-                          alt={`${t('sidebar.color')} ${variant.colorNumber}`}
+                          src={resizeShopifyImage(variant.thumbnail, 200, variant.product.title, 0)}
+                          alt={variant.colorName || `${t('sidebar.color')} ${variant.colorNumber}`}
                           className="w-full h-full object-contain bg-[#f5f4f0] p-1.5"
                           loading="lazy"
                           decoding="async"
-                          sizes="64px"
+                          sizes="76px"
                         />
                       ) : (
                         <div className="w-full h-full" style={getColorSwatchStyle(variant.colorNumber, variant.colorName)} />

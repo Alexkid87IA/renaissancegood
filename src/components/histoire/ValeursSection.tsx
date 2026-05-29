@@ -44,7 +44,7 @@ export default function ValeursSection() {
 
   return (
     <motion.section
-      className="min-h-screen md:h-screen relative z-50 bg-[#0a0a0a]"
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-50 bg-[#0a0a0a] overflow-hidden"
     >
       {/* DESKTOP */}
       <div className="hidden md:flex h-full">

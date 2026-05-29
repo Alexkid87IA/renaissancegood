@@ -11,7 +11,7 @@ export default function HeroHistoireSection() {
 
   return (
     <motion.section
-      className="h-screen relative z-10"
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-10 overflow-hidden"
     >
       {/* DESKTOP */}
       <div className="relative h-full overflow-hidden hidden lg:block">
