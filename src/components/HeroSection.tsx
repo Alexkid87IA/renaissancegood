@@ -59,8 +59,8 @@ export default function HeroSection() {
       v.playbackRate = VIDEO_SPEED;
       v.onended = () => {
         setPhase('blackout');
-        setTimeout(() => setPhase('shimmer'), 800);
-        setTimeout(() => setPhase('reveal'), 2200);
+        setTimeout(() => setPhase('shimmer'), 1200);
+        setTimeout(() => setPhase('reveal'), 2800);
       };
     });
   }, [slowConnection]);
@@ -92,34 +92,53 @@ export default function HeroSection() {
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
         )}
+        {/* Transition cinématique */}
         <AnimatePresence>
           {phase !== 'video' && (
             <>
-              {/* Black curtain */}
+              {/* Fond noir progressif */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: phase === 'reveal' ? 0 : 1 }}
-                transition={{ duration: phase === 'reveal' ? 1.2 : 0.8, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                 className="absolute inset-0 z-[1] bg-black"
               />
-              {/* Gold shimmer line */}
+
+              {/* Ligne dorée horizontale — centre vers les bords */}
               {(phase === 'shimmer' || phase === 'reveal') && (
                 <motion.div
-                  initial={{ x: '-100%' }}
-                  animate={{ x: '200%' }}
-                  transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-y-0 w-[2px] z-[3]"
-                  style={{ background: 'linear-gradient(to bottom, transparent, rgba(199,170,120,0.8), transparent)', boxShadow: '0 0 40px 15px rgba(199,170,120,0.15)' }}
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={{ scaleX: 1, opacity: [0, 1, 1, 0] }}
+                  transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[1px] z-[5] origin-center"
+                  style={{
+                    background: 'linear-gradient(to right, transparent, rgba(199,170,120,0.1), rgba(199,170,120,0.6), rgba(199,170,120,0.6), rgba(199,170,120,0.1), transparent)',
+                    boxShadow: '0 0 30px 8px rgba(199,170,120,0.08)',
+                  }}
                 />
               )}
-              {/* HD poster reveal */}
+
+              {/* Halo doré central pendant le shimmer */}
+              {(phase === 'shimmer' || phase === 'reveal') && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: [0, 0.4, 0], scale: [0.8, 1.2, 1.5] }}
+                  transition={{ duration: 2.2, ease: 'easeOut' }}
+                  className="absolute inset-0 z-[4] pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(ellipse at center, rgba(199,170,120,0.12) 0%, transparent 60%)',
+                  }}
+                />
+              )}
+
+              {/* Image poster — reveal avec zoom settle + brightness */}
               {phase === 'reveal' && (
                 <motion.img
                   src={HERO_POSTER}
                   alt="Renaissance Paris"
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                  initial={{ opacity: 0, scale: 1.06, filter: 'brightness(0.3)' }}
+                  animate={{ opacity: 1, scale: 1, filter: 'brightness(1)' }}
+                  transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
                   style={{ y: imageY }}
                   className="absolute inset-0 w-full h-full object-cover object-center z-[2]"
                 />
