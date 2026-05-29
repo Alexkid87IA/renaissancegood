@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import HomeEditorialBlock from './HomeEditorialBlock';
 
+const WARM_IMAGE_FILTER = 'grayscale(1) sepia(0.14) saturate(0.82) contrast(1.08) brightness(0.88)';
+
 export default function HistoireSection() {
   const { t } = useTranslation('home');
   const sectionRef = useRef<HTMLElement>(null);
@@ -26,10 +28,12 @@ export default function HistoireSection() {
           <img
             src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
             alt="Renaissance Paris - Campagne Trident"
+            style={{ filter: WARM_IMAGE_FILTER }}
             className="w-full h-full object-cover object-center"
             loading="lazy"
           />
           {/* Gradient overlays for text readability */}
+          <div className="absolute inset-0 bg-[#160e07]/22 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/40 via-transparent to-[#0a0a0a]/30" />
         </motion.div>
@@ -37,10 +41,6 @@ export default function HistoireSection() {
         {/* Content */}
         <div className="relative w-full max-w-[1600px] mx-auto flex items-center px-12 lg:px-20 xl:px-28">
           <div className="relative w-[55%] max-w-2xl">
-            <div
-              aria-hidden="true"
-              className="absolute -inset-10 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] [background-size:76px_76px]"
-            />
             <HomeEditorialBlock
               panelRef={contentRef}
               active={contentInView}
@@ -62,9 +62,11 @@ export default function HistoireSection() {
           <img
             src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
             alt="Renaissance Paris - Campagne Trident"
+            style={{ filter: WARM_IMAGE_FILTER }}
             className="w-full h-full object-cover object-center"
             loading="lazy"
           />
+          <div className="absolute inset-0 bg-[#160e07]/20 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/40 via-transparent to-[#0a0a0a]/60" />
         </motion.div>
 
@@ -116,8 +118,8 @@ export default function HistoireSection() {
             <LocaleLink to="/histoire" className="font-display text-[13px] italic text-white/70 tracking-[-0.01em] active:text-white transition-colors duration-300">
               {t('histoire.mobileCta')}
             </LocaleLink>
-            <span className="w-px h-3 bg-white/15" />
-            <span className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/35 font-medium">
+            <span className="w-px h-3 bg-white/[0.15]" />
+            <span className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/45 font-medium">
               {t('histoire.since')}
             </span>
           </motion.div>

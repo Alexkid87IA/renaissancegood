@@ -26,7 +26,6 @@ interface HomeEditorialBlockProps {
 export default function HomeEditorialBlock({
   panelRef,
   active = true,
-  index,
   label,
   title,
   subtitle,
@@ -38,18 +37,16 @@ export default function HomeEditorialBlock({
 }: HomeEditorialBlockProps) {
   const dark = theme === 'dark';
   const titleColor = dark ? 'text-white' : 'text-dark-text';
-  const labelColor = dark ? 'text-white/34' : 'text-dark-text/38';
-  const indexColor = dark ? 'text-bronze/85' : 'text-bronze/80';
-  const ghostColor = dark ? 'text-white/[0.055]' : 'text-dark-text/[0.045]';
-  const subtitleColor = dark ? 'text-white/58' : 'text-dark-text/66';
-  const bodyColor = dark ? 'text-white/47' : 'text-dark-text/58';
-  const lineColor = dark ? 'bg-white/16' : 'bg-dark-text/18';
+  const labelColor = dark ? 'text-white/[0.52]' : 'text-dark-text/[0.52]';
+  const subtitleColor = dark ? 'text-white/[0.76]' : 'text-dark-text/[0.72]';
+  const bodyColor = dark ? 'text-white/[0.70]' : 'text-dark-text/[0.66]';
+  const lineColor = dark ? 'bg-bronze/[0.50]' : 'bg-dark-text/[0.22]';
   const primaryButton = dark
     ? 'border-white/80 bg-white text-[#0a0a0a] hover:border-bronze hover:bg-bronze'
     : 'border-dark-text/70 text-dark-text hover:bg-dark-text hover:text-beige';
   const secondaryButton = dark
-    ? 'border-white/20 text-white/72 hover:border-bronze/70 hover:text-bronze'
-    : 'border-dark-text/16 text-dark-text/52 hover:border-dark-text/45 hover:text-dark-text';
+    ? 'border-white/[0.32] text-white/[0.84] hover:border-bronze/70 hover:text-bronze'
+    : 'border-dark-text/[0.16] text-dark-text/[0.52] hover:border-dark-text/[0.45] hover:text-dark-text';
 
   return (
     <motion.div
@@ -57,21 +54,11 @@ export default function HomeEditorialBlock({
       variants={stagger}
       initial="hidden"
       animate={active ? 'visible' : 'hidden'}
+      data-home-editorial-block
       className="relative z-10 w-full max-w-xl"
     >
-      <motion.div
-        variants={fade}
-        aria-hidden="true"
-        className={`pointer-events-none absolute -right-8 -top-20 font-display text-[clamp(7rem,12vw,15rem)] leading-none ${ghostColor}`}
-      >
-        {index}
-      </motion.div>
-
       <motion.div variants={fade} className="mb-8 flex items-center gap-4">
-        <span className={`font-display text-3xl italic leading-none ${indexColor}`}>
-          {index}
-        </span>
-        <span className={`h-px w-12 ${dark ? 'bg-white/20' : 'bg-bronze/35'}`} />
+        <span className={`h-px w-16 ${dark ? 'bg-bronze/[0.55]' : 'bg-bronze/[0.45]'}`} />
         <p className={`font-sans text-[9px] tracking-[0.42em] font-medium uppercase ${labelColor}`}>
           {label}
         </p>
@@ -130,7 +117,7 @@ export default function HomeEditorialBlock({
             </div>
           )}
           {meta && (
-            <p className={`mt-7 font-sans text-[9px] tracking-[0.3em] font-medium uppercase ${dark ? 'text-white/22' : 'text-dark-text/28'}`}>
+            <p className={`mt-7 font-sans text-[9px] tracking-[0.3em] font-medium uppercase ${dark ? 'text-white/[0.50]' : 'text-dark-text/[0.44]'}`}>
               {meta}
             </p>
           )}

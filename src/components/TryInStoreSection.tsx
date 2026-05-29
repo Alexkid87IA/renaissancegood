@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import HomeEditorialBlock from './HomeEditorialBlock';
 
+const WARM_IMAGE_FILTER = 'grayscale(1) sepia(0.16) saturate(0.82) contrast(1.08) brightness(0.86)';
+
 export default function TryInStoreSection() {
   const { t } = useTranslation('home');
   const sectionRef = useRef<HTMLElement>(null);
@@ -21,12 +23,7 @@ export default function TryInStoreSection() {
       {/* DESKTOP */}
       <div className="h-full hidden md:flex flex-row">
         {/* Left - Content */}
-        <div className="relative w-1/2 overflow-hidden bg-[#080808] flex items-center justify-center px-12 lg:px-20 xl:px-24">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] [background-size:76px_76px]"
-          />
-          <div aria-hidden="true" className="absolute inset-8 border border-white/[0.055]" />
+        <div className="relative w-1/2 overflow-hidden bg-black flex items-center justify-center px-12 lg:px-20 xl:px-24">
           <HomeEditorialBlock
             panelRef={contentRef}
             active={contentInView}
@@ -48,10 +45,11 @@ export default function TryInStoreSection() {
           <motion.img
             src="https://renaissance-cdn.b-cdn.net/page%20histoire.png"
             alt="Essayez en boutique"
-            style={{ y: imageY, scale: imageScale }}
+            style={{ y: imageY, scale: imageScale, filter: WARM_IMAGE_FILTER }}
             className="w-full h-full object-cover"
             loading="lazy"
           />
+          <div className="absolute inset-0 bg-[#160e07]/25 mix-blend-multiply pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#000000]/40 to-transparent pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/30 via-transparent to-[#000000]/20 pointer-events-none" />
         </div>
@@ -63,9 +61,11 @@ export default function TryInStoreSection() {
           <img
             src="https://renaissance-cdn.b-cdn.net/page%20histoire.png"
             alt="Essayez en boutique"
+            style={{ filter: WARM_IMAGE_FILTER }}
             className="w-full h-full object-cover object-[center_30%]"
             loading="lazy"
           />
+          <div className="absolute inset-0 bg-[#160e07]/20 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]/60" />
         </motion.div>
 
@@ -117,8 +117,8 @@ export default function TryInStoreSection() {
             <LocaleLink to="/store-locator" className="font-display text-[13px] italic text-white/70 tracking-[-0.01em] active:text-white transition-colors duration-300">
               {t('tryInStore.cta')}
             </LocaleLink>
-            <span className="w-px h-3 bg-white/15" />
-            <LocaleLink to="/shop" className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/35 font-medium active:text-white/60 transition-colors duration-300">
+            <span className="w-px h-3 bg-white/[0.15]" />
+            <LocaleLink to="/shop" className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/45 font-medium active:text-white/60 transition-colors duration-300">
               {t('tryInStore.ctaShop')}
             </LocaleLink>
           </motion.div>

@@ -2,7 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
-import { stagger, fade } from './shared';
+import HomeEditorialBlock from './HomeEditorialBlock';
 
 export default function ReassuranceSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -22,66 +22,54 @@ export default function ReassuranceSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity, filter }}
-      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-[90] bg-beige overflow-hidden"
-      data-indicator-theme="dark"
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-[90] bg-[#000000] overflow-hidden"
     >
 
-      {/* DESKTOP — layout 2 colonnes : texte à gauche, image à droite */}
-      <div className="hidden md:flex h-full">
-        {/* Left — Content */}
-        <div className="w-1/2 flex items-center justify-center px-10 lg:px-16 xl:px-20 py-24 lg:py-32">
-          <motion.div
-            ref={ref}
-            variants={stagger}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            className="max-w-xl"
-          >
-            <motion.div variants={fade} className="mb-12 lg:mb-16">
-              <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/30 uppercase mb-4 font-medium">
-                {t('reassurance.label')}
-              </p>
-              <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9]">
-                {t('reassurance.title')}
-                <br />
-                <span className="font-light italic tracking-[-0.02em]">{t('reassurance.subtitle')}</span>
-              </h2>
-            </motion.div>
+      {/* DESKTOP */}
+      <div className="hidden md:block h-full relative overflow-hidden">
+        <motion.img
+          src="https://renaissance-cdn.b-cdn.net/packshot.png"
+          alt="Renaissance Paris - Nos engagements"
+          style={{ y: imageY, scale: imageScale }}
+          className="absolute inset-0 w-full h-full object-cover object-[66%_center]"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[#000000]/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#000000]/82 to-[#000000]/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/35 via-transparent to-[#000000]/10" />
 
-            <motion.div variants={fade} className="w-12 h-px bg-dark-text/15 mb-12 lg:mb-16" />
-
-            {/* Grille 2x2 centrée */}
-            <div className="grid grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-10 lg:gap-y-12">
+        <div className="relative h-full flex items-center px-12 lg:px-20 xl:px-28">
+          <div className="relative max-w-2xl">
+            <HomeEditorialBlock
+              panelRef={ref}
+              active={inView}
+              index="08"
+              label={t('reassurance.label')}
+              title={t('reassurance.title')}
+              subtitle={t('reassurance.subtitle')}
+            >
+              <div className="border-y border-white/[0.10]">
               {guarantees.map((item) => (
-                <motion.div
+                <div
                   key={item.title}
-                  variants={fade}
-                  className="text-center"
+                  className="grid grid-cols-[6rem_1fr] gap-6 border-b border-white/[0.08] py-4 last:border-b-0 lg:grid-cols-[7.5rem_1fr]"
                 >
-                  <p className="font-display text-3xl lg:text-4xl xl:text-5xl font-bold text-dark-text tracking-[-0.02em] leading-none mb-2">
+                  <p className="font-display text-3xl lg:text-4xl font-bold text-white tracking-normal leading-none">
                     {item.number}
                   </p>
-                  <p className="font-sans text-[9px] lg:text-[10px] tracking-[0.25em] text-dark-text/30 uppercase font-medium mb-2">
-                    {item.title}
-                  </p>
-                  <p className="font-sans text-xs lg:text-sm text-dark-text/50 leading-relaxed">
-                    {item.description}
-                  </p>
-                </motion.div>
+                  <div>
+                    <p className="font-sans text-[9px] tracking-[0.25em] text-white/[0.62] uppercase font-medium mb-1.5">
+                      {item.title}
+                    </p>
+                    <p className="font-sans text-xs lg:text-[13px] text-white/[0.64] leading-relaxed font-light">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
               ))}
             </div>
-          </motion.div>
-        </div>
-
-        {/* Right — Image */}
-        <div className="w-1/2 relative overflow-hidden">
-          <motion.img
-            src="https://renaissance-cdn.b-cdn.net/packshot.png"
-            alt="Renaissance Paris - Nos engagements"
-            style={{ y: imageY, scale: imageScale }}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
+            </HomeEditorialBlock>
+          </div>
         </div>
       </div>
 
@@ -108,7 +96,7 @@ export default function ReassuranceSection() {
             <span className="font-light italic tracking-[-0.02em]">{t('reassurance.subtitle')}</span>
           </h2>
 
-          <div className="w-10 h-px bg-white/15 my-6" />
+          <div className="w-10 h-px bg-white/[0.15] my-6" />
 
           {/* Stats — 2x2 grid */}
           <div className="grid grid-cols-2 gap-y-5 gap-x-6">

@@ -6,6 +6,7 @@ import { useStackedScroll } from '../hooks/useStackedScroll';
 import HomeEditorialBlock from './HomeEditorialBlock';
 
 const FABRICATION_IMAGE = 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_06AM.jpeg';
+const WARM_IMAGE_FILTER = 'grayscale(1) sepia(0.12) saturate(0.84) contrast(1.1) brightness(0.86)';
 
 export default function FabricationSection() {
   const { t } = useTranslation('home');
@@ -38,20 +39,18 @@ export default function FabricationSection() {
         <motion.img
           src={FABRICATION_IMAGE}
           alt="Renaissance Paris - Fabrication"
-          style={{ y: imageY, scale: imageScale }}
+          style={{ y: imageY, scale: imageScale, filter: WARM_IMAGE_FILTER }}
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[#000000]/15" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#000000]/70 via-[#000000]/40 to-transparent" />
+        <div className="absolute inset-0 bg-[#160e07]/24 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-[#000000]/18" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#000000]/72 to-[#000000]/12" />
+        <div className="absolute left-0 top-0 h-full w-[58%] bg-gradient-to-r from-[#000000]/82 via-[#000000]/56 to-transparent" />
 
         {/* Content */}
         <div className="relative h-full flex items-center px-12 lg:px-20 xl:px-28">
           <div className="relative max-w-2xl">
-            <div
-              aria-hidden="true"
-              className="absolute -inset-10 opacity-28 [background-image:linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] [background-size:76px_76px]"
-            />
             <HomeEditorialBlock
               panelRef={contentRef}
               active={contentInView}
@@ -59,29 +58,44 @@ export default function FabricationSection() {
               label={t('fabrication.label')}
               title={t('fabrication.title')}
               subtitle={t('fabrication.subtitle')}
-              description={t('fabrication.description')}
-              actions={[{ label: t('fabrication.cta'), href: '/savoir-faire', variant: 'secondary' }]}
             >
-              <div className="grid grid-cols-4 gap-0 border-y border-white/[0.08]">
-                {STATS.map((stat, i) => (
-                  <div key={stat.label} className={`${i > 0 ? 'border-l border-white/[0.08] pl-5 lg:pl-6' : 'pr-5 lg:pr-6'} py-5`}>
-                    <p className="font-display text-2xl lg:text-3xl xl:text-4xl text-white font-bold tracking-normal leading-none mb-2">
-                      {stat.value}
-                    </p>
-                    <p className="font-sans text-white/38 text-[7px] lg:text-[8px] tracking-[0.2em] uppercase font-medium leading-[1.5]">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <div
+                data-fabrication-reading-panel
+                className="relative w-[min(48rem,calc(100vw-8rem))] border border-white/[0.12] bg-[#020202]/75 px-6 py-6 shadow-[0_28px_90px_rgba(0,0,0,0.55)] backdrop-blur-[2px]"
+              >
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-bronze/[0.70] via-white/[0.18] to-transparent" />
+                <p className="max-w-[42rem] font-sans text-[15px] xl:text-base leading-[1.85] font-light text-white/[0.84]">
+                  {t('fabrication.description')}
+                </p>
 
-              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
-                {DETAILS.map((detail) => (
-                  <p key={detail.label} className="font-sans text-[11px] tracking-[0.03em]">
-                    <span className="text-white/62 font-medium">{detail.label}</span>
-                    <span className="text-white/30 font-light"> — {detail.location}</span>
-                  </p>
-                ))}
+                <div className="mt-6 grid grid-cols-4 border-y border-white/[0.12]">
+                  {STATS.map((stat, i) => (
+                    <div key={stat.label} className={`${i > 0 ? 'border-l border-white/[0.10] pl-5 lg:pl-6' : 'pr-5 lg:pr-6'} py-5`}>
+                      <p className="font-display text-3xl lg:text-4xl xl:text-[2.8rem] text-white font-bold tracking-normal leading-none mb-2">
+                        {stat.value}
+                      </p>
+                      <p className="font-sans text-white/[0.72] text-[8px] lg:text-[9px] tracking-[0.22em] uppercase font-medium leading-[1.55]">
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-5 grid gap-3 lg:grid-cols-3">
+                  {DETAILS.map((detail) => (
+                    <p key={detail.label} className="font-sans text-[11px] leading-relaxed tracking-[0.04em] text-white/[0.62]">
+                      <span className="block text-[8px] tracking-[0.28em] uppercase text-bronze/[0.85]">{detail.label}</span>
+                      <span className="font-light">{detail.location}</span>
+                    </p>
+                  ))}
+                </div>
+
+                <LocaleLink
+                  to="/savoir-faire"
+                  className="mt-6 inline-flex min-w-[14rem] items-center justify-center border border-white/[0.28] px-7 py-4 font-sans text-[9px] tracking-[0.28em] font-medium uppercase text-white/[0.88] transition-all duration-500 hover:border-bronze/70 hover:text-bronze"
+                >
+                  {t('fabrication.cta')}
+                </LocaleLink>
               </div>
             </HomeEditorialBlock>
           </div>
@@ -93,15 +107,16 @@ export default function FabricationSection() {
         <motion.img
           src={FABRICATION_IMAGE}
           alt="Renaissance Paris - Fabrication"
-          style={{ y: imageY, scale: imageScale }}
+          style={{ y: imageY, scale: imageScale, filter: WARM_IMAGE_FILTER }}
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
+        <div className="absolute inset-0 bg-[#160e07]/20 mix-blend-multiply" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#000000]/30 to-[#000000]/90" />
 
         {/* Content — bas */}
         <div className="absolute bottom-0 left-0 right-0 px-6 pb-8">
-          <p className="font-sans text-white/25 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
+          <p className="font-sans text-white/40 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
             {t('fabrication.label')}
           </p>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-1">
@@ -118,7 +133,7 @@ export default function FabricationSection() {
                 <p className="font-display text-3xl text-white font-bold tracking-tight leading-none mb-1.5">
                   {stat.value}
                 </p>
-                <p className="font-sans text-white/35 text-[8px] tracking-[0.2em] uppercase font-medium">
+                <p className="font-sans text-white/50 text-[8px] tracking-[0.2em] uppercase font-medium">
                   {stat.label}
                 </p>
               </div>
