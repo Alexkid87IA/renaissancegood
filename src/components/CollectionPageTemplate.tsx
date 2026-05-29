@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
@@ -10,6 +10,8 @@ import SEO from './SEO';
 import { fade } from './shared';
 import { resizeShopifyImage } from '../lib/imageUtils';
 import Breadcrumb from './Breadcrumb';
+
+const VIDEO_SPEED = 0.7;
 
 interface FilterOption {
   label: string;
@@ -191,18 +193,445 @@ function matchesTag(product: Product, tag: string): boolean {
 }
 
 export interface CollectionPageConfig {
-  /** Shopify collection ID (e.g. 'HERITAGE', 'VERSAILLES') */
   collectionId: string;
-  /** Display name (e.g. 'Heritage', 'Versailles') */
   collectionName: string;
-  /** Translation key prefix (e.g. 'heritage', 'versailles') */
   translationPrefix: string;
-  /** Hero image URL */
   heroImage: string;
-  /** SEO route path (e.g. '/collections/heritage') */
   seoUrl: string;
-  /** Additional shape filter options beyond the defaults */
   extraShapeFilters?: FilterOption[];
+  heroVideo?: string;
+  heroPoster?: string;
+}
+
+interface HeroProps {
+  heroRef: React.RefObject<HTMLDivElement | null>;
+  config: CollectionPageConfig;
+  prefix: string;
+  imageY: ReturnType<typeof useTransform>;
+  breadcrumbItems: { label: string; to?: string }[];
+}
+
+function VideoHero({ heroRef, config, prefix, imageY, breadcrumbItems }: HeroProps) {
+  const { t } = useTranslation('collections');
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const scrollToProducts = useCallback(() => {
+    document.querySelector('[data-products-section]')?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.playbackRate = VIDEO_SPEED;
+    video.play().catch(() => {
+      const playOnTouch = () => {
+        video.play();
+        document.removeEventListener('touchstart', playOnTouch);
+      };
+      document.addEventListener('touchstart', playOnTouch);
+    });
+  }, []);
+
+  return (
+    <div ref={heroRef} className="h-screen relative overflow-hidden bg-[#000000]">
+
+      {/* ── DESKTOP — Même layout trapèze que ImageHero, vidéo à la place de l'image ── */}
+      <div className="relative h-full overflow-hidden hidden lg:flex">
+        <div className="w-[52%] relative flex flex-col justify-center pl-10 xl:pl-20 2xl:pl-28 pr-10 xl:pr-12 overflow-hidden">
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            style={{ transformOrigin: 'center' }}
+          >
+            <div className="w-[140%] h-px bg-white/[0.04] rotate-[20deg]" />
+          </motion.div>
+
+          <motion.div
+            className="absolute top-10 left-10 xl:left-20 2xl:left-28 flex flex-col gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <Breadcrumb items={breadcrumbItems} variant="light" />
+            <p className="font-sans text-white/25 text-[9px] tracking-[0.4em] font-medium uppercase">
+              {t(`${prefix}.collectionNumber`)}
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } }
+            }}
+            initial="hidden"
+            animate="visible"
+            className="relative z-10"
+          >
+            <motion.h1
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+              }}
+              className="font-display text-[clamp(4.25rem,5.75vw,8rem)] font-bold text-white tracking-normal leading-[0.84] mb-4 max-w-full break-words"
+            >
+              {t(`${prefix}.heroTitle`)}
+            </motion.h1>
+
+            <motion.p variants={fade} className="font-display text-lg xl:text-xl 2xl:text-2xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-6 xl:mb-8">
+              {t(`${prefix}.heroSubtitle`)}
+            </motion.p>
+
+            <motion.div variants={fade} className="w-10 h-px bg-white/10 mb-6 xl:mb-8" />
+
+            <motion.p variants={fade} className="font-sans text-white/25 text-xs xl:text-[13px] 2xl:text-sm leading-[2] font-light max-w-xs mb-8 xl:mb-10">
+              {t(`${prefix}.heroDescription`)}
+            </motion.p>
+
+            <motion.div variants={fade}>
+              <button
+                onClick={scrollToProducts}
+                className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-white"
+              >
+                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
+                  {t(`${prefix}.exploreCollection`)}
+                </span>
+                <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              </button>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-10 left-10 xl:left-20 2xl:left-28 flex items-center gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <div className="w-8 h-px bg-white/15" />
+            <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">{t('scroll')}</span>
+          </motion.div>
+        </div>
+
+        {/* Zone droite — Vidéo avec clip-path trapèze (même forme que l'image) */}
+        <motion.div
+          className="w-[48%] relative overflow-hidden"
+          initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
+          animate={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.video
+            ref={videoRef}
+            src={config.heroVideo}
+            poster={config.heroPoster || config.heroImage}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ y: imageY }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none opacity-100"
+            style={{
+              backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 79px, rgba(255,255,255,0.03) 79px, rgba(255,255,255,0.03) 80px)',
+            }}
+          />
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-20 left-[20%] right-[20%] flex items-center z-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          <div className="flex-1 h-px bg-white/[0.06]" />
+          <motion.div
+            className="w-2 h-2 bg-white/[0.06] mx-3"
+            style={{ transform: 'rotate(45deg)' }}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
+          />
+          <div className="flex-1 h-px bg-white/[0.06]" />
+        </motion.div>
+      </div>
+
+      {/* ── MOBILE — Vidéo clip diagonale + contenu bas ── */}
+      <div className="relative h-full overflow-hidden lg:hidden flex flex-col">
+        <motion.div
+          className="relative h-[50%] overflow-hidden"
+          initial={{ clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
+          animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0% 100%)' }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        >
+          <video
+            src={config.heroVideo}
+            poster={config.heroPoster || config.heroImage}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="absolute top-24 left-6 flex flex-col gap-2"
+          >
+            <Breadcrumb items={breadcrumbItems} variant="light" />
+            <p className="font-sans text-white/50 text-[9px] tracking-[0.3em] font-medium uppercase">
+              {t(`${prefix}.collectionNumber`)}
+            </p>
+          </motion.div>
+        </motion.div>
+
+        <div className="flex-1 px-6 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <h1 className="font-display text-[clamp(2.5rem,12vw,3.75rem)] font-bold text-white mb-2 tracking-normal leading-[0.88] max-w-full break-words">
+              {t(`${prefix}.heroTitle`)}
+            </h1>
+            <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em] mb-4">
+              {t(`${prefix}.heroSubtitle`)}
+            </p>
+            <div className="w-8 h-px bg-white/10 mb-4" />
+            <p className="text-white/30 text-sm font-sans leading-relaxed font-light mb-6">
+              {t(`${prefix}.heroDescription`)}
+            </p>
+            <button
+              onClick={scrollToProducts}
+              className="group relative overflow-hidden w-full border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white active:scale-[0.98]"
+            >
+              <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
+                {t(`${prefix}.exploreCollection`)}
+              </span>
+              <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            </button>
+          </motion.div>
+
+          <motion.div
+            className="flex items-center mt-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <div className="flex-1 h-px bg-white/[0.06]" />
+            <div className="w-1.5 h-1.5 bg-white/[0.06] mx-2" style={{ transform: 'rotate(45deg)' }} />
+            <div className="flex-1 h-px bg-white/[0.06]" />
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ImageHero({ heroRef, config, prefix, imageY, breadcrumbItems }: HeroProps) {
+  const { t } = useTranslation('collections');
+
+  const scrollToProducts = useCallback(() => {
+    document.querySelector('[data-products-section]')?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  return (
+    <div ref={heroRef} className="h-screen relative overflow-hidden bg-[#000000]">
+      {/* DESKTOP */}
+      <div className="relative h-full overflow-hidden hidden lg:flex">
+        <div className="w-[52%] relative flex flex-col justify-center pl-10 xl:pl-20 2xl:pl-28 pr-10 xl:pr-12 overflow-hidden">
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            style={{ transformOrigin: 'center' }}
+          >
+            <div className="w-[140%] h-px bg-white/[0.04] rotate-[20deg]" />
+          </motion.div>
+
+          <motion.div
+            className="absolute top-10 left-10 xl:left-20 2xl:left-28 flex flex-col gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <Breadcrumb items={breadcrumbItems} variant="light" />
+            <p className="font-sans text-white/25 text-[9px] tracking-[0.4em] font-medium uppercase">
+              {t(`${prefix}.collectionNumber`)}
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } }
+            }}
+            initial="hidden"
+            animate="visible"
+            className="relative z-10"
+          >
+            <motion.h1
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+              }}
+              className="font-display text-[clamp(4.25rem,5.75vw,8rem)] font-bold text-white tracking-normal leading-[0.84] mb-4 max-w-full break-words"
+            >
+              {t(`${prefix}.heroTitle`)}
+            </motion.h1>
+
+            <motion.p variants={fade} className="font-display text-lg xl:text-xl 2xl:text-2xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-6 xl:mb-8">
+              {t(`${prefix}.heroSubtitle`)}
+            </motion.p>
+
+            <motion.div variants={fade} className="w-10 h-px bg-white/10 mb-6 xl:mb-8" />
+
+            <motion.p variants={fade} className="font-sans text-white/25 text-xs xl:text-[13px] 2xl:text-sm leading-[2] font-light max-w-xs mb-8 xl:mb-10">
+              {t(`${prefix}.heroDescription`)}
+            </motion.p>
+
+            <motion.div variants={fade}>
+              <button
+                onClick={scrollToProducts}
+                className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-white"
+              >
+                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
+                  {t(`${prefix}.exploreCollection`)}
+                </span>
+                <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              </button>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-10 left-10 xl:left-20 2xl:left-28 flex items-center gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <div className="w-8 h-px bg-white/15" />
+            <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">{t('scroll')}</span>
+          </motion.div>
+        </div>
+
+        <motion.div
+          className="w-[48%] relative overflow-hidden"
+          initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
+          animate={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.img
+            src={config.heroImage}
+            alt={t(`${prefix}.heroImageAlt`)}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ y: imageY }}
+            fetchpriority="high"
+            decoding="sync"
+            loading="eager"
+          />
+          <div
+            className="absolute inset-0 pointer-events-none opacity-100"
+            style={{
+              backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 79px, rgba(255,255,255,0.03) 79px, rgba(255,255,255,0.03) 80px)',
+            }}
+          />
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-20 left-[20%] right-[20%] flex items-center z-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          <div className="flex-1 h-px bg-white/[0.06]" />
+          <motion.div
+            className="w-2 h-2 bg-white/[0.06] mx-3"
+            style={{ transform: 'rotate(45deg)' }}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
+          />
+          <div className="flex-1 h-px bg-white/[0.06]" />
+        </motion.div>
+      </div>
+
+      {/* MOBILE */}
+      <div className="relative h-full overflow-hidden lg:hidden flex flex-col">
+        <motion.div
+          className="relative h-[50%] overflow-hidden"
+          initial={{ clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
+          animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0% 100%)' }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        >
+          <img
+            src={config.heroImage}
+            alt={t(`${prefix}.heroImageAlt`)}
+            className="w-full h-full object-cover object-center"
+            fetchpriority="high"
+            decoding="sync"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="absolute top-24 left-6 flex flex-col gap-2"
+          >
+            <Breadcrumb items={breadcrumbItems} variant="light" />
+            <p className="font-sans text-white/50 text-[9px] tracking-[0.3em] font-medium uppercase">
+              {t(`${prefix}.collectionNumber`)}
+            </p>
+          </motion.div>
+        </motion.div>
+
+        <div className="flex-1 px-6 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <h1 className="font-display text-[clamp(2.5rem,12vw,3.75rem)] font-bold text-white mb-2 tracking-normal leading-[0.88] max-w-full break-words">
+              {t(`${prefix}.heroTitle`)}
+            </h1>
+            <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em] mb-4">
+              {t(`${prefix}.heroSubtitle`)}
+            </p>
+            <div className="w-8 h-px bg-white/10 mb-4" />
+            <p className="text-white/30 text-sm font-sans leading-relaxed font-light mb-6">
+              {t(`${prefix}.heroDescription`)}
+            </p>
+            <button
+              onClick={scrollToProducts}
+              className="group relative overflow-hidden w-full border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white active:scale-[0.98]"
+            >
+              <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
+                {t(`${prefix}.exploreCollection`)}
+              </span>
+              <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            </button>
+          </motion.div>
+
+          <motion.div
+            className="flex items-center mt-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <div className="flex-1 h-px bg-white/[0.06]" />
+            <div className="w-1.5 h-1.5 bg-white/[0.06] mx-2" style={{ transform: 'rotate(45deg)' }} />
+            <div className="flex-1 h-px bg-white/[0.06]" />
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function CollectionPageTemplate({ config }: { config: CollectionPageConfig }) {
@@ -311,207 +740,23 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
         description={t(`${prefix}.seoDescription`)}
         url={config.seoUrl}
       />
-      <div
-        ref={heroRef}
-        className="h-screen relative overflow-hidden bg-[#000000]"
-      >
-        {/* DESKTOP — Géométrique avec clip-path */}
-        <div className="relative h-full overflow-hidden hidden lg:flex">
-          {/* Zone gauche — Contenu */}
-          <div className="w-[52%] relative flex flex-col justify-center pl-10 xl:pl-20 2xl:pl-28 pr-10 xl:pr-12 overflow-hidden">
-            <motion.div
-              className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-              style={{ transformOrigin: 'center' }}
-            >
-              <div className="w-[140%] h-px bg-white/[0.04] rotate-[20deg]" />
-            </motion.div>
-
-            <motion.div
-              className="absolute top-10 left-10 xl:left-20 2xl:left-28 flex flex-col gap-3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <Breadcrumb items={breadcrumbItems} variant="light" />
-              <p className="font-sans text-white/25 text-[9px] tracking-[0.4em] font-medium uppercase">
-                {t(`${prefix}.collectionNumber`)}
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } }
-              }}
-              initial="hidden"
-              animate="visible"
-              className="relative z-10"
-            >
-              <motion.h1
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
-                }}
-                className="font-display text-[clamp(4.25rem,5.75vw,8rem)] font-bold text-white tracking-normal leading-[0.84] mb-4 max-w-full break-words"
-              >
-                {t(`${prefix}.heroTitle`)}
-              </motion.h1>
-
-              <motion.p variants={fade} className="font-display text-lg xl:text-xl 2xl:text-2xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-6 xl:mb-8">
-                {t(`${prefix}.heroSubtitle`)}
-              </motion.p>
-
-              <motion.div variants={fade} className="w-10 h-px bg-white/10 mb-6 xl:mb-8" />
-
-              <motion.p variants={fade} className="font-sans text-white/25 text-xs xl:text-[13px] 2xl:text-sm leading-[2] font-light max-w-xs mb-8 xl:mb-10">
-                {t(`${prefix}.heroDescription`)}
-              </motion.p>
-
-              <motion.div variants={fade}>
-                <button
-                  onClick={() => {
-                    const section = document.querySelector('[data-products-section]');
-                    section?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-white"
-                >
-                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
-                    {t(`${prefix}.exploreCollection`)}
-                  </span>
-                  <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                </button>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              className="absolute bottom-10 left-10 xl:left-20 2xl:left-28 flex items-center gap-3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <div className="w-8 h-px bg-white/15" />
-              <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">{t('scroll')}</span>
-            </motion.div>
-          </div>
-
-          {/* Zone droite — Image avec clip-path trapèze */}
-          <motion.div
-            className="w-[48%] relative overflow-hidden"
-            initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
-            animate={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <motion.img
-              src={config.heroImage}
-              alt={t(`${prefix}.heroImageAlt`)}
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ y: imageY }}
-              fetchpriority="high"
-              decoding="sync"
-              loading="eager"
-            />
-            <div
-              className="absolute inset-0 pointer-events-none opacity-100"
-              style={{
-                backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 79px, rgba(255,255,255,0.03) 79px, rgba(255,255,255,0.03) 80px)',
-              }}
-            />
-          </motion.div>
-
-          <motion.div
-            className="absolute bottom-20 left-[20%] right-[20%] flex items-center z-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
-            <div className="flex-1 h-px bg-white/[0.06]" />
-            <motion.div
-              className="w-2 h-2 bg-white/[0.06] mx-3"
-              style={{ transform: 'rotate(45deg)' }}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
-            />
-            <div className="flex-1 h-px bg-white/[0.06]" />
-          </motion.div>
-        </div>
-
-        {/* MOBILE — Image clip diagonale + contenu bas */}
-        <div className="relative h-full overflow-hidden lg:hidden flex flex-col">
-          <motion.div
-            className="relative h-[50%] overflow-hidden"
-            initial={{ clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
-            animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0% 100%)' }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-          >
-            <img
-              src={config.heroImage}
-              alt={t(`${prefix}.heroImageAlt`)}
-              className="w-full h-full object-cover object-center"
-              fetchpriority="high"
-              decoding="sync"
-              loading="eager"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="absolute top-24 left-6 flex flex-col gap-2"
-            >
-              <Breadcrumb items={breadcrumbItems} variant="light" />
-              <p className="font-sans text-white/50 text-[9px] tracking-[0.3em] font-medium uppercase">
-                {t(`${prefix}.collectionNumber`)}
-              </p>
-            </motion.div>
-          </motion.div>
-
-          <div className="flex-1 px-6 flex flex-col justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <h1 className="font-display text-[clamp(2.5rem,12vw,3.75rem)] font-bold text-white mb-2 tracking-normal leading-[0.88] max-w-full break-words">
-                {t(`${prefix}.heroTitle`)}
-              </h1>
-              <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em] mb-4">
-                {t(`${prefix}.heroSubtitle`)}
-              </p>
-              <div className="w-8 h-px bg-white/10 mb-4" />
-              <p className="text-white/30 text-sm font-sans leading-relaxed font-light mb-6">
-                {t(`${prefix}.heroDescription`)}
-              </p>
-              <button
-                onClick={() => {
-                  const section = document.querySelector('[data-products-section]');
-                  section?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="group relative overflow-hidden w-full border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white active:scale-[0.98]"
-              >
-                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
-                  {t(`${prefix}.exploreCollection`)}
-                </span>
-                <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-              </button>
-            </motion.div>
-
-            <motion.div
-              className="flex items-center mt-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="flex-1 h-px bg-white/[0.06]" />
-              <div className="w-1.5 h-1.5 bg-white/[0.06] mx-2" style={{ transform: 'rotate(45deg)' }} />
-              <div className="flex-1 h-px bg-white/[0.06]" />
-            </motion.div>
-          </div>
-        </div>
-      </div>
+      {config.heroVideo ? (
+        <VideoHero
+          heroRef={heroRef}
+          config={config}
+          prefix={prefix}
+          imageY={imageY}
+          breadcrumbItems={breadcrumbItems}
+        />
+      ) : (
+        <ImageHero
+          heroRef={heroRef}
+          config={config}
+          prefix={prefix}
+          imageY={imageY}
+          breadcrumbItems={breadcrumbItems}
+        />
+      )}
 
       <div className="relative z-20 bg-beige" data-products-section>
         {/* ============================================================

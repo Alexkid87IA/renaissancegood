@@ -23,3 +23,4 @@ dist-ssr
 .env
 netlify.env
 .claude/worktrees/
+public/videos/

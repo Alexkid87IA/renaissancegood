@@ -4,6 +4,7 @@
 // Inspiré Cartier, Boucheron, Dior Couture
 // ========================================
 
+import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -25,6 +26,7 @@ interface MegaMenuProps {
   description: string;
   collectionLink: string;
   collectionImage?: string;
+  collectionVideo?: string;
   onClose: () => void;
 }
 
@@ -99,8 +101,17 @@ export default function MegaMenu({
   description,
   collectionLink,
   collectionImage,
+  collectionVideo,
   onClose
 }: MegaMenuProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.playbackRate = 0.85;
+    video.play().catch(() => {});
+  }, []);
   return (
     <div className="relative max-w-[1600px] mx-auto px-8 md:px-10 lg:px-12 laptop:px-14 xl:px-16 py-8 lg:py-10">
 
@@ -138,13 +149,28 @@ export default function MegaMenu({
           className="relative z-10"
         >
           {/* Layout principal : Image hero | Produits | Éditorial */}
-          <div className="grid grid-cols-[240px_1fr_240px] laptop:grid-cols-[260px_1fr_260px] xl:grid-cols-[280px_1fr_280px] gap-6 laptop:gap-8 xl:gap-10 items-start">
+          <div className="grid grid-cols-[240px_1fr_240px] laptop:grid-cols-[260px_1fr_260px] xl:grid-cols-[280px_1fr_280px] gap-6 laptop:gap-8 xl:gap-10 items-stretch">
 
-            {/* ─── Col 1 — Image hero collection ─── */}
+            {/* ─── Col 1 — Vidéo ou image hero collection (pleine hauteur) ─── */}
             <motion.div variants={heroVariants} className="relative">
-              {collectionImage ? (
-                <div className="relative aspect-[3/4] overflow-hidden group/hero">
-                  {/* Image avec traitement luxe */}
+              {collectionVideo ? (
+                <div className="relative h-full overflow-hidden group/hero">
+                  <video
+                    ref={videoRef}
+                    src={collectionVideo}
+                    poster={collectionImage}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover/hero:scale-[1.03]"
+                  />
+                  <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.3)] pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+                </div>
+              ) : collectionImage ? (
+                <div className="relative h-full overflow-hidden group/hero">
                   <img
                     src={collectionImage}
                     alt={title}
@@ -153,13 +179,11 @@ export default function MegaMenu({
                     decoding="async"
                     sizes="(max-width: 1280px) 260px, 280px"
                   />
-                  {/* Vignette subtile — encadrement photo */}
                   <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.3)] pointer-events-none" />
-                  {/* Filet lumineux bas */}
                   <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
                 </div>
               ) : (
-                <div className="aspect-[3/4] bg-white/[0.02] border border-white/[0.04]" />
+                <div className="h-full bg-white/[0.02] border border-white/[0.04]" />
               )}
             </motion.div>
 
@@ -181,11 +205,11 @@ export default function MegaMenu({
                   >
                     <div className="group cursor-pointer relative">
                       {/* Conteneur image avec cadre subtil */}
-                      <div className="relative aspect-[4/3] overflow-hidden bg-white/[0.02] border border-white/[0.04] group-hover:border-white/[0.1] transition-all duration-500">
+                      <div className="relative aspect-[4/3] overflow-hidden bg-[#f0eeeb] border border-white/[0.04] group-hover:border-white/[0.1] transition-all duration-500">
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-[1.04] group-hover:brightness-110"
+                          className="w-full h-full object-contain p-3 transition-all duration-700 ease-out group-hover:scale-[1.04] group-hover:brightness-110"
                           loading="eager"
                           decoding="async"
                           sizes="(max-width: 1280px) 34vw, 420px"

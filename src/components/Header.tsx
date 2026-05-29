@@ -388,6 +388,7 @@ export default function Header() {
               description={t('megaMenu.versaillesDescription')}
               collectionLink={localePath('/collections/versailles')}
               collectionImage="https://renaissance-cdn.b-cdn.net/campgane.png"
+              collectionVideo="https://renaissance-cdn.b-cdn.net/videos/renaissance-collection.mp4"
               onClose={() => setActiveMenu(null)}
             />
           </MegaMenuWrapper>
@@ -424,6 +425,7 @@ export default function Header() {
               description={t('megaMenu.isisDescription')}
               collectionLink={localePath('/collections/isis')}
               collectionImage={isisCollection[0]?.image}
+              collectionVideo="https://renaissance-cdn.b-cdn.net/videos/isis-collection.mp4"
               onClose={() => setActiveMenu(null)}
             />
           </MegaMenuWrapper>
