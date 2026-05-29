@@ -43,6 +43,8 @@ const BUNNY_FILES: Record<string, string[]> = {
   'XII-Colori-1': ['1.jpg','2.jpg'],
   'XII-Colori-2': ['1.jpg','2.jpg'],
   'XII-Colori-3': ['1.jpg','2.jpg'],
+  'XXX-Colori-1': ['1.jpg','2.jpg'],
+  'XXX-Colori-2': ['1.jpg','2.jpg'],
   'XXXII-Colori-6': ['1.jpg','2.jpg','3.jpg'],
   'XXXII-Colori-7': ['1.jpg','2.jpg','3.jpg'],
   'XXXIV-Colori-4': ['1.jpg','2.jpg','3.jpg'],
