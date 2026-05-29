@@ -46,6 +46,7 @@ export default function HeroSection() {
   const { t } = useTranslation('home');
   const slowConnection = useSlowConnection();
 
+  const [videoEnded, setVideoEnded] = useState(false);
   const { scale, opacity, filter, imageY } = useStackedScroll(sectionRef);
 
   // Appliquer la vitesse de lecture sur les vidéos
@@ -53,7 +54,10 @@ export default function HeroSection() {
     const section = sectionRef.current;
     if (!section) return;
     const videos = section.querySelectorAll<HTMLVideoElement>('video');
-    videos.forEach((v) => { v.playbackRate = VIDEO_SPEED; });
+    videos.forEach((v) => {
+      v.playbackRate = VIDEO_SPEED;
+      v.onended = () => setVideoEnded(true);
+    });
   }, [slowConnection]);
 
   return (
@@ -79,6 +83,17 @@ export default function HeroSection() {
             muted
             playsInline
             preload="metadata"
+            style={{ y: imageY }}
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+        )}
+        {videoEnded && (
+          <motion.img
+            src={HERO_POSTER}
+            alt="Renaissance Paris"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
             style={{ y: imageY }}
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
@@ -134,6 +149,16 @@ export default function HeroSection() {
               initial={{ scale: 1.03 }}
               animate={{ scale: 1 }}
               transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
+            />
+          )}
+          {videoEnded && (
+            <motion.img
+              src={HERO_POSTER}
+              alt="Renaissance Paris"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0 w-full h-full object-cover object-[center_30%]"
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-transparent" />
