@@ -157,60 +157,18 @@ export default function HeroSection() {
       {/* MOBILE VERSION — Éditorial luxe */}
       <div className="relative h-full overflow-hidden lg:hidden">
         <motion.div className="absolute inset-0" style={{ y: imageY }}>
-          {slowConnection ? (
-            <motion.img
-              src={HERO_POSTER}
-              alt="RENAISSANCE Paris"
-              className="w-full h-full object-cover object-[center_30%]"
-              initial={{ scale: 1.03 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
-            />
-          ) : (
-            <motion.video
-              src={HERO_VIDEO}
-              poster={HERO_POSTER}
-              autoPlay
-              muted
-              playsInline
-              preload="metadata"
-              className="w-full h-full object-cover object-[center_30%]"
-              initial={{ scale: 1.03 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
-            />
-          )}
-          <AnimatePresence>
-            {phase !== 'video' && (
-              <>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: phase === 'reveal' ? 0 : 1 }}
-                  transition={{ duration: phase === 'reveal' ? 1.2 : 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 z-[1] bg-black"
-                />
-                {(phase === 'shimmer' || phase === 'reveal') && (
-                  <motion.div
-                    initial={{ x: '-100%' }}
-                    animate={{ x: '200%' }}
-                    transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-y-0 w-[2px] z-[3]"
-                    style={{ background: 'linear-gradient(to bottom, transparent, rgba(199,170,120,0.8), transparent)', boxShadow: '0 0 40px 15px rgba(199,170,120,0.15)' }}
-                  />
-                )}
-                {phase === 'reveal' && (
-                  <motion.img
-                    src={HERO_POSTER}
-                    alt="Renaissance Paris"
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-[2]"
-                  />
-                )}
-              </>
-            )}
-          </AnimatePresence>
+          <motion.video
+            src={HERO_VIDEO}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover object-[center_30%]"
+            initial={{ scale: 1.03 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-[#000000]/70 to-transparent" />
         </motion.div>
