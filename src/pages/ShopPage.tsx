@@ -32,10 +32,6 @@ function isHorsSerie(product: Product): boolean {
   );
 }
 
-function matchesTag(product: Product, tag: string): boolean {
-  return product.tags?.some(t => t.toLowerCase() === tag.toLowerCase()) || false;
-}
-
 export default function ShopPage() {
   const navigate = useLocalizedNavigate();
   const { t } = useTranslation('shop');
@@ -46,9 +42,6 @@ export default function ShopPage() {
   const [error, setError] = useState<string | null>(null);
 
   const [activeTab, setActiveTab] = useState<UniversTab>('tout');
-  const [selectedMaterial, setSelectedMaterial] = useState('all');
-  const [selectedShape, setSelectedShape] = useState('all');
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
@@ -107,11 +100,8 @@ export default function ShopPage() {
     else if (activeTab === 'isis') filtered = filtered.filter(p => belongsToCollection(p, 'isis'));
     else if (activeTab === 'hors-serie') filtered = filtered.filter(p => isHorsSerie(p));
 
-    if (selectedMaterial !== 'all') filtered = filtered.filter(p => matchesTag(p, selectedMaterial));
-    if (selectedShape !== 'all') filtered = filtered.filter(p => matchesTag(p, selectedShape));
-
     return getGroupedProducts(filtered);
-  }, [products, activeTab, selectedMaterial, selectedShape]);
+  }, [products, activeTab]);
 
   const tabs: { key: UniversTab; label: string }[] = [
     { key: 'tout', label: t('filterAll') },
@@ -121,21 +111,6 @@ export default function ShopPage() {
     { key: 'hors-serie', label: t('horsSerie') },
   ];
 
-  const materials = [
-    { label: t('filterAll'), value: 'all' },
-    { label: t('acetate'), value: 'Acétate' },
-    { label: t('metal'), value: 'Métal' },
-    { label: t('titanium'), value: 'Titane' },
-  ];
-
-  const shapes = [
-    { label: t('filterAll'), value: 'all' },
-    { label: t('round'), value: 'Rond' },
-    { label: t('square'), value: 'Carré' },
-    { label: t('oval'), value: 'Ovale' },
-  ];
-
-  const hasActiveFilters = selectedMaterial !== 'all' || selectedShape !== 'all';
 
   if (loading) {
     return (
@@ -299,42 +274,6 @@ export default function ShopPage() {
               ))}
             </nav>
 
-            <span className="w-px h-4 bg-dark-text/8 mx-4 shrink-0" />
-
-            <div className="flex items-center">
-              <span className="font-sans text-[7px] tracking-[0.35em] uppercase text-dark-text/20 font-medium mr-2">{t('material')}</span>
-              {materials.map((m) => (
-                <button
-                  type="button"
-                  key={m.value}
-                  onClick={() => setSelectedMaterial(m.value)}
-                  className={`px-2.5 py-1 font-sans text-[10px] tracking-[0.12em] uppercase transition-colors duration-200 ${
-                    selectedMaterial === m.value ? 'text-dark-text font-medium' : 'text-dark-text/25 hover:text-dark-text/50'
-                  }`}
-                >
-                  {m.label}
-                </button>
-              ))}
-            </div>
-
-            <span className="w-px h-4 bg-dark-text/8 mx-3 shrink-0" />
-
-            <div className="flex items-center">
-              <span className="font-sans text-[7px] tracking-[0.35em] uppercase text-dark-text/20 font-medium mr-2">{t('shape')}</span>
-              {shapes.map((s) => (
-                <button
-                  type="button"
-                  key={s.value}
-                  onClick={() => setSelectedShape(s.value)}
-                  className={`px-2.5 py-1 font-sans text-[10px] tracking-[0.12em] uppercase transition-colors duration-200 ${
-                    selectedShape === s.value ? 'text-dark-text font-medium' : 'text-dark-text/25 hover:text-dark-text/50'
-                  }`}
-                >
-                  {s.label}
-                </button>
-              ))}
-            </div>
-
             <span className="ml-auto font-sans text-[9px] text-dark-text/20 tracking-[0.15em] uppercase tabular-nums shrink-0">
               {groupedProducts.length} {t('models', { count: groupedProducts.length })}
             </span>
@@ -342,86 +281,23 @@ export default function ShopPage() {
 
           {/* Mobile */}
           <div className="md:hidden">
-            <div className="flex items-center py-3 gap-0">
-              <div className="flex items-center overflow-x-auto scrollbar-hide flex-1 min-w-0">
-                {tabs.map((tab) => (
-                  <button
-                    type="button"
-                    key={tab.key}
-                    onClick={() => setActiveTab(tab.key)}
-                    className={`relative whitespace-nowrap px-3 py-2 font-sans text-[11px] tracking-[0.12em] uppercase shrink-0 transition-all duration-200 ${
-                      activeTab === tab.key ? 'text-dark-text font-semibold' : 'text-dark-text/40'
-                    }`}
-                  >
-                    {tab.label}
-                    <span className={`absolute bottom-0 left-3 right-3 h-[2px] bg-dark-text transition-transform duration-200 origin-left ${
-                      activeTab === tab.key ? 'scale-x-100' : 'scale-x-0'
-                    }`} />
-                  </button>
-                ))}
-              </div>
-              <button
-                type="button"
-                onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-                className={`shrink-0 ml-2 flex items-center gap-1.5 px-3.5 py-2 border rounded-full transition-colors duration-200 ${
-                  hasActiveFilters || mobileFiltersOpen ? 'border-dark-text bg-dark-text text-white' : 'border-dark-text/15 text-dark-text/50'
-                }`}
-              >
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                </svg>
-                <span className="font-sans text-[10px] tracking-[0.12em] uppercase font-medium">{t('filters')}</span>
-                {hasActiveFilters && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
-              </button>
+            <div className="flex items-center py-3 overflow-x-auto scrollbar-hide">
+              {tabs.map((tab) => (
+                <button
+                  type="button"
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`relative whitespace-nowrap px-3 py-2 font-sans text-[11px] tracking-[0.12em] uppercase shrink-0 transition-all duration-200 ${
+                    activeTab === tab.key ? 'text-dark-text font-semibold' : 'text-dark-text/40'
+                  }`}
+                >
+                  {tab.label}
+                  <span className={`absolute bottom-0 left-3 right-3 h-[2px] bg-dark-text transition-transform duration-200 origin-left ${
+                    activeTab === tab.key ? 'scale-x-100' : 'scale-x-0'
+                  }`} />
+                </button>
+              ))}
             </div>
-
-            {mobileFiltersOpen && (
-              <div className="border-t border-dark-text/[0.04] py-4 space-y-4">
-                <div>
-                  <p className="font-sans text-[7px] tracking-[0.35em] uppercase text-dark-text/20 font-medium mb-2">{t('material')}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {materials.map((m) => (
-                      <button
-                        type="button"
-                        key={m.value}
-                        onClick={() => setSelectedMaterial(m.value)}
-                        className={`px-3 py-1.5 border font-sans text-[10px] tracking-[0.12em] uppercase transition-colors duration-200 ${
-                          selectedMaterial === m.value ? 'border-dark-text/25 text-dark-text font-medium' : 'border-dark-text/6 text-dark-text/25'
-                        }`}
-                      >
-                        {m.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="font-sans text-[7px] tracking-[0.35em] uppercase text-dark-text/20 font-medium mb-2">{t('shape')}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {shapes.map((s) => (
-                      <button
-                        type="button"
-                        key={s.value}
-                        onClick={() => setSelectedShape(s.value)}
-                        className={`px-3 py-1.5 border font-sans text-[10px] tracking-[0.12em] uppercase transition-colors duration-200 ${
-                          selectedShape === s.value ? 'border-dark-text/25 text-dark-text font-medium' : 'border-dark-text/6 text-dark-text/25'
-                        }`}
-                      >
-                        {s.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                {hasActiveFilters && (
-                  <button
-                    type="button"
-                    onClick={() => { setSelectedMaterial('all'); setSelectedShape('all'); }}
-                    className="font-sans text-[9px] tracking-[0.15em] uppercase text-dark-text/35 underline underline-offset-4 decoration-dark-text/10"
-                  >
-                    {t('reset')}
-                  </button>
-                )}
-              </div>
-            )}
           </div>
         </div>
       </div>
@@ -435,7 +311,7 @@ export default function ShopPage() {
             <p className="font-sans text-[11px] tracking-[0.12em] text-dark-text/20 mb-8">{t('adjustFilters')}</p>
             <button
               type="button"
-              onClick={() => { setActiveTab('tout'); setSelectedMaterial('all'); setSelectedShape('all'); }}
+              onClick={() => { setActiveTab('tout'); }}
               className="font-sans text-[9px] tracking-[0.15em] uppercase text-dark-text/35 underline underline-offset-4 decoration-dark-text/10 hover:text-dark-text/55 transition-colors"
             >
               {t('viewAll')}

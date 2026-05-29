@@ -78,7 +78,7 @@ export default function ColorVariantsSection({
                   <div className="relative aspect-[4/3] overflow-hidden bg-[#f5f4f0]">
                     {variant.thumbnail ? (
                       <img
-                        src={resizeShopifyImage(variant.thumbnail, 560)}
+                        src={resizeShopifyImage(variant.thumbnail, 560, variant.product?.title, 0)}
                         alt={variant.colorName}
                         className={`absolute inset-0 w-full h-full object-contain p-3 transition-transform duration-700 ease-out ${
                           hoveredIndex === index ? 'scale-[1.04]' : 'scale-100'

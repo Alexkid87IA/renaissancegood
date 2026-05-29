@@ -56,6 +56,7 @@ export function useSectionSnap(enabled: boolean = true) {
 
     let positions: number[] = [];
     let locked = false;
+    let lastSnapDirection = 0;
     let unlockTimer: number | null = null;
 
     const refresh = () => {
@@ -65,8 +66,6 @@ export function useSectionSnap(enabled: boolean = true) {
       positions = sections.map(docTop);
     };
 
-    // "Current" = la dernière section dont le haut est au-dessus (ou à) la
-    // position de scroll actuelle. Logique simple et prédictible.
     const getCurrentIndex = (): number => {
       if (positions.length === 0) return 0;
       const scrollY = window.scrollY;
@@ -82,21 +81,21 @@ export function useSectionSnap(enabled: boolean = true) {
       return current;
     };
 
-    const snapTo = (index: number) => {
+    const snapTo = (index: number, direction: number) => {
       if (positions.length === 0) refresh();
       if (index < 0 || index >= positions.length) return;
       locked = true;
+      lastSnapDirection = direction;
       window.scrollTo({ top: positions[index], behavior: 'smooth' });
       if (unlockTimer !== null) window.clearTimeout(unlockTimer);
       unlockTimer = window.setTimeout(() => {
         locked = false;
-      }, 900);
+        lastSnapDirection = 0;
+      }, 700);
     };
 
     const onWheel = (e: WheelEvent) => {
-      // Zoom pinch (Ctrl + wheel) → laisser passer
       if (e.ctrlKey) return;
-      // Ignore micro-deltas (jitter trackpad)
       if (Math.abs(e.deltaY) < 4) return;
 
       if (positions.length === 0) refresh();
@@ -106,24 +105,26 @@ export function useSectionSnap(enabled: boolean = true) {
       const direction = e.deltaY > 0 ? 1 : -1;
       const next = current + direction;
 
-      // Aux bornes, laisser le navigateur reprendre la main afin que le footer
-      // et les zones hors sections restent accessibles au scroll naturel.
       if (next < 0 || next >= positions.length) {
         return;
       }
 
-      // Si l'utilisateur est déjà descendu sous la dernière section (footer),
-      // ne pas le renvoyer brutalement vers la section précédente.
       const lastIndex = positions.length - 1;
       if (current === lastIndex && direction < 0 && window.scrollY > positions[lastIndex] + 8) {
         return;
       }
 
-      // Tue le scroll natif uniquement quand on déclenche vraiment un snap.
       e.preventDefault();
 
-      if (locked) return;
-      snapTo(next);
+      if (locked) {
+        if (direction !== lastSnapDirection && direction !== 0) {
+          locked = false;
+          if (unlockTimer !== null) window.clearTimeout(unlockTimer);
+          snapTo(next, direction);
+        }
+        return;
+      }
+      snapTo(next, direction);
     };
 
     // Navigation clavier : flèches, page up/down, home/end, espace
@@ -172,24 +173,28 @@ export function useSectionSnap(enabled: boolean = true) {
           return;
       }
 
+      const direction = next > current ? 1 : -1;
       if (locked) {
-        e.preventDefault();
-        return;
+        if (direction !== lastSnapDirection) {
+          locked = false;
+          if (unlockTimer !== null) window.clearTimeout(unlockTimer);
+        } else {
+          e.preventDefault();
+          return;
+        }
       }
       if (next < 0 || next >= positions.length) return;
       e.preventDefault();
-      snapTo(next);
+      snapTo(next, direction);
     };
 
-    // Mesure initiale (rAF pour être sûr que le layout est prêt)
     requestAnimationFrame(refresh);
     window.addEventListener('resize', refresh);
     window.addEventListener('wheel', onWheel, { passive: false });
     window.addEventListener('keydown', onKeyDown);
 
-    // Expose l'API pour que SectionIndicator puisse déclencher des snaps
     window.__renaissanceSnap = {
-      snapTo,
+      snapTo: (index: number) => snapTo(index, index > getCurrentIndex() ? 1 : -1),
       getCurrentIndex,
       getPositions: () => positions,
     };

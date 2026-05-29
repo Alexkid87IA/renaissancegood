@@ -38,12 +38,14 @@ function optimizeCloudinaryUrl(url: string, width?: number): string {
     }
   }
 
-  // Si c'est une URL Shopify CDN, on peut ajouter des paramètres de taille
+  // Shopify CDN — use query-param API
   if (url.includes('cdn.shopify.com')) {
-    // Shopify CDN supporte les paramètres de taille
-    if (width && !url.includes('_')) {
-      const extension = url.split('.').pop();
-      return url.replace(`.${extension}`, `_${width}x.${extension}`);
+    try {
+      const u = new URL(url);
+      if (width) u.searchParams.set('width', String(width));
+      return u.toString();
+    } catch {
+      return url;
     }
   }
 

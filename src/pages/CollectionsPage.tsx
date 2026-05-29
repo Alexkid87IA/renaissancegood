@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
-import FilterSelect from '../components/FilterSelect';
 import GroupedProductCard from '../components/GroupedProductCard';
 import { Product } from '../components/ProductCard';
 import { getProducts } from '../lib/shopify';
@@ -19,7 +18,7 @@ function normalizeFilterValue(value: string): string {
   return value
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
+    .replace(/[̀-ͯ]/g, '');
 }
 
 function productMatchesCollection(product: Product, collectionHandle: string): boolean {
@@ -51,7 +50,6 @@ export default function CollectionsPage() {
   const pathCollection = location.pathname.split('/').pop();
   const initialCollection = pathCollection && pathCollection !== 'collections' ? pathCollection : 'all';
 
-  // Configuration des filtres
   const COLLECTIONS = [
     { label: t('filters.all'), value: 'all' },
     { label: 'Heritage', value: 'heritage' },
@@ -59,32 +57,12 @@ export default function CollectionsPage() {
     { label: 'Isis', value: 'isis' }
   ];
 
-  const MATERIALS = [
-    { label: t('filters.all'), value: 'all' },
-    { label: t('filters.acetate'), value: 'acetate' },
-    { label: t('filters.metal'), value: 'metal' },
-    { label: t('filters.titanium'), value: 'titane' }
-  ];
-
-  const SHAPES = [
-    { label: t('filters.all'), value: 'all' },
-    { label: t('filters.round'), value: 'rond' },
-    { label: t('filters.oval'), value: 'ovale' },
-    { label: t('filters.square'), value: 'carre' },
-    { label: t('filters.hexagonal'), value: 'hexagonal' },
-    { label: t('filters.butterfly'), value: 'papillon' }
-  ];
-
-  // États
   const [selectedCollection, setSelectedCollection] = useState(initialCollection);
-  const [selectedMaterial, setSelectedMaterial] = useState('all');
-  const [selectedShape, setSelectedShape] = useState('all');
   const [products, setProducts] = useState<Product[]>([]);
   const [groupedProducts, setGroupedProducts] = useState<GroupedProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Synchroniser avec l'URL
   useEffect(() => {
     const newPathCollection = location.pathname.split('/').pop();
     if (newPathCollection && newPathCollection !== 'collections') {
@@ -92,7 +70,6 @@ export default function CollectionsPage() {
     }
   }, [location.pathname]);
 
-  // Charger le catalogue une seule fois, puis filtrer localement.
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -111,30 +88,11 @@ export default function CollectionsPage() {
     fetchProducts();
   }, [shopifyLanguage, t]);
 
-  // Filtrer et regrouper les produits
   useEffect(() => {
-    let filtered = products.filter(product => productMatchesCollection(product, selectedCollection));
-
-    // Filtrer par material via les tags
-    if (selectedMaterial !== 'all') {
-      filtered = filtered.filter(product => {
-        const tags = product.tags?.map(t => t.toLowerCase()) || [];
-        return tags.some(tag => tag.includes(selectedMaterial.toLowerCase()));
-      });
-    }
-
-    // Filtrer par shape via les tags
-    if (selectedShape !== 'all') {
-      filtered = filtered.filter(product => {
-        const tags = product.tags?.map(t => t.toLowerCase()) || [];
-        return tags.some(tag => tag.includes(selectedShape.toLowerCase()));
-      });
-    }
-
-    // Regrouper par modèle
+    const filtered = products.filter(product => productMatchesCollection(product, selectedCollection));
     const grouped = getGroupedProducts(filtered);
     setGroupedProducts(grouped);
-  }, [products, selectedCollection, selectedMaterial, selectedShape]);
+  }, [products, selectedCollection]);
 
   return (
     <div className="min-h-screen bg-beige">
@@ -158,73 +116,44 @@ export default function CollectionsPage() {
               Collections
             </h1>
             <p className="mt-5 font-sans text-sm sm:text-base text-dark-text/58 leading-[1.75]">
-              Tous les modèles disponibles, avec leurs coloris, leurs prix et leurs filtres essentiels.
+              Tous les mod&egrave;les disponibles, avec leurs coloris, leurs prix et leurs filtres essentiels.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Barre de filtres */}
+      {/* Barre de filtres — tabs + compteur */}
       <div className="border-b border-dark-text/[0.08] bg-beige/95 backdrop-blur-md sticky top-20 z-30">
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-5 sm:py-6">
-          <div className="flex flex-col gap-6">
-            {/* En-tête avec compteur */}
-            <div className="flex items-center justify-between">
-              <div className="flex flex-col">
-                <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1.5 sm:mb-2">
-                  {t('filters.models')}
-                </p>
-                <p className="font-display text-4xl sm:text-5xl laptop:text-6xl font-bold text-dark-text leading-none tracking-normal">
-                  {loading ? '\u2014' : groupedProducts.length}
-                </p>
-              </div>
-              <div className="md:hidden">
-                <p className="font-sans text-[8px] tracking-[0.25em] font-bold text-dark-text/50 uppercase">
-                  {COLLECTIONS.find(c => c.value === selectedCollection)?.label || t('filters.all')}
-                </p>
-              </div>
+          <div className="flex items-center justify-between gap-6">
+            {/* Tabs collection */}
+            <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto scrollbar-hide">
+              {COLLECTIONS.map((col) => (
+                <button
+                  key={col.value}
+                  onClick={() => setSelectedCollection(col.value)}
+                  className={`relative font-sans text-[9px] sm:text-[10px] tracking-[0.25em] uppercase font-medium px-3 sm:px-4 py-2.5 whitespace-nowrap transition-colors duration-300 ${
+                    selectedCollection === col.value
+                      ? 'text-dark-text'
+                      : 'text-dark-text/40 hover:text-dark-text/70'
+                  }`}
+                >
+                  {col.label}
+                  {selectedCollection === col.value && (
+                    <span className="absolute bottom-0 left-3 right-3 sm:left-4 sm:right-4 h-[1.5px] bg-bronze" />
+                  )}
+                </button>
+              ))}
             </div>
 
-            {/* Filtres */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 lg:gap-7">
-              <div className="hidden md:block">
-                <FilterSelect
-                  label={t('filters.type')}
-                  options={[{ label: t('filters.optical'), value: 'optical' }]}
-                  value="optical"
-                  onChange={() => {}}
-                />
-              </div>
-
-              <FilterSelect
-                label={t('filters.collection')}
-                options={COLLECTIONS}
-                value={selectedCollection}
-                onChange={setSelectedCollection}
-              />
-
-              <FilterSelect
-                label={t('filters.material')}
-                options={MATERIALS}
-                value={selectedMaterial}
-                onChange={setSelectedMaterial}
-              />
-
-              <FilterSelect
-                label={t('filters.shape')}
-                options={SHAPES}
-                value={selectedShape}
-                onChange={setSelectedShape}
-              />
-
-              <div className="col-span-2 md:col-span-1">
-                <FilterSelect
-                  label={t('filters.lens')}
-                  options={[{ label: t('filters.all'), value: 'all' }]}
-                  value="all"
-                  onChange={() => {}}
-                />
-              </div>
+            {/* Compteur de modèles */}
+            <div className="flex items-baseline gap-2 flex-shrink-0">
+              <span className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] font-bold text-dark-text/40 uppercase">
+                {t('filters.models')}
+              </span>
+              <span className="font-display text-2xl sm:text-3xl font-bold text-dark-text leading-none tracking-normal">
+                {loading ? '—' : groupedProducts.length}
+              </span>
             </div>
           </div>
         </div>

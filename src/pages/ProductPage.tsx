@@ -238,7 +238,7 @@ export default function ProductPage() {
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';
-      link.href = resizeShopifyImage(imageUrl, 1200);
+      link.href = resizeShopifyImage(imageUrl, 1200, product?.name, index);
       link.fetchPriority = index === 0 ? 'high' : 'auto';
       document.head.appendChild(link);
       links.push(link);
@@ -435,7 +435,7 @@ export default function ProductPage() {
                 data-image-index={index}
               >
                 <img
-                  src={resizeShopifyImage(imageUrl, 1200)}
+                  src={resizeShopifyImage(imageUrl, 1200, product.name, index)}
                   alt={`${product.modelName} - vue ${index + 1}`}
                   className="w-full block"
                   loading={index === 0 ? 'eager' : 'lazy'}
@@ -468,7 +468,7 @@ export default function ProductPage() {
                   aria-label={`Image ${thumbIndex + 1}`}
                 >
                   <img
-                    src={resizeShopifyImage(thumbUrl, 100)}
+                    src={resizeShopifyImage(thumbUrl, 100, product.name, thumbIndex)}
                     alt={`${product.modelName} - miniature ${thumbIndex + 1}`}
                     className="w-full h-full object-contain bg-[#f5f4f0] p-1"
                     loading="lazy"

@@ -41,7 +41,7 @@ function preloadImage(url: string) {
 // Preload les images d'un seul coloris (appelé au hover du swatch ou de la carte)
 function preloadVariantImages(variant: ColorVariant) {
   for (const edge of variant.product.images.edges) {
-    preloadImage(resizeShopifyImage(edge.node.url, 800));
+    preloadImage(resizeShopifyImage(edge.node.url, 800, variant.product.title, variant.product.images.edges.indexOf(edge)));
   }
 }
 
@@ -143,7 +143,7 @@ const GridCard = memo(function GridCard({
 
           <img
             key={`${selectedVariantIndex}-${currentImageIndex}`}
-            src={resizeShopifyImage(currentImage, 700)}
+            src={resizeShopifyImage(currentImage, 700, currentProduct.title, currentImageIndex)}
             alt={groupedProduct.modelName}
             onLoad={finishLoading}
             onError={finishLoading}
@@ -224,7 +224,7 @@ const GridCard = memo(function GridCard({
                 >
                   {variant.thumbnail ? (
                     <img
-                      src={resizeShopifyImage(variant.thumbnail, 150)}
+                      src={resizeShopifyImage(variant.thumbnail, 150, variant.product.title, 0)}
                       alt={`${t('sidebar.color')} ${variant.colorNumber}`}
                       className="w-full h-full object-contain bg-[#f5f4f0] p-1.5"
                       loading="lazy"
@@ -376,7 +376,7 @@ const EditorialCard = memo(function EditorialCard({
 
               <img
                 key={`desktop-${selectedVariantIndex}-${currentImageIndex}`}
-                src={resizeShopifyImage(currentImage, 800)}
+                src={resizeShopifyImage(currentImage, 800, currentProduct.title, currentImageIndex)}
                 alt={groupedProduct.modelName}
                 onLoad={finishLoading}
                 onError={finishLoading}
@@ -425,7 +425,7 @@ const EditorialCard = memo(function EditorialCard({
                     }`}
                   >
                     <img
-                      src={resizeShopifyImage(imgUrl, 300)}
+                      src={resizeShopifyImage(imgUrl, 300, currentProduct.title, imgIndex)}
                       alt={`${groupedProduct.modelName} - ${imgIndex + 1}`}
                       className="w-full h-full object-contain bg-[#f5f4f0] p-2"
                       loading="lazy"
@@ -497,7 +497,7 @@ const EditorialCard = memo(function EditorialCard({
                     >
                       {variant.thumbnail ? (
                         <img
-                          src={resizeShopifyImage(variant.thumbnail, 200)}
+                          src={resizeShopifyImage(variant.thumbnail, 200, variant.product.title, 0)}
                           alt={`${t('sidebar.color')} ${variant.colorNumber}`}
                           className="w-full h-full object-contain bg-[#f5f4f0] p-1.5"
                           loading="lazy"
@@ -535,7 +535,7 @@ const EditorialCard = memo(function EditorialCard({
 
               <img
                 key={`mobile-${selectedVariantIndex}-${currentImageIndex}`}
-                src={resizeShopifyImage(currentImage, 600)}
+                src={resizeShopifyImage(currentImage, 600, currentProduct.title, currentImageIndex)}
                 alt={groupedProduct.modelName}
                 onLoad={finishLoading}
                 onError={finishLoading}
@@ -581,7 +581,7 @@ const EditorialCard = memo(function EditorialCard({
                     }`}
                   >
                     <img
-                      src={resizeShopifyImage(imgUrl, 200)}
+                      src={resizeShopifyImage(imgUrl, 200, currentProduct.title, imgIndex)}
                       alt={`${groupedProduct.modelName} - ${imgIndex + 1}`}
                       className="w-full h-full object-contain bg-[#f5f4f0] p-2"
                       loading="lazy"
@@ -628,7 +628,7 @@ const EditorialCard = memo(function EditorialCard({
                     >
                       {variant.thumbnail ? (
                         <img
-                          src={resizeShopifyImage(variant.thumbnail, 150)}
+                          src={resizeShopifyImage(variant.thumbnail, 150, variant.product.title, 0)}
                           alt={`${t('sidebar.color')} ${variant.colorNumber}`}
                           className="w-full h-full object-contain bg-[#f5f4f0] p-1.5"
                           loading="lazy"

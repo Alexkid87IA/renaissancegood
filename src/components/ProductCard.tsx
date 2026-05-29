@@ -88,7 +88,7 @@ const ProductCard = memo(function ProductCard({ product }: ProductCardProps) {
       >
         <div className={`relative aspect-[16/9] overflow-hidden bg-[#f0eeea] ${isOutOfStock ? 'opacity-70' : ''}`}>
           <img
-            src={resizeShopifyImage(currentImage, 800)}
+            src={resizeShopifyImage(currentImage, 800, product.title, currentImageIndex)}
             alt={product.title}
             className={`w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
               isHovered ? 'scale-[1.04]' : 'scale-100'

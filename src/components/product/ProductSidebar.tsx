@@ -173,24 +173,24 @@ export default function ProductSidebar({
 
         {/* Description (preview + Voir plus) */}
         <div className="mb-6 pb-6 border-b border-dark-text/10">
-          <div className={`relative ${!showDescription ? 'max-h-[3.5em] overflow-hidden' : ''}`}>
+          <div className={`relative ${!showDescription ? 'max-h-[5.5em] overflow-hidden' : ''}`}>
             {translatedDescriptionHtml ? (
               <div
-                className="font-sans text-sm text-dark-text/70 leading-relaxed description-content"
+                className="font-sans text-[13px] text-dark-text/85 leading-[1.85] description-content"
                 dangerouslySetInnerHTML={createSanitizedMarkup(translatedDescriptionHtml)}
               />
             ) : (
-              <p className="font-sans text-sm text-dark-text/70 leading-relaxed">
+              <p className="font-sans text-[13px] text-dark-text/85 leading-[1.85]">
                 {translatedDescription}
               </p>
             )}
             {!showDescription && (
-              <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white via-white/80 to-transparent" />
             )}
           </div>
           <button
             onClick={() => setShowDescription(!showDescription)}
-            className="font-sans text-xs text-dark-text/40 hover:text-dark-text mt-2 transition-colors"
+            className="font-sans text-xs tracking-[0.1em] text-dark-text/70 hover:text-dark-text mt-3 transition-colors duration-300 underline underline-offset-4 decoration-dark-text/25 hover:decoration-dark-text/60"
           >
             {showDescription ? t('sidebar.seeLess') : t('sidebar.seeMore')}
           </button>

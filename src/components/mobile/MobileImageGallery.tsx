@@ -42,7 +42,7 @@ export default function MobileImageGallery({ images, productName }: MobileImageG
         {images.map((image, index) => (
           <img
             key={index}
-            src={resizeShopifyImage(image, 800)}
+            src={resizeShopifyImage(image, 800, productName, index)}
             alt={`${productName} - vue ${index + 1}`}
             className={`absolute inset-0 w-full h-full object-cover select-none transition-opacity duration-300 ease-out ${
               index === currentIndex ? 'opacity-100' : 'opacity-0'
@@ -92,7 +92,7 @@ export default function MobileImageGallery({ images, productName }: MobileImageG
               }`}
             >
               <img
-                src={resizeShopifyImage(image, 100)}
+                src={resizeShopifyImage(image, 100, productName, index)}
                 alt={`Miniature ${index + 1}`}
                 className="w-full h-full object-contain bg-[#f5f4f0] p-1"
                 loading="lazy"

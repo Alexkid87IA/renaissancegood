@@ -109,32 +109,34 @@ export default function CartPage() {
                   <p className="font-sans text-white/30 text-[13px] leading-[1.8] font-light mb-8 max-w-sm">
                     {t('emptyDesc')}
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex flex-col gap-3">
                     <LocaleLink
-                      to="/collections/heritage"
-                      className="group relative overflow-hidden border border-white/15 px-5 sm:px-8 py-3.5 sm:py-4 transition-all duration-500 hover:border-bronze/60 text-center"
+                      to="/collections"
+                      className="group relative overflow-hidden border border-white/15 px-5 py-3.5 transition-all duration-500 hover:border-bronze/60 text-center"
                     >
-                      <span className="relative z-10 font-sans text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                      <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500 whitespace-nowrap">
                         {t('emptyCollections')}
                       </span>
                       <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                     </LocaleLink>
-                    <LocaleLink
-                      to="/shop"
-                      className="group relative overflow-hidden border border-white/8 px-5 sm:px-8 py-3.5 sm:py-4 transition-all duration-500 hover:border-white/20 text-center"
-                    >
-                      <span className="relative z-10 font-sans text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.3em] font-medium uppercase text-white/40 group-hover:text-white/70 transition-colors duration-500">
-                        {t('emptyExplore')}
-                      </span>
-                    </LocaleLink>
-                    <LocaleLink
-                      to="/shop"
-                      className="group relative overflow-hidden border border-white/8 px-5 sm:px-8 py-3.5 sm:py-4 transition-all duration-500 hover:border-white/20 text-center"
-                    >
-                      <span className="relative z-10 font-sans text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.3em] font-medium uppercase text-white/40 group-hover:text-white/70 transition-colors duration-500">
-                        {t('checkoutPage.bestSellers')}
-                      </span>
-                    </LocaleLink>
+                    <div className="flex gap-3">
+                      <LocaleLink
+                        to="/shop"
+                        className="group relative overflow-hidden flex-1 border border-white/8 px-5 py-3.5 transition-all duration-500 hover:border-white/20 text-center"
+                      >
+                        <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/40 group-hover:text-white/70 transition-colors duration-500 whitespace-nowrap">
+                          {t('emptyExplore')}
+                        </span>
+                      </LocaleLink>
+                      <LocaleLink
+                        to="/shop"
+                        className="group relative overflow-hidden flex-1 border border-white/8 px-5 py-3.5 transition-all duration-500 hover:border-white/20 text-center"
+                      >
+                        <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/40 group-hover:text-white/70 transition-colors duration-500 whitespace-nowrap">
+                          {t('checkoutPage.bestSellers')}
+                        </span>
+                      </LocaleLink>
+                    </div>
                   </div>
                   <p className="mt-6 font-sans text-[11px] text-white/20 tracking-[0.05em]">
                     {t('checkoutPage.socialProof')}
@@ -341,7 +343,7 @@ export default function CartPage() {
                 </LocaleLink>
 
                 <LocaleLink
-                  to="/collections/heritage"
+                  to="/collections"
                   className="block w-full text-center py-4 font-sans text-[9px] tracking-[0.2em] font-bold text-dark-text hover:text-bronze transition-colors duration-300 border border-dark-text/20 hover:border-bronze/40"
                 >
                   {t('continueShopping')}

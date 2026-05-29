@@ -197,7 +197,7 @@ function ProductCard({
         {imageUrl && (
           <>
             <img
-              src={resizeShopifyImage(imageUrl, 640)}
+              src={resizeShopifyImage(imageUrl, 640, product.title, 0)}
               alt={product.title}
               loading="lazy"
               decoding="async"
@@ -210,7 +210,7 @@ function ProductCard({
             />
             {secondImageUrl && (
               <img
-                src={resizeShopifyImage(secondImageUrl, 640)}
+                src={resizeShopifyImage(secondImageUrl, 640, product.title, 1)}
                 alt={`${product.title} - vue 2`}
                 loading="lazy"
                 decoding="async"

@@ -221,7 +221,7 @@ export default function ProductPageMobile({
                     <div className="w-full aspect-[4/3] overflow-hidden ring-1 ring-dark-text/10 bg-[#f5f4f0]">
                       {variant.thumbnail ? (
                         <img
-                          src={resizeShopifyImage(variant.thumbnail, 520)}
+                          src={resizeShopifyImage(variant.thumbnail, 520, variant.product?.title, 0)}
                           alt={variant.colorName}
                           className="w-full h-full object-contain p-2.5"
                           loading="lazy"

@@ -633,7 +633,7 @@ function MegaMenuWrapper({
         animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
         exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-16 md:top-20 lg:top-24 left-0 right-0 z-[90] bg-[#0a0a0a] border-t border-white/[0.04]"
+        className="fixed top-16 md:top-20 lg:top-24 left-0 right-0 z-[90] bg-[#0a0a0a] border-t border-white/[0.04] overflow-hidden"
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >

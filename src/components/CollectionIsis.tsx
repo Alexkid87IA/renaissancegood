@@ -6,7 +6,7 @@ import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import { stagger, fade } from './shared';
 
-const ISIS_IMAGE = 'https://26.staticbtf.eno.do/v1/91-default/80de95ed4756e81d2e731b5faff6c051/media.jpg';
+const ISIS_IMAGE = 'https://renaissance-cdn.b-cdn.net/ISIS-COLLECTION.png';
 
 export default function CollectionIsis() {
   const sectionRef = useRef<HTMLElement>(null);
