@@ -52,22 +52,20 @@ export function useStackedScroll(ref: RefObject<HTMLElement>) {
   );
   const filter = useTransform(blur, (b) => `blur(${b}px)`);
 
-  // Parallax image : 40% de range total (de +20% à -20%)
-  // Plus dramatique qu'avant (±12%), crée un vrai effet de profondeur
+  // Parallax image : ±4% pour garantir que l'image couvre toujours
+  // le container même combiné au scale minimum (1.1x).
   const imageY = useTransform(
     visibleProgress,
     [0, 1],
-    reducedMotion ? ['0%', '0%'] : ['20%', '-20%']
+    reducedMotion ? ['0%', '0%'] : ['4%', '-4%']
   );
 
-  // Zoom cinématique : l'image entre zoomée et se stabilise progressivement
-  // Entrance (0→0.35) : 1.3 → 1.15 (zoom-settle)
-  // Active  (0.35→0.65) : 1.15 → 1.12 (quasi-stable)
-  // Exit    (0.65→1) : 1.12 → 1.05 (léger zoom-out final)
+  // Zoom cinématique subtil : scale minimum 1.1x garantit la couverture
+  // complète avec le range Y de ±4%.
   const imageScale = useTransform(
     visibleProgress,
     [0, 0.35, 0.65, 1],
-    reducedMotion ? [1, 1, 1, 1] : [1.3, 1.15, 1.12, 1.05]
+    reducedMotion ? [1, 1, 1, 1] : [1.15, 1.12, 1.1, 1.1]
   );
 
   return { scrollYProgress: exitProgress, scale, opacity, filter, imageY, imageScale };
