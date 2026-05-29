@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
@@ -7,6 +7,8 @@ import { useStackedScroll } from '../hooks/useStackedScroll';
 const HERO_VIDEO = 'https://renaissance-cdn.b-cdn.net/hf_20260130_124034_0ed82220-23c4-4752-a1c3-00af6106e2ce.mp4';
 const HERO_POSTER = 'https://renaissance-cdn.b-cdn.net/hero-poster.png';
 const VIDEO_SPEED = 0.7;
+
+type TransitionPhase = 'video' | 'blackout' | 'shimmer' | 'reveal';
 
 interface NetworkInformationLike {
   saveData?: boolean;
@@ -46,17 +48,20 @@ export default function HeroSection() {
   const { t } = useTranslation('home');
   const slowConnection = useSlowConnection();
 
-  const [videoEnded, setVideoEnded] = useState(false);
+  const [phase, setPhase] = useState<TransitionPhase>('video');
   const { scale, opacity, filter, imageY } = useStackedScroll(sectionRef);
 
-  // Appliquer la vitesse de lecture sur les vidéos
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
     const videos = section.querySelectorAll<HTMLVideoElement>('video');
     videos.forEach((v) => {
       v.playbackRate = VIDEO_SPEED;
-      v.onended = () => setVideoEnded(true);
+      v.onended = () => {
+        setPhase('blackout');
+        setTimeout(() => setPhase('shimmer'), 800);
+        setTimeout(() => setPhase('reveal'), 2200);
+      };
     });
   }, [slowConnection]);
 
@@ -87,17 +92,41 @@ export default function HeroSection() {
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
         )}
-        {videoEnded && (
-          <motion.img
-            src={HERO_POSTER}
-            alt="Renaissance Paris"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            style={{ y: imageY }}
-            className="absolute inset-0 w-full h-full object-cover object-center"
-          />
-        )}
+        <AnimatePresence>
+          {phase !== 'video' && (
+            <>
+              {/* Black curtain */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: phase === 'reveal' ? 0 : 1 }}
+                transition={{ duration: phase === 'reveal' ? 1.2 : 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0 z-[1] bg-black"
+              />
+              {/* Gold shimmer line */}
+              {(phase === 'shimmer' || phase === 'reveal') && (
+                <motion.div
+                  initial={{ x: '-100%' }}
+                  animate={{ x: '200%' }}
+                  transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-y-0 w-[2px] z-[3]"
+                  style={{ background: 'linear-gradient(to bottom, transparent, rgba(199,170,120,0.8), transparent)', boxShadow: '0 0 40px 15px rgba(199,170,120,0.15)' }}
+                />
+              )}
+              {/* HD poster reveal */}
+              {phase === 'reveal' && (
+                <motion.img
+                  src={HERO_POSTER}
+                  alt="Renaissance Paris"
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                  style={{ y: imageY }}
+                  className="absolute inset-0 w-full h-full object-cover object-center z-[2]"
+                />
+              )}
+            </>
+          )}
+        </AnimatePresence>
 
         <div className="absolute left-8 bottom-8 max-w-xl" style={{ filter: 'drop-shadow(0 2px 20px rgba(0,0,0,0.8)) drop-shadow(0 4px 40px rgba(0,0,0,0.5))' }}>
           <p className="text-white text-xs tracking-[0.2em] uppercase font-sans mb-2">{t('hero.label')}</p>
@@ -151,16 +180,37 @@ export default function HeroSection() {
               transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
             />
           )}
-          {videoEnded && (
-            <motion.img
-              src={HERO_POSTER}
-              alt="Renaissance Paris"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="absolute inset-0 w-full h-full object-cover object-[center_30%]"
-            />
-          )}
+          <AnimatePresence>
+            {phase !== 'video' && (
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: phase === 'reveal' ? 0 : 1 }}
+                  transition={{ duration: phase === 'reveal' ? 1.2 : 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0 z-[1] bg-black"
+                />
+                {(phase === 'shimmer' || phase === 'reveal') && (
+                  <motion.div
+                    initial={{ x: '-100%' }}
+                    animate={{ x: '200%' }}
+                    transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-y-0 w-[2px] z-[3]"
+                    style={{ background: 'linear-gradient(to bottom, transparent, rgba(199,170,120,0.8), transparent)', boxShadow: '0 0 40px 15px rgba(199,170,120,0.15)' }}
+                  />
+                )}
+                {phase === 'reveal' && (
+                  <motion.img
+                    src={HERO_POSTER}
+                    alt="Renaissance Paris"
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 w-full h-full object-cover object-[center_30%] z-[2]"
+                  />
+                )}
+              </>
+            )}
+          </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-[#000000]/70 to-transparent" />
         </motion.div>
