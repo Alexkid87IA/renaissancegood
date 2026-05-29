@@ -88,7 +88,7 @@ export default function CollectionIsis() {
             alt="Collection Isis"
             loading="lazy"
             style={{ y: imageY, scale: imageScale }}
-            className="w-full h-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.03] group-hover:brightness-[1.05]"
+            className="w-full h-full object-cover object-[center_60%] transition-all duration-[900ms] ease-out group-hover:scale-[1.03] group-hover:brightness-[1.05]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 via-transparent to-transparent pointer-events-none" />
           <div className="absolute inset-0 bg-dark-text/0 group-hover:bg-dark-text/10 transition-all duration-700 pointer-events-none" />
