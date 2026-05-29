@@ -47,8 +47,8 @@ export default function LegalPageTemplate({ title, lastUpdated, children }: Lega
             </motion.h1>
             {lastUpdated && (
               <motion.div variants={fade} className="mt-8">
-                <div className="w-12 h-px bg-white/15 mb-6" />
-                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/25">
+                <div className="w-12 h-px bg-white/[0.15] mb-6" />
+                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.48]">
                   {t('template.lastUpdated')} : {lastUpdated}
                 </p>
               </motion.div>
@@ -76,20 +76,20 @@ export default function LegalPageTemplate({ title, lastUpdated, children }: Lega
       {/* CTA BOTTOM */}
       <section className="bg-[#0a0a0a] py-20 lg:py-28">
         <div className="max-w-3xl mx-auto px-6 md:px-12 text-center">
-          <p className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
+          <p className="font-sans text-bronze/[0.68] text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
             {t('template.needHelp')}
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
             {t('template.question')}
           </h2>
-          <p className="font-display text-lg lg:text-xl font-light italic text-white/35 tracking-[-0.02em] mb-8">
+          <p className="font-display text-lg lg:text-xl font-light italic text-white/[0.68] tracking-[-0.02em] mb-8">
             {t('template.hereForYou')}
           </p>
-          <div className="w-12 h-px bg-white/15 mx-auto mb-8" />
+          <div className="w-12 h-px bg-bronze/[0.45] mx-auto mb-8" />
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="/contact"
-              className="group relative overflow-hidden border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
+              className="group relative overflow-hidden border border-white/[0.15] px-10 py-4 transition-all duration-500 hover:border-bronze/60"
             >
               <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
                 {t('template.contactUs')}
@@ -98,9 +98,9 @@ export default function LegalPageTemplate({ title, lastUpdated, children }: Lega
             </a>
             <a
               href="mailto:contact@renaissance-eyewear.fr"
-              className="group border border-white/8 px-10 py-4 transition-all duration-500 hover:border-white/20"
+              className="group border border-white/[0.08] px-10 py-4 transition-all duration-500 hover:border-white/20"
             >
-              <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/35 group-hover:text-white/60 transition-colors duration-500">
+              <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.55] group-hover:text-white/75 transition-colors duration-500">
                 contact@renaissance-eyewear.fr
               </span>
             </a>

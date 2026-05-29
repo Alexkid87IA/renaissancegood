@@ -23,7 +23,7 @@ export default function ProductFooter() {
               href="https://instagram.com/renaissance.eyewear"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-7 h-7 border border-white/15 flex items-center justify-center hover:border-bronze transition-colors"
+              className="w-7 h-7 border border-white/[0.15] flex items-center justify-center hover:border-bronze transition-colors"
             >
               <Instagram size={12} className="text-white/50" />
             </a>
@@ -31,7 +31,7 @@ export default function ProductFooter() {
               href="https://facebook.com/renaissance.eyewear"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-7 h-7 border border-white/15 flex items-center justify-center hover:border-bronze transition-colors"
+              className="w-7 h-7 border border-white/[0.15] flex items-center justify-center hover:border-bronze transition-colors"
             >
               <Facebook size={12} className="text-white/50" />
             </a>
@@ -39,35 +39,35 @@ export default function ProductFooter() {
         </div>
 
         {/* Separator */}
-        <div className="h-px bg-white/8 mb-6" />
+        <div className="h-px bg-white/[0.08] mb-6" />
 
         {/* Links — compact inline rows */}
         <div className="space-y-4 mb-8">
           <div>
             <p className="font-sans text-[8px] tracking-[0.3em] text-bronze uppercase font-bold mb-2.5">{t('productFooter.collections')}</p>
             <div className="flex flex-wrap gap-x-5 gap-y-1">
-              <LocaleLink to="/collections/heritage" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.heritage')}</LocaleLink>
-              <LocaleLink to="/collections/versailles" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.versailles')}</LocaleLink>
-              <LocaleLink to="/collections/isis" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.isis')}</LocaleLink>
-              <LocaleLink to="/shop" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.explore')}</LocaleLink>
+              <LocaleLink to="/collections/heritage" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.heritage')}</LocaleLink>
+              <LocaleLink to="/collections/versailles" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.versailles')}</LocaleLink>
+              <LocaleLink to="/collections/isis" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.isis')}</LocaleLink>
+              <LocaleLink to="/shop" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.explore')}</LocaleLink>
             </div>
           </div>
           <div>
             <p className="font-sans text-[8px] tracking-[0.3em] text-bronze uppercase font-bold mb-2.5">{t('productFooter.theHouse')}</p>
             <div className="flex flex-wrap gap-x-5 gap-y-1">
-              <LocaleLink to="/histoire" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.history')}</LocaleLink>
-              <LocaleLink to="/symboles" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.symbols')}</LocaleLink>
-              <LocaleLink to="/opticiens" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.opticians')}</LocaleLink>
-              <LocaleLink to="/contact" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.contact')}</LocaleLink>
+              <LocaleLink to="/histoire" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.history')}</LocaleLink>
+              <LocaleLink to="/symboles" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.symbols')}</LocaleLink>
+              <LocaleLink to="/opticiens" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.opticians')}</LocaleLink>
+              <LocaleLink to="/contact" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.contact')}</LocaleLink>
             </div>
           </div>
           <div>
             <p className="font-sans text-[8px] tracking-[0.3em] text-bronze uppercase font-bold mb-2.5">{t('productFooter.help')}</p>
             <div className="flex flex-wrap gap-x-5 gap-y-1">
-              <LocaleLink to="/faq" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.faq')}</LocaleLink>
-              <LocaleLink to="/livraison" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.shipping')}</LocaleLink>
-              <LocaleLink to="/garantie" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.warranty')}</LocaleLink>
-              <LocaleLink to="/cgv" className="font-sans text-white/45 hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.terms')}</LocaleLink>
+              <LocaleLink to="/faq" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.faq')}</LocaleLink>
+              <LocaleLink to="/livraison" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.shipping')}</LocaleLink>
+              <LocaleLink to="/garantie" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.warranty')}</LocaleLink>
+              <LocaleLink to="/cgv" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.terms')}</LocaleLink>
             </div>
           </div>
         </div>

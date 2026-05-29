@@ -85,7 +85,7 @@ export default function BlogPage() {
             <motion.p variants={fade} className="font-display text-xl lg:text-2xl xl:text-3xl font-light italic text-white/40 tracking-[-0.02em] mb-8">
               {t('blog.heroSubtitle')}
             </motion.p>
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8" />
+            <motion.div variants={fade} className="w-12 h-px bg-white/[0.15] mb-8" />
             <motion.p variants={fade} className="font-sans text-white/30 text-[13px] lg:text-sm leading-[1.8] font-light max-w-lg">
               {t('blog.heroDescription')}
             </motion.p>
@@ -197,10 +197,10 @@ export default function BlogPage() {
             <motion.h2 variants={fade} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
               {t('blog.newsletterTitle')}
             </motion.h2>
-            <motion.p variants={fade} className="font-display text-lg lg:text-xl font-light italic text-white/35 tracking-[-0.02em] mb-8">
+            <motion.p variants={fade} className="font-display text-lg lg:text-xl font-light italic text-white/[0.35] tracking-[-0.02em] mb-8">
               {t('blog.newsletterSubtitle')}
             </motion.p>
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mx-auto mb-10" />
+            <motion.div variants={fade} className="w-12 h-px bg-white/[0.15] mx-auto mb-10" />
             <motion.form variants={fade} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
                 type="email"
@@ -209,7 +209,7 @@ export default function BlogPage() {
               />
               <button
                 type="submit"
-                className="group relative overflow-hidden border border-white/15 px-8 py-4 transition-all duration-500 hover:border-bronze/60"
+                className="group relative overflow-hidden border border-white/[0.15] px-8 py-4 transition-all duration-500 hover:border-bronze/60"
               >
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
                   {t('blog.subscribe')}

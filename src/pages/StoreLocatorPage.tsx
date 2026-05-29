@@ -53,7 +53,7 @@ function MapLoadingState({ count, loading }: { count: number; loading: boolean }
 
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <div className="max-w-[340px] text-center">
-            <div className="mx-auto mb-5 h-10 w-10 rounded-full border border-dark-text/15 flex items-center justify-center">
+            <div className="mx-auto mb-5 h-10 w-10 rounded-full border border-dark-text/[0.15] flex items-center justify-center">
               {loading ? (
                 <span className="h-5 w-5 rounded-full border border-dark-text/20 border-t-dark-text animate-spin" />
               ) : (
@@ -183,7 +183,7 @@ export default function StoreLocatorPage() {
           <div className="w-[42%] bg-[#000000] relative flex flex-col justify-center px-12 xl:px-20 2xl:px-28">
             {/* Top label */}
             <div className="absolute top-10 left-12 xl:left-20 2xl:left-28">
-              <p className="font-sans text-white/25 text-[9px] tracking-[0.4em] font-medium uppercase">
+              <p className="font-sans text-bronze/[0.68] text-[9px] tracking-[0.4em] font-medium uppercase">
                 {t('storeLocatorPage.hero.label')}
               </p>
             </div>
@@ -199,13 +199,13 @@ export default function StoreLocatorPage() {
                 {t('storeLocatorPage.hero.titleLine1')}
                 <br />{t('storeLocatorPage.hero.titleLine2')}
               </motion.h1>
-              <motion.p variants={fade} className="font-display text-2xl xl:text-3xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 xl:mb-10">
+              <motion.p variants={fade} className="font-display text-2xl xl:text-3xl font-light italic text-white/[0.68] tracking-[-0.02em] leading-[1] mb-8 xl:mb-10">
                 {t('storeLocatorPage.hero.subtitle')}
               </motion.p>
 
-              <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8 xl:mb-10" />
+              <motion.div variants={fade} className="w-12 h-px bg-bronze/[0.45] mb-8 xl:mb-10" />
 
-              <motion.p variants={fade} className="font-sans text-white/35 text-[13px] xl:text-sm leading-[1.9] font-light max-w-md mb-8">
+              <motion.p variants={fade} className="font-sans text-white/[0.62] text-[13px] xl:text-sm leading-[1.9] font-light max-w-md mb-8">
                 {t('storeLocatorPage.hero.description')}
               </motion.p>
 
@@ -215,7 +215,7 @@ export default function StoreLocatorPage() {
                   <p className="font-display text-3xl xl:text-4xl font-bold text-white leading-none">
                     {opticiansData.length}+
                   </p>
-                  <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/30 mt-1">
+                  <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.52] mt-1">
                     {t('storeLocatorPage.hero.opticians')}
                   </p>
                 </div>
@@ -224,7 +224,7 @@ export default function StoreLocatorPage() {
                   <p className="font-display text-3xl xl:text-4xl font-bold text-white leading-none">
                     {Object.keys(countryCounts).length}
                   </p>
-                  <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/30 mt-1">
+                  <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.52] mt-1">
                     {t('storeLocatorPage.hero.countries')}
                   </p>
                 </div>
@@ -236,7 +236,7 @@ export default function StoreLocatorPage() {
                     const section = document.querySelector('[data-search-section]');
                     section?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="group relative overflow-hidden border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
+                  className="group relative overflow-hidden border border-white/[0.15] px-10 py-4 transition-all duration-500 hover:border-bronze/60"
                 >
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
                     {t('storeLocatorPage.hero.cta')}
@@ -248,8 +248,8 @@ export default function StoreLocatorPage() {
 
             {/* Bottom scroll indicator */}
             <div className="absolute bottom-10 left-12 xl:left-20 2xl:left-28 flex items-center gap-3">
-              <div className="w-8 h-px bg-white/15" />
-              <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">{t('storeLocatorPage.hero.scroll')}</span>
+              <div className="w-8 h-px bg-white/[0.15]" />
+              <span className="font-sans text-white/[0.15] text-[9px] tracking-[0.3em] uppercase">{t('storeLocatorPage.hero.scroll')}</span>
             </div>
           </div>
 
@@ -300,21 +300,21 @@ export default function StoreLocatorPage() {
                 {t('storeLocatorPage.hero.titleLine1')}
                 <br />{t('storeLocatorPage.hero.titleLine2')}
               </h1>
-              <p className="font-display text-lg sm:text-xl font-light italic text-white/50 tracking-[-0.02em] mb-5">
+              <p className="font-display text-lg sm:text-xl font-light italic text-white/[0.68] tracking-[-0.02em] mb-5">
                 {t('storeLocatorPage.hero.subtitle')}
               </p>
-              <div className="w-10 h-px bg-white/15 mb-5" />
+              <div className="w-10 h-px bg-bronze/[0.45] mb-5" />
 
               {/* Stats mobile */}
               <div className="flex items-center gap-5 mb-6">
                 <div>
                   <p className="font-display text-2xl font-bold text-white leading-none">{opticiansData.length}+</p>
-                  <p className="font-sans text-[8px] tracking-[0.3em] uppercase text-white/30 mt-1">{t('storeLocatorPage.hero.opticians')}</p>
+                  <p className="font-sans text-[8px] tracking-[0.3em] uppercase text-white/[0.52] mt-1">{t('storeLocatorPage.hero.opticians')}</p>
                 </div>
                 <div className="w-px h-8 bg-white/10" />
                 <div>
                   <p className="font-display text-2xl font-bold text-white leading-none">{Object.keys(countryCounts).length}</p>
-                  <p className="font-sans text-[8px] tracking-[0.3em] uppercase text-white/30 mt-1">{t('storeLocatorPage.hero.countries')}</p>
+                  <p className="font-sans text-[8px] tracking-[0.3em] uppercase text-white/[0.52] mt-1">{t('storeLocatorPage.hero.countries')}</p>
                 </div>
               </div>
 
@@ -341,7 +341,7 @@ export default function StoreLocatorPage() {
                 {t('storeLocatorPage.search.title')}
               </h2>
               <div className="w-px h-5 bg-dark-text/10" />
-              <p className="font-sans text-dark-text/35 text-[11px] leading-[1.7] font-light">
+              <p className="font-sans text-dark-text/[0.35] text-[11px] leading-[1.7] font-light">
                 {filteredStores.length > 1
                   ? t('storeLocatorPage.search.resultsCountPlural', { count: filteredStores.length, countries: Object.keys(countryCounts).length })
                   : t('storeLocatorPage.search.resultsCount', { count: filteredStores.length, countries: Object.keys(countryCounts).length })
@@ -364,9 +364,9 @@ export default function StoreLocatorPage() {
 
       {/* MAP + LIST SECTION */}
       <section>
-        <div className="flex flex-col lg:flex-row lg:h-[80vh]">
+        <div className="flex flex-col lg:flex-row lg:items-start">
           {/* Map */}
-          <div ref={mapRef} className="w-full lg:w-[65%] h-[50vh] lg:h-full">
+          <div ref={mapRef} className="w-full lg:w-[65%] h-[50vh] lg:h-[calc(100vh-6rem)] lg:sticky lg:top-24">
             {shouldLoadMap ? (
               <Suspense fallback={<MapLoadingState count={filteredStores.length} loading />}>
                 <MapComponent
@@ -382,7 +382,7 @@ export default function StoreLocatorPage() {
           </div>
 
           {/* Store List */}
-          <div className="w-full lg:w-[35%] lg:h-full lg:overflow-y-auto bg-white border-l border-dark-text/10">
+          <div className="w-full lg:w-[35%] bg-white border-l border-dark-text/10">
             <StoreList
               stores={filteredStores}
               selectedStore={selectedStore}
@@ -412,7 +412,7 @@ export default function StoreLocatorPage() {
               {t('storeLocatorPage.cta.subtitle')}
             </motion.p>
 
-            <motion.div variants={fade} className="w-12 h-px bg-dark-text/15 mx-auto mb-8" />
+            <motion.div variants={fade} className="w-12 h-px bg-dark-text/[0.15] mx-auto mb-8" />
 
             <motion.p variants={fade} className="font-sans text-dark-text/50 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10 sm:mb-12">
               {t('storeLocatorPage.cta.description')}

@@ -329,7 +329,7 @@ export default function Header() {
               />
 
               {/* Séparateur fin vertical entre meta-nav et action icons */}
-              <div className="w-px h-4 bg-dark-text/15" aria-hidden="true" />
+              <div className="w-px h-4 bg-dark-text/[0.15]" aria-hidden="true" />
 
               <IconButton onClick={() => setSearchOpen(!searchOpen)} icon="search" />
               <CartIcon itemCount={itemCount} localePath={localePath} />
@@ -479,7 +479,7 @@ export default function Header() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <p className="font-sans text-[7px] tracking-[0.5em] text-white/15 uppercase font-medium mb-4">
+                  <p className="font-sans text-[7px] tracking-[0.5em] text-white/[0.15] uppercase font-medium mb-4">
                     {t('megaMenu.histoireLabel')}
                   </p>
                   <h3 className="font-display text-5xl lg:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.85] mb-2">
@@ -501,7 +501,7 @@ export default function Header() {
 
                   <div className="flex gap-3">
                     <LocaleLink to="/histoire" onClick={() => setActiveMenu(null)}>
-                      <button className="group/btn relative overflow-hidden border border-white/15 px-8 py-3.5 transition-all duration-500 hover:border-white/40">
+                      <button className="group/btn relative overflow-hidden border border-white/[0.15] px-8 py-3.5 transition-all duration-500 hover:border-white/40">
                         <span className="relative z-10 font-sans text-[8px] tracking-[0.35em] font-medium uppercase text-white/50 group-hover/btn:text-[#0a0a0a] transition-colors duration-500">
                           {t('megaMenu.ourHistory')}
                         </span>

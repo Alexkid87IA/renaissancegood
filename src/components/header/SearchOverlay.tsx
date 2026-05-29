@@ -1,10 +1,10 @@
 // ========================================
 // COMPOSANT SEARCH OVERLAY
-// Barre de recherche avec filtres
+// Barre de recherche avec filtre collection uniquement
 // ========================================
 
 import { motion } from 'framer-motion';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../../contexts/LocaleContext';
 import { resizeShopifyImage } from '../../lib/imageUtils';
@@ -58,28 +58,13 @@ function productMatchesCollection(product: Product, collectionValue: string): bo
   return fallbackText.includes(wantedCollection);
 }
 
-function productMatchesAttribute(product: Product, attributeValue: string): boolean {
-  if (attributeValue === 'all') return true;
-
-  const wantedAttribute = normalizeFilterValue(attributeValue);
-  const productText = normalizeFilterValue([
-    product.title,
-    product.handle,
-    product.description,
-    ...(product.tags || []),
-  ].join(' '));
-
-  return productText.includes(wantedAttribute);
-}
-
 export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
   const { t } = useTranslation('common');
   const { shopifyLanguage } = useLocale();
   const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState('');
   const [selectedCollection, setSelectedCollection] = useState('all');
-  const [selectedMaterial, setSelectedMaterial] = useState('all');
-  const [selectedShape, setSelectedShape] = useState('all');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState(false);
@@ -89,22 +74,6 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
     { label: 'Heritage', value: 'heritage' },
     { label: 'Versailles', value: 'versailles' },
     { label: 'Isis', value: 'isis' },
-  ];
-
-  const materialOptions: FilterOption[] = [
-    { label: t('search.all'), value: 'all' },
-    { label: t('search.acetate'), value: 'acetate' },
-    { label: t('search.metal'), value: 'metal' },
-    { label: t('search.titanium'), value: 'titane' },
-  ];
-
-  const shapeOptions: FilterOption[] = [
-    { label: t('search.all'), value: 'all' },
-    { label: t('search.round'), value: 'rond' },
-    { label: t('search.oval'), value: 'ovale' },
-    { label: t('search.square'), value: 'carre' },
-    { label: t('search.hexagonal'), value: 'hexagonal' },
-    { label: t('search.butterfly'), value: 'papillon' },
   ];
 
   useEffect(() => {
@@ -144,8 +113,6 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
   const searchResults = useMemo(() => {
     const candidates = products.filter((product) => {
       if (!productMatchesCollection(product, selectedCollection)) return false;
-      if (!productMatchesAttribute(product, selectedMaterial)) return false;
-      if (!productMatchesAttribute(product, selectedShape)) return false;
       if (!normalizedQuery) return true;
 
       const haystack = normalizeFilterValue([
@@ -160,15 +127,51 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
     });
 
     return candidates.slice(0, normalizedQuery ? 6 : 4);
-  }, [normalizedQuery, products, selectedCollection, selectedMaterial, selectedShape]);
+  }, [normalizedQuery, products, selectedCollection]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setQuery('');
     setSelectedCollection('all');
-    setSelectedMaterial('all');
-    setSelectedShape('all');
     onClose();
-  };
+  }, [onClose]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        handleClose();
+        return;
+      }
+
+      if (event.key !== 'Tab' || !panelRef.current) return;
+
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen, handleClose]);
 
   if (!isOpen) return null;
 
@@ -185,17 +188,17 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
       aria-label={t('search.title')}
     >
       <motion.div
+        ref={panelRef}
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -20, opacity: 0 }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="bg-white border-t border-b border-dark-text/[0.06]"
+        className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain bg-white border-t border-b border-dark-text/[0.06] md:max-h-[calc(100dvh-5rem)] lg:max-h-[calc(100dvh-6rem)]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 laptop:px-12 py-6 sm:py-8">
           <div className="flex flex-col gap-6">
-            {/* En-tête */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-6">
               <div className="flex flex-col">
                 <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-medium text-dark-text uppercase mb-1.5 sm:mb-2">
                   {t('search.title')}
@@ -216,7 +219,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
               </button>
             </div>
 
-            <div className="relative border-b border-dark-text/15 focus-within:border-dark-text transition-colors">
+            <div className="relative border-b border-dark-text/[0.15] focus-within:border-dark-text transition-colors">
               <input
                 ref={inputRef}
                 value={query}
@@ -239,32 +242,27 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
               )}
             </div>
 
-            {/* Filtres */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-              <FilterSelect
-                label={t('search.collection')}
-                options={collectionOptions}
-                value={selectedCollection}
-                onChange={setSelectedCollection}
-              />
-              <FilterSelect
-                label={t('search.material')}
-                options={materialOptions}
-                value={selectedMaterial}
-                onChange={setSelectedMaterial}
-              />
-              <FilterSelect
-                label={t('search.shape')}
-                options={shapeOptions}
-                value={selectedShape}
-                onChange={setSelectedShape}
-              />
-              <FilterSelect
-                label={t('search.lens')}
-                options={[{ label: t('search.all'), value: 'all' }]}
-                value="all"
-                onChange={() => {}}
-              />
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-y border-dark-text/[0.06] py-4">
+              <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.3em] font-medium text-dark-text/45 uppercase">
+                {t('search.collection')}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {collectionOptions.map((option) => (
+                  <button
+                    type="button"
+                    key={option.value}
+                    onClick={() => setSelectedCollection(option.value)}
+                    className={[
+                      'border px-4 py-2 font-sans text-[9px] tracking-[0.22em] uppercase transition-all duration-300',
+                      selectedCollection === option.value
+                        ? 'border-dark-text bg-dark-text text-white'
+                        : 'border-dark-text/[0.12] text-dark-text/55 hover:border-dark-text/35 hover:text-dark-text'
+                    ].join(' ')}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="min-h-[112px] border-t border-dark-text/[0.06] pt-5">
@@ -273,19 +271,19 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                   {normalizedQuery ? 'Résultats' : 'Suggestions'}
                 </p>
                 {!loading && !loadError && (
-                  <span className="font-sans text-[10px] text-dark-text/35 tabular-nums">
-                    {searchResults.length} / {products.length}
+                  <span className="font-sans text-[10px] text-dark-text/[0.35] tabular-nums">
+                    {searchResults.length + ' / ' + products.length}
                   </span>
                 )}
               </div>
 
               {loading ? (
                 <div className="flex items-center gap-3 py-6">
-                  <span className="w-4 h-4 border border-dark-text/15 border-t-dark-text rounded-full animate-spin" />
-                  <p className="font-sans text-xs text-dark-text/45">Chargement des créations</p>
+                  <span className="w-4 h-4 border border-dark-text/[0.15] border-t-dark-text rounded-full animate-spin" />
+                  <p className="font-sans text-xs text-dark-text/[0.45]">Chargement des créations</p>
                 </div>
               ) : loadError ? (
-                <p className="font-sans text-xs text-dark-text/45 py-6">
+                <p className="font-sans text-xs text-dark-text/[0.45] py-6">
                   Impossible de charger les créations pour le moment.
                 </p>
               ) : searchResults.length > 0 ? (
@@ -297,7 +295,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                     return (
                       <LocaleLink
                         key={product.id}
-                        to={`/product/${product.handle}`}
+                        to={'/product/' + product.handle}
                         onClick={handleClose}
                         onMouseEnter={preloadProductPage}
                         onFocus={preloadProductPage}
@@ -319,7 +317,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                           <p className="font-display text-sm font-bold text-dark-text leading-tight line-clamp-2">
                             {product.title}
                           </p>
-                          <p className="font-sans text-[10px] text-dark-text/45 mt-1">
+                          <p className="font-sans text-[10px] text-dark-text/[0.45] mt-1">
                             {price} €
                           </p>
                         </div>
@@ -328,14 +326,13 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                   })}
                 </div>
               ) : (
-                <p className="font-sans text-xs text-dark-text/45 py-6">
+                <p className="font-sans text-xs text-dark-text/[0.45] py-6">
                   Aucun produit trouvé.
                 </p>
               )}
             </div>
 
-            {/* Footer */}
-            <div className="pt-4 border-t border-dark-text/[0.06] flex items-center justify-between">
+            <div className="pt-4 border-t border-dark-text/[0.06] flex items-center justify-between gap-4">
               <p className="font-sans text-dark-text/40 text-xs font-light">
                 {t('search.helpText')}
               </p>
@@ -352,44 +349,5 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
         </div>
       </motion.div>
     </motion.div>
-  );
-}
-
-// Composant interne pour les selects de filtre
-function FilterSelect({
-  label,
-  options,
-  value,
-  onChange,
-}: {
-  label: string;
-  options: FilterOption[];
-  value: string;
-  onChange: (value: string) => void;
-}) {
-  return (
-    <div className="relative">
-      <label className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] font-medium text-dark-text uppercase mb-2 sm:mb-3 block">
-        {label}
-      </label>
-      <div className="relative">
-        <select
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-          className="w-full bg-transparent border-b border-dark-text/15 pb-2 sm:pb-2.5 font-sans text-xs sm:text-sm text-dark-text focus:outline-none focus:border-dark-text transition-colors appearance-none cursor-pointer pr-6"
-        >
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        <div className="absolute right-0 bottom-2 sm:bottom-3 pointer-events-none">
-          <svg width="8" height="5" viewBox="0 0 10 6" fill="none" className="sm:w-[10px] sm:h-[6px]">
-            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" />
-          </svg>
-        </div>
-      </div>
-    </div>
   );
 }

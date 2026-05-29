@@ -41,23 +41,23 @@ export default function MobileBottomBar({ selectedVariant, productPrice, isOutOf
       className="fixed bottom-0 left-0 right-0 z-50 safe-area-bottom"
     >
       {/* Fond avec blur */}
-      <div className="bg-white/95 backdrop-blur-xl border-t border-dark-text/8">
+      <div className="bg-white/95 backdrop-blur-xl border-t border-dark-text/[0.08]">
         <div className="px-5 pt-3 pb-4">
 
           {/* Réassurance top */}
           <div className="flex items-center justify-center gap-4 mb-3">
-            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/30 uppercase">Livraison offerte</span>
+            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">Livraison offerte</span>
             <span className="w-3 h-px bg-dark-text/10" />
-            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/30 uppercase">Garantie 2 ans</span>
+            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">Garantie 2 ans</span>
             <span className="w-3 h-px bg-dark-text/10" />
-            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/30 uppercase">Retour 14j</span>
+            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">Retour 14j</span>
           </div>
 
           {/* Prix + CTA */}
           <div className="flex items-center gap-4">
             {/* Price block */}
             <div className="flex-shrink-0 min-w-[80px]">
-              <p className="font-sans text-[7px] tracking-[0.2em] text-dark-text/35 uppercase mb-0.5">Prix</p>
+              <p className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.35] uppercase mb-0.5">Prix</p>
               <p className={`font-display text-xl font-bold tracking-tight ${isOutOfStock ? 'text-dark-text/25 line-through' : 'text-dark-text'}`}>
                 {selectedVariant?.price || productPrice}
               </p>

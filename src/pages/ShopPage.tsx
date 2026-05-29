@@ -116,7 +116,7 @@ export default function ShopPage() {
     return (
       <div className="min-h-screen bg-beige flex items-center justify-center pt-20">
         <div className="text-center">
-          <div className="w-8 h-8 border border-dark-text/15 border-t-dark-text/60 rounded-full animate-spin mx-auto mb-6" />
+          <div className="w-8 h-8 border border-dark-text/[0.15] border-t-dark-text/60 rounded-full animate-spin mx-auto mb-6" />
           <p className="font-sans text-[9px] tracking-[0.3em] text-dark-text/40 uppercase font-medium">
             {t('loading', { ns: 'common' })}
           </p>
@@ -214,7 +214,7 @@ export default function ShopPage() {
           </div>
           <div className="relative h-full flex flex-col justify-end px-7 pb-14">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.6 }} className="mb-5">
-              <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }} className="font-sans text-white/40 text-[8px] tracking-[0.5em] uppercase font-medium mb-4">
+              <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }} className="font-sans text-white/[0.62] text-[8px] tracking-[0.5em] uppercase font-medium mb-4">
                 {t('heroLabel')}
               </motion.p>
               <motion.h1 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1 }} className="font-display text-[2.6rem] sm:text-5xl font-bold text-white tracking-[-0.04em] leading-[0.88] mb-2">
@@ -229,8 +229,8 @@ export default function ShopPage() {
               <button type="button" onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })} className="font-display text-[13px] italic text-white/70 tracking-[-0.01em] active:text-white transition-colors duration-300">
                 {t('heroExplore')}
               </button>
-              <span className="w-px h-3 bg-white/15" />
-              <button type="button" onClick={() => navigate('/store-locator')} className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/35 font-medium active:text-white/60 transition-colors duration-300">
+              <span className="w-px h-3 bg-white/[0.15]" />
+              <button type="button" onClick={() => navigate('/store-locator')} className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/[0.35] font-medium active:text-white/60 transition-colors duration-300">
                 {t('heroOpticians')}
               </button>
             </motion.div>
@@ -258,12 +258,12 @@ export default function ShopPage() {
                   className={`relative px-4 h-12 font-sans text-[10px] tracking-[0.2em] uppercase transition-colors duration-200 ${
                     activeTab === tab.key
                       ? 'text-dark-text font-medium'
-                      : 'text-dark-text/30 hover:text-dark-text/55'
+                      : 'text-dark-text/[0.48] hover:text-dark-text/[0.65]'
                   }`}
                 >
                   {tab.label}
                   {tabCounts[tab.key] > 0 && (
-                    <span className={`ml-1.5 text-[8px] tabular-nums ${activeTab === tab.key ? 'text-dark-text/35' : 'text-dark-text/15'}`}>
+                    <span className={`ml-1.5 text-[8px] tabular-nums ${activeTab === tab.key ? 'text-dark-text/[0.45]' : 'text-dark-text/[0.32]'}`}>
                       {tabCounts[tab.key]}
                     </span>
                   )}
@@ -306,13 +306,13 @@ export default function ShopPage() {
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 laptop:px-16 pt-10 md:pt-14 pb-16 md:pb-24">
         {groupedProducts.length === 0 ? (
           <div className="text-center py-32">
-            <div className="w-12 h-px bg-dark-text/8 mx-auto mb-8" />
-            <p className="font-display text-2xl font-light text-dark-text/35 mb-3">{t('noProducts')}</p>
+            <div className="w-12 h-px bg-dark-text/[0.08] mx-auto mb-8" />
+            <p className="font-display text-2xl font-light text-dark-text/[0.35] mb-3">{t('noProducts')}</p>
             <p className="font-sans text-[11px] tracking-[0.12em] text-dark-text/20 mb-8">{t('adjustFilters')}</p>
             <button
               type="button"
               onClick={() => { setActiveTab('tout'); }}
-              className="font-sans text-[9px] tracking-[0.15em] uppercase text-dark-text/35 underline underline-offset-4 decoration-dark-text/10 hover:text-dark-text/55 transition-colors"
+              className="font-sans text-[9px] tracking-[0.15em] uppercase text-dark-text/[0.35] underline underline-offset-4 decoration-dark-text/10 hover:text-dark-text/[0.55] transition-colors"
             >
               {t('viewAll')}
             </button>
@@ -344,7 +344,7 @@ export default function ShopPage() {
               {t('customTitle')}
             </h2>
             <div className="w-10 h-px bg-dark-text/10 mx-auto my-6" />
-            <p className="font-sans text-[13px] text-dark-text/40 mb-10 leading-[1.8] font-light max-w-lg mx-auto">
+            <p className="font-sans text-[13px] text-dark-text/[0.58] mb-10 leading-[1.8] font-light max-w-lg mx-auto">
               {t('customDescription')}
             </p>
             <button

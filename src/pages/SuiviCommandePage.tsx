@@ -80,12 +80,12 @@ export default function SuiviCommandePage() {
             </motion.h1>
             <motion.p
               variants={fade}
-              className="font-display text-2xl xl:text-3xl font-light italic text-white/45 tracking-[-0.02em] leading-[1] mb-10 xl:mb-12"
+              className="font-display text-2xl xl:text-3xl font-light italic text-white/[0.68] tracking-[-0.02em] leading-[1] mb-10 xl:mb-12"
             >
               {t('suiviCommande.hero.subtitle')}
             </motion.p>
 
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-10 xl:mb-12" />
+            <motion.div variants={fade} className="w-12 h-px bg-bronze/[0.45] mb-10 xl:mb-12" />
 
             {/* ── Form ── */}
             <motion.form variants={fade} onSubmit={handleSubmit} className="max-w-sm space-y-6">
@@ -93,7 +93,7 @@ export default function SuiviCommandePage() {
                 <label
                   htmlFor="orderNumber"
                   className={`block font-sans text-[9px] tracking-[0.25em] font-bold uppercase mb-2.5 transition-colors duration-300 ${
-                    focusedField === 'order' ? 'text-bronze' : 'text-white/30'
+                    focusedField === 'order' ? 'text-bronze' : 'text-white/[0.58]'
                   }`}
                 >
                   {t('suiviCommande.form.orderNumberLabel')}
@@ -106,7 +106,7 @@ export default function SuiviCommandePage() {
                   onFocus={() => setFocusedField('order')}
                   onBlur={() => setFocusedField(null)}
                   placeholder={t('suiviCommande.form.orderPlaceholder')}
-                  className="w-full px-0 py-3 border-0 border-b border-white/12 bg-transparent font-sans text-[15px] text-white placeholder:text-white/15 focus:outline-none focus:border-bronze/60 transition-colors duration-500"
+                  className="w-full px-0 py-3 border-0 border-b border-white/[0.12] bg-transparent font-sans text-[15px] text-white placeholder:text-white/[0.15] focus:outline-none focus:border-bronze/60 transition-colors duration-500"
                 />
               </div>
 
@@ -114,7 +114,7 @@ export default function SuiviCommandePage() {
                 <label
                   htmlFor="email"
                   className={`block font-sans text-[9px] tracking-[0.25em] font-bold uppercase mb-2.5 transition-colors duration-300 ${
-                    focusedField === 'email' ? 'text-bronze' : 'text-white/30'
+                    focusedField === 'email' ? 'text-bronze' : 'text-white/[0.58]'
                   }`}
                 >
                   {t('suiviCommande.form.emailLabel')}
@@ -127,7 +127,7 @@ export default function SuiviCommandePage() {
                   onFocus={() => setFocusedField('email')}
                   onBlur={() => setFocusedField(null)}
                   placeholder={t('suiviCommande.form.emailPlaceholder')}
-                  className="w-full px-0 py-3 border-0 border-b border-white/12 bg-transparent font-sans text-[15px] text-white placeholder:text-white/15 focus:outline-none focus:border-bronze/60 transition-colors duration-500"
+                  className="w-full px-0 py-3 border-0 border-b border-white/[0.12] bg-transparent font-sans text-[15px] text-white placeholder:text-white/[0.15] focus:outline-none focus:border-bronze/60 transition-colors duration-500"
                 />
               </div>
 
@@ -160,7 +160,7 @@ export default function SuiviCommandePage() {
                 {[t('suiviCommande.reassurance.freeShipping'), t('suiviCommande.reassurance.warranty'), t('suiviCommande.reassurance.returns')].map((item, i) => (
                   <span key={item} className="flex items-center gap-6">
                     {i > 0 && <span className="w-px h-3 bg-white/10" />}
-                    <span className="font-sans text-white/15 text-[9px] tracking-[0.12em] font-light">
+                    <span className="font-sans text-white/[0.40] text-[9px] tracking-[0.12em] font-light">
                       {item}
                     </span>
                   </span>
@@ -171,8 +171,8 @@ export default function SuiviCommandePage() {
 
           {/* Bottom scroll indicator */}
           <div className="absolute bottom-10 left-12 xl:left-20 2xl:left-28 flex items-center gap-3">
-            <div className="w-8 h-px bg-white/12" />
-            <span className="font-sans text-white/12 text-[9px] tracking-[0.3em] uppercase">{t('suiviCommande.hero.scroll')}</span>
+            <div className="w-8 h-px bg-white/[0.12]" />
+            <span className="font-sans text-white/[0.12] text-[9px] tracking-[0.3em] uppercase">{t('suiviCommande.hero.scroll')}</span>
           </div>
         </div>
 
@@ -207,7 +207,7 @@ export default function SuiviCommandePage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="absolute top-24 left-6"
           >
-            <p className="text-white/40 text-[9px] tracking-[0.3em] uppercase font-sans font-medium">
+            <p className="text-bronze/[0.68] text-[9px] tracking-[0.3em] uppercase font-sans font-medium">
               {t('suiviCommande.hero.label')}
             </p>
           </motion.div>
@@ -224,15 +224,15 @@ export default function SuiviCommandePage() {
               {t('suiviCommande.hero.titleLine1')}
               <br />{t('suiviCommande.hero.titleLine2')}
             </h1>
-            <p className="font-display text-lg sm:text-xl font-light italic text-white/45 tracking-[-0.02em] mb-6">
+            <p className="font-display text-lg sm:text-xl font-light italic text-white/[0.68] tracking-[-0.02em] mb-6">
               {t('suiviCommande.hero.subtitle')}
             </p>
-            <div className="w-10 h-px bg-white/15 mb-6" />
+            <div className="w-10 h-px bg-bronze/[0.45] mb-6" />
 
             {/* Form mobile */}
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="orderNumberMobile" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-white/30 uppercase mb-2.5">
+                <label htmlFor="orderNumberMobile" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-white/[0.58] uppercase mb-2.5">
                   {t('suiviCommande.form.orderNumberLabel')}
                 </label>
                 <input
@@ -241,11 +241,11 @@ export default function SuiviCommandePage() {
                   value={orderNumber}
                   onChange={(e) => setOrderNumber(e.target.value)}
                   placeholder={t('suiviCommande.form.orderPlaceholder')}
-                  className="w-full px-0 py-3 border-0 border-b border-white/12 bg-transparent font-sans text-[15px] text-white placeholder:text-white/15 focus:outline-none focus:border-bronze/60 transition-colors duration-500"
+                  className="w-full px-0 py-3 border-0 border-b border-white/[0.12] bg-transparent font-sans text-[15px] text-white placeholder:text-white/[0.15] focus:outline-none focus:border-bronze/60 transition-colors duration-500"
                 />
               </div>
               <div>
-                <label htmlFor="emailMobile" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-white/30 uppercase mb-2.5">
+                <label htmlFor="emailMobile" className="block font-sans text-[9px] tracking-[0.25em] font-bold text-white/[0.58] uppercase mb-2.5">
                   {t('suiviCommande.form.emailLabel')}
                 </label>
                 <input
@@ -254,7 +254,7 @@ export default function SuiviCommandePage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t('suiviCommande.form.emailPlaceholder')}
-                  className="w-full px-0 py-3 border-0 border-b border-white/12 bg-transparent font-sans text-[15px] text-white placeholder:text-white/15 focus:outline-none focus:border-bronze/60 transition-colors duration-500"
+                  className="w-full px-0 py-3 border-0 border-b border-white/[0.12] bg-transparent font-sans text-[15px] text-white placeholder:text-white/[0.15] focus:outline-none focus:border-bronze/60 transition-colors duration-500"
                 />
               </div>
 
@@ -285,7 +285,7 @@ export default function SuiviCommandePage() {
               {[t('suiviCommande.reassurance.freeShipping'), t('suiviCommande.reassurance.warranty'), t('suiviCommande.reassurance.returns')].map((item, i) => (
                 <span key={item} className="flex items-center gap-4">
                   {i > 0 && <span className="w-px h-2.5 bg-white/10" />}
-                  <span className="font-sans text-white/15 text-[8px] tracking-[0.1em] font-light">
+                  <span className="font-sans text-white/[0.40] text-[8px] tracking-[0.1em] font-light">
                     {item}
                   </span>
                 </span>
@@ -306,7 +306,7 @@ export default function SuiviCommandePage() {
             className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 lg:mb-14"
           >
             <div>
-              <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/35 uppercase mb-4 font-medium">
+              <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/[0.35] uppercase mb-4 font-medium">
                 {t('suiviCommande.faqSection.label')}
               </p>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9]">
@@ -324,7 +324,7 @@ export default function SuiviCommandePage() {
           </motion.div>
 
           {/* Accordion */}
-          <div className="border-t border-dark-text/8">
+          <div className="border-t border-dark-text/[0.08]">
             {FAQ_ITEM_KEYS.map((key, index) => (
               <FAQAccordionItem key={key} question={t(`suiviCommande.faqSection.questions.${key}.q`)} answer={t(`suiviCommande.faqSection.questions.${key}.a`)} index={index} />
             ))}
@@ -341,20 +341,20 @@ export default function SuiviCommandePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <p className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
+            <p className="font-sans text-bronze/[0.68] text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
               {t('suiviCommande.ctaBottom.label')}
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
               {t('suiviCommande.ctaBottom.title')}
             </h2>
-            <p className="font-display text-lg lg:text-xl font-light italic text-white/35 tracking-[-0.02em] mb-8">
+            <p className="font-display text-lg lg:text-xl font-light italic text-white/[0.68] tracking-[-0.02em] mb-8">
               {t('suiviCommande.ctaBottom.subtitle')}
             </p>
-            <div className="w-12 h-px bg-white/15 mx-auto mb-10" />
+            <div className="w-12 h-px bg-bronze/[0.45] mx-auto mb-10" />
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <LocaleLink
                 to="/contact"
-                className="group relative overflow-hidden border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
+                className="group relative overflow-hidden border border-white/[0.15] px-10 py-4 transition-all duration-500 hover:border-bronze/60"
               >
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
                   {t('suiviCommande.ctaBottom.contactUs')}
@@ -363,9 +363,9 @@ export default function SuiviCommandePage() {
               </LocaleLink>
               <LocaleLink
                 to="/faq"
-                className="group border border-white/8 px-10 py-4 transition-all duration-500 hover:border-white/20"
+                className="group border border-white/[0.08] px-10 py-4 transition-all duration-500 hover:border-white/20"
               >
-                <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/35 group-hover:text-white/60 transition-colors duration-500">
+                <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.35] group-hover:text-white/60 transition-colors duration-500">
                   {t('suiviCommande.ctaBottom.viewFaq')}
                 </span>
               </LocaleLink>
@@ -386,7 +386,7 @@ function FAQAccordionItem({ question, answer, index }: { question: string; answe
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="border-b border-dark-text/8"
+      className="border-b border-dark-text/[0.08]"
     >
       <button
         onClick={() => setIsOpen(!isOpen)}

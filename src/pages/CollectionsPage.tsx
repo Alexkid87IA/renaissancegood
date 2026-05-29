@@ -115,7 +115,7 @@ export default function CollectionsPage() {
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-dark-text leading-[0.86] tracking-normal">
               Collections
             </h1>
-            <p className="mt-5 font-sans text-sm sm:text-base text-dark-text/58 leading-[1.75]">
+            <p className="mt-5 font-sans text-sm sm:text-base text-dark-text/[0.58] leading-[1.75]">
               Tous les mod&egrave;les disponibles, avec leurs coloris, leurs prix et leurs filtres essentiels.
             </p>
           </div>

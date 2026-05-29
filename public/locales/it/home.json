@@ -1,28 +1,28 @@
 {
   "hero": {
-    "label": "Perch\u00e9 ogni giorno conti",
-    "title1": "Ci\u00f2 che si indossa.",
-    "title2": "Ci\u00f2 che si trasmette.",
+    "label": "Perché ogni giorno conti",
+    "title1": "Ciò che si indossa.",
+    "title2": "Ciò che si trasmette.",
     "description": "Montature create per durare. Fabbricate da mani che ancora sanno.",
     "cta": "Scoprire",
     "ctaSecondary": "Trova un ottico",
     "mobileLabel": "Occhialeria di carattere",
-    "mobileTitle1": "Ci\u00f2 che si indossa.",
-    "mobileTitle2": "Ci\u00f2 che resta.",
+    "mobileTitle1": "Ciò che si indossa.",
+    "mobileTitle2": "Ciò che resta.",
     "mobileOpticians": "I nostri ottici"
   },
   "excellence": {
     "label": "L'Eccellenza Renaissance",
     "title": "QUATTRO PILASTRI.",
     "description": "Renaissance non fabbrica semplici occhiali. Creiamo simboli di una visione francese del lusso, radicata nella storia e proiettata verso il futuro.",
-    "pillar1Title": "Eredit\u00e0 Storica",
-    "pillar1Desc": "Ispirate ai simboli della regalit\u00e0 francese, le nostre collezioni celebrano l'eccellenza di un patrimonio unico.",
+    "pillar1Title": "Eredità Storica",
+    "pillar1Desc": "Ispirate ai simboli della regalità francese, le nostre collezioni celebrano l'eccellenza di un patrimonio unico.",
     "pillar2Title": "Maestria Franco-Coreana",
-    "pillar2Desc": "L'alleanza del design parigino e della precisione coreana per una qualit\u00e0 d'esecuzione impeccabile.",
+    "pillar2Desc": "L'alleanza del design parigino e della precisione coreana per una qualità d'esecuzione impeccabile.",
     "pillar3Title": "Materiali d'Eccezione",
-    "pillar3Desc": "Acetato Mazzucchelli, acciaio inossidabile di alta qualit\u00e0 e finiture premium per occhiali che attraversano il tempo.",
+    "pillar3Desc": "Acetato Mazzucchelli, acciaio inossidabile di alta qualità e finiture premium per occhiali che attraversano il tempo.",
     "pillar4Title": "Impegno Sostenibile",
-    "pillar4Desc": "Contro il fast fashion, creiamo pezzi pensati per durare, con trasparenza e responsabilit\u00e0."
+    "pillar4Desc": "Contro il fast fashion, creiamo pezzi pensati per durare, con trasparenza e responsabilità."
   },
   "fabrication": {
     "label": "Savoir-faire",
@@ -41,11 +41,11 @@
     "detail3Label": "Acetato",
     "detail3Location": "Mazzucchelli, Italia",
     "step1Title": "Taglio",
-    "step1Desc": "Ogni lastra di acetato \u00e8 selezionata per la sua venatura unica.",
+    "step1Desc": "Ogni lastra di acetato è selezionata per la sua venatura unica.",
     "step2Title": "Lucidatura",
     "step2Desc": "48 ore di lucidatura per una brillantezza impareggiabile.",
     "step3Title": "Assemblaggio",
-    "step3Desc": "Ogni cerniera \u00e8 regolata a mano con precisione orologiera."
+    "step3Desc": "Ogni cerniera è regolata a mano con precisione orologiera."
   },
   "histoire": {
     "label": "La nostra storia",
@@ -65,7 +65,7 @@
     "description": "Provate le nostre creazioni presso uno dei 200+ ottici partner. Ordinate online, spedizione gratuita, resi gratuiti entro 30 giorni.",
     "cta": "Trova un ottico",
     "ctaShop": "Acquista online",
-    "guarantees": "Spedizione gratuita \u00b7 Resi 30 giorni \u00b7 Garanzia 2 anni",
+    "guarantees": "Spedizione gratuita · Resi 30 giorni · Garanzia 2 anni",
     "mobileTitle1": "Provate in boutique.",
     "mobileTitle2": "Ordinate online."
   },
@@ -85,14 +85,14 @@
     "label": "I nostri impegni",
     "title": "AL VOSTRO FIANCO.",
     "subtitle": "Sempre.",
-    "item1Title": "Ottici",
-    "item1Desc": "In tutta la Francia",
-    "item2Title": "Spedizione",
-    "item2Desc": "Gratuita da 500\u20ac",
-    "item3Title": "Garanzia",
-    "item3Desc": "Rispondiamo di ci\u00f2 che creiamo",
-    "item4Title": "Sicuro",
-    "item4Desc": "Pagamento crittografato",
+    "item1Title": "Oltre 200 ottici partner",
+    "item1Desc": "Punti vendita selezionati per consigliare, regolare e accompagnare la prova.",
+    "item2Title": "Preparazione maison",
+    "item2Desc": "Ogni ordine viene controllato, confezionato e preparato con la stessa attenzione della creazione.",
+    "item3Title": "Garanzia e cura",
+    "item3Desc": "Una montatura ben fatta si ripara, si regola e si tramanda. Lo applichiamo.",
+    "item4Title": "Pagamento sicuro",
+    "item4Desc": "Una transazione riservata, protetta e senza attriti fino alla conferma.",
     "freeShipping": "Spedizione gratuita",
     "freeShippingDesc": "In Francia metropolitana",
     "warranty": "Garanzia 2 anni",
@@ -100,7 +100,8 @@
     "limitedEdition": "Edizione limitata",
     "limitedEditionDesc": "300 esemplari per serie",
     "madeInFrance": "Fabbricazione francese",
-    "madeInFranceDesc": "Maestria artigianale"
+    "madeInFranceDesc": "Maestria artigianale",
+    "description": "Consiglio, preparazione, cura: ogni fase mantiene la stessa esigenza della montatura."
   },
   "seo": {
     "title": "Occhiali di Lusso Artigianali",

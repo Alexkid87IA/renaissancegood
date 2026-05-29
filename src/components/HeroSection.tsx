@@ -250,10 +250,10 @@ export default function HeroSection() {
             >
               {t('hero.cta')}
             </button>
-            <span className="w-px h-3 bg-white/15" />
+            <span className="w-px h-3 bg-white/[0.15]" />
             <button
               onClick={() => navigate('/store-locator')}
-              className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/35 font-medium active:text-white/60 transition-colors duration-300"
+              className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/[0.35] font-medium active:text-white/60 transition-colors duration-300"
             >
               {t('hero.mobileOpticians')}
             </button>

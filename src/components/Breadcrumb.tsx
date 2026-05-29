@@ -21,22 +21,22 @@ export default function Breadcrumb({ items, variant = 'dark' }: BreadcrumbProps)
           return (
             <li key={i} className="flex items-center gap-2">
               {i > 0 && (
-                <span className={`font-sans text-[8px] ${isLight ? 'text-white/20' : 'text-dark-text/20'}`}>/</span>
+                <span className={`font-sans text-[8px] ${isLight ? 'text-white/[0.32]' : 'text-dark-text/[0.32]'}`}>/</span>
               )}
               {item.to && !isLast ? (
                 <LocaleLink
                   to={item.to}
                   className={`font-sans text-[9px] tracking-[0.25em] uppercase transition-colors duration-300 ${
                     isLight
-                      ? 'text-white/35 hover:text-white/70'
-                      : 'text-dark-text/35 hover:text-dark-text/60'
+                      ? 'text-white/[0.48] hover:text-white/70'
+                      : 'text-dark-text/[0.45] hover:text-dark-text/65'
                   }`}
                 >
                   {item.label}
                 </LocaleLink>
               ) : (
                 <span className={`font-sans text-[9px] tracking-[0.25em] uppercase ${
-                  isLight ? 'text-white/55' : 'text-dark-text/50'
+                  isLight ? 'text-white/[0.55]' : 'text-dark-text/50'
                 }`}>
                   {item.label}
                 </span>

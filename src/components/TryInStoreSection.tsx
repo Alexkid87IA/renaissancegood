@@ -118,7 +118,7 @@ export default function TryInStoreSection() {
               {t('tryInStore.cta')}
             </LocaleLink>
             <span className="w-px h-3 bg-white/[0.15]" />
-            <LocaleLink to="/shop" className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/45 font-medium active:text-white/60 transition-colors duration-300">
+            <LocaleLink to="/shop" className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/[0.45] font-medium active:text-white/60 transition-colors duration-300">
               {t('tryInStore.ctaShop')}
             </LocaleLink>
           </motion.div>

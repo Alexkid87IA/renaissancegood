@@ -100,7 +100,7 @@ export default function ProductSidebar({
                     >
                       {variant.thumbnail ? (
                         <img
-                          src={resizeShopifyImage(variant.thumbnail, 520)}
+                          src={resizeShopifyImage(variant.thumbnail, 520, variant.product?.title, 0)}
                           alt={`Coloris ${variant.colorNumber}`}
                           className="w-full h-full object-contain p-2.5"
                           loading={isSelected ? 'eager' : 'lazy'}
@@ -116,7 +116,7 @@ export default function ProductSidebar({
                     </div>
                     {/* Label underneath */}
                     <p className={`font-sans text-[8px] tracking-[0.15em] uppercase text-center mt-2 transition-colors duration-300 ${
-                      isSelected ? 'text-dark-text font-bold' : 'text-dark-text/45'
+                      isSelected ? 'text-dark-text font-bold' : 'text-dark-text/[0.45]'
                     }`}>
                       {variant.colorName || `Col. ${variant.colorNumber}`}
                     </p>
@@ -176,11 +176,11 @@ export default function ProductSidebar({
           <div className={`relative ${!showDescription ? 'max-h-[5.5em] overflow-hidden' : ''}`}>
             {translatedDescriptionHtml ? (
               <div
-                className="font-sans text-[13px] text-dark-text/85 leading-[1.85] description-content"
+                className="font-sans text-[13px] text-dark-text/[0.85] leading-[1.85] description-content"
                 dangerouslySetInnerHTML={createSanitizedMarkup(translatedDescriptionHtml)}
               />
             ) : (
-              <p className="font-sans text-[13px] text-dark-text/85 leading-[1.85]">
+              <p className="font-sans text-[13px] text-dark-text/[0.85] leading-[1.85]">
                 {translatedDescription}
               </p>
             )}

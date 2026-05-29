@@ -366,6 +366,29 @@ export default function ProductPage() {
     );
   }
 
+  // Extraire le prix numérique pour le SEO
+  const priceForSEO = product?.price?.replace('€', '').trim() || '0';
+  const mainImageForSEO = displayImages[0] || product?.allImages?.[0]?.url || '';
+  const productSeo = product ? (
+    <SEO
+      title={product.modelName || product.name}
+      description={product.description?.substring(0, 160) || `Découvrez ${product.modelName || product.name}, une création d'exception de la collection RENAISSANCE Paris.`}
+      image={mainImageForSEO}
+      url={`/product/${id}`}
+      type="product"
+      product={{
+        name: product.modelName || product.name,
+        description: product.description || '',
+        price: priceForSEO,
+        currency: 'EUR',
+        image: mainImageForSEO,
+        availability: product.variants?.[0]?.availableForSale ? 'InStock' : 'OutOfStock',
+        sku: id || '',
+        brand: 'RENAISSANCE Paris',
+      }}
+    />
+  ) : null;
+
   // Version mobile avec sélecteur de couleurs
   if (isMobile) {
     const mobileProduct = {
@@ -373,41 +396,22 @@ export default function ProductPage() {
       images: displayImages
     };
     return (
-      <ProductPageMobile
-        product={mobileProduct}
-        colorVariants={colorVariants}
-        selectedColorVariantIndex={selectedColorVariantIndex}
-        onColorVariantChange={handleColorVariantChange}
-      />
+      <>
+        {productSeo}
+        <ProductPageMobile
+          product={mobileProduct}
+          colorVariants={colorVariants}
+          selectedColorVariantIndex={selectedColorVariantIndex}
+          onColorVariantChange={handleColorVariantChange}
+        />
+      </>
     );
   }
-
-  // Extraire le prix numérique pour le SEO
-  const priceForSEO = product?.price?.replace('€', '').trim() || '0';
-  const mainImageForSEO = displayImages[0] || product?.allImages?.[0]?.url || '';
 
   return (
     <div className="bg-white min-h-screen">
       {/* SEO avec données structurées produit */}
-      {product && (
-        <SEO
-          title={product.modelName || product.name}
-          description={product.description?.substring(0, 160) || `Découvrez ${product.modelName || product.name}, une création d'exception de la collection RENAISSANCE Paris.`}
-          image={mainImageForSEO}
-          url={`/product/${id}`}
-          type="product"
-          product={{
-            name: product.modelName || product.name,
-            description: product.description || '',
-            price: priceForSEO,
-            currency: 'EUR',
-            image: mainImageForSEO,
-            availability: product.variants?.[0]?.availableForSale ? 'InStock' : 'OutOfStock',
-            sku: id || '',
-            brand: 'RENAISSANCE Paris',
-          }}
-        />
-      )}
+      {productSeo}
 
       {/* Breadcrumb */}
       <div className="pt-6 pb-2 px-6 md:px-12 lg:px-16">
@@ -455,7 +459,7 @@ export default function ProductPage() {
         {/* Thumbnail navigation — fixed bottom, left column only */}
         {displayImages.length > 1 && (
           <div className="fixed bottom-6 z-50 left-0 lg:right-[440px] xl:right-[500px] right-0 flex justify-center pointer-events-none">
-            <div className="pointer-events-auto inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-xl rounded-full shadow-lg shadow-black/8 border border-dark-text/8 px-3 py-2">
+            <div className="pointer-events-auto inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-xl rounded-full shadow-lg shadow-black/[0.08] border border-dark-text/[0.08] px-3 py-2">
               {displayImages.map((thumbUrl, thumbIndex) => (
                 <button
                   key={thumbIndex}

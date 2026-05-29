@@ -85,7 +85,7 @@ export default function LanguageSelector({
                     className={`w-full text-left px-5 py-2 flex items-center justify-between transition-all duration-300 group ${
                       isActive
                         ? 'text-dark-text'
-                        : 'text-dark-text/35 hover:text-dark-text/70'
+                        : 'text-dark-text/[0.35] hover:text-dark-text/70'
                     }`}
                   >
                     <span className="flex items-baseline gap-2.5">

@@ -70,7 +70,7 @@ export default function SymbolesHomeSection() {
                   <span className="font-light italic tracking-[-0.01em]">Une promesse.</span>
                 </h2>
               </div>
-              <p className="hidden sm:block font-sans text-white/35 text-xs lg:text-sm leading-[1.6] max-w-sm flex-shrink-0">
+              <p className="hidden sm:block font-sans text-white/[0.35] text-xs lg:text-sm leading-[1.6] max-w-sm flex-shrink-0">
                 Ce que l'on porte raconte ce que l'on croit.
               </p>
             </div>
@@ -184,15 +184,15 @@ function SymbolCard({
         <div className={`absolute inset-0 flex flex-col justify-end p-5 sm:p-6 lg:p-8 transition-all duration-500 ${
           isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
-          <p className="font-sans text-white/85 text-xs sm:text-sm lg:text-base leading-[1.65] font-light">
+          <p className="font-sans text-white/[0.85] text-xs sm:text-sm lg:text-base leading-[1.65] font-light">
             {symbol.description}
           </p>
         </div>
 
         {/* Numéro discret */}
         <div className="absolute top-4 sm:top-5 right-4 sm:right-5">
-          <span className={`font-sans text-[10px] sm:text-xs text-white/15 font-medium tracking-wider transition-colors duration-500 ${
-            isHovered ? 'text-white/35' : ''
+          <span className={`font-sans text-[10px] sm:text-xs text-white/[0.15] font-medium tracking-wider transition-colors duration-500 ${
+            isHovered ? 'text-white/[0.35]' : ''
           }`}>
             {String(index + 1).padStart(2, '0')}
           </span>

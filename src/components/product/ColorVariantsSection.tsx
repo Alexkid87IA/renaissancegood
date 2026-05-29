@@ -43,7 +43,7 @@ export default function ColorVariantsSection({
           transition={{ duration: 0.8 }}
           className="mb-10 sm:mb-12 lg:mb-14"
         >
-          <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/35 uppercase mb-4 font-medium">
+          <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/[0.35] uppercase mb-4 font-medium">
             {t('colorVariantsSection.otherColors')}
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9]">

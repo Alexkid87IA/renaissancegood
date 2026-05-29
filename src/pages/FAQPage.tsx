@@ -34,7 +34,7 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="border-b border-dark-text/8"
+      className="border-b border-dark-text/[0.08]"
     >
       <button
         id={`faq-question-${index}`}
@@ -125,19 +125,19 @@ export default function FAQPage() {
               {t('hero.titleLine1')}
               <br />{t('hero.titleLine2')}
             </motion.h1>
-            <motion.p variants={fade} className="font-display text-xl lg:text-2xl xl:text-3xl font-light italic text-white/40 tracking-[-0.02em] mb-8">
+            <motion.p variants={fade} className="font-display text-xl lg:text-2xl xl:text-3xl font-light italic text-white/[0.68] tracking-[-0.02em] mb-8">
               {t('hero.subtitle')}
             </motion.p>
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8" />
+            <motion.div variants={fade} className="w-12 h-px bg-bronze/[0.45] mb-8" />
             <motion.div variants={fade} className="flex items-center gap-6">
               <div>
                 <p className="font-display text-2xl lg:text-3xl font-bold text-white leading-none">{totalQuestions}</p>
-                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/25 mt-1">{t('hero.answers')}</p>
+                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.52] mt-1">{t('hero.answers')}</p>
               </div>
               <div className="w-px h-8 bg-white/10" />
               <div>
                 <p className="font-display text-2xl lg:text-3xl font-bold text-white leading-none">{FAQ_CATEGORY_KEYS.length}</p>
-                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/25 mt-1">{t('hero.categoriesCount')}</p>
+                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.52] mt-1">{t('hero.categoriesCount')}</p>
               </div>
             </motion.div>
           </motion.div>
@@ -164,7 +164,7 @@ export default function FAQPage() {
                   <h2 className="font-display text-2xl lg:text-3xl font-bold text-dark-text tracking-[-0.02em]">
                     {t(`categoryNames.${category.key}`)}
                   </h2>
-                  <div className="w-8 h-px bg-dark-text/15 mt-4" />
+                  <div className="w-8 h-px bg-dark-text/[0.15] mt-4" />
                 </div>
 
                 {/* Questions */}
@@ -188,23 +188,23 @@ export default function FAQPage() {
             initial="hidden"
             animate={ctaInView ? "visible" : "hidden"}
           >
-            <motion.p variants={fade} className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
+            <motion.p variants={fade} className="font-sans text-bronze/[0.68] text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
               {t('cta.label')}
             </motion.p>
             <motion.h2 variants={fade} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
               {t('cta.title')}
             </motion.h2>
-            <motion.p variants={fade} className="font-display text-lg lg:text-xl font-light italic text-white/35 tracking-[-0.02em] mb-8">
+            <motion.p variants={fade} className="font-display text-lg lg:text-xl font-light italic text-white/[0.68] tracking-[-0.02em] mb-8">
               {t('cta.subtitle')}
             </motion.p>
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mx-auto mb-8" />
-            <motion.p variants={fade} className="font-sans text-white/30 text-[13px] lg:text-sm leading-[1.8] font-light mb-10 max-w-lg mx-auto">
+            <motion.div variants={fade} className="w-12 h-px bg-bronze/[0.45] mx-auto mb-8" />
+            <motion.p variants={fade} className="font-sans text-white/[0.58] text-[13px] lg:text-sm leading-[1.8] font-light mb-10 max-w-lg mx-auto">
               {t('cta.description')}
             </motion.p>
             <motion.div variants={fade} className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <LocaleLink
                 to="/contact"
-                className="group relative overflow-hidden border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
+                className="group relative overflow-hidden border border-white/[0.15] px-10 py-4 transition-all duration-500 hover:border-bronze/60"
               >
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
                   {t('cta.contactUs')}
@@ -213,9 +213,9 @@ export default function FAQPage() {
               </LocaleLink>
               <a
                 href="tel:+33142868200"
-                className="group border border-white/8 px-10 py-4 transition-all duration-500 hover:border-white/20"
+                className="group border border-white/[0.08] px-10 py-4 transition-all duration-500 hover:border-white/20"
               >
-                <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/35 group-hover:text-white/60 transition-colors duration-500">
+                <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.35] group-hover:text-white/60 transition-colors duration-500">
                   {t('cta.callUs')}
                 </span>
               </a>

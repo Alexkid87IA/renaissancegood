@@ -1,10 +1,7 @@
-import { useTranslation } from 'react-i18next';
 import CollectionPageTemplate from '../components/CollectionPageTemplate';
 import type { CollectionPageConfig } from '../components/CollectionPageTemplate';
 
 export default function VersaillesCollectionPage() {
-  const { t } = useTranslation('collections');
-
   const config: CollectionPageConfig = {
     collectionId: 'VERSAILLES',
     collectionName: 'Versailles',
@@ -13,9 +10,6 @@ export default function VersaillesCollectionPage() {
     heroVideo: 'https://renaissance-cdn.b-cdn.net/videos/renaissance-collection.mp4',
     heroPoster: 'https://renaissance-cdn.b-cdn.net/videos/renaissance-collection-poster.jpg',
     seoUrl: '/collections/versailles',
-    extraShapeFilters: [
-      { label: t('filters.hexagonal'), value: 'Hexagonal' }
-    ],
   };
 
   return <CollectionPageTemplate config={config} />;

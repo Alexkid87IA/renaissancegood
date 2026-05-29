@@ -70,7 +70,7 @@ export default function NavigationProgress() {
         />
 
         {/* Bronze sweep bar */}
-        <div className="w-32 h-[1.5px] bg-dark-text/8 overflow-hidden rounded-full">
+        <div className="w-32 h-[1.5px] bg-dark-text/[0.08] overflow-hidden rounded-full">
           <div
             className="h-full bg-bronze rounded-full"
             style={{

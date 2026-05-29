@@ -98,11 +98,11 @@ export default function GuideTaillesPage() {
               {t('guideTailles.heroTitle1')}
               <br />{t('guideTailles.heroTitle2')}
             </motion.h1>
-            <motion.p variants={fade} className="font-display text-xl lg:text-2xl xl:text-3xl font-light italic text-white/40 tracking-[-0.02em] mb-8">
+            <motion.p variants={fade} className="font-display text-xl lg:text-2xl xl:text-3xl font-light italic text-white/[0.68] tracking-[-0.02em] mb-8">
               {t('guideTailles.heroSubtitle')}
             </motion.p>
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8" />
-            <motion.p variants={fade} className="font-sans text-white/30 text-[13px] lg:text-sm leading-[1.8] font-light max-w-lg">
+            <motion.div variants={fade} className="w-12 h-px bg-bronze/[0.45] mb-8" />
+            <motion.p variants={fade} className="font-sans text-white/[0.60] text-[13px] lg:text-sm leading-[1.8] font-light max-w-lg">
               {t('guideTailles.heroDescription')}
             </motion.p>
           </motion.div>
@@ -123,7 +123,7 @@ export default function GuideTaillesPage() {
             <h2 className="font-display text-2xl lg:text-3xl font-bold text-dark-text tracking-[-0.02em] mb-4">
               {t('guideTailles.dimensionsTitle')}
             </h2>
-            <div className="w-8 h-px bg-dark-text/15" />
+            <div className="w-8 h-px bg-dark-text/[0.15]" />
           </motion.div>
 
           {/* Diagram placeholder */}
@@ -132,11 +132,11 @@ export default function GuideTaillesPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="aspect-[2/1] bg-dark-text/[0.03] border border-dark-text/8 flex items-center justify-center mb-12"
+            className="aspect-[2/1] bg-dark-text/[0.03] border border-dark-text/[0.08] flex items-center justify-center mb-12"
           >
             <div className="text-center">
               <Ruler className="text-bronze/40 mx-auto mb-3" size={40} />
-              <p className="font-sans text-dark-text/25 text-[11px] tracking-[0.15em] uppercase font-medium">
+              <p className="font-sans text-dark-text/[0.46] text-[11px] tracking-[0.15em] uppercase font-medium">
                 {t('guideTailles.measurementsDiagram')}
               </p>
             </div>
@@ -214,7 +214,7 @@ export default function GuideTaillesPage() {
             <h2 className="font-display text-2xl lg:text-3xl font-bold text-dark-text tracking-[-0.02em] mb-4">
               {t('guideTailles.findSizeTitle')}
             </h2>
-            <div className="w-8 h-px bg-dark-text/15" />
+            <div className="w-8 h-px bg-dark-text/[0.15]" />
           </motion.div>
 
           <div className="space-y-6">
@@ -225,7 +225,7 @@ export default function GuideTaillesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`border ${size.highlight ? 'border-bronze/30 bg-bronze/[0.03]' : 'border-dark-text/8'} p-6 lg:p-8`}
+                className={`border ${size.highlight ? 'border-bronze/30 bg-bronze/[0.03]' : 'border-dark-text/[0.08]'} p-6 lg:p-8`}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <h3 className="font-display text-lg font-bold text-dark-text tracking-[-0.02em]">
@@ -275,10 +275,10 @@ export default function GuideTaillesPage() {
             <h2 className="font-display text-2xl lg:text-3xl font-bold text-dark-text tracking-[-0.02em] mb-4">
               {t('guideTailles.faceShapeTitle')}
             </h2>
-            <div className="w-8 h-px bg-dark-text/15" />
+            <div className="w-8 h-px bg-dark-text/[0.15]" />
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-dark-text/8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-dark-text/[0.08]">
             {FACE_SHAPES.map((item, i) => (
               <motion.div
                 key={item.shape}
@@ -309,23 +309,23 @@ export default function GuideTaillesPage() {
             initial="hidden"
             animate={ctaInView ? "visible" : "hidden"}
           >
-            <motion.p variants={fade} className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
+            <motion.p variants={fade} className="font-sans text-bronze/[0.68] text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
               {t('guideTailles.ctaSupertitle')}
             </motion.p>
             <motion.h2 variants={fade} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
               {t('guideTailles.ctaTitle')}
             </motion.h2>
-            <motion.p variants={fade} className="font-display text-lg lg:text-xl font-light italic text-white/35 tracking-[-0.02em] mb-8">
+            <motion.p variants={fade} className="font-display text-lg lg:text-xl font-light italic text-white/[0.68] tracking-[-0.02em] mb-8">
               {t('guideTailles.ctaSubtitle')}
             </motion.p>
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mx-auto mb-8" />
-            <motion.p variants={fade} className="font-sans text-white/30 text-[13px] lg:text-sm leading-[1.8] font-light mb-10 max-w-lg mx-auto">
+            <motion.div variants={fade} className="w-12 h-px bg-bronze/[0.45] mx-auto mb-8" />
+            <motion.p variants={fade} className="font-sans text-white/[0.58] text-[13px] lg:text-sm leading-[1.8] font-light mb-10 max-w-lg mx-auto">
               {t('guideTailles.ctaDescription')}
             </motion.p>
             <motion.div variants={fade} className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="/opticiens"
-                className="group relative overflow-hidden border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
+                className="group relative overflow-hidden border border-white/[0.15] px-10 py-4 transition-all duration-500 hover:border-bronze/60"
               >
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
                   {t('guideTailles.findOptician')}
@@ -334,9 +334,9 @@ export default function GuideTaillesPage() {
               </a>
               <a
                 href="/contact"
-                className="group border border-white/8 px-10 py-4 transition-all duration-500 hover:border-white/20"
+                className="group border border-white/[0.08] px-10 py-4 transition-all duration-500 hover:border-white/20"
               >
-                <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/35 group-hover:text-white/60 transition-colors duration-500">
+                <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.35] group-hover:text-white/60 transition-colors duration-500">
                   {t('guideTailles.contactUs')}
                 </span>
               </a>

@@ -12,12 +12,12 @@ interface MapComponentProps {
 }
 
 function markerIcon(isSelected: boolean): string {
-  const fill = isSelected ? '#8b7355' : 'none';
+  const fill = isSelected ? '#8b7355' : '#f7f3eb';
+  const stroke = isSelected ? '#f7f3eb' : '#8b7355';
   return `
-    <svg viewBox="0 0 100 50" style="width: 100%; height: 100%;">
-      <ellipse cx="20" cy="25" rx="18" ry="22" fill="${fill}" stroke="#8b7355" stroke-width="3" />
-      <ellipse cx="80" cy="25" rx="18" ry="22" fill="${fill}" stroke="#8b7355" stroke-width="3" />
-      <line x1="38" y1="25" x2="62" y2="25" stroke="#8b7355" stroke-width="3" />
+    <svg viewBox="0 0 24 24" style="width: 100%; height: 100%; filter: drop-shadow(0 2px 7px rgba(0,0,0,0.18));">
+      <circle cx="12" cy="12" r="7" fill="${fill}" stroke="${stroke}" stroke-width="1.4" />
+      <circle cx="12" cy="12" r="2.2" fill="${stroke}" />
     </svg>
   `;
 }
@@ -33,7 +33,7 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapboxModule = useRef<typeof import('mapbox-gl') | null>(null);
   const map = useRef<import('mapbox-gl').Map | null>(null);
-  const markers = useRef<import('mapbox-gl').Marker[]>([]);
+  const storeMarkers = useRef<Map<string, import('mapbox-gl').Marker>>(new Map());
   const markerElements = useRef<Map<string, HTMLElement>>(new Map());
   const selectedStoreId = useRef<string | null>(null);
   const userLocationMarker = useRef<import('mapbox-gl').Marker | null>(null);
@@ -106,11 +106,16 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
 
     void initializeMap();
 
+    const markersById = storeMarkers.current;
+    const elementsById = markerElements.current;
+
     return () => {
       cancelled = true;
       if (map.current) {
         map.current.remove();
         map.current = null;
+        markersById.clear();
+        elementsById.clear();
       }
     };
   }, []);
@@ -120,20 +125,26 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
     const mapboxgl = mapboxModule.current?.default;
     if (!map.current || !mapLoaded || !mapboxgl) return;
 
-    // Supprimer les anciens marqueurs
-    markers.current.forEach(marker => marker.remove());
-    markers.current = [];
-    markerElements.current.clear();
+    const visibleStoreIds = new Set(stores.filter((store) => store.latitude && store.longitude).map((store) => store.id));
 
-    // Ajouter les nouveaux marqueurs
+    storeMarkers.current.forEach((marker, storeId) => {
+      if (!visibleStoreIds.has(storeId)) {
+        marker.remove();
+        storeMarkers.current.delete(storeId);
+        markerElements.current.delete(storeId);
+      }
+    });
+
+    // Ajouter uniquement les nouveaux marqueurs pour garder le filtrage fluide.
     stores.forEach((store) => {
       if (!store.latitude || !store.longitude) return;
+      if (storeMarkers.current.has(store.id)) return;
 
       // Créer un élément HTML custom pour le marqueur
       const el = document.createElement('div');
       el.className = 'custom-marker';
-      el.style.width = '32px';
-      el.style.height = '32px';
+      el.style.width = '22px';
+      el.style.height = '22px';
       el.style.cursor = 'pointer';
       setMarkerSelected(el, false);
       markerElements.current.set(store.id, el);
@@ -176,7 +187,7 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
         onSelectStore(store);
       });
 
-      markers.current.push(marker);
+      storeMarkers.current.set(store.id, marker);
     });
 
     const currentSelectedId = selectedStoreId.current;
@@ -273,7 +284,7 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
             <p className="font-sans text-[9px] tracking-[0.32em] uppercase font-bold text-bronze mb-3">
               Carte indisponible
             </p>
-            <p className="font-sans text-sm text-dark-text/55 leading-[1.7]">
+            <p className="font-sans text-sm text-dark-text/[0.55] leading-[1.7]">
               La liste des opticiens reste disponible ci-contre.
             </p>
           </div>
@@ -316,6 +327,7 @@ export default function MapComponent({ stores, selectedStore, onSelectStore, use
         }
         .mapboxgl-canvas {
           outline: none;
+          filter: grayscale(1) contrast(0.94) brightness(1.04);
         }
         .mapboxgl-ctrl-logo {
           display: none !important;

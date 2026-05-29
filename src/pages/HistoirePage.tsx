@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
-import SectionIndicator from '../components/SectionIndicator';
 import { useSectionSnap } from '../hooks/useSectionSnap';
 
 // Import des sections redesignées
@@ -41,7 +40,6 @@ export default function HistoirePage() {
       <ValeursSection />
       <SignatureSection />
       <EngagementSection />
-      <SectionIndicator />
     </div>
   );
 }

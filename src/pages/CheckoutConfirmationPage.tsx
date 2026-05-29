@@ -111,7 +111,7 @@ export default function CheckoutConfirmationPage() {
   return (
     <div className="min-h-screen bg-beige">
       {/* ==================== HEADER ==================== */}
-      <header className="bg-white/95 backdrop-blur-sm border-b border-bronze/15">
+      <header className="bg-white/95 backdrop-blur-sm border-b border-bronze/[0.15]">
         <div className="max-w-[1400px] mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
           <div className="w-20" />
 
@@ -226,7 +226,7 @@ export default function CheckoutConfirmationPage() {
             animate="visible"
             custom={2}
             variants={fadeIn}
-            className="text-center font-sans text-sm text-dark-text/35 leading-relaxed mb-12 md:mb-16 max-w-[480px] mx-auto"
+            className="text-center font-sans text-sm text-dark-text/[0.35] leading-relaxed mb-12 md:mb-16 max-w-[480px] mx-auto"
           >
             {t('confirmationPage.bodyArtisanal')}
           </motion.p>
@@ -415,7 +415,7 @@ export default function CheckoutConfirmationPage() {
             </LocaleLink>
             <LocaleLink
               to="/"
-              className="font-sans text-[11px] text-dark-text/35 hover:text-dark-text transition-colors tracking-[0.1em] uppercase"
+              className="font-sans text-[11px] text-dark-text/[0.35] hover:text-dark-text transition-colors tracking-[0.1em] uppercase"
             >
               {t('confirmationPage.backHome')}
             </LocaleLink>

@@ -148,9 +148,9 @@ export default function ProductPageMobile({
         />
 
         {/* Adaptable badge */}
-        <div className="px-6 py-5 border-t border-dark-text/8">
+        <div className="px-6 py-5 border-t border-dark-text/[0.08]">
           {isNonAdaptable ? (
-            <div className="flex items-center gap-4 bg-bronze/5 border border-bronze/15 px-5 py-4">
+            <div className="flex items-center gap-4 bg-bronze/5 border border-bronze/[0.15] px-5 py-4">
               <div className="w-10 h-10 border border-bronze/20 flex items-center justify-center flex-shrink-0">
                 <svg className="w-4 h-4 text-bronze" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="10" />
@@ -161,14 +161,14 @@ export default function ProductPageMobile({
                 <p className="font-sans text-[10px] tracking-[0.15em] font-bold text-dark-text uppercase">
                   Solaire uniquement
                 </p>
-                <p className="font-sans text-[11px] text-dark-text/45 font-light mt-0.5">
+                <p className="font-sans text-[11px] text-dark-text/[0.45] font-light mt-0.5">
                   Non adaptable en verres correcteurs
                 </p>
               </div>
             </div>
           ) : (
             <div className="flex items-center gap-4 bg-dark-text/[0.02] border border-dark-text/10 px-5 py-4">
-              <div className="w-10 h-10 border border-dark-text/15 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 border border-dark-text/[0.15] flex items-center justify-center flex-shrink-0">
                 <svg className="w-4 h-4 text-dark-text" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
@@ -177,7 +177,7 @@ export default function ProductPageMobile({
                 <p className="font-sans text-[10px] tracking-[0.15em] font-bold text-dark-text uppercase">
                   Adaptable à votre vue
                 </p>
-                <p className="font-sans text-[11px] text-dark-text/45 font-light mt-0.5">
+                <p className="font-sans text-[11px] text-dark-text/[0.45] font-light mt-0.5">
                   Compatible verres correcteurs
                 </p>
               </div>
@@ -199,7 +199,7 @@ export default function ProductPageMobile({
 
         {/* Sélecteur de coloris — après dimensions, avant related */}
         {colorVariants.length > 1 && onColorVariantChange && (
-          <div className="px-6 py-6 border-t border-dark-text/8">
+          <div className="px-6 py-6 border-t border-dark-text/[0.08]">
             <div className="flex items-center justify-between mb-5">
               <span className="font-sans text-[9px] tracking-[0.3em] font-medium text-dark-text/40 uppercase">
                 Autres coloris

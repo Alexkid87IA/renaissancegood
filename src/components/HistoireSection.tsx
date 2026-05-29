@@ -33,7 +33,7 @@ export default function HistoireSection() {
             loading="lazy"
           />
           {/* Gradient overlays for text readability */}
-          <div className="absolute inset-0 bg-[#160e07]/22 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-[#160e07]/[0.22] mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/40 via-transparent to-[#0a0a0a]/30" />
         </motion.div>
@@ -119,7 +119,7 @@ export default function HistoireSection() {
               {t('histoire.mobileCta')}
             </LocaleLink>
             <span className="w-px h-3 bg-white/[0.15]" />
-            <span className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/45 font-medium">
+            <span className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/[0.45] font-medium">
               {t('histoire.since')}
             </span>
           </motion.div>

@@ -202,22 +202,29 @@ const GridCard = memo(function GridCard({
             </p>
           </div>
 
-          <p className="font-sans text-[10px] tracking-[0.22em] uppercase text-dark-text/45 mt-3">
-            {groupedProduct.colorVariants.length} {groupedProduct.colorVariants.length > 1 ? 'coloris' : 'coloris'}
-          </p>
+          <div className="mt-3 flex items-center justify-between gap-3 border-y border-dark-text/[0.08] py-2.5">
+            <p className="font-sans text-[10px] tracking-[0.22em] uppercase text-dark-text/[0.62]">
+              {groupedProduct.colorVariants.length} {t('sidebar.coloris')}
+            </p>
+            {groupedProduct.colorVariants.length > 1 && (
+              <span className="font-sans text-[8px] tracking-[0.24em] uppercase text-bronze">
+                {t('sidebar.discover')}
+              </span>
+            )}
+          </div>
 
           {groupedProduct.colorVariants.length > 1 && (
-            <div className="flex flex-wrap items-center gap-2 mt-4">
+            <div className="flex flex-wrap items-center gap-2 mt-3 bg-white/70 border border-dark-text/[0.06] p-2">
               {groupedProduct.colorVariants.map((variant, variantIndex) => (
                 <button
                   type="button"
                   key={variant.handle}
                   onClick={(e) => handleColorChange(variantIndex, e)}
                   onMouseEnter={() => handleSwatchHover(variantIndex)}
-                  className={`h-12 w-12 sm:h-14 sm:w-14 overflow-hidden transition-all duration-200 ${
+                  className={`h-14 w-14 sm:h-16 sm:w-16 overflow-hidden transition-all duration-200 ${
                     selectedVariantIndex === variantIndex
-                      ? 'ring-2 ring-dark-text ring-offset-2 opacity-100'
-                      : 'ring-1 ring-dark-text/10 opacity-50 hover:opacity-80 hover:ring-dark-text/30'
+                      ? 'ring-2 ring-bronze ring-offset-2 opacity-100'
+                      : 'ring-1 ring-dark-text/10 opacity-65 hover:opacity-100 hover:ring-dark-text/30'
                   }`}
                   title={`${t('sidebar.color')} ${variant.colorNumber}`}
                   aria-label={`${t('sidebar.color')} ${variant.colorNumber}`}
@@ -441,7 +448,7 @@ const EditorialCard = memo(function EditorialCard({
           {/* Infos — 40% glassmorphism */}
           {/* Note perf : pas de backdrop-blur ici — trop coûteux multiplié par N cards.
               Utilise un bg solide blanc cassé qui imite l'effet glass sans cost GPU. */}
-          <div className={`w-[40%] bg-white/85 border border-white/60 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.7),0_4px_30px_rgba(0,0,0,0.03)] flex flex-col justify-center ${isEven ? 'pl-10 xl:pl-14 pr-8' : 'pr-10 xl:pr-14 pl-8'}`}>
+          <div className={`w-[40%] bg-white/[0.85] border border-white/60 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.7),0_4px_30px_rgba(0,0,0,0.03)] flex flex-col justify-center ${isEven ? 'pl-10 xl:pl-14 pr-8' : 'pr-10 xl:pr-14 pl-8'}`}>
             {collectionName && (
               <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/30 uppercase mb-4">
                 {collectionName}
@@ -459,7 +466,7 @@ const EditorialCard = memo(function EditorialCard({
             </h3>
 
             <div className={`w-12 h-px mt-6 mb-5 transition-all duration-500 ${
-              isHovered ? 'bg-bronze/40' : 'bg-dark-text/15'
+              isHovered ? 'bg-bronze/40' : 'bg-dark-text/[0.15]'
             }`} />
 
             <p className="font-sans text-base sm:text-lg font-semibold text-dark-text">
@@ -469,7 +476,7 @@ const EditorialCard = memo(function EditorialCard({
             {(() => {
               const desc = getProductDescription(groupedProduct.modelName);
               return desc ? (
-                <p className="font-sans text-xs xl:text-sm text-dark-text/45 leading-[1.7] font-light mt-4 line-clamp-3">
+                <p className="font-sans text-xs xl:text-sm text-dark-text/[0.45] leading-[1.7] font-light mt-4 line-clamp-3">
                   {desc}
                 </p>
               ) : null;
@@ -490,7 +497,7 @@ const EditorialCard = memo(function EditorialCard({
                       className={`flex-1 max-w-[96px] aspect-[4/3] overflow-hidden transition-all duration-300 ${
                         selectedVariantIndex === variantIndex
                           ? 'ring-2 ring-dark-text ring-offset-2 opacity-100'
-                          : 'ring-1 ring-dark-text/15 opacity-65 hover:opacity-90 hover:ring-dark-text/30'
+                          : 'ring-1 ring-dark-text/[0.15] opacity-65 hover:opacity-90 hover:ring-dark-text/30'
                       }`}
                       title={variant.colorName || `${t('sidebar.color')} ${variant.colorNumber}`}
                       aria-label={variant.colorName || `${t('sidebar.color')} ${variant.colorNumber}`}
@@ -514,7 +521,7 @@ const EditorialCard = memo(function EditorialCard({
             )}
 
             <div className="mt-8">
-              <span className="group/btn relative inline-flex overflow-hidden bg-white/70 border border-dark-text/15 px-8 py-3.5 rounded-[3px] shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+              <span className="group/btn relative inline-flex overflow-hidden bg-white/70 border border-dark-text/[0.15] px-8 py-3.5 rounded-[3px] shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover/btn:text-beige transition-colors duration-500">
                   {t('sidebar.discover')}
                 </span>
@@ -594,7 +601,7 @@ const EditorialCard = memo(function EditorialCard({
             )}
           </div>
 
-          <div className="bg-white/85 border border-white/60 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.7)] px-4 pt-4 pb-4">
+          <div className="bg-white/[0.85] border border-white/60 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.7)] px-4 pt-4 pb-4">
             {collectionName && (
               <p className="font-sans text-[8px] tracking-[0.35em] text-dark-text/30 uppercase mb-1.5">
                 {collectionName}
@@ -603,7 +610,7 @@ const EditorialCard = memo(function EditorialCard({
             <h3 className="font-display text-lg font-bold text-dark-text tracking-[-0.01em] leading-tight uppercase">
               <T>{groupedProduct.modelName}</T>
             </h3>
-            <div className="w-8 h-px bg-dark-text/15 mt-3 mb-3" />
+            <div className="w-8 h-px bg-dark-text/[0.15] mt-3 mb-3" />
             <p className="font-sans text-base font-semibold text-dark-text">
               {price}&nbsp;€
             </p>
@@ -621,7 +628,7 @@ const EditorialCard = memo(function EditorialCard({
                       className={`flex-1 max-w-[76px] aspect-[4/3] overflow-hidden transition-all duration-300 ${
                         selectedVariantIndex === variantIndex
                           ? 'ring-2 ring-dark-text ring-offset-2 opacity-100'
-                          : 'ring-1 ring-dark-text/15 opacity-65 hover:opacity-90'
+                          : 'ring-1 ring-dark-text/[0.15] opacity-65 hover:opacity-90'
                       }`}
                       title={variant.colorName || `${t('sidebar.color')} ${variant.colorNumber}`}
                       aria-label={variant.colorName || `${t('sidebar.color')} ${variant.colorNumber}`}

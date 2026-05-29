@@ -59,7 +59,7 @@ export default function OrderSummary({ cartLines, subtotal, shipping, total }: O
                   <T>{node.merchandise.product.title}</T>
                 </p>
                 {node.merchandise.title !== 'Default Title' && (
-                  <p className="font-sans text-[11px] text-dark-text/35 mt-0.5"><T>{node.merchandise.title}</T></p>
+                  <p className="font-sans text-[11px] text-dark-text/[0.35] mt-0.5"><T>{node.merchandise.title}</T></p>
                 )}
                 <p className="font-sans text-sm text-dark-text mt-1.5 font-medium">{itemTotal.toFixed(2)}&euro;</p>
               </div>
@@ -69,18 +69,18 @@ export default function OrderSummary({ cartLines, subtotal, shipping, total }: O
       </div>
 
       {/* Artisanal message */}
-      <p className="font-display text-[12px] italic text-dark-text/35 leading-relaxed mb-5 border-l-2 border-bronze/20 pl-3">
+      <p className="font-display text-[12px] italic text-dark-text/[0.35] leading-relaxed mb-5 border-l-2 border-bronze/20 pl-3">
         {t('checkoutPage.artisanalMessage')}
       </p>
 
       {/* Totaux */}
       <div className="border-t border-dark-text/[0.07] pt-5 space-y-2.5">
         <div className="flex justify-between">
-          <span className="font-sans text-sm text-dark-text/45">{t('subtotal')}</span>
+          <span className="font-sans text-sm text-dark-text/[0.45]">{t('subtotal')}</span>
           <span className="font-sans text-sm text-dark-text">{subtotal.toFixed(2)}&euro;</span>
         </div>
         <div className="flex justify-between">
-          <span className="font-sans text-sm text-dark-text/45">{t('shipping')}</span>
+          <span className="font-sans text-sm text-dark-text/[0.45]">{t('shipping')}</span>
           <span className="font-sans text-sm text-dark-text">
             {shipping === 0 ? (
               <span className="text-green-700">{t('checkoutPage.shippingFree')}</span>

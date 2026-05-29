@@ -1,120 +1,94 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { stagger, fade } from './shared';
 
 export default function ValeursSection() {
   const { t } = useTranslation('histoire');
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const valeurs = [
     {
-      number: '01',
       title: t('valeursSection.valeur1Title'),
       description: t('valeursSection.valeur1Desc'),
       keyword: t('valeursSection.valeur1Keyword')
     },
     {
-      number: '02',
       title: t('valeursSection.valeur2Title'),
       description: t('valeursSection.valeur2Desc'),
       keyword: t('valeursSection.valeur2Keyword')
     },
     {
-      number: '03',
       title: t('valeursSection.valeur3Title'),
       description: t('valeursSection.valeur3Desc'),
       keyword: t('valeursSection.valeur3Keyword')
     },
     {
-      number: '04',
       title: t('valeursSection.valeur4Title'),
       description: t('valeursSection.valeur4Desc'),
       keyword: t('valeursSection.valeur4Keyword')
     },
     {
-      number: '05',
       title: t('valeursSection.valeur5Title'),
       description: t('valeursSection.valeur5Desc'),
       keyword: t('valeursSection.valeur5Keyword')
     }
   ];
-  const contentRef = useRef<HTMLDivElement>(null);
-  const contentInView = useInView(contentRef, { once: true, amount: 0.2 });
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <motion.section
-      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-50 bg-[#0a0a0a] overflow-hidden"
-    >
+    <motion.section className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-50 bg-[#000000] overflow-hidden">
       {/* DESKTOP */}
-      <div className="hidden md:flex h-full">
-        {/* Left — Image */}
-        <div className="w-1/2 h-full relative overflow-hidden">
-          <img
-            src="https://renaissance-cdn.b-cdn.net/campgane.png"
-            alt="Campagne Renaissance - Nos valeurs"
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-[#0a0a0a]/10" />
-        </div>
+      <div className="hidden md:block h-full relative bg-[#000000]">
+        <img
+          src="https://renaissance-cdn.b-cdn.net/campgane.png"
+          alt="Campagne Renaissance - Nos valeurs"
+          className="absolute inset-0 h-full w-full object-cover opacity-45"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[#000000]/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/72 to-[#000000]/35" />
 
-        {/* Right — Content */}
-        <div className="w-1/2 flex items-center px-12 lg:px-16 xl:px-20">
-          <motion.div
-            ref={contentRef}
-            variants={stagger}
-            initial="hidden"
-            animate={contentInView ? "visible" : "hidden"}
-            className="w-full max-w-2xl"
-          >
-            <motion.p variants={fade} className="font-sans text-white/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-3">
-              {t('valeursSection.label')}
-            </motion.p>
-            <motion.h2 variants={fade} className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.9] mb-2">
-              {t('valeursSection.title')}
-            </motion.h2>
-            <motion.p variants={fade} className="font-display text-2xl lg:text-3xl xl:text-4xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 lg:mb-10">
-              {t('valeursSection.subtitle')}
-            </motion.p>
-
-            <div className="border-t border-white/[0.07]">
-              {valeurs.map((valeur, index) => (
-                <motion.div
-                  key={valeur.title}
-                  variants={fade}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  className="group border-b border-white/[0.07] py-4 xl:py-5 cursor-default"
-                >
-                  {/* Top row: number + title + keyword */}
-                  <div className="flex items-baseline justify-between mb-1.5">
-                    <div className="flex items-baseline gap-4">
-                      <span className={`font-display text-sm lg:text-base font-bold tracking-[-0.02em] transition-colors duration-500 ${
-                        hoveredIndex === index ? 'text-bronze' : 'text-white/20'
-                      }`}>
-                        {valeur.number}
-                      </span>
-                      <h3 className="font-display text-lg lg:text-xl xl:text-2xl text-white font-bold tracking-[-0.01em] leading-tight">
-                        {valeur.title}
-                      </h3>
-                    </div>
-                    <span className={`font-sans text-[9px] tracking-[0.25em] uppercase font-medium transition-colors duration-500 ${
-                      hoveredIndex === index ? 'text-bronze' : 'text-white/15'
-                    }`}>
-                      {valeur.keyword}
-                    </span>
-                  </div>
-                  {/* Description */}
-                  <p className={`font-sans text-xs xl:text-sm leading-[1.7] font-light transition-colors duration-500 pl-8 lg:pl-10 ${
-                    hoveredIndex === index ? 'text-white/60' : 'text-white/25'
-                  }`}>
-                    {valeur.description}
-                  </p>
-                </motion.div>
-              ))}
+        <div className="relative z-10 flex h-full flex-col justify-center px-10 pt-28 pb-10 lg:px-14 xl:px-20">
+          <div className="max-w-5xl">
+            <div className="flex items-center gap-5 mb-5">
+              <span className="h-px w-14 bg-bronze/[0.55]" />
+              <p className="font-sans text-bronze/[0.65] text-[9px] tracking-[0.42em] font-medium uppercase">
+                {t('valeursSection.label')}
+              </p>
             </div>
-          </motion.div>
+            <h2 className="font-display text-5xl lg:text-[4.5rem] xl:text-[5.6rem] font-bold text-white tracking-[-0.04em] leading-[0.84] mb-2">
+              {t('valeursSection.title')}
+            </h2>
+            <p className="font-display text-3xl lg:text-[2.8rem] xl:text-[3.3rem] font-light italic text-white/[0.58] tracking-[-0.03em] leading-none">
+              {t('valeursSection.subtitle')}
+            </p>
+          </div>
+
+          <div className="mt-9 grid grid-cols-5 gap-3 xl:gap-4">
+            {valeurs.map((valeur, index) => (
+              <div
+                key={valeur.title}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={[
+                  'group min-h-[15rem] border border-white/[0.12] bg-white/[0.035] p-5 xl:p-6 transition-all duration-500',
+                  hoveredIndex === index ? 'border-bronze/[0.55] bg-bronze/[0.08]' : 'hover:border-white/[0.28]'
+                ].join(' ')}
+              >
+                <p className={[
+                  'font-sans text-[8px] tracking-[0.24em] uppercase font-medium mb-5 transition-colors duration-500',
+                  hoveredIndex === index ? 'text-bronze' : 'text-white/[0.28]'
+                ].join(' ')}>
+                  {valeur.keyword}
+                </p>
+                <h3 className="font-display text-2xl xl:text-[1.75rem] text-white font-bold tracking-[-0.02em] leading-[0.95] mb-5">
+                  {valeur.title}
+                </h3>
+                <p className="font-sans text-[12px] xl:text-[13px] leading-[1.7] font-light text-white/[0.58]">
+                  {valeur.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -126,50 +100,34 @@ export default function ValeursSection() {
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/96 via-black/72 to-black/30" />
 
-        <div className="relative h-full flex flex-col justify-end px-6 pb-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <p className="font-sans text-white/40 text-[8px] tracking-[0.4em] font-medium uppercase mb-4">
-              {t('valeursSection.label')}
-            </p>
-            <h2 className="font-display text-3xl font-bold text-white tracking-[-0.02em] leading-[0.9] mb-2">
-              {t('valeursSection.title')}
-            </h2>
-            <p className="font-display text-xl font-light italic text-white/60 tracking-[-0.02em] mb-5">
-              {t('valeursSection.subtitle')}
-            </p>
+        <div className="relative h-full overflow-y-auto px-6 pt-24 pb-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <p className="font-sans text-bronze/[0.72] text-[8px] tracking-[0.4em] font-medium uppercase mb-4">
+            {t('valeursSection.label')}
+          </p>
+          <h2 className="font-display text-4xl font-bold text-white tracking-[-0.04em] leading-[0.9] mb-2">
+            {t('valeursSection.title')}
+          </h2>
+          <p className="font-display text-2xl font-light italic text-white/65 tracking-[-0.03em] mb-6">
+            {t('valeursSection.subtitle')}
+          </p>
 
-            <div className="border-t border-white/[0.07]">
-              {valeurs.map((valeur, index) => (
-                <motion.div
-                  key={valeur.title}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.06 }}
-                  className="border-b border-white/[0.07] py-3"
-                >
-                  <div className="flex items-baseline gap-3">
-                    <span className="font-display text-sm font-bold text-white/20 leading-none flex-shrink-0">
-                      {valeur.number}
-                    </span>
-                    <h3 className="font-display text-base text-white font-bold tracking-[-0.01em] leading-tight">
-                      {valeur.title}
-                    </h3>
-                    <span className="font-sans text-[7px] tracking-[0.2em] text-white/20 uppercase font-medium ml-auto">
-                      {valeur.keyword}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+          <div className="space-y-3">
+            {valeurs.map((valeur) => (
+              <div key={valeur.title} className="border border-white/[0.12] bg-white/[0.04] p-4">
+                <p className="font-sans text-[7px] tracking-[0.22em] text-bronze/[0.72] uppercase font-medium mb-2">
+                  {valeur.keyword}
+                </p>
+                <h3 className="font-display text-xl text-white font-bold tracking-[-0.02em] leading-tight mb-2">
+                  {valeur.title}
+                </h3>
+                <p className="font-sans text-xs leading-[1.6] text-white/[0.58]">
+                  {valeur.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </motion.section>

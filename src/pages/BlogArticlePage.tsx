@@ -95,12 +95,12 @@ export default function BlogArticlePage() {
           <h1 className="font-display text-4xl lg:text-5xl font-bold text-white tracking-[-0.03em] mb-4">
             {t('article.notFoundTitle')}
           </h1>
-          <p className="font-sans text-white/35 text-sm leading-[1.8] font-light mb-8">
+          <p className="font-sans text-white/[0.35] text-sm leading-[1.8] font-light mb-8">
             {t('article.notFoundDescription')}
           </p>
           <LocaleLink
             to="/blog"
-            className="group relative overflow-hidden inline-flex items-center gap-2 border border-white/15 px-8 py-4 transition-all duration-500 hover:border-bronze/60"
+            className="group relative overflow-hidden inline-flex items-center gap-2 border border-white/[0.15] px-8 py-4 transition-all duration-500 hover:border-bronze/60"
           >
             <ArrowLeft className="w-4 h-4 relative z-10 text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500" />
             <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
@@ -163,10 +163,10 @@ export default function BlogArticlePage() {
             </p>
           )}
 
-          <div className="w-12 h-px bg-dark-text/15 mb-8" />
+          <div className="w-12 h-px bg-dark-text/[0.15] mb-8" />
 
           {/* Meta Info */}
-          <div className="flex flex-wrap items-center gap-6 pb-8 mb-8 border-b border-dark-text/8">
+          <div className="flex flex-wrap items-center gap-6 pb-8 mb-8 border-b border-dark-text/[0.08]">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-dark-text/[0.04] flex items-center justify-center">
                 <User className="w-4 h-4 text-bronze" strokeWidth={1.5} />
@@ -199,7 +199,7 @@ export default function BlogArticlePage() {
               </button>
 
               {showShareMenu && (
-                <div className="absolute right-0 mt-2 bg-white border border-dark-text/8 shadow-lg z-50">
+                <div className="absolute right-0 mt-2 bg-white border border-dark-text/[0.08] shadow-lg z-50">
                   {[
                     { platform: 'facebook', icon: Facebook, label: 'Facebook' },
                     { platform: 'twitter', icon: Twitter, label: 'Twitter' },
@@ -230,7 +230,7 @@ export default function BlogArticlePage() {
         />
 
         {/* Author Bio */}
-        <div className="mt-16 pt-12 border-t border-dark-text/8">
+        <div className="mt-16 pt-12 border-t border-dark-text/[0.08]">
           <div className="flex items-start gap-6">
             <div className="w-16 h-16 bg-dark-text/[0.04] flex items-center justify-center flex-shrink-0">
               <User className="w-7 h-7 text-bronze" strokeWidth={1.5} />
@@ -262,14 +262,14 @@ export default function BlogArticlePage() {
             <motion.h2 variants={fade} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
               {t('article.ctaTitle')}
             </motion.h2>
-            <motion.p variants={fade} className="font-display text-lg lg:text-xl font-light italic text-white/35 tracking-[-0.02em] mb-8">
+            <motion.p variants={fade} className="font-display text-lg lg:text-xl font-light italic text-white/[0.35] tracking-[-0.02em] mb-8">
               {t('article.ctaSubtitle')}
             </motion.p>
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mx-auto mb-10" />
+            <motion.div variants={fade} className="w-12 h-px bg-white/[0.15] mx-auto mb-10" />
             <motion.div variants={fade}>
               <LocaleLink
                 to="/collections"
-                className="group relative overflow-hidden inline-block border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
+                className="group relative overflow-hidden inline-block border border-white/[0.15] px-10 py-4 transition-all duration-500 hover:border-bronze/60"
               >
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
                   {t('article.ctaButton')}

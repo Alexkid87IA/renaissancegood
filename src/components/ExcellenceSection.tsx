@@ -64,7 +64,7 @@ export default function ExcellenceSection() {
                 >
                   <div className="flex items-start gap-6">
                     <div className="relative flex-shrink-0">
-                      <div className="font-display text-5xl md:text-6xl text-bronze/15 leading-none group-hover:text-bronze/25 transition-colors duration-700">
+                      <div className="font-display text-5xl md:text-6xl text-bronze/[0.15] leading-none group-hover:text-bronze/25 transition-colors duration-700">
                         {pillar.number}
                       </div>
                     </div>

@@ -76,13 +76,13 @@ export default function ContactPage() {
                 {t('contactPage.hero.titleLine1')}
                 <br />{t('contactPage.hero.titleLine2')}
               </motion.h1>
-              <motion.p variants={fade} className="font-display text-2xl xl:text-3xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 xl:mb-10">
+              <motion.p variants={fade} className="font-display text-2xl xl:text-3xl font-light italic text-white/[0.68] tracking-[-0.02em] leading-[1] mb-8 xl:mb-10">
                 {t('contactPage.hero.subtitle')}
               </motion.p>
 
-              <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8 xl:mb-10" />
+              <motion.div variants={fade} className="w-12 h-px bg-bronze/[0.45] mb-8 xl:mb-10" />
 
-              <motion.p variants={fade} className="font-sans text-white/35 text-[13px] xl:text-sm leading-[1.9] font-light max-w-md mb-10 xl:mb-14">
+              <motion.p variants={fade} className="font-sans text-white/[0.62] text-[13px] xl:text-sm leading-[1.9] font-light max-w-md mb-10 xl:mb-14">
                 {t('contactPage.hero.description')}
               </motion.p>
 
@@ -92,7 +92,7 @@ export default function ContactPage() {
                     const section = document.querySelector('[data-contact-form]');
                     section?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="group relative overflow-hidden border border-white/15 px-10 py-4 transition-all duration-500 hover:border-bronze/60"
+                  className="group relative overflow-hidden border border-white/[0.15] px-10 py-4 transition-all duration-500 hover:border-bronze/60"
                 >
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
                     {t('contactPage.hero.cta')}
@@ -103,8 +103,8 @@ export default function ContactPage() {
             </motion.div>
 
             <div className="absolute bottom-10 left-12 xl:left-20 2xl:left-28 flex items-center gap-3">
-              <div className="w-8 h-px bg-white/15" />
-              <span className="font-sans text-white/15 text-[9px] tracking-[0.3em] uppercase">{t('contactPage.hero.scroll')}</span>
+              <div className="w-8 h-px bg-white/[0.15]" />
+              <span className="font-sans text-white/[0.15] text-[9px] tracking-[0.3em] uppercase">{t('contactPage.hero.scroll')}</span>
             </div>
           </div>
 
@@ -151,11 +151,11 @@ export default function ContactPage() {
               <h1 className="font-display text-3xl sm:text-4xl font-bold text-white mb-2 tracking-[-0.03em] leading-[0.9]">
                 {t('contactPage.hero.titleMobile')}
               </h1>
-              <p className="font-display text-lg sm:text-xl font-light italic text-white/50 tracking-[-0.02em] mb-5">
+              <p className="font-display text-lg sm:text-xl font-light italic text-white/[0.68] tracking-[-0.02em] mb-5">
                 {t('contactPage.hero.subtitle')}
               </p>
-              <div className="w-10 h-px bg-white/15 mb-5" />
-              <p className="text-white/35 text-sm font-sans leading-relaxed font-light mb-6">
+              <div className="w-10 h-px bg-bronze/[0.45] mb-5" />
+              <p className="text-white/[0.62] text-sm font-sans leading-relaxed font-light mb-6">
                 {t('contactPage.hero.descriptionMobile')}
               </p>
               <button
@@ -163,7 +163,7 @@ export default function ContactPage() {
                   const section = document.querySelector('[data-contact-form]');
                   section?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="group relative overflow-hidden w-full border border-white/15 px-8 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98]"
+                className="group relative overflow-hidden w-full border border-white/[0.15] px-8 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98]"
               >
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
                   {t('contactPage.hero.cta')}
@@ -211,7 +211,7 @@ export default function ContactPage() {
                 className="bg-[#000000] py-12 lg:py-16 px-6 text-center flex flex-col items-center"
               >
                 <item.icon className="w-5 h-5 text-bronze mb-6" strokeWidth={1.5} />
-                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/25 mb-3">
+                <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-bronze/[0.68] mb-3">
                   {item.title}
                 </p>
                 {item.href ? (
@@ -223,7 +223,7 @@ export default function ContactPage() {
                     {item.detail}
                   </p>
                 )}
-                <p className="font-sans text-xs text-white/30 font-light">
+                <p className="font-sans text-xs text-white/[0.55] font-light">
                   {item.sub}
                 </p>
               </motion.div>
@@ -253,7 +253,7 @@ export default function ContactPage() {
               <p className="font-display text-lg lg:text-xl font-light italic text-dark-text/40 tracking-[-0.02em] mb-8">
                 {t('contactPage.formSection.subtitle')}
               </p>
-              <div className="w-12 h-px bg-dark-text/15 mb-10" />
+              <div className="w-12 h-px bg-dark-text/[0.15] mb-10" />
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -264,7 +264,7 @@ export default function ContactPage() {
                     <input
                       type="text" id="name" name="name" value={formData.name} onChange={handleChange} required aria-required="true"
                       placeholder={t('contactPage.formSection.namePlaceholder')}
-                      className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
+                      className="w-full px-0 py-3 border-0 border-b border-dark-text/[0.15] bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
                     />
                   </div>
                   <div>
@@ -274,7 +274,7 @@ export default function ContactPage() {
                     <input
                       type="email" id="email" name="email" value={formData.email} onChange={handleChange} required aria-required="true"
                       placeholder={t('contactPage.formSection.emailPlaceholder')}
-                      className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
+                      className="w-full px-0 py-3 border-0 border-b border-dark-text/[0.15] bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
                     />
                   </div>
                 </div>
@@ -287,7 +287,7 @@ export default function ContactPage() {
                     <input
                       type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange}
                       placeholder={t('contactPage.formSection.phonePlaceholder')}
-                      className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
+                      className="w-full px-0 py-3 border-0 border-b border-dark-text/[0.15] bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300"
                     />
                   </div>
                   <div>
@@ -296,7 +296,7 @@ export default function ContactPage() {
                     </label>
                     <select
                       id="subject" name="subject" value={formData.subject} onChange={handleChange} required aria-required="true"
-                      className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text focus:outline-none focus:border-bronze transition-colors duration-300 appearance-none cursor-pointer"
+                      className="w-full px-0 py-3 border-0 border-b border-dark-text/[0.15] bg-transparent font-sans text-sm text-dark-text focus:outline-none focus:border-bronze transition-colors duration-300 appearance-none cursor-pointer"
                     >
                       <option value="general">{t('contactPage.formSection.subjectGeneral')}</option>
                       <option value="order">{t('contactPage.formSection.subjectOrder')}</option>
@@ -316,7 +316,7 @@ export default function ContactPage() {
                   <textarea
                     id="message" name="message" value={formData.message} onChange={handleChange} required aria-required="true" rows={5}
                     placeholder={t('contactPage.formSection.messagePlaceholder')}
-                    className="w-full px-0 py-3 border-0 border-b border-dark-text/15 bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300 resize-none"
+                    className="w-full px-0 py-3 border-0 border-b border-dark-text/[0.15] bg-transparent font-sans text-sm text-dark-text placeholder:text-dark-text/25 focus:outline-none focus:border-bronze transition-colors duration-300 resize-none"
                   />
                 </div>
 
@@ -374,7 +374,7 @@ export default function ContactPage() {
               className="space-y-8 lg:pt-20"
             >
               {/* Localisation */}
-              <div className="border border-dark-text/8 p-8 lg:p-10">
+              <div className="border border-dark-text/[0.08] p-8 lg:p-10">
                 <MapPin className="w-5 h-5 text-bronze mb-5" strokeWidth={1.5} />
                 <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/30 mb-3">
                   {t('contactPage.sidebar.locationLabel')}
@@ -395,12 +395,12 @@ export default function ContactPage() {
                 <h3 className="font-display text-2xl font-bold text-white mb-3 tracking-[-0.02em]">
                   {t('contactPage.sidebar.networkTitle')}
                 </h3>
-                <p className="font-sans text-white/35 text-sm leading-[1.8] font-light mb-8">
+                <p className="font-sans text-white/[0.58] text-sm leading-[1.8] font-light mb-8">
                   {t('contactPage.sidebar.networkDescription')}
                 </p>
                 <LocaleLink
                   to="/opticiens"
-                  className="group relative overflow-hidden inline-block border border-white/15 px-8 py-3.5 transition-all duration-500 hover:border-bronze/60"
+                  className="group relative overflow-hidden inline-block border border-white/[0.15] px-8 py-3.5 transition-all duration-500 hover:border-bronze/60"
                 >
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
                     {t('contactPage.sidebar.networkCta')}
@@ -410,7 +410,7 @@ export default function ContactPage() {
               </div>
 
               {/* Réseaux sociaux */}
-              <div className="border border-dark-text/8 p-8 lg:p-10">
+              <div className="border border-dark-text/[0.08] p-8 lg:p-10">
                 <p className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text/30 mb-4">
                   {t('contactPage.sidebar.socialLabel')}
                 </p>

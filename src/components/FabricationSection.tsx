@@ -6,7 +6,7 @@ import { useStackedScroll } from '../hooks/useStackedScroll';
 import HomeEditorialBlock from './HomeEditorialBlock';
 
 const FABRICATION_IMAGE = 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_06AM.jpeg';
-const WARM_IMAGE_FILTER = 'grayscale(1) sepia(0.12) saturate(0.84) contrast(1.1) brightness(0.86)';
+const WARM_IMAGE_FILTER = 'grayscale(1) sepia(0.16) saturate(0.88) contrast(1.05) brightness(0.94)';
 
 export default function FabricationSection() {
   const { t } = useTranslation('home');
@@ -43,13 +43,13 @@ export default function FabricationSection() {
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[#160e07]/24 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-[#000000]/18" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#000000]/72 to-[#000000]/12" />
-        <div className="absolute left-0 top-0 h-full w-[58%] bg-gradient-to-r from-[#000000]/82 via-[#000000]/56 to-transparent" />
+        <div className="absolute inset-0 bg-[#2a1708]/[0.10] mix-blend-multiply" />
+        <div className="absolute inset-0 bg-[#000000]/[0.06]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000]/[0.88] via-[#000000]/[0.46] to-[#000000]/0" />
+        <div className="absolute left-0 top-0 h-full w-[56%] bg-gradient-to-r from-[#000000]/[0.68] via-[#000000]/[0.34] to-transparent" />
 
         {/* Content */}
-        <div className="relative h-full flex items-center px-12 lg:px-20 xl:px-28">
+        <div className="relative h-full overflow-y-auto px-12 pt-28 pb-10 lg:px-20 lg:pt-32 xl:px-28 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="relative max-w-2xl">
             <HomeEditorialBlock
               panelRef={contentRef}
@@ -61,7 +61,7 @@ export default function FabricationSection() {
             >
               <div
                 data-fabrication-reading-panel
-                className="relative w-[min(48rem,calc(100vw-8rem))] border border-white/[0.12] bg-[#020202]/75 px-6 py-6 shadow-[0_28px_90px_rgba(0,0,0,0.55)] backdrop-blur-[2px]"
+                className="relative w-[min(48rem,calc(100vw-8rem))] border border-white/[0.14] bg-[#060504]/[0.58] px-6 py-6 shadow-[0_28px_90px_rgba(0,0,0,0.44)] backdrop-blur-[1px]"
               >
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-bronze/[0.70] via-white/[0.18] to-transparent" />
                 <p className="max-w-[42rem] font-sans text-[15px] xl:text-base leading-[1.85] font-light text-white/[0.84]">

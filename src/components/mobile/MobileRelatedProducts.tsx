@@ -79,7 +79,7 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
     <section className="bg-white">
       {/* Separator */}
       <div className="mx-6">
-        <div className="h-px bg-dark-text/8" />
+        <div className="h-px bg-dark-text/[0.08]" />
       </div>
 
       <div className="px-6 py-12">
@@ -103,7 +103,7 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
           </div>
           <LocaleLink
             to="/shop"
-            className="font-sans text-[8px] tracking-[0.2em] text-dark-text/35 uppercase"
+            className="font-sans text-[8px] tracking-[0.2em] text-dark-text/[0.35] uppercase"
           >
             Tout voir &rarr;
           </LocaleLink>
@@ -154,7 +154,7 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                       <T>{modelName}</T>
                     </h3>
                   </div>
-                  <p className="font-sans text-dark-text/45 text-sm mt-1">
+                  <p className="font-sans text-dark-text/[0.45] text-sm mt-1">
                     {price}&nbsp;€
                   </p>
                 </div>
@@ -207,7 +207,7 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                     <h3 className="font-display text-sm font-bold text-dark-text uppercase tracking-[-0.01em] leading-tight">
                       <T>{modelName}</T>
                     </h3>
-                    <p className="font-sans text-dark-text/45 text-xs mt-1">
+                    <p className="font-sans text-dark-text/[0.45] text-xs mt-1">
                       {price}&nbsp;€
                     </p>
                   </div>

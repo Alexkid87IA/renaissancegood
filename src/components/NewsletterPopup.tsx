@@ -17,7 +17,7 @@ export default function NewsletterPopup() {
   const [error, setError] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Trigger logic: scroll 30% OR 5s timeout (whichever first)
+  // Trigger logic: scroll deep enough OR 60s timeout (whichever first)
   useEffect(() => {
     if (localStorage.getItem(STORAGE_KEY)) return;
 
@@ -33,7 +33,7 @@ export default function NewsletterPopup() {
     const onScroll = () => {
       const scrollPercent =
         window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-      if (scrollPercent >= 0.3) show();
+      if (scrollPercent >= 0.65) show();
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -141,7 +141,7 @@ export default function NewsletterPopup() {
                 {/* Close button */}
                 <button
                   onClick={handleClose}
-                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-dark-text/40 hover:text-dark-text transition-colors duration-300"
+                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-dark-text/40 hover:text-dark-text transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-dark-text/40"
                   aria-label={t('newsletterPopup.close', { defaultValue: 'Fermer la fenêtre newsletter' })}
                 >
                   <X className="w-5 h-5" />
@@ -162,7 +162,7 @@ export default function NewsletterPopup() {
                     <p className="font-display text-lg lg:text-xl font-light italic text-dark-text/50 mb-4">
                       {t('newsletterPopup.subtitle')}
                     </p>
-                    <div className="w-10 h-px bg-dark-text/15 mx-auto mb-4" />
+                    <div className="w-10 h-px bg-dark-text/[0.15] mx-auto mb-4" />
                     <p className="font-sans text-sm text-dark-text/50 leading-relaxed mb-8 max-w-xs">
                       {t('newsletterPopup.description')}
                     </p>
@@ -194,7 +194,7 @@ export default function NewsletterPopup() {
 
                     <button
                       onClick={handleClose}
-                      className="mt-6 font-sans text-[11px] text-dark-text/30 hover:text-dark-text/50 transition-colors duration-300 underline underline-offset-2"
+                      className="mt-6 font-sans text-[11px] text-dark-text/[0.46] hover:text-dark-text/65 transition-colors duration-300 underline underline-offset-2"
                     >
                       {t('newsletterPopup.noThanks')}
                     </button>
@@ -212,14 +212,14 @@ export default function NewsletterPopup() {
                     <p className="font-sans text-sm text-dark-text/50 leading-relaxed mb-6 max-w-xs">
                       {t('newsletterPopup.successDetail')}
                     </p>
-                    <div className="px-6 py-3 border border-dark-text/15 bg-beige/50">
+                    <div className="px-6 py-3 border border-dark-text/[0.15] bg-beige/50">
                       <span className="font-sans text-[11px] tracking-[0.3em] text-dark-text/70 uppercase font-semibold">
                         {t('newsletterPopup.successCode')}
                       </span>
                     </div>
                     <button
                       onClick={handleClose}
-                      className="mt-8 font-sans text-[11px] text-dark-text/30 hover:text-dark-text/50 transition-colors duration-300 underline underline-offset-2"
+                      className="mt-8 font-sans text-[11px] text-dark-text/[0.46] hover:text-dark-text/65 transition-colors duration-300 underline underline-offset-2"
                     >
                       {t('newsletterPopup.close', { defaultValue: 'Fermer' })}
                     </button>

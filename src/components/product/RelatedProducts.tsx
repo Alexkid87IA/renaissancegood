@@ -95,7 +95,7 @@ export default function RelatedProducts({ currentProductId, limit = 6 }: Related
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14 sm:mb-16 lg:mb-20"
         >
           <div>
-            <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/35 uppercase mb-4 font-medium">
+            <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/[0.35] uppercase mb-4 font-medium">
               {t('related.continueExploring')}
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] font-bold text-dark-text tracking-[-0.03em] leading-[0.9]">

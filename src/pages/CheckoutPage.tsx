@@ -239,7 +239,7 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-beige">
       {/* ==================== HEADER ==================== */}
-      <header className="sticky top-0 bg-white/95 backdrop-blur-sm z-50 border-b border-bronze/15">
+      <header className="sticky top-0 bg-white/95 backdrop-blur-sm z-50 border-b border-bronze/[0.15]">
         <div className="max-w-[1400px] mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
           <LocaleLink to="/cart" className="flex items-center gap-2 text-dark-text/40 hover:text-dark-text transition-colors">
             <ArrowLeft className="w-4 h-4" />
@@ -352,7 +352,7 @@ export default function CheckoutPage() {
                             <h2 className="font-display text-lg font-medium text-dark-text mb-1">
                               {t('checkoutPage.expressHeadline')}
                             </h2>
-                            <p className="font-sans text-[12px] text-dark-text/35">{t('checkoutPage.expressMicrocopy')}</p>
+                            <p className="font-sans text-[12px] text-dark-text/[0.35]">{t('checkoutPage.expressMicrocopy')}</p>
                           </div>
                           <Elements stripe={stripePromise} options={stripeOptions} key={`express-step1-${clientSecret}`}>
                             <ExpressCheckoutSection
@@ -516,7 +516,7 @@ export default function CheckoutPage() {
                     {/* Retour */}
                     <button
                       onClick={() => setCurrentStep(1)}
-                      className="mt-4 flex items-center gap-2 text-dark-text/35 hover:text-dark-text transition-colors font-sans text-xs"
+                      className="mt-4 flex items-center gap-2 text-dark-text/[0.35] hover:text-dark-text transition-colors font-sans text-xs"
                     >
                       <ArrowLeft className="w-3.5 h-3.5" />
                       {t('checkoutPage.editInfo')}
@@ -551,7 +551,7 @@ export default function CheckoutPage() {
                         </div>
                         <div>
                           <p className="font-sans text-xs text-dark-text font-medium">{label}</p>
-                          <p className="font-sans text-[11px] text-dark-text/35">{desc}</p>
+                          <p className="font-sans text-[11px] text-dark-text/[0.35]">{desc}</p>
                         </div>
                       </div>
                     ))}

@@ -79,7 +79,7 @@ export default function SearchBar({
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             className="w-full lg:w-auto px-5 py-3.5 border border-dark-text/[0.08] bg-white hover:border-dark-text/20 transition-colors duration-300 flex items-center justify-between gap-4 min-w-[200px]"
           >
-            <span className="font-sans text-[11px] tracking-[0.15em] font-medium uppercase text-dark-text/55">
+            <span className="font-sans text-[11px] tracking-[0.15em] font-medium uppercase text-dark-text/[0.55]">
               {selectedCountryData.label}
             </span>
             <ChevronDown
@@ -106,7 +106,7 @@ export default function SearchBar({
                       selectedCountry === country.code ? 'bg-beige' : ''
                     }`}
                   >
-                    <span className="font-sans text-[11px] tracking-[0.1em] font-medium uppercase text-dark-text/55">
+                    <span className="font-sans text-[11px] tracking-[0.1em] font-medium uppercase text-dark-text/[0.55]">
                       {country.label}
                     </span>
                     <span className="font-sans text-[10px] text-dark-text/20 tracking-wider">
@@ -125,7 +125,7 @@ export default function SearchBar({
           className="group relative overflow-hidden px-5 py-3.5 border border-dark-text/[0.08] bg-white transition-all duration-500 hover:border-dark-text/20 flex items-center justify-center gap-2"
           title="Utiliser ma position actuelle"
         >
-          <MapPin className="w-4 h-4 relative z-10 text-dark-text/35 group-hover:text-dark-text transition-colors duration-300" />
+          <MapPin className="w-4 h-4 relative z-10 text-dark-text/[0.35] group-hover:text-dark-text transition-colors duration-300" />
           <span className="lg:hidden relative z-10 font-sans text-[9px] tracking-[0.2em] font-medium uppercase text-dark-text/40 group-hover:text-dark-text transition-colors duration-300">
             Ma position
           </span>

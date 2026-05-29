@@ -30,7 +30,7 @@ export default function MobileProductInfo({
       transition={{ duration: 0.5, delay: 0.15 }}
     >
       {/* Collection label */}
-      <p className="font-sans text-dark-text/30 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
+      <p className="font-sans text-dark-text/[0.48] text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
         {product.collection}
       </p>
 
@@ -78,7 +78,7 @@ export default function MobileProductInfo({
                     className={`w-full h-full border transition-all duration-300 ${
                       isSelected
                         ? 'border-dark-text'
-                        : 'border-dark-text/15'
+                        : 'border-dark-text/[0.15]'
                     }`}
                   >
                     <div className="w-full h-full bg-dark-text/5 flex items-center justify-center">

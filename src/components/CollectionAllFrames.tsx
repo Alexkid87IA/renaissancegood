@@ -114,8 +114,8 @@ export default function CollectionAllFrames() {
             <span className="font-display text-[13px] italic text-white/70 tracking-[-0.01em]">
               {isLoading ? '...' : t('allFrames.mobileCta')}
             </span>
-            <span className="w-px h-3 bg-white/15" />
-            <span className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/35 font-medium">
+            <span className="w-px h-3 bg-white/[0.15]" />
+            <span className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/[0.35] font-medium">
               {t('allFrames.mobileTag')}
             </span>
           </motion.div>

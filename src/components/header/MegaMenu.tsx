@@ -253,7 +253,7 @@ export default function MegaMenu({
             {/* ─── Col 3 — Bloc éditorial ─── */}
             <motion.div variants={editorialVariants} className="flex flex-col justify-start pt-2 pl-2">
               {/* Label collection */}
-              <p className="font-sans text-[7px] tracking-[0.5em] uppercase text-white/15 font-medium mb-5">
+              <p className="font-sans text-[7px] tracking-[0.5em] uppercase text-white/[0.15] font-medium mb-5">
                 {subtitle}
               </p>
 
@@ -275,7 +275,7 @@ export default function MegaMenu({
 
               {/* CTA — bouton avec effet de remplissage */}
               <Link to={collectionLink} onClick={onClose}>
-                <button className="group/btn relative overflow-hidden border border-white/15 px-8 py-3.5 transition-all duration-600 hover:border-white/40">
+                <button className="group/btn relative overflow-hidden border border-white/[0.15] px-8 py-3.5 transition-all duration-600 hover:border-white/40">
                   <span className="relative z-10 font-sans text-[8px] tracking-[0.35em] font-medium uppercase text-white/50 group-hover/btn:text-[#0a0a0a] transition-colors duration-500">
                     Explorer la collection
                   </span>

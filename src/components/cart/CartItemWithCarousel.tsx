@@ -218,10 +218,10 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
             </p>
           )}
 
-          <div className="w-full h-px bg-dark-text/6 my-3" />
+          <div className="w-full h-px bg-dark-text/[0.06] my-3" />
 
           <div className="flex items-center justify-between">
-            <div className="flex items-center border border-dark-text/12">
+            <div className="flex items-center border border-dark-text/[0.12]">
               <button
                 type="button"
                 onClick={() => {
@@ -238,7 +238,7 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
                 key={node.quantity}
                 initial={{ scale: 1.2, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="w-9 h-9 flex items-center justify-center font-sans text-sm font-medium border-x border-dark-text/12"
+                className="w-9 h-9 flex items-center justify-center font-sans text-sm font-medium border-x border-dark-text/[0.12]"
               >
                 {node.quantity}
               </motion.span>
@@ -254,7 +254,7 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
             </div>
 
             <div className="text-right">
-              <p className="font-sans text-[8px] tracking-[0.15em] text-dark-text/35 uppercase mb-0.5">Total</p>
+              <p className="font-sans text-[8px] tracking-[0.15em] text-dark-text/[0.35] uppercase mb-0.5">Total</p>
               <p className="font-serif text-xl font-bold text-dark-text">
                 {totalPrice.toFixed(2)}€
               </p>
@@ -385,12 +385,14 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
                 </button>
               </div>
 
-              <div className="mb-6 pb-6 border-b border-dark-text/5">
-                <p className="font-sans text-xs text-dark-text/50 mb-2">{t('unitPrice')}</p>
-                <p className="font-serif text-2xl text-bronze">
-                  {price.toFixed(2)}€
-                </p>
-              </div>
+              {node.quantity > 1 && (
+                <div className="mb-6 pb-6 border-b border-dark-text/5">
+                  <p className="font-sans text-xs text-dark-text/50 mb-2">{t('unitPrice')}</p>
+                  <p className="font-serif text-2xl text-bronze">
+                    {price.toFixed(2)}€
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="flex items-end justify-between flex-wrap gap-4">

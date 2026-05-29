@@ -69,7 +69,7 @@ export default function Footer() {
               <motion.p variants={fade} className="font-display text-3xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-10">
                 {t('footer.newsletterSubtitle')}
               </motion.p>
-              <motion.div variants={fade} className="w-12 h-px bg-white/15 mx-auto mb-10" />
+              <motion.div variants={fade} className="w-12 h-px bg-white/[0.15] mx-auto mb-10" />
               <motion.p variants={fade} className="font-sans text-white/60 text-sm leading-[1.9] font-light mb-12 max-w-lg mx-auto">
                 {t('footer.newsletterDescription')}
               </motion.p>

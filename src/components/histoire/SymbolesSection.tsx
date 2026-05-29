@@ -48,40 +48,40 @@ export default function SymbolesSection() {
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">
-        <div className="w-full md:w-1/2 flex items-center justify-center p-10 md:p-16 lg:p-20 xl:p-28">
+        <div className="w-full md:w-1/2 flex h-full items-start justify-center overflow-y-auto px-10 pt-28 pb-8 md:px-14 lg:px-16 xl:px-20 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <motion.div
             ref={contentRef}
             variants={stagger}
             initial="hidden"
             animate={contentInView ? "visible" : "hidden"}
-            className="max-w-lg"
+            className="w-full max-w-[31rem]"
           >
-            <motion.p variants={fade} className="font-sans text-dark-text/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-4">
+            <motion.p variants={fade} className="font-sans text-dark-text/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-3">
               {t('symbolesSection.label')}
             </motion.p>
 
-            <motion.h2 variants={fade} className="font-display text-4xl md:text-5xl laptop:text-[3.5rem] xl:text-6xl font-bold tracking-[-0.03em] leading-[0.9] mb-3">
+            <motion.h2 variants={fade} className="font-display text-4xl md:text-[2.9rem] laptop:text-[3.15rem] xl:text-[3.55rem] font-bold tracking-[-0.03em] leading-[0.9] mb-2">
               {t('symbolesSection.title')}
             </motion.h2>
-            <motion.p variants={fade} className="font-display text-2xl md:text-3xl laptop:text-[2rem] xl:text-4xl font-light italic text-dark-text/70 tracking-[-0.02em] leading-[1] mb-8">
+            <motion.p variants={fade} className="font-display text-2xl md:text-[1.75rem] laptop:text-[1.95rem] xl:text-[2.25rem] font-light italic text-dark-text/70 tracking-[-0.02em] leading-[1] mb-5">
               {t('symbolesSection.subtitle')}
             </motion.p>
 
-            <motion.div variants={fade} className="w-12 h-px bg-dark-text/15 mb-8" />
+            <motion.div variants={fade} className="w-12 h-px bg-dark-text/[0.15] mb-6" />
 
-            <motion.p variants={fade} className="font-sans text-dark-text/50 text-[13px] md:text-sm xl:text-base leading-[1.9] font-light mb-10">
+            <motion.p variants={fade} className="font-sans text-dark-text/50 text-[13px] md:text-sm leading-[1.75] font-light mb-7">
               {t('symbolesSection.description')}
             </motion.p>
 
-            <motion.div variants={fade} className="flex flex-wrap gap-2 mb-8">
+            <motion.div variants={fade} className="flex flex-wrap gap-1.5 mb-6">
               {symbols.map((s, i) => (
                 <button
                   key={s.name}
                   onClick={() => setActiveIndex(i)}
-                  className={`font-sans text-[9px] tracking-[0.3em] font-medium uppercase px-4 py-2.5 border transition-all duration-300 ${
+                  className={`font-sans text-[8px] tracking-[0.24em] font-medium uppercase px-3 py-2 border transition-all duration-300 ${
                     activeIndex === i
                       ? 'border-dark-text bg-dark-text text-beige'
-                      : 'border-dark-text/15 text-dark-text/50 hover:border-dark-text/40'
+                      : 'border-dark-text/[0.15] text-dark-text/50 hover:border-dark-text/40'
                   }`}
                 >
                   {s.name}
@@ -98,7 +98,7 @@ export default function SymbolesSection() {
               <p className="font-sans text-[9px] tracking-[0.25em] text-dark-text/30 uppercase font-medium mb-2">
                 {symbols[activeIndex].subtitle}
               </p>
-              <p className="font-display text-xl md:text-2xl text-dark-text/70 font-light leading-relaxed">
+              <p className="font-display text-lg md:text-xl text-dark-text/70 font-light leading-[1.45]">
                 {symbols[activeIndex].description}
               </p>
             </motion.div>

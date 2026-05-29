@@ -7,7 +7,7 @@ import { stagger, fade } from './shared';
 export default function EngagementSection() {
   const { t } = useTranslation('histoire');
   const contentRef = useRef<HTMLDivElement>(null);
-  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
+  const contentInView = useInView(contentRef, { once: true, amount: 0.28 });
 
   const engagements = [
     {
@@ -31,70 +31,62 @@ export default function EngagementSection() {
   ];
 
   return (
-    <motion.section
-      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-[70] bg-[#0a0a0a] overflow-hidden"
-    >
+    <motion.section className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-[70] bg-[#000000] overflow-hidden">
       {/* DESKTOP */}
-      <div className="hidden md:flex h-full">
-        {/* Left — Image */}
-        <div className="w-1/2 h-full relative overflow-hidden">
+      <div className="hidden md:flex h-full bg-[#000000]">
+        <div className="w-[46%] h-full relative overflow-hidden">
           <img
             src="https://renaissance-cdn.b-cdn.net/portrait.png"
             alt="Renaissance Paris - Engagement"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0a0a0a]" />
+          <div className="absolute inset-0 bg-[#000000]/10" />
+          <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-[#000000] to-transparent" />
         </div>
 
-        {/* Right — Content */}
         <motion.div
           ref={contentRef}
           variants={stagger}
           initial="hidden"
-          animate={contentInView ? "visible" : "hidden"}
-          className="w-1/2 flex items-center justify-center px-12 lg:px-16 xl:px-20"
+          animate={contentInView ? 'visible' : 'hidden'}
+          className="w-[54%] flex h-full items-center justify-center overflow-hidden px-10 py-24 lg:px-14 xl:px-20"
         >
-          <div className="max-w-lg">
-            <motion.p variants={fade} className="font-sans text-white/30 text-[9px] tracking-[0.4em] font-medium uppercase mb-6">
-              {t('engagementSection.label')}
-            </motion.p>
+          <div className="w-full max-w-[43rem]">
+            <motion.div variants={fade} className="flex items-center gap-5 mb-6">
+              <span className="h-px w-14 bg-bronze/[0.55]" />
+              <p className="font-sans text-bronze/[0.65] text-[9px] tracking-[0.42em] font-medium uppercase">
+                {t('engagementSection.label')}
+              </p>
+            </motion.div>
 
-            <motion.h2 variants={fade} className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
+            <motion.h2 variants={fade} className="font-display text-5xl lg:text-[4rem] xl:text-[4.7rem] font-bold text-white tracking-[-0.04em] leading-[0.86] mb-3">
               {t('engagementSection.title')}
             </motion.h2>
-            <motion.p variants={fade} className="font-display text-2xl lg:text-3xl xl:text-4xl font-light italic text-white/50 tracking-[-0.02em] leading-[1] mb-8 lg:mb-10">
+            <motion.p variants={fade} className="font-display text-3xl lg:text-[2.55rem] xl:text-[3rem] font-light italic text-white/[0.58] tracking-[-0.03em] leading-none mb-8">
               {t('engagementSection.subtitle')}
             </motion.p>
 
-            <motion.div variants={fade} className="w-12 h-px bg-white/15 mb-8 lg:mb-10" />
-
-            <motion.p variants={fade} className="font-sans text-white/40 text-[13px] lg:text-sm xl:text-base leading-[1.9] font-light mb-10 xl:mb-12 max-w-md">
+            <motion.p variants={fade} className="font-sans text-white/[0.58] text-sm xl:text-base leading-[1.9] font-light mb-9 max-w-2xl">
               {t('engagementSection.description')}
             </motion.p>
 
-            {/* Engagements */}
-            <div className="flex gap-0 mb-10 xl:mb-12">
-              {engagements.map((e, index) => (
-                <motion.div
-                  key={e.title}
-                  variants={fade}
-                  className={`${index > 0 ? 'border-l border-white/[0.07] pl-5 lg:pl-6' : ''} ${index < engagements.length - 1 ? 'pr-5 lg:pr-6' : ''}`}
-                >
-                  <p className="font-display text-2xl lg:text-3xl xl:text-4xl font-bold text-white tracking-[-0.02em] leading-none mb-1">
+            <motion.div variants={fade} className="grid grid-cols-3 border-y border-white/[0.10] divide-x divide-white/[0.10] mb-9">
+              {engagements.map((e) => (
+                <div key={e.title} className="py-6 px-5 first:pl-0 last:pr-0">
+                  <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">
                     {e.stat}
                   </p>
-                  <p className="font-sans text-[8px] lg:text-[9px] tracking-[0.2em] text-white/30 uppercase font-medium">
+                  <p className="font-sans text-[9px] tracking-[0.24em] text-white/[0.42] uppercase font-medium leading-[1.5]">
                     {e.statLabel}
                   </p>
-                </motion.div>
+                </div>
               ))}
-            </div>
+            </motion.div>
 
-            {/* CTA */}
             <motion.div variants={fade}>
               <LocaleLink to="/shop">
-                <button className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-bronze/60">
+                <button className="group relative overflow-hidden border border-white/[0.18] px-10 py-4 transition-all duration-500 hover:border-bronze/60">
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#0a0a0a] transition-colors duration-500">
                     {t('engagementSection.cta')}
                   </span>
@@ -114,7 +106,7 @@ export default function EngagementSection() {
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/52 to-black/12" />
 
         <div className="relative h-full flex flex-col justify-end px-6 pb-10">
           <motion.div
@@ -123,26 +115,23 @@ export default function EngagementSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <p className="font-sans text-white/40 text-[8px] tracking-[0.4em] font-medium uppercase mb-4">
+            <p className="font-sans text-bronze/[0.72] text-[8px] tracking-[0.4em] font-medium uppercase mb-4">
               {t('engagementSection.label')}
             </p>
-            <h2 className="font-display text-3xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-2">
+            <h2 className="font-display text-4xl font-bold text-white tracking-[-0.04em] leading-[0.9] mb-2">
               {t('engagementSection.title')}
             </h2>
-            <p className="font-display text-xl font-light italic text-white/60 tracking-[-0.02em] mb-5">
+            <p className="font-display text-2xl font-light italic text-white/65 tracking-[-0.03em] mb-6">
               {t('engagementSection.subtitle')}
             </p>
 
-            <div className="flex gap-0 mb-6">
-              {engagements.map((e, index) => (
-                <div
-                  key={e.title}
-                  className={`${index > 0 ? 'border-l border-white/[0.07] pl-4' : ''} ${index < engagements.length - 1 ? 'pr-4' : ''}`}
-                >
-                  <p className="font-display text-xl font-bold text-white tracking-[-0.02em] leading-none mb-1">
+            <div className="grid grid-cols-3 border-y border-white/[0.12] divide-x divide-white/[0.12] mb-6">
+              {engagements.map((e) => (
+                <div key={e.title} className="py-4 px-3 first:pl-0 last:pr-0">
+                  <p className="font-display text-2xl font-bold text-white tracking-[-0.02em] leading-none mb-1">
                     {e.stat}
                   </p>
-                  <p className="font-sans text-[7px] tracking-[0.15em] text-white/30 uppercase font-medium">
+                  <p className="font-sans text-[7px] tracking-[0.16em] text-white/40 uppercase font-medium leading-[1.5]">
                     {e.statLabel}
                   </p>
                 </div>

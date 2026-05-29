@@ -167,7 +167,7 @@ export default function MobileMenu({
           <LocaleLink
             to="/shop"
             onClick={onClose}
-            className="group flex items-center justify-between py-3 border-b border-white/8"
+            className="group flex items-center justify-between py-3 border-b border-white/[0.08]"
           >
             <span className="font-display text-3xl font-bold text-white tracking-[-0.02em]">
               {t('mobileMenu.explorer')}
@@ -242,7 +242,7 @@ export default function MobileMenu({
           <LocaleLink
             to="/cart"
             onClick={onClose}
-            className="flex-1 flex items-center justify-center gap-2.5 py-3 border border-white/15 hover:border-white/30 transition-all duration-300"
+            className="flex-1 flex items-center justify-center gap-2.5 py-3 border border-white/[0.15] hover:border-white/30 transition-all duration-300"
           >
             <ShoppingBag className="w-3.5 h-3.5 text-white/50" />
             <span className="font-sans text-[9px] tracking-[0.2em] text-white/50 uppercase">
@@ -257,7 +257,7 @@ export default function MobileMenu({
           <LocaleLink
             to="/suivi-commande"
             onClick={onClose}
-            className="flex-1 flex items-center justify-center gap-2.5 py-3 border border-white/15 hover:border-white/30 transition-all duration-300"
+            className="flex-1 flex items-center justify-center gap-2.5 py-3 border border-white/[0.15] hover:border-white/30 transition-all duration-300"
           >
             <Package className="w-3.5 h-3.5 text-white/50" />
             <span className="font-sans text-[9px] tracking-[0.2em] text-white/50 uppercase">

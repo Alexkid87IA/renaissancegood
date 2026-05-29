@@ -26,7 +26,7 @@ export default function MobileAccordion({ sections, defaultOpen }: MobileAccordi
       {sections.map((section, index) => (
         <div
           key={index}
-          className="border-t border-dark-text/8"
+          className="border-t border-dark-text/[0.08]"
         >
           <button
             onClick={() => toggleSection(index)}

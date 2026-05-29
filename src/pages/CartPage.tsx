@@ -96,23 +96,23 @@ export default function CartPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                 >
-                  <p className="font-sans text-white/20 text-[9px] tracking-[0.4em] font-medium uppercase mb-5">
+                  <p className="font-sans text-bronze/[0.70] text-[9px] tracking-[0.4em] font-medium uppercase mb-5">
                     {t('title')}
                   </p>
                   <h2 className="font-display text-3xl lg:text-4xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-3">
                     {t('emptyTitle')}
                   </h2>
-                  <p className="font-display text-lg font-light italic text-white/40 tracking-[-0.02em] mb-6">
+                  <p className="font-display text-lg font-light italic text-white/[0.68] tracking-[-0.02em] mb-6">
                     {t('emptySubtitle')}
                   </p>
-                  <div className="w-10 h-px bg-white/15 mb-6" />
-                  <p className="font-sans text-white/30 text-[13px] leading-[1.8] font-light mb-8 max-w-sm">
+                  <div className="w-10 h-px bg-bronze/[0.42] mb-6" />
+                  <p className="font-sans text-white/[0.62] text-[13px] leading-[1.8] font-light mb-8 max-w-sm">
                     {t('emptyDesc')}
                   </p>
                   <div className="flex flex-col gap-3">
                     <LocaleLink
                       to="/collections"
-                      className="group relative overflow-hidden border border-white/15 px-5 py-3.5 transition-all duration-500 hover:border-bronze/60 text-center"
+                      className="group relative overflow-hidden border border-white/[0.15] px-5 py-3.5 transition-all duration-500 hover:border-bronze/60 text-center"
                     >
                       <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500 whitespace-nowrap">
                         {t('emptyCollections')}
@@ -122,23 +122,23 @@ export default function CartPage() {
                     <div className="flex gap-3">
                       <LocaleLink
                         to="/shop"
-                        className="group relative overflow-hidden flex-1 border border-white/8 px-5 py-3.5 transition-all duration-500 hover:border-white/20 text-center"
+                        className="group relative overflow-hidden flex-1 border border-white/[0.14] px-5 py-3.5 transition-all duration-500 hover:border-white/30 text-center"
                       >
-                        <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/40 group-hover:text-white/70 transition-colors duration-500 whitespace-nowrap">
+                        <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.62] group-hover:text-white/[0.82] transition-colors duration-500 whitespace-nowrap">
                           {t('emptyExplore')}
                         </span>
                       </LocaleLink>
                       <LocaleLink
                         to="/shop"
-                        className="group relative overflow-hidden flex-1 border border-white/8 px-5 py-3.5 transition-all duration-500 hover:border-white/20 text-center"
+                        className="group relative overflow-hidden flex-1 border border-white/[0.14] px-5 py-3.5 transition-all duration-500 hover:border-white/30 text-center"
                       >
-                        <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/40 group-hover:text-white/70 transition-colors duration-500 whitespace-nowrap">
+                        <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.62] group-hover:text-white/[0.82] transition-colors duration-500 whitespace-nowrap">
                           {t('checkoutPage.bestSellers')}
                         </span>
                       </LocaleLink>
                     </div>
                   </div>
-                  <p className="mt-6 font-sans text-[11px] text-white/20 tracking-[0.05em]">
+                  <p className="mt-6 font-sans text-[11px] text-white/[0.42] tracking-[0.05em]">
                     {t('checkoutPage.socialProof')}
                   </p>
                 </motion.div>
@@ -201,7 +201,7 @@ export default function CartPage() {
                     { icon: Award, title: t('trustBadgeParisTitle') },
                     { icon: Package, title: t('trustBadgeCaseTitle') }
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 bg-white border border-dark-text/8 px-3 py-2.5">
+                    <div key={i} className="flex items-center gap-2 bg-white border border-dark-text/[0.08] px-3 py-2.5">
                       <item.icon size={14} className="text-bronze flex-shrink-0" strokeWidth={1.5} />
                       <span className="font-sans text-[8px] tracking-[0.05em] font-medium text-dark-text/60 uppercase leading-tight">
                         {item.title}
@@ -210,7 +210,7 @@ export default function CartPage() {
                   ))}
                 </div>
                 {/* Desktop: full grid */}
-                <div className="hidden lg:grid grid-cols-4 gap-6">
+                <div className="hidden lg:grid grid-cols-4 gap-px border-y border-dark-text/[0.08] bg-dark-text/[0.08]">
                   <p className="col-span-4 font-sans text-[9px] tracking-[0.2em] text-dark-text/25 uppercase font-medium text-center mb-1">
                     {t('checkoutPage.engagementTitle')}
                   </p>
@@ -226,17 +226,17 @@ export default function CartPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.1 + (i * 0.1) }}
                       viewport={{ once: true }}
-                      className="bg-white border border-dark-text/10 p-6 text-center hover:border-bronze/30 transition-all duration-500 group"
+                      className="bg-beige px-6 py-7 text-left transition-colors duration-500 group hover:bg-white"
                     >
-                      <div className="mb-4 flex justify-center">
-                        <div className="w-12 h-12 rounded-full bg-beige flex items-center justify-center group-hover:bg-bronze/10 transition-colors duration-500">
-                          <item.icon size={24} className="text-bronze transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} />
+                      <div className="mb-5 flex justify-start">
+                        <div className="w-8 h-8 border border-bronze/[0.25] flex items-center justify-center transition-colors duration-500 group-hover:border-bronze/60">
+                          <item.icon size={17} className="text-bronze transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} />
                         </div>
                       </div>
-                      <h4 className="font-sans text-xs tracking-[0.2em] font-bold text-dark-text uppercase mb-3">
+                      <h4 className="font-sans text-[11px] tracking-[0.22em] font-bold text-dark-text uppercase mb-3 leading-[1.45]">
                         {item.title}
                       </h4>
-                      <p className="font-sans text-xs leading-relaxed text-dark-text/60">
+                      <p className="font-sans text-xs leading-[1.75] text-dark-text/55">
                         {item.description}
                       </p>
                     </motion.div>
@@ -272,7 +272,7 @@ export default function CartPage() {
                 </div>
 
                 {/* Payment methods — compact */}
-                <div className="pt-3 border-t border-dark-text/8">
+                <div className="pt-3 border-t border-dark-text/[0.08]">
                   <PaymentLogos size="compact" />
                 </div>
               </motion.div>
@@ -314,7 +314,7 @@ export default function CartPage() {
                 </div>
 
                 {/* Value banner */}
-                <div className="mb-4 p-4 bg-bronze/5 border border-bronze/15">
+                <div className="mb-4 p-4 bg-bronze/5 border border-bronze/[0.15]">
                   <div className="flex items-center gap-2 justify-center text-dark-text/70">
                     <Package size={14} strokeWidth={1.5} className="text-bronze" />
                     <p className="font-sans text-xs font-medium">
@@ -350,7 +350,7 @@ export default function CartPage() {
                 </LocaleLink>
 
                 {/* Satisfaction guarantee */}
-                <p className="text-center mt-3 font-sans text-[10px] text-dark-text/35 tracking-[0.05em]">
+                <p className="text-center mt-3 font-sans text-[10px] text-dark-text/[0.35] tracking-[0.05em]">
                   {t('checkoutPage.satisfactionGuarantee')}
                 </p>
 
