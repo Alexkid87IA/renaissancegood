@@ -128,7 +128,12 @@ export default function HeroSection() {
           )}
         </AnimatePresence>
 
-        <div className="absolute left-8 bottom-8 max-w-xl" style={{ filter: 'drop-shadow(0 2px 20px rgba(0,0,0,0.8)) drop-shadow(0 4px 40px rgba(0,0,0,0.5))' }}>
+        <motion.div
+          animate={{ opacity: phase === 'video' ? 1 : 0 }}
+          transition={{ duration: 0.6 }}
+          className="absolute left-8 bottom-8 max-w-xl z-[4]"
+          style={{ filter: 'drop-shadow(0 2px 20px rgba(0,0,0,0.8)) drop-shadow(0 4px 40px rgba(0,0,0,0.5))', pointerEvents: phase === 'video' ? 'auto' : 'none' }}
+        >
           <p className="text-white text-xs tracking-[0.2em] uppercase font-sans mb-2">{t('hero.label')}</p>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-[-0.03em] leading-[0.95]">
             {t('hero.title1')}<br />
@@ -151,7 +156,7 @@ export default function HeroSection() {
               {t('hero.ctaSecondary')}
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* MOBILE VERSION — Éditorial luxe */}
@@ -216,7 +221,12 @@ export default function HeroSection() {
         </motion.div>
 
         {/* Contenu */}
-        <div className="relative h-full flex flex-col justify-end px-7 pb-14">
+        <motion.div
+          animate={{ opacity: phase === 'video' ? 1 : 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative h-full flex flex-col justify-end px-7 pb-14"
+          style={{ pointerEvents: phase === 'video' ? 'auto' : 'none' }}
+        >
 
           {/* Titre éditorial */}
           <motion.div
@@ -298,7 +308,7 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
 
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   );
