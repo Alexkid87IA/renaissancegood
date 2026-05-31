@@ -10,7 +10,7 @@ export default function HeroHistoireSection() {
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
 
   return (
-    <motion.section className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-10 overflow-hidden bg-[#000000]">
+    <motion.section className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-10 overflow-hidden bg-[#000000]">
       {/* DESKTOP */}
       <div className="relative h-full overflow-hidden hidden lg:block">
         <img

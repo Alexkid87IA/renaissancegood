@@ -18,7 +18,7 @@ export default function HistoireSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity, filter }}
-      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-[70] overflow-hidden"
+      className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[70] overflow-hidden"
       id="histoire"
     >
       {/* DESKTOP */}

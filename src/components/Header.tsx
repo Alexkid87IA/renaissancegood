@@ -200,8 +200,11 @@ export default function Header() {
     };
   }, [fetchCollections]);
 
+  const cooldownRef = useRef(false);
+
   // Hover intent — handlers pour ouverture/fermeture douce du mega menu
   const handleMenuEnter = useCallback((menu: ActiveMenu) => {
+    if (cooldownRef.current) return;
     if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     if (menu === 'heritage' || menu === 'versailles' || menu === 'isis') fetchCollections();
     setActiveMenu((current) => current === menu ? current : menu);
@@ -219,7 +222,9 @@ export default function Header() {
 
   const closeMenu = useCallback(() => {
     if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    cooldownRef.current = true;
     setActiveMenu(null);
+    setTimeout(() => { cooldownRef.current = false; }, 400);
   }, []);
 
   // Fermer le mega menu au changement de page + cleanup timeout
@@ -389,7 +394,7 @@ export default function Header() {
               collectionLink={localePath('/collections/versailles')}
               collectionImage="https://renaissance-cdn.b-cdn.net/campgane.png"
               collectionVideo="https://renaissance-cdn.b-cdn.net/videos/renaissance-collection.mp4"
-              onClose={() => setActiveMenu(null)}
+              onClose={closeMenu}
             />
           </MegaMenuWrapper>
         )}
@@ -407,7 +412,7 @@ export default function Header() {
               description={t('megaMenu.heritageDescription')}
               collectionLink={localePath('/collections/heritage')}
               collectionImage="https://renaissance-cdn.b-cdn.net/packshot%202.png"
-              onClose={() => setActiveMenu(null)}
+              onClose={closeMenu}
             />
           </MegaMenuWrapper>
         )}
@@ -426,7 +431,7 @@ export default function Header() {
               collectionLink={localePath('/collections/isis')}
               collectionImage={isisCollection[0]?.image}
               collectionVideo="https://renaissance-cdn.b-cdn.net/videos/isis-collection.mp4"
-              onClose={() => setActiveMenu(null)}
+              onClose={closeMenu}
             />
           </MegaMenuWrapper>
         )}

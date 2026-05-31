@@ -56,7 +56,7 @@ export default function SymbolesHomeSection() {
       style={{ height: '300vh' }}
     >
       {/* Sticky container — stays in view while user scrolls */}
-      <div className="sticky top-0 h-screen overflow-hidden bg-black">
+      <div className="lg:sticky lg:top-0 h-screen overflow-hidden bg-black">
         <div className="h-full flex flex-col">
           {/* Header — compact pour maximiser l'espace des cartes */}
           <div className="max-w-[1800px] mx-auto w-full px-6 sm:px-10 md:px-12 lg:px-16 pt-6 sm:pt-8 lg:pt-10 pb-4 sm:pb-5 lg:pb-6 flex-shrink-0">

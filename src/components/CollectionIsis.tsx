@@ -26,7 +26,7 @@ export default function CollectionIsis() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity, filter }}
-      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-40 overflow-hidden"
+      className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-40 overflow-hidden"
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">

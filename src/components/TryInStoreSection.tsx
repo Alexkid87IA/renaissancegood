@@ -18,7 +18,7 @@ export default function TryInStoreSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity, filter }}
-      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-[60] bg-[#000000] overflow-hidden"
+      className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[60] bg-[#000000] overflow-hidden"
     >
       {/* DESKTOP */}
       <div className="h-full hidden md:flex flex-row">

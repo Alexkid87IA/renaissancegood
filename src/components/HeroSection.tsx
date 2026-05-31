@@ -69,7 +69,7 @@ export default function HeroSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity, filter }}
-      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-10"
+      className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-10"
     >
       {/* DESKTOP VERSION */}
       <div className="relative h-full overflow-hidden hidden lg:block">

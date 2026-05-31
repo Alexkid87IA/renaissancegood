@@ -273,14 +273,16 @@ export default function MegaMenu({
                 {description}
               </p>
 
-              {/* CTA — bouton avec effet de remplissage */}
-              <Link to={collectionLink} onClick={onClose}>
-                <button className="group/btn relative overflow-hidden border border-white/[0.15] px-8 py-3.5 transition-all duration-600 hover:border-white/40">
-                  <span className="relative z-10 font-sans text-[8px] tracking-[0.35em] font-medium uppercase text-white/50 group-hover/btn:text-[#0a0a0a] transition-colors duration-500">
-                    Explorer la collection
-                  </span>
-                  <span className="absolute inset-0 bg-white transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-600 origin-left" />
-                </button>
+              {/* CTA — lien direct (collectionLink est déjà localisé) */}
+              <Link
+                to={collectionLink}
+                onClick={onClose}
+                className="group/btn relative overflow-hidden inline-flex items-center justify-center border border-white/[0.15] px-8 py-3.5 transition-all duration-600 hover:border-white/40"
+              >
+                <span className="relative z-10 font-sans text-[8px] tracking-[0.35em] font-medium uppercase text-white/50 group-hover/btn:text-[#0a0a0a] transition-colors duration-500">
+                  Explorer la collection
+                </span>
+                <span className="absolute inset-0 bg-white transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-600 origin-left" />
               </Link>
             </motion.div>
           </div>

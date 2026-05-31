@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export default function ValeursSection() {
   const { t } = useTranslation('histoire');
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const valeurs = [
     {
@@ -35,7 +33,7 @@ export default function ValeursSection() {
   ];
 
   return (
-    <motion.section className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-50 bg-[#000000] overflow-hidden">
+    <motion.section className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-50 bg-[#000000] overflow-hidden">
       {/* DESKTOP */}
       <div className="hidden md:block h-full relative bg-[#000000]">
         <img
@@ -44,50 +42,47 @@ export default function ValeursSection() {
           className="absolute inset-0 h-full w-full object-cover opacity-45"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[#000000]/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/72 to-[#000000]/35" />
+        <div className="absolute inset-0 bg-[#000000]/72" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#000000]/80 to-[#000000]/46" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/82 via-transparent to-[#000000]/30" />
 
-        <div className="relative z-10 flex h-full flex-col justify-center px-10 pt-28 pb-10 lg:px-14 xl:px-20">
-          <div className="max-w-5xl">
-            <div className="flex items-center gap-5 mb-5">
+        <div className="relative z-10 flex h-full items-center px-10 pt-28 pb-10 lg:px-14 xl:px-20">
+          <div className="grid w-full grid-cols-[0.92fr_1.08fr] items-start gap-12 xl:gap-16">
+            <div className="max-w-[33rem] pt-3">
+              <div className="flex items-center gap-5 mb-6">
               <span className="h-px w-14 bg-bronze/[0.55]" />
               <p className="font-sans text-bronze/[0.65] text-[9px] tracking-[0.42em] font-medium uppercase">
                 {t('valeursSection.label')}
               </p>
-            </div>
-            <h2 className="font-display text-5xl lg:text-[4.5rem] xl:text-[5.6rem] font-bold text-white tracking-[-0.04em] leading-[0.84] mb-2">
-              {t('valeursSection.title')}
-            </h2>
-            <p className="font-display text-3xl lg:text-[2.8rem] xl:text-[3.3rem] font-light italic text-white/[0.58] tracking-[-0.03em] leading-none">
-              {t('valeursSection.subtitle')}
-            </p>
-          </div>
-
-          <div className="mt-9 grid grid-cols-5 gap-3 xl:gap-4">
-            {valeurs.map((valeur, index) => (
-              <div
-                key={valeur.title}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className={[
-                  'group min-h-[15rem] border border-white/[0.12] bg-white/[0.035] p-5 xl:p-6 transition-all duration-500',
-                  hoveredIndex === index ? 'border-bronze/[0.55] bg-bronze/[0.08]' : 'hover:border-white/[0.28]'
-                ].join(' ')}
-              >
-                <p className={[
-                  'font-sans text-[8px] tracking-[0.24em] uppercase font-medium mb-5 transition-colors duration-500',
-                  hoveredIndex === index ? 'text-bronze' : 'text-white/[0.28]'
-                ].join(' ')}>
-                  {valeur.keyword}
-                </p>
-                <h3 className="font-display text-2xl xl:text-[1.75rem] text-white font-bold tracking-[-0.02em] leading-[0.95] mb-5">
-                  {valeur.title}
-                </h3>
-                <p className="font-sans text-[12px] xl:text-[13px] leading-[1.7] font-light text-white/[0.58]">
-                  {valeur.description}
-                </p>
               </div>
-            ))}
+              <h2 className="font-display text-5xl lg:text-[4.4rem] xl:text-[5.2rem] font-bold text-white tracking-[-0.04em] leading-[0.84] mb-3">
+                {t('valeursSection.title')}
+              </h2>
+              <p className="font-display text-3xl lg:text-[2.65rem] xl:text-[3rem] font-light italic text-white/[0.6] tracking-[-0.03em] leading-none">
+                {t('valeursSection.subtitle')}
+              </p>
+            </div>
+
+            <div className="border-y border-white/[0.12]">
+              {valeurs.map((valeur) => (
+                <div
+                  key={valeur.title}
+                  className="group grid grid-cols-[13rem_1fr] gap-8 border-b border-white/[0.10] py-4 last:border-b-0 xl:grid-cols-[15rem_1fr] xl:py-5"
+                >
+                  <div>
+                    <p className="font-sans text-[8px] tracking-[0.28em] uppercase font-medium text-bronze/[0.72] mb-2">
+                      {valeur.keyword}
+                    </p>
+                    <h3 className="font-display text-2xl xl:text-[1.85rem] text-white font-bold tracking-[-0.02em] leading-[0.95]">
+                      {valeur.title}
+                    </h3>
+                  </div>
+                  <p className="font-sans text-[13px] xl:text-sm leading-[1.75] font-light text-white/[0.62] transition-colors duration-500 group-hover:text-white/[0.82]">
+                    {valeur.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -113,9 +108,9 @@ export default function ValeursSection() {
             {t('valeursSection.subtitle')}
           </p>
 
-          <div className="space-y-3">
+          <div className="border-y border-white/[0.12]">
             {valeurs.map((valeur) => (
-              <div key={valeur.title} className="border border-white/[0.12] bg-white/[0.04] p-4">
+              <div key={valeur.title} className="border-b border-white/[0.10] py-4 last:border-b-0">
                 <p className="font-sans text-[7px] tracking-[0.22em] text-bronze/[0.72] uppercase font-medium mb-2">
                   {valeur.keyword}
                 </p>

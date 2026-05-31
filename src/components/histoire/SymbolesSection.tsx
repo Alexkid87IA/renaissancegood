@@ -44,7 +44,7 @@ export default function SymbolesSection() {
 
   return (
     <motion.section
-      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-[40] bg-beige overflow-hidden"
+      className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[40] bg-beige overflow-hidden"
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">
