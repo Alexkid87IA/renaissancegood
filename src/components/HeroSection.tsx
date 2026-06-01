@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 
-const HERO_VIDEO = 'https://renaissance-cdn.b-cdn.net/hf_20260130_124034_0ed82220-23c4-4752-a1c3-00af6106e2ce.mp4';
+const HERO_VIDEO_DESKTOP = 'https://renaissance-cdn.b-cdn.net/videos/renaissance-hero-v2.mp4';
+const HERO_VIDEO_MOBILE = 'https://renaissance-cdn.b-cdn.net/hf_20260130_124034_0ed82220-23c4-4752-a1c3-00af6106e2ce.mp4';
 const HERO_POSTER = '/hero-poster.png';
 const VIDEO_SPEED = 0.7;
 
@@ -82,7 +83,7 @@ export default function HeroSection() {
           />
         ) : (
           <motion.video
-            src={HERO_VIDEO}
+            src={HERO_VIDEO_DESKTOP}
             poster={HERO_POSTER}
             autoPlay
             muted
@@ -177,7 +178,7 @@ export default function HeroSection() {
       <div className="relative h-full overflow-hidden lg:hidden">
         <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <motion.video
-            src={HERO_VIDEO}
+            src={HERO_VIDEO_MOBILE}
             autoPlay
             muted
             loop

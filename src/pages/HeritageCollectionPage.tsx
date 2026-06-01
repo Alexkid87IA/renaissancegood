@@ -7,6 +7,7 @@ export default function HeritageCollectionPage() {
     collectionName: 'Heritage',
     translationPrefix: 'heritage',
     heroImage: 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%203_58AM.jpeg',
+    heroVideo: 'https://renaissance-cdn.b-cdn.net/videos/heritage-collection.mp4',
     seoUrl: '/collections/heritage',
   };
 
