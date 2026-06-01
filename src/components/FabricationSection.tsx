@@ -5,15 +5,14 @@ import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import HomeEditorialBlock from './HomeEditorialBlock';
 
-const FABRICATION_IMAGE = 'https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_06AM.jpeg';
-const WARM_IMAGE_FILTER = 'grayscale(1) sepia(0.16) saturate(0.88) contrast(1.05) brightness(0.94)';
+const FABRICATION_IMAGE = 'https://renaissance-cdn.b-cdn.net/fabrication-section.jpg';
 
 export default function FabricationSection() {
   const { t } = useTranslation('home');
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
-  const { sectionStyle, imageMotionStyle, active } = useStackedScroll(sectionRef);
+  const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
 
   const STATS = [
     { value: '6-8', label: t('fabrication.stat1') },
@@ -39,7 +38,7 @@ export default function FabricationSection() {
         <motion.img
           src={FABRICATION_IMAGE}
           alt="Renaissance Paris - Fabrication"
-          style={active ? { ...imageMotionStyle, filter: WARM_IMAGE_FILTER } : { filter: WARM_IMAGE_FILTER }}
+          style={imageMotionStyle}
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
@@ -107,7 +106,7 @@ export default function FabricationSection() {
         <motion.img
           src={FABRICATION_IMAGE}
           alt="Renaissance Paris - Fabrication"
-          style={active ? { ...imageMotionStyle, filter: WARM_IMAGE_FILTER } : { filter: WARM_IMAGE_FILTER }}
+          style={imageMotionStyle}
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
