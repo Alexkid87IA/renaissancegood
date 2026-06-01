@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import HomeEditorialBlock from './HomeEditorialBlock';
 
-const FABRICATION_IMAGE = 'https://renaissance-cdn.b-cdn.net/fabrication-section.jpg';
+const FABRICATION_IMAGE = 'https://renaissance-cdn.b-cdn.net/try-in-store.jpg';
 
 export default function FabricationSection() {
   const { t } = useTranslation('home');
