@@ -12,12 +12,12 @@ export default function TryInStoreSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: false, amount: 0.3 });
-  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
+  const { sectionStyle, imageMotionStyle, active } = useStackedScroll(sectionRef);
 
   return (
     <motion.section
       ref={sectionRef}
-      style={{ scale, opacity, filter }}
+      style={sectionStyle}
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[60] bg-[#000000] overflow-hidden"
     >
       {/* DESKTOP */}
@@ -45,7 +45,7 @@ export default function TryInStoreSection() {
           <motion.img
             src="https://renaissance-cdn.b-cdn.net/page%20histoire.png"
             alt="Essayez en boutique"
-            style={{ y: imageY, scale: imageScale, filter: WARM_IMAGE_FILTER }}
+            style={active ? { ...imageMotionStyle, filter: WARM_IMAGE_FILTER } : { filter: WARM_IMAGE_FILTER }}
             className="w-full h-full object-cover"
             loading="lazy"
           />
@@ -57,7 +57,7 @@ export default function TryInStoreSection() {
 
       {/* MOBILE — Éditorial luxe */}
       <div className="md:hidden relative h-full bg-[#000000] overflow-hidden">
-        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
+        <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
             src="https://renaissance-cdn.b-cdn.net/page%20histoire.png"
             alt="Essayez en boutique"

@@ -12,19 +12,19 @@ export default function HistoireSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: false, amount: 0.3 });
-  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
+  const { sectionStyle, imageMotionStyle, active } = useStackedScroll(sectionRef);
 
   return (
     <motion.section
       ref={sectionRef}
-      style={{ scale, opacity, filter }}
+      style={sectionStyle}
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[70] overflow-hidden"
       id="histoire"
     >
       {/* DESKTOP */}
       <div className="hidden md:flex h-full relative">
         {/* Full-bleed background image */}
-        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
+        <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
             src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
             alt="Renaissance Paris - Campagne Trident"
@@ -58,7 +58,7 @@ export default function HistoireSection() {
 
       {/* MOBILE — Éditorial luxe */}
       <div className="md:hidden relative h-full bg-[#0a0a0a] overflow-hidden">
-        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
+        <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
             src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
             alt="Renaissance Paris - Campagne Trident"

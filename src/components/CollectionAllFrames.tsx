@@ -11,7 +11,7 @@ export default function CollectionAllFrames() {
   const navigate = useLocalizedNavigate();
   const { t } = useTranslation('home');
   const [isLoading, setIsLoading] = useState(false);
-  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
+  const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
   const textInView = useInView(textRef, { once: false, amount: 0.3 });
 
   const handleNavigate = () => {
@@ -24,7 +24,7 @@ export default function CollectionAllFrames() {
   return (
     <motion.section
       ref={sectionRef}
-      style={{ scale, opacity, filter }}
+      style={sectionStyle}
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-50 overflow-hidden"
       data-indicator-theme="light"
     >
@@ -34,7 +34,7 @@ export default function CollectionAllFrames() {
           <motion.img
             src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
             alt="Nos créations"
-            style={{ y: imageY, scale: imageScale }}
+            style={imageMotionStyle}
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
@@ -56,7 +56,7 @@ export default function CollectionAllFrames() {
 
       {/* MOBILE — Éditorial luxe */}
       <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate}>
-        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
+        <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
             src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
             alt="Nos créations"

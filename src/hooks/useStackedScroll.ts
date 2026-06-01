@@ -1,7 +1,5 @@
 import { RefObject, useState, useEffect } from 'react';
-import { useScroll, useTransform, useReducedMotion, motionValue } from 'framer-motion';
-
-const ZERO = motionValue(0);
+import { useScroll, useTransform, useReducedMotion, type MotionStyle } from 'framer-motion';
 
 function useIsDesktop() {
   const [desktop, setDesktop] = useState(
@@ -23,28 +21,33 @@ export function useStackedScroll(ref: RefObject<HTMLElement>) {
   const active = isDesktop && !reducedMotion;
 
   const { scrollYProgress: exitProgress } = useScroll({
-    target: active ? ref : undefined,
+    target: ref,
     offset: ['start start', 'end start'],
   });
 
   const { scrollYProgress: visibleProgress } = useScroll({
-    target: active ? ref : undefined,
+    target: ref,
     offset: ['start end', 'end start'],
   });
 
-  const ep = active ? exitProgress : ZERO;
-  const vp = active ? visibleProgress : ZERO;
-
-  const scale = useTransform(ep, [0, 1], active ? [1, 0.94] : [1, 1]);
-  const opacity = useTransform(ep, [0, 0.4, 1], active ? [1, 1, 0] : [1, 1, 1]);
-  const blur = useTransform(ep, [0, 0.6, 1], active ? [0, 0, 6] : [0, 0, 0]);
+  const scale = useTransform(exitProgress, [0, 1], [1, 0.94]);
+  const opacity = useTransform(exitProgress, [0, 0.4, 1], [1, 1, 0]);
+  const blur = useTransform(exitProgress, [0, 0.6, 1], [0, 0, 6]);
   const filter = useTransform(blur, (b) => `blur(${b}px)`);
-  const imageY = useTransform(vp, [0, 1], active ? ['4%', '-4%'] : ['0%', '0%']);
+  const imageY = useTransform(visibleProgress, [0, 1], ['4%', '-4%']);
   const imageScale = useTransform(
-    vp,
+    visibleProgress,
     [0, 0.35, 0.65, 1],
-    active ? [1.15, 1.12, 1.1, 1.1] : [1, 1, 1, 1]
+    [1.15, 1.12, 1.1, 1.1]
   );
 
-  return { scrollYProgress: exitProgress, scale, opacity, filter, imageY, imageScale };
+  const sectionStyle: MotionStyle | undefined = active
+    ? { scale, opacity, filter }
+    : undefined;
+
+  const imageMotionStyle: MotionStyle | undefined = active
+    ? { y: imageY, scale: imageScale }
+    : undefined;
+
+  return { sectionStyle, imageMotionStyle, imageY, imageScale, active };
 }

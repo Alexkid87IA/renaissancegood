@@ -9,7 +9,7 @@ export default function ReassuranceSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: false, amount: 0.3 });
   const { t } = useTranslation('home');
-  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
+  const { sectionStyle, imageMotionStyle, active } = useStackedScroll(sectionRef);
 
   const guarantees = [
     { title: t('reassurance.item1Title'), description: t('reassurance.item1Desc') },
@@ -21,7 +21,7 @@ export default function ReassuranceSection() {
   return (
     <motion.section
       ref={sectionRef}
-      style={{ scale, opacity, filter }}
+      style={sectionStyle}
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[90] bg-[#000000] overflow-hidden"
     >
 
@@ -30,7 +30,7 @@ export default function ReassuranceSection() {
         <motion.img
           src="https://renaissance-cdn.b-cdn.net/packshot.png"
           alt="Renaissance Paris - Nos engagements"
-          style={{ y: imageY, scale: imageScale, filter: 'grayscale(1) sepia(0.08) saturate(0.88) contrast(1.06) brightness(1.08)' }}
+          style={active ? { ...imageMotionStyle, filter: 'grayscale(1) sepia(0.08) saturate(0.88) contrast(1.06) brightness(1.08)' } : { filter: 'grayscale(1) sepia(0.08) saturate(0.88) contrast(1.06) brightness(1.08)' }}
           className="absolute inset-0 w-full h-full object-cover object-[66%_center]"
           loading="lazy"
         />
@@ -72,7 +72,7 @@ export default function ReassuranceSection() {
 
       {/* MOBILE — fullscreen image + overlay */}
       <div className="md:hidden relative h-full bg-[#000000] overflow-hidden">
-        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
+        <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
             src="https://renaissance-cdn.b-cdn.net/packshot%20copie.png"
             alt="Nos engagements"

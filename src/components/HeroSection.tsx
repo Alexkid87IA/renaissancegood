@@ -49,7 +49,7 @@ export default function HeroSection() {
   const slowConnection = useSlowConnection();
 
   const [phase, setPhase] = useState<TransitionPhase>('video');
-  const { scale, opacity, filter, imageY } = useStackedScroll(sectionRef);
+  const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -68,7 +68,7 @@ export default function HeroSection() {
   return (
     <motion.section
       ref={sectionRef}
-      style={{ scale, opacity, filter }}
+      style={sectionStyle}
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-10"
     >
       {/* DESKTOP VERSION */}
@@ -77,7 +77,7 @@ export default function HeroSection() {
           <motion.img
             src={HERO_POSTER}
             alt="Renaissance Paris"
-            style={{ y: imageY }}
+            style={imageMotionStyle}
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
         ) : (
@@ -88,7 +88,7 @@ export default function HeroSection() {
             muted
             playsInline
             preload="metadata"
-            style={{ y: imageY }}
+            style={imageMotionStyle}
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
         )}
@@ -139,7 +139,7 @@ export default function HeroSection() {
                   initial={{ opacity: 0, scale: 1.06, filter: 'brightness(0.3)' }}
                   animate={{ opacity: 1, scale: 1, filter: 'brightness(1)' }}
                   transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ y: imageY }}
+                  style={imageMotionStyle}
                   className="absolute inset-0 w-full h-full object-cover object-center z-[2]"
                 />
               )}
@@ -175,7 +175,7 @@ export default function HeroSection() {
 
       {/* MOBILE VERSION — Éditorial luxe */}
       <div className="relative h-full overflow-hidden lg:hidden">
-        <motion.div className="absolute inset-0" style={{ y: imageY }}>
+        <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <motion.video
             src={HERO_VIDEO}
             autoPlay

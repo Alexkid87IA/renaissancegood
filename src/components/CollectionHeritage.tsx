@@ -13,7 +13,7 @@ export default function CollectionHeritage() {
   const { t } = useTranslation('collections');
 
   const textInView = useInView(textRef, { once: false, amount: 0.3 });
-  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
+  const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
 
   const handleNavigate = () => {
     setIsLoading(true);
@@ -23,7 +23,7 @@ export default function CollectionHeritage() {
   return (
     <motion.section
       ref={sectionRef}
-      style={{ scale, opacity, filter }}
+      style={sectionStyle}
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-20 overflow-hidden"
     >
       {/* DESKTOP */}
@@ -51,7 +51,7 @@ export default function CollectionHeritage() {
             src="https://renaissance-cdn.b-cdn.net/packshot%20collection%20heritage.png"
             alt="Collection Héritage - Trident"
             loading="lazy"
-            style={{ y: imageY, scale: imageScale }}
+            style={imageMotionStyle}
             className="w-full h-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.03] group-hover:brightness-[1.05]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-text/20 via-transparent to-transparent pointer-events-none" />
@@ -83,7 +83,7 @@ export default function CollectionHeritage() {
       {/* MOBILE */}
       <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate}>
         {/* Image — sans overlay */}
-        <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
+        <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
             src="https://renaissance-cdn.b-cdn.net/packshot%20collection%20heritage.png"
             alt="Collection Héritage"

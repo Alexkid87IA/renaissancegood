@@ -13,7 +13,7 @@ export default function FabricationSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: false, amount: 0.3 });
-  const { scale, opacity, filter, imageY, imageScale } = useStackedScroll(sectionRef);
+  const { sectionStyle, imageMotionStyle, active } = useStackedScroll(sectionRef);
 
   const STATS = [
     { value: '6-8', label: t('fabrication.stat1') },
@@ -30,7 +30,7 @@ export default function FabricationSection() {
   return (
     <motion.section
       ref={sectionRef}
-      style={{ scale, opacity, filter }}
+      style={sectionStyle}
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[80] bg-[#000000] overflow-hidden"
       id="fabrication"
     >
@@ -39,7 +39,7 @@ export default function FabricationSection() {
         <motion.img
           src={FABRICATION_IMAGE}
           alt="Renaissance Paris - Fabrication"
-          style={{ y: imageY, scale: imageScale, filter: WARM_IMAGE_FILTER }}
+          style={active ? { ...imageMotionStyle, filter: WARM_IMAGE_FILTER } : { filter: WARM_IMAGE_FILTER }}
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
@@ -107,7 +107,7 @@ export default function FabricationSection() {
         <motion.img
           src={FABRICATION_IMAGE}
           alt="Renaissance Paris - Fabrication"
-          style={{ y: imageY, scale: imageScale, filter: WARM_IMAGE_FILTER }}
+          style={active ? { ...imageMotionStyle, filter: WARM_IMAGE_FILTER } : { filter: WARM_IMAGE_FILTER }}
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
