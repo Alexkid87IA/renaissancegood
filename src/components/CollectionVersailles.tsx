@@ -12,7 +12,7 @@ export default function CollectionVersailles() {
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation('collections');
 
-  const textInView = useInView(textRef, { once: false, amount: 0.3 });
+  const textInView = useInView(textRef, { once: true, amount: 0.3 });
   const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
 
   const handleNavigate = () => {

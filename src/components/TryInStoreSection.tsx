@@ -11,7 +11,7 @@ export default function TryInStoreSection() {
   const { t } = useTranslation('home');
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const contentInView = useInView(contentRef, { once: false, amount: 0.3 });
+  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
   const { sectionStyle, imageMotionStyle, active } = useStackedScroll(sectionRef);
 
   return (
@@ -73,7 +73,7 @@ export default function TryInStoreSection() {
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-sans text-white/40 text-[8px] tracking-[0.5em] uppercase font-medium mb-4"
           >
@@ -83,7 +83,7 @@ export default function TryInStoreSection() {
           <motion.h2
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, delay: 0.35 }}
             className="font-display text-[2.6rem] sm:text-5xl font-bold text-white tracking-[-0.04em] leading-[0.88] mb-2"
           >
@@ -92,7 +92,7 @@ export default function TryInStoreSection() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, delay: 0.5 }}
             className="font-display text-[2.6rem] sm:text-5xl font-light italic text-white/80 tracking-[-0.04em] leading-[0.88]"
           >
@@ -102,7 +102,7 @@ export default function TryInStoreSection() {
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.7 }}
             className="w-10 h-px bg-white/25 origin-left mt-5 mb-5"
           />
@@ -110,7 +110,7 @@ export default function TryInStoreSection() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.9 }}
             className="flex items-center gap-5"
           >

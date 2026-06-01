@@ -14,11 +14,11 @@ import { useSectionSnap } from '../hooks/useSectionSnap';
 
 function MobileDivider() {
   return (
-    <div className="lg:hidden relative py-1 bg-[#000000]">
-      <div className="flex items-center gap-3 px-7">
-        <div className="flex-1 h-px bg-white/[0.08]" />
-        <div className="w-1 h-1 bg-bronze/40 rotate-45" />
-        <div className="flex-1 h-px bg-white/[0.08]" />
+    <div className="lg:hidden relative py-6 bg-[#000000]">
+      <div className="flex items-center gap-4 px-7">
+        <div className="flex-1 h-px bg-white/[0.15]" />
+        <div className="w-1.5 h-1.5 bg-bronze/60 rotate-45" />
+        <div className="flex-1 h-px bg-white/[0.15]" />
       </div>
     </div>
   );

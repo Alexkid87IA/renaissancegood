@@ -7,7 +7,7 @@ import HomeEditorialBlock from './HomeEditorialBlock';
 export default function ReassuranceSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.3 });
+  const inView = useInView(ref, { once: true, amount: 0.3 });
   const { t } = useTranslation('home');
   const { sectionStyle, imageMotionStyle, active } = useStackedScroll(sectionRef);
 

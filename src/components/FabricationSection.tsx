@@ -12,7 +12,7 @@ export default function FabricationSection() {
   const { t } = useTranslation('home');
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const contentInView = useInView(contentRef, { once: false, amount: 0.3 });
+  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
   const { sectionStyle, imageMotionStyle, active } = useStackedScroll(sectionRef);
 
   const STATS = [

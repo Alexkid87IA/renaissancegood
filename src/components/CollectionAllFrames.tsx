@@ -12,7 +12,7 @@ export default function CollectionAllFrames() {
   const { t } = useTranslation('home');
   const [isLoading, setIsLoading] = useState(false);
   const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
-  const textInView = useInView(textRef, { once: false, amount: 0.3 });
+  const textInView = useInView(textRef, { once: true, amount: 0.3 });
 
   const handleNavigate = () => {
     setIsLoading(true);
@@ -70,7 +70,7 @@ export default function CollectionAllFrames() {
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-sans text-white/40 text-[8px] tracking-[0.5em] uppercase font-medium mb-4"
           >
@@ -80,7 +80,7 @@ export default function CollectionAllFrames() {
           <motion.h3
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, delay: 0.35 }}
             className="font-display text-[2.6rem] sm:text-5xl font-bold text-white tracking-[-0.04em] leading-[0.88] mb-2"
           >
@@ -89,7 +89,7 @@ export default function CollectionAllFrames() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, delay: 0.5 }}
             className="font-display text-[2.6rem] sm:text-5xl font-light italic text-white/80 tracking-[-0.04em] leading-[0.88]"
           >
@@ -99,7 +99,7 @@ export default function CollectionAllFrames() {
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.7 }}
             className="w-10 h-px bg-white/25 origin-left mt-5 mb-5"
           />
@@ -107,7 +107,7 @@ export default function CollectionAllFrames() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.9 }}
             className="flex items-center gap-5"
           >
