@@ -5,69 +5,60 @@ import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import HomeEditorialBlock from './HomeEditorialBlock';
 
-const WARM_IMAGE_FILTER = 'grayscale(1) sepia(0.14) saturate(0.82) contrast(1.08) brightness(0.88)';
-
 export default function HistoireSection() {
   const { t } = useTranslation('home');
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
-  const { sectionStyle, imageMotionStyle, active } = useStackedScroll(sectionRef);
+  const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
 
   return (
     <motion.section
       ref={sectionRef}
       style={sectionStyle}
-      className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[70] overflow-hidden"
+      className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[70] bg-[#000000] overflow-hidden"
       id="histoire"
     >
       {/* DESKTOP */}
-      <div className="hidden md:flex h-full relative">
-        {/* Full-bleed background image */}
-        <motion.div className="absolute inset-0" style={imageMotionStyle}>
-          <img
-            src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
-            alt="Renaissance Paris - Campagne Trident"
-            style={{ filter: WARM_IMAGE_FILTER }}
-            className="w-full h-full object-cover object-center"
+      <div className="h-full hidden md:flex flex-row">
+        {/* Left - Content */}
+        <div className="relative w-1/2 overflow-hidden bg-black flex items-center justify-center px-12 lg:px-20 xl:px-24">
+          <HomeEditorialBlock
+            panelRef={contentRef}
+            active={contentInView}
+            index="06"
+            label={t('histoire.label')}
+            title={t('histoire.title')}
+            subtitle={t('histoire.subtitle')}
+            description={t('histoire.description')}
+            actions={[{ label: t('histoire.cta'), href: '/histoire' }]}
+            meta={t('histoire.since')}
+          />
+        </div>
+
+        {/* Right - Image */}
+        <div className="w-1/2 h-full relative overflow-hidden">
+          <motion.img
+            src="https://renaissance-cdn.b-cdn.net/ne-dun-refus.jpg"
+            alt="Né d'un refus - Renaissance Paris"
+            style={imageMotionStyle}
+            className="w-full h-full object-cover"
             loading="lazy"
           />
-          {/* Gradient overlays for text readability */}
-          <div className="absolute inset-0 bg-[#160e07]/[0.22] mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/40 via-transparent to-[#0a0a0a]/30" />
-        </motion.div>
-
-        {/* Content */}
-        <div className="relative w-full max-w-[1600px] mx-auto flex items-center px-12 lg:px-20 xl:px-28">
-          <div className="relative w-[55%] max-w-2xl">
-            <HomeEditorialBlock
-              panelRef={contentRef}
-              active={contentInView}
-              index="06"
-              label={t('histoire.label')}
-              title={t('histoire.title')}
-              subtitle={t('histoire.subtitle')}
-              description={t('histoire.description')}
-              actions={[{ label: t('histoire.cta'), href: '/histoire' }]}
-              meta={t('histoire.since')}
-            />
-          </div>
+          <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, #000000 0%, rgba(0,0,0,0.4) 30%, transparent 100%), linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)' }} />
         </div>
       </div>
 
       {/* MOBILE — Éditorial luxe */}
-      <div className="md:hidden relative h-full bg-[#0a0a0a] overflow-hidden">
+      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden">
         <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
-            src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
-            alt="Renaissance Paris - Campagne Trident"
-            style={{ filter: WARM_IMAGE_FILTER }}
-            className="w-full h-full object-cover object-center"
+            src="https://renaissance-cdn.b-cdn.net/ne-dun-refus.jpg"
+            alt="Né d'un refus - Renaissance Paris"
+            className="w-full h-full object-cover object-[center_30%]"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-[#160e07]/20 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/40 via-transparent to-[#0a0a0a]/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]/60" />
         </motion.div>
 
         <div className="relative h-full flex flex-col justify-end px-7 pb-14">
