@@ -43,7 +43,7 @@ export default function TryInStoreSection() {
         {/* Right - Image */}
         <div className="w-1/2 h-full relative overflow-hidden">
           <motion.img
-            src="https://renaissance-cdn.b-cdn.net/page%20histoire.png"
+            src="https://renaissance-cdn.b-cdn.net/try-in-store.jpg"
             alt="Essayez en boutique"
             style={active ? { ...imageMotionStyle, filter: WARM_IMAGE_FILTER } : { filter: WARM_IMAGE_FILTER }}
             className="w-full h-full object-cover"
@@ -59,7 +59,7 @@ export default function TryInStoreSection() {
       <div className="md:hidden relative h-full bg-[#000000] overflow-hidden">
         <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
-            src="https://renaissance-cdn.b-cdn.net/page%20histoire.png"
+            src="https://renaissance-cdn.b-cdn.net/try-in-store.jpg"
             alt="Essayez en boutique"
             style={{ filter: WARM_IMAGE_FILTER }}
             className="w-full h-full object-cover object-[center_30%]"
