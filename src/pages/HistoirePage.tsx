@@ -15,16 +15,18 @@ import EngagementSection from '../components/histoire/EngagementSection';
 export default function HistoirePage() {
   const { t } = useTranslation('histoire');
 
-  // Même logique que la home : sections sticky + snap doux.
+  const isDesktop = typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches;
+
   useEffect(() => {
-    document.documentElement.classList.add('homepage-snap');
     window.scrollTo(0, 0);
+    if (!isDesktop) return;
+    document.documentElement.classList.add('homepage-snap');
     return () => {
       document.documentElement.classList.remove('homepage-snap');
     };
-  }, []);
+  }, [isDesktop]);
 
-  useSectionSnap(true);
+  useSectionSnap(isDesktop);
 
   return (
     <div className="bg-[#0a0a0a] relative">

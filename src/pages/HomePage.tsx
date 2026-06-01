@@ -15,16 +15,17 @@ import { useSectionSnap } from '../hooks/useSectionSnap';
 export default function HomePage() {
   const { t } = useTranslation('home');
 
-  // Active le scroll-snap CSS (soft fallback) uniquement sur la homepage.
+  const isDesktop = typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches;
+
   useEffect(() => {
+    if (!isDesktop) return;
     document.documentElement.classList.add('homepage-snap');
     return () => {
       document.documentElement.classList.remove('homepage-snap');
     };
-  }, []);
+  }, [isDesktop]);
 
-  // Snap JS custom : 1 molette = 1 section (desktop wheel/trackpad).
-  useSectionSnap(true);
+  useSectionSnap(isDesktop);
 
   return (
     <>

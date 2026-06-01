@@ -39,6 +39,10 @@ export function useSectionSnap(enabled: boolean = true) {
     if (!enabled) return;
     if (typeof window === 'undefined') return;
 
+    // Desktop only — sur mobile le scroll natif est préférable
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+    if (!isDesktop) return;
+
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
