@@ -5,14 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import HomeEditorialBlock from './HomeEditorialBlock';
 
-const WARM_IMAGE_FILTER = 'grayscale(1) sepia(0.16) saturate(0.82) contrast(1.08) brightness(0.86)';
-
 export default function TryInStoreSection() {
   const { t } = useTranslation('home');
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
-  const { sectionStyle, imageMotionStyle, active } = useStackedScroll(sectionRef);
+  const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
 
   return (
     <motion.section
@@ -45,13 +43,11 @@ export default function TryInStoreSection() {
           <motion.img
             src="https://renaissance-cdn.b-cdn.net/try-in-store.jpg"
             alt="Essayez en boutique"
-            style={active ? { ...imageMotionStyle, filter: WARM_IMAGE_FILTER } : { filter: WARM_IMAGE_FILTER }}
+            style={imageMotionStyle}
             className="w-full h-full object-cover"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-[#160e07]/25 mix-blend-multiply pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#000000]/40 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/30 via-transparent to-[#000000]/20 pointer-events-none" />
+          <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, #000000 0%, rgba(0,0,0,0.4) 30%, transparent 100%), linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)' }} />
         </div>
       </div>
 
@@ -61,11 +57,9 @@ export default function TryInStoreSection() {
           <img
             src="https://renaissance-cdn.b-cdn.net/try-in-store.jpg"
             alt="Essayez en boutique"
-            style={{ filter: WARM_IMAGE_FILTER }}
             className="w-full h-full object-cover object-[center_30%]"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-[#160e07]/20 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]/60" />
         </motion.div>
 
