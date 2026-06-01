@@ -83,7 +83,6 @@ export default function CollectionVersailles() {
 
       {/* MOBILE */}
       <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate}>
-        {/* Image — sans overlay */}
         <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
             src="https://renaissance-cdn.b-cdn.net/VERSAILLES-COLLECTION.jpeg"
@@ -91,32 +90,29 @@ export default function CollectionVersailles() {
             className="w-full h-full object-cover object-[center_35%]"
             loading="lazy"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/20 via-transparent to-[#000000]/70" />
         </motion.div>
 
-        {/* Content — centré verticalement */}
-        <div className="relative h-full flex flex-col justify-center px-6 pt-20">
+        <div className="relative h-full flex flex-col justify-end px-7 pb-14">
           <p className="font-sans text-white/50 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
             {t('versailles.label')}
           </p>
-          <div className="flex items-baseline justify-between">
-            <div>
-              <h3 className="font-display text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[0.9] text-white mb-1">
-                {t('versailles.title')}
-              </h3>
-              <p className="font-display text-lg font-light italic text-white/50 tracking-[-0.02em]">
-                {t('versailles.subtitle')}
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="font-display text-sm italic text-white/50 font-light">
-                {isLoading ? '...' : t('versailles.discover')}
-              </span>
-              {!isLoading && (
-                <svg className="w-4 h-4 text-white/[0.35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              )}
-            </div>
+          <h3 className="font-display text-[2.6rem] sm:text-5xl font-bold tracking-[-0.03em] leading-[0.88] text-white mb-2">
+            {t('versailles.title')}
+          </h3>
+          <p className="font-display text-xl font-light italic text-white/60 tracking-[-0.02em] mb-5">
+            {t('versailles.subtitle')}
+          </p>
+          <div className="w-10 h-px bg-white/20 mb-5" />
+          <div className="flex items-center gap-2">
+            <span className="font-display text-[13px] italic text-white/70 tracking-[-0.01em]">
+              {isLoading ? '...' : t('versailles.discover')}
+            </span>
+            {!isLoading && (
+              <svg className="w-4 h-4 text-white/[0.35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            )}
           </div>
         </div>
 

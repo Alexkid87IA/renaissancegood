@@ -12,6 +12,18 @@ import ReassuranceSection from '../components/ReassuranceSection';
 import SEO from '../components/SEO';
 import { useSectionSnap } from '../hooks/useSectionSnap';
 
+function MobileDivider() {
+  return (
+    <div className="lg:hidden relative py-1 bg-[#000000]">
+      <div className="flex items-center gap-3 px-7">
+        <div className="flex-1 h-px bg-white/[0.08]" />
+        <div className="w-1 h-1 bg-bronze/40 rotate-45" />
+        <div className="flex-1 h-px bg-white/[0.08]" />
+      </div>
+    </div>
+  );
+}
+
 export default function HomePage() {
   const { t } = useTranslation('home');
 
@@ -35,13 +47,21 @@ export default function HomePage() {
         url="/"
       />
       <HeroSection />
+      <MobileDivider />
       <CollectionHeritage />
+      <MobileDivider />
       <CollectionVersailles />
+      <MobileDivider />
       <CollectionIsis />
+      <MobileDivider />
       <CollectionAllFrames />
+      <MobileDivider />
       <TryInStoreSection />
+      <MobileDivider />
       <HistoireSection />
+      <MobileDivider />
       <FabricationSection />
+      <MobileDivider />
       <ReassuranceSection />
     </>
   );
