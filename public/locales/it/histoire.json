@@ -2,20 +2,20 @@
   "hero": {
     "label": "La Maison",
     "title": "RENAISSANCE",
-    "subtitle": "Parigi, sempre."
+    "subtitle": "Nata nel 2019, da un rifiuto."
   },
   "signature": {
     "label": "La nostra firma",
-    "title": "CINQUE SIMBOLI\nMILLENARI",
-    "description": "Ogni montatura porta in sé una parte di eternità. Cinque simboli che attraversano le civiltà, cinque firme della Maison Renaissance."
+    "title": "SETTE SIMBOLI\nMILLENARI",
+    "description": "Ogni montatura porta in sé un frammento d'eternità. Sette simboli che attraversano le civiltà, sette capitoli della Maison Renaissance."
   },
   "savoirFaire": {
-    "label": "Savoir-faire",
-    "title": "ECCELLENZA\nARTIGIANALE",
-    "description": "Ogni montatura è il risultato di oltre 40 fasi di lavorazione manuale. Un processo meticoloso che garantisce una qualità eccezionale."
+    "label": "L'atelier",
+    "title": "LA NOSTRA\nLAVORAZIONE",
+    "description": "Ogni montatura prende forma tra Parigi, la Corea e l'Italia. Non produciamo in fretta. Produciamo giusto."
   },
   "fondateurs": {
-    "label": "Fondatori",
+    "label": "I fondatori",
     "title": "UNA VISIONE\nPARIGINA"
   },
   "valeurs": {
@@ -24,69 +24,69 @@
   },
   "engagement": {
     "label": "Impegno",
-    "title": "PERCHÉ NULLA\nVADA PERDUTO"
+    "title": "PERCHÉ NON\nSI DIMENTICHI MAI"
   },
   "ambassadeurs": {
     "label": "Ambasciatori",
-    "title": "INDOSSANO\nRENAISSANCE"
+    "title": "PORTANO\nRENAISSANCE"
   },
   "manifeste": {
     "label": "Manifesto",
-    "title": "MANIFESTO\nRENAISSANCE",
-    "description": "Ciò che creiamo non è un semplice accessorio. È un atto di trasmissione."
+    "title": "IL MANIFESTO\nRENAISSANCE",
+    "description": "Ciò che creiamo non è solo un accessorio. È un atto di trasmissione."
   },
   "symboles": {
-    "label": "Simboli",
-    "title": "CINQUE SIMBOLI\nETERNI"
+    "label": "I simboli",
+    "title": "SETTE SIMBOLI\nETERNI"
   },
   "page": {
     "histoire": {
       "seoTitle": "La nostra storia",
-      "seoDescription": "Scoprite la storia di RENAISSANCE Paris, maison francese di occhiali di lusso. La nostra maestria artigianale, i nostri valori e il nostro impegno per l'eccellenza."
+      "seoDescription": "Nata nel 2019 da un rifiuto: quello di veder sparire ciò che deve durare. Tre uomini del mestiere, fratelli per scelta. Ciò che si porta. Ciò che si trasmette."
     },
     "savoirFaire": {
-      "seoTitle": "Savoir-Faire",
-      "seoDescription": "Scoprite il savoir-faire artigianale RENAISSANCE Paris. Fabbricazione francese, materiali nobili e tecniche d'eccellenza per occhiali di lusso unici."
+      "seoTitle": "L'atelier",
+      "seoDescription": "L'atelier Renaissance Eyewear: disegnato a Parigi, prodotto tra Parigi, la Corea e l'Italia. Titanio placcato oro 18KT, acetato Mazzucchelli."
     },
     "manifeste": {
       "seoTitle": "Manifesto",
-      "seoDescription": "Scoprite il manifesto RENAISSANCE Paris. I nostri valori di eccellenza, autenticità e savoir-faire francese al servizio dell'occhialeria di lusso."
+      "seoDescription": "Il manifesto di Renaissance Eyewear. Ciò che si porta. Ciò che si trasmette."
     },
     "symboles": {
       "seoTitle": "Simboli",
-      "seoDescription": "Scoprite i simboli che ispirano RENAISSANCE Paris. Scarabeo, giglio e croce di Malta: emblemi carichi di storia per occhiali unici."
+      "seoDescription": "I simboli di Renaissance Eyewear: tridente, giglio, ankh, scarabeo, cobra, occhio di Horus, placca parigina. Sette segni incisi nel titanio."
     }
   },
   "blog": {
     "seoTitle": "Il Manifesto - Blog",
-    "seoDescription": "Scoprite l'universo RENAISSANCE Paris. Articoli sui nostri simboli, il nostro savoir-faire artigianale e la storia dell'occhialeria di lusso francese.",
+    "seoDescription": "L'universo di Renaissance Eyewear. Articoli sui nostri simboli, le nostre materie e la storia della Maison.",
     "heroLabel": "Attualità e cultura",
     "heroTitleLine1": "IL",
     "heroTitleLine2": "MANIFESTO.",
-    "heroSubtitle": "Storie, simboli e savoir-faire.",
-    "heroDescription": "Scoprite l'universo Renaissance oltre l'oggetto.",
+    "heroSubtitle": "Storie, simboli e materie.",
+    "heroDescription": "Scopri l'universo Renaissance oltre l'oggetto.",
     "loading": "Caricamento degli articoli...",
-    "emptyTitle": "I primi articoli arriveranno presto",
-    "emptyDescription": "Stiamo preparando contenuti eccezionali sui nostri simboli, il nostro savoir-faire e l'universo Renaissance.",
-    "readArticle": "Leggere l'articolo",
+    "emptyTitle": "I primi articoli arrivano presto",
+    "emptyDescription": "Stiamo preparando testi sui nostri simboli, le nostre materie e l'universo Renaissance.",
+    "readArticle": "Leggi l'articolo",
     "newsletterLabel": "Newsletter",
-    "newsletterTitle": "Non perdetevi nulla.",
-    "newsletterSubtitle": "Ricevete i nostri articoli direttamente.",
-    "emailPlaceholder": "La vostra email",
-    "subscribe": "Iscriversi"
+    "newsletterTitle": "Non perderti nulla.",
+    "newsletterSubtitle": "Ricevi i nostri articoli direttamente.",
+    "emailPlaceholder": "Il tuo indirizzo email",
+    "subscribe": "Iscriviti"
   },
   "article": {
     "loading": "Caricamento dell'articolo...",
-    "notFoundTitle": "Articolo non trovato",
+    "notFoundTitle": "Articolo introvabile",
     "notFoundDescription": "Questo articolo non esiste o è stato rimosso.",
     "backToArticles": "Torna agli articoli",
     "label": "Il Manifesto",
-    "share": "Condividere",
-    "authorBio": "Membro del team Renaissance, appassionato di maestria artigianale e storytelling che dà senso a ogni creazione.",
+    "share": "Condividi",
+    "authorBio": "La Maison Renaissance scrive con una sola voce.",
     "ctaLabel": "Le nostre creazioni",
-    "ctaTitle": "Scoprite le nostre collezioni.",
+    "ctaTitle": "Scopri le nostre collezioni.",
     "ctaSubtitle": "Ogni simbolo racconta una storia.",
-    "ctaButton": "Vedere le collezioni"
+    "ctaButton": "Vedi le collezioni"
   },
   "heroHistoire": {
     "label": "La nostra storia",
@@ -98,123 +98,129 @@
     "mobileDescription": "Una parola troppo grande per chi non ha niente da dire. Ma perfetta per chi ha qualcosa da restaurare."
   },
   "fondateursSection": {
-    "label": "L'Origine",
+    "label": "L'origine",
     "title": "NATA DA UN RIFIUTO.",
-    "subtitle": "Tre uomini del mestiere.",
-    "description": "Rifiuto che tutto si assomigli. Rifiuto che il lavoro ben fatto scompaia. Rifiuto di guardare altrove. Non tre eredi. Non tre laureati. Tre uomini del mestiere.",
-    "mobileDescription": "Rifiuto che tutto si assomigli. Rifiuto che il lavoro ben fatto scompaia. Tre uomini del mestiere.",
-    "cta": "Scoprire le nostre creazioni"
+    "subtitle": "Quello di veder sparire ciò che deve durare.",
+    "description": "Tre uomini del mestiere hanno visto la qualità arretrare per anni. Hanno deciso di fare il contrario. Concepire montature che accompagnano una vita, non una stagione. Esigere ciò che il mercato ha smesso di esigere.\nOgni montatura porta questa promessa: quella di un oggetto pensato per durare, non per essere sostituito.",
+    "mobileDescription": "Tre uomini del mestiere hanno visto la qualità arretrare per anni. Hanno deciso di fare il contrario. Ogni montatura porta questa promessa: quella di un oggetto pensato per durare, non per essere sostituito.",
+    "cta": "Scopri le nostre creazioni"
   },
   "symbolesSection": {
     "label": "I nostri simboli",
-    "title": "CINQUE SIMBOLI.",
+    "title": "SETTE SIMBOLI.",
     "subtitle": "Incisi nel metallo.",
-    "description": "Ogni simbolo porta un significato, una storia, una promessa. Segni che parlano da millenni. Non li abbiamo inventati. Li portiamo.",
+    "description": "Ciò che si porta racconta ciò in cui si crede.",
     "symbol1Name": "Il Tridente",
     "symbol1Subtitle": "Sovranità",
-    "symbol1Desc": "Tre punte, tre dimensioni: forza, visione, giustezza. Il simbolo del potere padroneggiato.",
+    "symbol1Desc": "L'equilibrio tra ieri, oggi e domani. L'àncora in ciò che fonda, ciò che costruisce, ciò che resta.",
     "symbol2Name": "Il Giglio",
-    "symbol2Subtitle": "Eccellenza",
-    "symbol2Desc": "L'eccellenza ereditata. Purezza del gesto ed esigenza del dettaglio.",
+    "symbol2Subtitle": "Maestria",
+    "symbol2Desc": "L'eredità francese. La nobiltà di un gesto trasmesso, l'orgoglio di un'origine assunta.",
     "symbol3Name": "L'Ankh",
     "symbol3Subtitle": "Eternità",
-    "symbol3Desc": "La chiave della vita eterna. Ciò che costruiamo oggi deve attraversare il tempo.",
+    "symbol3Desc": "Il soffio che lega. Ciò che unisce chi costruisce a chi continuerà.",
     "symbol4Name": "Lo Scarabeo",
     "symbol4Subtitle": "Rinascita",
-    "symbol4Desc": "La rinascita perpetua. Trasformazione e rinnovamento costante.",
+    "symbol4Desc": "Il passaggio e la trasformazione. Ciò che attraversa le prove, ciò che rinasce più forte di prima.",
     "symbol5Name": "Il Cobra",
     "symbol5Subtitle": "Protezione",
-    "symbol5Desc": "La protezione vigile. Elegante e potente. Presenza affermata, forza contenuta."
+    "symbol5Desc": "Il risveglio silenzioso. Chi vede prima di essere visto.",
+    "symbol6Name": "L'Occhio di Horus",
+    "symbol6Subtitle": "Lucidità",
+    "symbol6Desc": "L'occhio che non si chiude mai. Spezzato e poi reso intero, vede ciò che gli altri guardano senza vedere.",
+    "symbol7Name": "La Placca parigina",
+    "symbol7Subtitle": "Appartenenza",
+    "symbol7Desc": "« Avenue de la Renaissance », incisa nell'oro. La via che non si trova su nessuna mappa, l'indirizzo che ognuno porta con sé ovunque vada."
   },
   "signatureSection": {
-    "label": "La Firma",
-    "title": "ZERO LOGO.",
+    "label": "La firma",
+    "title": "UN SEGNO PER SÉ.",
     "subtitle": "Solo tu e ciò che sai.",
-    "description": "Asta sinistra. Uno strass. Più piccolo di una capocchia di spillo. Avvicinati. Appaiono dei simboli. Incisi nel metallo. Gira il pezzo. Un numero. Inciso per te. Esisterà una sola volta. Come te.",
-    "mobileDescription": "Asta sinistra. Uno strass. Più piccolo di una capocchia di spillo. Simboli incisi nel metallo. Un numero unico. Come te.",
-    "cta": "Scoprire il segreto"
+    "description": "In punta d'asta. Un cristallo. Più piccolo di una capocchia di spillo. Avvicinati. Compaiono dei simboli, incisi nel metallo. Sul ponte, un numero. Inciso per te. Esisterà una volta sola. Come te.",
+    "mobileDescription": "In punta d'asta. Un cristallo. Più piccolo di una capocchia di spillo. Simboli incisi nel metallo. Sul ponte, un numero unico. Come te.",
+    "cta": "Scopri le nostre creazioni"
   },
   "savoirFaireSection": {
-    "label": "Fabbricazione",
-    "title": "FABBRICATO IN COREA DEL SUD.",
-    "subtitle": "200 gesti. Zero compromessi.",
-    "description": "Ciò che rende bella una montatura è ciò che non si vede. L'equilibrio. La tensione del metallo. Il peso giusto. Più di 200 gesti per paio. Zero dimostrazioni. Solo il risultato.",
-    "stat1Value": "200+",
-    "stat1Label": "Gesti per paio",
-    "stat2Value": "15h",
-    "stat2Label": "Di fabbricazione",
-    "stat3Value": "0",
-    "stat3Label": "Compromessi",
-    "mobileStat1Label": "Gesti",
-    "mobileStat2Label": "Fabbricazione",
-    "mobileStat3Label": "Compromessi",
-    "cta": "Il nostro savoir-faire"
+    "label": "Lavorazione",
+    "title": "PRODOTTE DOVE LA PRECISIONE È UNA DISCIPLINA.",
+    "subtitle": "Francia, Corea, Italia.",
+    "description": "Le nostre montature prendono vita tra la Francia, la Corea e l'Italia, in manifatture dove il rigore è una cultura. Ogni luogo porta la sua padronanza: la finezza del titanio in Asia, la precisione delle finiture in Europa. Scegliamo i nostri partner per la loro esigenza, non per la loro rapidità.",
+    "stat1Value": "18KT",
+    "stat1Label": "Oro vero, placcato",
+    "stat2Value": "Titanio",
+    "stat2Label": "Leggero, resistente",
+    "stat3Value": "1849",
+    "stat3Label": "Acetato Mazzucchelli",
+    "mobileStat1Label": "Oro 18KT",
+    "mobileStat2Label": "Titanio",
+    "mobileStat3Label": "Acetato",
+    "cta": "L'atelier"
   },
   "valeursSection": {
     "label": "I nostri valori",
-    "title": "CINQUE PILASTRI.",
+    "title": "QUATTRO FIBRE. UNA CORONA.",
     "subtitle": "Non negoziabili.",
-    "valeur1Title": "La Giustezza",
-    "valeur1Desc": "Ogni parola vera. Ogni gesto necessario. Ogni materia giusta.",
-    "valeur1Keyword": "Verità",
-    "valeur2Title": "Il Rispetto",
-    "valeur2Desc": "Non trattiamo nessuno come un numero. Né cliente, né partner, né artigiano.",
-    "valeur2Keyword": "Dignità",
-    "valeur3Title": "Il Silenzio",
-    "valeur3Desc": "La vera eleganza è non forzare l'attenzione. Essere riconosciuti da chi sa.",
-    "valeur3Keyword": "Discrezione",
-    "valeur4Title": "La Trasmissione",
-    "valeur4Desc": "Costruiamo perché tra 20 anni qualcuno erediti un paio e lo conservi.",
-    "valeur4Keyword": "Eredità",
-    "valeur5Title": "La Maestria",
-    "valeur5Desc": "Non facciamo in fretta. Facciamo bene. Il tempo è un alleato, non un nemico.",
-    "valeur5Keyword": "Eccellenza"
+    "valeur1Title": "Il Rifiuto del falso",
+    "valeur1Desc": "Davanti a ogni parola, ogni immagine: prova o annuncia? Se annuncia, si taglia.",
+    "valeur1Keyword": "Vero",
+    "valeur2Title": "La Maestria",
+    "valeur2Desc": "Il titanio che si piega e torna. L'oro che non si scrosta. Ciò che non è fatto per durare non esce dall'atelier.",
+    "valeur2Keyword": "Mano",
+    "valeur3Title": "La Parola",
+    "valeur3Desc": "Promettiamo solo ciò che sappiamo mantenere. Mai in saldo: un prezzo che scende è una parola ritirata.",
+    "valeur3Keyword": "Mantenuta",
+    "valeur4Title": "Il Rispetto",
+    "valeur4Desc": "Un uomo non si misura da ciò che possiede, ma da ciò che onora. Nelle immagini come al banco.",
+    "valeur4Keyword": "Sguardo",
+    "valeur5Title": "La Trasmissione",
+    "valeur5Desc": "Ciò che è ben fatto si ripara; ciò che si ripara si tiene; ciò che si tiene si trasmette.",
+    "valeur5Keyword": "Corona"
   },
   "collectionsSection": {
-    "label": "Le Collezioni",
-    "countLabel": "4 Collezioni",
-    "title": "Una maison. Quattro collezioni. Zero casualità.",
+    "label": "Le collezioni",
+    "countLabel": "4 collezioni",
+    "title": "Una maison. Quattro collezioni. Zero caso.",
     "collection1Name": "Les Origines",
-    "collection1Desc": "Dove tutto comincia. Le striature. La firma.",
+    "collection1Desc": "Dove tutto comincia. Le venature. La firma.",
     "collection2Name": "Héritage",
     "collection2Desc": "Il Tridente. Ciò che si trasmette.",
     "collection3Name": "Versailles",
     "collection3Desc": "Il Giglio. Ciò che si costruisce.",
     "collection4Name": "Isis",
-    "collection4Desc": "L'Ankh, lo Scarabeo, l'Occhio. Ciò che attraversa 5 000 anni.",
-    "quote": "Non collezionamo modelli. Collezionamo simboli.",
-    "scroll": "Scorrere"
+    "collection4Desc": "L'Ankh, lo Scarabeo, l'Occhio. Ciò che attraversa 5.000 anni.",
+    "quote": "Non si collezionano i modelli. Si collezionano i simboli.",
+    "scroll": "Scorri"
   },
   "engagementSection": {
     "label": "Il nostro impegno",
-    "title": "UN TEMPO SI RIPARAVA.",
-    "subtitle": "Noi, ripariamo.",
-    "description": "Costruiamo per dieci anni. Garantiamo due anni. Forniamo i pezzi finché la montatura esiste. Regoliamo gratuitamente. A vita.",
-    "engagement1Title": "Durabilità",
-    "engagement1Desc": "I nostri nonni conservavano le loro cose. I nostri genitori hanno iniziato a buttare. Noi, scegliamo.",
-    "engagement1Stat": "10 ans",
-    "engagement1StatLabel": "Minimo garantito",
+    "title": "CIÒ CHE È BEN FATTO SI RIPARA.",
+    "subtitle": "Noi lo applichiamo.",
+    "description": "Le nostre montature sono pensate per essere regolate, mantenute, riparate. Perché un oggetto ben fatto merita una seconda occasione, e spesso una terza. Anche a garanzia scaduta, scrivici: guardiamo, caso per caso, cosa possiamo fare.",
+    "engagement1Title": "Durata",
+    "engagement1Desc": "I nostri nonni tenevano le loro cose. I nostri genitori hanno cominciato a buttare. Noi scegliamo.",
+    "engagement1Stat": "2 anni",
+    "engagement1StatLabel": "Garanzia legale",
     "engagement2Title": "Tracciabilità",
-    "engagement2Desc": "Ogni pezzo ha un'origine. Design francese. Fabbricazione coreana. Ti diciamo tutto perché non abbiamo nulla da nascondere.",
+    "engagement2Desc": "Ogni pezzo ha un'origine. Design francese. Lavorazione coreana. Ti diciamo tutto perché non abbiamo nulla da nascondere.",
     "engagement2Stat": "100%",
     "engagement2StatLabel": "Trasparente",
     "engagement3Title": "Equità",
-    "engagement3Desc": "200 partner. Alcuni dal primo giorno. Costruiamo relazioni, non contratti.",
-    "engagement3Stat": "200+",
+    "engagement3Desc": "Più di 250 ottici. Alcuni dal primo giorno. Costruiamo relazioni, non contratti.",
+    "engagement3Stat": "250+",
     "engagement3StatLabel": "Partner",
-    "cta": "Scoprire le nostre creazioni"
+    "cta": "Scopri le nostre creazioni"
   },
   "ambassadeursSection": {
     "label": "Ambasciatori",
-    "rightLabel": "Indossano Renaissance",
-    "title": "Indossano Renaissance",
-    "description": "Volti noti. Percorsi diversi. Un punto in comune: indossano ciò che dura.",
-    "quote": "Non indossano Renaissance per farsi notare. Lo indossano perché gli somiglia. Perché dice qualcosa di loro.",
+    "rightLabel": "Portano Renaissance",
+    "title": "Portano Renaissance",
+    "description": "Volti noti. Percorsi diversi. Un punto in comune: portano ciò che dura.",
+    "quote": "Non portano Renaissance per mostrarsi. Lo portano perché somiglia a loro. Perché dice qualcosa di loro.",
     "ambassador1Name": "Sophie Marceau",
-    "ambassador1Role": "Attrice e Regista",
+    "ambassador1Role": "Attrice e regista",
     "ambassador1Collection": "Collezione Héritage",
     "ambassador2Name": "Omar Sy",
-    "ambassador2Role": "Attore e Produttore",
+    "ambassador2Role": "Attore e produttore",
     "ambassador2Collection": "Collezione Versailles",
     "ambassador3Name": "Léa Seydoux",
     "ambassador3Role": "Attrice",

@@ -18,12 +18,12 @@
     "article2Text": "Les présentes CGV ont pour objet de définir les droits et obligations des parties dans le cadre de la vente en ligne de lunettes et accessoires proposés par Renaissance Eyewear.",
     "article3Title": "Article 3 - Produits",
     "article3_1Title": "3.1 Description",
-    "article3_1Text": "Renaissance Eyewear propose des lunettes fabriquées en Corée du Sud, caractérisées par :",
+    "article3_1Text": "Renaissance Eyewear propose des lunettes fabriquées en Corée, caractérisées par :",
     "article3_1Items": [
       "Montures en métal épais avec finitions précises",
-      "5 symboles emblématiques : Trident, Fleur de Lys, Ankh, Scarabée, Cobra",
-      "Rhinestone signature sur la branche gauche",
-      "Éditions limitées de 100 à 300 pièces par référence",
+      "7 symboles emblématiques : Trident, Fleur de Lys, Ankh, Scarabée, Cobra, Œil d'Horus, Plaque parisienne",
+      "Cristal signature en bout de branche",
+      "Numéro de série gravé au pont : une identité, pas une édition limitée",
       "Collections thématiques : Héritage, Versailles, Isis"
     ],
     "article3_2Title": "3.2 Prix",
@@ -141,7 +141,7 @@
     "article9_2Title": "9.2 Limitation de responsabilité",
     "article9_2Text": "La responsabilité de Renaissance Eyewear est limitée au montant de la commande concernée.",
     "article10Title": "Article 10 - Propriété Intellectuelle",
-    "article10Text1": "Tous les éléments du site (textes, images, logos, symboles, designs) sont protégés par le droit d'auteur et le droit des marques. Les symboles Renaissance (Trident, Fleur de Lys, Ankh, Scarabée, Cobra) et le nom \"Renaissance Eyewear\" sont des marques déposées.",
+    "article10Text1": "Tous les éléments du site (textes, images, logos, symboles, designs) sont protégés par le droit d'auteur et le droit des marques. Les symboles Renaissance (Trident, Fleur de Lys, Ankh, Scarabée, Cobra, Œil d'Horus, Plaque parisienne) et le nom \"Renaissance Eyewear\" sont des marques déposées.",
     "article10Text2": "Toute reproduction, représentation ou utilisation, même partielle, est strictement interdite sans autorisation préalable écrite.",
     "article11Title": "Article 11 - Protection des Données Personnelles",
     "article11Text1": "Les informations collectées font l'objet d'un traitement informatique destiné à la gestion des commandes et à la relation client. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données.",
@@ -340,9 +340,9 @@
     "section3_2Text": "Les marques suivantes sont déposées et protégées :",
     "section3_2Items": [
       "<strong>Renaissance Eyewear</strong> (nom et logo)",
-      "<strong>Les 5 Symboles :</strong> Trident, Fleur de Lys, Ankh, Scarabée, Cobra",
+      "<strong>Les 7 Symboles :</strong> Trident, Fleur de Lys, Ankh, Scarabée, Cobra, Œil d'Horus, Plaque parisienne",
       "<strong>Collections :</strong> Héritage, Versailles, Isis",
-      "<strong>Signature :</strong> \"Silence Stylé\""
+      "<strong>Devise :</strong> « Pour que chaque jour compte »"
     ],
     "section3_3Title": "3.3 Reproduction interdite",
     "section3_3Text": "Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de Renaissance Eyewear.",
@@ -414,7 +414,7 @@
     "section3Title": "3. Propriété Intellectuelle",
     "section3Text": "L'ensemble des éléments du site Renaissance Eyewear (textes, images, graphismes, logo, icônes, sons, logiciels) sont la propriété exclusive de Renaissance Eyewear ou de ses partenaires. Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable.",
     "brandsTitle": "Marques et Symboles",
-    "brandsText": "Les symboles Renaissance (Trident, Fleur de Lys, Ankh, Scarabée, Cobra), le logo Renaissance Eyewear, ainsi que les noms de collections (Héritage, Versailles, Isis) sont des marques déposées. Toute utilisation non autorisée de ces marques est strictement interdite.",
+    "brandsText": "Les symboles Renaissance (Trident, Fleur de Lys, Ankh, Scarabée, Cobra, Œil d'Horus, Plaque parisienne), le logo Renaissance Eyewear, ainsi que les noms de collections (Héritage, Versailles, Isis) sont des marques déposées. Toute utilisation non autorisée de ces marques est strictement interdite.",
     "section4Title": "4. Responsabilité",
     "liabilityTitle": "Limitation de responsabilité",
     "liabilityText": "Renaissance Eyewear ne pourra être tenu responsable :",
@@ -447,9 +447,9 @@
   "garantie": {
     "title": "Garantie & Service Après-Vente",
     "seoTitle": "Garantie & Service Après-Vente",
-    "seoDescription": "Garantie 2 ans Renaissance Eyewear. Service après-vente, réparations, entretien et conseils pour vos lunettes. Satisfaction garantie.",
+    "seoDescription": "Garantie 3 ans Renaissance Eyewear. Service après-vente, réparations, entretien et conseils pour vos lunettes. Satisfaction garantie.",
     "warrantyTitle": "Garantie Constructeur",
-    "warrantyText": "Tous les produits Renaissance bénéficient d'une <strong>garantie constructeur de 2 ans</strong> à compter de la date d'achat, couvrant les défauts de fabrication et de matériaux.",
+    "warrantyText": "Tous les produits Renaissance bénéficient d'une <strong>garantie constructeur de 3 ans</strong> à compter de la date d'achat, couvrant les défauts de fabrication et de matériaux.",
     "coveredTitle": "Ce qui est couvert",
     "coveredItems": [
       "Défauts de fabrication (soudure, assemblage, finitions)",
@@ -517,7 +517,7 @@
       "Évitez le contact avec la laque, le parfum et les cosmétiques"
     ],
     "opticiansTitle": "Chez nos Opticiens Partenaires",
-    "opticiansText": "Nos 200+ opticiens partenaires en France peuvent vous aider pour :",
+    "opticiansText": "Nos 250+ opticiens partenaires en France peuvent vous aider pour :",
     "opticiansItems": [
       "Ajustements et réglages gratuits",
       "Nettoyage professionnel",
@@ -537,7 +537,7 @@
       "<strong>Délai de réponse :</strong> Sous 48 heures ouvrées"
     ],
     "qualityTitle": "Engagement Qualité",
-    "qualityText1": "Renaissance s'engage à fournir des produits de la plus haute qualité. Chaque monture est fabriquée à la main en Corée du Sud par des artisans spécialisés et subit des contrôles qualité rigoureux avant expédition.",
+    "qualityText1": "Renaissance s'engage à fournir des produits de la plus haute qualité. Chaque monture est fabriquée à la main en Corée par des artisans spécialisés et subit des contrôles qualité rigoureux avant expédition.",
     "qualityText2": "Si malgré toutes nos précautions, vous rencontrez un problème avec votre monture, nous mettrons tout en œuvre pour le résoudre rapidement et à votre entière satisfaction."
   },
 
@@ -633,7 +633,7 @@
     ],
     "damagedResolution": "Nous organiserons un échange ou un remboursement dans les plus brefs délais.",
     "partnerTitle": "Livraison chez nos Opticiens Partenaires",
-    "partnerText": "Pour une expérience encore plus personnalisée, vous pouvez choisir de faire livrer votre commande directement chez l'un de nos 200+ opticiens partenaires en France. Contactez-nous pour plus d'informations sur cette option.",
+    "partnerText": "Pour une expérience encore plus personnalisée, vous pouvez choisir de faire livrer votre commande directement chez l'un de nos 250+ opticiens partenaires en France. Contactez-nous pour plus d'informations sur cette option.",
     "contactTitle": "Contact Service Client",
     "contactText": "Pour toute question concernant votre livraison :",
     "contactItems": [
@@ -696,7 +696,7 @@
     "rectangularAdvice": "Choisissez des montures avec une hauteur de verre importante pour raccourcir visuellement le visage. Les formes hexagonales fonctionnent bien.",
     "ctaSupertitle": "Besoin d'essayer",
     "ctaTitle": "Essayez en boutique.",
-    "ctaSubtitle": "200+ opticiens partenaires en France.",
+    "ctaSubtitle": "250+ opticiens partenaires en France.",
     "ctaDescription": "Rendez-vous chez l'un de nos opticiens partenaires pour essayer nos collections et bénéficier de conseils personnalisés.",
     "findOptician": "Trouver un opticien",
     "contactUs": "Nous contacter"

@@ -180,6 +180,18 @@
   },
   "breadcrumb": {
     "home": "Accueil",
-    "blog": "Le Manifeste"
+    "collections": "Collections",
+    "shop": "Boutique",
+    "blog": "Le Manifeste",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "sizeGuide": "Guide des tailles",
+    "shipping": "Livraison",
+    "warranty": "Garantie",
+    "orderTracking": "Suivi de commande",
+    "story": "Notre histoire",
+    "manifesto": "Le Manifeste",
+    "craftsmanship": "L'atelier",
+    "symbols": "Symboles"
   }
 }

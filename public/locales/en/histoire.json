@@ -2,17 +2,17 @@
   "hero": {
     "label": "The House",
     "title": "RENAISSANCE",
-    "subtitle": "Paris, since always."
+    "subtitle": "Born in 2019, from a refusal."
   },
   "signature": {
     "label": "Our signature",
-    "title": "FIVE MILLENNIAL\nSYMBOLS",
-    "description": "Each frame carries within it a fragment of eternity. Five symbols spanning civilizations, five signatures of the House of Renaissance."
+    "title": "SEVEN SYMBOLS\nMILLENNIA OLD",
+    "description": "Every frame carries a fragment of eternity. Seven symbols that cross civilizations, seven chapters of the House of Renaissance."
   },
   "savoirFaire": {
-    "label": "Craftsmanship",
-    "title": "ARTISANAL\nEXCELLENCE",
-    "description": "Each frame is the result of more than 40 steps of artisanal craftsmanship. A meticulous process that guarantees exceptional quality."
+    "label": "The workshop",
+    "title": "OUR\nMAKING",
+    "description": "Every frame takes shape between Paris, Korea and Italy. We don't make fast. We make right."
   },
   "fondateurs": {
     "label": "The founders",
@@ -24,7 +24,7 @@
   },
   "engagement": {
     "label": "Commitment",
-    "title": "SO THAT THIS\nIS NEVER FORGOTTEN"
+    "title": "SO THAT IT IS\nNEVER FORGOTTEN"
   },
   "ambassadeurs": {
     "label": "Ambassadors",
@@ -33,174 +33,180 @@
   "manifeste": {
     "label": "Manifesto",
     "title": "THE RENAISSANCE\nMANIFESTO",
-    "description": "What we create is not just an accessory. It is an act of transmission."
+    "description": "What we make is not just an accessory. It is an act of transmission."
   },
   "symboles": {
     "label": "The symbols",
-    "title": "FIVE ETERNAL\nSYMBOLS"
+    "title": "SEVEN ETERNAL\nSYMBOLS"
   },
   "page": {
     "histoire": {
       "seoTitle": "Our Story",
-      "seoDescription": "Discover the story of RENAISSANCE Paris, a French luxury eyewear house. Our artisanal craftsmanship, values and commitment to excellence."
+      "seoDescription": "Born in 2019 from a refusal: the refusal to watch what should last disappear. Three men of the trade, brothers by choice. What you wear. What you hand down."
     },
     "savoirFaire": {
-      "seoTitle": "Craftsmanship",
-      "seoDescription": "Discover RENAISSANCE Paris artisanal craftsmanship. French manufacturing, noble materials and techniques of excellence for unique luxury eyewear."
+      "seoTitle": "The workshop",
+      "seoDescription": "The Renaissance Eyewear workshop: drawn in Paris, made between Paris, Korea and Italy. 18KT gold-plated titanium, Mazzucchelli acetate."
     },
     "manifeste": {
       "seoTitle": "Manifesto",
-      "seoDescription": "Discover the RENAISSANCE Paris manifesto. Our values of excellence, authenticity and French craftsmanship in service of luxury eyewear."
+      "seoDescription": "The Renaissance Eyewear manifesto. What you wear. What you hand down."
     },
     "symboles": {
       "seoTitle": "Symbols",
-      "seoDescription": "Discover the symbols that inspire RENAISSANCE Paris. Scarab, fleur-de-lis and Maltese cross: emblems steeped in history for unique eyewear."
+      "seoDescription": "The symbols of Renaissance Eyewear: trident, fleur de lys, ankh, scarab, cobra, Eye of Horus, Parisian street plaque. Seven signs engraved in titanium."
     }
   },
   "blog": {
     "seoTitle": "The Manifesto - Blog",
-    "seoDescription": "Discover the RENAISSANCE Paris universe. Articles on our symbols, artisanal craftsmanship and the history of French luxury eyewear.",
+    "seoDescription": "The world of Renaissance Eyewear. Articles on our symbols, our materials and the story of the House.",
     "heroLabel": "News & Culture",
     "heroTitleLine1": "THE",
     "heroTitleLine2": "MANIFESTO.",
-    "heroSubtitle": "Stories, symbols and craftsmanship.",
-    "heroDescription": "Discover the Renaissance universe beyond the object.",
+    "heroSubtitle": "Stories, symbols and materials.",
+    "heroDescription": "Discover the Renaissance world beyond the object.",
     "loading": "Loading articles...",
-    "emptyTitle": "First articles coming soon",
-    "emptyDescription": "We are preparing exceptional content about our symbols, craftsmanship and the Renaissance universe.",
-    "readArticle": "Read article",
+    "emptyTitle": "The first articles are coming soon",
+    "emptyDescription": "We're preparing texts on our symbols, our materials and the Renaissance world.",
+    "readArticle": "Read the article",
     "newsletterLabel": "Newsletter",
     "newsletterTitle": "Don't miss a thing.",
-    "newsletterSubtitle": "Receive our articles directly.",
+    "newsletterSubtitle": "Get our articles straight to you.",
     "emailPlaceholder": "Your email address",
     "subscribe": "Subscribe"
   },
   "article": {
-    "loading": "Loading article...",
+    "loading": "Loading the article...",
     "notFoundTitle": "Article not found",
-    "notFoundDescription": "This article does not exist or has been removed.",
-    "backToArticles": "Back to articles",
+    "notFoundDescription": "This article doesn't exist or has been removed.",
+    "backToArticles": "Back to the articles",
     "label": "The Manifesto",
     "share": "Share",
-    "authorBio": "A member of the Renaissance team, passionate about the craftsmanship of excellence and the storytelling that gives meaning to every creation.",
+    "authorBio": "The House of Renaissance writes in a single voice.",
     "ctaLabel": "Our Creations",
     "ctaTitle": "Discover our collections.",
     "ctaSubtitle": "Each symbol tells a story.",
-    "ctaButton": "View collections"
+    "ctaButton": "View the collections"
   },
   "heroHistoire": {
     "label": "Our Story",
     "title": "A FORGOTTEN WORD.",
     "subtitle": "Perfect for restoring.",
-    "description": "A word too grand for those with nothing to say. But perfect for those who have something to restore.",
+    "description": "A word too big for those with nothing to say. But perfect for those with something to restore.",
     "mobileTitle": "A forgotten word.",
     "mobileSubtitle": "Perfect for restoring.",
-    "mobileDescription": "A word too grand for those with nothing to say. But perfect for those who have something to restore."
+    "mobileDescription": "A word too big for those with nothing to say. But perfect for those with something to restore."
   },
   "fondateursSection": {
     "label": "The Origin",
     "title": "BORN FROM A REFUSAL.",
-    "subtitle": "Three men of the craft.",
-    "description": "A refusal to accept sameness. A refusal to let fine work disappear. A refusal to look away. Not three heirs. Not three graduates. Three men of the craft.",
-    "mobileDescription": "A refusal to accept sameness. A refusal to let fine work disappear. Three men of the craft.",
+    "subtitle": "The refusal to watch what should last disappear.",
+    "description": "Three men of the trade watched quality slip for years. They decided to do the opposite. To design frames that go with a life, not a season. To ask of the work what the market stopped asking.\nEvery frame carries that promise: an object meant to last, not to be replaced.",
+    "mobileDescription": "Three men of the trade watched quality slip for years. They decided to do the opposite. Every frame carries that promise: an object meant to last, not to be replaced.",
     "cta": "Discover our creations"
   },
   "symbolesSection": {
     "label": "Our Symbols",
-    "title": "FIVE SYMBOLS.",
+    "title": "SEVEN SYMBOLS.",
     "subtitle": "Engraved in metal.",
-    "description": "Each symbol carries meaning, history, a promise. Signs that have spoken for millennia. We didn't invent them. We wear them.",
+    "description": "What you wear tells what you believe.",
     "symbol1Name": "The Trident",
     "symbol1Subtitle": "Sovereignty",
-    "symbol1Desc": "Three points, three dimensions: strength, vision, precision. The symbol of mastered power.",
+    "symbol1Desc": "The balance between yesterday, today and tomorrow. An anchor in what founds, what builds, what lasts.",
     "symbol2Name": "The Fleur de Lys",
-    "symbol2Subtitle": "Excellence",
-    "symbol2Desc": "Inherited excellence. Purity of gesture and exacting attention to detail.",
+    "symbol2Subtitle": "Mastery",
+    "symbol2Desc": "The French inheritance. The nobility of a gesture handed down, the pride of an origin owned.",
     "symbol3Name": "The Ankh",
     "symbol3Subtitle": "Eternity",
-    "symbol3Desc": "The key to eternal life. What we build today must stand the test of time.",
+    "symbol3Desc": "The breath that binds. What connects those who build to those who will carry on.",
     "symbol4Name": "The Scarab",
-    "symbol4Subtitle": "Renaissance",
-    "symbol4Desc": "Perpetual rebirth. Constant transformation and renewal.",
+    "symbol4Subtitle": "Rebirth",
+    "symbol4Desc": "Passage and transformation. What comes through the trials, what is reborn stronger than before.",
     "symbol5Name": "The Cobra",
     "symbol5Subtitle": "Protection",
-    "symbol5Desc": "Vigilant protection. Elegant and powerful. Assertive presence, contained strength."
+    "symbol5Desc": "The silent awakening. The one who sees before being seen.",
+    "symbol6Name": "The Eye of Horus",
+    "symbol6Subtitle": "Lucidity",
+    "symbol6Desc": "The eye that never closes. Broken then made whole, it sees what others look at without seeing.",
+    "symbol7Name": "The Parisian street plaque",
+    "symbol7Subtitle": "Belonging",
+    "symbol7Desc": "\"Avenue de la Renaissance\", engraved in gold. The street you'll find on no map, the address each of us carries wherever we go."
   },
   "signatureSection": {
     "label": "The Signature",
-    "title": "ZERO LOGOS.",
+    "title": "A SIGN FOR YOURSELF.",
     "subtitle": "Just you and what you know.",
-    "description": "Left temple. A rhinestone. Smaller than a pinhead. Look closer. Symbols appear. Engraved in metal. Turn the piece over. A number. Engraved for you. It will only exist once. Like you.",
-    "mobileDescription": "Left temple. A rhinestone. Smaller than a pinhead. Symbols engraved in metal. A unique number. Like you.",
-    "cta": "Discover the secret"
+    "description": "At the temple tip. A crystal. Smaller than a pinhead. Lean in. Symbols appear, engraved in the metal. On the bridge, a number. Engraved for you. It will exist only once. Like you.",
+    "mobileDescription": "At the temple tip. A crystal. Smaller than a pinhead. Symbols engraved in the metal. On the bridge, a unique number. Like you.",
+    "cta": "Discover our creations"
   },
   "savoirFaireSection": {
-    "label": "Manufacturing",
-    "title": "MADE IN SOUTH KOREA.",
-    "subtitle": "200 steps. Zero compromise.",
-    "description": "What makes a frame beautiful is what you can't see. The balance. The tension of the metal. The precise weight. Over 200 steps per pair. Zero showmanship. Just the result.",
-    "stat1Value": "200+",
-    "stat1Label": "Steps per pair",
-    "stat2Value": "15h",
-    "stat2Label": "Of manufacturing",
-    "stat3Value": "0",
-    "stat3Label": "Compromises",
-    "mobileStat1Label": "Steps",
-    "mobileStat2Label": "Manufacturing",
-    "mobileStat3Label": "Compromises",
-    "cta": "Our craftsmanship"
+    "label": "Making",
+    "title": "MADE WHERE PRECISION IS A DISCIPLINE.",
+    "subtitle": "France, Korea, Italy.",
+    "description": "Our frames come to life between France, Korea and Italy, in workshops where rigor is a culture. Each place brings its mastery: the fineness of titanium in Asia, the precision of the finishes in Europe. We choose our partners for their standards, not their speed.",
+    "stat1Value": "18KT",
+    "stat1Label": "Real gold, plated",
+    "stat2Value": "Titanium",
+    "stat2Label": "Light, strong",
+    "stat3Value": "1849",
+    "stat3Label": "Mazzucchelli acetate",
+    "mobileStat1Label": "18KT gold",
+    "mobileStat2Label": "Titanium",
+    "mobileStat3Label": "Acetate",
+    "cta": "The workshop"
   },
   "valeursSection": {
     "label": "Our Values",
-    "title": "FIVE PILLARS.",
+    "title": "FOUR FIBERS. ONE CROWN.",
     "subtitle": "Non-negotiable.",
-    "valeur1Title": "Precision",
-    "valeur1Desc": "Every word true. Every gesture necessary. Every material right.",
-    "valeur1Keyword": "Truth",
-    "valeur2Title": "Respect",
-    "valeur2Desc": "We treat no one as a number. Not a client, not a partner, not a craftsman.",
-    "valeur2Keyword": "Dignity",
-    "valeur3Title": "Silence",
-    "valeur3Desc": "True elegance doesn't demand attention. It's recognized by those who know.",
-    "valeur3Keyword": "Discretion",
-    "valeur4Title": "Transmission",
-    "valeur4Desc": "We build so that in 20 years, someone inherits a pair and keeps it.",
-    "valeur4Keyword": "Heritage",
-    "valeur5Title": "Mastery",
-    "valeur5Desc": "We don't rush. We do it right. Time is an ally, not an enemy.",
-    "valeur5Keyword": "Excellence"
+    "valeur1Title": "The Refusal of the false",
+    "valeur1Desc": "In front of every word, every image: does it prove, or does it announce? If it announces, we cut it.",
+    "valeur1Keyword": "True",
+    "valeur2Title": "Mastery",
+    "valeur2Desc": "Titanium you bend and it comes back. Gold that doesn't flake. What isn't made to last never leaves the workshop.",
+    "valeur2Keyword": "Hand",
+    "valeur3Title": "The Word",
+    "valeur3Desc": "We only promise what we can keep. Never on sale: a price that drops is a word taken back.",
+    "valeur3Keyword": "Kept",
+    "valeur4Title": "Respect",
+    "valeur4Desc": "We don't measure a man by what he owns, but by what he honors. In our images as at the counter.",
+    "valeur4Keyword": "Gaze",
+    "valeur5Title": "Transmission",
+    "valeur5Desc": "What is well made can be repaired; what can be repaired is kept; what is kept is handed down.",
+    "valeur5Keyword": "Crown"
   },
   "collectionsSection": {
     "label": "The Collections",
     "countLabel": "4 Collections",
-    "title": "One house. Four collections. Zero chance.",
+    "title": "One house. Four collections. Nothing by chance.",
     "collection1Name": "The Origins",
     "collection1Desc": "Where it all begins. The striations. The signature.",
     "collection2Name": "Heritage",
-    "collection2Desc": "The Trident. What is passed on.",
+    "collection2Desc": "The Trident. What we hand down.",
     "collection3Name": "Versailles",
-    "collection3Desc": "The Fleur de Lys. What is built.",
+    "collection3Desc": "The Fleur de Lys. What we build.",
     "collection4Name": "Isis",
-    "collection4Desc": "The Ankh, the Scarab, the Eye. What endures for 5,000 years.",
+    "collection4Desc": "The Ankh, the Scarab, the Eye. What crosses 5,000 years.",
     "quote": "We don't collect models. We collect symbols.",
     "scroll": "Scroll"
   },
   "engagementSection": {
     "label": "Our Commitment",
-    "title": "ONCE, THINGS WERE REPAIRED.",
-    "subtitle": "We still repair.",
-    "description": "We build for ten years. We guarantee for two. We supply parts as long as the frame exists. We adjust for free. For life.",
+    "title": "WHAT IS WELL MADE CAN BE REPAIRED.",
+    "subtitle": "We hold to it.",
+    "description": "Our frames are made to be adjusted, cared for, repaired. Because a well-made object deserves a second chance, and often a third. Even past the warranty, write to us: we look, case by case, at what we can do.",
     "engagement1Title": "Durability",
-    "engagement1Desc": "Our grandparents kept their belongings. Our parents started discarding. We choose differently.",
-    "engagement1Stat": "10 years",
-    "engagement1StatLabel": "Minimum guaranteed",
+    "engagement1Desc": "Our grandparents kept their things. Our parents started throwing them away. We choose.",
+    "engagement1Stat": "2 years",
+    "engagement1StatLabel": "Legal warranty",
     "engagement2Title": "Traceability",
-    "engagement2Desc": "Every piece has an origin. French design. Korean manufacturing. We tell you everything because we have nothing to hide.",
+    "engagement2Desc": "Every piece has an origin. French design. Korean making. We tell you everything because we have nothing to hide.",
     "engagement2Stat": "100%",
     "engagement2StatLabel": "Transparent",
-    "engagement3Title": "Equity",
-    "engagement3Desc": "200 partners. Some since day one. We build relationships, not contracts.",
-    "engagement3Stat": "200+",
+    "engagement3Title": "Fairness",
+    "engagement3Desc": "More than 250 opticians. Some since day one. We build relationships, not contracts.",
+    "engagement3Stat": "250+",
     "engagement3StatLabel": "Partners",
     "cta": "Discover our creations"
   },
@@ -208,8 +214,8 @@
     "label": "Ambassadors",
     "rightLabel": "They wear Renaissance",
     "title": "They wear Renaissance",
-    "description": "Famous faces. Different paths. One thing in common: they wear what lasts.",
-    "quote": "They don't wear Renaissance to be seen. They wear it because it reflects who they are. Because it says something about them.",
+    "description": "Known faces. Different paths. One thing in common: they wear what lasts.",
+    "quote": "They don't wear Renaissance to be seen. They wear it because it's like them. Because it says something about them.",
     "ambassador1Name": "Sophie Marceau",
     "ambassador1Role": "Actress & Director",
     "ambassador1Collection": "Heritage Collection",

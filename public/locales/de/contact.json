@@ -1,6 +1,6 @@
 {
   "title": "Kontakt",
-  "subtitle": "Wir sind für Sie da",
+  "subtitle": "Wir hören dir zu",
   "form": {
     "name": "Name",
     "email": "E-Mail",
@@ -9,7 +9,7 @@
     "send": "Senden",
     "sending": "Wird gesendet...",
     "sent": "Nachricht gesendet!",
-    "sentDesc": "Wir melden uns schnellstmöglich bei Ihnen."
+    "sentDesc": "Wir antworten dir so schnell wie möglich."
   },
   "info": {
     "email": "E-Mail",
@@ -19,67 +19,67 @@
   },
   "storeLocator": {
     "title": "Optiker finden",
-    "subtitle": "Über 200 Partneroptiker in Frankreich",
-    "search": "Stadt suchen...",
+    "subtitle": "Mehr als 250 Optiker, in Frankreich und international",
+    "search": "Eine Stadt suchen...",
     "nearMe": "In meiner Nähe",
     "noResults": "Kein Optiker in dieser Gegend gefunden.",
-    "directions": "Wegbeschreibung",
+    "directions": "Route",
     "phone": "Anrufen",
     "filters": "Filter"
   },
   "guarantee": {
-    "title": "Garantie",
-    "subtitle": "2 Jahre Garantie auf alle Fassungen"
+    "title": "Gewährleistung",
+    "subtitle": "Gesetzliche Gewährleistung 2 Jahre. Und was gut gemacht ist, lässt sich reparieren: schreib uns."
   },
   "sizeGuide": {
-    "title": "Größenberatung",
-    "subtitle": "Finden Sie die perfekte Fassung"
+    "title": "Größentabelle",
+    "subtitle": "Finde die perfekte Fassung"
   },
   "orderTracking": {
     "title": "Bestellverfolgung",
-    "subtitle": "Verfolgen Sie Ihre Bestellung in Echtzeit",
+    "subtitle": "Verfolge deine Bestellung in Echtzeit",
     "orderNumber": "Bestellnummer",
-    "email": "E-Mail",
+    "email": "E-Mail-Adresse",
     "track": "Verfolgen",
     "status": "Status"
   },
   "contactPage": {
     "seo": {
       "title": "Kontakt",
-      "description": "Kontaktieren Sie RENAISSANCE Paris bei Fragen zu unseren Luxusbrillen. Kundenservice per E-Mail und Telefon erreichbar, Montag bis Freitag."
+      "description": "Kontaktiere Renaissance Eyewear. Eine Frage, ein Rat, eine Anpassung: jede Anfrage bekommt eine Antwort."
     },
     "hero": {
       "label": "Das Haus",
-      "titleLine1": "KONTAKTIEREN",
-      "titleLine2": "SIE UNS.",
-      "titleMobile": "KONTAKTIEREN SIE UNS.",
-      "subtitle": "Wir hören Ihnen zu.",
-      "description": "Unser Team steht Ihnen für alle Fragen zu unseren Kollektionen, Ihren Bestellungen oder dem Netzwerk unserer Partneroptiker zur Verfügung.",
-      "descriptionMobile": "Unser Team steht Ihnen für alle Ihre Fragen zur Verfügung.",
-      "cta": "Nachricht schreiben",
+      "titleLine1": "KONTAKTIERE",
+      "titleLine2": "UNS.",
+      "titleMobile": "KONTAKTIERE UNS.",
+      "subtitle": "Wir hören dir zu.",
+      "description": "Unser Team ist da, um all deine Fragen zu unseren Kollektionen, deinen Bestellungen oder dem Netz der Partneroptiker zu beantworten.",
+      "descriptionMobile": "Unser Team ist da, um all deine Fragen zu beantworten.",
+      "cta": "Eine Nachricht schreiben",
       "scroll": "Scroll"
     },
     "cards": {
       "emailTitle": "E-Mail",
-      "emailDetail": "contact@renaissance-eyewear.fr",
+      "emailDetail": "contact@renaissanceeyewear.com",
       "emailSub": "Antwort innerhalb von 48h",
       "phoneTitle": "Telefon",
       "phoneDetail": "+33 1 42 86 82 00",
-      "phoneSub": "Mo — Fr",
+      "phoneSub": "Mo. bis Fr.",
       "hoursTitle": "Öffnungszeiten",
-      "hoursDetail": "9h — 18h",
+      "hoursDetail": "9 bis 18 Uhr",
       "hoursSub": "Montag bis Freitag"
     },
     "formSection": {
       "label": "Nachricht",
-      "title": "Schreiben Sie uns.",
-      "subtitle": "Wir melden uns schnell bei Ihnen.",
+      "title": "Schreib uns.",
+      "subtitle": "Wir melden uns schnell bei dir.",
       "nameLabel": "Vollständiger Name *",
-      "namePlaceholder": "Ihr Name",
+      "namePlaceholder": "Dein Name",
       "emailLabel": "E-Mail *",
-      "emailPlaceholder": "ihre@email.de",
+      "emailPlaceholder": "deine@email.de",
       "phoneLabel": "Telefon",
-      "phonePlaceholder": "+49 170 12345678",
+      "phonePlaceholder": "+33 6 12 34 56 78",
       "subjectLabel": "Betreff *",
       "subjectGeneral": "Allgemeine Frage",
       "subjectOrder": "Meine Bestellung",
@@ -89,7 +89,7 @@
       "subjectPartner": "Partner werden",
       "subjectOther": "Sonstiges",
       "messageLabel": "Nachricht *",
-      "messagePlaceholder": "Beschreiben Sie Ihr Anliegen...",
+      "messagePlaceholder": "Beschreib dein Anliegen...",
       "sent": "Nachricht gesendet",
       "sending": "Wird gesendet...",
       "submit": "Nachricht senden",
@@ -98,69 +98,69 @@
     "sidebar": {
       "locationLabel": "Standort",
       "locationTitle": "Paris, Frankreich",
-      "locationDescription": "Das Haus Renaissance hat seinen stolzen Sitz in Paris, der Hauptstadt der Eleganz und des französischen Savoir-faire.",
-      "networkLabel": "Netzwerk",
-      "networkTitle": "Möchten Sie anprobieren?",
-      "networkDescription": "Besuchen Sie einen unserer über 200 Partneroptiker, um unsere Kollektionen anzuprobieren und persönliche Beratung zu erhalten.",
+      "locationDescription": "Das Haus Renaissance hat seinen Sitz in Paris. Hier wird alles entworfen.",
+      "networkLabel": "Netz",
+      "networkTitle": "Willst du probieren?",
+      "networkDescription": "Geh zu einem unserer Optiker, in Frankreich und international, um die Fassungen aufzusetzen. Die Beratung nimmt sich die Zeit, die sie braucht.",
       "networkCta": "Optiker finden",
-      "socialLabel": "Folgen Sie uns",
-      "socialDescription": "Entdecken Sie unsere neuen Kollektionen und Neuigkeiten des Hauses."
+      "socialLabel": "Folg uns",
+      "socialDescription": "Entdecke unsere neuen Kollektionen und die Neuigkeiten des Hauses."
     }
   },
   "storeLocatorPage": {
     "seo": {
-      "title": "Partneroptiker finden",
-      "description": "Finden Sie einen unserer {{count}}+ RENAISSANCE Paris Partneroptiker in Ihrer Nähe. Probieren Sie unsere Luxusbrillen an und erhalten Sie persönliche Beratung."
+      "title": "Einen Partneroptiker finden",
+      "description": "Finde einen Optiker von Renaissance Eyewear in deiner Nähe, in Frankreich und international. Setz die Fassungen auf. Die Beratung nimmt sich die Zeit, die sie braucht."
     },
     "hero": {
-      "label": "Partnernetzwerk",
-      "titleLine1": "FINDEN SIE IHREN",
+      "label": "Partnernetz",
+      "titleLine1": "FINDE DEINEN",
       "titleLine2": "OPTIKER.",
-      "subtitle": "Exzellenz in Ihrer Nähe.",
-      "description": "Jede Boutique verkörpert die Werte von Renaissance: Exzellenz, Symbolik und französisches Savoir-faire.",
+      "subtitle": "In deiner Nähe.",
+      "description": "Jeder Optiker teilt denselben Anspruch: sich Zeit nehmen, anpassen, begleiten.",
       "opticians": "Optiker",
       "countries": "Länder",
-      "cta": "Optiker suchen",
+      "cta": "Einen Optiker suchen",
       "scroll": "Scroll"
     },
     "search": {
-      "label": "Suchen",
-      "title": "Optiker suchen",
+      "label": "Lokalisieren",
+      "title": "Einen Optiker suchen",
       "resultsCount": "{{count}} Partneroptiker in {{countries}} Ländern",
       "resultsCountPlural": "{{count}} Partneroptiker in {{countries}} Ländern"
     },
     "cta": {
       "label": "Partner werden",
-      "title": "Sie sind Optiker?",
-      "subtitle": "Werden Sie Teil der Exzellenz.",
-      "description": "Treten Sie dem Renaissance-Netzwerk bei und bieten Sie Ihren Kunden außergewöhnliche Brillen an, Symbole eines französischen Erbes und einer einzigartigen Vision von Luxus.",
+      "title": "Du bist Optiker?",
+      "subtitle": "Werde Teil des Netzes.",
+      "description": "Werde Teil des Netzes von Renaissance und biete deinen Kunden Fassungen aus Titan mit 18KT-Vergoldung, nummeriert auf dem Steg. Schreib uns.",
       "button": "Partner werden"
     }
   },
   "suiviCommande": {
     "seo": {
       "title": "Bestellverfolgung",
-      "description": "Verfolgen Sie Ihre RENAISSANCE Paris Bestellung in aller Ruhe. Geben Sie Ihre Bestellnummer und E-Mail-Adresse ein, um den Lieferstatus einzusehen."
+      "description": "Verfolge deine Bestellung bei Renaissance Eyewear. Gib deine Bestellnummer und deine E-Mail ein, um zu sehen, wo sie steht."
     },
     "hero": {
       "label": "Kundenservice",
-      "titleLine1": "VERFOLGEN SIE",
-      "titleLine2": "IHRE BESTELLUNG.",
-      "subtitle": "In aller Ruhe.",
+      "titleLine1": "VERFOLGE DEINE",
+      "titleLine2": "BESTELLUNG.",
+      "subtitle": "Ganz entspannt.",
       "scroll": "Scroll"
     },
     "form": {
       "orderNumberLabel": "Bestellnummer",
       "emailLabel": "E-Mail-Adresse",
       "orderPlaceholder": "#1001",
-      "emailPlaceholder": "ihre@email.de",
+      "emailPlaceholder": "deine@email.de",
       "submit": "Meine Bestellung verfolgen",
-      "error": "Bitte geben Sie Ihre Bestellnummer und E-Mail-Adresse ein."
+      "error": "Bitte gib deine Bestellnummer und deine E-Mail an."
     },
     "reassurance": {
-      "freeShipping": "Kostenloser Versand",
-      "warranty": "2 Jahre Garantie",
-      "returns": "30 Tage Rückgabe"
+      "freeShipping": "Versand frei",
+      "warranty": "3 Jahre Garantie",
+      "returns": "Rückgabe 14 Tage"
     },
     "faqSection": {
       "label": "Häufige Fragen",
@@ -170,36 +170,36 @@
       "questions": {
         "whereIsOrder": {
           "q": "Wo ist meine Bestellung?",
-          "a": "Nach dem Versand erhalten Sie eine E-Mail mit Ihrer Sendungsverfolgungsnummer. Die Lieferung dauert 1 bis 3 Werktage in Frankreich, 2-3 Tage für die EU."
+          "a": "Nach dem Versand bekommst du eine E-Mail mit deiner Sendungsnummer. Die Lieferung dauert 1 bis 3 Werktage in Frankreich (Festland), 2 bis 3 Tage in der EU."
         },
         "deliveryTimes": {
-          "q": "Wie lang sind die Lieferzeiten?",
-          "a": "Bestellungen werden innerhalb von 24-48h versandt. Die Lieferung in Frankreich dauert 1-2 Werktage, in der EU 2-3 Werktage und international 3-7 Werktage."
+          "q": "Wie lang sind die Versandzeiten?",
+          "a": "Die Bestellungen werden innerhalb von 24 bis 48 Stunden versandt. Die Lieferung in Frankreich (Festland) dauert 1 bis 2 Werktage, in der EU 2 bis 3 Tage und international 3 bis 7 Tage."
         },
         "noConfirmation": {
-          "q": "Ich habe keine Bestätigungs-E-Mail erhalten.",
-          "a": "Überprüfen Sie Ihren Spam-Ordner. Wenn Sie Ihre Bestätigung nicht finden, kontaktieren Sie uns mit Ihrem Namen und Bestelldatum unter contact@renaissance-eyewear.fr."
+          "q": "Ich habe meine Bestätigungs-E-Mail nicht bekommen.",
+          "a": "Sieh in deinem Spam-Ordner nach. Wenn du deine Bestätigung nicht findest, kontaktiere uns mit deinem Namen und dem Bestelldatum unter contact@renaissanceeyewear.com."
         },
         "modifyOrder": {
           "q": "Kann ich meine Bestellung ändern oder stornieren?",
-          "a": "Sie können Ihre Bestellung innerhalb von 2 Stunden nach der Bestätigung ändern oder stornieren, indem Sie uns umgehend kontaktieren. Danach wird Ihre Bestellung bereits vorbereitet."
+          "a": "Du kannst deine Bestellung innerhalb von 2 Stunden nach der Bestätigung ändern oder stornieren, indem du uns sofort kontaktierst. Danach ist deine Bestellung bereits in Vorbereitung."
         },
         "returnPolicy": {
-          "q": "Wie ist Ihre Rückgaberichtlinie?",
-          "a": "Sie haben 14 Tage ab Erhalt, um Ihre Bestellung zurückzugeben. Das Produkt muss im Originalzustand mit intakter Verpackung sein. Die Rücksendekosten werden von Renaissance übernommen."
+          "q": "Wie sieht eure Rückgabe aus?",
+          "a": "Du hast 14 Tage ab Erhalt, um deine Bestellung zurückzugeben. Das Produkt muss im Originalzustand mit unversehrter Verpackung sein. Die Rücksendekosten übernimmt Renaissance."
         },
         "refundDelay": {
-          "q": "Wann werde ich erstattet?",
-          "a": "Die Erstattung erfolgt innerhalb von 14 Tagen nach Erhalt und Prüfung Ihrer Rücksendung auf das bei der Bestellung verwendete Zahlungsmittel."
+          "q": "Wann bekomme ich mein Geld zurück?",
+          "a": "Die Erstattung erfolgt innerhalb von 14 Tagen nach Erhalt und Prüfung deiner Rücksendung, auf das beim Kauf genutzte Zahlungsmittel."
         }
       }
     },
     "ctaBottom": {
       "label": "Kundenservice",
       "title": "Eine Frage?",
-      "subtitle": "Unser Team ist für Sie da.",
-      "contactUs": "Kontaktieren Sie uns",
-      "viewFaq": "FAQ ansehen"
+      "subtitle": "Unser Team hört dir zu.",
+      "contactUs": "Kontakt aufnehmen",
+      "viewFaq": "Zur FAQ"
     }
   }
 }

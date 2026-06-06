@@ -2,29 +2,29 @@
   "hero": {
     "label": "Das Haus",
     "title": "RENAISSANCE",
-    "subtitle": "Paris, immer."
+    "subtitle": "Entstanden 2019, aus einer Weigerung."
   },
   "signature": {
     "label": "Unsere Signatur",
-    "title": "FÜNF JAHRTAUSENDE-\nALTE SYMBOLE",
-    "description": "Jede Fassung trägt einen Teil der Ewigkeit in sich. Fünf Symbole, die Zivilisationen durchqueren, fünf Signaturen des Hauses Renaissance."
+    "title": "SIEBEN JAHRTAUSENDE-\nALTE SYMBOLE",
+    "description": "Jede Fassung trägt einen Splitter Ewigkeit in sich. Sieben Symbole, die die Zivilisationen durchqueren, sieben Kapitel des Hauses Renaissance."
   },
   "savoirFaire": {
-    "label": "Handwerkskunst",
-    "title": "HANDWERKLICHE\nEXZELLENZ",
-    "description": "Jede Fassung ist das Ergebnis von über 40 manuellen Fertigungsschritten. Ein akribischer Prozess, der außergewöhnliche Qualität garantiert."
+    "label": "Die Werkstatt",
+    "title": "UNSERE\nFERTIGUNG",
+    "description": "Jede Fassung nimmt Gestalt an zwischen Paris, Korea und Italien. Wir fertigen nicht schnell. Wir fertigen richtig."
   },
   "fondateurs": {
-    "label": "Gründer",
+    "label": "Die Gründer",
     "title": "EINE PARISER\nVISION"
   },
   "valeurs": {
     "label": "Unsere Werte",
-    "title": "DAS RENAISSANCE\nVERSPRECHEN"
+    "title": "DAS VERSPRECHEN\nVON RENAISSANCE"
   },
   "engagement": {
     "label": "Engagement",
-    "title": "DAMIT NICHTS\nVERLOREN GEHT"
+    "title": "DAMIT ES NIE\nVERGESSEN WIRD"
   },
   "ambassadeurs": {
     "label": "Botschafter",
@@ -32,175 +32,181 @@
   },
   "manifeste": {
     "label": "Manifest",
-    "title": "MANIFEST\nRENAISSANCE",
-    "description": "Was wir schaffen, ist kein bloßes Accessoire. Es ist ein Akt der Weitergabe."
+    "title": "DAS MANIFEST\nVON RENAISSANCE",
+    "description": "Was wir schaffen, ist nicht nur ein Accessoire. Es ist ein Akt der Weitergabe."
   },
   "symboles": {
-    "label": "Symbole",
-    "title": "FÜNF EWIGE\nSYMBOLE"
+    "label": "Die Symbole",
+    "title": "SIEBEN EWIGE\nSYMBOLE"
   },
   "page": {
     "histoire": {
       "seoTitle": "Unsere Geschichte",
-      "seoDescription": "Entdecken Sie die Geschichte von RENAISSANCE Paris, französisches Haus für Luxusbrillen. Unsere Handwerkskunst, unsere Werte und unser Engagement für Exzellenz."
+      "seoDescription": "Entstanden 2019 aus einer Weigerung: zuzusehen, wie verschwindet, was bleiben soll. Drei Männer vom Fach, Brüder aus Wahl. Was man trägt. Was man weitergibt."
     },
     "savoirFaire": {
-      "seoTitle": "Handwerkskunst",
-      "seoDescription": "Entdecken Sie die Handwerkskunst von RENAISSANCE Paris. Französische Fertigung, edle Materialien und Techniken der Exzellenz für einzigartige Luxusbrillen."
+      "seoTitle": "Die Werkstatt",
+      "seoDescription": "Die Werkstatt von Renaissance Eyewear: in Paris entworfen, gefertigt zwischen Paris, Korea und Italien. Titan mit 18KT-Vergoldung, Mazzucchelli-Acetat."
     },
     "manifeste": {
       "seoTitle": "Manifest",
-      "seoDescription": "Entdecken Sie das Manifest von RENAISSANCE Paris. Unsere Werte der Exzellenz, Authentizität und französischen Handwerkskunst im Dienste der Luxusbrillen."
+      "seoDescription": "Das Manifest von Renaissance Eyewear. Was man trägt. Was man weitergibt."
     },
     "symboles": {
       "seoTitle": "Symbole",
-      "seoDescription": "Entdecken Sie die Symbole, die RENAISSANCE Paris inspirieren. Skarabäus, Lilie und Malteserkreuz: geschichtsträchtige Embleme für einzigartige Brillen."
+      "seoDescription": "Die Symbole von Renaissance Eyewear: Dreizack, Lilie, Anch, Skarabäus, Kobra, Horusauge, Pariser Straßenplakette. Sieben Zeichen, ins Titan graviert."
     }
   },
   "blog": {
     "seoTitle": "Das Manifest - Blog",
-    "seoDescription": "Entdecken Sie die Welt von RENAISSANCE Paris. Artikel über unsere Symbole, unsere Handwerkskunst und die Geschichte der französischen Luxusbrillen.",
+    "seoDescription": "Die Welt von Renaissance Eyewear. Artikel über unsere Symbole, unsere Materialien und die Geschichte des Hauses.",
     "heroLabel": "Aktuelles & Kultur",
     "heroTitleLine1": "DAS",
     "heroTitleLine2": "MANIFEST.",
-    "heroSubtitle": "Geschichten, Symbole und Handwerkskunst.",
-    "heroDescription": "Entdecken Sie die Welt von Renaissance jenseits des Objekts.",
+    "heroSubtitle": "Geschichten, Symbole und Materialien.",
+    "heroDescription": "Entdecke die Welt von Renaissance jenseits des Objekts.",
     "loading": "Artikel werden geladen...",
     "emptyTitle": "Die ersten Artikel kommen bald",
-    "emptyDescription": "Wir bereiten außergewöhnliche Inhalte über unsere Symbole, unsere Handwerkskunst und die Welt von Renaissance vor.",
+    "emptyDescription": "Wir bereiten Texte über unsere Symbole, unsere Materialien und die Welt von Renaissance vor.",
     "readArticle": "Artikel lesen",
     "newsletterLabel": "Newsletter",
-    "newsletterTitle": "Verpassen Sie nichts.",
-    "newsletterSubtitle": "Erhalten Sie unsere Artikel direkt.",
-    "emailPlaceholder": "Ihre E-Mail-Adresse",
-    "subscribe": "Abonnieren"
+    "newsletterTitle": "Verpass nichts.",
+    "newsletterSubtitle": "Erhalte unsere Artikel direkt.",
+    "emailPlaceholder": "Deine E-Mail-Adresse",
+    "subscribe": "Anmelden"
   },
   "article": {
     "loading": "Artikel wird geladen...",
-    "notFoundTitle": "Artikel nicht gefunden",
-    "notFoundDescription": "Dieser Artikel existiert nicht oder wurde entfernt.",
+    "notFoundTitle": "Artikel nicht auffindbar",
+    "notFoundDescription": "Dieser Artikel existiert nicht oder wurde gelöscht.",
     "backToArticles": "Zurück zu den Artikeln",
     "label": "Das Manifest",
     "share": "Teilen",
-    "authorBio": "Mitglied des Renaissance-Teams, leidenschaftlich für Handwerkskunst der Spitzenklasse und Storytelling, das jeder Kreation Bedeutung verleiht.",
+    "authorBio": "Das Haus Renaissance schreibt mit einer einzigen Stimme.",
     "ctaLabel": "Unsere Kreationen",
-    "ctaTitle": "Entdecken Sie unsere Kollektionen.",
+    "ctaTitle": "Entdecke unsere Kollektionen.",
     "ctaSubtitle": "Jedes Symbol erzählt eine Geschichte.",
     "ctaButton": "Kollektionen ansehen"
   },
   "heroHistoire": {
     "label": "Unsere Geschichte",
     "title": "EIN VERGESSENES WORT.",
-    "subtitle": "Perfekt, um zu restaurieren.",
-    "description": "Ein Wort, zu groß für jene, die nichts zu sagen haben. Aber perfekt für jene, die etwas zu restaurieren haben.",
+    "subtitle": "Genau richtig, um zu restaurieren.",
+    "description": "Ein Wort, zu groß für die, die nichts zu sagen haben. Aber genau richtig für die, die etwas zu restaurieren haben.",
     "mobileTitle": "Ein vergessenes Wort.",
-    "mobileSubtitle": "Perfekt, um zu restaurieren.",
-    "mobileDescription": "Ein Wort, zu groß für jene, die nichts zu sagen haben. Aber perfekt für jene, die etwas zu restaurieren haben."
+    "mobileSubtitle": "Genau richtig, um zu restaurieren.",
+    "mobileDescription": "Ein Wort, zu groß für die, die nichts zu sagen haben. Aber genau richtig für die, die etwas zu restaurieren haben."
   },
   "fondateursSection": {
     "label": "Der Ursprung",
-    "title": "GEBOREN AUS EINER WEIGERUNG.",
-    "subtitle": "Drei Männer vom Fach.",
-    "description": "Weigerung, dass alles gleich aussieht. Weigerung, dass gute Arbeit verschwindet. Weigerung, wegzuschauen. Nicht drei Erben. Nicht drei Absolventen. Drei Männer vom Fach.",
-    "mobileDescription": "Weigerung, dass alles gleich aussieht. Weigerung, dass gute Arbeit verschwindet. Drei Männer vom Fach.",
+    "title": "ENTSTANDEN AUS EINER WEIGERUNG.",
+    "subtitle": "Der, zuzusehen, wie verschwindet, was bleiben soll.",
+    "description": "Drei Männer vom Fach haben die Qualität jahrelang zurückgehen sehen. Sie haben beschlossen, das Gegenteil zu tun. Fassungen zu entwerfen, die ein Leben begleiten, keine Saison. Zu verlangen, was der Markt nicht mehr verlangt.\nJede Fassung trägt dieses Versprechen: das eines Objekts, gedacht, um zu bleiben, nicht um ersetzt zu werden.",
+    "mobileDescription": "Drei Männer vom Fach haben die Qualität jahrelang zurückgehen sehen. Sie haben beschlossen, das Gegenteil zu tun. Jede Fassung trägt dieses Versprechen: das eines Objekts, gedacht, um zu bleiben, nicht um ersetzt zu werden.",
     "cta": "Unsere Kreationen entdecken"
   },
   "symbolesSection": {
     "label": "Unsere Symbole",
-    "title": "FÜNF SYMBOLE.",
-    "subtitle": "In Metall graviert.",
-    "description": "Jedes Symbol trägt einen Sinn, eine Geschichte, ein Versprechen. Zeichen, die seit Jahrtausenden sprechen. Wir haben sie nicht erfunden. Wir tragen sie.",
+    "title": "SIEBEN SYMBOLE.",
+    "subtitle": "Ins Metall graviert.",
+    "description": "Was man trägt, erzählt, woran man glaubt.",
     "symbol1Name": "Der Dreizack",
     "symbol1Subtitle": "Souveränität",
-    "symbol1Desc": "Drei Spitzen, drei Dimensionen: Stärke, Vision, Präzision. Das Symbol beherrschter Macht.",
+    "symbol1Desc": "Das Gleichgewicht zwischen gestern, heute und morgen. Der Halt in dem, was gründet, was aufbaut, was bleibt.",
     "symbol2Name": "Die Lilie",
-    "symbol2Subtitle": "Exzellenz",
-    "symbol2Desc": "Die geerbte Exzellenz. Reinheit der Geste und Anspruch im Detail.",
-    "symbol3Name": "Das Ankh",
+    "symbol2Subtitle": "Meisterschaft",
+    "symbol2Desc": "Das Französische, weitergegeben. Der Adel einer überlieferten Geste, der Stolz auf eine Herkunft, zu der man steht.",
+    "symbol3Name": "Das Anch",
     "symbol3Subtitle": "Ewigkeit",
-    "symbol3Desc": "Der Schlüssel des ewigen Lebens. Was wir heute erschaffen, muss die Zeit überdauern.",
+    "symbol3Desc": "Der Atem, der verbindet. Was die, die aufbauen, mit denen verbindet, die weitermachen.",
     "symbol4Name": "Der Skarabäus",
     "symbol4Subtitle": "Wiedergeburt",
-    "symbol4Desc": "Die ewige Wiedergeburt. Transformation und beständige Erneuerung.",
+    "symbol4Desc": "Der Übergang und die Verwandlung. Was die Prüfungen durchquert, was stärker wiederkehrt als zuvor.",
     "symbol5Name": "Die Kobra",
     "symbol5Subtitle": "Schutz",
-    "symbol5Desc": "Der wachsame Schutz. Elegant und mächtig. Bestimmte Präsenz, gebändigte Kraft."
+    "symbol5Desc": "Das stille Erwachen. Wer sieht, bevor er gesehen wird.",
+    "symbol6Name": "Das Horusauge",
+    "symbol6Subtitle": "Klarheit",
+    "symbol6Desc": "Das Auge, das sich nie schließt. Zerbrochen und wieder ganz gemacht, sieht es, was die anderen anschauen, ohne zu sehen.",
+    "symbol7Name": "Die Pariser Straßenplakette",
+    "symbol7Subtitle": "Zugehörigkeit",
+    "symbol7Desc": "« Avenue de la Renaissance », ins Gold graviert. Die Straße, die auf keiner Karte steht, die Adresse, die jeder mitnimmt, wohin er geht."
   },
   "signatureSection": {
     "label": "Die Signatur",
-    "title": "KEIN LOGO.",
-    "subtitle": "Nur du und was du weißt.",
-    "description": "Linker Bügel. Ein Strass. Kleiner als ein Stecknadelkopf. Komm näher. Symbole erscheinen. In Metall graviert. Dreh das Stück um. Eine Nummer. Für dich graviert. Sie wird nur einmal existieren. Wie du.",
-    "mobileDescription": "Linker Bügel. Ein Strass. Kleiner als ein Stecknadelkopf. In Metall gravierte Symbole. Eine einzigartige Nummer. Wie du.",
-    "cta": "Das Geheimnis entdecken"
+    "title": "EIN ZEICHEN FÜR SICH.",
+    "subtitle": "Nur du und das, was du weißt.",
+    "description": "An der Bügelspitze. Ein Kristall. Kleiner als ein Stecknadelkopf. Komm näher. Zeichen tauchen auf, ins Metall graviert. Auf dem Steg eine Nummer. Für dich graviert. Sie wird nur einmal existieren. Wie du.",
+    "mobileDescription": "An der Bügelspitze. Ein Kristall. Kleiner als ein Stecknadelkopf. Ins Metall gravierte Zeichen. Auf dem Steg eine eindeutige Nummer. Wie du.",
+    "cta": "Unsere Kreationen entdecken"
   },
   "savoirFaireSection": {
     "label": "Fertigung",
-    "title": "HERGESTELLT IN SÜDKOREA.",
-    "subtitle": "200 Handgriffe. Null Kompromisse.",
-    "description": "Was eine Fassung schön macht, ist das, was man nicht sieht. Die Balance. Die Spannung des Metalls. Das richtige Gewicht. Über 200 Handgriffe pro Paar. Null Vorführung. Nur das Ergebnis.",
-    "stat1Value": "200+",
-    "stat1Label": "Handgriffe pro Paar",
-    "stat2Value": "15h",
-    "stat2Label": "Fertigung",
-    "stat3Value": "0",
-    "stat3Label": "Kompromisse",
-    "mobileStat1Label": "Handgriffe",
-    "mobileStat2Label": "Fertigung",
-    "mobileStat3Label": "Kompromisse",
-    "cta": "Unsere Handwerkskunst"
+    "title": "GEFERTIGT, WO PRÄZISION EINE DISZIPLIN IST.",
+    "subtitle": "Frankreich, Korea, Italien.",
+    "description": "Unsere Fassungen entstehen zwischen Frankreich, Korea und Italien, in Werkstätten, in denen Sorgfalt eine Kultur ist. Jeder Ort bringt seine Meisterschaft ein: die Feinheit des Titans in Asien, die Genauigkeit der Verarbeitung in Europa. Wir wählen unsere Partner nach ihrem Anspruch, nicht nach ihrem Tempo.",
+    "stat1Value": "18KT",
+    "stat1Label": "Echtes Gold, vergoldet",
+    "stat2Value": "Titan",
+    "stat2Label": "Leicht, widerstandsfähig",
+    "stat3Value": "1849",
+    "stat3Label": "Mazzucchelli-Acetat",
+    "mobileStat1Label": "Gold 18KT",
+    "mobileStat2Label": "Titan",
+    "mobileStat3Label": "Acetat",
+    "cta": "Die Werkstatt"
   },
   "valeursSection": {
     "label": "Unsere Werte",
-    "title": "FÜNF SÄULEN.",
+    "title": "VIER FASERN. EINE KRONE.",
     "subtitle": "Nicht verhandelbar.",
-    "valeur1Title": "Die Präzision",
-    "valeur1Desc": "Jedes Wort wahr. Jede Geste notwendig. Jedes Material richtig.",
-    "valeur1Keyword": "Wahrheit",
-    "valeur2Title": "Der Respekt",
-    "valeur2Desc": "Wir behandeln niemanden als Zahl. Weder Kunden noch Partner noch Handwerker.",
-    "valeur2Keyword": "Würde",
-    "valeur3Title": "Die Stille",
-    "valeur3Desc": "Wahre Eleganz erzwingt keine Aufmerksamkeit. Erkannt werden von jenen, die es verstehen.",
-    "valeur3Keyword": "Diskretion",
-    "valeur4Title": "Die Weitergabe",
-    "valeur4Desc": "Wir bauen dafür, dass in 20 Jahren jemand ein Paar erbt und es behält.",
-    "valeur4Keyword": "Vermächtnis",
-    "valeur5Title": "Die Meisterschaft",
-    "valeur5Desc": "Wir machen nicht schnell. Wir machen es gut. Die Zeit ist ein Verbündeter, kein Feind.",
-    "valeur5Keyword": "Exzellenz"
+    "valeur1Title": "Die Absage ans Falsche",
+    "valeur1Desc": "Vor jedem Wort, jedem Bild: beweist es, oder kündigt es an? Kündigt es an, streichen wir.",
+    "valeur1Keyword": "Wahr",
+    "valeur2Title": "Die Meisterschaft",
+    "valeur2Desc": "Das Titan, das man biegt und das zurückkehrt. Das Gold, das nicht abblättert. Was nicht zum Bleiben gemacht ist, verlässt die Werkstatt nicht.",
+    "valeur2Keyword": "Hand",
+    "valeur3Title": "Das Wort",
+    "valeur3Desc": "Wir versprechen nur, was wir halten können. Nie reduziert: ein Preis, der fällt, ist ein zurückgenommenes Wort.",
+    "valeur3Keyword": "Gehalten",
+    "valeur4Title": "Der Respekt",
+    "valeur4Desc": "Man misst einen Menschen nicht an dem, was er besitzt, sondern an dem, was er achtet. In den Bildern wie am Tresen.",
+    "valeur4Keyword": "Blick",
+    "valeur5Title": "Die Weitergabe",
+    "valeur5Desc": "Was gut gemacht ist, lässt sich reparieren; was sich reparieren lässt, behält man; was man behält, gibt man weiter.",
+    "valeur5Keyword": "Krone"
   },
   "collectionsSection": {
     "label": "Die Kollektionen",
     "countLabel": "4 Kollektionen",
-    "title": "Ein Haus. Vier Kollektionen. Null Zufall.",
+    "title": "Ein Haus. Vier Kollektionen. Kein Zufall.",
     "collection1Name": "Les Origines",
     "collection1Desc": "Wo alles beginnt. Die Rillen. Die Signatur.",
     "collection2Name": "Héritage",
-    "collection2Desc": "Der Dreizack. Was weitergegeben wird.",
+    "collection2Desc": "Der Dreizack. Was man weitergibt.",
     "collection3Name": "Versailles",
-    "collection3Desc": "Die Lilie. Was erbaut wird.",
+    "collection3Desc": "Die Lilie. Was man aufbaut.",
     "collection4Name": "Isis",
-    "collection4Desc": "Das Ankh, der Skarabäus, das Auge. Was 5 000 Jahre überdauert.",
-    "quote": "Wir sammeln keine Modelle. Wir sammeln Symbole.",
+    "collection4Desc": "Das Anch, der Skarabäus, das Auge. Was 5.000 Jahre durchquert.",
+    "quote": "Man sammelt keine Modelle. Man sammelt Symbole.",
     "scroll": "Scrollen"
   },
   "engagementSection": {
     "label": "Unser Engagement",
-    "title": "FRÜHER REPARIERTE MAN.",
-    "subtitle": "Wir reparieren.",
-    "description": "Wir bauen für zehn Jahre. Wir garantieren zwei Jahre. Wir liefern Ersatzteile, solange die Fassung existiert. Wir justieren kostenlos. Lebenslang.",
+    "title": "WAS GUT GEMACHT IST, LÄSST SICH REPARIEREN.",
+    "subtitle": "Wir leben das.",
+    "description": "Unsere Fassungen sind dafür gemacht, justiert, gepflegt, repariert zu werden. Weil ein gut gemachtes Objekt eine zweite Chance verdient, oft eine dritte. Auch nach Ablauf der Gewährleistung: schreib uns. Wir schauen, Fall für Fall, was sich machen lässt.",
     "engagement1Title": "Langlebigkeit",
-    "engagement1Desc": "Unsere Großeltern bewahrten ihre Sachen. Unsere Eltern begannen wegzuwerfen. Wir entscheiden.",
-    "engagement1Stat": "10 ans",
-    "engagement1StatLabel": "Garantiertes Minimum",
+    "engagement1Desc": "Unsere Großeltern haben ihre Dinge behalten. Unsere Eltern haben angefangen wegzuwerfen. Wir entscheiden.",
+    "engagement1Stat": "2 Jahre",
+    "engagement1StatLabel": "Gesetzliche Gewährleistung",
     "engagement2Title": "Rückverfolgbarkeit",
-    "engagement2Desc": "Jedes Teil hat einen Ursprung. Französisches Design. Koreanische Fertigung. Wir sagen alles, weil wir nichts zu verbergen haben.",
+    "engagement2Desc": "Jedes Stück hat einen Ursprung. Französisches Design. Koreanische Fertigung. Wir sagen dir alles, weil wir nichts zu verbergen haben.",
     "engagement2Stat": "100%",
     "engagement2StatLabel": "Transparent",
     "engagement3Title": "Fairness",
-    "engagement3Desc": "200 Partner. Manche seit dem ersten Tag. Wir bauen Beziehungen, keine Verträge.",
-    "engagement3Stat": "200+",
+    "engagement3Desc": "Mehr als 250 Optiker. Manche seit dem ersten Tag. Wir bauen Beziehungen, keine Verträge.",
+    "engagement3Stat": "250+",
     "engagement3StatLabel": "Partner",
     "cta": "Unsere Kreationen entdecken"
   },
@@ -208,8 +214,8 @@
     "label": "Botschafter",
     "rightLabel": "Sie tragen Renaissance",
     "title": "Sie tragen Renaissance",
-    "description": "Bekannte Gesichter. Verschiedene Wege. Eine Gemeinsamkeit: Sie tragen, was Bestand hat.",
-    "quote": "Sie tragen Renaissance nicht, um aufzufallen. Sie tragen es, weil es ihnen gleicht. Weil es etwas über sie aussagt.",
+    "description": "Bekannte Gesichter. Verschiedene Wege. Eine Gemeinsamkeit: Sie tragen, was bleibt.",
+    "quote": "Sie tragen Renaissance nicht, um sich zu zeigen. Sie tragen es, weil es ihnen gleicht. Weil es etwas über sie sagt.",
     "ambassador1Name": "Sophie Marceau",
     "ambassador1Role": "Schauspielerin & Regisseurin",
     "ambassador1Collection": "Kollektion Héritage",

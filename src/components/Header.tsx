@@ -281,7 +281,7 @@ export default function Header() {
           <div className="relative flex items-center justify-between h-16 md:h-20 lg:h-24">
 
             {/* Navigation Desktop Gauche */}
-            <nav className="hidden lg:flex items-center gap-5 xl:gap-7 2xl:gap-9" onMouseLeave={handleMenuLeave}>
+            <nav className="hidden lg:flex lg:flex-1 lg:basis-0 items-center gap-4 xl:gap-5 2xl:gap-6" onMouseLeave={handleMenuLeave}>
               <NavLink to={localePath('/collections/heritage')} rawPath={rawPath} routeMatch="/collections/heritage" onMouseEnter={() => handleMenuEnter('heritage')} onClick={closeMenu}>
                 {t('nav.heritage')}
               </NavLink>
@@ -316,14 +316,14 @@ export default function Header() {
                 decoding="sync"
                 className={`w-auto object-contain transition-[height,opacity] duration-500 ease-out group-hover/logo:opacity-75 ${
                   scrolled
-                    ? 'h-32 md:h-36 lg:h-36 xl:h-40'
-                    : 'h-36 md:h-40 lg:h-40 xl:h-44'
+                    ? 'h-[7.36rem] md:h-[8.28rem] lg:h-[8.28rem] xl:h-[9.2rem]'
+                    : 'h-[8.28rem] md:h-[9.2rem] lg:h-[9.2rem] xl:h-[10.12rem]'
                 }`}
               />
             </LocaleLink>
 
             {/* Navigation Desktop Droite */}
-            <div className="hidden lg:flex items-center gap-5 xl:gap-7 2xl:gap-9 justify-end">
+            <div className="hidden lg:flex lg:flex-1 lg:basis-0 items-center gap-4 xl:gap-5 2xl:gap-6 justify-end">
               <OpticianDropdown isOpen={opticiensOpen} onToggle={setOpticiensOpen} />
               <LanguageSelector
                 isOpen={languageOpen}
@@ -586,7 +586,7 @@ function NavLink({
       onPointerEnter={onMouseEnter}
       onMouseMove={onMouseEnter}
       onFocus={onMouseEnter}
-      className={`group relative whitespace-nowrap font-sans text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.32em] font-medium uppercase pb-1 transition-colors duration-300 ${
+      className={`group relative whitespace-nowrap font-sans text-[9.35px] xl:text-[9.9px] 2xl:text-[10.45px] tracking-[0.22em] font-medium uppercase pb-1 transition-colors duration-300 ${
         isActive ? 'text-bronze' : 'text-dark-text hover:text-bronze'
       }`}
       aria-current={isActive ? 'page' : undefined}

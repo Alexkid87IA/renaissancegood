@@ -1,7 +1,7 @@
 {
   "title": "FAQ",
   "subtitle": "Frequently asked questions",
-  "description": "Find answers to your most frequently asked questions.",
+  "description": "Find the answers to your most common questions.",
   "categories": {
     "all": "All",
     "orders": "Orders",
@@ -15,19 +15,19 @@
   "contactCta": "Contact us",
   "seo": {
     "title": "Frequently Asked Questions (FAQ)",
-    "description": "Find answers to your questions about RENAISSANCE Paris eyewear: orders, shipping, returns, care, warranty and partner opticians."
+    "description": "Find the answers to your questions about Renaissance Eyewear glasses: orders, shipping, returns, care, warranty and partner opticians."
   },
   "hero": {
     "label": "Help & Support",
-    "titleLine1": "FREQUENTLY",
-    "titleLine2": "ASKED.",
+    "titleLine1": "FREQUENTLY ASKED",
+    "titleLine2": "QUESTIONS.",
     "subtitle": "Everything you need to know.",
     "answers": "Answers",
     "categoriesCount": "Categories"
   },
   "categoryNames": {
     "orderPayment": "Order & Payment",
-    "delivery": "Delivery",
+    "delivery": "Shipping",
     "returnsExchanges": "Returns & Exchanges",
     "productsCare": "Products & Care",
     "partnerOpticians": "Partner Opticians",
@@ -39,40 +39,40 @@
       "a": "We accept credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers. All payments are secure and encrypted."
     },
     "modifyOrder": {
-      "q": "Can I modify or cancel my order?",
-      "a": "You can modify or cancel your order within 2 hours of placing it by contacting us immediately. After this period, your order is being prepared."
+      "q": "Can I change or cancel my order?",
+      "a": "You can change or cancel your order within 2 hours of placing it by contacting us right away. After that, your order is being prepared."
     },
     "invoice": {
       "q": "Will I receive an invoice?",
-      "a": "Yes, a detailed invoice will be sent to you by email as soon as your order is shipped."
+      "a": "Yes, a detailed invoice is sent to you by email as soon as your order ships."
     },
     "deliveryTimes": {
       "q": "What are the delivery times?",
-      "a": "Orders are shipped within 24-48 hours. Delivery in metropolitan France takes 1-2 business days, 2-3 days for the EU, and 3-7 days internationally."
+      "a": "Orders ship within 24 to 48h. Delivery takes 1 to 2 business days in metropolitan France, 2 to 3 days in the EU, and 3 to 7 days internationally."
     },
     "freeShipping": {
       "q": "Is shipping free?",
-      "a": "Yes, shipping is free for all orders, regardless of destination."
+      "a": "Yes, shipping is free on all orders, wherever they go."
     },
     "trackOrder": {
       "q": "Can I track my order?",
-      "a": "Yes, you will receive a tracking number by email as soon as your order is shipped. You can track your package in real time."
+      "a": "Yes, you'll receive a tracking number by email as soon as your order ships. You can follow your parcel in real time."
     },
     "internationalShipping": {
       "q": "Do you ship internationally?",
-      "a": "Yes, we ship worldwide. Customs fees may apply depending on the country and are the responsibility of the recipient."
+      "a": "Yes, we ship worldwide. Customs fees may apply depending on the country and are the recipient's responsibility."
     },
     "returnPolicy": {
       "q": "What is your return policy?",
-      "a": "You have 14 days from receipt to return your order. The product must be in its original condition with intact packaging. Return shipping is covered by Renaissance."
+      "a": "You have 14 days from delivery to return your order. The product must be in its original condition with the packaging intact. Return shipping is covered by Renaissance."
     },
     "howToReturn": {
       "q": "How do I make a return?",
-      "a": "Contact our customer service at contact@renaissance-eyewear.fr with your order number. We will send you a prepaid return label and instructions."
+      "a": "Contact our customer service at contact@renaissanceeyewear.com with your order number. We'll send you a prepaid return label and the instructions."
     },
     "refundDelay": {
       "q": "When will I be refunded?",
-      "a": "The refund is processed within 14 days of receiving and validating your return, using the original payment method."
+      "a": "The refund is issued within 14 days of receiving and approving your return, to the payment method used for the purchase."
     },
     "exchangeFrame": {
       "q": "Can I exchange my frame?",
@@ -80,23 +80,23 @@
     },
     "chooseSize": {
       "q": "How do I choose the right frame size?",
-      "a": "Check our Size Guide which details the dimensions of each model. You can also try our frames at one of our 200+ partner opticians."
+      "a": "Check our Size Guide, which lists the dimensions of each model. You can also try our frames at one of our 250+ partner opticians."
     },
     "prescriptionLenses": {
-      "q": "Are the frames compatible with prescription lenses?",
-      "a": "Yes, all our optical frames can accommodate your prescription lenses. Visit a partner optician for fitting."
+      "q": "Can the frames take prescription lenses?",
+      "a": "Yes, all our optical frames can take your prescription lenses. Visit a partner optician for the fitting."
     },
     "cleanGlasses": {
       "q": "How do I care for my Renaissance glasses?",
-      "a": "Clean your glasses with the included microfiber cloth. Avoid harsh chemicals. Store them in their case when not wearing them."
+      "a": "Clean your glasses with the microfiber cloth provided. Avoid harsh chemicals. Keep them in their case when you're not wearing them."
     },
     "warranty": {
       "q": "What is the warranty on the frames?",
-      "a": "All our frames come with a 2-year manufacturer's warranty covering manufacturing defects."
+      "a": "All our frames come with a 3-year manufacturer's warranty covering manufacturing defects."
     },
     "tryBeforeBuy": {
       "q": "Can I try the glasses before buying?",
-      "a": "Yes, visit one of our 200+ partner opticians in France to try our collections and receive personalized advice."
+      "a": "Yes, visit one of our 250+ partner opticians in France to try our collections and get personalized advice."
     },
     "findOptician": {
       "q": "How do I find a partner optician?",
@@ -104,15 +104,15 @@
     },
     "samePrices": {
       "q": "Are prices the same online and at opticians?",
-      "a": "Yes, our prices are identical on our website and at our partner opticians."
+      "a": "Yes, our prices are the same on our site and at our partner opticians."
     },
     "contactService": {
       "q": "How do I contact customer service?",
-      "a": "You can reach us by email at contact@renaissance-eyewear.fr or by phone at +33 1 42 86 82 00 (Mon-Fri, 9am-6pm)."
+      "a": "You can reach us by email at contact@renaissanceeyewear.com or by phone at +33 1 42 86 82 00 (Mon to Fri, 9am to 6pm)."
     },
     "responseDelay": {
-      "q": "What is the customer service response time?",
-      "a": "We are committed to responding to all inquiries within 48 business hours."
+      "q": "How quickly does customer service reply?",
+      "a": "We commit to answering every request within 48 business hours at most."
     },
     "customization": {
       "q": "Do you offer a customization service?",
@@ -122,8 +122,8 @@
   "cta": {
     "label": "Need help",
     "title": "Another question?",
-    "subtitle": "We are here for you.",
-    "description": "Our team is at your disposal to answer all your questions.",
+    "subtitle": "We're here for you.",
+    "description": "Our team is on hand to answer all your questions.",
     "contactUs": "Contact us",
     "callUs": "+33 1 42 86 82 00"
   }

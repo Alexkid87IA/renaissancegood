@@ -15,16 +15,16 @@
     "article1Title": "Artículo 1 - Información Legal",
     "article1Text": "<strong>Razón social:</strong> Renaissance Eyewear<br /><strong>Sede social:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, Francia<br /><strong>Email:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a><br /><strong>Sitio web:</strong> <a href=\"https://renaissanceeyewear.fr\">renaissanceeyewear.fr</a><br /><strong>Alojamiento:</strong> Shopify Inc., 151 O'Connor Street, Ground floor, Ottawa, ON K2P 2L8, Canadá",
     "article2Title": "Artículo 2 - Objeto",
-    "article2Text": "Las presentes CGV tienen por objeto definir los derechos y obligaciones de las partes en el marco de la venta en línea de gafas de lujo y accesorios ofrecidos por Renaissance Eyewear.",
+    "article2Text": "Las presentes CGV tienen por objeto definir los derechos y obligaciones de las partes en el marco de la venta en línea de gafas y accesorios ofrecidos por Renaissance Eyewear.",
     "article3Title": "Artículo 3 - Productos",
     "article3_1Title": "3.1 Descripción",
-    "article3_1Text": "Renaissance Eyewear ofrece gafas de lujo fabricadas en Corea del Sur, caracterizadas por:",
+    "article3_1Text": "Renaissance Eyewear ofrece gafas fabricadas en Corea, caracterizadas por:",
     "article3_1Items": [
       "Monturas de metal grueso con acabados precisos",
-      "5 símbolos emblemáticos: Tridente, Flor de Lis, Ankh, Escarabajo, Cobra",
-      "Rhinestone signature en la patilla izquierda",
-      "Ediciones limitadas de 100 a 300 piezas por referencia",
-      "Colecciones temáticas: Héritage, Versailles, Isis"
+      "7 símbolos emblemáticos: Tridente, Flor de Lis, Anj, Escarabajo, Cobra, Ojo de Horus, Placa parisina",
+      "Cristal de firma en la punta de la patilla",
+      "Número de serie grabado en el puente: una identidad, no una edición limitada",
+      "Colecciones temáticas: Herencia, Versailles, Isis"
     ],
     "article3_2Title": "3.2 Precios",
     "article3_2Text": "Los precios están indicados en euros con IVA incluido. El rango de precios se extiende de 530€ a 4000€+ según los modelos y ediciones.",
@@ -141,7 +141,7 @@
     "article9_2Title": "9.2 Limitación de responsabilidad",
     "article9_2Text": "La responsabilidad de Renaissance Eyewear se limita al importe del pedido en cuestión.",
     "article10Title": "Artículo 10 - Propiedad Intelectual",
-    "article10Text1": "Todos los elementos del sitio (textos, imágenes, logotipos, símbolos, diseños) están protegidos por derechos de autor y de marcas. Los símbolos Renaissance (Tridente, Flor de Lis, Ankh, Escarabajo, Cobra) y el nombre \"Renaissance Eyewear\" son marcas registradas.",
+    "article10Text1": "Todos los elementos del sitio (textos, imágenes, logotipos, símbolos, diseños) están protegidos por derechos de autor y de marcas. Los símbolos Renaissance (Tridente, Flor de Lis, Anj, Escarabajo, Cobra, Ojo de Horus, Placa parisina) y el nombre \"Renaissance Eyewear\" son marcas registradas.",
     "article10Text2": "Toda reproducción, representación o utilización, incluso parcial, está estrictamente prohibida sin autorización previa por escrito.",
     "article11Title": "Artículo 11 - Protección de Datos Personales",
     "article11Text1": "La información recopilada es objeto de un tratamiento informático destinado a la gestión de pedidos y la relación con el cliente. Conforme al RGPD, usted dispone de derecho de acceso, rectificación, supresión y portabilidad de sus datos.",
@@ -340,9 +340,9 @@
     "section3_2Text": "Las siguientes marcas están registradas y protegidas:",
     "section3_2Items": [
       "<strong>Renaissance Eyewear</strong> (nombre y logotipo)",
-      "<strong>Los 5 Símbolos:</strong> Tridente, Flor de Lis, Ankh, Escarabajo, Cobra",
-      "<strong>Colecciones:</strong> Héritage, Versailles, Isis",
-      "<strong>Firma:</strong> \"Silence Stylé\""
+      "<strong>Los 7 Símbolos:</strong> Tridente, Flor de Lis, Anj, Escarabajo, Cobra, Ojo de Horus, Placa parisina",
+      "<strong>Colecciones:</strong> Herencia, Versailles, Isis",
+      "<strong>Lema:</strong> «Pour que chaque jour compte»"
     ],
     "section3_3Title": "3.3 Reproducción prohibida",
     "section3_3Text": "Toda reproducción, representación, modificación, publicación, adaptación de la totalidad o parte de los elementos del sitio, cualquiera que sea el medio o procedimiento utilizado, está prohibida, salvo autorización escrita previa de Renaissance Eyewear.",
@@ -414,7 +414,7 @@
     "section3Title": "3. Propiedad Intelectual",
     "section3Text": "Todos los elementos del sitio Renaissance Eyewear (textos, imágenes, gráficos, logotipo, iconos, sonidos, software) son propiedad exclusiva de Renaissance Eyewear o sus socios. Toda reproducción, representación, modificación, publicación o adaptación de la totalidad o parte de los elementos del sitio, cualquiera que sea el medio o procedimiento utilizado, está prohibida, salvo autorización escrita previa.",
     "brandsTitle": "Marcas y Símbolos",
-    "brandsText": "Los símbolos Renaissance (Tridente, Flor de Lis, Ankh, Escarabajo, Cobra), el logotipo Renaissance Eyewear, así como los nombres de colecciones (Héritage, Versailles, Isis) son marcas registradas. Todo uso no autorizado de estas marcas está estrictamente prohibido.",
+    "brandsText": "Los símbolos Renaissance (Tridente, Flor de Lis, Anj, Escarabajo, Cobra, Ojo de Horus, Placa parisina), el logotipo Renaissance Eyewear, así como los nombres de colecciones (Herencia, Versailles, Isis) son marcas registradas. Todo uso no autorizado de estas marcas está estrictamente prohibido.",
     "section4Title": "4. Responsabilidad",
     "liabilityTitle": "Limitación de responsabilidad",
     "liabilityText": "Renaissance Eyewear no podrá ser considerado responsable de:",
@@ -447,9 +447,9 @@
   "garantie": {
     "title": "Garantía y Servicio Postventa",
     "seoTitle": "Garantía y Servicio Postventa",
-    "seoDescription": "Garantía de 2 años RENAISSANCE Paris. Servicio postventa, reparaciones, mantenimiento y consejos para sus gafas de lujo. Satisfacción garantizada.",
+    "seoDescription": "Garantía 3 años Renaissance Eyewear. Servicio postventa, reparaciones, cuidado y consejos para tus gafas. Satisfacción garantizada.",
     "warrantyTitle": "Garantía del Fabricante",
-    "warrantyText": "Todos los productos Renaissance se benefician de una <strong>garantía del fabricante de 2 años</strong> a partir de la fecha de compra, cubriendo los defectos de fabricación y de materiales.",
+    "warrantyText": "Todos los productos Renaissance se benefician de una <strong>garantía del fabricante de 3 años</strong> a partir de la fecha de compra, cubriendo los defectos de fabricación y de materiales.",
     "coveredTitle": "Lo que está cubierto",
     "coveredItems": [
       "Defectos de fabricación (soldadura, ensamblaje, acabados)",
@@ -471,7 +471,7 @@
     "warrantyRepairTitle": "Reparaciones bajo garantía",
     "warrantyRepairText": "Si su montura presenta un defecto cubierto por la garantía:",
     "warrantyRepairItems": [
-      "Contáctenos en <a href=\"mailto:contact@renaissance-eyewear.fr\">contact@renaissance-eyewear.fr</a> con su número de pedido y fotos del defecto",
+      "Contáctenos en <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a> con su número de pedido y fotos del defecto",
       "Nuestro equipo evaluará su solicitud en 48h",
       "Si la garantía aplica, le enviaremos una etiqueta de devolución prepagada",
       "Devuelva la montura en su embalaje original",
@@ -491,7 +491,7 @@
       "<strong>Enderezamiento de patillas</strong>: Para restaurar la forma original",
       "<strong>Reemplazo de plaquetas</strong>: Para un confort óptimo",
       "<strong>Pulido</strong>: Para devolver el brillo original al metal",
-      "<strong>Reengaste de strass</strong>: Si un strass se ha caído",
+      "<strong>Reengaste de cristal</strong>: Si un cristal se ha caído",
       "<strong>Ajuste</strong>: Para un uso perfecto"
     ],
     "maintenanceTitle": "Cuidado y Mantenimiento",
@@ -517,7 +517,7 @@
       "Evite el contacto con laca, perfume y cosméticos"
     ],
     "opticiansTitle": "En nuestros Ópticos Asociados",
-    "opticiansText": "Nuestros más de 200 ópticos asociados en Francia pueden ayudarle con:",
+    "opticiansText": "Nuestros más de 250 ópticos asociados en Francia pueden ayudarle con:",
     "opticiansItems": [
       "Ajustes y regulaciones gratuitos",
       "Limpieza profesional",
@@ -531,13 +531,13 @@
     "contactTitle": "Contacto Servicio Postventa",
     "contactText": "Nuestro equipo SAV está a su disposición:",
     "contactItems": [
-      "<strong>Email:</strong> <a href=\"mailto:contact@renaissance-eyewear.fr\">contact@renaissance-eyewear.fr</a>",
+      "<strong>Email:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
       "<strong>Teléfono:</strong> <a href=\"tel:+33142868200\">+33 1 42 86 82 00</a>",
       "<strong>Horario:</strong> Lunes a Viernes, 9h - 18h",
       "<strong>Plazo de respuesta:</strong> En un máximo de 48 horas laborables"
     ],
     "qualityTitle": "Compromiso de Calidad",
-    "qualityText1": "Renaissance se compromete a ofrecer productos de la más alta calidad. Cada montura está fabricada a mano en Corea del Sur por artesanos especializados y se somete a rigurosos controles de calidad antes de su envío.",
+    "qualityText1": "Renaissance se compromete a ofrecer productos bien hechos. Cada montura se fabrica a mano en Corea por manos especializadas y pasa controles de calidad rigurosos antes de su envío.",
     "qualityText2": "Si a pesar de todas nuestras precauciones encuentra un problema con su montura, haremos todo lo posible para resolverlo rápidamente y a su entera satisfacción."
   },
 
@@ -576,7 +576,7 @@
   "expedition": {
     "title": "Envío",
     "seoTitle": "Entrega",
-    "seoDescription": "Envío gratuito RENAISSANCE Paris. Expedición en 24-48h, seguimiento Colissimo y entrega internacional. Descubra nuestros plazos y condiciones.",
+    "seoDescription": "Envío gratis Renaissance Eyewear. Expedición en 24-48 h, seguimiento Colissimo y entrega internacional. Descubre nuestros plazos y condiciones.",
     "policyTitle": "Política de Envío",
     "policyText": "Nos comprometemos a enviar sus pedidos rápidamente y con total transparencia.",
     "zoneTitle": "Zona y Modo de Entrega",
@@ -613,7 +613,7 @@
       "<strong>Nota</strong>: Pueden aplicarse gastos de aduana según las legislaciones locales. Estos gastos corren a cargo del destinatario."
     ],
     "preparationTitle": "Preparación del Pedido",
-    "preparationText": "Cada par de gafas Renaissance se embala cuidadosamente en su estuche original, acompañado de un certificado de autenticidad y una guía de mantenimiento. Nuestro packaging refleja la excelencia de nuestras creaciones y garantiza una protección óptima durante el transporte.",
+    "preparationText": "Cada par de gafas Renaissance se embala con cuidado en su estuche original, acompañado de un certificado de autenticidad y una guía de cuidado. Nuestros embalajes protegen cada montura durante el transporte.",
     "trackingTitle": "Notificación y Seguimiento",
     "trackingText": "Recibirá una confirmación de envío por correo electrónico en cuanto su pedido haya salido de nuestros talleres. Este correo contendrá:",
     "trackingItems": [
@@ -633,7 +633,7 @@
     ],
     "damagedResolution": "Organizaremos un cambio o reembolso a la mayor brevedad.",
     "partnerTitle": "Entrega en nuestros Ópticos Asociados",
-    "partnerText": "Para una experiencia aún más personalizada, puede elegir que su pedido se entregue directamente en uno de nuestros más de 200 ópticos asociados en Francia. Contáctenos para más información sobre esta opción.",
+    "partnerText": "Para una experiencia aún más personalizada, puede elegir que su pedido se entregue directamente en uno de nuestros más de 250 ópticos asociados en Francia. Contáctenos para más información sobre esta opción.",
     "contactTitle": "Contacto Servicio al Cliente",
     "contactText": "Para cualquier pregunta sobre su entrega:",
     "contactItems": [
@@ -645,7 +645,7 @@
   "guideTailles": {
     "title": "Guía de Tallas",
     "seoTitle": "Guía de Tallas",
-    "seoDescription": "Encuentre la montura RENAISSANCE Paris perfectamente adaptada a su rostro. Guía de dimensiones, formas de rostro y consejos para elegir sus gafas.",
+    "seoDescription": "Encuentre la montura Renaissance Eyewear perfectamente adaptada a su rostro. Guía de dimensiones, formas de rostro y consejos para elegir sus gafas.",
     "heroSupertitle": "Ayuda y Consejos",
     "heroTitle1": "GUÍA DE",
     "heroTitle2": "TALLAS.",
@@ -656,13 +656,13 @@
     "measurementsDiagram": "Esquema de medidas",
     "lensWidth": "Ancho del cristal",
     "lensWidthDesc": "Distancia horizontal de un cristal, medida en su punto más ancho.",
-    "lensWidthRange": "45mm — 58mm",
+    "lensWidthRange": "45 mm a 58 mm",
     "bridge": "Puente",
     "bridgeDesc": "Distancia entre los dos cristales, a la altura del puente nasal.",
-    "bridgeRange": "14mm — 24mm",
+    "bridgeRange": "14 mm a 24 mm",
     "temples": "Patillas",
     "templesDesc": "Longitud de las patillas, desde la bisagra hasta el extremo.",
-    "templesRange": "135mm — 150mm",
+    "templesRange": "135 mm a 150 mm",
     "standardFormat": "Formato Estándar Renaissance",
     "standardFormatDesc": "Nuestras dimensiones se indican en este formato:",
     "standardFormatExample": "52-20-145",
@@ -696,7 +696,7 @@
     "rectangularAdvice": "Elija monturas con una altura de cristal importante para acortar visualmente el rostro. Las formas hexagonales funcionan bien.",
     "ctaSupertitle": "¿Necesita probarse?",
     "ctaTitle": "Pruebe en tienda.",
-    "ctaSubtitle": "Más de 200 ópticos asociados en Francia.",
+    "ctaSubtitle": "Más de 250 ópticos asociados en Francia.",
     "ctaDescription": "Visite uno de nuestros ópticos asociados para probar nuestras colecciones y beneficiarse de consejos personalizados.",
     "findOptician": "Encontrar un óptico",
     "contactUs": "Contáctenos"
