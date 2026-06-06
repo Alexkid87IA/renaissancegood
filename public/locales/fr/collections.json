@@ -87,5 +87,6 @@
   "page": {
     "seoTitle": "Collections",
     "seoDescription": "Toutes les collections Renaissance Eyewear : Héritage, Versailles, Isis. Des lunettes faites pour durer et se transmettre."
-  }
+  },
+  "noProducts": "Aucun modèle dans cette collection pour l'instant."
 }

@@ -49,7 +49,7 @@ export default function ProductPage() {
 
     async function loadProduct() {
       if (!id) {
-        setError(t('notFound', { ns: 'common' }));
+        setError(t('notFound'));
         setLoading(false);
         return;
       }
@@ -68,7 +68,7 @@ export default function ProductPage() {
 
         if (cancelled) return;
         if (!shopifyProduct) {
-          setError(t('notFound', { ns: 'common' }));
+          setError(t('notFound'));
           setLoading(false);
           return;
         }
@@ -353,7 +353,7 @@ export default function ProductPage() {
       <div className="bg-white min-h-screen flex items-center justify-center">
         <div className="text-center max-w-md px-8">
           <p className="font-sans text-dark-text text-sm tracking-wider uppercase mb-6">
-            {error || t('notFound', { ns: 'common' })}
+            {error || t('notFound')}
           </p>
           <button
             onClick={() => navigate('/collections/heritage')}

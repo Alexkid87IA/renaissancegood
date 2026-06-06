@@ -177,5 +177,9 @@
     "successCode": "",
     "error": "Une erreur est survenue. Veuillez réessayer.",
     "noThanks": "Non merci"
+  },
+  "breadcrumb": {
+    "home": "Accueil",
+    "blog": "Le Manifeste"
   }
 }
