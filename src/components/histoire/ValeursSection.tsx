@@ -64,16 +64,18 @@ export default function ValeursSection() {
             </div>
 
             <div className="border-y border-white/[0.12]">
-              {valeurs.map((valeur) => (
+              {valeurs.map((valeur, i) => {
+                const isCrown = i === valeurs.length - 1;
+                return (
                 <div
                   key={valeur.title}
-                  className="group grid grid-cols-[13rem_1fr] gap-8 border-b border-white/[0.10] py-4 last:border-b-0 xl:grid-cols-[15rem_1fr] xl:py-5"
+                  className={`group grid grid-cols-[13rem_1fr] gap-8 border-b border-white/[0.10] py-4 last:border-b-0 xl:grid-cols-[15rem_1fr] xl:py-5 ${isCrown ? 'mt-2 border-t border-t-bronze/40 border-b-0' : ''}`}
                 >
                   <div>
-                    <p className="font-sans text-[8px] tracking-[0.28em] uppercase font-medium text-bronze/[0.72] mb-2">
-                      {valeur.keyword}
+                    <p className={`font-sans text-[8px] tracking-[0.28em] uppercase font-medium mb-2 ${isCrown ? 'text-bronze' : 'text-bronze/[0.72]'}`}>
+                      {isCrown ? 'La couronne' : valeur.keyword}
                     </p>
-                    <h3 className="font-display text-2xl xl:text-[1.85rem] text-white font-bold tracking-[-0.02em] leading-[0.95]">
+                    <h3 className={`font-display text-2xl xl:text-[1.85rem] font-bold tracking-[-0.02em] leading-[0.95] ${isCrown ? 'text-bronze' : 'text-white'}`}>
                       {valeur.title}
                     </h3>
                   </div>
@@ -81,7 +83,8 @@ export default function ValeursSection() {
                     {valeur.description}
                   </p>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -109,19 +112,22 @@ export default function ValeursSection() {
           </p>
 
           <div className="border-y border-white/[0.12]">
-            {valeurs.map((valeur) => (
-              <div key={valeur.title} className="border-b border-white/[0.10] py-4 last:border-b-0">
-                <p className="font-sans text-[7px] tracking-[0.22em] text-bronze/[0.72] uppercase font-medium mb-2">
-                  {valeur.keyword}
+            {valeurs.map((valeur, i) => {
+              const isCrown = i === valeurs.length - 1;
+              return (
+              <div key={valeur.title} className={`border-b border-white/[0.10] py-4 last:border-b-0 ${isCrown ? 'mt-2 border-t border-t-bronze/40 border-b-0' : ''}`}>
+                <p className={`font-sans text-[7px] tracking-[0.22em] uppercase font-medium mb-2 ${isCrown ? 'text-bronze' : 'text-bronze/[0.72]'}`}>
+                  {isCrown ? 'La couronne' : valeur.keyword}
                 </p>
-                <h3 className="font-display text-xl text-white font-bold tracking-[-0.02em] leading-tight mb-2">
+                <h3 className={`font-display text-xl font-bold tracking-[-0.02em] leading-tight mb-2 ${isCrown ? 'text-bronze' : 'text-white'}`}>
                   {valeur.title}
                 </h3>
                 <p className="font-sans text-xs leading-[1.6] text-white/[0.58]">
                   {valeur.description}
                 </p>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

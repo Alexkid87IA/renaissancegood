@@ -2,17 +2,17 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const STATS = [
-  { value: '6-8', label: 'Artisans par paire' },
-  { value: '100+', label: 'Gestes de fabrication' },
-  { value: '8-15h', label: 'De travail cumulé' },
-  { value: '3', label: 'Pays d\'excellence' },
+  { value: '18KT', label: 'Or véritable, plaqué' },
+  { value: 'Titane', label: 'Léger, résistant' },
+  { value: '1849', label: 'Acétate Mazzucchelli' },
+  { value: '2019', label: 'Année de fondation' },
 ];
 
 const DETAILS = [
   { bold: 'Dessinées à Paris.', text: 'Chaque ligne, chaque courbe.' },
   { bold: 'Usinées en Corée.', text: 'Là où la précision est une religion.' },
-  { bold: 'Acétate Mazzucchelli. Acier haute résistance.', text: 'Pas de compromis.' },
-  { bold: 'Un strass sur la branche gauche.', text: 'Notre signature. Discrète.' },
+  { bold: 'Titane plaqué or 18KT. Acétate Mazzucchelli.', text: 'La matière se montre nue.' },
+  { bold: 'Un cristal en bout de branche.', text: 'Connu du seul porteur.' },
 ];
 
 export default function ProductCraftSection() {
@@ -43,7 +43,7 @@ export default function ProductCraftSection() {
         >
           {/* Header */}
           <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.3em] text-white/50 uppercase mb-3">
-            Savoir-faire
+            L'atelier
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 tracking-[-0.02em] leading-[0.95]">
             FABRICATION

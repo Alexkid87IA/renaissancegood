@@ -18,9 +18,9 @@ export default {
         'dark-bg': '#1a1a1a',
       },
       fontFamily: {
-        serif: ['Playfair Display', 'Cormorant Garamond', 'serif'],
-        sans: ['DM Sans', 'Inter', 'sans-serif'],
-        display: ['Playfair Display', 'serif'],
+        serif: ['Bodoni Moda', 'serif'],
+        sans: ['Bodoni Moda', 'serif'],
+        display: ['Bodoni Moda', 'serif'],
       },
       letterSpacing: {
         'luxury': '0.15em',

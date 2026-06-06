@@ -278,10 +278,10 @@ export default function Header() {
           {/* Hauteur fixe du header — le logo (144-176px) déborde
               volontairement au-dessus/dessous : pattern maison luxe classique
               (Hermès, Dior). Le container reste fin, le wordmark respire. */}
-          <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
+          <div className="relative flex items-center justify-between h-16 md:h-20 lg:h-24">
 
             {/* Navigation Desktop Gauche */}
-            <nav className="hidden lg:flex items-center gap-6 xl:gap-9 2xl:gap-12 flex-1" onMouseLeave={handleMenuLeave}>
+            <nav className="hidden lg:flex items-center gap-5 xl:gap-7 2xl:gap-9" onMouseLeave={handleMenuLeave}>
               <NavLink to={localePath('/collections/heritage')} rawPath={rawPath} routeMatch="/collections/heritage" onMouseEnter={() => handleMenuEnter('heritage')} onClick={closeMenu}>
                 {t('nav.heritage')}
               </NavLink>
@@ -305,25 +305,25 @@ export default function Header() {
                 légèrement pour rester discret. */}
             <LocaleLink
               to="/"
-              className="flex-shrink-0 mx-2 sm:mx-4 md:mx-6 lg:mx-8 group/logo"
-              aria-label="Renaissance Paris"
+              className="flex-shrink-0 mx-2 sm:mx-4 md:mx-6 lg:mx-auto group/logo"
+              aria-label="Renaissance Eyewear"
             >
               <img
                 src={LOGO_DARK}
-                alt="Renaissance Paris"
+                alt="Renaissance Eyewear"
                 loading="eager"
                 fetchpriority="high"
                 decoding="sync"
                 className={`w-auto object-contain transition-[height,opacity] duration-500 ease-out group-hover/logo:opacity-75 ${
                   scrolled
-                    ? 'h-28 md:h-32 lg:h-32 xl:h-36'
+                    ? 'h-32 md:h-36 lg:h-36 xl:h-40'
                     : 'h-36 md:h-40 lg:h-40 xl:h-44'
                 }`}
               />
             </LocaleLink>
 
             {/* Navigation Desktop Droite */}
-            <div className="hidden lg:flex items-center gap-5 xl:gap-7 2xl:gap-9 flex-1 justify-end">
+            <div className="hidden lg:flex items-center gap-5 xl:gap-7 2xl:gap-9 justify-end">
               <OpticianDropdown isOpen={opticiensOpen} onToggle={setOpticiensOpen} />
               <LanguageSelector
                 isOpen={languageOpen}
@@ -513,14 +513,6 @@ export default function Header() {
                         <span className="absolute inset-0 bg-white transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-500 origin-left" />
                       </button>
                     </LocaleLink>
-                    <LocaleLink to="/savoir-faire" onClick={() => setActiveMenu(null)}>
-                      <button className="group/btn relative overflow-hidden border border-white/[0.08] px-8 py-3.5 transition-all duration-500 hover:border-white/25">
-                        <span className="relative z-10 font-sans text-[8px] tracking-[0.35em] font-medium uppercase text-white/30 group-hover/btn:text-[#0a0a0a] transition-colors duration-500">
-                          {t('megaMenu.savoirFaire')}
-                        </span>
-                        <span className="absolute inset-0 bg-white transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-500 origin-left" />
-                      </button>
-                    </LocaleLink>
                   </div>
                 </motion.div>
               </motion.div>
@@ -594,7 +586,7 @@ function NavLink({
       onPointerEnter={onMouseEnter}
       onMouseMove={onMouseEnter}
       onFocus={onMouseEnter}
-      className={`group relative font-sans text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.32em] font-medium uppercase pb-1 transition-colors duration-300 ${
+      className={`group relative whitespace-nowrap font-sans text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.32em] font-medium uppercase pb-1 transition-colors duration-300 ${
         isActive ? 'text-bronze' : 'text-dark-text hover:text-bronze'
       }`}
       aria-current={isActive ? 'page' : undefined}

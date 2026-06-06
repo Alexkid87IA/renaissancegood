@@ -2,17 +2,17 @@
   "hero": {
     "label": "La Maison",
     "title": "RENAISSANCE",
-    "subtitle": "Paris, depuis toujours."
+    "subtitle": "Née en 2019, d'un refus."
   },
   "signature": {
     "label": "Notre signature",
-    "title": "CINQ SYMBOLES\nMILLÉNAIRES",
-    "description": "Chaque monture porte en elle un fragment d'éternité. Cinq symboles traversant les civilisations, cinq signatures de la Maison Renaissance."
+    "title": "SEPT SYMBOLES\nMILLÉNAIRES",
+    "description": "Chaque monture porte en elle un fragment d'éternité. Sept symboles traversant les civilisations, sept chapitres de la Maison Renaissance."
   },
   "savoirFaire": {
-    "label": "Savoir-faire",
-    "title": "L'EXCELLENCE\nARTISANALE",
-    "description": "Chaque monture est le fruit de plus de 40 étapes de fabrication artisanale. Un processus méticuleux qui garantit une qualité exceptionnelle."
+    "label": "L'atelier",
+    "title": "NOTRE\nFABRICATION",
+    "description": "Chaque monture prend forme entre Paris, la Corée et l'Italie. On ne produit pas vite. On produit juste."
   },
   "fondateurs": {
     "label": "Les fondateurs",
@@ -37,37 +37,37 @@
   },
   "symboles": {
     "label": "Les symboles",
-    "title": "CINQ SYMBOLES\nÉTERNELS"
+    "title": "SEPT SYMBOLES\nÉTERNELS"
   },
   "page": {
     "histoire": {
       "seoTitle": "Notre Histoire",
-      "seoDescription": "Découvrez l'histoire de RENAISSANCE Paris, maison française de lunettes de luxe. Notre savoir-faire artisanal, nos valeurs et notre engagement pour l'excellence."
+      "seoDescription": "Née en 2019 d'un refus : celui de voir disparaître ce qui doit durer. Trois hommes du métier, frères par choix. Ce qui se porte. Ce qui se transmet."
     },
     "savoirFaire": {
-      "seoTitle": "Savoir-Faire",
-      "seoDescription": "Découvrez le savoir-faire artisanal RENAISSANCE Paris. Fabrication française, matériaux nobles et techniques d'excellence pour des lunettes de luxe uniques."
+      "seoTitle": "L'atelier",
+      "seoDescription": "L'atelier Renaissance Eyewear : dessiné à Paris, fabriqué entre Paris, la Corée et l'Italie. Titane plaqué or 18KT, acétate Mazzucchelli."
     },
     "manifeste": {
       "seoTitle": "Manifeste",
-      "seoDescription": "Découvrez le manifeste RENAISSANCE Paris. Nos valeurs d'excellence, d'authenticité et de savoir-faire français au service de la lunetterie de luxe."
+      "seoDescription": "Le manifeste de Renaissance Eyewear. Ce qui se porte. Ce qui se transmet."
     },
     "symboles": {
       "seoTitle": "Symboles",
-      "seoDescription": "Découvrez les symboles qui inspirent RENAISSANCE Paris. Scarabée, fleur de lys et croix de Malte : des emblèmes chargés d'histoire pour des lunettes uniques."
+      "seoDescription": "Les symboles de Renaissance Eyewear : trident, fleur de lys, ankh, scarabée, cobra, œil d'Horus, plaque parisienne. Sept signes gravés dans le titane."
     }
   },
   "blog": {
     "seoTitle": "Le Manifeste - Blog",
-    "seoDescription": "Découvrez l'univers RENAISSANCE Paris. Articles sur nos symboles, notre savoir-faire artisanal et l'histoire de la lunetterie de luxe française.",
+    "seoDescription": "L'univers de Renaissance Eyewear. Articles sur nos symboles, nos matières et l'histoire de la Maison.",
     "heroLabel": "Actualités & Culture",
     "heroTitleLine1": "LE",
     "heroTitleLine2": "MANIFESTE.",
-    "heroSubtitle": "Histoires, symboles et savoir-faire.",
+    "heroSubtitle": "Histoires, symboles et matières.",
     "heroDescription": "Découvrez l'univers Renaissance au-delà de l'objet.",
     "loading": "Chargement des articles...",
     "emptyTitle": "Les premiers articles arrivent bientôt",
-    "emptyDescription": "Nous préparons du contenu exceptionnel sur nos symboles, notre savoir-faire et l'univers Renaissance.",
+    "emptyDescription": "Nous préparons des textes sur nos symboles, nos matières et l'univers Renaissance.",
     "readArticle": "Lire l'article",
     "newsletterLabel": "Newsletter",
     "newsletterTitle": "Ne manquez rien.",
@@ -82,7 +82,7 @@
     "backToArticles": "Retour aux articles",
     "label": "Le Manifeste",
     "share": "Partager",
-    "authorBio": "Membre de l'équipe Renaissance, passionné par l'artisanat d'excellence et le storytelling qui donne du sens à chaque création.",
+    "authorBio": "La Maison Renaissance écrit d'une seule voix.",
     "ctaLabel": "Nos Créations",
     "ctaTitle": "Découvrez nos collections.",
     "ctaSubtitle": "Chaque symbole raconte une histoire.",
@@ -101,20 +101,20 @@
     "label": "L'Origine",
     "title": "NÉE D'UN REFUS.",
     "subtitle": "Celui de voir disparaître ce qui doit durer.",
-    "description": "Trois hommes du métier ont vu la qualité reculer pendant dix ans. Ils ont décidé de faire l'inverse. Concevoir des montures qui accompagnent une vie, pas une saison. Exiger ce que le marché a cessé d'exiger.\nChaque monture porte cette promesse : celle d'un objet pensé pour durer, pas pour être remplacé.",
-    "mobileDescription": "Trois hommes du métier ont vu la qualité reculer pendant dix ans. Ils ont décidé de faire l'inverse. Chaque monture porte cette promesse : celle d'un objet pensé pour durer, pas pour être remplacé.",
+    "description": "Trois hommes du métier ont vu la qualité reculer pendant des années. Ils ont décidé de faire l'inverse. Concevoir des montures qui accompagnent une vie, pas une saison. Exiger ce que le marché a cessé d'exiger.\nChaque monture porte cette promesse : celle d'un objet pensé pour durer, pas pour être remplacé.",
+    "mobileDescription": "Trois hommes du métier ont vu la qualité reculer pendant des années. Ils ont décidé de faire l'inverse. Chaque monture porte cette promesse : celle d'un objet pensé pour durer, pas pour être remplacé.",
     "cta": "Découvrir nos créations"
   },
   "symbolesSection": {
     "label": "Nos Symboles",
-    "title": "CINQ SYMBOLES.",
+    "title": "SEPT SYMBOLES.",
     "subtitle": "Gravés dans le métal.",
     "description": "Ce que l'on porte raconte ce que l'on croit.",
     "symbol1Name": "Le Trident",
     "symbol1Subtitle": "Souveraineté",
     "symbol1Desc": "L'équilibre entre hier, aujourd'hui et demain. L'ancrage dans ce qui fonde, ce qui construit, ce qui perdure.",
     "symbol2Name": "La Fleur de Lys",
-    "symbol2Subtitle": "Excellence",
+    "symbol2Subtitle": "Maîtrise",
     "symbol2Desc": "L'héritage français. La noblesse d'un geste transmis, la fierté d'une origine assumée.",
     "symbol3Name": "L'Ankh",
     "symbol3Subtitle": "Éternité",
@@ -124,51 +124,57 @@
     "symbol4Desc": "Le passage et la transformation. Ce qui traverse les épreuves, ce qui renaît plus fort qu'avant.",
     "symbol5Name": "Le Cobra",
     "symbol5Subtitle": "Protection",
-    "symbol5Desc": "L'éveil silencieux. Celui qui voit avant d'être vu."
+    "symbol5Desc": "L'éveil silencieux. Celui qui voit avant d'être vu.",
+    "symbol6Name": "L'Œil d'Horus",
+    "symbol6Subtitle": "Lucidité",
+    "symbol6Desc": "L'œil qui ne se ferme jamais. Brisé puis rendu entier, il voit ce que les autres regardent sans voir.",
+    "symbol7Name": "La Plaque parisienne",
+    "symbol7Subtitle": "Appartenance",
+    "symbol7Desc": "« Avenue de la Renaissance », gravée dans l'or. La rue qu'on ne trouve sur aucune carte, l'adresse que chacun emporte où il va."
   },
   "signatureSection": {
     "label": "La Signature",
-    "title": "ZÉRO LOGO.",
+    "title": "UN SIGNE POUR SOI.",
     "subtitle": "Juste toi et ce que tu sais.",
-    "description": "Branche gauche. Un strass. Plus petit qu'une tête d'épingle. Approche-toi. Des symboles apparaissent. Gravés dans le métal. Retourne la pièce. Un numéro. Gravé pour toi. Il n'existera qu'une fois. Comme toi.",
-    "mobileDescription": "Branche gauche. Un strass. Plus petit qu'une tête d'épingle. Des symboles gravés dans le métal. Un numéro unique. Comme toi.",
-    "cta": "Découvrir le secret"
+    "description": "En bout de branche. Un cristal. Plus petit qu'une tête d'épingle. Approche-toi. Des symboles apparaissent, gravés dans le métal. Au pont, un numéro. Gravé pour toi. Il n'existera qu'une fois. Comme toi.",
+    "mobileDescription": "En bout de branche. Un cristal. Plus petit qu'une tête d'épingle. Des symboles gravés dans le métal. Au pont, un numéro unique. Comme toi.",
+    "cta": "Découvrir nos créations"
   },
   "savoirFaireSection": {
     "label": "Fabrication",
     "title": "FABRIQUÉES LÀ OÙ LA PRÉCISION EST UNE DISCIPLINE.",
     "subtitle": "France, Corée, Italie.",
-    "description": "Nos montures prennent vie entre la France, la Corée et l'Italie, dans des manufactures où la rigueur est une culture. Chaque lieu apporte son excellence : la finesse du titane en Asie, la précision des finitions en Europe. Nous choisissons nos partenaires pour leur exigence, pas pour leur rapidité.",
-    "stat1Value": "200+",
-    "stat1Label": "Gestes par paire",
-    "stat2Value": "15h",
-    "stat2Label": "De fabrication",
-    "stat3Value": "0",
-    "stat3Label": "Compromis",
-    "mobileStat1Label": "Gestes",
-    "mobileStat2Label": "Fabrication",
-    "mobileStat3Label": "Compromis",
-    "cta": "Notre savoir-faire"
+    "description": "Nos montures prennent vie entre la France, la Corée et l'Italie, dans des manufactures où la rigueur est une culture. Chaque lieu apporte sa maîtrise : la finesse du titane en Asie, la précision des finitions en Europe. Nous choisissons nos partenaires pour leur exigence, pas pour leur rapidité.",
+    "stat1Value": "18KT",
+    "stat1Label": "Or véritable, plaqué",
+    "stat2Value": "Titane",
+    "stat2Label": "Léger, résistant",
+    "stat3Value": "1849",
+    "stat3Label": "Acétate Mazzucchelli",
+    "mobileStat1Label": "Or 18KT",
+    "mobileStat2Label": "Titane",
+    "mobileStat3Label": "Acétate",
+    "cta": "L'atelier"
   },
   "valeursSection": {
     "label": "Nos Valeurs",
-    "title": "CINQ PILIERS.",
+    "title": "QUATRE FIBRES. UNE COURONNE.",
     "subtitle": "Non-négociables.",
-    "valeur1Title": "La Justesse",
-    "valeur1Desc": "Chaque courbe a sa raison. Rien n'est laissé au hasard. Chaque détail répond à une intention.",
-    "valeur1Keyword": "Vérité",
-    "valeur2Title": "Le Respect",
-    "valeur2Desc": "Du matériau. Du geste. De celui qui porte. Chaque monture honore ce qu'elle touche.",
-    "valeur2Keyword": "Dignité",
-    "valeur3Title": "Le Silence",
-    "valeur3Desc": "Ce qui est bien fait n'a pas besoin de se justifier. La qualité parle d'elle-même.",
-    "valeur3Keyword": "Discrétion",
-    "valeur4Title": "La Transmission",
-    "valeur4Desc": "Nous créons pour ceux qui viennent. Pas par nostalgie. Par exigence de ce qui mérite de durer.",
-    "valeur4Keyword": "Héritage",
-    "valeur5Title": "La Maîtrise",
-    "valeur5Desc": "100 gestes, 6 à 8 artisans, des mois de patience. Le temps est notre allié, jamais notre ennemi.",
-    "valeur5Keyword": "Excellence"
+    "valeur1Title": "Le Refus du faux",
+    "valeur1Desc": "Devant chaque mot, chaque image : est-ce que ça prouve, ou est-ce que ça annonce ? Si ça annonce, on coupe.",
+    "valeur1Keyword": "Vrai",
+    "valeur2Title": "La Maîtrise",
+    "valeur2Desc": "Le titane qu'on plie et qui revient. L'or qui ne pèle pas. Ce qui n'est pas fait pour durer ne sort pas de l'atelier.",
+    "valeur2Keyword": "Main",
+    "valeur3Title": "La Parole",
+    "valeur3Desc": "On ne promet que ce qu'on sait tenir. Jamais soldé : un prix qui baisse est une parole qu'on retire.",
+    "valeur3Keyword": "Tenue",
+    "valeur4Title": "Le Respect",
+    "valeur4Desc": "On ne mesure pas un homme à ce qu'il possède, mais à ce qu'il honore. Aux images comme au comptoir.",
+    "valeur4Keyword": "Regard",
+    "valeur5Title": "La Transmission",
+    "valeur5Desc": "Ce qui est bien fait se répare ; ce qui se répare se garde ; ce qui se garde se transmet.",
+    "valeur5Keyword": "Couronne"
   },
   "collectionsSection": {
     "label": "Les Collections",
@@ -189,18 +195,18 @@
     "label": "Notre Engagement",
     "title": "CE QUI EST BIEN FAIT SE RÉPARE.",
     "subtitle": "Nous l'appliquons.",
-    "description": "Nos montures sont conçues pour être ajustées, entretenues, réparées. Parce qu'un objet bien fait mérite une seconde chance, et souvent une troisième.",
+    "description": "Nos montures sont conçues pour être ajustées, entretenues, réparées. Parce qu'un objet bien fait mérite une seconde chance, et souvent une troisième. Même la garantie passée, écrivez-nous : on regarde, cas par cas, ce qu'on peut faire.",
     "engagement1Title": "Durabilité",
     "engagement1Desc": "Nos grands-parents gardaient leurs affaires. Nos parents ont commencé à jeter. Nous, on choisit.",
-    "engagement1Stat": "10 ans",
-    "engagement1StatLabel": "Minimum garanti",
+    "engagement1Stat": "2 ans",
+    "engagement1StatLabel": "Garantie légale",
     "engagement2Title": "Traçabilité",
     "engagement2Desc": "Chaque pièce a une origine. Design français. Fabrication coréenne. On te dit tout parce qu'on n'a rien à cacher.",
     "engagement2Stat": "100%",
     "engagement2StatLabel": "Transparent",
     "engagement3Title": "Équité",
-    "engagement3Desc": "200 partenaires. Certains depuis le premier jour. On construit des relations, pas des contrats.",
-    "engagement3Stat": "200+",
+    "engagement3Desc": "Plus de 250 opticiens. Certains depuis le premier jour. On construit des relations, pas des contrats.",
+    "engagement3Stat": "250+",
     "engagement3StatLabel": "Partenaires",
     "cta": "Découvrir nos créations"
   },

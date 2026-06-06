@@ -180,7 +180,7 @@ export default function SuiviCommandePage() {
         <div className="flex-1 relative overflow-hidden">
           <img
             src={HERO_IMAGE}
-            alt="Renaissance Paris — Suivi de commande"
+            alt="Renaissance Eyewear · Suivi de commande"
             className="absolute inset-0 w-full h-full object-cover"
             fetchpriority="high"
           />
@@ -196,7 +196,7 @@ export default function SuiviCommandePage() {
         <div className="relative h-[45vh] min-h-[280px] overflow-hidden">
           <img
             src={HERO_IMAGE}
-            alt="Renaissance Paris — Suivi de commande"
+            alt="Renaissance Eyewear · Suivi de commande"
             className="w-full h-full object-cover object-center"
             fetchpriority="high"
           />

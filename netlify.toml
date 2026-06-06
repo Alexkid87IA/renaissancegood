@@ -36,6 +36,12 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(self)"
 
 [[redirects]]
+  from = "/savoir-faire"
+  to = "/atelier"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

@@ -15,10 +15,10 @@
     "article1Title": "Article 1 - Informations Légales",
     "article1Text": "<strong>Raison sociale :</strong> Renaissance Eyewear<br /><strong>Siège social :</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France<br /><strong>Email :</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a><br /><strong>Site web :</strong> <a href=\"https://renaissanceeyewear.fr\">renaissanceeyewear.fr</a><br /><strong>Hébergeur :</strong> Shopify Inc., 151 O'Connor Street, Ground floor, Ottawa, ON K2P 2L8, Canada",
     "article2Title": "Article 2 - Objet",
-    "article2Text": "Les présentes CGV ont pour objet de définir les droits et obligations des parties dans le cadre de la vente en ligne de lunettes de luxe et accessoires proposés par Renaissance Eyewear.",
+    "article2Text": "Les présentes CGV ont pour objet de définir les droits et obligations des parties dans le cadre de la vente en ligne de lunettes et accessoires proposés par Renaissance Eyewear.",
     "article3Title": "Article 3 - Produits",
     "article3_1Title": "3.1 Description",
-    "article3_1Text": "Renaissance Eyewear propose des lunettes de luxe fabriquées en Corée du Sud, caractérisées par :",
+    "article3_1Text": "Renaissance Eyewear propose des lunettes fabriquées en Corée du Sud, caractérisées par :",
     "article3_1Items": [
       "Montures en métal épais avec finitions précises",
       "5 symboles emblématiques : Trident, Fleur de Lys, Ankh, Scarabée, Cobra",
@@ -447,7 +447,7 @@
   "garantie": {
     "title": "Garantie & Service Après-Vente",
     "seoTitle": "Garantie & Service Après-Vente",
-    "seoDescription": "Garantie 2 ans RENAISSANCE Paris. Service après-vente, réparations, entretien et conseils pour vos lunettes de luxe. Satisfaction garantie.",
+    "seoDescription": "Garantie 2 ans Renaissance Eyewear. Service après-vente, réparations, entretien et conseils pour vos lunettes. Satisfaction garantie.",
     "warrantyTitle": "Garantie Constructeur",
     "warrantyText": "Tous les produits Renaissance bénéficient d'une <strong>garantie constructeur de 2 ans</strong> à compter de la date d'achat, couvrant les défauts de fabrication et de matériaux.",
     "coveredTitle": "Ce qui est couvert",
@@ -471,7 +471,7 @@
     "warrantyRepairTitle": "Réparations sous garantie",
     "warrantyRepairText": "Si votre monture présente un défaut couvert par la garantie :",
     "warrantyRepairItems": [
-      "Contactez-nous à <a href=\"mailto:contact@renaissance-eyewear.fr\">contact@renaissance-eyewear.fr</a> avec votre numéro de commande et des photos du défaut",
+      "Contactez-nous à <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a> avec votre numéro de commande et des photos du défaut",
       "Notre équipe évaluera votre demande sous 48h",
       "Si la garantie s'applique, nous vous enverrons une étiquette de retour prépayée",
       "Retournez la monture dans son emballage d'origine",
@@ -491,7 +491,7 @@
       "<strong>Redressement de branches</strong> : Pour restaurer la forme originale",
       "<strong>Remplacement de plaquettes</strong> : Pour un confort optimal",
       "<strong>Polissage</strong> : Pour redonner l'éclat d'origine au métal",
-      "<strong>Resertissage de strass</strong> : Si un strass est tombé",
+      "<strong>Resertissage de cristal</strong> : Si un cristal est tombé",
       "<strong>Ajustement</strong> : Pour un port parfait"
     ],
     "maintenanceTitle": "Entretien et Maintenance",
@@ -531,7 +531,7 @@
     "contactTitle": "Contact Service Après-Vente",
     "contactText": "Notre équipe SAV est à votre disposition :",
     "contactItems": [
-      "<strong>Email :</strong> <a href=\"mailto:contact@renaissance-eyewear.fr\">contact@renaissance-eyewear.fr</a>",
+      "<strong>Email :</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
       "<strong>Téléphone :</strong> <a href=\"tel:+33142868200\">+33 1 42 86 82 00</a>",
       "<strong>Horaires :</strong> Lundi au Vendredi, 9h - 18h",
       "<strong>Délai de réponse :</strong> Sous 48 heures ouvrées"
@@ -576,7 +576,7 @@
   "expedition": {
     "title": "Expédition",
     "seoTitle": "Livraison",
-    "seoDescription": "Livraison gratuite RENAISSANCE Paris. Expédition sous 24-48h, suivi Colissimo et livraison internationale. Découvrez nos délais et conditions.",
+    "seoDescription": "Livraison gratuite Renaissance Eyewear. Expédition sous 24-48h, suivi Colissimo et livraison internationale. Découvrez nos délais et conditions.",
     "policyTitle": "Politique d'Expédition",
     "policyText": "Nous nous engageons à expédier vos commandes rapidement et en toute transparence.",
     "zoneTitle": "Zone et Mode de Livraison",
@@ -613,7 +613,7 @@
       "<strong>Note</strong> : Des frais de douane peuvent s'appliquer selon les législations locales. Ces frais sont à la charge du destinataire."
     ],
     "preparationTitle": "Préparation de la Commande",
-    "preparationText": "Chaque paire de lunettes Renaissance est soigneusement emballée dans son écrin d'origine, accompagnée d'un certificat d'authenticité et d'un guide d'entretien. Nos packagings reflètent l'excellence de nos créations et garantissent une protection optimale durant le transport.",
+    "preparationText": "Chaque paire de lunettes Renaissance est soigneusement emballée dans son écrin d'origine, accompagnée d'un certificat d'authenticité et d'un guide d'entretien. Nos emballages protègent chaque monture durant le transport.",
     "trackingTitle": "Notification et Suivi",
     "trackingText": "Vous recevrez une confirmation d'expédition par e-mail dès que votre commande aura quitté nos ateliers. Cet e-mail contiendra :",
     "trackingItems": [
@@ -645,7 +645,7 @@
   "guideTailles": {
     "title": "Guide des Tailles",
     "seoTitle": "Guide des Tailles",
-    "seoDescription": "Trouvez la monture RENAISSANCE Paris parfaitement adaptée à votre visage. Guide des dimensions, formes de visage et conseils pour choisir vos lunettes.",
+    "seoDescription": "Trouvez la monture Renaissance Eyewear parfaitement adaptée à votre visage. Guide des dimensions, formes de visage et conseils pour choisir vos lunettes.",
     "heroSupertitle": "Aide & Conseils",
     "heroTitle1": "GUIDE DES",
     "heroTitle2": "TAILLES.",
@@ -656,13 +656,13 @@
     "measurementsDiagram": "Schéma des mesures",
     "lensWidth": "Largeur du verre",
     "lensWidthDesc": "Distance horizontale d'un verre, mesurée à son point le plus large.",
-    "lensWidthRange": "45mm — 58mm",
+    "lensWidthRange": "45 mm à 58 mm",
     "bridge": "Pont",
     "bridgeDesc": "Distance entre les deux verres, au niveau de l'arête du nez.",
-    "bridgeRange": "14mm — 24mm",
+    "bridgeRange": "14 mm à 24 mm",
     "temples": "Branches",
     "templesDesc": "Longueur des branches, de la charnière à l'extrémité.",
-    "templesRange": "135mm — 150mm",
+    "templesRange": "135 mm à 150 mm",
     "standardFormat": "Format Standard Renaissance",
     "standardFormatDesc": "Nos dimensions sont indiquées dans ce format :",
     "standardFormatExample": "52-20-145",

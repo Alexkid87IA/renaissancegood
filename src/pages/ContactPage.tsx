@@ -111,7 +111,7 @@ export default function ContactPage() {
           <div className="flex-1 relative overflow-hidden">
             <img
               src="https://renaissance-cdn.b-cdn.net/campgane.png"
-              alt="Renaissance Paris - Contact"
+              alt="Renaissance Eyewear - Contact"
               className="absolute inset-0 w-full h-full object-cover"
               fetchpriority="high"
             />
@@ -125,7 +125,7 @@ export default function ContactPage() {
           <div className="relative h-[50%] overflow-hidden">
             <img
               src="https://renaissance-cdn.b-cdn.net/campgane.png"
-              alt="Renaissance Paris - Contact"
+              alt="Renaissance Eyewear - Contact"
               className="w-full h-full object-cover object-center"
               fetchpriority="high"
             />
@@ -185,7 +185,7 @@ export default function ContactPage() {
                 title: t('contactPage.cards.emailTitle'),
                 detail: t('contactPage.cards.emailDetail'),
                 sub: t('contactPage.cards.emailSub'),
-                href: 'mailto:contact@renaissance-eyewear.fr'
+                href: 'mailto:contact@renaissanceeyewear.com'
               },
               {
                 icon: Phone,

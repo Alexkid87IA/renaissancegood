@@ -29,7 +29,7 @@ export default function ReassuranceSection() {
       <div className="hidden md:block h-full relative overflow-hidden">
         <motion.img
           src="https://renaissance-cdn.b-cdn.net/packshot.png"
-          alt="Renaissance Paris - Nos engagements"
+          alt="Renaissance Eyewear - Nos engagements"
           style={active ? { ...imageMotionStyle, filter: 'grayscale(1) sepia(0.08) saturate(0.88) contrast(1.06) brightness(1.08)' } : { filter: 'grayscale(1) sepia(0.08) saturate(0.88) contrast(1.06) brightness(1.08)' }}
           className="absolute inset-0 w-full h-full object-cover object-[66%_center]"
           loading="lazy"

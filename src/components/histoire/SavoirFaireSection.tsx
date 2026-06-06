@@ -51,15 +51,15 @@ export default function SavoirFaireSection() {
 
             <motion.div variants={fade} className="grid grid-cols-3 border-y border-white/[0.10] divide-x divide-white/[0.10]">
               <div className="py-6 pr-6">
-                <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">200+</p>
+                <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">{t('savoirFaireSection.stat1Value')}</p>
                 <p className="font-sans text-[9px] tracking-[0.24em] text-white/[0.42] uppercase font-medium leading-[1.5]">{t('savoirFaireSection.stat1Label')}</p>
               </div>
               <div className="py-6 px-6">
-                <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">15h</p>
+                <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">{t('savoirFaireSection.stat2Value')}</p>
                 <p className="font-sans text-[9px] tracking-[0.24em] text-white/[0.42] uppercase font-medium leading-[1.5]">{t('savoirFaireSection.stat2Label')}</p>
               </div>
               <div className="py-6 pl-6">
-                <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">0</p>
+                <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">{t('savoirFaireSection.stat3Value')}</p>
                 <p className="font-sans text-[9px] tracking-[0.24em] text-white/[0.42] uppercase font-medium leading-[1.5]">{t('savoirFaireSection.stat3Label')}</p>
               </div>
             </motion.div>
@@ -96,15 +96,15 @@ export default function SavoirFaireSection() {
 
             <div className="grid grid-cols-3 border-y border-white/[0.12] divide-x divide-white/[0.12]">
               <div className="py-4 pr-3">
-                <p className="font-display text-2xl font-bold text-white leading-none mb-1">200+</p>
+                <p className="font-display text-2xl font-bold text-white leading-none mb-1">{t('savoirFaireSection.stat1Value')}</p>
                 <p className="font-sans text-[7px] tracking-[0.18em] text-white/40 uppercase leading-[1.5]">{t('savoirFaireSection.mobileStat1Label')}</p>
               </div>
               <div className="py-4 px-3">
-                <p className="font-display text-2xl font-bold text-white leading-none mb-1">15h</p>
+                <p className="font-display text-2xl font-bold text-white leading-none mb-1">{t('savoirFaireSection.stat2Value')}</p>
                 <p className="font-sans text-[7px] tracking-[0.18em] text-white/40 uppercase leading-[1.5]">{t('savoirFaireSection.mobileStat2Label')}</p>
               </div>
               <div className="py-4 pl-3">
-                <p className="font-display text-2xl font-bold text-white leading-none mb-1">0</p>
+                <p className="font-display text-2xl font-bold text-white leading-none mb-1">{t('savoirFaireSection.stat3Value')}</p>
                 <p className="font-sans text-[7px] tracking-[0.18em] text-white/40 uppercase leading-[1.5]">{t('savoirFaireSection.mobileStat3Label')}</p>
               </div>
             </div>

@@ -249,7 +249,7 @@ export default function CheckoutPage() {
           <LocaleLink to="/" className="absolute left-1/2 -translate-x-1/2">
             <img
               src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png"
-              alt="Renaissance Paris"
+              alt="Renaissance Eyewear"
               className="h-28 sm:h-32 md:h-36 object-contain"
               loading="eager"
             />

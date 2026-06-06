@@ -159,7 +159,7 @@ export default function ShopPage() {
         <div className="relative h-full overflow-hidden hidden lg:block">
           <img
             src="https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_06AM.jpeg"
-            alt="Renaissance Paris - Explorer"
+            alt="Renaissance Eyewear - Explorer"
             className="absolute inset-0 w-full h-full object-cover object-center"
             fetchpriority="high"
           />
@@ -202,7 +202,7 @@ export default function ShopPage() {
           <div className="absolute inset-0">
             <motion.img
               src="https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_06AM.jpeg"
-              alt="Renaissance Paris - Explorer"
+              alt="Renaissance Eyewear - Explorer"
               className="w-full h-full object-cover object-[center_30%]"
               initial={{ scale: 1.08 }}
               animate={{ scale: 1 }}
@@ -339,7 +339,7 @@ export default function ShopPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="font-sans text-[8px] tracking-[0.4em] uppercase text-dark-text/20 font-medium mb-6">Renaissance Paris</p>
+            <p className="font-sans text-[8px] tracking-[0.4em] uppercase text-dark-text/20 font-medium mb-6">Renaissance Eyewear</p>
             <h2 className="font-display text-3xl md:text-4xl font-light text-dark-text tracking-[-0.02em] leading-[0.95] mb-3">
               {t('customTitle')}
             </h2>

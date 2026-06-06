@@ -15,10 +15,10 @@ export default function FabricationSection() {
   const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
 
   const STATS = [
-    { value: '6-8', label: t('fabrication.stat1') },
-    { value: '100+', label: t('fabrication.stat2') },
-    { value: '15h', label: t('fabrication.stat3') },
-    { value: '3', label: t('fabrication.stat4') },
+    { value: '18KT', label: t('fabrication.stat1') },
+    { value: 'Titane', label: t('fabrication.stat2') },
+    { value: '1849', label: t('fabrication.stat3') },
+    { value: '2019', label: t('fabrication.stat4') },
   ];
   const DETAILS = [
     { label: t('fabrication.detail1Label'), location: t('fabrication.detail1Location') },
@@ -37,7 +37,7 @@ export default function FabricationSection() {
       <div className="relative h-full hidden md:block overflow-hidden">
         <motion.img
           src={FABRICATION_IMAGE}
-          alt="Renaissance Paris - Fabrication"
+          alt="Renaissance Eyewear - Fabrication"
           style={imageMotionStyle}
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -90,7 +90,7 @@ export default function FabricationSection() {
                 </div>
 
                 <LocaleLink
-                  to="/savoir-faire"
+                  to="/atelier"
                   className="mt-6 inline-flex min-w-[14rem] items-center justify-center border border-white/[0.28] px-7 py-4 font-sans text-[9px] tracking-[0.28em] font-medium uppercase text-white/[0.88] transition-all duration-500 hover:border-bronze/70 hover:text-bronze"
                 >
                   {t('fabrication.cta')}
@@ -105,7 +105,7 @@ export default function FabricationSection() {
       <div className="md:hidden relative h-full bg-[#000000] overflow-hidden">
         <motion.img
           src={FABRICATION_IMAGE}
-          alt="Renaissance Paris - Fabrication"
+          alt="Renaissance Eyewear - Fabrication"
           style={imageMotionStyle}
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -140,7 +140,7 @@ export default function FabricationSection() {
           </div>
 
           {/* CTA */}
-          <LocaleLink to="/savoir-faire">
+          <LocaleLink to="/atelier">
             <button className="group relative overflow-hidden w-full border border-white/20 px-6 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98]">
               <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
                 {t('fabrication.cta')}

@@ -36,6 +36,18 @@ export default function SymbolesSection() {
       subtitle: t('symbolesSection.symbol5Subtitle'),
       description: t('symbolesSection.symbol5Desc'),
       image: 'https://renaissance-cdn.b-cdn.net/COBRA%20SYMBOL.png'
+    },
+    {
+      name: t('symbolesSection.symbol6Name'),
+      subtitle: t('symbolesSection.symbol6Subtitle'),
+      description: t('symbolesSection.symbol6Desc'),
+      image: 'https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png'
+    },
+    {
+      name: t('symbolesSection.symbol7Name'),
+      subtitle: t('symbolesSection.symbol7Subtitle'),
+      description: t('symbolesSection.symbol7Desc'),
+      image: 'https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png'
     }
   ];
   const contentRef = useRef<HTMLDivElement>(null);
@@ -108,7 +120,7 @@ export default function SymbolesSection() {
         <div className="w-full md:w-1/2 h-full relative overflow-hidden">
           <img
             src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
-            alt="Renaissance Paris - Symboles"
+            alt="Renaissance Eyewear · Symboles"
             className="w-full h-full object-cover"
             loading="lazy"
           />
@@ -120,7 +132,7 @@ export default function SymbolesSection() {
       <div className="h-screen md:hidden relative overflow-hidden">
         <img
           src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
-          alt="Renaissance Paris - Symboles"
+          alt="Renaissance Eyewear · Symboles"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />

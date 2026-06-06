@@ -97,11 +97,11 @@ export default function LegalPageTemplate({ title, lastUpdated, children }: Lega
               <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </a>
             <a
-              href="mailto:contact@renaissance-eyewear.fr"
+              href="mailto:contact@renaissanceeyewear.com"
               className="group border border-white/[0.08] px-10 py-4 transition-all duration-500 hover:border-white/20"
             >
               <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.55] group-hover:text-white/75 transition-colors duration-500">
-                contact@renaissance-eyewear.fr
+                contact@renaissanceeyewear.com
               </span>
             </a>
           </div>

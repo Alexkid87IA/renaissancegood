@@ -19,7 +19,7 @@
   },
   "storeLocator": {
     "title": "Trouver un opticien",
-    "subtitle": "Plus de 200 opticiens partenaires en France",
+    "subtitle": "Plus de 250 opticiens, en France et à l'international",
     "search": "Rechercher une ville...",
     "nearMe": "Autour de moi",
     "noResults": "Aucun opticien trouvé dans cette zone.",
@@ -29,7 +29,7 @@
   },
   "guarantee": {
     "title": "Garantie",
-    "subtitle": "2 ans de garantie sur toutes nos montures"
+    "subtitle": "Garantie légale 2 ans. Et ce qui est bien fait se répare : écrivez-nous."
   },
   "sizeGuide": {
     "title": "Guide des tailles",
@@ -46,7 +46,7 @@
   "contactPage": {
     "seo": {
       "title": "Contact",
-      "description": "Contactez RENAISSANCE Paris pour toute question sur nos lunettes de luxe. Service client disponible par email et téléphone du lundi au vendredi."
+      "description": "Contactez Renaissance Eyewear. Une question, un conseil, un ajustement : chaque demande reçoit une réponse."
     },
     "hero": {
       "label": "La Maison",
@@ -61,13 +61,13 @@
     },
     "cards": {
       "emailTitle": "Email",
-      "emailDetail": "contact@renaissance-eyewear.fr",
+      "emailDetail": "contact@renaissanceeyewear.com",
       "emailSub": "Réponse sous 48h",
       "phoneTitle": "Téléphone",
       "phoneDetail": "+33 1 42 86 82 00",
-      "phoneSub": "Lun — Ven",
+      "phoneSub": "Lun. au Ven.",
       "hoursTitle": "Horaires",
-      "hoursDetail": "9h — 18h",
+      "hoursDetail": "9h à 18h",
       "hoursSub": "Du lundi au vendredi"
     },
     "formSection": {
@@ -98,10 +98,10 @@
     "sidebar": {
       "locationLabel": "Localisation",
       "locationTitle": "Paris, France",
-      "locationDescription": "La Maison Renaissance est fièrement établie à Paris, capitale de l'élégance et du savoir-faire français.",
+      "locationDescription": "La Maison Renaissance est établie à Paris. C'est ici que tout se dessine.",
       "networkLabel": "Réseau",
       "networkTitle": "Besoin d'essayer ?",
-      "networkDescription": "Rendez-vous chez l'un de nos 200+ opticiens partenaires pour essayer nos collections et bénéficier de conseils personnalisés.",
+      "networkDescription": "Rendez-vous chez l'un de nos opticiens, en France et à l'international, pour essayer les montures. Le conseil prend le temps qu'il faut.",
       "networkCta": "Trouver un opticien",
       "socialLabel": "Suivez-nous",
       "socialDescription": "Découvrez nos nouvelles collections et l'actualité de la Maison."
@@ -110,14 +110,14 @@
   "storeLocatorPage": {
     "seo": {
       "title": "Trouver un Opticien Partenaire",
-      "description": "Trouvez l'un de nos {{count}}+ opticiens partenaires RENAISSANCE Paris près de chez vous. Essayez nos lunettes de luxe et bénéficiez de conseils personnalisés."
+      "description": "Trouvez un opticien Renaissance Eyewear près de chez vous, en France et à l'international. Essayez les montures. Le conseil prend le temps qu'il faut."
     },
     "hero": {
       "label": "Réseau Partenaire",
       "titleLine1": "TROUVEZ VOTRE",
       "titleLine2": "OPTICIEN.",
-      "subtitle": "L'excellence près de chez vous.",
-      "description": "Chaque boutique incarne les valeurs Renaissance : excellence, symbolique et savoir-faire français.",
+      "subtitle": "Près de chez vous.",
+      "description": "Chaque opticien partage la même exigence : prendre le temps, ajuster, accompagner.",
       "opticians": "Opticiens",
       "countries": "Pays",
       "cta": "Rechercher un opticien",
@@ -132,15 +132,15 @@
     "cta": {
       "label": "Devenir partenaire",
       "title": "Vous êtes opticien ?",
-      "subtitle": "Rejoignez l'excellence.",
-      "description": "Rejoignez le réseau Renaissance et proposez à vos clients des lunettes d'exception, symboles d'un héritage français et d'une vision unique du luxe.",
+      "subtitle": "Rejoignez le réseau.",
+      "description": "Rejoignez le réseau Renaissance et proposez à vos clients des montures en titane plaqué or 18KT, numérotées au pont. Écrivez-nous.",
       "button": "Devenir partenaire"
     }
   },
   "suiviCommande": {
     "seo": {
       "title": "Suivi de Commande",
-      "description": "Suivez votre commande RENAISSANCE Paris en toute sérénité. Entrez votre numéro de commande et votre email pour accéder au statut de votre livraison."
+      "description": "Suivez votre commande Renaissance Eyewear. Entrez votre numéro de commande et votre email pour voir où elle en est."
     },
     "hero": {
       "label": "Service Client",
@@ -160,7 +160,7 @@
     "reassurance": {
       "freeShipping": "Livraison offerte",
       "warranty": "Garantie 2 ans",
-      "returns": "Retours 30 jours"
+      "returns": "Retours 14 jours"
     },
     "faqSection": {
       "label": "Questions fréquentes",
@@ -178,7 +178,7 @@
         },
         "noConfirmation": {
           "q": "Je n'ai pas reçu mon email de confirmation.",
-          "a": "Vérifiez vos spams et courriers indésirables. Si vous ne retrouvez pas votre confirmation, contactez-nous avec votre nom et date de commande à contact@renaissance-eyewear.fr."
+          "a": "Vérifiez vos spams et courriers indésirables. Si vous ne retrouvez pas votre confirmation, contactez-nous avec votre nom et date de commande à contact@renaissanceeyewear.com."
         },
         "modifyOrder": {
           "q": "Puis-je modifier ou annuler ma commande ?",

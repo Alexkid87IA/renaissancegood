@@ -58,7 +58,7 @@ export default function SignatureSection() {
         <div className="w-full md:w-1/2 h-full relative overflow-hidden group">
           <img
             src="https://renaissance-cdn.b-cdn.net/packshot%202.png"
-            alt="Renaissance Paris - Le Secret"
+            alt="Renaissance Eyewear - Le Secret"
             loading="lazy"
             className="w-full h-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.03] group-hover:brightness-[1.05]"
           />
@@ -71,7 +71,7 @@ export default function SignatureSection() {
       <div className="h-screen md:hidden relative overflow-hidden">
         <img
           src="https://renaissance-cdn.b-cdn.net/packshot%202.png"
-          alt="Renaissance Paris - Le Secret"
+          alt="Renaissance Eyewear - Le Secret"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />

@@ -136,7 +136,7 @@ export default function Footer() {
             <motion.div variants={fade}>
               <img
                 src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png"
-                alt="Renaissance Paris"
+                alt="Renaissance Eyewear"
                 className="h-20 lg:h-24 w-auto object-contain mb-8"
                 loading="lazy"
               />
@@ -144,10 +144,10 @@ export default function Footer() {
                 {t('footer.brandDescription')}
               </p>
               <div className="space-y-3.5 mb-10">
-                <a href="mailto:contact@renaissance-eyewear.fr" className="flex items-center gap-3 group">
+                <a href="mailto:contact@renaissanceeyewear.com" className="flex items-center gap-3 group">
                   <Mail className="w-3.5 h-3.5 text-white/50 group-hover:text-white/50 transition-colors duration-500" />
                   <span className="font-sans text-[11px] text-white/60 group-hover:text-white/60 transition-colors duration-500">
-                    contact@renaissance-eyewear.fr
+                    contact@renaissanceeyewear.com
                   </span>
                 </a>
                 <a href="tel:+33142868200" className="flex items-center gap-3 group">
@@ -184,7 +184,7 @@ export default function Footer() {
                 ]},
                 { title: t('nav.laMaison'), links: [
                   { to: '/histoire', label: t('footerLinks.ourHistory') },
-                  { to: '/savoir-faire', label: t('footerLinks.savoirFaire') },
+                  { to: '/atelier', label: t('footerLinks.savoirFaire') },
                   { to: '/symboles', label: t('footerLinks.fiveSymbols') },
                   { to: '/blog', label: t('footerLinks.manifeste') },
                 ]},
@@ -237,13 +237,12 @@ export default function Footer() {
               variants={stagger}
               initial="hidden"
               animate={trustInView ? "visible" : "hidden"}
-              className="grid grid-cols-4 gap-0"
+              className="grid grid-cols-3 gap-0"
             >
               {[
-                { number: '100+', label: t('trust.editions'), description: t('trust.editionsDesc') },
+                { number: '250+', label: t('trust.opticians'), description: t('trust.editionsDesc') },
                 { number: '48h', label: t('trust.delivery'), description: t('trust.deliveryDesc') },
                 { number: '2 ans', label: t('trust.warranty'), description: t('trust.warrantyDesc') },
-                { number: '100+', label: t('trust.opticians'), description: t('trust.opticiansDesc') },
               ].map((item, index) => (
                 <motion.div
                   key={item.label}
@@ -284,7 +283,7 @@ export default function Footer() {
                   ))}
                 </div>
                 <p className="font-sans text-[11px] text-white/50">
-                  &copy; {new Date().getFullYear()} Renaissance Paris
+                  &copy; {new Date().getFullYear()} Renaissance Eyewear
                 </p>
                 <button
                   onClick={scrollToTop}
@@ -376,7 +375,7 @@ export default function Footer() {
             ]},
             { key: 'laMaison', title: t('nav.laMaison'), links: [
               { to: '/histoire', label: t('footerLinks.ourHistory') },
-              { to: '/savoir-faire', label: t('footerLinks.savoirFaire') },
+              { to: '/atelier', label: t('footerLinks.savoirFaire') },
               { to: '/symboles', label: t('footerLinks.fiveSymbols') },
               { to: '/blog', label: t('footerLinks.manifeste') },
             ]},
@@ -444,7 +443,7 @@ export default function Footer() {
           <div className="flex flex-col items-center text-center">
             <img
               src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png"
-              alt="Renaissance Paris"
+              alt="Renaissance Eyewear"
               className="h-20 w-auto object-contain mb-6"
               loading="lazy"
             />
@@ -464,9 +463,9 @@ export default function Footer() {
 
             {/* Contact */}
             <div className="space-y-3">
-              <a href="mailto:contact@renaissance-eyewear.fr" className="flex items-center justify-center gap-2.5">
+              <a href="mailto:contact@renaissanceeyewear.com" className="flex items-center justify-center gap-2.5">
                 <Mail className="w-3.5 h-3.5 text-white/50" />
-                <span className="font-sans text-[11px] text-white/50">contact@renaissance-eyewear.fr</span>
+                <span className="font-sans text-[11px] text-white/50">contact@renaissanceeyewear.com</span>
               </a>
               <a href="tel:+33142868200" className="flex items-center justify-center gap-2.5">
                 <Phone className="w-3.5 h-3.5 text-white/50" />
@@ -496,10 +495,9 @@ export default function Footer() {
         <div className="border-t border-white/[0.06] px-6 py-8">
           <div className="flex items-center justify-between">
             {[
-              { number: '100+', label: t('trust.editions') },
+              { number: '250+', label: t('trust.opticians') },
               { number: '48h', label: t('trust.delivery') },
               { number: '2 ans', label: t('trust.warranty') },
-              { number: '100+', label: t('trust.opticians') },
             ].map((item, index) => (
               <div key={item.label} className="flex-1 text-center">
                 {index > 0 && <div className="sr-only" />}
@@ -541,7 +539,7 @@ export default function Footer() {
               ))}
             </div>
             <p className="font-sans text-[10px] text-white/50">
-              &copy; {new Date().getFullYear()} Renaissance Paris
+              &copy; {new Date().getFullYear()} Renaissance Eyewear
             </p>
             <button
               onClick={scrollToTop}

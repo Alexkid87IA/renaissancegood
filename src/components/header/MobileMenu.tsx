@@ -119,7 +119,7 @@ export default function MobileMenu({
 
   const MAISON_LINKS = [
     { to: '/histoire', label: t('mobileMenu.ourHistory') },
-    { to: '/savoir-faire', label: t('mobileMenu.savoirFaire') },
+    { to: '/atelier', label: t('mobileMenu.savoirFaire') },
     { to: '/store-locator', label: t('mobileMenu.ourOpticians') },
   ];
 
@@ -141,7 +141,7 @@ export default function MobileMenu({
       <div className="relative flex items-center justify-center px-6 h-20">
         <img
           src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png"
-          alt="Renaissance Paris"
+          alt="Renaissance Eyewear"
           className="h-28 w-auto object-contain opacity-80"
         />
         <button

@@ -118,7 +118,7 @@ export default function CheckoutConfirmationPage() {
           <LocaleLink to="/">
             <img
               src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png"
-              alt="Renaissance Paris"
+              alt="Renaissance Eyewear"
               className="h-28 sm:h-32 md:h-36 object-contain"
               loading="eager"
             />
@@ -432,10 +432,10 @@ export default function CheckoutConfirmationPage() {
               {t('confirmationPage.contactTitle')}
             </p>
             <a
-              href="mailto:contact@renaissance-eyewear.fr"
+              href="mailto:contact@renaissanceeyewear.com"
               className="font-sans text-sm text-bronze/70 hover:text-bronze transition-colors"
             >
-              contact@renaissance-eyewear.fr
+              contact@renaissanceeyewear.com
             </a>
             <p className="font-sans text-[11px] text-dark-text/25 mt-2">
               {t('confirmationPage.contactResponse')}

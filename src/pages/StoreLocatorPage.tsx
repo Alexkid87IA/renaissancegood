@@ -257,7 +257,7 @@ export default function StoreLocatorPage() {
           <div className="flex-1 relative overflow-hidden">
             <img
               src="https://renaissance-cdn.b-cdn.net/packshot%20copie.png"
-              alt="Renaissance Paris - Opticiens partenaires"
+              alt="Renaissance Eyewear - Opticiens partenaires"
               className="absolute inset-0 w-full h-full object-cover"
               fetchpriority="high"
             />
@@ -272,7 +272,7 @@ export default function StoreLocatorPage() {
           <div className="relative h-[50%] overflow-hidden">
             <img
               src="https://renaissance-cdn.b-cdn.net/packshot%20copie.png"
-              alt="Renaissance Paris - Opticiens partenaires"
+              alt="Renaissance Eyewear - Opticiens partenaires"
               className="w-full h-full object-cover object-center"
               fetchpriority="high"
             />

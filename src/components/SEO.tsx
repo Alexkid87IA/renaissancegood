@@ -54,9 +54,9 @@ interface SEOProps {
   noIndex?: boolean;
 }
 
-const BASE_URL = 'https://www.renaissance-paris.com';
+const BASE_URL = 'https://renaissanceeyewear.fr';
 const DEFAULT_IMAGE = 'https://res.cloudinary.com/dsm0b18br/image/upload/f_auto,q_auto/v1/Renaissance%20Paris/og-image.webp';
-const SITE_NAME = 'RENAISSANCE Paris';
+const SITE_NAME = 'Renaissance Eyewear';
 
 export default function SEO({
   title,
@@ -99,8 +99,9 @@ export default function SEO({
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'RENAISSANCE Paris',
+    name: 'Renaissance Eyewear',
     url: BASE_URL,
+    foundingDate: '2019',
     logo: `${BASE_URL}/logo.png`,
     description: t('seo.orgDescription'),
     address: {
@@ -123,7 +124,7 @@ export default function SEO({
     image: product.image,
     brand: {
       '@type': 'Brand',
-      name: product.brand || 'RENAISSANCE Paris',
+      name: product.brand || 'Renaissance Eyewear',
     },
     offers: {
       '@type': 'Offer',
@@ -133,7 +134,7 @@ export default function SEO({
       url: canonicalUrl,
       seller: {
         '@type': 'Organization',
-        name: 'RENAISSANCE Paris',
+        name: 'Renaissance Eyewear',
       },
     },
     ...(product.sku && { sku: product.sku }),
@@ -154,7 +155,7 @@ export default function SEO({
     },
     publisher: {
       '@type': 'Organization',
-      name: 'RENAISSANCE Paris',
+      name: 'Renaissance Eyewear',
       logo: {
         '@type': 'ImageObject',
         url: `${BASE_URL}/logo.png`,

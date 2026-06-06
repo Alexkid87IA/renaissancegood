@@ -4,233 +4,233 @@
 
   <!-- Page d'accueil -->
   <url>
-    <loc>https://www.renaissance-paris.com/</loc>
+    <loc>https://renaissanceeyewear.fr/</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/" />
   </url>
 
   <!-- Boutique -->
   <url>
-    <loc>https://www.renaissance-paris.com/shop</loc>
+    <loc>https://renaissanceeyewear.fr/shop</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/shop" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/shop" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/shop" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/shop" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/shop" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/shop" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/shop" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/shop" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/shop" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/shop" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/shop" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/shop" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/shop" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/shop" />
   </url>
 
   <!-- Collections -->
   <url>
-    <loc>https://www.renaissance-paris.com/collections</loc>
+    <loc>https://renaissanceeyewear.fr/collections</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/collections" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/collections" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/collections" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/collections" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/collections" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/collections" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/collections" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/collections" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/collections" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/collections" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/collections" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/collections" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/collections" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/collections" />
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/collections/heritage</loc>
+    <loc>https://renaissanceeyewear.fr/collections/heritage</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/collections/heritage" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/collections/heritage" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/collections/heritage" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/collections/heritage" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/collections/heritage" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/collections/heritage" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/collections/heritage" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/collections/heritage" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/collections/heritage" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/collections/heritage" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/collections/heritage" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/collections/heritage" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/collections/heritage" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/collections/heritage" />
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/collections/versailles</loc>
+    <loc>https://renaissanceeyewear.fr/collections/versailles</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/collections/versailles" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/collections/versailles" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/collections/versailles" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/collections/versailles" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/collections/versailles" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/collections/versailles" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/collections/versailles" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/collections/versailles" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/collections/versailles" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/collections/versailles" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/collections/versailles" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/collections/versailles" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/collections/versailles" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/collections/versailles" />
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/collections/isis</loc>
+    <loc>https://renaissanceeyewear.fr/collections/isis</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/collections/isis" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/collections/isis" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/collections/isis" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/collections/isis" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/collections/isis" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/collections/isis" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/collections/isis" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/collections/isis" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/collections/isis" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/collections/isis" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/collections/isis" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/collections/isis" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/collections/isis" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/collections/isis" />
   </url>
 
   <!-- Pages de marque -->
   <url>
-    <loc>https://www.renaissance-paris.com/histoire</loc>
+    <loc>https://renaissanceeyewear.fr/histoire</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/histoire" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/histoire" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/histoire" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/histoire" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/histoire" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/histoire" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/histoire" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/histoire" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/histoire" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/histoire" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/histoire" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/histoire" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/histoire" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/histoire" />
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/manifeste</loc>
+    <loc>https://renaissanceeyewear.fr/manifeste</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/manifeste" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/manifeste" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/manifeste" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/manifeste" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/manifeste" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/manifeste" />
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/savoir-faire</loc>
+    <loc>https://renaissanceeyewear.fr/atelier</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/savoir-faire" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/savoir-faire" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/savoir-faire" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/atelier" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/atelier" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/atelier" />
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/symboles</loc>
+    <loc>https://renaissanceeyewear.fr/symboles</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/symboles" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/symboles" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/symboles" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/symboles" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/symboles" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/symboles" />
   </url>
 
   <!-- Blog -->
   <url>
-    <loc>https://www.renaissance-paris.com/blog</loc>
+    <loc>https://renaissanceeyewear.fr/blog</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/blog" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/blog" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/blog" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/blog" />
   </url>
 
   <!-- Service client -->
   <url>
-    <loc>https://www.renaissance-paris.com/opticiens</loc>
+    <loc>https://renaissanceeyewear.fr/opticiens</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/opticiens" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/opticiens" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/opticiens" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/opticiens" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/opticiens" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/opticiens" />
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/contact</loc>
+    <loc>https://renaissanceeyewear.fr/contact</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/contact" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/contact" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/contact" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/contact" />
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/faq</loc>
+    <loc>https://renaissanceeyewear.fr/faq</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/faq" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/faq" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/faq" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/faq" />
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/garantie</loc>
+    <loc>https://renaissanceeyewear.fr/garantie</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/garantie" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/garantie" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/garantie" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/garantie" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/garantie" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/garantie" />
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/guide-tailles</loc>
+    <loc>https://renaissanceeyewear.fr/guide-tailles</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/guide-tailles" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/guide-tailles" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/guide-tailles" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/guide-tailles" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/guide-tailles" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/guide-tailles" />
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/livraison</loc>
+    <loc>https://renaissanceeyewear.fr/livraison</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/livraison" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/livraison" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/livraison" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/livraison" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/livraison" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/livraison" />
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/suivi-commande</loc>
+    <loc>https://renaissanceeyewear.fr/suivi-commande</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/suivi-commande" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/suivi-commande" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/suivi-commande" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/suivi-commande" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/suivi-commande" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/suivi-commande" />
   </url>
 
   <!-- Pages legales -->
   <url>
-    <loc>https://www.renaissance-paris.com/mentions-legales</loc>
+    <loc>https://renaissanceeyewear.fr/mentions-legales</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/cgv</loc>
+    <loc>https://renaissanceeyewear.fr/cgv</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/confidentialite</loc>
+    <loc>https://renaissanceeyewear.fr/confidentialite</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/cookies</loc>
+    <loc>https://renaissanceeyewear.fr/cookies</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.renaissance-paris.com/remboursement</loc>
+    <loc>https://renaissanceeyewear.fr/remboursement</loc>
     <lastmod>2026-01-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

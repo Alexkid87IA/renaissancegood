@@ -89,7 +89,7 @@ export default function ProductBottomBar({ product, selectedColorIndex, visible 
                     {product.modelName || product.name}
                   </p>
                   <p className="font-sans text-[10px] tracking-[0.15em] text-dark-text/40 uppercase mt-0.5">
-                    Renaissance Paris
+                    Renaissance Eyewear
                   </p>
                 </div>
               </div>

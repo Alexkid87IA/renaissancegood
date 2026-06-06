@@ -37,7 +37,7 @@ export default function EngagementSection() {
         <div className="w-[46%] h-full relative overflow-hidden">
           <img
             src="https://renaissance-cdn.b-cdn.net/portrait.png"
-            alt="Renaissance Paris - Engagement"
+            alt="Renaissance Eyewear - Engagement"
             className="w-full h-full object-cover object-center"
             loading="lazy"
           />
@@ -102,7 +102,7 @@ export default function EngagementSection() {
       <div className="h-screen md:hidden relative overflow-hidden">
         <img
           src="https://renaissance-cdn.b-cdn.net/portrait.png"
-          alt="Renaissance Paris - Engagement"
+          alt="Renaissance Eyewear - Engagement"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />

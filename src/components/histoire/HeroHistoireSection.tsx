@@ -15,7 +15,7 @@ export default function HeroHistoireSection() {
       <div className="relative h-full overflow-hidden hidden lg:block">
         <img
           src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
-          alt="Renaissance Paris - Notre Histoire"
+          alt="Renaissance Eyewear - Notre Histoire"
           className="absolute inset-0 w-full h-full object-cover object-[center_42%]"
           fetchpriority="high"
         />
@@ -56,7 +56,7 @@ export default function HeroHistoireSection() {
         <div className="absolute inset-0">
           <img
             src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
-            alt="Renaissance Paris - Notre Histoire"
+            alt="Renaissance Eyewear - Notre Histoire"
             className="w-full h-full object-cover object-[center_30%]"
             fetchpriority="high"
           />

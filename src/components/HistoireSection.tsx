@@ -40,7 +40,7 @@ export default function HistoireSection() {
         <div className="w-1/2 h-full relative overflow-hidden">
           <motion.img
             src="https://renaissance-cdn.b-cdn.net/ne-dun-refus.jpg"
-            alt="Né d'un refus - Renaissance Paris"
+            alt="Né d'un refus - Renaissance Eyewear"
             style={imageMotionStyle}
             className="w-full h-full object-cover"
             loading="lazy"
@@ -54,7 +54,7 @@ export default function HistoireSection() {
         <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
             src="https://renaissance-cdn.b-cdn.net/ne-dun-refus.jpg"
-            alt="Né d'un refus - Renaissance Paris"
+            alt="Né d'un refus - Renaissance Eyewear"
             className="w-full h-full object-cover object-[center_30%]"
             loading="lazy"
           />

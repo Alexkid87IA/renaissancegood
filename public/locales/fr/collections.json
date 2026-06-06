@@ -3,55 +3,53 @@
     "label": "Collection",
     "title": "HÉRITAGE",
     "subtitle": "Le Trident.",
-    "description": "Ce qui nous précède nous construit. Héritage rend hommage aux formes intemporelles, celles qui traversent les modes sans jamais s'y soumettre.",
+    "description": "Ce qui nous précède nous construit. Des formes qui traversent les modes sans jamais s'y soumettre.",
     "discover": "Découvrir",
     "collectionNumber": "Collection I",
     "heroTitle": "HÉRITAGE.",
     "heroSubtitle": "Le Trident.",
-    "heroDescription": "Ce qui nous précède nous construit. Héritage rend hommage aux formes intemporelles, celles qui traversent les modes sans jamais s'y soumettre.",
+    "heroDescription": "Ce qui nous précède nous construit. Trois pointes, un seul manche. Des formes qui traversent les modes sans jamais s'y soumettre.",
     "exploreCollection": "Explorer la collection",
     "seoTitle": "Collection Héritage",
-    "seoDescription": "Découvrez la collection Héritage de RENAISSANCE Paris. Des lunettes de luxe au design intemporel, alliant tradition et modernité. Fabriquées avec les meilleurs matériaux.",
-    "heroImageAlt": "Collection Héritage"
+    "seoDescription": "Collection Héritage de Renaissance Eyewear. Le trident : trois pointes, un seul manche. Titane plaqué or 18KT. Des formes qui traversent les modes sans s'y soumettre.",
+    "heroImageAlt": "Collection Héritage, le trident"
   },
   "versailles": {
     "label": "Collection",
     "title": "VERSAILLES",
     "subtitle": "La Fleur de Lys.",
-    "description": "L'éclat sans l'excès. Versailles incarne une vision française de la beauté : des lignes affirmées, un équilibre parfait entre présence et retenue.",
+    "description": "L'éclat sans l'excès. Trois pétales, une seule attache : personne ne nous a faits nobles, on a appris le geste.",
     "discover": "Découvrir",
     "collectionNumber": "Collection II",
     "heroTitle": "VERSAILLES.",
     "heroSubtitle": "La Fleur de Lys.",
-    "heroDescription": "L'éclat sans l'excès. Versailles incarne une vision française de la beauté : des lignes affirmées, un équilibre parfait entre présence et retenue.",
+    "heroDescription": "L'éclat sans l'excès. Trois pétales, une seule attache : personne ne nous a faits nobles, on a appris le geste.",
     "exploreCollection": "Explorer la collection",
     "seoTitle": "Collection Versailles",
-    "seoDescription": "Découvrez la collection Versailles de RENAISSANCE Paris. L'élégance à la française incarnée dans des lunettes de luxe raffinées, inspirées du château de Versailles.",
-    "heroImageAlt": "Collection Versailles"
+    "seoDescription": "Collection Versailles de Renaissance Eyewear. La fleur de lys. Titane plaqué or 18KT, poli à la main. L'éclat sans l'excès.",
+    "heroImageAlt": "Collection Versailles, la fleur de lys"
   },
   "isis": {
     "label": "Collection",
     "title": "ISIS",
-    "subtitle": "Le Cobra. Le Scarabée. L'Œil.",
-    "description": "Légèreté du titane, solidité de l'héritage. ISIS incarne l'équilibre entre modernité technique et mémoire du geste.",
+    "subtitle": "L'Ankh. Le Scarabée. Le Cobra. L'Œil d'Horus.",
+    "description": "La légèreté du titane, la mémoire du geste. Des lignes épurées, l'absence de superflu.",
     "comingSoon": "Bientôt",
     "availableSoon": "Bientôt Disponible",
     "collectionNumber": "Collection III",
     "heroTitle": "ISIS.",
-    "heroSubtitle": "Le Scarabée.",
-    "heroDescription": "ISIS réunit ce que d'autres opposent : la légèreté du titane et la profondeur d'un héritage exigeant. Des lignes épurées, l'absence de superflu, la précision des finitions. Chaque détail est une décision. ISIS ne cherche pas à impressionner. Elle cherche à durer.",
+    "heroSubtitle": "L'Ankh. Le Scarabée. Le Cobra. L'Œil d'Horus.",
+    "heroDescription": "ISIS réunit ce que d'autres opposent : la légèreté du titane et des signes qui traversent cinq mille ans. Des lignes épurées, l'absence de superflu, la précision des finitions. Chaque détail est une décision. ISIS ne cherche pas à impressionner. Elle cherche à durer.",
     "heroDescriptionShort": "L'éternité se porte au quotidien.",
     "learnMore": "En savoir plus",
     "seoTitle": "Collection Isis",
-    "seoDescription": "Découvrez la collection Isis de RENAISSANCE Paris. Des lunettes de luxe audacieuses inspirées de la déesse égyptienne, alliant mystère et raffinement.",
+    "seoDescription": "Collection Isis de Renaissance Eyewear. L'ankh, le scarabée, le cobra, l'œil d'Horus. Des signes qui traversent cinq mille ans, gravés dans le titane.",
     "heroImageAlt": "Collection Isis",
     "comingSoonTitle": "Bientôt Disponible.",
     "comingSoonSubtitle": "Patience.",
-    "comingSoonDescription": "La collection ISIS est actuellement en préparation. Découvrez bientôt des montures inspirées par les symboles éternels de l'Égypte ancienne, où l'artisanat français rencontre le mystère millénaire.",
+    "comingSoonDescription": "La collection ISIS est en préparation. Des montures portant les signes de l'Égypte ancienne, sculptés dans le métal, jamais imprimés dessus.",
     "discoverVersailles": "Découvrir Versailles",
-    "discoverHeritage": "Découvrir Héritage",
-    "exploreCollection": "Explorer la collection",
-    "discover": "Découvrir"
+    "discoverHeritage": "Découvrir Héritage"
   },
   "allCollections": "Toutes les collections",
   "seeAll": "Voir tout",
@@ -87,6 +85,6 @@
   "retry": "Réessayer",
   "page": {
     "seoTitle": "Collections",
-    "seoDescription": "Explorez toutes les collections RENAISSANCE Paris. Héritage, Versailles et Isis : des lunettes de luxe fabriquées en France avec un savoir-faire artisanal d'exception."
+    "seoDescription": "Toutes les collections Renaissance Eyewear : Héritage, Versailles, Isis. Des lunettes faites pour durer et se transmettre."
   }
 }

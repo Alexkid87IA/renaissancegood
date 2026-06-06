@@ -15,7 +15,7 @@ export default function SavoirFairePage() {
       <SEO
         title={t('page.savoirFaire.seoTitle')}
         description={t('page.savoirFaire.seoDescription')}
-        url="/savoir-faire"
+        url="/atelier"
       />
       <SavoirFaireSection />
     </div>

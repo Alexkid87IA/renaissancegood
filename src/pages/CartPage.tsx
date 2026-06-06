@@ -81,7 +81,7 @@ export default function CartPage() {
               <div className="relative h-[300px] lg:h-[500px] overflow-hidden">
                 <img
                   src="https://renaissance-cdn.b-cdn.net/campgane.png"
-                  alt="Renaissance Paris"
+                  alt="Renaissance Eyewear"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />

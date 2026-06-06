@@ -110,7 +110,7 @@ export default function CollectionsPage() {
 
           <div className="mt-7 max-w-3xl">
             <p className="font-sans text-[9px] tracking-[0.42em] uppercase text-bronze font-bold mb-4">
-              Renaissance Paris
+              Renaissance Eyewear
             </p>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-dark-text leading-[0.86] tracking-normal">
               Collections
@@ -152,7 +152,7 @@ export default function CollectionsPage() {
                 {t('filters.models')}
               </span>
               <span className="font-display text-2xl sm:text-3xl font-bold text-dark-text leading-none tracking-normal">
-                {loading ? '—' : groupedProducts.length}
+                {loading ? '…' : groupedProducts.length}
               </span>
             </div>
           </div>

@@ -22,7 +22,7 @@ export default function ExcellenceSection() {
             whileInView={{ scale: 1 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
             src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1440"
-            alt="L'Excellence Renaissance"
+            alt="La fibre de la Maison Renaissance"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1500ms]"
             loading="lazy"
           />
@@ -93,7 +93,7 @@ export default function ExcellenceSection() {
               <div className="inline-flex items-center gap-3">
                 <div className="w-2 h-2 bg-bronze rotate-45" />
                 <p className="font-sans text-dark-text/40 text-xs tracking-[0.3em] uppercase">
-                  Renaissance Paris
+                  Renaissance Eyewear
                 </p>
                 <div className="w-2 h-2 bg-bronze rotate-45" />
               </div>

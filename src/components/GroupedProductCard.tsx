@@ -485,7 +485,7 @@ const EditorialCard = memo(function EditorialCard({
             {groupedProduct.colorVariants.length > 1 && (
               <div className="mt-6">
                 <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-3">
-                  {t('sidebar.coloris')} — {groupedProduct.colorVariants.length}
+                  {t('sidebar.coloris')} · {groupedProduct.colorVariants.length}
                 </p>
                 <div className="flex gap-3">
                   {groupedProduct.colorVariants.map((variant, variantIndex) => (
@@ -617,7 +617,7 @@ const EditorialCard = memo(function EditorialCard({
             {groupedProduct.colorVariants.length > 1 && (
               <div className="mt-4">
                 <p className="font-sans text-[8px] tracking-[0.2em] text-dark-text/50 uppercase mb-2.5">
-                  {t('sidebar.coloris')} — {groupedProduct.colorVariants.length}
+                  {t('sidebar.coloris')} · {groupedProduct.colorVariants.length}
                 </p>
                 <div className="flex gap-2.5">
                   {groupedProduct.colorVariants.map((variant, variantIndex) => (

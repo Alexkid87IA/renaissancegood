@@ -77,7 +77,7 @@ export default function HeroSection() {
         {slowConnection ? (
           <motion.img
             src={HERO_POSTER}
-            alt="Renaissance Paris"
+            alt="Renaissance Eyewear"
             style={imageMotionStyle}
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
@@ -136,7 +136,7 @@ export default function HeroSection() {
               {phase === 'reveal' && (
                 <motion.img
                   src={HERO_POSTER}
-                  alt="Renaissance Paris"
+                  alt="Renaissance Eyewear"
                   initial={{ opacity: 0, scale: 1.06, filter: 'brightness(0.3)' }}
                   animate={{ opacity: 1, scale: 1, filter: 'brightness(1)' }}
                   transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}

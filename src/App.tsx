@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { lazy, Suspense, useMemo, useEffect, type ComponentType } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HelmetProvider } from 'react-helmet-async';
@@ -116,7 +116,8 @@ function AppRoutes() {
       {/* Pages magazine/histoire */}
       <Route path="manifeste" element={<ManifestePage />} />
       <Route path="manifesto" element={<ManifestePage />} />
-      <Route path="savoir-faire" element={<SavoirFairePage />} />
+      <Route path="atelier" element={<SavoirFairePage />} />
+      <Route path="savoir-faire" element={<Navigate to="/atelier" replace />} />
       <Route path="symboles" element={<SymbolesPage />} />
 
       {/* Pages légales */}

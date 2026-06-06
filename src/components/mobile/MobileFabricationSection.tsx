@@ -50,32 +50,32 @@ export default function MobileFabricationSection() {
           </h2>
 
           <p className="font-sans text-sm text-white/90 leading-relaxed mb-6 max-w-md">
-            Excellence française. Précision coréenne.
+            Dessinées à Paris. Usinées en Corée.
           </p>
 
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div>
-              <p className="font-display text-3xl text-white font-bold">6-8</p>
+              <p className="font-display text-3xl text-white font-bold">18KT</p>
               <p className="font-sans text-white/70 text-[10px] tracking-wide uppercase">
-                Artisans par paire
+                Or véritable, plaqué
               </p>
             </div>
             <div>
-              <p className="font-display text-3xl text-white font-bold">100+</p>
+              <p className="font-display text-3xl text-white font-bold">Titane</p>
               <p className="font-sans text-white/70 text-[10px] tracking-wide uppercase">
-                Gestes de fabrication
+                Léger, résistant
               </p>
             </div>
             <div>
-              <p className="font-display text-3xl text-white font-bold">8-15h</p>
+              <p className="font-display text-3xl text-white font-bold">1849</p>
               <p className="font-sans text-white/70 text-[10px] tracking-wide uppercase">
-                De travail cumulé
+                Acétate Mazzucchelli
               </p>
             </div>
             <div>
-              <p className="font-display text-3xl text-white font-bold">2</p>
+              <p className="font-display text-3xl text-white font-bold">2019</p>
               <p className="font-sans text-white/70 text-[10px] tracking-wide uppercase">
-                Pays d'excellence
+                Année de fondation
               </p>
             </div>
           </div>
