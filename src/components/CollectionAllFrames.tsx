@@ -30,7 +30,7 @@ export default function CollectionAllFrames() {
     >
       {/* DESKTOP VERSION */}
       <div className="h-full bg-white hidden md:flex flex-row" data-header-theme="light">
-        <div className="w-full md:w-1/2 h-full relative overflow-hidden" data-header-theme="dark">
+        <div className="w-full md:w-[62%] h-full relative overflow-hidden" data-header-theme="dark">
           <motion.img
             src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
             alt="Nos créations"
@@ -47,7 +47,6 @@ export default function CollectionAllFrames() {
           label={t('allFrames.mobileLabel')}
           title={t('allFrames.title')}
           subtitle={t('allFrames.subtitle')}
-          description={t('allFrames.description')}
           ctaLabel={isLoading ? t('allFrames.loading') : t('allFrames.cta')}
           onClick={handleNavigate}
           disabled={isLoading}

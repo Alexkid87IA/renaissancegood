@@ -1,0 +1,2854 @@
+From 68c7388c8bee8429f1ebb1ae790ff24f57ae1a36 Mon Sep 17 00:00:00 2001
+From: Renaissance-eyewear <fraouiyassin@gmail.com>
+Date: Sat, 6 Jun 2026 15:52:00 +0200
+Subject: [PATCH 1/3] seo-doctrine: application de l'audit (entite Eyewear,
+ retours 14j, /atelier 301, email sans code promo, page histoire 7 symboles +
+ quatre fibres, typo Bodoni, header, suppression des tirets)
+
+---
+ emails/welcome-fr.html                        |  41 +---
+ index.html                                    |  30 +--
+ netlify.toml                                  |   6 +
+ public/locales/fr/cart.json                   |  24 +-
+ public/locales/fr/collections.json            |  34 ++-
+ public/locales/fr/common.json                 |  98 ++++----
+ public/locales/fr/contact.json                |  32 +--
+ public/locales/fr/faq.json                    |   6 +-
+ public/locales/fr/histoire.json               | 120 +++++-----
+ public/locales/fr/home.json                   |  97 ++++----
+ public/locales/fr/legal.json                  |  24 +-
+ public/locales/fr/product.json                |  48 ++--
+ public/locales/fr/seo.json                    |  26 +--
+ public/locales/fr/shop.json                   |  12 +-
+ public/sitemap.xml                            | 210 +++++++++---------
+ src/App.tsx                                   |   5 +-
+ src/components/ExcellenceSection.tsx          |   4 +-
+ src/components/FabricationSection.tsx         |  16 +-
+ src/components/Footer.tsx                     |  28 ++-
+ src/components/GroupedProductCard.tsx         |   4 +-
+ src/components/Header.tsx                     |  24 +-
+ src/components/HeroSection.tsx                |   4 +-
+ src/components/HistoireSection.tsx            |   4 +-
+ src/components/LegalPageTemplate.tsx          |   4 +-
+ src/components/ReassuranceSection.tsx         |   2 +-
+ src/components/SEO.tsx                        |  13 +-
+ src/components/header/MobileMenu.tsx          |   4 +-
+ src/components/histoire/EngagementSection.tsx |   4 +-
+ .../histoire/HeroHistoireSection.tsx          |   4 +-
+ .../histoire/SavoirFaireSection.tsx           |  12 +-
+ src/components/histoire/SignatureSection.tsx  |   4 +-
+ src/components/histoire/SymbolesSection.tsx   |  16 +-
+ src/components/histoire/ValeursSection.tsx    |  30 ++-
+ .../mobile/MobileFabricationSection.tsx       |  18 +-
+ src/components/product/ProductBottomBar.tsx   |   2 +-
+ .../product/ProductCraftSection.tsx           |  14 +-
+ src/pages/CartPage.tsx                        |   2 +-
+ src/pages/CheckoutConfirmationPage.tsx        |   6 +-
+ src/pages/CheckoutPage.tsx                    |   2 +-
+ src/pages/CollectionsPage.tsx                 |   4 +-
+ src/pages/ContactPage.tsx                     |   6 +-
+ src/pages/SavoirFairePage.tsx                 |   2 +-
+ src/pages/ShopPage.tsx                        |   6 +-
+ src/pages/StoreLocatorPage.tsx                |   4 +-
+ src/pages/SuiviCommandePage.tsx               |   4 +-
+ tailwind.config.js                            |   6 +-
+ 46 files changed, 525 insertions(+), 541 deletions(-)
+
+diff --git a/emails/welcome-fr.html b/emails/welcome-fr.html
+index 98ecca7..542f564 100644
+--- a/emails/welcome-fr.html
++++ b/emails/welcome-fr.html
+@@ -25,7 +25,7 @@
+ 
+   <!-- Preheader (hidden preview text) -->
+   <div style="display: none; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #F5F0EB;">
+-    Votre code WELCOME10 vous attend &mdash; -10% sur votre premi&egrave;re commande Renaissance Paris.
++    Vous saurez avant les autres. Renaissance Eyewear.
+   </div>
+ 
+   <!-- Email wrapper -->
+@@ -48,7 +48,7 @@
+           <!-- ============================================ -->
+           <tr>
+             <td align="center" style="padding: 48px 40px 32px 40px;" class="mobile-padding">
+-              <img src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png" alt="Renaissance Paris" width="200" style="display: block; width: 200px; max-width: 200px; height: auto;">
++              <img src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png" alt="Renaissance Eyewear" width="200" style="display: block; width: 200px; max-width: 200px; height: auto;">
+             </td>
+           </tr>
+ 
+@@ -82,7 +82,7 @@
+           <tr>
+             <td align="center" style="padding: 8px 40px 0 40px;" class="mobile-padding">
+               <p style="margin: 0; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 18px; font-weight: 300; font-style: italic; color: #1A1A1A; opacity: 0.45; line-height: 1.4;">
+-                Le Cercle Renaissance
++                Vous saurez avant les autres.
+               </p>
+             </td>
+           </tr>
+@@ -92,7 +92,7 @@
+           <!-- ============================================ -->
+           <tr>
+             <td align="center" style="padding: 36px 40px 0 40px;" class="mobile-padding">
+-              <img src="https://renaissance-cdn.b-cdn.net/page%20histoire.png" alt="Savoir-faire Renaissance Paris" width="520" style="display: block; width: 100%; max-width: 520px; height: auto;">
++              <img src="https://renaissance-cdn.b-cdn.net/page%20histoire.png" alt="Renaissance Eyewear" width="520" style="display: block; width: 100%; max-width: 520px; height: auto;">
+             </td>
+           </tr>
+ 
+@@ -102,33 +102,12 @@
+           <tr>
+             <td align="center" style="padding: 36px 50px 0 50px;" class="mobile-padding">
+               <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #1A1A1A; opacity: 0.55; line-height: 1.9; letter-spacing: 0.2px;">
+-                Vous faites d&eacute;sormais partie du Cercle Renaissance. Un acc&egrave;s privil&eacute;gi&eacute; aux nouvelles collections en avant-premi&egrave;re, aux coulisses de notre atelier parisien et aux histoires de la Maison.
++                Vous nous avez laiss&eacute; une adresse. Elle ne sort jamais de la Maison. Un mot, et elle s&rsquo;efface. Pas d&rsquo;envois en s&eacute;rie : une lettre, rarement, quand il y a quelque chose &agrave; dire. Et quand un nouveau mod&egrave;le na&icirc;t, vous le saurez avant les autres.
+               </p>
+             </td>
+           </tr>
+ 
+-          <!-- ============================================ -->
+-          <!-- PROMO CODE BLOCK                             -->
+-          <!-- ============================================ -->
+-          <tr>
+-            <td align="center" style="padding: 36px 40px 0 40px;" class="mobile-padding">
+-              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #F5F0EB;">
+-                <tr>
+-                  <td align="center" style="padding: 32px 24px;">
+-                    <p style="margin: 0 0 6px 0; font-family: Arial, Helvetica, sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: #1A1A1A; opacity: 0.4;">
+-                      Votre code de bienvenue
+-                    </p>
+-                    <p style="margin: 0 0 4px 0; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 15px; font-style: italic; color: #1A1A1A; opacity: 0.45;">
+-                      -10% sur votre premi&egrave;re commande
+-                    </p>
+-                    <p style="margin: 16px 0 0 0; font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 700; letter-spacing: 6px; color: #1A1A1A;">
+-                      WELCOME10
+-                    </p>
+-                  </td>
+-                </tr>
+-              </table>
+-            </td>
+-          </tr>
++          <!-- bloc code promo retiré : aucune remise (noyau 13.2) -->
+ 
+           <!-- ============================================ -->
+           <!-- CTA BUTTON                                   -->
+@@ -138,7 +117,7 @@
+               <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                 <tr>
+                   <td align="center" bgcolor="#1A1A1A" style="background-color: #1A1A1A;">
+-                    <a href="https://www.renaissance-eyewear.fr/shop" target="_blank" style="display: inline-block; padding: 16px 48px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #ffffff; text-decoration: none;">
++                    <a href="https://renaissanceeyewear.fr/shop" target="_blank" style="display: inline-block; padding: 16px 48px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #ffffff; text-decoration: none;">
+                       D&eacute;couvrir les cr&eacute;ations
+                     </a>
+                   </td>
+@@ -153,7 +132,7 @@
+           <tr>
+             <td align="center" style="padding: 32px 50px 0 50px;" class="mobile-padding">
+               <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #1A1A1A; opacity: 0.35; line-height: 1.8;">
+-                Cinq symboles mill&eacute;naires. Un savoir-faire artisanal d&rsquo;exception. Des lunettes con&ccedil;ues pour durer et se transmettre. &Eacute;ditions limit&eacute;es &agrave; 300 pi&egrave;ces.
++                Sept symboles, grav&eacute;s dans le titane. Titane plaqu&eacute; or 18KT, ac&eacute;tate Mazzucchelli. Chaque paire porte son num&eacute;ro grav&eacute; au pont.
+               </p>
+             </td>
+           </tr>
+@@ -199,10 +178,10 @@
+           <tr>
+             <td align="center" style="padding: 28px 40px 20px 40px;" class="mobile-padding">
+               <p style="margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #1A1A1A; opacity: 0.25; line-height: 1.8;">
+-                Renaissance Paris &mdash; Lunetterie d&rsquo;exception
++                Renaissance Eyewear. Lunetterie fran&ccedil;aise
+               </p>
+               <p style="margin: 4px 0 0 0; font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #1A1A1A; opacity: 0.25; line-height: 1.8;">
+-                contact@renaissance-eyewear.fr
++                contact@renaissanceeyewear.com
+               </p>
+             </td>
+           </tr>
+diff --git a/index.html b/index.html
+index 68a1b16..6a10b84 100644
+--- a/index.html
++++ b/index.html
+@@ -6,36 +6,36 @@
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+     <!-- Primary Meta Tags -->
+-    <title>RENAISSANCE Paris - Lunettes de Luxe Artisanales | Excellence Française</title>
+-    <meta name="title" content="RENAISSANCE Paris - Lunettes de Luxe Artisanales | Excellence Française" />
+-    <meta name="description" content="Découvrez les collections RENAISSANCE : lunettes de luxe fabriquées à Paris avec un savoir-faire artisanal d'exception. Collections Héritage & Versailles. Montures en or 24 carats et matériaux nobles." />
+-    <meta name="keywords" content="lunettes luxe, lunettes Paris, montures artisanales, lunettes or, lunettes prestige, Renaissance Paris, eyewear luxury, made in Paris" />
+-    <meta name="author" content="RENAISSANCE Paris" />
++    <title>Renaissance Eyewear. Lunetterie française, titane or 18KT</title>
++    <meta name="title" content="Renaissance Eyewear. Lunetterie française, titane or 18KT" />
++    <meta name="description" content="Maison française de lunetterie, née en 2019 d'un refus. Montures titane plaquées or 18KT, acétate Mazzucchelli. Chaque paire porte son numéro gravé au pont." />
++    <!-- meta keywords retirée (balise ignorée par Google + lexique interdit) -->
++    <meta name="author" content="Renaissance Eyewear" />
+ 
+     <!-- Open Graph / Facebook -->
+     <meta property="og:type" content="website" />
+-    <meta property="og:url" content="https://www.renaissance-paris.com/" />
+-    <meta property="og:title" content="RENAISSANCE Paris - Lunettes de Luxe Artisanales" />
+-    <meta property="og:description" content="Collections de lunettes d'exception fabriquées à Paris. Savoir-faire artisanal français et matériaux nobles." />
++    <meta property="og:url" content="https://renaissanceeyewear.fr/" />
++    <meta property="og:title" content="Renaissance Eyewear. Lunetterie française, titane or 18KT" />
++    <meta property="og:description" content="Maison française de lunetterie, née en 2019 d'un refus. Titane plaqué or 18KT, acétate Mazzucchelli." />
+     <meta property="og:image" content="https://res.cloudinary.com/dwt7u0azs/image/upload/v1761868999/RENAISSANCE_TRANSPARENT_bbe5d805-70e6-4344-856b-1d8534ad9056_ujgcyh.webp" />
+ 
+     <!-- Twitter -->
+     <meta property="twitter:card" content="summary_large_image" />
+-    <meta property="twitter:url" content="https://www.renaissance-paris.com/" />
+-    <meta property="twitter:title" content="RENAISSANCE Paris - Lunettes de Luxe Artisanales" />
+-    <meta property="twitter:description" content="Collections de lunettes d'exception fabriquées à Paris. Savoir-faire artisanal français et matériaux nobles." />
++    <meta property="twitter:url" content="https://renaissanceeyewear.fr/" />
++    <meta property="twitter:title" content="Renaissance Eyewear. Lunetterie française, titane or 18KT" />
++    <meta property="twitter:description" content="Maison française de lunetterie, née en 2019 d'un refus. Titane plaqué or 18KT, acétate Mazzucchelli." />
+     <meta property="twitter:image" content="https://res.cloudinary.com/dwt7u0azs/image/upload/v1761868999/RENAISSANCE_TRANSPARENT_bbe5d805-70e6-4344-856b-1d8534ad9056_ujgcyh.webp" />
+ 
+     <!-- Additional SEO -->
+-    <meta name="robots" content="index, follow" />
++    <meta name="robots" content="noindex, follow" />
+     <meta name="language" content="French" />
+     <meta name="revisit-after" content="7 days" />
+-    <link rel="canonical" href="https://www.renaissance-paris.com/" />
++    <link rel="canonical" href="https://renaissanceeyewear.fr/" />
+ 
+-    <!-- Google Fonts — preconnect + non-blocking -->
++    <!-- Google Fonts : preconnect + non-blocking -->
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@400;500;700&display=swap" />
++    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" />
+ 
+     <link rel="preconnect" href="https://renaissance-cdn.b-cdn.net" />
+ 
+diff --git a/netlify.toml b/netlify.toml
+index f13c1b6..efa5ab5 100644
+--- a/netlify.toml
++++ b/netlify.toml
+@@ -35,6 +35,12 @@
+     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+     Permissions-Policy = "camera=(), microphone=(), geolocation=(self)"
+ 
++[[redirects]]
++  from = "/savoir-faire"
++  to = "/atelier"
++  status = 301
++  force = true
++
+ [[redirects]]
+   from = "/*"
+   to = "/index.html"
+diff --git a/public/locales/fr/cart.json b/public/locales/fr/cart.json
+index 6590951..ca23c05 100644
+--- a/public/locales/fr/cart.json
++++ b/public/locales/fr/cart.json
+@@ -3,7 +3,7 @@
+   "empty": "Votre panier est vide",
+   "emptyDesc": "Découvrez nos collections et trouvez la monture qui révélera votre style unique.",
+   "emptyTitle": "RIEN POUR\nL'INSTANT.",
+-  "emptySubtitle": "L'exception vous attend.",
++  "emptySubtitle": "Votre panier est vide.",
+   "emptyCollections": "Nos collections",
+   "emptyExplore": "Explorer",
+   "continueShopping": "CONTINUER MES ACHATS",
+@@ -20,8 +20,8 @@
+   "securePayment": "Paiement sécurisé via Stripe",
+   "expressCheckout": "Paiement express",
+   "or": "ou",
+-  "pieces_one": "{{count}} pièce d'exception",
+-  "pieces_other": "{{count}} pièces d'exception",
++  "pieces_one": "{{count}} pièce",
++  "pieces_other": "{{count}} pièces",
+   "freeShippingRemaining": "restants pour la livraison gratuite",
+   "trustBadgeWarrantyTitle": "Garantie 2 ans",
+   "trustBadgeWarrantyDesc": "Protection complète contre les défauts de fabrication et la casse accidentelle",
+@@ -29,7 +29,7 @@
+   "trustBadgeShippingDesc": "Expédition sécurisée avec suivi en temps réel, livrée en 2-4 jours ouvrés",
+   "trustBadgeParisTitle": "Création Parisienne",
+   "trustBadgeParisDesc": "Designé dans nos ateliers parisiens avec une attention méticuleuse aux détails",
+-  "trustBadgeCaseTitle": "Étui luxe offert",
++  "trustBadgeCaseTitle": "Étui offert",
+   "trustBadgeCaseDesc": "Chaque paire accompagnée d'un étui premium et d'un chiffon en microfibre",
+   "trustSecure": "Paiement 100% sécurisé",
+   "trustFreeShipping": "Livraison gratuite dès 500€",
+@@ -105,9 +105,9 @@
+     "expressDelivery": "Livraison Express",
+     "expressDeliveryDesc": "Sous 48h dans toute la France",
+     "warranty2years": "Garantie 2 ans",
+-    "warranty2yearsDesc": "Fabrication artisanale certifiée",
++    "warranty2yearsDesc": "Incluse sur chaque monture",
+     "freeReturns": "Retours gratuits",
+-    "freeReturnsDesc": "30 jours pour changer d'avis",
++    "freeReturnsDesc": "14 jours pour changer d'avis",
+     "edit": "Modifier",
+     "paymentExpressLabel": "Paiement express",
+     "orDivider": "ou",
+@@ -137,10 +137,10 @@
+     "expressHeadline": "Paiement express",
+     "expressMicrocopy": "Validez votre commande en un instant",
+     "stripeSecurityNote": "Vos informations sont chiffrées et sécurisées par Stripe",
+-    "artisanalMessage": "Chaque paire est assemblée à la main dans nos ateliers parisiens",
++    "artisanalMessage": "Dessinée à Paris, assemblée à la main",
+     "stepXofY": "Étape {{current}} sur {{total}}",
+-    "valueBanner": "Étui luxe et chiffon microfibre offerts",
+-    "satisfactionGuarantee": "Garantie satisfait ou remboursé 30 jours",
++    "valueBanner": "Étui et chamoisine offerts",
++    "satisfactionGuarantee": "Satisfait ou remboursé sous 14 jours",
+     "trustBarSecure": "Paiement sécurisé",
+     "trustBarEncrypted": "Données chiffrées",
+     "trustBarShipping": "Livraison express",
+@@ -164,7 +164,7 @@
+     "nextStepsTitle": "Prochaines étapes",
+     "step1Title": "Confirmation envoyée",
+     "step1Desc": "Un email récapitulatif a été envoyé à votre adresse avec tous les détails de votre commande.",
+-    "step2Title": "Préparation artisanale",
++    "step2Title": "Préparation",
+     "step2Desc": "Votre pièce sera préparée avec soin dans nos ateliers sous 24 à 48 heures.",
+     "step3Title": "Expédition suivie",
+     "step3Desc": "Livraison soignée en 3-5 jours ouvrés. Vous recevrez votre numéro de suivi par email.",
+@@ -173,7 +173,7 @@
+     "orderQuestion": "Une question sur votre commande ?",
+     "greetingPersonalized": "Merci, {{firstName}}",
+     "greetingDefault": "Merci pour votre commande",
+-    "subtitleEmotional": "Votre pièce d'exception est en route",
++    "subtitleEmotional": "Votre commande est en route",
+     "bodyArtisanal": "Nous préparons votre commande avec le même soin que celui apporté à la création de chaque monture.",
+     "estimatedConfirmation": "Aujourd'hui",
+     "estimatedPreparation": "{{date}}",
+@@ -194,7 +194,7 @@
+     "itemCount_other": "{{count}} articles",
+     "freeShippingRemaining": "avant la livraison offerte",
+     "emptyTitle": "Votre panier est vide",
+-    "emptyDescription": "Découvrez nos collections d'exception",
++    "emptyDescription": "Découvrez nos collections",
+     "discover": "Découvrir",
+     "warranty": "Garantie 3 ans",
+     "trackedShipping": "Livraison suivie",
+diff --git a/public/locales/fr/collections.json b/public/locales/fr/collections.json
+index 35eb0e7..6a563a4 100644
+--- a/public/locales/fr/collections.json
++++ b/public/locales/fr/collections.json
+@@ -3,55 +3,53 @@
+     "label": "Collection",
+     "title": "HÉRITAGE",
+     "subtitle": "Le Trident.",
+-    "description": "Ce qui nous précède nous construit. Héritage rend hommage aux formes intemporelles, celles qui traversent les modes sans jamais s'y soumettre.",
++    "description": "Ce qui nous précède nous construit. Des formes qui traversent les modes sans jamais s'y soumettre.",
+     "discover": "Découvrir",
+     "collectionNumber": "Collection I",
+     "heroTitle": "HÉRITAGE.",
+     "heroSubtitle": "Le Trident.",
+-    "heroDescription": "Ce qui nous précède nous construit. Héritage rend hommage aux formes intemporelles, celles qui traversent les modes sans jamais s'y soumettre.",
++    "heroDescription": "Ce qui nous précède nous construit. Trois pointes, un seul manche. Des formes qui traversent les modes sans jamais s'y soumettre.",
+     "exploreCollection": "Explorer la collection",
+     "seoTitle": "Collection Héritage",
+-    "seoDescription": "Découvrez la collection Héritage de RENAISSANCE Paris. Des lunettes de luxe au design intemporel, alliant tradition et modernité. Fabriquées avec les meilleurs matériaux.",
+-    "heroImageAlt": "Collection Héritage"
++    "seoDescription": "Collection Héritage de Renaissance Eyewear. Le trident : trois pointes, un seul manche. Titane plaqué or 18KT. Des formes qui traversent les modes sans s'y soumettre.",
++    "heroImageAlt": "Collection Héritage, le trident"
+   },
+   "versailles": {
+     "label": "Collection",
+     "title": "VERSAILLES",
+     "subtitle": "La Fleur de Lys.",
+-    "description": "L'éclat sans l'excès. Versailles incarne une vision française de la beauté : des lignes affirmées, un équilibre parfait entre présence et retenue.",
++    "description": "L'éclat sans l'excès. Trois pétales, une seule attache : personne ne nous a faits nobles, on a appris le geste.",
+     "discover": "Découvrir",
+     "collectionNumber": "Collection II",
+     "heroTitle": "VERSAILLES.",
+     "heroSubtitle": "La Fleur de Lys.",
+-    "heroDescription": "L'éclat sans l'excès. Versailles incarne une vision française de la beauté : des lignes affirmées, un équilibre parfait entre présence et retenue.",
++    "heroDescription": "L'éclat sans l'excès. Trois pétales, une seule attache : personne ne nous a faits nobles, on a appris le geste.",
+     "exploreCollection": "Explorer la collection",
+     "seoTitle": "Collection Versailles",
+-    "seoDescription": "Découvrez la collection Versailles de RENAISSANCE Paris. L'élégance à la française incarnée dans des lunettes de luxe raffinées, inspirées du château de Versailles.",
+-    "heroImageAlt": "Collection Versailles"
++    "seoDescription": "Collection Versailles de Renaissance Eyewear. La fleur de lys. Titane plaqué or 18KT, poli à la main. L'éclat sans l'excès.",
++    "heroImageAlt": "Collection Versailles, la fleur de lys"
+   },
+   "isis": {
+     "label": "Collection",
+     "title": "ISIS",
+-    "subtitle": "Le Cobra. Le Scarabée. L'Œil.",
+-    "description": "Légèreté du titane, solidité de l'héritage. ISIS incarne l'équilibre entre modernité technique et mémoire du geste.",
++    "subtitle": "L'Ankh. Le Scarabée. Le Cobra. L'Œil d'Horus.",
++    "description": "La légèreté du titane, la mémoire du geste. Des lignes épurées, l'absence de superflu.",
+     "comingSoon": "Bientôt",
+     "availableSoon": "Bientôt Disponible",
+     "collectionNumber": "Collection III",
+     "heroTitle": "ISIS.",
+-    "heroSubtitle": "Le Scarabée.",
+-    "heroDescription": "ISIS réunit ce que d'autres opposent : la légèreté du titane et la profondeur d'un héritage exigeant. Des lignes épurées, l'absence de superflu, la précision des finitions. Chaque détail est une décision. ISIS ne cherche pas à impressionner. Elle cherche à durer.",
++    "heroSubtitle": "L'Ankh. Le Scarabée. Le Cobra. L'Œil d'Horus.",
++    "heroDescription": "ISIS réunit ce que d'autres opposent : la légèreté du titane et des signes qui traversent cinq mille ans. Des lignes épurées, l'absence de superflu, la précision des finitions. Chaque détail est une décision. ISIS ne cherche pas à impressionner. Elle cherche à durer.",
+     "heroDescriptionShort": "L'éternité se porte au quotidien.",
+     "learnMore": "En savoir plus",
+     "seoTitle": "Collection Isis",
+-    "seoDescription": "Découvrez la collection Isis de RENAISSANCE Paris. Des lunettes de luxe audacieuses inspirées de la déesse égyptienne, alliant mystère et raffinement.",
++    "seoDescription": "Collection Isis de Renaissance Eyewear. L'ankh, le scarabée, le cobra, l'œil d'Horus. Des signes qui traversent cinq mille ans, gravés dans le titane.",
+     "heroImageAlt": "Collection Isis",
+     "comingSoonTitle": "Bientôt Disponible.",
+     "comingSoonSubtitle": "Patience.",
+-    "comingSoonDescription": "La collection ISIS est actuellement en préparation. Découvrez bientôt des montures inspirées par les symboles éternels de l'Égypte ancienne, où l'artisanat français rencontre le mystère millénaire.",
++    "comingSoonDescription": "La collection ISIS est en préparation. Des montures portant les signes de l'Égypte ancienne, sculptés dans le métal, jamais imprimés dessus.",
+     "discoverVersailles": "Découvrir Versailles",
+-    "discoverHeritage": "Découvrir Héritage",
+-    "exploreCollection": "Explorer la collection",
+-    "discover": "Découvrir"
++    "discoverHeritage": "Découvrir Héritage"
+   },
+   "allCollections": "Toutes les collections",
+   "seeAll": "Voir tout",
+@@ -87,6 +85,6 @@
+   "retry": "Réessayer",
+   "page": {
+     "seoTitle": "Collections",
+-    "seoDescription": "Explorez toutes les collections RENAISSANCE Paris. Héritage, Versailles et Isis : des lunettes de luxe fabriquées en France avec un savoir-faire artisanal d'exception."
++    "seoDescription": "Toutes les collections Renaissance Eyewear : Héritage, Versailles, Isis. Des lunettes faites pour durer et se transmettre."
+   }
+ }
+diff --git a/public/locales/fr/common.json b/public/locales/fr/common.json
+index bf9add9..b07c9fd 100644
+--- a/public/locales/fr/common.json
++++ b/public/locales/fr/common.json
+@@ -3,7 +3,7 @@
+     "heritage": "HÉRITAGE",
+     "versailles": "VERSAILLES",
+     "isis": "ISIS",
+-    "explorer": "EXPLORER",
++    "explorer": "Nos créations",
+     "histoire": "HISTOIRE",
+     "collections": "Collections",
+     "laMaison": "La Maison",
+@@ -15,21 +15,21 @@
+     "cart": "Panier",
+     "orderTracking": "Suivre ma commande",
+     "closeMenu": "Fermer le menu",
+-    "findOptician": "Essayez chez votre opticien",
++    "findOptician": "Où nos opticiens vous reçoivent",
+     "language": "Langue"
+   },
+   "footer": {
+-    "newsletterLabel": "Le Cercle Renaissance",
+-    "newsletterTitle": "REJOIGNEZ LA MAISON.",
+-    "newsletterSubtitle": "Accès anticipé. Invitations privées.",
+-    "newsletterDescription": "Nouvelles collections en avant-première, coulisses de l'atelier et histoires de la Maison. Rien de plus.",
+-    "newsletterDescriptionMobile": "Nouvelles collections en avant-première, coulisses de l'atelier et histoires de la Maison.",
++    "newsletterLabel": "La lettre",
++    "newsletterTitle": "UNE LETTRE, QUAND IL Y A QUELQUE CHOSE À DIRE.",
++    "newsletterSubtitle": "C'est tout ce qu'on promet.",
++    "newsletterDescription": "Votre adresse ne sort jamais de la Maison. Un mot, et elle s'efface.",
++    "newsletterDescriptionMobile": "Votre adresse ne sort jamais de la Maison.",
+     "emailPlaceholder": "Votre adresse email",
+-    "subscribe": "S'inscrire",
+-    "subscribeSuccess": "Bienvenue dans le Cercle Renaissance.",
+-    "subscribeSuccessDetail": "Vous recevrez nos prochaines communications.",
+-    "brandDescription": "Lunetterie parisienne d'exception. Cinq symboles millénaires, un savoir-faire artisanal. Ce qui se porte. Ce qui se transmet.",
+-    "brandDescriptionMobile": "Lunetterie parisienne d'exception. Ce qui se porte. Ce qui se transmet.",
++    "subscribe": "Laisser une adresse",
++    "subscribeSuccess": "C'est noté.",
++    "subscribeSuccessDetail": "Vous aurez de nos nouvelles quand il y aura quelque chose à dire.",
++    "brandDescription": "Maison française de lunetterie, née en 2019. Titane plaqué or 18KT, acétate Mazzucchelli. Ce qui se porte. Ce qui se transmet.",
++    "brandDescriptionMobile": "Titane plaqué or 18KT. Acétate Mazzucchelli. Ce qui se porte. Ce qui se transmet.",
+     "findOptician": "Trouver un opticien",
+     "allRightsReserved": "Tous droits réservés",
+     "backToTop": "Retour en haut"
+@@ -40,11 +40,11 @@
+     "isis": "Isis",
+     "allCreations": "Toutes les créations",
+     "ourHistory": "Notre Histoire",
+-    "savoirFaire": "Savoir-faire",
+-    "fiveSymbols": "Les 5 Symboles",
++    "savoirFaire": "L'atelier",
++    "fiveSymbols": "Les symboles",
+     "manifeste": "Le Manifeste",
+     "shipping": "Livraison & Retours",
+-    "warranty": "Garantie 2 ans",
++    "warranty": "Garantie",
+     "sizeGuide": "Guide des tailles",
+     "ourOpticians": "Nos opticiens",
+     "orderTracking": "Suivi de commande",
+@@ -63,27 +63,27 @@
+     "warranty": "Garantie",
+     "warrantyDesc": "Incluse",
+     "opticians": "Opticiens",
+-    "opticiansDesc": "Partout en France"
++    "opticiansDesc": "Choisis"
+   },
+   "megaMenu": {
+-    "versaillesTitle": "La splendeur\nde Versailles",
++    "versaillesTitle": "L'éclat\nsans l'excès",
+     "versaillesSubtitle": "Collection Versailles",
+-    "versaillesDescription": "Inspirée par l'opulence du château, chaque monture capture l'essence du luxe à la française. Or 24 carats et finitions artisanales d'exception.",
+-    "heritageTitle": "Un siècle\nde savoir-faire",
++    "versaillesDescription": "Titane plaqué or 18KT, poli à la main. Trois pétales, une seule attache. Personne ne nous a faits nobles : on a appris le geste.",
++    "heritageTitle": "Trois pointes,\nun seul manche",
+     "heritageSubtitle": "Collection Héritage",
+-    "heritageDescription": "Chaque monture perpétue l'excellence artisanale parisienne. Des créations intemporelles façonnées dans nos ateliers.",
++    "heritageDescription": "Titane plaqué or 18KT, gravé dans le métal. Des formes qui traversent les modes sans s'y soumettre.",
+     "isisComingSoon": "Prochainement",
+-    "isisSubtitle": "Le Cobra. Le Scarabée. L'Œil.",
+-    "isisDescription": "Ce qui traverse 5 000 ans ne se porte pas par hasard. Une collection inspirée des symboles éternels de l'Égypte ancienne.",
++    "isisSubtitle": "L'Ankh. Le Scarabée. Le Cobra. L'Œil d'Horus.",
++    "isisDescription": "Ce qui traverse 5 000 ans ne se porte pas par hasard. Des signes gravés dans le titane. Chacun garde un secret.",
+     "availableSoon": "Bientôt disponible",
+     "histoireLabel": "La Maison",
+-    "histoireSubtitle": "Paris, depuis toujours.",
+-    "histoireDescription": "Cinq symboles millénaires. Un savoir-faire artisanal d'exception. Des lunettes conçues pour durer et se transmettre.",
++    "histoireSubtitle": "Née en 2019, d'un refus.",
++    "histoireDescription": "Des symboles qui traversent les siècles. Titane, acétate, gravure. Des lunettes faites pour durer et se transmettre.",
+     "ourHistory": "Notre histoire",
+-    "savoirFaire": "Savoir-faire"
++    "savoirFaire": "L'atelier"
+   },
+   "mobileMenu": {
+-    "explorer": "EXPLORER",
++    "explorer": "Nos créations",
+     "collections": "Collections",
+     "laMaison": "La Maison",
+     "cart": "Panier",
+@@ -93,9 +93,9 @@
+     "versailles": "Versailles",
+     "versaillesSubtitle": "La Fleur de Lys",
+     "isis": "Isis",
+-    "isisSubtitle": "Le Scarabée",
++    "isisSubtitle": "Bientôt",
+     "ourHistory": "Notre Histoire",
+-    "savoirFaire": "Savoir-Faire",
++    "savoirFaire": "L'atelier",
+     "ourOpticians": "Nos Opticiens"
+   },
+   "loading": "Chargement",
+@@ -111,7 +111,7 @@
+     "backHome": "Retour à l'accueil",
+     "pageTitle": "Page Introuvable",
+     "descriptionLong": "La page que vous recherchez semble avoir disparu.",
+-    "descriptionSub": "Laissez-nous vous guider vers nos collections d'exception.",
++    "descriptionSub": "Laissez-nous vous ramener vers les collections.",
+     "backToHome": "Retour à l'Accueil",
+     "explore": "Explorer nos créations"
+   },
+@@ -137,19 +137,19 @@
+     "shipping": "Livraison",
+     "warranty": "Garantie",
+     "terms": "CGV",
+-    "copyright": "© 2025 Renaissance Eyewear",
++    "copyright": "© 2026 Renaissance Eyewear",
+     "legalNotice": "Mentions légales",
+     "privacy": "Confidentialité"
+   },
+   "seo": {
+-    "defaultDescription": "Découvrez les lunettes de luxe RENAISSANCE Paris. Savoir-faire artisanal français, matériaux nobles et design intemporel. Créées à Paris avec passion.",
+-    "defaultTitle": "Lunettes de Luxe Artisanales | Excellence Française",
+-    "orgDescription": "Maison française de lunettes de luxe artisanales",
++    "defaultDescription": "Maison française de lunetterie, née en 2019. Titane plaqué or 18KT, acétate Mazzucchelli. Ce qui se porte. Ce qui se transmet.",
++    "defaultTitle": "Lunettes qui durent. Renaissance Eyewear",
++    "orgDescription": "Maison française de lunetterie. Montures titane plaquées or 18KT et acétate Mazzucchelli. Chaque paire porte un numéro de série unique gravé au pont.",
+     "home": "Accueil"
+   },
+   "search": {
+     "title": "RECHERCHE",
+-    "subtitle": "Trouvez votre monture idéale",
++    "subtitle": "Par collection, matière, forme, verre",
+     "collection": "COLLECTION",
+     "material": "MATÉRIAU",
+     "shape": "FORME",
+@@ -167,31 +167,15 @@
+     "viewAll": "Voir tous les produits"
+   },
+   "newsletterPopup": {
+-    "title": "REJOIGNEZ LA MAISON",
+-    "subtitle": "-10% sur votre première commande",
+-    "description": "Inscrivez-vous et recevez votre code de bienvenue par email.",
++    "title": "UNE LETTRE, RAREMENT",
++    "subtitle": "Quand il y a quelque chose à dire",
++    "description": "Laissez une adresse. Elle ne sort jamais de la Maison. Un mot, et elle s'efface.",
+     "emailPlaceholder": "Votre adresse email",
+-    "cta": "Recevoir mon code",
+-    "success": "Bienvenue !",
+-    "successDetail": "Votre code WELCOME10 a été envoyé par email.",
+-    "successCode": "WELCOME10",
++    "cta": "Laisser une adresse",
++    "success": "C'est noté.",
++    "successDetail": "Vous aurez de nos nouvelles quand il y aura quelque chose à dire.",
++    "successCode": "",
+     "error": "Une erreur est survenue. Veuillez réessayer.",
+     "noThanks": "Non merci"
+-  },
+-  "breadcrumb": {
+-    "home": "Accueil",
+-    "collections": "Collections",
+-    "shop": "Boutique",
+-    "blog": "Journal",
+-    "faq": "FAQ",
+-    "contact": "Contact",
+-    "sizeGuide": "Guide des tailles",
+-    "shipping": "Livraison",
+-    "warranty": "Garantie",
+-    "orderTracking": "Suivi commande",
+-    "story": "Histoire",
+-    "manifesto": "Manifeste",
+-    "craftsmanship": "Savoir-Faire",
+-    "symbols": "Symboles"
+   }
+ }
+diff --git a/public/locales/fr/contact.json b/public/locales/fr/contact.json
+index 6a280c0..1f8a210 100644
+--- a/public/locales/fr/contact.json
++++ b/public/locales/fr/contact.json
+@@ -19,7 +19,7 @@
+   },
+   "storeLocator": {
+     "title": "Trouver un opticien",
+-    "subtitle": "Plus de 200 opticiens partenaires en France",
++    "subtitle": "Plus de 250 opticiens, en France et à l'international",
+     "search": "Rechercher une ville...",
+     "nearMe": "Autour de moi",
+     "noResults": "Aucun opticien trouvé dans cette zone.",
+@@ -29,7 +29,7 @@
+   },
+   "guarantee": {
+     "title": "Garantie",
+-    "subtitle": "2 ans de garantie sur toutes nos montures"
++    "subtitle": "Garantie légale 2 ans. Et ce qui est bien fait se répare : écrivez-nous."
+   },
+   "sizeGuide": {
+     "title": "Guide des tailles",
+@@ -46,7 +46,7 @@
+   "contactPage": {
+     "seo": {
+       "title": "Contact",
+-      "description": "Contactez RENAISSANCE Paris pour toute question sur nos lunettes de luxe. Service client disponible par email et téléphone du lundi au vendredi."
++      "description": "Contactez Renaissance Eyewear. Une question, un conseil, un ajustement : chaque demande reçoit une réponse."
+     },
+     "hero": {
+       "label": "La Maison",
+@@ -61,13 +61,13 @@
+     },
+     "cards": {
+       "emailTitle": "Email",
+-      "emailDetail": "contact@renaissance-eyewear.fr",
++      "emailDetail": "contact@renaissanceeyewear.com",
+       "emailSub": "Réponse sous 48h",
+       "phoneTitle": "Téléphone",
+       "phoneDetail": "+33 1 42 86 82 00",
+-      "phoneSub": "Lun — Ven",
++      "phoneSub": "Lun. au Ven.",
+       "hoursTitle": "Horaires",
+-      "hoursDetail": "9h — 18h",
++      "hoursDetail": "9h à 18h",
+       "hoursSub": "Du lundi au vendredi"
+     },
+     "formSection": {
+@@ -98,10 +98,10 @@
+     "sidebar": {
+       "locationLabel": "Localisation",
+       "locationTitle": "Paris, France",
+-      "locationDescription": "La Maison Renaissance est fièrement établie à Paris, capitale de l'élégance et du savoir-faire français.",
++      "locationDescription": "La Maison Renaissance est établie à Paris. C'est ici que tout se dessine.",
+       "networkLabel": "Réseau",
+       "networkTitle": "Besoin d'essayer ?",
+-      "networkDescription": "Rendez-vous chez l'un de nos 200+ opticiens partenaires pour essayer nos collections et bénéficier de conseils personnalisés.",
++      "networkDescription": "Rendez-vous chez l'un de nos opticiens, en France et à l'international, pour essayer les montures. Le conseil prend le temps qu'il faut.",
+       "networkCta": "Trouver un opticien",
+       "socialLabel": "Suivez-nous",
+       "socialDescription": "Découvrez nos nouvelles collections et l'actualité de la Maison."
+@@ -110,14 +110,14 @@
+   "storeLocatorPage": {
+     "seo": {
+       "title": "Trouver un Opticien Partenaire",
+-      "description": "Trouvez l'un de nos {{count}}+ opticiens partenaires RENAISSANCE Paris près de chez vous. Essayez nos lunettes de luxe et bénéficiez de conseils personnalisés."
++      "description": "Trouvez un opticien Renaissance Eyewear près de chez vous, en France et à l'international. Essayez les montures. Le conseil prend le temps qu'il faut."
+     },
+     "hero": {
+       "label": "Réseau Partenaire",
+       "titleLine1": "TROUVEZ VOTRE",
+       "titleLine2": "OPTICIEN.",
+-      "subtitle": "L'excellence près de chez vous.",
+-      "description": "Chaque boutique incarne les valeurs Renaissance : excellence, symbolique et savoir-faire français.",
++      "subtitle": "Près de chez vous.",
++      "description": "Chaque opticien partage la même exigence : prendre le temps, ajuster, accompagner.",
+       "opticians": "Opticiens",
+       "countries": "Pays",
+       "cta": "Rechercher un opticien",
+@@ -132,15 +132,15 @@
+     "cta": {
+       "label": "Devenir partenaire",
+       "title": "Vous êtes opticien ?",
+-      "subtitle": "Rejoignez l'excellence.",
+-      "description": "Rejoignez le réseau Renaissance et proposez à vos clients des lunettes d'exception, symboles d'un héritage français et d'une vision unique du luxe.",
++      "subtitle": "Rejoignez le réseau.",
++      "description": "Rejoignez le réseau Renaissance et proposez à vos clients des montures en titane plaqué or 18KT, numérotées au pont. Écrivez-nous.",
+       "button": "Devenir partenaire"
+     }
+   },
+   "suiviCommande": {
+     "seo": {
+       "title": "Suivi de Commande",
+-      "description": "Suivez votre commande RENAISSANCE Paris en toute sérénité. Entrez votre numéro de commande et votre email pour accéder au statut de votre livraison."
++      "description": "Suivez votre commande Renaissance Eyewear. Entrez votre numéro de commande et votre email pour voir où elle en est."
+     },
+     "hero": {
+       "label": "Service Client",
+@@ -160,7 +160,7 @@
+     "reassurance": {
+       "freeShipping": "Livraison offerte",
+       "warranty": "Garantie 2 ans",
+-      "returns": "Retours 30 jours"
++      "returns": "Retours 14 jours"
+     },
+     "faqSection": {
+       "label": "Questions fréquentes",
+@@ -178,7 +178,7 @@
+         },
+         "noConfirmation": {
+           "q": "Je n'ai pas reçu mon email de confirmation.",
+-          "a": "Vérifiez vos spams et courriers indésirables. Si vous ne retrouvez pas votre confirmation, contactez-nous avec votre nom et date de commande à contact@renaissance-eyewear.fr."
++          "a": "Vérifiez vos spams et courriers indésirables. Si vous ne retrouvez pas votre confirmation, contactez-nous avec votre nom et date de commande à contact@renaissanceeyewear.com."
+         },
+         "modifyOrder": {
+           "q": "Puis-je modifier ou annuler ma commande ?",
+diff --git a/public/locales/fr/faq.json b/public/locales/fr/faq.json
+index ea7c469..6aa7c5e 100644
+--- a/public/locales/fr/faq.json
++++ b/public/locales/fr/faq.json
+@@ -15,7 +15,7 @@
+   "contactCta": "Contactez-nous",
+   "seo": {
+     "title": "Questions Fréquentes (FAQ)",
+-    "description": "Trouvez les réponses à vos questions sur les lunettes RENAISSANCE Paris : commande, livraison, retours, entretien, garantie et opticiens partenaires."
++    "description": "Trouvez les réponses à vos questions sur les lunettes Renaissance Eyewear : commande, livraison, retours, entretien, garantie et opticiens partenaires."
+   },
+   "hero": {
+     "label": "Aide & Support",
+@@ -68,7 +68,7 @@
+     },
+     "howToReturn": {
+       "q": "Comment procéder à un retour ?",
+-      "a": "Contactez notre service client à contact@renaissance-eyewear.fr avec votre numéro de commande. Nous vous enverrons une étiquette de retour prépayée et les instructions."
++      "a": "Contactez notre service client à contact@renaissanceeyewear.com avec votre numéro de commande. Nous vous enverrons une étiquette de retour prépayée et les instructions."
+     },
+     "refundDelay": {
+       "q": "Quand serai-je remboursé ?",
+@@ -108,7 +108,7 @@
+     },
+     "contactService": {
+       "q": "Comment contacter le service client ?",
+-      "a": "Vous pouvez nous contacter par e-mail à contact@renaissance-eyewear.fr ou par téléphone au +33 1 42 86 82 00 (Lun-Ven, 9h-18h)."
++      "a": "Vous pouvez nous contacter par e-mail à contact@renaissanceeyewear.com ou par téléphone au +33 1 42 86 82 00 (Lun-Ven, 9h-18h)."
+     },
+     "responseDelay": {
+       "q": "Quel est le délai de réponse du service client ?",
+diff --git a/public/locales/fr/histoire.json b/public/locales/fr/histoire.json
+index 9e0535e..9323333 100644
+--- a/public/locales/fr/histoire.json
++++ b/public/locales/fr/histoire.json
+@@ -2,17 +2,17 @@
+   "hero": {
+     "label": "La Maison",
+     "title": "RENAISSANCE",
+-    "subtitle": "Paris, depuis toujours."
++    "subtitle": "Née en 2019, d'un refus."
+   },
+   "signature": {
+     "label": "Notre signature",
+-    "title": "CINQ SYMBOLES\nMILLÉNAIRES",
+-    "description": "Chaque monture porte en elle un fragment d'éternité. Cinq symboles traversant les civilisations, cinq signatures de la Maison Renaissance."
++    "title": "SEPT SYMBOLES\nMILLÉNAIRES",
++    "description": "Chaque monture porte en elle un fragment d'éternité. Sept symboles traversant les civilisations, sept chapitres de la Maison Renaissance."
+   },
+   "savoirFaire": {
+-    "label": "Savoir-faire",
+-    "title": "L'EXCELLENCE\nARTISANALE",
+-    "description": "Chaque monture est le fruit de plus de 40 étapes de fabrication artisanale. Un processus méticuleux qui garantit une qualité exceptionnelle."
++    "label": "L'atelier",
++    "title": "NOTRE\nFABRICATION",
++    "description": "Chaque monture prend forme entre Paris, la Corée et l'Italie. On ne produit pas vite. On produit juste."
+   },
+   "fondateurs": {
+     "label": "Les fondateurs",
+@@ -37,37 +37,37 @@
+   },
+   "symboles": {
+     "label": "Les symboles",
+-    "title": "CINQ SYMBOLES\nÉTERNELS"
++    "title": "SEPT SYMBOLES\nÉTERNELS"
+   },
+   "page": {
+     "histoire": {
+       "seoTitle": "Notre Histoire",
+-      "seoDescription": "Découvrez l'histoire de RENAISSANCE Paris, maison française de lunettes de luxe. Notre savoir-faire artisanal, nos valeurs et notre engagement pour l'excellence."
++      "seoDescription": "Née en 2019 d'un refus : celui de voir disparaître ce qui doit durer. Trois hommes du métier, frères par choix. Ce qui se porte. Ce qui se transmet."
+     },
+     "savoirFaire": {
+-      "seoTitle": "Savoir-Faire",
+-      "seoDescription": "Découvrez le savoir-faire artisanal RENAISSANCE Paris. Fabrication française, matériaux nobles et techniques d'excellence pour des lunettes de luxe uniques."
++      "seoTitle": "L'atelier",
++      "seoDescription": "L'atelier Renaissance Eyewear : dessiné à Paris, fabriqué entre Paris, la Corée et l'Italie. Titane plaqué or 18KT, acétate Mazzucchelli."
+     },
+     "manifeste": {
+       "seoTitle": "Manifeste",
+-      "seoDescription": "Découvrez le manifeste RENAISSANCE Paris. Nos valeurs d'excellence, d'authenticité et de savoir-faire français au service de la lunetterie de luxe."
++      "seoDescription": "Le manifeste de Renaissance Eyewear. Ce qui se porte. Ce qui se transmet."
+     },
+     "symboles": {
+       "seoTitle": "Symboles",
+-      "seoDescription": "Découvrez les symboles qui inspirent RENAISSANCE Paris. Scarabée, fleur de lys et croix de Malte : des emblèmes chargés d'histoire pour des lunettes uniques."
++      "seoDescription": "Les symboles de Renaissance Eyewear : trident, fleur de lys, ankh, scarabée, cobra, œil d'Horus, plaque parisienne. Sept signes gravés dans le titane."
+     }
+   },
+   "blog": {
+     "seoTitle": "Le Manifeste - Blog",
+-    "seoDescription": "Découvrez l'univers RENAISSANCE Paris. Articles sur nos symboles, notre savoir-faire artisanal et l'histoire de la lunetterie de luxe française.",
++    "seoDescription": "L'univers de Renaissance Eyewear. Articles sur nos symboles, nos matières et l'histoire de la Maison.",
+     "heroLabel": "Actualités & Culture",
+     "heroTitleLine1": "LE",
+     "heroTitleLine2": "MANIFESTE.",
+-    "heroSubtitle": "Histoires, symboles et savoir-faire.",
++    "heroSubtitle": "Histoires, symboles et matières.",
+     "heroDescription": "Découvrez l'univers Renaissance au-delà de l'objet.",
+     "loading": "Chargement des articles...",
+     "emptyTitle": "Les premiers articles arrivent bientôt",
+-    "emptyDescription": "Nous préparons du contenu exceptionnel sur nos symboles, notre savoir-faire et l'univers Renaissance.",
++    "emptyDescription": "Nous préparons des textes sur nos symboles, nos matières et l'univers Renaissance.",
+     "readArticle": "Lire l'article",
+     "newsletterLabel": "Newsletter",
+     "newsletterTitle": "Ne manquez rien.",
+@@ -82,7 +82,7 @@
+     "backToArticles": "Retour aux articles",
+     "label": "Le Manifeste",
+     "share": "Partager",
+-    "authorBio": "Membre de l'équipe Renaissance, passionné par l'artisanat d'excellence et le storytelling qui donne du sens à chaque création.",
++    "authorBio": "La Maison Renaissance écrit d'une seule voix.",
+     "ctaLabel": "Nos Créations",
+     "ctaTitle": "Découvrez nos collections.",
+     "ctaSubtitle": "Chaque symbole raconte une histoire.",
+@@ -101,20 +101,20 @@
+     "label": "L'Origine",
+     "title": "NÉE D'UN REFUS.",
+     "subtitle": "Celui de voir disparaître ce qui doit durer.",
+-    "description": "Trois hommes du métier ont vu la qualité reculer pendant dix ans. Ils ont décidé de faire l'inverse. Concevoir des montures qui accompagnent une vie, pas une saison. Exiger ce que le marché a cessé d'exiger.\nChaque monture porte cette promesse : celle d'un objet pensé pour durer, pas pour être remplacé.",
+-    "mobileDescription": "Trois hommes du métier ont vu la qualité reculer pendant dix ans. Ils ont décidé de faire l'inverse. Chaque monture porte cette promesse : celle d'un objet pensé pour durer, pas pour être remplacé.",
++    "description": "Trois hommes du métier ont vu la qualité reculer pendant des années. Ils ont décidé de faire l'inverse. Concevoir des montures qui accompagnent une vie, pas une saison. Exiger ce que le marché a cessé d'exiger.\nChaque monture porte cette promesse : celle d'un objet pensé pour durer, pas pour être remplacé.",
++    "mobileDescription": "Trois hommes du métier ont vu la qualité reculer pendant des années. Ils ont décidé de faire l'inverse. Chaque monture porte cette promesse : celle d'un objet pensé pour durer, pas pour être remplacé.",
+     "cta": "Découvrir nos créations"
+   },
+   "symbolesSection": {
+     "label": "Nos Symboles",
+-    "title": "CINQ SYMBOLES.",
++    "title": "SEPT SYMBOLES.",
+     "subtitle": "Gravés dans le métal.",
+     "description": "Ce que l'on porte raconte ce que l'on croit.",
+     "symbol1Name": "Le Trident",
+     "symbol1Subtitle": "Souveraineté",
+     "symbol1Desc": "L'équilibre entre hier, aujourd'hui et demain. L'ancrage dans ce qui fonde, ce qui construit, ce qui perdure.",
+     "symbol2Name": "La Fleur de Lys",
+-    "symbol2Subtitle": "Excellence",
++    "symbol2Subtitle": "Maîtrise",
+     "symbol2Desc": "L'héritage français. La noblesse d'un geste transmis, la fierté d'une origine assumée.",
+     "symbol3Name": "L'Ankh",
+     "symbol3Subtitle": "Éternité",
+@@ -124,51 +124,57 @@
+     "symbol4Desc": "Le passage et la transformation. Ce qui traverse les épreuves, ce qui renaît plus fort qu'avant.",
+     "symbol5Name": "Le Cobra",
+     "symbol5Subtitle": "Protection",
+-    "symbol5Desc": "L'éveil silencieux. Celui qui voit avant d'être vu."
++    "symbol5Desc": "L'éveil silencieux. Celui qui voit avant d'être vu.",
++    "symbol6Name": "L'Œil d'Horus",
++    "symbol6Subtitle": "Lucidité",
++    "symbol6Desc": "L'œil qui ne se ferme jamais. Brisé puis rendu entier, il voit ce que les autres regardent sans voir.",
++    "symbol7Name": "La Plaque parisienne",
++    "symbol7Subtitle": "Appartenance",
++    "symbol7Desc": "« Avenue de la Renaissance », gravée dans l'or. La rue qu'on ne trouve sur aucune carte, l'adresse que chacun emporte où il va."
+   },
+   "signatureSection": {
+     "label": "La Signature",
+-    "title": "ZÉRO LOGO.",
++    "title": "UN SIGNE POUR SOI.",
+     "subtitle": "Juste toi et ce que tu sais.",
+-    "description": "Branche gauche. Un strass. Plus petit qu'une tête d'épingle. Approche-toi. Des symboles apparaissent. Gravés dans le métal. Retourne la pièce. Un numéro. Gravé pour toi. Il n'existera qu'une fois. Comme toi.",
+-    "mobileDescription": "Branche gauche. Un strass. Plus petit qu'une tête d'épingle. Des symboles gravés dans le métal. Un numéro unique. Comme toi.",
+-    "cta": "Découvrir le secret"
++    "description": "En bout de branche. Un cristal. Plus petit qu'une tête d'épingle. Approche-toi. Des symboles apparaissent, gravés dans le métal. Au pont, un numéro. Gravé pour toi. Il n'existera qu'une fois. Comme toi.",
++    "mobileDescription": "En bout de branche. Un cristal. Plus petit qu'une tête d'épingle. Des symboles gravés dans le métal. Au pont, un numéro unique. Comme toi.",
++    "cta": "Découvrir nos créations"
+   },
+   "savoirFaireSection": {
+     "label": "Fabrication",
+     "title": "FABRIQUÉES LÀ OÙ LA PRÉCISION EST UNE DISCIPLINE.",
+     "subtitle": "France, Corée, Italie.",
+-    "description": "Nos montures prennent vie entre la France, la Corée et l'Italie, dans des manufactures où la rigueur est une culture. Chaque lieu apporte son excellence : la finesse du titane en Asie, la précision des finitions en Europe. Nous choisissons nos partenaires pour leur exigence, pas pour leur rapidité.",
+-    "stat1Value": "200+",
+-    "stat1Label": "Gestes par paire",
+-    "stat2Value": "15h",
+-    "stat2Label": "De fabrication",
+-    "stat3Value": "0",
+-    "stat3Label": "Compromis",
+-    "mobileStat1Label": "Gestes",
+-    "mobileStat2Label": "Fabrication",
+-    "mobileStat3Label": "Compromis",
+-    "cta": "Notre savoir-faire"
++    "description": "Nos montures prennent vie entre la France, la Corée et l'Italie, dans des manufactures où la rigueur est une culture. Chaque lieu apporte sa maîtrise : la finesse du titane en Asie, la précision des finitions en Europe. Nous choisissons nos partenaires pour leur exigence, pas pour leur rapidité.",
++    "stat1Value": "18KT",
++    "stat1Label": "Or véritable, plaqué",
++    "stat2Value": "Titane",
++    "stat2Label": "Léger, résistant",
++    "stat3Value": "1849",
++    "stat3Label": "Acétate Mazzucchelli",
++    "mobileStat1Label": "Or 18KT",
++    "mobileStat2Label": "Titane",
++    "mobileStat3Label": "Acétate",
++    "cta": "L'atelier"
+   },
+   "valeursSection": {
+     "label": "Nos Valeurs",
+-    "title": "CINQ PILIERS.",
++    "title": "QUATRE FIBRES. UNE COURONNE.",
+     "subtitle": "Non-négociables.",
+-    "valeur1Title": "La Justesse",
+-    "valeur1Desc": "Chaque courbe a sa raison. Rien n'est laissé au hasard. Chaque détail répond à une intention.",
+-    "valeur1Keyword": "Vérité",
+-    "valeur2Title": "Le Respect",
+-    "valeur2Desc": "Du matériau. Du geste. De celui qui porte. Chaque monture honore ce qu'elle touche.",
+-    "valeur2Keyword": "Dignité",
+-    "valeur3Title": "Le Silence",
+-    "valeur3Desc": "Ce qui est bien fait n'a pas besoin de se justifier. La qualité parle d'elle-même.",
+-    "valeur3Keyword": "Discrétion",
+-    "valeur4Title": "La Transmission",
+-    "valeur4Desc": "Nous créons pour ceux qui viennent. Pas par nostalgie. Par exigence de ce qui mérite de durer.",
+-    "valeur4Keyword": "Héritage",
+-    "valeur5Title": "La Maîtrise",
+-    "valeur5Desc": "100 gestes, 6 à 8 artisans, des mois de patience. Le temps est notre allié, jamais notre ennemi.",
+-    "valeur5Keyword": "Excellence"
++    "valeur1Title": "Le Refus du faux",
++    "valeur1Desc": "Devant chaque mot, chaque image : est-ce que ça prouve, ou est-ce que ça annonce ? Si ça annonce, on coupe.",
++    "valeur1Keyword": "Vrai",
++    "valeur2Title": "La Maîtrise",
++    "valeur2Desc": "Le titane qu'on plie et qui revient. L'or qui ne pèle pas. Ce qui n'est pas fait pour durer ne sort pas de l'atelier.",
++    "valeur2Keyword": "Main",
++    "valeur3Title": "La Parole",
++    "valeur3Desc": "On ne promet que ce qu'on sait tenir. Jamais soldé : un prix qui baisse est une parole qu'on retire.",
++    "valeur3Keyword": "Tenue",
++    "valeur4Title": "Le Respect",
++    "valeur4Desc": "On ne mesure pas un homme à ce qu'il possède, mais à ce qu'il honore. Aux images comme au comptoir.",
++    "valeur4Keyword": "Regard",
++    "valeur5Title": "La Transmission",
++    "valeur5Desc": "Ce qui est bien fait se répare ; ce qui se répare se garde ; ce qui se garde se transmet.",
++    "valeur5Keyword": "Couronne"
+   },
+   "collectionsSection": {
+     "label": "Les Collections",
+@@ -189,18 +195,18 @@
+     "label": "Notre Engagement",
+     "title": "CE QUI EST BIEN FAIT SE RÉPARE.",
+     "subtitle": "Nous l'appliquons.",
+-    "description": "Nos montures sont conçues pour être ajustées, entretenues, réparées. Parce qu'un objet bien fait mérite une seconde chance, et souvent une troisième.",
++    "description": "Nos montures sont conçues pour être ajustées, entretenues, réparées. Parce qu'un objet bien fait mérite une seconde chance, et souvent une troisième. Même la garantie passée, écrivez-nous : on regarde, cas par cas, ce qu'on peut faire.",
+     "engagement1Title": "Durabilité",
+     "engagement1Desc": "Nos grands-parents gardaient leurs affaires. Nos parents ont commencé à jeter. Nous, on choisit.",
+-    "engagement1Stat": "10 ans",
+-    "engagement1StatLabel": "Minimum garanti",
++    "engagement1Stat": "2 ans",
++    "engagement1StatLabel": "Garantie légale",
+     "engagement2Title": "Traçabilité",
+     "engagement2Desc": "Chaque pièce a une origine. Design français. Fabrication coréenne. On te dit tout parce qu'on n'a rien à cacher.",
+     "engagement2Stat": "100%",
+     "engagement2StatLabel": "Transparent",
+     "engagement3Title": "Équité",
+-    "engagement3Desc": "200 partenaires. Certains depuis le premier jour. On construit des relations, pas des contrats.",
+-    "engagement3Stat": "200+",
++    "engagement3Desc": "Plus de 250 opticiens. Certains depuis le premier jour. On construit des relations, pas des contrats.",
++    "engagement3Stat": "250+",
+     "engagement3StatLabel": "Partenaires",
+     "cta": "Découvrir nos créations"
+   },
+diff --git a/public/locales/fr/home.json b/public/locales/fr/home.json
+index 42d5b28..bf94e05 100644
+--- a/public/locales/fr/home.json
++++ b/public/locales/fr/home.json
+@@ -6,75 +6,75 @@
+     "description": "Des montures qu'on ne remplace pas. Fabriquées par des mains qui refusent de raccourcir le geste.",
+     "cta": "Découvrir",
+     "ctaSecondary": "Trouver un opticien",
+-    "mobileLabel": "Lunetterie de caractère",
++    "mobileLabel": "Maison française de lunetterie",
+     "mobileTitle1": "Ce qui se porte.",
+-    "mobileTitle2": "Ce qui reste.",
++    "mobileTitle2": "Ce qui se transmet.",
+     "mobileOpticians": "Nos opticiens"
+   },
+   "excellence": {
+-    "label": "L'Excellence Renaissance",
+-    "title": "CINQ PILIERS.",
+-    "description": "Renaissance ne fabrique pas de simples lunettes. Nous créons des symboles d'une vision française du luxe, ancrée dans l'histoire et tournée vers l'avenir.",
+-    "pillar1Title": "La Justesse",
+-    "pillar1Desc": "Chaque courbe a sa raison. Rien n'est laissé au hasard. Chaque détail répond à une intention.",
+-    "pillar2Title": "Le Respect",
+-    "pillar2Desc": "Du matériau. Du geste. De celui qui porte. Chaque monture honore ce qu'elle touche.",
+-    "pillar3Title": "Le Silence",
+-    "pillar3Desc": "Ce qui est bien fait n'a pas besoin de se justifier. La qualité parle d'elle-même.",
+-    "pillar4Title": "La Transmission",
+-    "pillar4Desc": "Nous créons pour ceux qui viennent. Pas par nostalgie. Par exigence de ce qui mérite de durer.",
+-    "pillar5Title": "La Maîtrise",
+-    "pillar5Desc": "100 gestes, 6 à 8 artisans, des mois de patience. Le temps est notre allié, jamais notre ennemi."
++    "label": "La fibre de la Maison",
++    "title": "QUATRE FIBRES. UNE COURONNE.",
++    "description": "Pas des mots sur un mur : ce dont la Maison est faite. Quatre fibres qui décident de tout, et ce qu'elles produisent.",
++    "pillar1Title": "Le Refus du faux",
++    "pillar1Desc": "Devant chaque mot, chaque image, une question : est-ce que ça prouve, ou est-ce que ça annonce ? Si ça annonce, on coupe.",
++    "pillar2Title": "La Maîtrise",
++    "pillar2Desc": "Le titane qu'on plie et qui revient. L'or qui ne pèle pas. Ce qui n'est pas fait pour durer ne sort pas de l'atelier.",
++    "pillar3Title": "La Parole",
++    "pillar3Desc": "On ne promet que ce qu'on sait tenir. Jamais soldé : un prix qui baisse est une parole qu'on retire.",
++    "pillar4Title": "Le Respect",
++    "pillar4Desc": "On ne mesure pas un homme à ce qu'il possède, mais à ce qu'il honore. Aux images comme au comptoir.",
++    "pillar5Title": "La Transmission",
++    "pillar5Desc": "Ce que les quatre fibres produisent. Ce qui est bien fait se répare ; ce qui se répare se garde ; ce qui se garde se transmet."
+   },
+   "fabrication": {
+-    "label": "Savoir-faire",
++    "label": "L'atelier",
+     "title": "NOTRE",
+     "subtitle": "Fabrication.",
+     "description": "Entre Paris, la Corée et l'Italie, nos montures prennent forme dans des ateliers où le geste prime sur la cadence. Chaque étape demande une main formée, un œil exercé. Nous ne produisons pas vite. Nous produisons juste.",
+     "cta": "Voir le processus",
+-    "stat1": "Artisans par paire",
+-    "stat2": "Gestes de fabrication",
+-    "stat3": "De travail cumulé",
+-    "stat4": "Pays d'excellence",
++    "stat1": "Or véritable, plaqué",
++    "stat2": "Léger, résistant",
++    "stat3": "Acétate Mazzucchelli",
++    "stat4": "Année de fondation",
+     "detail1Label": "Design",
+     "detail1Location": "Paris, France",
+     "detail2Label": "Fabrication",
+-    "detail2Location": "Corée du Sud",
++    "detail2Location": "Corée",
+     "detail3Label": "Acétate",
+     "detail3Location": "Mazzucchelli, Italie",
+     "step1Title": "Découpe",
+-    "step1Desc": "Chaque plaque d'acétate est sélectionnée pour ses veinures uniques.",
++    "step1Desc": "Chaque plaque d'acétate est choisie pour ses veines. Elles ne se répètent jamais.",
+     "step2Title": "Polissage",
+-    "step2Desc": "48 heures de polissage pour un éclat incomparable.",
++    "step2Desc": "Poli, repris, vérifié à la main, jusqu'à ce que rien n'accroche.",
+     "step3Title": "Assemblage",
+-    "step3Desc": "Chaque charnière est ajustée à la main avec une précision horlogère."
++    "step3Desc": "Chaque charnière est ajustée à la main. Elle doit tenir au dix-millième geste comme au premier."
+   },
+   "histoire": {
+-    "label": "L'Origine",
+-    "title": "NÉE D'UN REFUS.",
+-    "subtitle": "Celui de voir disparaître ce qui doit durer.",
+-    "description": "Trois hommes du métier ont vu la qualité reculer pendant dix ans. Ils ont décidé de faire l'inverse. Concevoir des montures qui accompagnent une vie, pas une saison. Exiger ce que le marché a cessé d'exiger.",
++    "label": "Notre histoire",
++    "title": "LE MONDE OUBLIE.",
++    "subtitle": "Nous, on se souvient.",
++    "description": "Renaissance : le sens qui renaît. Un mot pour ceux qui refusent que tout disparaisse. Que les gestes se perdent. Que le beau devienne jetable.",
+     "cta": "Découvrir notre histoire",
+-    "mobileTitle1": "Née d'un refus.",
+-    "mobileTitle2": "Celui de voir disparaître ce qui doit durer.",
++    "mobileTitle1": "Le monde oublie.",
++    "mobileTitle2": "Nous, on se souvient.",
+     "mobileCta": "Découvrir",
+-    "since": "Depuis 2024"
++    "since": "Née en 2019"
+   },
+   "tryInStore": {
+-    "label": "Réseau partenaire",
++    "label": "Réseau choisi",
+     "title": "ESSAYEZ EN BOUTIQUE.",
+     "subtitle": "Commandez en ligne.",
+-    "description": "Certaines choses ne se choisissent pas sur écran. Pour découvrir nos montures, rien ne remplace le geste : les essayer, les sentir, les ajuster à votre visage. Nos opticiens partenaires vous accueillent pour une expérience qui prend le temps qu'il faut.",
++    "description": "Certaines choses ne se choisissent pas sur écran. Pour découvrir nos montures, rien ne remplace le geste : les essayer, les sentir, les ajuster à votre visage. Nos opticiens vous reçoivent. Le conseil prend le temps qu'il faut.",
+     "cta": "Trouver un opticien",
+     "ctaShop": "Acheter en ligne",
+-    "guarantees": "Livraison offerte · Retours 30 jours · Garantie 2 ans",
++    "guarantees": "Livraison offerte · Retours 14 jours · Garantie légale 2 ans",
+     "mobileTitle1": "Essayez en boutique.",
+     "mobileTitle2": "Commandez en ligne."
+   },
+   "allFrames": {
+     "title": "TOUTES NOS",
+     "subtitle": "Créations.",
+-    "description": "Chaque collection porte une intention. Chaque monture, une histoire. Explorez l'ensemble de nos créations.",
++    "description": "Chaque modèle porte un chiffre romain, dans l'ordre où il est né. Le catalogue se lit comme une lignée. On le remonte modèle par modèle.",
+     "loading": "CHARGEMENT...",
+     "cta": "EXPLORER",
+     "mobileLabel": "Boutique",
+@@ -87,26 +87,25 @@
+     "label": "Nos engagements",
+     "title": "À VOS CÔTÉS.",
+     "subtitle": "Partout.",
+-    "item1Title": "Réseau choisi",
+-    "item1Desc": "Plus de 200 opticiens partenaires pour conseiller, ajuster et accompagner l'essayage.",
+-    "item2Title": "Préparation maison",
+-    "item2Desc": "Chaque commande est contrôlée, emballée et préparée avec la même attention que la création.",
+-    "item3Title": "Entretien durable",
+-    "item3Desc": "Une monture bien faite se répare, s'ajuste et se transmet. Nous l'appliquons.",
+-    "item4Title": "Paiement protégé",
+-    "item4Desc": "Transaction confidentielle, sécurisée et sans friction jusqu'à la confirmation.",
++    "item1Title": "Opticiens",
++    "item1Desc": "Choisis, en France et ailleurs",
++    "item2Title": "Livraison",
++    "item2Desc": "Offerte dès 500€",
++    "item3Title": "Garantie",
++    "item3Desc": "On assume ce qu'on fabrique",
++    "item4Title": "Sécurisé",
++    "item4Desc": "Paiement crypté",
+     "freeShipping": "Livraison offerte",
+     "freeShippingDesc": "En France métropolitaine",
+     "warranty": "Garantie 2 ans",
+     "warrantyDesc": "Sur toutes nos montures",
+     "limitedEdition": "Points de vente",
+-    "limitedEditionDesc": "100+ en France et à l'international",
+-    "madeInFrance": "Fabrication française",
+-    "madeInFranceDesc": "Savoir-faire artisanal",
+-    "description": "Conseil, préparation, entretien : chaque étape garde le même niveau d'exigence que la monture."
++    "limitedEditionDesc": "En France et à l'international",
++    "madeInFrance": "Design parisien",
++    "madeInFranceDesc": "Fabriqué entre Paris, la Corée et l'Italie"
+   },
+   "seo": {
+-    "title": "Lunettes de Luxe Artisanales",
+-    "description": "Découvrez RENAISSANCE Paris, maison française de lunettes de luxe. Savoir-faire artisanal d'exception, matériaux nobles et design intemporel. Créées à Paris avec passion."
++    "title": "Lunettes qui durent. Renaissance Eyewear",
++    "description": "Maison française de lunetterie, née en 2019. Titane plaqué or 18KT, acétate Mazzucchelli. Chaque paire porte son numéro gravé au pont. Ce qui se porte. Ce qui se transmet."
+   }
+ }
+diff --git a/public/locales/fr/legal.json b/public/locales/fr/legal.json
+index e83e31b..3865038 100644
+--- a/public/locales/fr/legal.json
++++ b/public/locales/fr/legal.json
+@@ -15,10 +15,10 @@
+     "article1Title": "Article 1 - Informations Légales",
+     "article1Text": "<strong>Raison sociale :</strong> Renaissance Eyewear<br /><strong>Siège social :</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France<br /><strong>Email :</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a><br /><strong>Site web :</strong> <a href=\"https://renaissanceeyewear.fr\">renaissanceeyewear.fr</a><br /><strong>Hébergeur :</strong> Shopify Inc., 151 O'Connor Street, Ground floor, Ottawa, ON K2P 2L8, Canada",
+     "article2Title": "Article 2 - Objet",
+-    "article2Text": "Les présentes CGV ont pour objet de définir les droits et obligations des parties dans le cadre de la vente en ligne de lunettes de luxe et accessoires proposés par Renaissance Eyewear.",
++    "article2Text": "Les présentes CGV ont pour objet de définir les droits et obligations des parties dans le cadre de la vente en ligne de lunettes et accessoires proposés par Renaissance Eyewear.",
+     "article3Title": "Article 3 - Produits",
+     "article3_1Title": "3.1 Description",
+-    "article3_1Text": "Renaissance Eyewear propose des lunettes de luxe fabriquées en Corée du Sud, caractérisées par :",
++    "article3_1Text": "Renaissance Eyewear propose des lunettes fabriquées en Corée du Sud, caractérisées par :",
+     "article3_1Items": [
+       "Montures en métal épais avec finitions précises",
+       "5 symboles emblématiques : Trident, Fleur de Lys, Ankh, Scarabée, Cobra",
+@@ -447,7 +447,7 @@
+   "garantie": {
+     "title": "Garantie & Service Après-Vente",
+     "seoTitle": "Garantie & Service Après-Vente",
+-    "seoDescription": "Garantie 2 ans RENAISSANCE Paris. Service après-vente, réparations, entretien et conseils pour vos lunettes de luxe. Satisfaction garantie.",
++    "seoDescription": "Garantie 2 ans Renaissance Eyewear. Service après-vente, réparations, entretien et conseils pour vos lunettes. Satisfaction garantie.",
+     "warrantyTitle": "Garantie Constructeur",
+     "warrantyText": "Tous les produits Renaissance bénéficient d'une <strong>garantie constructeur de 2 ans</strong> à compter de la date d'achat, couvrant les défauts de fabrication et de matériaux.",
+     "coveredTitle": "Ce qui est couvert",
+@@ -471,7 +471,7 @@
+     "warrantyRepairTitle": "Réparations sous garantie",
+     "warrantyRepairText": "Si votre monture présente un défaut couvert par la garantie :",
+     "warrantyRepairItems": [
+-      "Contactez-nous à <a href=\"mailto:contact@renaissance-eyewear.fr\">contact@renaissance-eyewear.fr</a> avec votre numéro de commande et des photos du défaut",
++      "Contactez-nous à <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a> avec votre numéro de commande et des photos du défaut",
+       "Notre équipe évaluera votre demande sous 48h",
+       "Si la garantie s'applique, nous vous enverrons une étiquette de retour prépayée",
+       "Retournez la monture dans son emballage d'origine",
+@@ -491,7 +491,7 @@
+       "<strong>Redressement de branches</strong> : Pour restaurer la forme originale",
+       "<strong>Remplacement de plaquettes</strong> : Pour un confort optimal",
+       "<strong>Polissage</strong> : Pour redonner l'éclat d'origine au métal",
+-      "<strong>Resertissage de strass</strong> : Si un strass est tombé",
++      "<strong>Resertissage de cristal</strong> : Si un cristal est tombé",
+       "<strong>Ajustement</strong> : Pour un port parfait"
+     ],
+     "maintenanceTitle": "Entretien et Maintenance",
+@@ -531,7 +531,7 @@
+     "contactTitle": "Contact Service Après-Vente",
+     "contactText": "Notre équipe SAV est à votre disposition :",
+     "contactItems": [
+-      "<strong>Email :</strong> <a href=\"mailto:contact@renaissance-eyewear.fr\">contact@renaissance-eyewear.fr</a>",
++      "<strong>Email :</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+       "<strong>Téléphone :</strong> <a href=\"tel:+33142868200\">+33 1 42 86 82 00</a>",
+       "<strong>Horaires :</strong> Lundi au Vendredi, 9h - 18h",
+       "<strong>Délai de réponse :</strong> Sous 48 heures ouvrées"
+@@ -576,7 +576,7 @@
+   "expedition": {
+     "title": "Expédition",
+     "seoTitle": "Livraison",
+-    "seoDescription": "Livraison gratuite RENAISSANCE Paris. Expédition sous 24-48h, suivi Colissimo et livraison internationale. Découvrez nos délais et conditions.",
++    "seoDescription": "Livraison gratuite Renaissance Eyewear. Expédition sous 24-48h, suivi Colissimo et livraison internationale. Découvrez nos délais et conditions.",
+     "policyTitle": "Politique d'Expédition",
+     "policyText": "Nous nous engageons à expédier vos commandes rapidement et en toute transparence.",
+     "zoneTitle": "Zone et Mode de Livraison",
+@@ -613,7 +613,7 @@
+       "<strong>Note</strong> : Des frais de douane peuvent s'appliquer selon les législations locales. Ces frais sont à la charge du destinataire."
+     ],
+     "preparationTitle": "Préparation de la Commande",
+-    "preparationText": "Chaque paire de lunettes Renaissance est soigneusement emballée dans son écrin d'origine, accompagnée d'un certificat d'authenticité et d'un guide d'entretien. Nos packagings reflètent l'excellence de nos créations et garantissent une protection optimale durant le transport.",
++    "preparationText": "Chaque paire de lunettes Renaissance est soigneusement emballée dans son écrin d'origine, accompagnée d'un certificat d'authenticité et d'un guide d'entretien. Nos emballages protègent chaque monture durant le transport.",
+     "trackingTitle": "Notification et Suivi",
+     "trackingText": "Vous recevrez une confirmation d'expédition par e-mail dès que votre commande aura quitté nos ateliers. Cet e-mail contiendra :",
+     "trackingItems": [
+@@ -645,7 +645,7 @@
+   "guideTailles": {
+     "title": "Guide des Tailles",
+     "seoTitle": "Guide des Tailles",
+-    "seoDescription": "Trouvez la monture RENAISSANCE Paris parfaitement adaptée à votre visage. Guide des dimensions, formes de visage et conseils pour choisir vos lunettes.",
++    "seoDescription": "Trouvez la monture Renaissance Eyewear parfaitement adaptée à votre visage. Guide des dimensions, formes de visage et conseils pour choisir vos lunettes.",
+     "heroSupertitle": "Aide & Conseils",
+     "heroTitle1": "GUIDE DES",
+     "heroTitle2": "TAILLES.",
+@@ -656,13 +656,13 @@
+     "measurementsDiagram": "Schéma des mesures",
+     "lensWidth": "Largeur du verre",
+     "lensWidthDesc": "Distance horizontale d'un verre, mesurée à son point le plus large.",
+-    "lensWidthRange": "45mm — 58mm",
++    "lensWidthRange": "45 mm à 58 mm",
+     "bridge": "Pont",
+     "bridgeDesc": "Distance entre les deux verres, au niveau de l'arête du nez.",
+-    "bridgeRange": "14mm — 24mm",
++    "bridgeRange": "14 mm à 24 mm",
+     "temples": "Branches",
+     "templesDesc": "Longueur des branches, de la charnière à l'extrémité.",
+-    "templesRange": "135mm — 150mm",
++    "templesRange": "135 mm à 150 mm",
+     "standardFormat": "Format Standard Renaissance",
+     "standardFormatDesc": "Nos dimensions sont indiquées dans ce format :",
+     "standardFormatExample": "52-20-145",
+diff --git a/public/locales/fr/product.json b/public/locales/fr/product.json
+index da6f158..4894a20 100644
+--- a/public/locales/fr/product.json
++++ b/public/locales/fr/product.json
+@@ -1,5 +1,5 @@
+ {
+-  "addToCart": "Ajouter au panier",
++  "addToCart": "Choisir cette monture",
+   "addedToCart": "Ajouté au panier",
+   "outOfStock": "Rupture de stock",
+   "selectSize": "Sélectionner une taille",
+@@ -18,14 +18,14 @@
+   "returns": "Retours",
+   "returnsInfo": "Retours gratuits sous 14 jours.",
+   "warranty": "Garantie",
+-  "warrantyInfo": "Garantie 2 ans incluse.",
+-  "relatedProducts": "Vous aimerez aussi",
+-  "limitedEdition": "Édition limitée à 300 pièces",
+-  "handmade": "Fait main à Paris",
++  "warrantyInfo": "Garantie légale 2 ans incluse.",
++  "relatedProducts": "À découvrir aussi",
++  "limitedEdition": "Numérotée au pont. Chaque exemplaire a son identité",
++  "handmade": "Dessinée à Paris. Assemblée à la main.",
+   "craft": {
+-    "label": "Savoir-faire",
+-    "title": "L'ART DU DÉTAIL",
+-    "subtitle": "De l'atelier à votre regard."
++    "label": "L'atelier",
++    "title": "CE QU'ON SOIGNE DE PRÈS",
++    "subtitle": "Ce qui se voit de loin commence là."
+   },
+   "colorVariants": "Découvrir les coloris",
+   "seeCollection": "Voir la collection",
+@@ -34,16 +34,16 @@
+   "loadError": "Impossible de charger le produit. Veuillez réessayer.",
+   "loadingProduct": "Chargement du produit...",
+   "backToCollections": "Retour aux collections",
+-  "defaultDescription": "Découvrez ce modèle unique de la collection Renaissance.",
++  "defaultDescription": "Un modèle de la chronologie Renaissance : titane plaqué or 18KT, numéro gravé au pont.",
+   "noImage": "Aucune image disponible",
+   "sidebar": {
+     "productUnavailable": "Ce produit n'est pas disponible",
+     "coloris": "COLORIS",
+     "availableCount": "{{count}} disponibles",
+     "adding": "AJOUT...",
+-    "added": "AJOUTÉ \u2713",
++    "added": "AJOUTÉ ✓",
+     "add": "AJOUTER",
+-    "sunOnly": "Solaire uniquement",
++    "sunOnly": "Verre solaire, adaptable à votre vue",
+     "adaptable": "Adaptable à votre vue",
+     "seeLess": "Voir moins",
+     "seeMore": "Voir plus",
+@@ -58,30 +58,32 @@
+     "bridge": "Pont",
+     "temple": "Branche",
+     "fabrication": "FABRICATION",
+-    "artisansPerPair": "Artisans par paire",
+-    "fabricationSteps": "Étapes de fabrication",
+-    "cumulativeWork": "De travail cumulé",
+-    "countriesOneStandard": "Pays, un standard",
++    "artisansPerPair": "Or véritable, plaqué",
++    "fabricationSteps": "Léger, résistant",
++    "cumulativeWork": "Acétate Mazzucchelli",
++    "countriesOneStandard": "Année de fondation",
+     "fab1Title": "Dessinées à Paris.",
+     "fab1Desc": "Chaque ligne, chaque courbe.",
+     "fab2Title": "Usinées en Corée.",
+     "fab2Desc": "Là où la précision est une religion.",
+-    "fab3Title": "Acétate Mazzucchelli. Acier haute résistance.",
+-    "fab3Desc": "Pas de compromis.",
+-    "fab4Title": "Un strass sur la branche gauche.",
+-    "fab4Desc": "Notre signature. Discrète."
++    "fab3Title": "Titane plaqué or 18KT. Acétate Mazzucchelli.",
++    "fab3Desc": "La matière se montre nue.",
++    "fab4Title": "Un cristal en bout de branche.",
++    "fab4Desc": "Connu du seul porteur.",
++    "fab5Title": "Un numéro gravé au pont.",
++    "fab5Desc": "Pas une édition limitée. Une identité."
+   },
+   "bottomBar": {
+     "viewProduct": "Voir le produit",
+     "adding": "AJOUT...",
+-    "added": "AJOUTÉ \u2713",
+-    "addToCart": "AJOUTER AU PANIER"
++    "added": "AJOUTÉ ✓",
++    "addToCart": "CHOISIR CETTE MONTURE"
+   },
+   "related": {
+     "continueExploring": "Poursuivre l'exploration",
+-    "youWillLove": "VOUS AIMEREZ",
++    "youWillLove": "À DÉCOUVRIR AUSSI",
+     "also": "aussi",
+-    "viewAll": "Tout voir \u2192",
++    "viewAll": "Tout voir →",
+     "exploreCollection": "Explorer la collection"
+   },
+   "colorVariantsSection": {
+diff --git a/public/locales/fr/seo.json b/public/locales/fr/seo.json
+index af24014..b29bfb3 100644
+--- a/public/locales/fr/seo.json
++++ b/public/locales/fr/seo.json
+@@ -1,46 +1,46 @@
+ {
+   "home": {
+-    "title": "Lunettes de Luxe Artisanales | Excellence Française",
+-    "description": "Découvrez les lunettes de luxe RENAISSANCE Paris. Savoir-faire artisanal français, matériaux nobles et design intemporel. Créées à Paris avec passion."
++    "title": "Lunettes qui durent. Renaissance Eyewear",
++    "description": "Maison française de lunetterie, née en 2019. Titane plaqué or 18KT, acétate Mazzucchelli. Chaque paire porte son numéro gravé au pont. Ce qui se porte. Ce qui se transmet."
+   },
+   "shop": {
+-    "title": "Explorer nos créations",
+-    "description": "Parcourez toutes les créations Renaissance Paris. Lunettes artisanales en édition limitée à 300 pièces."
++    "title": "Toutes les créations",
++    "description": "Le catalogue Renaissance Eyewear se lit comme une chronologie : chaque modèle porte un chiffre romain, chaque paire son numéro gravé au pont. Titane plaqué or 18KT, acétate Mazzucchelli."
+   },
+   "heritage": {
+     "title": "Collection Héritage",
+-    "description": "Découvrez la collection Héritage de Renaissance Paris. Des montures intemporelles façonnées dans nos ateliers parisiens."
++    "description": "Collection Héritage de Renaissance Eyewear. Le trident : trois pointes, un seul manche. Titane plaqué or 18KT. Des formes qui traversent les modes sans s'y soumettre."
+   },
+   "versailles": {
+     "title": "Collection Versailles",
+-    "description": "Découvrez la collection Versailles de Renaissance Paris. Inspirée par l'opulence du château, or 24 carats et finitions d'exception."
++    "description": "Collection Versailles de Renaissance Eyewear. La fleur de lys : trois pétales, une seule attache. Titane plaqué or 18KT, poli à la main. L'éclat sans l'excès."
+   },
+   "isis": {
+     "title": "Collection Isis",
+-    "description": "Découvrez la collection Isis de Renaissance Paris. Inspirée des symboles éternels de l'Égypte ancienne."
++    "description": "Collection Isis de Renaissance Eyewear. L'ankh, le scarabée, le cobra, l'œil d'Horus. Des signes qui traversent cinq mille ans, gravés dans le titane."
+   },
+   "histoire": {
+     "title": "Notre Histoire",
+-    "description": "Découvrez l'histoire de la Maison Renaissance Paris. Cinq symboles millénaires, un savoir-faire artisanal d'exception."
++    "description": "Née en 2019 d'un refus : celui de voir disparaître ce qui doit durer. Trois hommes du métier, frères par choix. Ce qui se porte. Ce qui se transmet."
+   },
+   "cart": {
+     "title": "Votre Panier",
+-    "description": "Votre panier Renaissance Paris."
++    "description": "Votre panier Renaissance Eyewear."
+   },
+   "contact": {
+     "title": "Contact",
+-    "description": "Contactez la Maison Renaissance Paris. Notre équipe est à votre écoute."
++    "description": "Contactez Renaissance Eyewear. Une question, un conseil, un ajustement. Chaque demande reçoit une réponse."
+   },
+   "faq": {
+     "title": "FAQ",
+-    "description": "Questions fréquentes sur les lunettes Renaissance Paris. Commandes, livraison, retours et garantie."
++    "description": "Questions fréquentes sur les lunettes Renaissance Eyewear. Commandes, livraison, retours et garantie."
+   },
+   "blog": {
+     "title": "Le Manifeste",
+-    "description": "Découvrez les actualités et le manifeste de la Maison Renaissance Paris."
++    "description": "Les textes de la Maison Renaissance Eyewear."
+   },
+   "storeLocator": {
+     "title": "Trouver un Opticien",
+-    "description": "Trouvez un opticien partenaire Renaissance Paris près de chez vous. Plus de 200 points de vente en France."
++    "description": "Trouvez un opticien Renaissance Eyewear près de chez vous : conseil, essayage, ajustement. Le conseil prend le temps qu'il faut."
+   }
+ }
+diff --git a/public/locales/fr/shop.json b/public/locales/fr/shop.json
+index f482756..12f71cd 100644
+--- a/public/locales/fr/shop.json
++++ b/public/locales/fr/shop.json
+@@ -28,19 +28,19 @@
+   "shape": "Forme",
+   "models": "modèle",
+   "models_other": "modèles",
+-  "heroLabel": "Lunetterie de caractère",
++  "heroLabel": "Maison française de lunetterie",
+   "heroTitle": "Nos créations.",
+   "heroSubtitle": "Chaque pièce a une raison d'exister.",
+-  "heroDescription": "Collections, hors-série et pièces uniques. Un seul geste : celui qui refuse l'oubli.",
++  "heroDescription": "Collections, hors-série et pièces uniques. Chaque modèle porte un chiffre romain, dans l'ordre où il est né.",
+   "heroExplore": "Explorer",
+   "heroFindOptician": "Trouver un opticien",
+   "heroOpticians": "Nos opticiens",
+-  "customTitle": "Une création sur mesure ?",
+-  "customDescription": "Nous proposons un service de personnalisation pour créer la monture qui vous ressemble.",
++  "customTitle": "Une demande particulière ?",
++  "customDescription": "Écrivez-nous. Chaque demande reçoit une réponse.",
+   "customCta": "Nous contacter",
+   "filters": "Filtres",
+   "reset": "Réinitialiser",
+   "viewAll": "Voir tout",
+-  "seoTitle": "Explorer - Toutes nos lunettes",
+-  "seoDescription": "Explorez toute la collection RENAISSANCE Paris. Lunettes de vue et solaires de luxe, fabriquées artisanalement en France."
++  "seoTitle": "Toutes les créations",
++  "seoDescription": "Le catalogue Renaissance Eyewear, une chronologie. Titane plaqué or 18KT, acétate Mazzucchelli. Chaque paire porte son numéro gravé au pont."
+ }
+diff --git a/public/sitemap.xml b/public/sitemap.xml
+index 5a98996..acbb735 100644
+--- a/public/sitemap.xml
++++ b/public/sitemap.xml
+@@ -4,233 +4,233 @@
+ 
+   <!-- Page d'accueil -->
+   <url>
+-    <loc>https://www.renaissance-paris.com/</loc>
++    <loc>https://renaissanceeyewear.fr/</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>weekly</changefreq>
+     <priority>1.0</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/" />
+-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/" />
+-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/" />
+-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/" />
+-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/" />
++    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/" />
++    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/" />
++    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/" />
++    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/" />
+   </url>
+ 
+   <!-- Boutique -->
+   <url>
+-    <loc>https://www.renaissance-paris.com/shop</loc>
++    <loc>https://renaissanceeyewear.fr/shop</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>daily</changefreq>
+     <priority>0.9</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/shop" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/shop" />
+-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/shop" />
+-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/shop" />
+-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/shop" />
+-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/shop" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/shop" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/shop" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/shop" />
++    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/shop" />
++    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/shop" />
++    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/shop" />
++    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/shop" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/shop" />
+   </url>
+ 
+   <!-- Collections -->
+   <url>
+-    <loc>https://www.renaissance-paris.com/collections</loc>
++    <loc>https://renaissanceeyewear.fr/collections</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>weekly</changefreq>
+     <priority>0.9</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/collections" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/collections" />
+-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/collections" />
+-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/collections" />
+-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/collections" />
+-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/collections" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/collections" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/collections" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/collections" />
++    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/collections" />
++    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/collections" />
++    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/collections" />
++    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/collections" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/collections" />
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/collections/heritage</loc>
++    <loc>https://renaissanceeyewear.fr/collections/heritage</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>weekly</changefreq>
+     <priority>0.9</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/collections/heritage" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/collections/heritage" />
+-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/collections/heritage" />
+-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/collections/heritage" />
+-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/collections/heritage" />
+-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/collections/heritage" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/collections/heritage" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/collections/heritage" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/collections/heritage" />
++    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/collections/heritage" />
++    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/collections/heritage" />
++    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/collections/heritage" />
++    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/collections/heritage" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/collections/heritage" />
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/collections/versailles</loc>
++    <loc>https://renaissanceeyewear.fr/collections/versailles</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>weekly</changefreq>
+     <priority>0.9</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/collections/versailles" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/collections/versailles" />
+-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/collections/versailles" />
+-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/collections/versailles" />
+-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/collections/versailles" />
+-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/collections/versailles" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/collections/versailles" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/collections/versailles" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/collections/versailles" />
++    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/collections/versailles" />
++    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/collections/versailles" />
++    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/collections/versailles" />
++    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/collections/versailles" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/collections/versailles" />
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/collections/isis</loc>
++    <loc>https://renaissanceeyewear.fr/collections/isis</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>weekly</changefreq>
+     <priority>0.9</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/collections/isis" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/collections/isis" />
+-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/collections/isis" />
+-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/collections/isis" />
+-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/collections/isis" />
+-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/collections/isis" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/collections/isis" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/collections/isis" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/collections/isis" />
++    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/collections/isis" />
++    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/collections/isis" />
++    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/collections/isis" />
++    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/collections/isis" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/collections/isis" />
+   </url>
+ 
+   <!-- Pages de marque -->
+   <url>
+-    <loc>https://www.renaissance-paris.com/histoire</loc>
++    <loc>https://renaissanceeyewear.fr/histoire</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.8</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/histoire" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/histoire" />
+-    <xhtml:link rel="alternate" hreflang="de" href="https://www.renaissance-paris.com/de/histoire" />
+-    <xhtml:link rel="alternate" hreflang="es" href="https://www.renaissance-paris.com/es/histoire" />
+-    <xhtml:link rel="alternate" hreflang="it" href="https://www.renaissance-paris.com/it/histoire" />
+-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.renaissance-paris.com/ru/histoire" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/histoire" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/histoire" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/histoire" />
++    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/histoire" />
++    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/histoire" />
++    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/histoire" />
++    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/histoire" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/histoire" />
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/manifeste</loc>
++    <loc>https://renaissanceeyewear.fr/manifeste</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/manifeste" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/manifeste" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/manifeste" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/manifeste" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/manifeste" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/manifeste" />
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/savoir-faire</loc>
++    <loc>https://renaissanceeyewear.fr/atelier</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/savoir-faire" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/savoir-faire" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/savoir-faire" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/atelier" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/atelier" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/atelier" />
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/symboles</loc>
++    <loc>https://renaissanceeyewear.fr/symboles</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/symboles" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/symboles" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/symboles" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/symboles" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/symboles" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/symboles" />
+   </url>
+ 
+   <!-- Blog -->
+   <url>
+-    <loc>https://www.renaissance-paris.com/blog</loc>
++    <loc>https://renaissanceeyewear.fr/blog</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>weekly</changefreq>
+     <priority>0.7</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/blog" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/blog" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/blog" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/blog" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/blog" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/blog" />
+   </url>
+ 
+   <!-- Service client -->
+   <url>
+-    <loc>https://www.renaissance-paris.com/opticiens</loc>
++    <loc>https://renaissanceeyewear.fr/opticiens</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.8</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/opticiens" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/opticiens" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/opticiens" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/opticiens" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/opticiens" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/opticiens" />
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/contact</loc>
++    <loc>https://renaissanceeyewear.fr/contact</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.6</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/contact" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/contact" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/contact" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/contact" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/contact" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/contact" />
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/faq</loc>
++    <loc>https://renaissanceeyewear.fr/faq</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.6</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/faq" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/faq" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/faq" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/faq" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/faq" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/faq" />
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/garantie</loc>
++    <loc>https://renaissanceeyewear.fr/garantie</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.5</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/garantie" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/garantie" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/garantie" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/garantie" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/garantie" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/garantie" />
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/guide-tailles</loc>
++    <loc>https://renaissanceeyewear.fr/guide-tailles</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.5</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/guide-tailles" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/guide-tailles" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/guide-tailles" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/guide-tailles" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/guide-tailles" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/guide-tailles" />
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/livraison</loc>
++    <loc>https://renaissanceeyewear.fr/livraison</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.5</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/livraison" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/livraison" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/livraison" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/livraison" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/livraison" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/livraison" />
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/suivi-commande</loc>
++    <loc>https://renaissanceeyewear.fr/suivi-commande</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.5</priority>
+-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.renaissance-paris.com/suivi-commande" />
+-    <xhtml:link rel="alternate" hreflang="en" href="https://www.renaissance-paris.com/en/suivi-commande" />
+-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.renaissance-paris.com/suivi-commande" />
++    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/suivi-commande" />
++    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/suivi-commande" />
++    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/suivi-commande" />
+   </url>
+ 
+   <!-- Pages legales -->
+   <url>
+-    <loc>https://www.renaissance-paris.com/mentions-legales</loc>
++    <loc>https://renaissanceeyewear.fr/mentions-legales</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>yearly</changefreq>
+     <priority>0.3</priority>
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/cgv</loc>
++    <loc>https://renaissanceeyewear.fr/cgv</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>yearly</changefreq>
+     <priority>0.3</priority>
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/confidentialite</loc>
++    <loc>https://renaissanceeyewear.fr/confidentialite</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>yearly</changefreq>
+     <priority>0.3</priority>
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/cookies</loc>
++    <loc>https://renaissanceeyewear.fr/cookies</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>yearly</changefreq>
+     <priority>0.3</priority>
+   </url>
+   <url>
+-    <loc>https://www.renaissance-paris.com/remboursement</loc>
++    <loc>https://renaissanceeyewear.fr/remboursement</loc>
+     <lastmod>2026-01-31</lastmod>
+     <changefreq>yearly</changefreq>
+     <priority>0.3</priority>
+diff --git a/src/App.tsx b/src/App.tsx
+index 536cb64..b449f23 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -1,4 +1,4 @@
+-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
++import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+ import { lazy, Suspense, useMemo, useEffect, type ComponentType } from 'react';
+ import { useTranslation } from 'react-i18next';
+ import { HelmetProvider } from 'react-helmet-async';
+@@ -116,7 +116,8 @@ function AppRoutes() {
+       {/* Pages magazine/histoire */}
+       <Route path="manifeste" element={<ManifestePage />} />
+       <Route path="manifesto" element={<ManifestePage />} />
+-      <Route path="savoir-faire" element={<SavoirFairePage />} />
++      <Route path="atelier" element={<SavoirFairePage />} />
++      <Route path="savoir-faire" element={<Navigate to="/atelier" replace />} />
+       <Route path="symboles" element={<SymbolesPage />} />
+ 
+       {/* Pages légales */}
+diff --git a/src/components/ExcellenceSection.tsx b/src/components/ExcellenceSection.tsx
+index 61905d4..aa40e8d 100644
+--- a/src/components/ExcellenceSection.tsx
++++ b/src/components/ExcellenceSection.tsx
+@@ -22,7 +22,7 @@ export default function ExcellenceSection() {
+             whileInView={{ scale: 1 }}
+             transition={{ duration: 1.2, ease: "easeOut" }}
+             src="https://renaissanceeyewear.fr/cdn/shop/files/IMG_8129.jpg?v=1743714393&width=1440"
+-            alt="L'Excellence Renaissance"
++            alt="La fibre de la Maison Renaissance"
+             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1500ms]"
+             loading="lazy"
+           />
+@@ -93,7 +93,7 @@ export default function ExcellenceSection() {
+               <div className="inline-flex items-center gap-3">
+                 <div className="w-2 h-2 bg-bronze rotate-45" />
+                 <p className="font-sans text-dark-text/40 text-xs tracking-[0.3em] uppercase">
+-                  Renaissance Paris
++                  Renaissance Eyewear
+                 </p>
+                 <div className="w-2 h-2 bg-bronze rotate-45" />
+               </div>
+diff --git a/src/components/FabricationSection.tsx b/src/components/FabricationSection.tsx
+index 57bbbdc..703bf75 100644
+--- a/src/components/FabricationSection.tsx
++++ b/src/components/FabricationSection.tsx
+@@ -15,10 +15,10 @@ export default function FabricationSection() {
+   const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
+ 
+   const STATS = [
+-    { value: '6-8', label: t('fabrication.stat1') },
+-    { value: '100+', label: t('fabrication.stat2') },
+-    { value: '15h', label: t('fabrication.stat3') },
+-    { value: '3', label: t('fabrication.stat4') },
++    { value: '18KT', label: t('fabrication.stat1') },
++    { value: 'Titane', label: t('fabrication.stat2') },
++    { value: '1849', label: t('fabrication.stat3') },
++    { value: '2019', label: t('fabrication.stat4') },
+   ];
+   const DETAILS = [
+     { label: t('fabrication.detail1Label'), location: t('fabrication.detail1Location') },
+@@ -37,7 +37,7 @@ export default function FabricationSection() {
+       <div className="relative h-full hidden md:block overflow-hidden">
+         <motion.img
+           src={FABRICATION_IMAGE}
+-          alt="Renaissance Paris - Fabrication"
++          alt="Renaissance Eyewear - Fabrication"
+           style={imageMotionStyle}
+           className="absolute inset-0 w-full h-full object-cover"
+           loading="lazy"
+@@ -90,7 +90,7 @@ export default function FabricationSection() {
+                 </div>
+ 
+                 <LocaleLink
+-                  to="/savoir-faire"
++                  to="/atelier"
+                   className="mt-6 inline-flex min-w-[14rem] items-center justify-center border border-white/[0.28] px-7 py-4 font-sans text-[9px] tracking-[0.28em] font-medium uppercase text-white/[0.88] transition-all duration-500 hover:border-bronze/70 hover:text-bronze"
+                 >
+                   {t('fabrication.cta')}
+@@ -105,7 +105,7 @@ export default function FabricationSection() {
+       <div className="md:hidden relative h-full bg-[#000000] overflow-hidden">
+         <motion.img
+           src={FABRICATION_IMAGE}
+-          alt="Renaissance Paris - Fabrication"
++          alt="Renaissance Eyewear - Fabrication"
+           style={imageMotionStyle}
+           className="absolute inset-0 w-full h-full object-cover"
+           loading="lazy"
+@@ -140,7 +140,7 @@ export default function FabricationSection() {
+           </div>
+ 
+           {/* CTA */}
+-          <LocaleLink to="/savoir-faire">
++          <LocaleLink to="/atelier">
+             <button className="group relative overflow-hidden w-full border border-white/20 px-6 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98]">
+               <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
+                 {t('fabrication.cta')}
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index f910659..841988e 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -136,7 +136,7 @@ export default function Footer() {
+             <motion.div variants={fade}>
+               <img
+                 src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png"
+-                alt="Renaissance Paris"
++                alt="Renaissance Eyewear"
+                 className="h-20 lg:h-24 w-auto object-contain mb-8"
+                 loading="lazy"
+               />
+@@ -144,10 +144,10 @@ export default function Footer() {
+                 {t('footer.brandDescription')}
+               </p>
+               <div className="space-y-3.5 mb-10">
+-                <a href="mailto:contact@renaissance-eyewear.fr" className="flex items-center gap-3 group">
++                <a href="mailto:contact@renaissanceeyewear.com" className="flex items-center gap-3 group">
+                   <Mail className="w-3.5 h-3.5 text-white/50 group-hover:text-white/50 transition-colors duration-500" />
+                   <span className="font-sans text-[11px] text-white/60 group-hover:text-white/60 transition-colors duration-500">
+-                    contact@renaissance-eyewear.fr
++                    contact@renaissanceeyewear.com
+                   </span>
+                 </a>
+                 <a href="tel:+33142868200" className="flex items-center gap-3 group">
+@@ -184,7 +184,7 @@ export default function Footer() {
+                 ]},
+                 { title: t('nav.laMaison'), links: [
+                   { to: '/histoire', label: t('footerLinks.ourHistory') },
+-                  { to: '/savoir-faire', label: t('footerLinks.savoirFaire') },
++                  { to: '/atelier', label: t('footerLinks.savoirFaire') },
+                   { to: '/symboles', label: t('footerLinks.fiveSymbols') },
+                   { to: '/blog', label: t('footerLinks.manifeste') },
+                 ]},
+@@ -237,13 +237,12 @@ export default function Footer() {
+               variants={stagger}
+               initial="hidden"
+               animate={trustInView ? "visible" : "hidden"}
+-              className="grid grid-cols-4 gap-0"
++              className="grid grid-cols-3 gap-0"
+             >
+               {[
+-                { number: '100+', label: t('trust.editions'), description: t('trust.editionsDesc') },
++                { number: '250+', label: t('trust.opticians'), description: t('trust.editionsDesc') },
+                 { number: '48h', label: t('trust.delivery'), description: t('trust.deliveryDesc') },
+                 { number: '2 ans', label: t('trust.warranty'), description: t('trust.warrantyDesc') },
+-                { number: '100+', label: t('trust.opticians'), description: t('trust.opticiansDesc') },
+               ].map((item, index) => (
+                 <motion.div
+                   key={item.label}
+@@ -284,7 +283,7 @@ export default function Footer() {
+                   ))}
+                 </div>
+                 <p className="font-sans text-[11px] text-white/50">
+-                  &copy; {new Date().getFullYear()} Renaissance Paris
++                  &copy; {new Date().getFullYear()} Renaissance Eyewear
+                 </p>
+                 <button
+                   onClick={scrollToTop}
+@@ -376,7 +375,7 @@ export default function Footer() {
+             ]},
+             { key: 'laMaison', title: t('nav.laMaison'), links: [
+               { to: '/histoire', label: t('footerLinks.ourHistory') },
+-              { to: '/savoir-faire', label: t('footerLinks.savoirFaire') },
++              { to: '/atelier', label: t('footerLinks.savoirFaire') },
+               { to: '/symboles', label: t('footerLinks.fiveSymbols') },
+               { to: '/blog', label: t('footerLinks.manifeste') },
+             ]},
+@@ -444,7 +443,7 @@ export default function Footer() {
+           <div className="flex flex-col items-center text-center">
+             <img
+               src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png"
+-              alt="Renaissance Paris"
++              alt="Renaissance Eyewear"
+               className="h-20 w-auto object-contain mb-6"
+               loading="lazy"
+             />
+@@ -464,9 +463,9 @@ export default function Footer() {
+ 
+             {/* Contact */}
+             <div className="space-y-3">
+-              <a href="mailto:contact@renaissance-eyewear.fr" className="flex items-center justify-center gap-2.5">
++              <a href="mailto:contact@renaissanceeyewear.com" className="flex items-center justify-center gap-2.5">
+                 <Mail className="w-3.5 h-3.5 text-white/50" />
+-                <span className="font-sans text-[11px] text-white/50">contact@renaissance-eyewear.fr</span>
++                <span className="font-sans text-[11px] text-white/50">contact@renaissanceeyewear.com</span>
+               </a>
+               <a href="tel:+33142868200" className="flex items-center justify-center gap-2.5">
+                 <Phone className="w-3.5 h-3.5 text-white/50" />
+@@ -496,10 +495,9 @@ export default function Footer() {
+         <div className="border-t border-white/[0.06] px-6 py-8">
+           <div className="flex items-center justify-between">
+             {[
+-              { number: '100+', label: t('trust.editions') },
++              { number: '250+', label: t('trust.opticians') },
+               { number: '48h', label: t('trust.delivery') },
+               { number: '2 ans', label: t('trust.warranty') },
+-              { number: '100+', label: t('trust.opticians') },
+             ].map((item, index) => (
+               <div key={item.label} className="flex-1 text-center">
+                 {index > 0 && <div className="sr-only" />}
+@@ -541,7 +539,7 @@ export default function Footer() {
+               ))}
+             </div>
+             <p className="font-sans text-[10px] text-white/50">
+-              &copy; {new Date().getFullYear()} Renaissance Paris
++              &copy; {new Date().getFullYear()} Renaissance Eyewear
+             </p>
+             <button
+               onClick={scrollToTop}
+diff --git a/src/components/GroupedProductCard.tsx b/src/components/GroupedProductCard.tsx
+index 5b7901f..eaf9a92 100644
+--- a/src/components/GroupedProductCard.tsx
++++ b/src/components/GroupedProductCard.tsx
+@@ -485,7 +485,7 @@ const EditorialCard = memo(function EditorialCard({
+             {groupedProduct.colorVariants.length > 1 && (
+               <div className="mt-6">
+                 <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-3">
+-                  {t('sidebar.coloris')} — {groupedProduct.colorVariants.length}
++                  {t('sidebar.coloris')} · {groupedProduct.colorVariants.length}
+                 </p>
+                 <div className="flex gap-3">
+                   {groupedProduct.colorVariants.map((variant, variantIndex) => (
+@@ -617,7 +617,7 @@ const EditorialCard = memo(function EditorialCard({
+             {groupedProduct.colorVariants.length > 1 && (
+               <div className="mt-4">
+                 <p className="font-sans text-[8px] tracking-[0.2em] text-dark-text/50 uppercase mb-2.5">
+-                  {t('sidebar.coloris')} — {groupedProduct.colorVariants.length}
++                  {t('sidebar.coloris')} · {groupedProduct.colorVariants.length}
+                 </p>
+                 <div className="flex gap-2.5">
+                   {groupedProduct.colorVariants.map((variant, variantIndex) => (
+diff --git a/src/components/Header.tsx b/src/components/Header.tsx
+index a5d8c5b..6850ce3 100644
+--- a/src/components/Header.tsx
++++ b/src/components/Header.tsx
+@@ -278,10 +278,10 @@ export default function Header() {
+           {/* Hauteur fixe du header — le logo (144-176px) déborde
+               volontairement au-dessus/dessous : pattern maison luxe classique
+               (Hermès, Dior). Le container reste fin, le wordmark respire. */}
+-          <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
++          <div className="relative flex items-center justify-between h-16 md:h-20 lg:h-24">
+ 
+             {/* Navigation Desktop Gauche */}
+-            <nav className="hidden lg:flex items-center gap-6 xl:gap-9 2xl:gap-12 flex-1" onMouseLeave={handleMenuLeave}>
++            <nav className="hidden lg:flex items-center gap-5 xl:gap-7 2xl:gap-9" onMouseLeave={handleMenuLeave}>
+               <NavLink to={localePath('/collections/heritage')} rawPath={rawPath} routeMatch="/collections/heritage" onMouseEnter={() => handleMenuEnter('heritage')} onClick={closeMenu}>
+                 {t('nav.heritage')}
+               </NavLink>
+@@ -305,25 +305,25 @@ export default function Header() {
+                 légèrement pour rester discret. */}
+             <LocaleLink
+               to="/"
+-              className="flex-shrink-0 mx-2 sm:mx-4 md:mx-6 lg:mx-8 group/logo"
+-              aria-label="Renaissance Paris"
++              className="flex-shrink-0 mx-2 sm:mx-4 md:mx-6 lg:mx-auto group/logo"
++              aria-label="Renaissance Eyewear"
+             >
+               <img
+                 src={LOGO_DARK}
+-                alt="Renaissance Paris"
++                alt="Renaissance Eyewear"
+                 loading="eager"
+                 fetchpriority="high"
+                 decoding="sync"
+                 className={`w-auto object-contain transition-[height,opacity] duration-500 ease-out group-hover/logo:opacity-75 ${
+                   scrolled
+-                    ? 'h-28 md:h-32 lg:h-32 xl:h-36'
++                    ? 'h-32 md:h-36 lg:h-36 xl:h-40'
+                     : 'h-36 md:h-40 lg:h-40 xl:h-44'
+                 }`}
+               />
+             </LocaleLink>
+ 
+             {/* Navigation Desktop Droite */}
+-            <div className="hidden lg:flex items-center gap-5 xl:gap-7 2xl:gap-9 flex-1 justify-end">
++            <div className="hidden lg:flex items-center gap-5 xl:gap-7 2xl:gap-9 justify-end">
+               <OpticianDropdown isOpen={opticiensOpen} onToggle={setOpticiensOpen} />
+               <LanguageSelector
+                 isOpen={languageOpen}
+@@ -513,14 +513,6 @@ export default function Header() {
+                         <span className="absolute inset-0 bg-white transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-500 origin-left" />
+                       </button>
+                     </LocaleLink>
+-                    <LocaleLink to="/savoir-faire" onClick={() => setActiveMenu(null)}>
+-                      <button className="group/btn relative overflow-hidden border border-white/[0.08] px-8 py-3.5 transition-all duration-500 hover:border-white/25">
+-                        <span className="relative z-10 font-sans text-[8px] tracking-[0.35em] font-medium uppercase text-white/30 group-hover/btn:text-[#0a0a0a] transition-colors duration-500">
+-                          {t('megaMenu.savoirFaire')}
+-                        </span>
+-                        <span className="absolute inset-0 bg-white transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-500 origin-left" />
+-                      </button>
+-                    </LocaleLink>
+                   </div>
+                 </motion.div>
+               </motion.div>
+@@ -594,7 +586,7 @@ function NavLink({
+       onPointerEnter={onMouseEnter}
+       onMouseMove={onMouseEnter}
+       onFocus={onMouseEnter}
+-      className={`group relative font-sans text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.32em] font-medium uppercase pb-1 transition-colors duration-300 ${
++      className={`group relative whitespace-nowrap font-sans text-[9.5px] xl:text-[10px] 2xl:text-[10.5px] tracking-[0.32em] font-medium uppercase pb-1 transition-colors duration-300 ${
+         isActive ? 'text-bronze' : 'text-dark-text hover:text-bronze'
+       }`}
+       aria-current={isActive ? 'page' : undefined}
+diff --git a/src/components/HeroSection.tsx b/src/components/HeroSection.tsx
+index 422bbbf..c1ee77d 100644
+--- a/src/components/HeroSection.tsx
++++ b/src/components/HeroSection.tsx
+@@ -77,7 +77,7 @@ export default function HeroSection() {
+         {slowConnection ? (
+           <motion.img
+             src={HERO_POSTER}
+-            alt="Renaissance Paris"
++            alt="Renaissance Eyewear"
+             style={imageMotionStyle}
+             className="absolute inset-0 w-full h-full object-cover object-center"
+           />
+@@ -136,7 +136,7 @@ export default function HeroSection() {
+               {phase === 'reveal' && (
+                 <motion.img
+                   src={HERO_POSTER}
+-                  alt="Renaissance Paris"
++                  alt="Renaissance Eyewear"
+                   initial={{ opacity: 0, scale: 1.06, filter: 'brightness(0.3)' }}
+                   animate={{ opacity: 1, scale: 1, filter: 'brightness(1)' }}
+                   transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+diff --git a/src/components/HistoireSection.tsx b/src/components/HistoireSection.tsx
+index f2bf83e..8f6807e 100644
+--- a/src/components/HistoireSection.tsx
++++ b/src/components/HistoireSection.tsx
+@@ -40,7 +40,7 @@ export default function HistoireSection() {
+         <div className="w-1/2 h-full relative overflow-hidden">
+           <motion.img
+             src="https://renaissance-cdn.b-cdn.net/ne-dun-refus.jpg"
+-            alt="Né d'un refus - Renaissance Paris"
++            alt="Né d'un refus - Renaissance Eyewear"
+             style={imageMotionStyle}
+             className="w-full h-full object-cover"
+             loading="lazy"
+@@ -54,7 +54,7 @@ export default function HistoireSection() {
+         <motion.div className="absolute inset-0" style={imageMotionStyle}>
+           <img
+             src="https://renaissance-cdn.b-cdn.net/ne-dun-refus.jpg"
+-            alt="Né d'un refus - Renaissance Paris"
++            alt="Né d'un refus - Renaissance Eyewear"
+             className="w-full h-full object-cover object-[center_30%]"
+             loading="lazy"
+           />
+diff --git a/src/components/LegalPageTemplate.tsx b/src/components/LegalPageTemplate.tsx
+index 9d30b39..9dd4fce 100644
+--- a/src/components/LegalPageTemplate.tsx
++++ b/src/components/LegalPageTemplate.tsx
+@@ -97,11 +97,11 @@ export default function LegalPageTemplate({ title, lastUpdated, children }: Lega
+               <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+             </a>
+             <a
+-              href="mailto:contact@renaissance-eyewear.fr"
++              href="mailto:contact@renaissanceeyewear.com"
+               className="group border border-white/[0.08] px-10 py-4 transition-all duration-500 hover:border-white/20"
+             >
+               <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.55] group-hover:text-white/75 transition-colors duration-500">
+-                contact@renaissance-eyewear.fr
++                contact@renaissanceeyewear.com
+               </span>
+             </a>
+           </div>
+diff --git a/src/components/ReassuranceSection.tsx b/src/components/ReassuranceSection.tsx
+index 994d33d..814fe1f 100644
+--- a/src/components/ReassuranceSection.tsx
++++ b/src/components/ReassuranceSection.tsx
+@@ -29,7 +29,7 @@ export default function ReassuranceSection() {
+       <div className="hidden md:block h-full relative overflow-hidden">
+         <motion.img
+           src="https://renaissance-cdn.b-cdn.net/packshot.png"
+-          alt="Renaissance Paris - Nos engagements"
++          alt="Renaissance Eyewear - Nos engagements"
+           style={active ? { ...imageMotionStyle, filter: 'grayscale(1) sepia(0.08) saturate(0.88) contrast(1.06) brightness(1.08)' } : { filter: 'grayscale(1) sepia(0.08) saturate(0.88) contrast(1.06) brightness(1.08)' }}
+           className="absolute inset-0 w-full h-full object-cover object-[66%_center]"
+           loading="lazy"
+diff --git a/src/components/SEO.tsx b/src/components/SEO.tsx
+index d36bba2..753059a 100644
+--- a/src/components/SEO.tsx
++++ b/src/components/SEO.tsx
+@@ -54,9 +54,9 @@ interface SEOProps {
+   noIndex?: boolean;
+ }
+ 
+-const BASE_URL = 'https://www.renaissance-paris.com';
++const BASE_URL = 'https://renaissanceeyewear.fr';
+ const DEFAULT_IMAGE = 'https://res.cloudinary.com/dsm0b18br/image/upload/f_auto,q_auto/v1/Renaissance%20Paris/og-image.webp';
+-const SITE_NAME = 'RENAISSANCE Paris';
++const SITE_NAME = 'Renaissance Eyewear';
+ 
+ export default function SEO({
+   title,
+@@ -99,8 +99,9 @@ export default function SEO({
+   const organizationSchema = {
+     '@context': 'https://schema.org',
+     '@type': 'Organization',
+-    name: 'RENAISSANCE Paris',
++    name: 'Renaissance Eyewear',
+     url: BASE_URL,
++    foundingDate: '2019',
+     logo: `${BASE_URL}/logo.png`,
+     description: t('seo.orgDescription'),
+     address: {
+@@ -123,7 +124,7 @@ export default function SEO({
+     image: product.image,
+     brand: {
+       '@type': 'Brand',
+-      name: product.brand || 'RENAISSANCE Paris',
++      name: product.brand || 'Renaissance Eyewear',
+     },
+     offers: {
+       '@type': 'Offer',
+@@ -133,7 +134,7 @@ export default function SEO({
+       url: canonicalUrl,
+       seller: {
+         '@type': 'Organization',
+-        name: 'RENAISSANCE Paris',
++        name: 'Renaissance Eyewear',
+       },
+     },
+     ...(product.sku && { sku: product.sku }),
+@@ -154,7 +155,7 @@ export default function SEO({
+     },
+     publisher: {
+       '@type': 'Organization',
+-      name: 'RENAISSANCE Paris',
++      name: 'Renaissance Eyewear',
+       logo: {
+         '@type': 'ImageObject',
+         url: `${BASE_URL}/logo.png`,
+diff --git a/src/components/header/MobileMenu.tsx b/src/components/header/MobileMenu.tsx
+index 14442dc..65ba4df 100644
+--- a/src/components/header/MobileMenu.tsx
++++ b/src/components/header/MobileMenu.tsx
+@@ -119,7 +119,7 @@ export default function MobileMenu({
+ 
+   const MAISON_LINKS = [
+     { to: '/histoire', label: t('mobileMenu.ourHistory') },
+-    { to: '/savoir-faire', label: t('mobileMenu.savoirFaire') },
++    { to: '/atelier', label: t('mobileMenu.savoirFaire') },
+     { to: '/store-locator', label: t('mobileMenu.ourOpticians') },
+   ];
+ 
+@@ -141,7 +141,7 @@ export default function MobileMenu({
+       <div className="relative flex items-center justify-center px-6 h-20">
+         <img
+           src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png"
+-          alt="Renaissance Paris"
++          alt="Renaissance Eyewear"
+           className="h-28 w-auto object-contain opacity-80"
+         />
+         <button
+diff --git a/src/components/histoire/EngagementSection.tsx b/src/components/histoire/EngagementSection.tsx
+index aaeffed..14319b6 100644
+--- a/src/components/histoire/EngagementSection.tsx
++++ b/src/components/histoire/EngagementSection.tsx
+@@ -37,7 +37,7 @@ export default function EngagementSection() {
+         <div className="w-[46%] h-full relative overflow-hidden">
+           <img
+             src="https://renaissance-cdn.b-cdn.net/portrait.png"
+-            alt="Renaissance Paris - Engagement"
++            alt="Renaissance Eyewear - Engagement"
+             className="w-full h-full object-cover object-center"
+             loading="lazy"
+           />
+@@ -102,7 +102,7 @@ export default function EngagementSection() {
+       <div className="h-screen md:hidden relative overflow-hidden">
+         <img
+           src="https://renaissance-cdn.b-cdn.net/portrait.png"
+-          alt="Renaissance Paris - Engagement"
++          alt="Renaissance Eyewear - Engagement"
+           className="absolute inset-0 w-full h-full object-cover"
+           loading="lazy"
+         />
+diff --git a/src/components/histoire/HeroHistoireSection.tsx b/src/components/histoire/HeroHistoireSection.tsx
+index 1641800..e463813 100644
+--- a/src/components/histoire/HeroHistoireSection.tsx
++++ b/src/components/histoire/HeroHistoireSection.tsx
+@@ -15,7 +15,7 @@ export default function HeroHistoireSection() {
+       <div className="relative h-full overflow-hidden hidden lg:block">
+         <img
+           src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
+-          alt="Renaissance Paris - Notre Histoire"
++          alt="Renaissance Eyewear - Notre Histoire"
+           className="absolute inset-0 w-full h-full object-cover object-[center_42%]"
+           fetchpriority="high"
+         />
+@@ -56,7 +56,7 @@ export default function HeroHistoireSection() {
+         <div className="absolute inset-0">
+           <img
+             src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
+-            alt="Renaissance Paris - Notre Histoire"
++            alt="Renaissance Eyewear - Notre Histoire"
+             className="w-full h-full object-cover object-[center_30%]"
+             fetchpriority="high"
+           />
+diff --git a/src/components/histoire/SavoirFaireSection.tsx b/src/components/histoire/SavoirFaireSection.tsx
+index 7807d5d..5d83a41 100644
+--- a/src/components/histoire/SavoirFaireSection.tsx
++++ b/src/components/histoire/SavoirFaireSection.tsx
+@@ -51,15 +51,15 @@ export default function SavoirFaireSection() {
+ 
+             <motion.div variants={fade} className="grid grid-cols-3 border-y border-white/[0.10] divide-x divide-white/[0.10]">
+               <div className="py-6 pr-6">
+-                <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">200+</p>
++                <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">{t('savoirFaireSection.stat1Value')}</p>
+                 <p className="font-sans text-[9px] tracking-[0.24em] text-white/[0.42] uppercase font-medium leading-[1.5]">{t('savoirFaireSection.stat1Label')}</p>
+               </div>
+               <div className="py-6 px-6">
+-                <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">15h</p>
++                <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">{t('savoirFaireSection.stat2Value')}</p>
+                 <p className="font-sans text-[9px] tracking-[0.24em] text-white/[0.42] uppercase font-medium leading-[1.5]">{t('savoirFaireSection.stat2Label')}</p>
+               </div>
+               <div className="py-6 pl-6">
+-                <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">0</p>
++                <p className="font-display text-4xl xl:text-5xl font-bold text-white tracking-[-0.02em] leading-none mb-2">{t('savoirFaireSection.stat3Value')}</p>
+                 <p className="font-sans text-[9px] tracking-[0.24em] text-white/[0.42] uppercase font-medium leading-[1.5]">{t('savoirFaireSection.stat3Label')}</p>
+               </div>
+             </motion.div>
+@@ -96,15 +96,15 @@ export default function SavoirFaireSection() {
+ 
+             <div className="grid grid-cols-3 border-y border-white/[0.12] divide-x divide-white/[0.12]">
+               <div className="py-4 pr-3">
+-                <p className="font-display text-2xl font-bold text-white leading-none mb-1">200+</p>
++                <p className="font-display text-2xl font-bold text-white leading-none mb-1">{t('savoirFaireSection.stat1Value')}</p>
+                 <p className="font-sans text-[7px] tracking-[0.18em] text-white/40 uppercase leading-[1.5]">{t('savoirFaireSection.mobileStat1Label')}</p>
+               </div>
+               <div className="py-4 px-3">
+-                <p className="font-display text-2xl font-bold text-white leading-none mb-1">15h</p>
++                <p className="font-display text-2xl font-bold text-white leading-none mb-1">{t('savoirFaireSection.stat2Value')}</p>
+                 <p className="font-sans text-[7px] tracking-[0.18em] text-white/40 uppercase leading-[1.5]">{t('savoirFaireSection.mobileStat2Label')}</p>
+               </div>
+               <div className="py-4 pl-3">
+-                <p className="font-display text-2xl font-bold text-white leading-none mb-1">0</p>
++                <p className="font-display text-2xl font-bold text-white leading-none mb-1">{t('savoirFaireSection.stat3Value')}</p>
+                 <p className="font-sans text-[7px] tracking-[0.18em] text-white/40 uppercase leading-[1.5]">{t('savoirFaireSection.mobileStat3Label')}</p>
+               </div>
+             </div>
+diff --git a/src/components/histoire/SignatureSection.tsx b/src/components/histoire/SignatureSection.tsx
+index 5c44115..895c6e3 100644
+--- a/src/components/histoire/SignatureSection.tsx
++++ b/src/components/histoire/SignatureSection.tsx
+@@ -58,7 +58,7 @@ export default function SignatureSection() {
+         <div className="w-full md:w-1/2 h-full relative overflow-hidden group">
+           <img
+             src="https://renaissance-cdn.b-cdn.net/packshot%202.png"
+-            alt="Renaissance Paris - Le Secret"
++            alt="Renaissance Eyewear - Le Secret"
+             loading="lazy"
+             className="w-full h-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.03] group-hover:brightness-[1.05]"
+           />
+@@ -71,7 +71,7 @@ export default function SignatureSection() {
+       <div className="h-screen md:hidden relative overflow-hidden">
+         <img
+           src="https://renaissance-cdn.b-cdn.net/packshot%202.png"
+-          alt="Renaissance Paris - Le Secret"
++          alt="Renaissance Eyewear - Le Secret"
+           className="absolute inset-0 w-full h-full object-cover"
+           loading="lazy"
+         />
+diff --git a/src/components/histoire/SymbolesSection.tsx b/src/components/histoire/SymbolesSection.tsx
+index 53041d5..44333d5 100644
+--- a/src/components/histoire/SymbolesSection.tsx
++++ b/src/components/histoire/SymbolesSection.tsx
+@@ -36,6 +36,18 @@ export default function SymbolesSection() {
+       subtitle: t('symbolesSection.symbol5Subtitle'),
+       description: t('symbolesSection.symbol5Desc'),
+       image: 'https://renaissance-cdn.b-cdn.net/COBRA%20SYMBOL.png'
++    },
++    {
++      name: t('symbolesSection.symbol6Name'),
++      subtitle: t('symbolesSection.symbol6Subtitle'),
++      description: t('symbolesSection.symbol6Desc'),
++      image: 'https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png'
++    },
++    {
++      name: t('symbolesSection.symbol7Name'),
++      subtitle: t('symbolesSection.symbol7Subtitle'),
++      description: t('symbolesSection.symbol7Desc'),
++      image: 'https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png'
+     }
+   ];
+   const contentRef = useRef<HTMLDivElement>(null);
+@@ -108,7 +120,7 @@ export default function SymbolesSection() {
+         <div className="w-full md:w-1/2 h-full relative overflow-hidden">
+           <img
+             src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
+-            alt="Renaissance Paris - Symboles"
++            alt="Renaissance Eyewear · Symboles"
+             className="w-full h-full object-cover"
+             loading="lazy"
+           />
+@@ -120,7 +132,7 @@ export default function SymbolesSection() {
+       <div className="h-screen md:hidden relative overflow-hidden">
+         <img
+           src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
+-          alt="Renaissance Paris - Symboles"
++          alt="Renaissance Eyewear · Symboles"
+           className="absolute inset-0 w-full h-full object-cover"
+           loading="lazy"
+         />
+diff --git a/src/components/histoire/ValeursSection.tsx b/src/components/histoire/ValeursSection.tsx
+index ae42315..4a69963 100644
+--- a/src/components/histoire/ValeursSection.tsx
++++ b/src/components/histoire/ValeursSection.tsx
+@@ -64,16 +64,18 @@ export default function ValeursSection() {
+             </div>
+ 
+             <div className="border-y border-white/[0.12]">
+-              {valeurs.map((valeur) => (
++              {valeurs.map((valeur, i) => {
++                const isCrown = i === valeurs.length - 1;
++                return (
+                 <div
+                   key={valeur.title}
+-                  className="group grid grid-cols-[13rem_1fr] gap-8 border-b border-white/[0.10] py-4 last:border-b-0 xl:grid-cols-[15rem_1fr] xl:py-5"
++                  className={`group grid grid-cols-[13rem_1fr] gap-8 border-b border-white/[0.10] py-4 last:border-b-0 xl:grid-cols-[15rem_1fr] xl:py-5 ${isCrown ? 'mt-2 border-t border-t-bronze/40 border-b-0' : ''}`}
+                 >
+                   <div>
+-                    <p className="font-sans text-[8px] tracking-[0.28em] uppercase font-medium text-bronze/[0.72] mb-2">
+-                      {valeur.keyword}
++                    <p className={`font-sans text-[8px] tracking-[0.28em] uppercase font-medium mb-2 ${isCrown ? 'text-bronze' : 'text-bronze/[0.72]'}`}>
++                      {isCrown ? 'La couronne' : valeur.keyword}
+                     </p>
+-                    <h3 className="font-display text-2xl xl:text-[1.85rem] text-white font-bold tracking-[-0.02em] leading-[0.95]">
++                    <h3 className={`font-display text-2xl xl:text-[1.85rem] font-bold tracking-[-0.02em] leading-[0.95] ${isCrown ? 'text-bronze' : 'text-white'}`}>
+                       {valeur.title}
+                     </h3>
+                   </div>
+@@ -81,7 +83,8 @@ export default function ValeursSection() {
+                     {valeur.description}
+                   </p>
+                 </div>
+-              ))}
++                );
++              })}
+             </div>
+           </div>
+         </div>
+@@ -109,19 +112,22 @@ export default function ValeursSection() {
+           </p>
+ 
+           <div className="border-y border-white/[0.12]">
+-            {valeurs.map((valeur) => (
+-              <div key={valeur.title} className="border-b border-white/[0.10] py-4 last:border-b-0">
+-                <p className="font-sans text-[7px] tracking-[0.22em] text-bronze/[0.72] uppercase font-medium mb-2">
+-                  {valeur.keyword}
++            {valeurs.map((valeur, i) => {
++              const isCrown = i === valeurs.length - 1;
++              return (
++              <div key={valeur.title} className={`border-b border-white/[0.10] py-4 last:border-b-0 ${isCrown ? 'mt-2 border-t border-t-bronze/40 border-b-0' : ''}`}>
++                <p className={`font-sans text-[7px] tracking-[0.22em] uppercase font-medium mb-2 ${isCrown ? 'text-bronze' : 'text-bronze/[0.72]'}`}>
++                  {isCrown ? 'La couronne' : valeur.keyword}
+                 </p>
+-                <h3 className="font-display text-xl text-white font-bold tracking-[-0.02em] leading-tight mb-2">
++                <h3 className={`font-display text-xl font-bold tracking-[-0.02em] leading-tight mb-2 ${isCrown ? 'text-bronze' : 'text-white'}`}>
+                   {valeur.title}
+                 </h3>
+                 <p className="font-sans text-xs leading-[1.6] text-white/[0.58]">
+                   {valeur.description}
+                 </p>
+               </div>
+-            ))}
++              );
++            })}
+           </div>
+         </div>
+       </div>
+diff --git a/src/components/mobile/MobileFabricationSection.tsx b/src/components/mobile/MobileFabricationSection.tsx
+index 4b3fc05..d3a0ce0 100644
+--- a/src/components/mobile/MobileFabricationSection.tsx
++++ b/src/components/mobile/MobileFabricationSection.tsx
+@@ -50,32 +50,32 @@ export default function MobileFabricationSection() {
+           </h2>
+ 
+           <p className="font-sans text-sm text-white/90 leading-relaxed mb-6 max-w-md">
+-            Excellence française. Précision coréenne.
++            Dessinées à Paris. Usinées en Corée.
+           </p>
+ 
+           <div className="grid grid-cols-2 gap-4 mb-6">
+             <div>
+-              <p className="font-display text-3xl text-white font-bold">6-8</p>
++              <p className="font-display text-3xl text-white font-bold">18KT</p>
+               <p className="font-sans text-white/70 text-[10px] tracking-wide uppercase">
+-                Artisans par paire
++                Or véritable, plaqué
+               </p>
+             </div>
+             <div>
+-              <p className="font-display text-3xl text-white font-bold">100+</p>
++              <p className="font-display text-3xl text-white font-bold">Titane</p>
+               <p className="font-sans text-white/70 text-[10px] tracking-wide uppercase">
+-                Gestes de fabrication
++                Léger, résistant
+               </p>
+             </div>
+             <div>
+-              <p className="font-display text-3xl text-white font-bold">8-15h</p>
++              <p className="font-display text-3xl text-white font-bold">1849</p>
+               <p className="font-sans text-white/70 text-[10px] tracking-wide uppercase">
+-                De travail cumulé
++                Acétate Mazzucchelli
+               </p>
+             </div>
+             <div>
+-              <p className="font-display text-3xl text-white font-bold">2</p>
++              <p className="font-display text-3xl text-white font-bold">2019</p>
+               <p className="font-sans text-white/70 text-[10px] tracking-wide uppercase">
+-                Pays d'excellence
++                Année de fondation
+               </p>
+             </div>
+           </div>
+diff --git a/src/components/product/ProductBottomBar.tsx b/src/components/product/ProductBottomBar.tsx
+index 733f78b..ac9e51e 100644
+--- a/src/components/product/ProductBottomBar.tsx
++++ b/src/components/product/ProductBottomBar.tsx
+@@ -89,7 +89,7 @@ export default function ProductBottomBar({ product, selectedColorIndex, visible
+                     {product.modelName || product.name}
+                   </p>
+                   <p className="font-sans text-[10px] tracking-[0.15em] text-dark-text/40 uppercase mt-0.5">
+-                    Renaissance Paris
++                    Renaissance Eyewear
+                   </p>
+                 </div>
+               </div>
+diff --git a/src/components/product/ProductCraftSection.tsx b/src/components/product/ProductCraftSection.tsx
+index 69176dd..cfac8de 100644
+--- a/src/components/product/ProductCraftSection.tsx
++++ b/src/components/product/ProductCraftSection.tsx
+@@ -2,17 +2,17 @@ import { motion } from 'framer-motion';
+ import { Link } from 'react-router-dom';
+ 
+ const STATS = [
+-  { value: '6-8', label: 'Artisans par paire' },
+-  { value: '100+', label: 'Gestes de fabrication' },
+-  { value: '8-15h', label: 'De travail cumulé' },
+-  { value: '3', label: 'Pays d\'excellence' },
++  { value: '18KT', label: 'Or véritable, plaqué' },
++  { value: 'Titane', label: 'Léger, résistant' },
++  { value: '1849', label: 'Acétate Mazzucchelli' },
++  { value: '2019', label: 'Année de fondation' },
+ ];
+ 
+ const DETAILS = [
+   { bold: 'Dessinées à Paris.', text: 'Chaque ligne, chaque courbe.' },
+   { bold: 'Usinées en Corée.', text: 'Là où la précision est une religion.' },
+-  { bold: 'Acétate Mazzucchelli. Acier haute résistance.', text: 'Pas de compromis.' },
+-  { bold: 'Un strass sur la branche gauche.', text: 'Notre signature. Discrète.' },
++  { bold: 'Titane plaqué or 18KT. Acétate Mazzucchelli.', text: 'La matière se montre nue.' },
++  { bold: 'Un cristal en bout de branche.', text: 'Connu du seul porteur.' },
+ ];
+ 
+ export default function ProductCraftSection() {
+@@ -43,7 +43,7 @@ export default function ProductCraftSection() {
+         >
+           {/* Header */}
+           <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.3em] text-white/50 uppercase mb-3">
+-            Savoir-faire
++            L'atelier
+           </p>
+           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 tracking-[-0.02em] leading-[0.95]">
+             FABRICATION
+diff --git a/src/pages/CartPage.tsx b/src/pages/CartPage.tsx
+index e527542..e89bbf1 100644
+--- a/src/pages/CartPage.tsx
++++ b/src/pages/CartPage.tsx
+@@ -81,7 +81,7 @@ export default function CartPage() {
+               <div className="relative h-[300px] lg:h-[500px] overflow-hidden">
+                 <img
+                   src="https://renaissance-cdn.b-cdn.net/campgane.png"
+-                  alt="Renaissance Paris"
++                  alt="Renaissance Eyewear"
+                   className="w-full h-full object-cover"
+                   loading="lazy"
+                 />
+diff --git a/src/pages/CheckoutConfirmationPage.tsx b/src/pages/CheckoutConfirmationPage.tsx
+index 74faea9..fded4f7 100644
+--- a/src/pages/CheckoutConfirmationPage.tsx
++++ b/src/pages/CheckoutConfirmationPage.tsx
+@@ -118,7 +118,7 @@ export default function CheckoutConfirmationPage() {
+           <LocaleLink to="/">
+             <img
+               src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png"
+-              alt="Renaissance Paris"
++              alt="Renaissance Eyewear"
+               className="h-28 sm:h-32 md:h-36 object-contain"
+               loading="eager"
+             />
+@@ -432,10 +432,10 @@ export default function CheckoutConfirmationPage() {
+               {t('confirmationPage.contactTitle')}
+             </p>
+             <a
+-              href="mailto:contact@renaissance-eyewear.fr"
++              href="mailto:contact@renaissanceeyewear.com"
+               className="font-sans text-sm text-bronze/70 hover:text-bronze transition-colors"
+             >
+-              contact@renaissance-eyewear.fr
++              contact@renaissanceeyewear.com
+             </a>
+             <p className="font-sans text-[11px] text-dark-text/25 mt-2">
+               {t('confirmationPage.contactResponse')}
+diff --git a/src/pages/CheckoutPage.tsx b/src/pages/CheckoutPage.tsx
+index c89afc5..e858a30 100644
+--- a/src/pages/CheckoutPage.tsx
++++ b/src/pages/CheckoutPage.tsx
+@@ -249,7 +249,7 @@ export default function CheckoutPage() {
+           <LocaleLink to="/" className="absolute left-1/2 -translate-x-1/2">
+             <img
+               src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png"
+-              alt="Renaissance Paris"
++              alt="Renaissance Eyewear"
+               className="h-28 sm:h-32 md:h-36 object-contain"
+               loading="eager"
+             />
+diff --git a/src/pages/CollectionsPage.tsx b/src/pages/CollectionsPage.tsx
+index 8be25c2..f7eb221 100644
+--- a/src/pages/CollectionsPage.tsx
++++ b/src/pages/CollectionsPage.tsx
+@@ -110,7 +110,7 @@ export default function CollectionsPage() {
+ 
+           <div className="mt-7 max-w-3xl">
+             <p className="font-sans text-[9px] tracking-[0.42em] uppercase text-bronze font-bold mb-4">
+-              Renaissance Paris
++              Renaissance Eyewear
+             </p>
+             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-dark-text leading-[0.86] tracking-normal">
+               Collections
+@@ -152,7 +152,7 @@ export default function CollectionsPage() {
+                 {t('filters.models')}
+               </span>
+               <span className="font-display text-2xl sm:text-3xl font-bold text-dark-text leading-none tracking-normal">
+-                {loading ? '—' : groupedProducts.length}
++                {loading ? '…' : groupedProducts.length}
+               </span>
+             </div>
+           </div>
+diff --git a/src/pages/ContactPage.tsx b/src/pages/ContactPage.tsx
+index 1f90ad2..fd4bb0a 100644
+--- a/src/pages/ContactPage.tsx
++++ b/src/pages/ContactPage.tsx
+@@ -111,7 +111,7 @@ export default function ContactPage() {
+           <div className="flex-1 relative overflow-hidden">
+             <img
+               src="https://renaissance-cdn.b-cdn.net/campgane.png"
+-              alt="Renaissance Paris - Contact"
++              alt="Renaissance Eyewear - Contact"
+               className="absolute inset-0 w-full h-full object-cover"
+               fetchpriority="high"
+             />
+@@ -125,7 +125,7 @@ export default function ContactPage() {
+           <div className="relative h-[50%] overflow-hidden">
+             <img
+               src="https://renaissance-cdn.b-cdn.net/campgane.png"
+-              alt="Renaissance Paris - Contact"
++              alt="Renaissance Eyewear - Contact"
+               className="w-full h-full object-cover object-center"
+               fetchpriority="high"
+             />
+@@ -185,7 +185,7 @@ export default function ContactPage() {
+                 title: t('contactPage.cards.emailTitle'),
+                 detail: t('contactPage.cards.emailDetail'),
+                 sub: t('contactPage.cards.emailSub'),
+-                href: 'mailto:contact@renaissance-eyewear.fr'
++                href: 'mailto:contact@renaissanceeyewear.com'
+               },
+               {
+                 icon: Phone,
+diff --git a/src/pages/SavoirFairePage.tsx b/src/pages/SavoirFairePage.tsx
+index 7666203..53b1fc0 100644
+--- a/src/pages/SavoirFairePage.tsx
++++ b/src/pages/SavoirFairePage.tsx
+@@ -15,7 +15,7 @@ export default function SavoirFairePage() {
+       <SEO
+         title={t('page.savoirFaire.seoTitle')}
+         description={t('page.savoirFaire.seoDescription')}
+-        url="/savoir-faire"
++        url="/atelier"
+       />
+       <SavoirFaireSection />
+     </div>
+diff --git a/src/pages/ShopPage.tsx b/src/pages/ShopPage.tsx
+index 3ee07bb..ec812cc 100644
+--- a/src/pages/ShopPage.tsx
++++ b/src/pages/ShopPage.tsx
+@@ -159,7 +159,7 @@ export default function ShopPage() {
+         <div className="relative h-full overflow-hidden hidden lg:block">
+           <img
+             src="https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_06AM.jpeg"
+-            alt="Renaissance Paris - Explorer"
++            alt="Renaissance Eyewear - Explorer"
+             className="absolute inset-0 w-full h-full object-cover object-center"
+             fetchpriority="high"
+           />
+@@ -202,7 +202,7 @@ export default function ShopPage() {
+           <div className="absolute inset-0">
+             <motion.img
+               src="https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_06AM.jpeg"
+-              alt="Renaissance Paris - Explorer"
++              alt="Renaissance Eyewear - Explorer"
+               className="w-full h-full object-cover object-[center_30%]"
+               initial={{ scale: 1.08 }}
+               animate={{ scale: 1 }}
+@@ -339,7 +339,7 @@ export default function ShopPage() {
+             viewport={{ once: true }}
+             transition={{ duration: 0.6 }}
+           >
+-            <p className="font-sans text-[8px] tracking-[0.4em] uppercase text-dark-text/20 font-medium mb-6">Renaissance Paris</p>
++            <p className="font-sans text-[8px] tracking-[0.4em] uppercase text-dark-text/20 font-medium mb-6">Renaissance Eyewear</p>
+             <h2 className="font-display text-3xl md:text-4xl font-light text-dark-text tracking-[-0.02em] leading-[0.95] mb-3">
+               {t('customTitle')}
+             </h2>
+diff --git a/src/pages/StoreLocatorPage.tsx b/src/pages/StoreLocatorPage.tsx
+index 87e68d4..c7ed44f 100644
+--- a/src/pages/StoreLocatorPage.tsx
++++ b/src/pages/StoreLocatorPage.tsx
+@@ -257,7 +257,7 @@ export default function StoreLocatorPage() {
+           <div className="flex-1 relative overflow-hidden">
+             <img
+               src="https://renaissance-cdn.b-cdn.net/packshot%20copie.png"
+-              alt="Renaissance Paris - Opticiens partenaires"
++              alt="Renaissance Eyewear - Opticiens partenaires"
+               className="absolute inset-0 w-full h-full object-cover"
+               fetchpriority="high"
+             />
+@@ -272,7 +272,7 @@ export default function StoreLocatorPage() {
+           <div className="relative h-[50%] overflow-hidden">
+             <img
+               src="https://renaissance-cdn.b-cdn.net/packshot%20copie.png"
+-              alt="Renaissance Paris - Opticiens partenaires"
++              alt="Renaissance Eyewear - Opticiens partenaires"
+               className="w-full h-full object-cover object-center"
+               fetchpriority="high"
+             />
+diff --git a/src/pages/SuiviCommandePage.tsx b/src/pages/SuiviCommandePage.tsx
+index b0eb7b6..79a904a 100644
+--- a/src/pages/SuiviCommandePage.tsx
++++ b/src/pages/SuiviCommandePage.tsx
+@@ -180,7 +180,7 @@ export default function SuiviCommandePage() {
+         <div className="flex-1 relative overflow-hidden">
+           <img
+             src={HERO_IMAGE}
+-            alt="Renaissance Paris — Suivi de commande"
++            alt="Renaissance Eyewear · Suivi de commande"
+             className="absolute inset-0 w-full h-full object-cover"
+             fetchpriority="high"
+           />
+@@ -196,7 +196,7 @@ export default function SuiviCommandePage() {
+         <div className="relative h-[45vh] min-h-[280px] overflow-hidden">
+           <img
+             src={HERO_IMAGE}
+-            alt="Renaissance Paris — Suivi de commande"
++            alt="Renaissance Eyewear · Suivi de commande"
+             className="w-full h-full object-cover object-center"
+             fetchpriority="high"
+           />
+diff --git a/tailwind.config.js b/tailwind.config.js
+index 606f48c..8d209d5 100644
+--- a/tailwind.config.js
++++ b/tailwind.config.js
+@@ -18,9 +18,9 @@ export default {
+         'dark-bg': '#1a1a1a',
+       },
+       fontFamily: {
+-        serif: ['Playfair Display', 'Cormorant Garamond', 'serif'],
+-        sans: ['DM Sans', 'Inter', 'sans-serif'],
+-        display: ['Playfair Display', 'serif'],
++        serif: ['Bodoni Moda', 'serif'],
++        sans: ['Bodoni Moda', 'serif'],
++        display: ['Bodoni Moda', 'serif'],
+       },
+       letterSpacing: {
+         'luxury': '0.15em',
+-- 
+2.34.1
+
+
+From f64860980100379487bc9fa921f3e060f686f4b0 Mon Sep 17 00:00:00 2001
+From: Renaissance-eyewear <fraouiyassin@gmail.com>
+Date: Sat, 6 Jun 2026 16:15:03 +0200
+Subject: [PATCH 2/3] fix(i18n): cles manquantes isis.discover +
+ reassurance.description (regression lot A)
+
+---
+ public/locales/fr/collections.json | 3 ++-
+ public/locales/fr/home.json        | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/public/locales/fr/collections.json b/public/locales/fr/collections.json
+index 6a563a4..d12a780 100644
+--- a/public/locales/fr/collections.json
++++ b/public/locales/fr/collections.json
+@@ -49,7 +49,8 @@
+     "comingSoonSubtitle": "Patience.",
+     "comingSoonDescription": "La collection ISIS est en préparation. Des montures portant les signes de l'Égypte ancienne, sculptés dans le métal, jamais imprimés dessus.",
+     "discoverVersailles": "Découvrir Versailles",
+-    "discoverHeritage": "Découvrir Héritage"
++    "discoverHeritage": "Découvrir Héritage",
++    "discover": "Découvrir"
+   },
+   "allCollections": "Toutes les collections",
+   "seeAll": "Voir tout",
+diff --git a/public/locales/fr/home.json b/public/locales/fr/home.json
+index bf94e05..8288395 100644
+--- a/public/locales/fr/home.json
++++ b/public/locales/fr/home.json
+@@ -102,7 +102,8 @@
+     "limitedEdition": "Points de vente",
+     "limitedEditionDesc": "En France et à l'international",
+     "madeInFrance": "Design parisien",
+-    "madeInFranceDesc": "Fabriqué entre Paris, la Corée et l'Italie"
++    "madeInFranceDesc": "Fabriqué entre Paris, la Corée et l'Italie",
++    "description": "Conseil, préparation, soin : chaque étape garde la même exigence que la monture."
+   },
+   "seo": {
+     "title": "Lunettes qui durent. Renaissance Eyewear",
+-- 
+2.34.1
+
+
+From 7738d4122ec92541a3dd8ba482d8667b958f0116 Mon Sep 17 00:00:00 2001
+From: Renaissance-eyewear <fraouiyassin@gmail.com>
+Date: Sat, 6 Jun 2026 16:17:47 +0200
+Subject: [PATCH 3/3] fix(i18n): cles manquantes resolues (isis.discover,
+ reassurance.description, noProducts, breadcrumb, notFound)
+
+---
+ public/locales/fr/collections.json | 3 ++-
+ public/locales/fr/common.json      | 4 ++++
+ public/locales/fr/product.json     | 3 ++-
+ src/pages/ProductPage.tsx          | 6 +++---
+ 4 files changed, 11 insertions(+), 5 deletions(-)
+
+diff --git a/public/locales/fr/collections.json b/public/locales/fr/collections.json
+index d12a780..f686e60 100644
+--- a/public/locales/fr/collections.json
++++ b/public/locales/fr/collections.json
+@@ -87,5 +87,6 @@
+   "page": {
+     "seoTitle": "Collections",
+     "seoDescription": "Toutes les collections Renaissance Eyewear : Héritage, Versailles, Isis. Des lunettes faites pour durer et se transmettre."
+-  }
++  },
++  "noProducts": "Aucun modèle dans cette collection pour l'instant."
+ }
+diff --git a/public/locales/fr/common.json b/public/locales/fr/common.json
+index b07c9fd..4c1a002 100644
+--- a/public/locales/fr/common.json
++++ b/public/locales/fr/common.json
+@@ -177,5 +177,9 @@
+     "successCode": "",
+     "error": "Une erreur est survenue. Veuillez réessayer.",
+     "noThanks": "Non merci"
++  },
++  "breadcrumb": {
++    "home": "Accueil",
++    "blog": "Le Manifeste"
+   }
+ }
+diff --git a/public/locales/fr/product.json b/public/locales/fr/product.json
+index 4894a20..c8b51ff 100644
+--- a/public/locales/fr/product.json
++++ b/public/locales/fr/product.json
+@@ -91,5 +91,6 @@
+     "thisModel": "CE MODÈLE",
+     "alsoAvailableIn": "existe aussi en",
+     "imageUnavailable": "Image non disponible"
+-  }
++  },
++  "notFound": "Produit introuvable."
+ }
+diff --git a/src/pages/ProductPage.tsx b/src/pages/ProductPage.tsx
+index 67274e5..255c469 100644
+--- a/src/pages/ProductPage.tsx
++++ b/src/pages/ProductPage.tsx
+@@ -49,7 +49,7 @@ export default function ProductPage() {
+ 
+     async function loadProduct() {
+       if (!id) {
+-        setError(t('notFound', { ns: 'common' }));
++        setError(t('notFound'));
+         setLoading(false);
+         return;
+       }
+@@ -68,7 +68,7 @@ export default function ProductPage() {
+ 
+         if (cancelled) return;
+         if (!shopifyProduct) {
+-          setError(t('notFound', { ns: 'common' }));
++          setError(t('notFound'));
+           setLoading(false);
+           return;
+         }
+@@ -353,7 +353,7 @@ export default function ProductPage() {
+       <div className="bg-white min-h-screen flex items-center justify-center">
+         <div className="text-center max-w-md px-8">
+           <p className="font-sans text-dark-text text-sm tracking-wider uppercase mb-6">
+-            {error || t('notFound', { ns: 'common' })}
++            {error || t('notFound')}
+           </p>
+           <button
+             onClick={() => navigate('/collections/heritage')}
+-- 
+2.34.1
+

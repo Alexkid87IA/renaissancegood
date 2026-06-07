@@ -39,7 +39,6 @@ export default function CollectionIsis() {
           label={t('isis.label')}
           title="ISIS"
           subtitle={t('isis.subtitle')}
-          description={t('isis.description')}
           ctaLabel={t('isis.discover')}
           href="/collections/isis"
         />
@@ -47,7 +46,7 @@ export default function CollectionIsis() {
         {/* IMAGE SIDE */}
         <div
           onClick={handleNavigate}
-          className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
+          className="w-full md:w-[62%] h-full cursor-pointer group relative overflow-hidden"
           data-header-theme="dark"
         >
           <motion.img

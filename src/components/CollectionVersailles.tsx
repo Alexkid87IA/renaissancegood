@@ -33,7 +33,7 @@ export default function CollectionVersailles() {
         {/* IMAGE SIDE (left) */}
         <div
           onClick={handleNavigate}
-          className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
+          className="w-full md:w-[62%] h-full cursor-pointer group relative overflow-hidden"
           data-header-theme="dark"
         >
           <motion.img
@@ -76,7 +76,6 @@ export default function CollectionVersailles() {
           label={t('versailles.label')}
           title={t('versailles.title')}
           subtitle={t('versailles.subtitle')}
-          description={t('versailles.description')}
           ctaLabel={t('versailles.discover')}
           href="/collections/versailles"
         />

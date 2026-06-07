@@ -395,26 +395,15 @@ export default function Header() {
                   ? 'h-[7.36rem] md:h-[8.28rem] lg:h-[8.28rem] xl:h-[9.2rem]'
                   : 'h-[8.28rem] md:h-[9.2rem] lg:h-[9.2rem] xl:h-[10.12rem]';
                 return (
-                  <>
-                    {/* Moitié GAUCHE — couleur selon le fond de gauche */}
-                    <img
-                      src={whiteLeft ? LOGO_LIGHT : LOGO_DARK}
-                      alt="Renaissance Eyewear"
-                      loading="eager"
-                      fetchpriority="high"
-                      decoding="sync"
-                      className={`block w-auto object-contain transition-[height] duration-500 ease-out group-hover/logo:opacity-75 [clip-path:inset(0_50%_0_0)] ${sizeClass}`}
-                    />
-                    {/* Moitié DROITE — couleur selon le fond de droite (superposée) */}
-                    <img
-                      src={whiteRight ? LOGO_LIGHT : LOGO_DARK}
-                      alt=""
-                      aria-hidden="true"
-                      loading="eager"
-                      decoding="sync"
-                      className="absolute inset-0 w-full h-full object-contain group-hover/logo:opacity-75 [clip-path:inset(0_0_0_50%)]"
-                    />
-                  </>
+                  /* Logo centré — une seule couleur selon le fond DERRIÈRE le centre */
+                  <img
+                    src={whiteCenter ? LOGO_LIGHT : LOGO_DARK}
+                    alt="Renaissance Eyewear"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="sync"
+                    className={`block w-auto object-contain transition-[height] duration-500 ease-out group-hover/logo:opacity-75 ${sizeClass}`}
+                  />
                 );
               })()}
             </LocaleLink>

@@ -9,7 +9,6 @@ import GroupedProductCard from './GroupedProductCard';
 import SEO from './SEO';
 import { fade } from './shared';
 import { resizeShopifyImage } from '../lib/imageUtils';
-import Breadcrumb from './Breadcrumb';
 
 const VIDEO_SPEED = 0.7;
 
@@ -28,10 +27,9 @@ interface HeroProps {
   config: CollectionPageConfig;
   prefix: string;
   imageY: MotionValue<string>;
-  breadcrumbItems: { label: string; to?: string }[];
 }
 
-function VideoHero({ heroRef, config, prefix, imageY, breadcrumbItems }: HeroProps) {
+function VideoHero({ heroRef, config, prefix, imageY }: HeroProps) {
   const { t } = useTranslation('collections');
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -68,17 +66,6 @@ function VideoHero({ heroRef, config, prefix, imageY, breadcrumbItems }: HeroPro
             <div className="w-[140%] h-px bg-white/[0.04] rotate-[20deg]" />
           </motion.div>
 
-          <motion.div
-            className="absolute top-10 left-10 xl:left-20 2xl:left-28 flex flex-col gap-3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <Breadcrumb items={breadcrumbItems} variant="light" />
-            <p className="font-sans text-bronze/[0.68] text-[9px] tracking-[0.4em] font-medium uppercase">
-              {t(`${prefix}.collectionNumber`)}
-            </p>
-          </motion.div>
 
           <motion.div
             variants={{
@@ -197,17 +184,6 @@ function VideoHero({ heroRef, config, prefix, imageY, breadcrumbItems }: HeroPro
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="absolute top-24 left-6 flex flex-col gap-2"
-          >
-            <Breadcrumb items={breadcrumbItems} variant="light" />
-            <p className="font-sans text-white/50 text-[9px] tracking-[0.3em] font-medium uppercase">
-              {t(`${prefix}.collectionNumber`)}
-            </p>
-          </motion.div>
         </motion.div>
 
         <div className="flex-1 px-6 flex flex-col justify-center">
@@ -253,7 +229,7 @@ function VideoHero({ heroRef, config, prefix, imageY, breadcrumbItems }: HeroPro
   );
 }
 
-function ImageHero({ heroRef, config, prefix, imageY, breadcrumbItems }: HeroProps) {
+function ImageHero({ heroRef, config, prefix, imageY }: HeroProps) {
   const { t } = useTranslation('collections');
 
   const scrollToProducts = useCallback(() => {
@@ -275,17 +251,6 @@ function ImageHero({ heroRef, config, prefix, imageY, breadcrumbItems }: HeroPro
             <div className="w-[140%] h-px bg-white/[0.04] rotate-[20deg]" />
           </motion.div>
 
-          <motion.div
-            className="absolute top-10 left-10 xl:left-20 2xl:left-28 flex flex-col gap-3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <Breadcrumb items={breadcrumbItems} variant="light" />
-            <p className="font-sans text-bronze/[0.68] text-[9px] tracking-[0.4em] font-medium uppercase">
-              {t(`${prefix}.collectionNumber`)}
-            </p>
-          </motion.div>
 
           <motion.div
             variants={{
@@ -398,17 +363,6 @@ function ImageHero({ heroRef, config, prefix, imageY, breadcrumbItems }: HeroPro
             loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="absolute top-24 left-6 flex flex-col gap-2"
-          >
-            <Breadcrumb items={breadcrumbItems} variant="light" />
-            <p className="font-sans text-white/50 text-[9px] tracking-[0.3em] font-medium uppercase">
-              {t(`${prefix}.collectionNumber`)}
-            </p>
-          </motion.div>
         </motion.div>
 
         <div className="flex-1 px-6 flex flex-col justify-center">
@@ -464,14 +418,7 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
   });
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
 
-  const { t: tc } = useTranslation('common');
   const prefix = config.translationPrefix;
-
-  const breadcrumbItems = [
-    { label: tc('breadcrumb.home'), to: '/' },
-    { label: tc('breadcrumb.collections'), to: '/collections' },
-    { label: config.collectionName },
-  ];
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -541,7 +488,6 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
           config={config}
           prefix={prefix}
           imageY={imageY}
-          breadcrumbItems={breadcrumbItems}
         />
       ) : (
         <ImageHero
@@ -549,7 +495,6 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
           config={config}
           prefix={prefix}
           imageY={imageY}
-          breadcrumbItems={breadcrumbItems}
         />
       )}
 
@@ -590,29 +535,11 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
                       layout="editorial"
                     />
                     {index < groupedProducts.length - 1 && (
-                      <div className="hidden md:flex items-center gap-4 py-8 lg:py-10">
-                        <div className="flex-1 h-px bg-dark-text/[0.06]" />
-                        <span className="font-sans text-[9px] tracking-[0.4em] text-dark-text/[0.15] uppercase">
-                          {String(index + 2).padStart(2, '0')}
-                        </span>
-                        <div className="flex-1 h-px bg-dark-text/[0.06]" />
-                      </div>
+                      <div className="hidden md:block py-8 lg:py-10" />
                     )}
                   </React.Fragment>
                 ))}
               </div>
-
-              {groupedProducts.length > 0 && (
-                <div className="flex flex-col items-center mt-16 md:mt-24">
-                  <div className="w-px h-16 md:h-24 bg-gradient-to-b from-bronze/0 via-bronze/30 to-bronze/0" />
-                  <p className="font-display text-5xl md:text-6xl font-bold text-dark-text/[0.15] mt-4 leading-none">
-                    {String(groupedProducts.length).padStart(2, '0')}
-                  </p>
-                  <p className="font-sans text-[8px] tracking-[0.4em] text-dark-text/25 uppercase mt-2">
-                    {t('filters.products')}
-                  </p>
-                </div>
-              )}
 
               {groupedProducts.length === 0 && (
                 <div className="text-center py-32">

@@ -299,7 +299,6 @@ const EditorialCard = memo(function EditorialCard({
   );
 
   const isOutOfStock = currentProduct.availableForSale === false;
-  const counterLabel = String(index + 1).padStart(2, '0');
   // Toutes les images sont preloadées via CollectionPageTemplate.
   // Les 6 premières sont en eager + les 4 premières en fetchPriority high.
   const isAboveFold = index < 6;
@@ -402,12 +401,6 @@ const EditorialCard = memo(function EditorialCard({
                   <div className="h-full bg-bronze animate-[loadingSweep_1.2s_ease-in-out_infinite]" />
                 </div>
               )}
-              <div className="absolute top-4 left-4 z-10 w-9 h-9 bg-black/30 border border-white/20 rounded-[3px] flex items-center justify-center">
-                <span className="font-sans text-[10px] font-medium text-white tracking-wide">
-                  {counterLabel}
-                </span>
-              </div>
-
               {isOutOfStock && (
                 <div className="absolute top-4 right-4 z-10">
                   <span className="inline-block bg-dark-text/70 border border-white/10 text-white font-sans text-[9px] tracking-[0.25em] font-medium uppercase px-4 py-2 rounded-[3px]">
@@ -454,10 +447,6 @@ const EditorialCard = memo(function EditorialCard({
                 {collectionName}
               </p>
             )}
-
-            <p className="font-display text-4xl xl:text-5xl font-bold text-dark-text/[0.06] leading-none mb-3">
-              {counterLabel}
-            </p>
 
             <h3 className={`font-display text-2xl xl:text-3xl font-bold text-dark-text tracking-[-0.02em] leading-[0.95] uppercase transition-colors duration-500 ${
               isHovered ? 'text-bronze' : ''
@@ -559,11 +548,6 @@ const EditorialCard = memo(function EditorialCard({
                   <div className="h-full bg-bronze animate-[loadingSweep_1.2s_ease-in-out_infinite]" />
                 </div>
               )}
-              <div className="absolute top-3 left-3 z-10 w-7 h-7 bg-black/30 border border-white/20 rounded-[3px] flex items-center justify-center">
-                <span className="font-sans text-[9px] font-medium text-white tracking-wide">
-                  {counterLabel}
-                </span>
-              </div>
               {isOutOfStock && (
                 <div className="absolute top-3 right-3 z-10">
                   <span className="inline-block bg-dark-text/70 border border-white/10 text-white font-sans text-[8px] tracking-[0.25em] font-medium uppercase px-3 py-1.5 rounded-[3px]">

@@ -37,7 +37,6 @@ export default function CollectionHeritage() {
           label={t('heritage.label')}
           title={t('heritage.title')}
           subtitle={t('heritage.subtitle')}
-          description={t('heritage.description')}
           ctaLabel={t('heritage.discover')}
           href="/collections/heritage"
         />
@@ -45,7 +44,7 @@ export default function CollectionHeritage() {
         {/* IMAGE SIDE */}
         <div
           onClick={handleNavigate}
-          className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
+          className="w-full md:w-[62%] h-full cursor-pointer group relative overflow-hidden"
           data-header-theme="dark"
         >
           <motion.img
