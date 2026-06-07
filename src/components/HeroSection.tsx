@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 
-const HERO_VIDEO_DESKTOP = 'https://renaissance-cdn.b-cdn.net/videos/renaissance-hero-v2.mp4';
-const HERO_VIDEO_MOBILE = 'https://renaissance-cdn.b-cdn.net/hf_20260130_124034_0ed82220-23c4-4752-a1c3-00af6106e2ce.mp4';
-const HERO_POSTER = '/hero-poster.png';
+const HERO_VIDEO_DESKTOP = 'https://renaissance-cdn.b-cdn.net/videos/hero-accueil.mp4';
+const HERO_VIDEO_MOBILE = 'https://renaissance-cdn.b-cdn.net/videos/hero-accueil-mobile-v3.mp4';
+const HERO_POSTER = '/hero-poster.webp';
 const VIDEO_SPEED = 0.7;
 
 type TransitionPhase = 'video' | 'blackout' | 'shimmer' | 'reveal';
@@ -149,7 +149,7 @@ export default function HeroSection() {
           )}
         </AnimatePresence>
 
-        <div className="absolute left-8 bottom-8 max-w-xl z-[4]" style={{ filter: 'drop-shadow(0 2px 20px rgba(0,0,0,0.8)) drop-shadow(0 4px 40px rgba(0,0,0,0.5))' }}>
+        <div className="absolute left-12 bottom-12 max-w-xl z-[4]" style={{ filter: 'drop-shadow(0 2px 20px rgba(0,0,0,0.8)) drop-shadow(0 4px 40px rgba(0,0,0,0.5))' }}>
           <p className="text-white text-xs tracking-[0.2em] uppercase font-sans mb-2">{t('hero.label')}</p>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-[-0.03em] leading-[0.95]">
             {t('hero.title1')}<br />
@@ -158,20 +158,33 @@ export default function HeroSection() {
           <p className="text-white text-sm mb-6 leading-relaxed">
             {t('hero.description')}
           </p>
-          <div className="flex gap-4">
+          <div>
             <button
               onClick={() => navigate('/shop')}
-              className="bg-white px-8 py-4 font-sans text-xs tracking-[0.2em] uppercase text-dark-text font-bold hover:bg-white/90 transition-colors"
+              className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[10px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]"
             >
-              {t('hero.cta')}
-            </button>
-            <button
-              onClick={() => navigate('/store-locator')}
-              className="border-2 border-white px-8 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-white hover:text-dark-text transition-colors"
-            >
-              {t('hero.ctaSecondary')}
+              <span>{t('hero.cta')}</span>
+              <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </button>
           </div>
+        </div>
+
+        {/* CTA secondaire — bas droite, pour laisser respirer le hero */}
+        <div
+          className="absolute right-12 bottom-12 z-[4]"
+          style={{ filter: 'drop-shadow(0 2px 20px rgba(0,0,0,0.8)) drop-shadow(0 4px 40px rgba(0,0,0,0.5))' }}
+        >
+          <button
+            onClick={() => navigate('/opticiens')}
+            className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[10px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]"
+          >
+            <span>{t('hero.ctaSecondary')}</span>
+            <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -254,7 +267,7 @@ export default function HeroSection() {
             </button>
             <span className="w-px h-3 bg-white/[0.15]" />
             <button
-              onClick={() => navigate('/store-locator')}
+              onClick={() => navigate('/opticiens')}
               className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/[0.35] font-medium active:text-white/60 transition-colors duration-300"
             >
               {t('hero.mobileOpticians')}

@@ -30,7 +30,7 @@
     "label": "L'atelier",
     "title": "NOTRE",
     "subtitle": "Fabrication.",
-    "description": "Entre Paris, la Corée et l'Italie, nos montures prennent forme dans des ateliers où le geste prime sur la cadence. Chaque étape demande une main formée, un œil exercé. Nous ne produisons pas vite. Nous produisons juste.",
+    "description": "Dessinées à Paris, fabriquées en Corée, l'acétate vient d'Italie. Nous ne produisons pas vite. Nous produisons juste.",
     "cta": "Voir le processus",
     "stat1": "Or véritable, plaqué",
     "stat2": "Léger, résistant",
@@ -47,13 +47,13 @@
     "step2Title": "Polissage",
     "step2Desc": "Poli, repris, vérifié à la main, jusqu'à ce que rien n'accroche.",
     "step3Title": "Assemblage",
-    "step3Desc": "Chaque charnière est ajustée à la main. Elle doit tenir au dix-millième geste comme au premier."
+    "step3Desc": "Chaque charnière est ajustée à la main. Elle doit tenir au dernier geste comme au premier."
   },
   "histoire": {
     "label": "Notre histoire",
     "title": "LE MONDE OUBLIE.",
     "subtitle": "Nous, on se souvient.",
-    "description": "Renaissance : le sens qui renaît. Un mot pour ceux qui refusent que tout disparaisse. Que les gestes se perdent. Que le beau devienne jetable.",
+    "description": "Renaissance : le sens qui renaît. Un mot pour ceux qui refusent que tout disparaisse.",
     "cta": "Découvrir notre histoire",
     "mobileTitle1": "Le monde oublie.",
     "mobileTitle2": "Nous, on se souvient.",
@@ -64,7 +64,7 @@
     "label": "Réseau choisi",
     "title": "ESSAYEZ EN BOUTIQUE.",
     "subtitle": "Commandez en ligne.",
-    "description": "Certaines choses ne se choisissent pas sur écran. Pour découvrir nos montures, rien ne remplace le geste : les essayer, les sentir, les ajuster à votre visage. Nos opticiens vous reçoivent. Le conseil prend le temps qu'il faut.",
+    "description": "Une monture se choisit sur le visage, pas sur un écran. Nos opticiens vous reçoivent.",
     "cta": "Trouver un opticien",
     "ctaShop": "Acheter en ligne",
     "guarantees": "Livraison offerte · Retours 14 jours · Garantie légale 2 ans",
@@ -102,8 +102,7 @@
     "limitedEdition": "Points de vente",
     "limitedEditionDesc": "En France et à l'international",
     "madeInFrance": "Design parisien",
-    "madeInFranceDesc": "Fabriqué entre Paris, la Corée et l'Italie",
-    "description": "Conseil, préparation, soin : chaque étape garde la même exigence que la monture."
+    "madeInFranceDesc": "Dessiné à Paris. Fabriqué en Corée."
   },
   "seo": {
     "title": "Lunettes qui durent. Renaissance Eyewear",

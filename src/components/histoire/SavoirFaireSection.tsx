@@ -9,7 +9,7 @@ export default function SavoirFaireSection() {
   const contentInView = useInView(contentRef, { once: true, amount: 0.28 });
 
   return (
-    <motion.section className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-30 bg-[#000000] overflow-hidden">
+    <motion.section id="savoir-faire" className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-30 bg-[#000000] overflow-hidden">
       {/* DESKTOP */}
       <div className="hidden md:flex h-full bg-[#000000]">
         <div className="w-[46%] h-full relative overflow-hidden">

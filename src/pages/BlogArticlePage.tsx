@@ -268,7 +268,7 @@ export default function BlogArticlePage() {
             <motion.div variants={fade} className="w-12 h-px bg-white/[0.15] mx-auto mb-10" />
             <motion.div variants={fade}>
               <LocaleLink
-                to="/collections"
+                to="/shop"
                 className="group relative overflow-hidden inline-block border border-white/[0.15] px-10 py-4 transition-all duration-500 hover:border-bronze/60"
               >
                 <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">

@@ -56,7 +56,7 @@ export default function ProductFooter() {
             <p className="font-sans text-[8px] tracking-[0.3em] text-bronze uppercase font-bold mb-2.5">{t('productFooter.theHouse')}</p>
             <div className="flex flex-wrap gap-x-5 gap-y-1">
               <LocaleLink to="/histoire" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.history')}</LocaleLink>
-              <LocaleLink to="/symboles" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.symbols')}</LocaleLink>
+              <LocaleLink to="/histoire" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.symbols')}</LocaleLink>
               <LocaleLink to="/opticiens" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.opticians')}</LocaleLink>
               <LocaleLink to="/contact" className="font-sans text-white/[0.45] hover:text-white/80 text-xs font-light transition-colors">{t('productFooter.contact')}</LocaleLink>
             </div>

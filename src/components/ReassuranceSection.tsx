@@ -49,7 +49,6 @@ export default function ReassuranceSection() {
               label={t('reassurance.label')}
               title={t('reassurance.title')}
               subtitle={t('reassurance.subtitle')}
-              description={t('reassurance.description')}
             >
               <div className="max-w-[44rem] border-y border-white/[0.12]">
                 {guarantees.map((item) => (
@@ -93,9 +92,6 @@ export default function ReassuranceSection() {
             <br />
             <span className="font-light italic text-white/[0.74] tracking-[-0.03em]">{t('reassurance.subtitle')}</span>
           </h2>
-          <p className="font-sans text-xs text-white/[0.58] leading-[1.7] font-light mt-5 max-w-sm">
-            {t('reassurance.description')}
-          </p>
 
           <div className="mt-6 border-t border-white/[0.12]">
             {guarantees.map((item) => (

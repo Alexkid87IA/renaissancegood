@@ -336,7 +336,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
               <p className="font-sans text-dark-text/40 text-xs font-light">
                 {t('search.helpText')}
               </p>
-              <LocaleLink to="/collections" onClick={handleClose}>
+              <LocaleLink to="/shop" onClick={handleClose}>
                 <button className="group relative overflow-hidden border border-dark-text px-6 py-2.5 transition-all duration-500">
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
                     {t('search.viewAll')}

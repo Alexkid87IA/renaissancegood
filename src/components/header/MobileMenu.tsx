@@ -119,8 +119,8 @@ export default function MobileMenu({
 
   const MAISON_LINKS = [
     { to: '/histoire', label: t('mobileMenu.ourHistory') },
-    { to: '/atelier', label: t('mobileMenu.savoirFaire') },
-    { to: '/store-locator', label: t('mobileMenu.ourOpticians') },
+    { to: '/histoire#savoir-faire', label: t('mobileMenu.savoirFaire') },
+    { to: '/opticiens', label: t('mobileMenu.ourOpticians') },
   ];
 
   if (!isOpen) return null;

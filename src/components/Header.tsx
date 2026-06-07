@@ -442,8 +442,8 @@ export default function Header() {
 
             {/* Navigation Mobile — Hamburger asymétrique 2 lignes */}
             <div className="lg:hidden flex items-center gap-4">
-              {/* FR + panier : masqués en mode hero ; le hamburger, lui, reste toujours accessible */}
-              <div className={`flex items-center gap-4 transition-opacity duration-500 ${navHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+              {/* FR + panier : toujours visibles sur mobile (hero compris) */}
+              <div className="flex items-center gap-4">
                 <LanguageSelector
                   isOpen={languageOpen}
                   onToggle={setLanguageOpen}

@@ -40,7 +40,6 @@ function lazyWithRetry(importFn: () => Promise<LazyPage>) {
 
 // Lazy load all pages for code splitting
 const HomePage = lazyWithRetry(() => import('./pages/HomePage'));
-const CollectionsPage = lazyWithRetry(() => import('./pages/CollectionsPage'));
 const HeritageCollectionPage = lazyWithRetry(() => import('./pages/HeritageCollectionPage'));
 const VersaillesCollectionPage = lazyWithRetry(() => import('./pages/VersaillesCollectionPage'));
 const IsisCollectionPage = lazyWithRetry(() => import('./pages/IsisCollectionPage'));
@@ -58,7 +57,6 @@ const CheckoutConfirmationPage = lazyWithRetry(() => import('./pages/CheckoutCon
 const ConfidentialitePage = lazyWithRetry(() => import('./pages/ConfidentialitePage'));
 const RemboursementPage = lazyWithRetry(() => import('./pages/RemboursementPage'));
 const ExpeditionPage = lazyWithRetry(() => import('./pages/ExpeditionPage'));
-const ConditionsUtilisationPage = lazyWithRetry(() => import('./pages/ConditionsUtilisationPage'));
 const CookiesPage = lazyWithRetry(() => import('./pages/CookiesPage'));
 const CGVPage = lazyWithRetry(() => import('./pages/CGVPage'));
 const MentionsLegalesPage = lazyWithRetry(() => import('./pages/MentionsLegalesPage'));
@@ -67,9 +65,6 @@ const ContactPage = lazyWithRetry(() => import('./pages/ContactPage'));
 const GarantiePage = lazyWithRetry(() => import('./pages/GarantiePage'));
 const GuideTaillesPage = lazyWithRetry(() => import('./pages/GuideTaillesPage'));
 const SuiviCommandePage = lazyWithRetry(() => import('./pages/SuiviCommandePage'));
-const ManifestePage = lazyWithRetry(() => import('./pages/ManifestePage'));
-const SavoirFairePage = lazyWithRetry(() => import('./pages/SavoirFairePage'));
-const SymbolesPage = lazyWithRetry(() => import('./pages/SymbolesPage'));
 const NotFoundPage = lazyWithRetry(() => import('./pages/NotFoundPage'));
 
 // Loading component for Suspense
@@ -90,7 +85,7 @@ function AppRoutes() {
     <>
       {/* Pages principales */}
       <Route index element={<HomePage />} />
-      <Route path="collections" element={<CollectionsPage />} />
+      <Route path="collections" element={<Navigate to="/shop" replace />} />
       <Route path="collections/heritage" element={<HeritageCollectionPage />} />
       <Route path="collections/versailles" element={<VersaillesCollectionPage />} />
       <Route path="collections/isis" element={<IsisCollectionPage />} />
@@ -103,7 +98,7 @@ function AppRoutes() {
       <Route path="blog" element={<BlogPage />} />
       <Route path="blog/:handle" element={<BlogArticlePage />} />
       <Route path="opticiens" element={<StoreLocatorPage />} />
-      <Route path="store-locator" element={<StoreLocatorPage />} />
+      <Route path="store-locator" element={<Navigate to="/opticiens" replace />} />
 
       {/* Pages service client */}
       <Route path="faq" element={<FAQPage />} />
@@ -113,12 +108,12 @@ function AppRoutes() {
       <Route path="livraison" element={<ExpeditionPage />} />  {/* canonical: /livraison */}
       <Route path="suivi-commande" element={<SuiviCommandePage />} />
 
-      {/* Pages magazine/histoire */}
-      <Route path="manifeste" element={<ManifestePage />} />
-      <Route path="manifesto" element={<ManifestePage />} />
-      <Route path="atelier" element={<SavoirFairePage />} />
-      <Route path="savoir-faire" element={<Navigate to="/atelier" replace />} />
-      <Route path="symboles" element={<SymbolesPage />} />
+      {/* Pages magazine/histoire — sections repliées sur /histoire (redirections 301) */}
+      <Route path="manifeste" element={<Navigate to="/histoire" replace />} />
+      <Route path="manifesto" element={<Navigate to="/histoire" replace />} />
+      <Route path="atelier" element={<Navigate to="/histoire" replace />} />
+      <Route path="savoir-faire" element={<Navigate to="/histoire" replace />} />
+      <Route path="symboles" element={<Navigate to="/histoire" replace />} />
 
       {/* Pages légales */}
       <Route path="mentions-legales" element={<MentionsLegalesPage />} />
@@ -127,7 +122,7 @@ function AppRoutes() {
       <Route path="cookies" element={<CookiesPage />} />
       <Route path="remboursement" element={<RemboursementPage />} />
       {/* /expedition redirects handled by /livraison route above */}
-      <Route path="conditions-utilisation" element={<ConditionsUtilisationPage />} />
+      <Route path="conditions-utilisation" element={<Navigate to="/cgv" replace />} />
 
       {/* 404 - Catch all */}
       <Route path="*" element={<NotFoundPage />} />

@@ -180,7 +180,7 @@ export default function ShopPage() {
               </button>
               <button
                 type="button"
-                onClick={() => navigate('/store-locator')}
+                onClick={() => navigate('/opticiens')}
                 className="border-2 border-white px-8 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-white hover:text-dark-text transition-colors"
               >
                 {t('heroFindOptician')}
@@ -222,7 +222,7 @@ export default function ShopPage() {
                 {t('heroExplore')}
               </button>
               <span className="w-px h-3 bg-white/[0.15]" />
-              <button type="button" onClick={() => navigate('/store-locator')} className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/[0.35] font-medium active:text-white/60 transition-colors duration-300">
+              <button type="button" onClick={() => navigate('/opticiens')} className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/[0.35] font-medium active:text-white/60 transition-colors duration-300">
                 {t('heroOpticians')}
               </button>
             </motion.div>

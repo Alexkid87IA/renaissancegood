@@ -91,7 +91,7 @@ export default function FabricationSection() {
                 </div>
 
                 <LocaleLink
-                  to="/atelier"
+                  to="/histoire"
                   className="mt-6 inline-flex min-w-[14rem] items-center justify-center border border-white/[0.28] px-7 py-4 font-sans text-[9px] tracking-[0.28em] font-medium uppercase text-white/[0.88] transition-all duration-500 hover:border-bronze/70 hover:text-bronze"
                 >
                   {t('fabrication.cta')}
@@ -141,7 +141,7 @@ export default function FabricationSection() {
           </div>
 
           {/* CTA */}
-          <LocaleLink to="/atelier">
+          <LocaleLink to="/histoire">
             <button className="group relative overflow-hidden w-full border border-white/20 px-6 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98]">
               <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
                 {t('fabrication.cta')}

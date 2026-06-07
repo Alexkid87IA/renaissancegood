@@ -32,7 +32,7 @@ export default function TryInStoreSection() {
             subtitle={t('tryInStore.subtitle')}
             description={t('tryInStore.description')}
             actions={[
-              { label: t('tryInStore.cta'), href: '/store-locator' },
+              { label: t('tryInStore.cta'), href: '/opticiens' },
               { label: t('tryInStore.ctaShop'), href: '/shop', variant: 'secondary' },
             ]}
             meta={t('tryInStore.guarantees')}
@@ -109,7 +109,7 @@ export default function TryInStoreSection() {
             transition={{ duration: 0.8, delay: 0.9 }}
             className="flex items-center gap-5"
           >
-            <LocaleLink to="/store-locator" className="font-display text-[13px] italic text-white/70 tracking-[-0.01em] active:text-white transition-colors duration-300">
+            <LocaleLink to="/opticiens" className="font-display text-[13px] italic text-white/70 tracking-[-0.01em] active:text-white transition-colors duration-300">
               {t('tryInStore.cta')}
             </LocaleLink>
             <span className="w-px h-3 bg-white/[0.15]" />

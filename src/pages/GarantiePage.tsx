@@ -86,7 +86,7 @@ export default function GarantiePage() {
         ))}
       </ul>
       <p>
-        <a href="/store-locator">{t('garantie.findOptician')}</a>
+        <a href="/opticiens">{t('garantie.findOptician')}</a>
       </p>
 
       <h2>{t('garantie.certificateTitle')}</h2>

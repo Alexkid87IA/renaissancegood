@@ -156,7 +156,7 @@ export default function Footer() {
                     +33 1 42 86 82 00
                   </span>
                 </a>
-                <LocaleLink to="/store-locator" className="flex items-center gap-3 group">
+                <LocaleLink to="/opticiens" className="flex items-center gap-3 group">
                   <MapPin className="w-3.5 h-3.5 text-white/50 group-hover:text-white/50 transition-colors duration-500" />
                   <span className="font-sans text-[11px] text-white/60 group-hover:text-white/60 transition-colors duration-500">
                     {t('footer.findOptician')}
@@ -184,14 +184,14 @@ export default function Footer() {
                 ]},
                 { title: t('nav.laMaison'), links: [
                   { to: '/histoire', label: t('footerLinks.ourHistory') },
-                  { to: '/atelier', label: t('footerLinks.savoirFaire') },
-                  { to: '/symboles', label: t('footerLinks.fiveSymbols') },
+                  { to: '/histoire#savoir-faire', label: t('footerLinks.savoirFaire') },
+                  { to: '/histoire#symboles', label: t('footerLinks.fiveSymbols') },
                   { to: '/blog', label: t('footerLinks.manifeste') },
                 ]},
                 { title: t('nav.services'), links: [
                   { to: '/livraison', label: t('footerLinks.shipping') },
                   { to: '/garantie', label: t('footerLinks.warranty') },
-                  { to: '/store-locator', label: t('footerLinks.ourOpticians') },
+                  { to: '/opticiens', label: t('footerLinks.ourOpticians') },
                   { to: '/suivi-commande', label: t('footerLinks.orderTracking') },
                 ]},
                 { title: t('nav.aide'), links: [
@@ -375,14 +375,14 @@ export default function Footer() {
             ]},
             { key: 'laMaison', title: t('nav.laMaison'), links: [
               { to: '/histoire', label: t('footerLinks.ourHistory') },
-              { to: '/atelier', label: t('footerLinks.savoirFaire') },
-              { to: '/symboles', label: t('footerLinks.fiveSymbols') },
+              { to: '/histoire#savoir-faire', label: t('footerLinks.savoirFaire') },
+              { to: '/histoire#symboles', label: t('footerLinks.fiveSymbols') },
               { to: '/blog', label: t('footerLinks.manifeste') },
             ]},
             { key: 'services', title: t('nav.services'), links: [
               { to: '/livraison', label: t('footerLinks.shipping') },
               { to: '/garantie', label: t('footerLinks.warranty') },
-              { to: '/store-locator', label: t('footerLinks.ourOpticians') },
+              { to: '/opticiens', label: t('footerLinks.ourOpticians') },
               { to: '/suivi-commande', label: t('footerLinks.orderTracking') },
             ]},
             { key: 'aide', title: t('nav.aide'), links: [
@@ -481,7 +481,7 @@ export default function Footer() {
         {/* CTA Opticien */}
         <div className="px-6 py-8">
           <LocaleLink
-            to="/store-locator"
+            to="/opticiens"
             className="flex items-center justify-center gap-3 w-full border border-white/[0.1] py-4 hover:border-white/20 active:bg-white/[0.03] transition-all duration-300"
           >
             <MapPin className="w-4 h-4 text-white/50" />

@@ -17,7 +17,7 @@ export default function OpticianDropdown({ transparent }: OpticianDropdownProps)
 
   return (
     <LocaleLink
-      to="/store-locator"
+      to="/opticiens"
       className={`inline-flex items-center font-sans text-[9.35px] laptop:text-[9.9px] xl:text-[9.9px] 2xl:text-[10.45px] tracking-[0.18em] font-medium transition-colors duration-500 uppercase whitespace-nowrap ${
         transparent
           ? 'text-white/90 hover:text-white/50'

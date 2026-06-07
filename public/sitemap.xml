@@ -33,19 +33,7 @@
   </url>
 
   <!-- Collections -->
-  <url>
-    <loc>https://renaissanceeyewear.fr/collections</loc>
-    <lastmod>2026-01-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/collections" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/collections" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://renaissanceeyewear.fr/de/collections" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://renaissanceeyewear.fr/es/collections" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://renaissanceeyewear.fr/it/collections" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/collections" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/collections" />
-  </url>
+  
   <url>
     <loc>https://renaissanceeyewear.fr/collections/heritage</loc>
     <lastmod>2026-01-31</lastmod>
@@ -100,33 +88,9 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://renaissanceeyewear.fr/ru/histoire" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/histoire" />
   </url>
-  <url>
-    <loc>https://renaissanceeyewear.fr/manifeste</loc>
-    <lastmod>2026-01-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/manifeste" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/manifeste" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/manifeste" />
-  </url>
-  <url>
-    <loc>https://renaissanceeyewear.fr/atelier</loc>
-    <lastmod>2026-01-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/atelier" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/atelier" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/atelier" />
-  </url>
-  <url>
-    <loc>https://renaissanceeyewear.fr/symboles</loc>
-    <lastmod>2026-01-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://renaissanceeyewear.fr/symboles" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://renaissanceeyewear.fr/en/symboles" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://renaissanceeyewear.fr/symboles" />
-  </url>
+  
+  
+  
 
   <!-- Blog -->
   <url>

@@ -111,7 +111,7 @@ export default function CartPage() {
                   </p>
                   <div className="flex flex-col gap-3">
                     <LocaleLink
-                      to="/collections"
+                      to="/shop"
                       className="group relative overflow-hidden border border-white/[0.15] px-5 py-3.5 transition-all duration-500 hover:border-bronze/60 text-center"
                     >
                       <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500 whitespace-nowrap">
@@ -343,7 +343,7 @@ export default function CartPage() {
                 </LocaleLink>
 
                 <LocaleLink
-                  to="/collections"
+                  to="/shop"
                   className="block w-full text-center py-4 font-sans text-[9px] tracking-[0.2em] font-bold text-dark-text hover:text-bronze transition-colors duration-300 border border-dark-text/20 hover:border-bronze/40"
                 >
                   {t('continueShopping')}
