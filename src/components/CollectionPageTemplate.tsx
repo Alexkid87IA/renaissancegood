@@ -53,7 +53,7 @@ function VideoHero({ heroRef, config, prefix, imageY, breadcrumbItems }: HeroPro
   }, []);
 
   return (
-    <div ref={heroRef} className="h-screen relative overflow-hidden bg-[#000000]">
+    <div ref={heroRef} className="h-screen relative overflow-hidden bg-[#000000]" data-header-theme="dark">
 
       {/* ── DESKTOP — Même layout trapèze que ImageHero, vidéo à la place de l'image ── */}
       <div className="relative h-full overflow-hidden hidden lg:flex">
@@ -261,7 +261,7 @@ function ImageHero({ heroRef, config, prefix, imageY, breadcrumbItems }: HeroPro
   }, []);
 
   return (
-    <div ref={heroRef} className="h-screen relative overflow-hidden bg-[#000000]">
+    <div ref={heroRef} className="h-screen relative overflow-hidden bg-[#000000]" data-header-theme="dark">
       {/* DESKTOP */}
       <div className="relative h-full overflow-hidden hidden lg:flex">
         <div className="w-[52%] relative flex flex-col justify-center pl-10 xl:pl-20 2xl:pl-28 pr-10 xl:pr-12 overflow-hidden">
@@ -529,7 +529,7 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
   }, [groupedProducts]);
 
   return (
-    <div className="relative bg-beige">
+    <div className="relative bg-beige" data-header-theme="light">
       <SEO
         title={t(`${prefix}.seoTitle`)}
         description={t(`${prefix}.seoDescription`)}

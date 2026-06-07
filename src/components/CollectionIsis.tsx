@@ -29,7 +29,7 @@ export default function CollectionIsis() {
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-40 overflow-hidden"
     >
       {/* DESKTOP */}
-      <div className="h-full bg-beige hidden md:flex flex-row">
+      <div className="h-full bg-beige hidden md:flex flex-row" data-header-theme="light">
 
         {/* TEXT SIDE */}
         <CollectionStoryPanel
@@ -48,6 +48,7 @@ export default function CollectionIsis() {
         <div
           onClick={handleNavigate}
           className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
+          data-header-theme="dark"
         >
           <motion.img
             src={ISIS_IMAGE}
@@ -83,7 +84,7 @@ export default function CollectionIsis() {
       </div>
 
       {/* MOBILE */}
-      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate}>
+      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate} data-header-theme="dark">
         <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
             src={ISIS_IMAGE}

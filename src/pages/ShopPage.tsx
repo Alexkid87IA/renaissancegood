@@ -146,7 +146,7 @@ export default function ShopPage() {
   }
 
   return (
-    <div className="min-h-screen bg-beige">
+    <div className="min-h-screen bg-beige" data-header-theme="light">
       <SEO
         title={t('seoTitle')}
         description={t('seoDescription')}
@@ -154,7 +154,7 @@ export default function ShopPage() {
       />
 
       {/* ─── HERO ─── */}
-      <div className="h-screen relative">
+      <div className="h-screen relative" data-header-theme="dark">
         {/* Desktop */}
         <div className="relative h-full overflow-hidden hidden lg:block">
           <img

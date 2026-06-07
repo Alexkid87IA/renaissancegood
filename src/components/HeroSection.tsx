@@ -71,6 +71,7 @@ export default function HeroSection() {
       ref={sectionRef}
       style={sectionStyle}
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-10"
+      data-header-theme="dark"
     >
       {/* DESKTOP VERSION */}
       <div className="relative h-full overflow-hidden hidden lg:block">

@@ -12,6 +12,7 @@ export default function SignatureSection() {
   return (
     <motion.section
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[60] bg-beige overflow-hidden"
+      data-header-theme="light"
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">
@@ -55,7 +56,7 @@ export default function SignatureSection() {
         </div>
 
         {/* IMAGE SIDE — right */}
-        <div className="w-full md:w-1/2 h-full relative overflow-hidden group">
+        <div className="w-full md:w-1/2 h-full relative overflow-hidden group" data-header-theme="dark">
           <img
             src="https://renaissance-cdn.b-cdn.net/packshot%202.png"
             alt="Renaissance Eyewear - Le Secret"
@@ -68,7 +69,7 @@ export default function SignatureSection() {
       </div>
 
       {/* MOBILE */}
-      <div className="h-screen md:hidden relative overflow-hidden">
+      <div className="h-screen md:hidden relative overflow-hidden" data-header-theme="dark">
         <img
           src="https://renaissance-cdn.b-cdn.net/packshot%202.png"
           alt="Renaissance Eyewear - Le Secret"

@@ -57,6 +57,7 @@ export default function SymbolesSection() {
   return (
     <motion.section
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[40] bg-beige overflow-hidden"
+      data-header-theme="light"
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">
@@ -117,7 +118,7 @@ export default function SymbolesSection() {
           </motion.div>
         </div>
 
-        <div className="w-full md:w-1/2 h-full relative overflow-hidden">
+        <div className="w-full md:w-1/2 h-full relative overflow-hidden" data-header-theme="dark">
           <img
             src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
             alt="Renaissance Eyewear · Symboles"
@@ -129,7 +130,7 @@ export default function SymbolesSection() {
       </div>
 
       {/* MOBILE */}
-      <div className="h-screen md:hidden relative overflow-hidden">
+      <div className="h-screen md:hidden relative overflow-hidden" data-header-theme="dark">
         <img
           src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
           alt="Renaissance Eyewear · Symboles"

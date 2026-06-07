@@ -31,6 +31,7 @@ import MegaMenu, { type MenuProduct } from './header/MegaMenu';
 import MobileMenu from './header/MobileMenu';
 import SearchOverlay from './header/SearchOverlay';
 import LanguageSelector, { SUPPORTED_LANGUAGES } from './header/LanguageSelector';
+import { useHeaderTheme } from '../hooks/useHeaderTheme';
 import OpticianDropdown from './header/OpticianDropdown';
 import { formatProducts } from './header/headerUtils';
 
@@ -38,6 +39,11 @@ type ActiveMenu = 'heritage' | 'versailles' | 'isis' | 'histoire' | null;
 
 // URL logo (wordmark noir sur fond clair)
 const LOGO_DARK = 'https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png';
+const LOGO_LIGHT = 'https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png';
+
+// Pages avec un hero plein écran : header transparent (logo seul) en haut,
+// puis header solide dès qu'on scrolle.
+const HERO_ROUTES = ['/', '/shop', '/histoire', '/collections/heritage', '/collections/versailles', '/collections/isis'];
 const MENU_HERO_IMAGES = [
   'https://renaissance-cdn.b-cdn.net/campgane.png',
   'https://renaissance-cdn.b-cdn.net/packshot%202.png',
@@ -96,6 +102,7 @@ export default function Header() {
   const [languageOpen, setLanguageOpen] = useState(false);
   const [opticiensOpen, setOpticiensOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [desktopNavOpen, setDesktopNavOpen] = useState(false);
   const { itemCount } = useCart();
 
   // Helper to prefix paths with locale
@@ -107,6 +114,23 @@ export default function Header() {
   const rawPath = locale !== 'fr' && location.pathname.startsWith(`/${locale}`)
     ? location.pathname.slice(locale.length + 1) || '/'
     : location.pathname;
+
+  // Pages hero : header transparent en permanence, couleur adaptative selon la section.
+  const headerRef = useRef<HTMLElement>(null);
+  const isHeroPage = HERO_ROUTES.includes(rawPath);
+  const headerTheme = useHeaderTheme(isHeroPage, headerRef);
+  // Contenu en blanc quand le fond DERRIÈRE la zone est sombre (par zone : nav / logo / cluster).
+  const whiteLeft = isHeroPage && headerTheme.left === 'dark';
+  const whiteCenter = isHeroPage && headerTheme.center === 'dark';
+  const whiteRight = isHeroPage && headerTheme.right === 'dark';
+  const anyWhite = whiteLeft || whiteCenter || whiteRight;
+  // Logo seul (hamburger desktop) tout en haut, avant le premier scroll, sur les pages hero.
+  const navHidden = isHeroPage && !scrolled;
+
+  // Referme le menu déroulant desktop dès qu'on quitte l'état tout-en-haut.
+  useEffect(() => {
+    if (!navHidden) setDesktopNavOpen(false);
+  }, [navHidden]);
 
   // Collections (lazy-loaded au hover)
   const [versaillesCollection, setVersaillesCollection] = useState<MenuProduct[]>([]);
@@ -268,11 +292,21 @@ export default function Header() {
     <>
       {/* Header principal — solid bg beige, no backdrop-blur, no heavy transitions */}
       <header
-        className="fixed top-0 left-0 right-0 z-[100] bg-beige border-b border-dark-text/[0.08]"
+        ref={headerRef}
+        className={`fixed top-0 left-0 right-0 z-[100] transition-colors duration-500 ${
+          isHeroPage ? 'bg-transparent' : 'bg-beige border-b border-dark-text/[0.08]'
+        }`}
         data-scrolled={scrolled ? 'true' : 'false'}
       >
-        {/* Filet bronze top — fine ligne éditoriale signature */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-bronze/20 to-transparent pointer-events-none" />
+        {/* Léger dégradé haut pour renforcer la lisibilité des éléments blancs
+            (hero clair, sections coupées…). Invisible sur fond déjà sombre. */}
+        {anyWhite && (
+          <div className="absolute inset-0 bg-gradient-to-b from-black/25 to-transparent pointer-events-none" />
+        )}
+        {/* Filet bronze top — signature (uniquement quand le header est solide) */}
+        {!isHeroPage && (
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-bronze/20 to-transparent pointer-events-none" />
+        )}
 
         <div className="max-w-[1920px] mx-auto px-5 sm:px-7 md:px-10 lg:px-14 xl:px-20">
           {/* Hauteur fixe du header — le logo (144-176px) déborde
@@ -280,24 +314,72 @@ export default function Header() {
               (Hermès, Dior). Le container reste fin, le wordmark respire. */}
           <div className="relative flex items-center justify-between h-16 md:h-20 lg:h-24">
 
-            {/* Navigation Desktop Gauche */}
-            <nav className="hidden lg:flex lg:flex-1 lg:basis-0 items-center gap-4 xl:gap-5 2xl:gap-6" onMouseLeave={handleMenuLeave}>
-              <NavLink to={localePath('/collections/heritage')} rawPath={rawPath} routeMatch="/collections/heritage" onMouseEnter={() => handleMenuEnter('heritage')} onClick={closeMenu}>
-                {t('nav.heritage')}
-              </NavLink>
-              <NavLink to={localePath('/collections/versailles')} rawPath={rawPath} routeMatch="/collections/versailles" onMouseEnter={() => handleMenuEnter('versailles')} onClick={closeMenu}>
-                {t('nav.versailles')}
-              </NavLink>
-              <NavLink to={localePath('/collections/isis')} rawPath={rawPath} routeMatch="/collections/isis" onMouseEnter={() => handleMenuEnter('isis')} onClick={closeMenu}>
-                {t('nav.isis')}
-              </NavLink>
-              <NavLink to={localePath('/shop')} rawPath={rawPath} routeMatch="/shop" onMouseEnter={() => handleMenuEnter(null)} onClick={closeMenu}>
-                {t('nav.explorer')}
-              </NavLink>
-              <NavLink to={localePath('/histoire')} rawPath={rawPath} routeMatch="/histoire" onMouseEnter={() => handleMenuEnter('histoire')} onClick={closeMenu}>
-                {t('nav.histoire')}
-              </NavLink>
-            </nav>
+            {/* Zone gauche desktop : hamburger + déroulant (tout en haut) OU nav horizontale (scrollé) */}
+            <div className="hidden lg:flex lg:flex-1 lg:basis-0 items-center relative" onMouseLeave={handleMenuLeave}>
+              {navHidden ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setDesktopNavOpen((v) => !v)}
+                    aria-label={t('header.menu', { defaultValue: 'Menu' })}
+                    aria-expanded={desktopNavOpen}
+                    className={`flex flex-col justify-center gap-[5px] w-6 h-5 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2 ${whiteLeft ? 'text-white' : 'text-dark-text'}`}
+                  >
+                    <span className="block h-[1.5px] w-full bg-current" />
+                    <span className="block h-[1.5px] w-2/3 bg-current" />
+                  </button>
+
+                  <AnimatePresence>
+                    {desktopNavOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute top-full left-0 mt-3 min-w-[200px] flex flex-col gap-1"
+                        role="menu"
+                      >
+                        {[
+                          { to: '/collections/heritage', label: t('nav.heritage') },
+                          { to: '/collections/versailles', label: t('nav.versailles') },
+                          { to: '/collections/isis', label: t('nav.isis') },
+                          { to: '/shop', label: t('nav.explorer') },
+                          { to: '/histoire', label: t('nav.histoire') },
+                        ].map((item) => (
+                          <LocaleLink
+                            key={item.to}
+                            to={item.to}
+                            onClick={() => { setDesktopNavOpen(false); closeMenu(); }}
+                            className={`block py-2.5 font-sans text-[11px] tracking-[0.22em] uppercase transition-colors duration-300 ${whiteLeft ? 'text-white [text-shadow:0_1px_16px_rgba(0,0,0,0.75)] hover:text-white' : 'text-dark-text [text-shadow:0_1px_14px_rgba(255,255,255,0.75)] hover:text-dark-text'}`}
+                            role="menuitem"
+                          >
+                            {item.label}
+                          </LocaleLink>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </>
+              ) : (
+                <nav className="flex items-center gap-4 xl:gap-5 2xl:gap-6">
+                  <NavLink to={localePath('/collections/heritage')} light={whiteLeft} rawPath={rawPath} routeMatch="/collections/heritage" onMouseEnter={() => handleMenuEnter('heritage')} onClick={closeMenu}>
+                    {t('nav.heritage')}
+                  </NavLink>
+                  <NavLink to={localePath('/collections/versailles')} light={whiteLeft} rawPath={rawPath} routeMatch="/collections/versailles" onMouseEnter={() => handleMenuEnter('versailles')} onClick={closeMenu}>
+                    {t('nav.versailles')}
+                  </NavLink>
+                  <NavLink to={localePath('/collections/isis')} light={whiteLeft} rawPath={rawPath} routeMatch="/collections/isis" onMouseEnter={() => handleMenuEnter('isis')} onClick={closeMenu}>
+                    {t('nav.isis')}
+                  </NavLink>
+                  <NavLink to={localePath('/shop')} light={whiteLeft} rawPath={rawPath} routeMatch="/shop" onMouseEnter={() => handleMenuEnter(null)} onClick={closeMenu}>
+                    {t('nav.explorer')}
+                  </NavLink>
+                  <NavLink to={localePath('/histoire')} light={whiteLeft} rawPath={rawPath} routeMatch="/histoire" onMouseEnter={() => handleMenuEnter('histoire')} onClick={closeMenu}>
+                    {t('nav.histoire')}
+                  </NavLink>
+                </nav>
+              )}
+            </div>
 
             {/* Wordmark — taille originale (h-36 → h-44 = 144-176px).
                 Déborde du header intentionnellement — le PNG transparent
@@ -305,42 +387,61 @@ export default function Header() {
                 légèrement pour rester discret. */}
             <LocaleLink
               to="/"
-              className="flex-shrink-0 mx-2 sm:mx-4 md:mx-6 lg:mx-auto group/logo"
+              className="relative inline-block flex-shrink-0 mx-2 sm:mx-4 md:mx-6 lg:mx-auto group/logo"
               aria-label="Renaissance Eyewear"
             >
-              <img
-                src={LOGO_DARK}
-                alt="Renaissance Eyewear"
-                loading="eager"
-                fetchpriority="high"
-                decoding="sync"
-                className={`w-auto object-contain transition-[height,opacity] duration-500 ease-out group-hover/logo:opacity-75 ${
-                  scrolled
-                    ? 'h-[7.36rem] md:h-[8.28rem] lg:h-[8.28rem] xl:h-[9.2rem]'
-                    : 'h-[8.28rem] md:h-[9.2rem] lg:h-[9.2rem] xl:h-[10.12rem]'
-                }`}
-              />
+              {(() => {
+                const sizeClass = scrolled
+                  ? 'h-[7.36rem] md:h-[8.28rem] lg:h-[8.28rem] xl:h-[9.2rem]'
+                  : 'h-[8.28rem] md:h-[9.2rem] lg:h-[9.2rem] xl:h-[10.12rem]';
+                return (
+                  <>
+                    {/* Moitié GAUCHE — couleur selon le fond de gauche */}
+                    <img
+                      src={whiteLeft ? LOGO_LIGHT : LOGO_DARK}
+                      alt="Renaissance Eyewear"
+                      loading="eager"
+                      fetchpriority="high"
+                      decoding="sync"
+                      className={`block w-auto object-contain transition-[height] duration-500 ease-out group-hover/logo:opacity-75 [clip-path:inset(0_50%_0_0)] ${sizeClass}`}
+                    />
+                    {/* Moitié DROITE — couleur selon le fond de droite (superposée) */}
+                    <img
+                      src={whiteRight ? LOGO_LIGHT : LOGO_DARK}
+                      alt=""
+                      aria-hidden="true"
+                      loading="eager"
+                      decoding="sync"
+                      className="absolute inset-0 w-full h-full object-contain group-hover/logo:opacity-75 [clip-path:inset(0_0_0_50%)]"
+                    />
+                  </>
+                );
+              })()}
             </LocaleLink>
 
             {/* Navigation Desktop Droite */}
             <div className="hidden lg:flex lg:flex-1 lg:basis-0 items-center gap-4 xl:gap-5 2xl:gap-6 justify-end">
-              <OpticianDropdown isOpen={opticiensOpen} onToggle={setOpticiensOpen} />
+              {/* « Où nos opticiens… » masqué tout en haut (n'apparaît qu'au scroll) */}
+              {!navHidden && (
+                <OpticianDropdown isOpen={opticiensOpen} onToggle={setOpticiensOpen} transparent={whiteRight} />
+              )}
               <LanguageSelector
                 isOpen={languageOpen}
                 onToggle={setLanguageOpen}
                 currentLang={locale.toUpperCase()}
                 languages={SUPPORTED_LANGUAGES}
                 onSelect={handleLanguageChange}
+                transparent={whiteRight}
               />
 
               {/* Séparateur fin vertical entre meta-nav et action icons */}
-              <div className="w-px h-4 bg-dark-text/[0.15]" aria-hidden="true" />
+              <div className={`w-px h-4 transition-colors duration-500 ${whiteRight ? 'bg-white/25' : 'bg-dark-text/[0.15]'}`} aria-hidden="true" />
 
-              <IconButton onClick={() => setSearchOpen(!searchOpen)} icon="search" />
-              <CartIcon itemCount={itemCount} localePath={localePath} />
+              <IconButton onClick={() => setSearchOpen(!searchOpen)} icon="search" light={whiteRight} />
+              <CartIcon itemCount={itemCount} localePath={localePath} light={whiteRight} />
               <LocaleLink
                 to="/suivi-commande"
-                className="text-dark-text/80 hover:text-bronze transition-colors duration-300"
+                className={`transition-colors duration-300 ${whiteRight ? 'text-white/85 hover:text-white' : 'text-dark-text/80 hover:text-bronze'}`}
                 title={t('header.orderTracking')}
                 aria-label={t('header.orderTracking')}
               >
@@ -351,11 +452,23 @@ export default function Header() {
             </div>
 
             {/* Navigation Mobile — Hamburger asymétrique 2 lignes */}
-            <div className="lg:hidden flex items-center gap-5">
-              <CartIcon itemCount={itemCount} localePath={localePath} />
+            <div className="lg:hidden flex items-center gap-4">
+              {/* FR + panier : masqués en mode hero ; le hamburger, lui, reste toujours accessible */}
+              <div className={`flex items-center gap-4 transition-opacity duration-500 ${navHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                <LanguageSelector
+                  isOpen={languageOpen}
+                  onToggle={setLanguageOpen}
+                  currentLang={locale.toUpperCase()}
+                  languages={SUPPORTED_LANGUAGES}
+                  onSelect={handleLanguageChange}
+                  hoverable={false}
+                  transparent={whiteRight}
+                />
+                <CartIcon itemCount={itemCount} localePath={localePath} light={whiteRight} />
+              </div>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="relative w-6 h-5 flex flex-col justify-center items-end gap-[6px] text-dark-text focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2"
+                className={`relative w-6 h-5 flex flex-col justify-center items-end gap-[6px] transition-colors duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2 ${whiteRight ? 'text-white' : 'text-dark-text'}`}
                 aria-label="Menu"
                 aria-expanded={mobileMenuOpen}
               >
@@ -418,7 +531,7 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      {/* Mega Menu - Isis (Coming Soon) */}
+      {/* Mega Menu - Isis */}
       <AnimatePresence>
         {activeMenu === 'isis' && (
           <MegaMenuWrapper onMouseLeave={handleMenuLeave} onMouseEnter={handleMenuContentEnter} onClose={closeMenu}>
@@ -568,6 +681,7 @@ function NavLink({
   onClick,
   rawPath,
   routeMatch,
+  light = false,
 }: {
   to: string;
   children: React.ReactNode;
@@ -575,8 +689,17 @@ function NavLink({
   onClick?: () => void;
   rawPath: string;
   routeMatch: string;
+  light?: boolean;
 }) {
   const isActive = rawPath === routeMatch || rawPath.startsWith(routeMatch + '/');
+
+  const colorClass = light
+    ? isActive
+      ? 'text-white'
+      : 'text-white/85 hover:text-white'
+    : isActive
+      ? 'text-bronze'
+      : 'text-dark-text hover:text-bronze';
 
   return (
     <Link
@@ -586,9 +709,7 @@ function NavLink({
       onPointerEnter={onMouseEnter}
       onMouseMove={onMouseEnter}
       onFocus={onMouseEnter}
-      className={`group relative whitespace-nowrap font-sans text-[9.35px] xl:text-[9.9px] 2xl:text-[10.45px] tracking-[0.22em] font-medium uppercase pb-1 transition-colors duration-300 ${
-        isActive ? 'text-bronze' : 'text-dark-text hover:text-bronze'
-      }`}
+      className={`group relative whitespace-nowrap font-sans text-[9.35px] xl:text-[9.9px] 2xl:text-[10.45px] tracking-[0.22em] font-medium uppercase pb-1 transition-colors duration-300 ${colorClass}`}
       aria-current={isActive ? 'page' : undefined}
     >
       {children}
@@ -663,7 +784,7 @@ function MegaMenuWrapper({
 }
 
 // Icône de bouton générique (recherche, etc.)
-function IconButton({ onClick, icon }: { onClick?: () => void; icon: 'search' }) {
+function IconButton({ onClick, icon, light = false }: { onClick?: () => void; icon: 'search'; light?: boolean }) {
   const icons = {
     search: (
       <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -676,7 +797,7 @@ function IconButton({ onClick, icon }: { onClick?: () => void; icon: 'search' })
     <button
       onClick={onClick}
       aria-label={icon === 'search' ? 'Rechercher' : icon}
-      className="text-dark-text hover:text-bronze transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2"
+      className={`transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2 ${light ? 'text-white/85 hover:text-white' : 'text-dark-text hover:text-bronze'}`}
     >
       {icons[icon]}
     </button>
@@ -684,12 +805,12 @@ function IconButton({ onClick, icon }: { onClick?: () => void; icon: 'search' })
 }
 
 // Icône panier — badge bronze carré, compteur items
-function CartIcon({ itemCount, localePath }: { itemCount: number; localePath: (path: string) => string }) {
+function CartIcon({ itemCount, localePath, light = false }: { itemCount: number; localePath: (path: string) => string; light?: boolean }) {
   return (
     <Link
       to={localePath('/cart')}
       aria-label={`Panier${itemCount > 0 ? ` (${itemCount} article${itemCount > 1 ? 's' : ''})` : ''}`}
-      className="relative text-dark-text hover:text-bronze transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2"
+      className={`relative transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2 ${light ? 'text-white/85 hover:text-white' : 'text-dark-text hover:text-bronze'}`}
     >
       <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />

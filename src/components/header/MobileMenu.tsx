@@ -195,7 +195,7 @@ export default function MobileMenu({
                   <span className="font-display text-xl text-white tracking-[-0.01em] group-hover:text-white/70 transition-colors duration-300">
                     {collection.label}
                   </span>
-                  <span className="font-sans text-[9px] text-white/20 font-light italic">
+                  <span className="font-sans text-[11px] text-bronze font-light italic">
                     {collection.subtitle}
                   </span>
                 </div>

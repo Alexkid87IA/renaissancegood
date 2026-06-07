@@ -18,6 +18,7 @@ export default function HistoireSection() {
       style={sectionStyle}
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[70] bg-[#000000] overflow-hidden"
       id="histoire"
+      data-header-theme="dark"
     >
       {/* DESKTOP */}
       <div className="h-full hidden md:flex flex-row">

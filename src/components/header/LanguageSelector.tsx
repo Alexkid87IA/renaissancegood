@@ -19,6 +19,8 @@ interface LanguageSelectorProps {
   languages: Language[];
   onSelect: (code: string) => void;
   transparent?: boolean;
+  /** Ouverture au survol (desktop). Sur tactile, passer false pour éviter le conflit hover/tap. */
+  hoverable?: boolean;
 }
 
 export default function LanguageSelector({
@@ -27,15 +29,16 @@ export default function LanguageSelector({
   currentLang,
   languages,
   onSelect,
-  transparent
+  transparent,
+  hoverable = true
 }: LanguageSelectorProps) {
   const { t } = useTranslation('common');
 
   return (
     <div
       className="relative inline-flex items-center"
-      onMouseEnter={() => onToggle(true)}
-      onMouseLeave={() => onToggle(false)}
+      onMouseEnter={hoverable ? () => onToggle(true) : undefined}
+      onMouseLeave={hoverable ? () => onToggle(false) : undefined}
     >
       <button
         type="button"
@@ -60,16 +63,11 @@ export default function LanguageSelector({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute top-full right-0 mt-3 bg-white border border-dark-text/[0.08] overflow-hidden min-w-[160px] shadow-lg shadow-dark-text/5"
+            className="absolute top-full left-0 mt-3 overflow-hidden min-w-[180px]"
             role="listbox"
             aria-label={t('header.language')}
           >
-            <div className="px-5 pt-4 pb-2">
-              <p className="font-sans text-[7px] tracking-[0.4em] uppercase text-dark-text/25 font-medium">
-                {t('header.language')}
-              </p>
-            </div>
-            <div className="pb-2">
+            <div className="flex flex-col gap-1">
               {languages.map((lang) => {
                 const isActive = currentLang === lang.code;
                 return (
@@ -82,23 +80,18 @@ export default function LanguageSelector({
                       onSelect(lang.code);
                       onToggle(false);
                     }}
-                    className={`w-full text-left px-5 py-2 flex items-center justify-between transition-all duration-300 group ${
-                      isActive
-                        ? 'text-dark-text'
-                        : 'text-dark-text/[0.35] hover:text-dark-text/70'
+                    className={`w-full text-left flex items-baseline gap-2.5 py-2 transition-colors duration-300 ${
+                      transparent
+                        ? `[text-shadow:0_1px_16px_rgba(0,0,0,0.75)] ${isActive ? 'text-white' : 'text-white/90 hover:text-white'}`
+                        : `[text-shadow:0_1px_14px_rgba(255,255,255,0.75)] ${isActive ? 'text-dark-text' : 'text-dark-text/85 hover:text-dark-text'}`
                     }`}
                   >
-                    <span className="flex items-baseline gap-2.5">
-                      <span className={`font-sans text-[9px] tracking-[0.3em] uppercase ${isActive ? 'font-bold' : 'font-medium'}`}>
-                        {lang.code}
-                      </span>
-                      <span className="font-display text-[13px] tracking-[-0.01em]">
-                        {lang.label}
-                      </span>
+                    <span className={`font-sans text-[9px] tracking-[0.3em] uppercase ${isActive ? 'font-bold' : 'font-medium'}`}>
+                      {lang.code}
                     </span>
-                    {isActive && (
-                      <span className="w-1 h-1 rounded-full bg-bronze" />
-                    )}
+                    <span className="font-display text-[14px] tracking-[-0.01em]">
+                      {lang.label}
+                    </span>
                   </button>
                 );
               })}

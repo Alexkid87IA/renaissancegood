@@ -12,6 +12,7 @@ export default function FondateursSection() {
   return (
     <motion.section
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-20 bg-beige overflow-hidden"
+      data-header-theme="light"
     >
       {/* DESKTOP */}
       <div className="h-full bg-beige hidden md:flex flex-row">

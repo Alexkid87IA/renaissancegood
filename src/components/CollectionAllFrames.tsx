@@ -29,8 +29,8 @@ export default function CollectionAllFrames() {
       data-indicator-theme="light"
     >
       {/* DESKTOP VERSION */}
-      <div className="h-full bg-white hidden md:flex flex-row">
-        <div className="w-full md:w-1/2 h-full relative overflow-hidden">
+      <div className="h-full bg-white hidden md:flex flex-row" data-header-theme="light">
+        <div className="w-full md:w-1/2 h-full relative overflow-hidden" data-header-theme="dark">
           <motion.img
             src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
             alt="Nos créations"
@@ -55,7 +55,7 @@ export default function CollectionAllFrames() {
       </div>
 
       {/* MOBILE — Éditorial luxe */}
-      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate}>
+      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate} data-header-theme="dark">
         <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
             src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"

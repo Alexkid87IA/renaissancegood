@@ -32,6 +32,7 @@ export default function FabricationSection() {
       style={sectionStyle}
       className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[80] bg-[#000000] overflow-hidden"
       id="fabrication"
+      data-header-theme="dark"
     >
       {/* DESKTOP */}
       <div className="relative h-full hidden md:block overflow-hidden">

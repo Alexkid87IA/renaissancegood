@@ -28,12 +28,13 @@ export default function CollectionVersailles() {
       data-indicator-theme="light"
     >
       {/* DESKTOP */}
-      <div className="h-full bg-beige hidden md:flex flex-row">
+      <div className="h-full bg-beige hidden md:flex flex-row" data-header-theme="light">
 
         {/* IMAGE SIDE (left) */}
         <div
           onClick={handleNavigate}
           className="w-full md:w-1/2 h-full cursor-pointer group relative overflow-hidden"
+          data-header-theme="dark"
         >
           <motion.img
             src="https://renaissance-cdn.b-cdn.net/VERSAILLES-COLLECTION.jpeg"
@@ -82,7 +83,7 @@ export default function CollectionVersailles() {
       </div>
 
       {/* MOBILE */}
-      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate}>
+      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate} data-header-theme="dark">
         <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
             src="https://renaissance-cdn.b-cdn.net/VERSAILLES-COLLECTION.jpeg"
