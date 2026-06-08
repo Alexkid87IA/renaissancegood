@@ -55,7 +55,6 @@ const CheckoutConfirmationPage = lazyWithRetry(() => import('./pages/CheckoutCon
 
 // Pages légales et service client (lazy loaded)
 const ConfidentialitePage = lazyWithRetry(() => import('./pages/ConfidentialitePage'));
-const RemboursementPage = lazyWithRetry(() => import('./pages/RemboursementPage'));
 const ExpeditionPage = lazyWithRetry(() => import('./pages/ExpeditionPage'));
 const CookiesPage = lazyWithRetry(() => import('./pages/CookiesPage'));
 const CGVPage = lazyWithRetry(() => import('./pages/CGVPage'));
@@ -120,8 +119,9 @@ function AppRoutes() {
       <Route path="confidentialite" element={<ConfidentialitePage />} />
       <Route path="cgv" element={<CGVPage />} />
       <Route path="cookies" element={<CookiesPage />} />
-      <Route path="remboursement" element={<RemboursementPage />} />
       {/* /expedition redirects handled by /livraison route above */}
+      {/* /remboursement : redondante (CGV Art.7 Rétractation + FAQ) → 301 vers /cgv */}
+      <Route path="remboursement" element={<Navigate to="/cgv" replace />} />
       <Route path="conditions-utilisation" element={<Navigate to="/cgv" replace />} />
 
       {/* 404 - Catch all */}
