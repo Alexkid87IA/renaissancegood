@@ -98,8 +98,11 @@ export default function SignatureSection() {
               {t('signatureSection.mobileDescription')}
             </p>
             <LocaleLink to="/shop" className="block">
-              <button className="w-full bg-white text-dark-text px-8 py-4 font-sans text-[9px] tracking-[0.25em] uppercase font-bold hover:bg-white/90 transition-all duration-300 active:scale-[0.98]">
-                {t('signatureSection.cta')}
+              <button className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[9px] tracking-[0.25em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]">
+                <span>{t('signatureSection.cta')}</span>
+                <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </button>
             </LocaleLink>
           </motion.div>

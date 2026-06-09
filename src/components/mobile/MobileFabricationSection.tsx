@@ -67,7 +67,7 @@ export default function MobileFabricationSection() {
               </p>
             </div>
             <div>
-              <p className="font-display text-3xl text-white font-bold">1849</p>
+              <p className="font-display text-3xl text-white font-bold">Italie</p>
               <p className="font-sans text-white/70 text-[10px] tracking-wide uppercase">
                 Acétate Mazzucchelli
               </p>

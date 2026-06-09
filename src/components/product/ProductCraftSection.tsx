@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const STATS = [
   { value: '18KT', label: 'Or véritable, plaqué' },
   { value: 'Titane', label: 'Léger, résistant' },
-  { value: '1849', label: 'Acétate Mazzucchelli' },
+  { value: 'Italie', label: 'Acétate Mazzucchelli' },
   { value: '2019', label: 'Année de fondation' },
 ];
 

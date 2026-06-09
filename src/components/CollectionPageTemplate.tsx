@@ -99,12 +99,12 @@ function VideoHero({ heroRef, config, prefix, imageY }: HeroProps) {
             <motion.div variants={fade}>
               <button
                 onClick={scrollToProducts}
-                className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-white"
+                className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]"
               >
-                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
-                  {t(`${prefix}.exploreCollection`)}
-                </span>
-                <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                <span>{t(`${prefix}.exploreCollection`)}</span>
+                <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </button>
             </motion.div>
           </motion.div>
@@ -204,12 +204,12 @@ function VideoHero({ heroRef, config, prefix, imageY }: HeroProps) {
             </p>
             <button
               onClick={scrollToProducts}
-              className="group relative overflow-hidden w-full border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white active:scale-[0.98]"
+              className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6] active:text-bronze"
             >
-              <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
-                {t(`${prefix}.exploreCollection`)}
-              </span>
-              <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              <span>{t(`${prefix}.exploreCollection`)}</span>
+              <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </button>
           </motion.div>
 
@@ -284,12 +284,12 @@ function ImageHero({ heroRef, config, prefix, imageY }: HeroProps) {
             <motion.div variants={fade}>
               <button
                 onClick={scrollToProducts}
-                className="group relative overflow-hidden border border-white/20 px-10 py-4 transition-all duration-500 hover:border-white"
+                className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]"
               >
-                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
-                  {t(`${prefix}.exploreCollection`)}
-                </span>
-                <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                <span>{t(`${prefix}.exploreCollection`)}</span>
+                <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </button>
             </motion.div>
           </motion.div>
@@ -383,12 +383,12 @@ function ImageHero({ heroRef, config, prefix, imageY }: HeroProps) {
             </p>
             <button
               onClick={scrollToProducts}
-              className="group relative overflow-hidden w-full border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white active:scale-[0.98]"
+              className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6] active:text-bronze"
             >
-              <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
-                {t(`${prefix}.exploreCollection`)}
-              </span>
-              <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              <span>{t(`${prefix}.exploreCollection`)}</span>
+              <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </button>
           </motion.div>
 

@@ -17,7 +17,7 @@ export default function FabricationSection() {
   const STATS = [
     { value: '18KT', label: t('fabrication.stat1') },
     { value: 'Titane', label: t('fabrication.stat2') },
-    { value: '1849', label: t('fabrication.stat3') },
+    { value: 'Italie', label: t('fabrication.stat3') },
     { value: '2019', label: t('fabrication.stat4') },
   ];
   const DETAILS = [

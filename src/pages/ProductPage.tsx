@@ -372,7 +372,7 @@ export default function ProductPage() {
   const productSeo = product ? (
     <SEO
       title={product.modelName || product.name}
-      description={product.description?.substring(0, 160) || `Découvrez ${product.modelName || product.name}, une création d'exception de la collection RENAISSANCE Paris.`}
+      description={product.description?.substring(0, 160) || `Monture ${product.modelName || product.name}, titane plaqué or 18KT. Numéro unique gravé au pont. Renaissance Eyewear.`}
       image={mainImageForSEO}
       url={`/product/${id}`}
       type="product"
@@ -384,7 +384,7 @@ export default function ProductPage() {
         image: mainImageForSEO,
         availability: product.variants?.[0]?.availableForSale ? 'InStock' : 'OutOfStock',
         sku: id || '',
-        brand: 'RENAISSANCE Paris',
+        brand: 'Renaissance Eyewear',
       }}
     />
   ) : null;

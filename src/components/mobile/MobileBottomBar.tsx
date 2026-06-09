@@ -48,7 +48,7 @@ export default function MobileBottomBar({ selectedVariant, productPrice, isOutOf
           <div className="flex items-center justify-center gap-4 mb-3">
             <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">Livraison offerte</span>
             <span className="w-3 h-px bg-dark-text/10" />
-            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">Garantie 2 ans</span>
+            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">Garantie 3 ans</span>
             <span className="w-3 h-px bg-dark-text/10" />
             <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">Retour 14j</span>
           </div>

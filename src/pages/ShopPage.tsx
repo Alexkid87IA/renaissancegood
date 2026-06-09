@@ -170,20 +170,26 @@ export default function ShopPage() {
               <span className="font-light italic">{t('heroSubtitle')}</span>
             </h1>
             <p className="text-white text-sm mb-6 leading-relaxed">{t('heroDescription')}</p>
-            <div className="flex gap-4">
+            <div className="flex gap-10">
               <button
                 type="button"
                 onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-white px-8 py-4 font-sans text-xs tracking-[0.2em] uppercase text-dark-text font-bold hover:bg-white/90 transition-colors"
+                className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[10px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]"
               >
-                {t('heroExplore')}
+                <span>{t('heroExplore')}</span>
+                <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </button>
               <button
                 type="button"
                 onClick={() => navigate('/opticiens')}
-                className="border-2 border-white px-8 py-4 font-sans text-xs tracking-[0.2em] uppercase text-white font-bold hover:bg-white hover:text-dark-text transition-colors"
+                className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[10px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]"
               >
-                {t('heroFindOptician')}
+                <span>{t('heroFindOptician')}</span>
+                <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </button>
             </div>
           </div>

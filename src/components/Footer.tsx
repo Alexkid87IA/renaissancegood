@@ -242,7 +242,7 @@ export default function Footer() {
               {[
                 { number: '250+', label: t('trust.opticians'), description: t('trust.editionsDesc') },
                 { number: '48h', label: t('trust.delivery'), description: t('trust.deliveryDesc') },
-                { number: '2 ans', label: t('trust.warranty'), description: t('trust.warrantyDesc') },
+                { number: '3 ans', label: t('trust.warranty'), description: t('trust.warrantyDesc') },
               ].map((item, index) => (
                 <motion.div
                   key={item.label}
@@ -497,7 +497,7 @@ export default function Footer() {
             {[
               { number: '250+', label: t('trust.opticians') },
               { number: '48h', label: t('trust.delivery') },
-              { number: '2 ans', label: t('trust.warranty') },
+              { number: '3 ans', label: t('trust.warranty') },
             ].map((item, index) => (
               <div key={item.label} className="flex-1 text-center">
                 {index > 0 && <div className="sr-only" />}
