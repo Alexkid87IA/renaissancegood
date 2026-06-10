@@ -71,8 +71,48 @@
     "fab4Title": "Un cristal en la punta de la patilla.",
     "fab4Desc": "Conocido solo por quien la lleva.",
     "fab5Title": "Un número grabado en el puente.",
-    "fab5Desc": "No una edición limitada. Una identidad."
+    "fab5Desc": "No una edición limitada. Una identidad.",
+    "material": "Material",
+    "materialTitanium": "Titanio chapado en oro 18KT",
+    "materialAcetate": "Acetato Mazzucchelli",
+    "collectionTitle": "Colección {{name}}",
+    "tryInStore": "Probar en tienda",
+    "colorisNumber": "Color {{number}}"
   },
+  "mobile": {
+    "back": "Atrás",
+    "share": "Compartir",
+    "shareText": "Descubre {{name}} en Renaissance",
+    "lensWidthShort": "Ancho de lentes",
+    "templesShort": "Patillas",
+    "sunOnlyTitle": "Solo de sol",
+    "sunOnlyDesc": "No se puede graduar",
+    "adaptableDesc": "Compatible con lentes graduadas",
+    "tempUnavailable": "Temporalmente no disponible",
+    "frameAndLenses": "Montura y lentes",
+    "frame": "Montura",
+    "lenses": "Lentes",
+    "unavailable": "No disponible",
+    "added": "AÑADIDO",
+    "addToCart": "AÑADIR AL CARRITO"
+  },
+  "trust": {
+    "freeShipping": "Envío gratis",
+    "warranty3y": "Garantía 3 años",
+    "returns14d": "Devolución 14 días"
+  },
+  "category": {
+    "sun": "Sol",
+    "optical": "Óptica"
+  },
+  "gallery": {
+    "viewAlt": "{{name}} - vista {{number}}",
+    "thumbAlt": "Miniatura {{number}}",
+    "modelThumbAlt": "{{name}} - miniatura {{number}}",
+    "imageLabel": "Imagen {{number}}",
+    "goToImage": "Ir a la imagen {{number}}"
+  },
+  "seoDescription": "Montura {{name}}, titanio chapado en oro 18KT. Número único grabado en el puente. Renaissance Eyewear.",
   "bottomBar": {
     "viewProduct": "Ver el producto",
     "adding": "AÑADIENDO...",

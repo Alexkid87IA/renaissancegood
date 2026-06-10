@@ -71,8 +71,48 @@
     "fab4Title": "Кристалл на конце заушника.",
     "fab4Desc": "Известен лишь владельцу.",
     "fab5Title": "Серийный номер на переносице.",
-    "fab5Desc": "Не лимитированная серия. Личность."
+    "fab5Desc": "Не лимитированная серия. Личность.",
+    "material": "Материал",
+    "materialTitanium": "Титан с покрытием золотом 18KT",
+    "materialAcetate": "Ацетат Mazzucchelli",
+    "collectionTitle": "Коллекция {{name}}",
+    "tryInStore": "Примерить в оптике",
+    "colorisNumber": "Расцветка {{number}}"
   },
+  "mobile": {
+    "back": "Назад",
+    "share": "Поделиться",
+    "shareText": "Открой для себя {{name}} у Renaissance",
+    "lensWidthShort": "Ширина линз",
+    "templesShort": "Заушники",
+    "sunOnlyTitle": "Только солнцезащитная",
+    "sunOnlyDesc": "Нельзя поставить рецепт",
+    "adaptableDesc": "Можно поставить линзы по рецепту",
+    "tempUnavailable": "Временно недоступно",
+    "frameAndLenses": "Оправа и линзы",
+    "frame": "Оправа",
+    "lenses": "Линзы",
+    "unavailable": "Недоступно",
+    "added": "ДОБАВЛЕНО",
+    "addToCart": "ДОБАВИТЬ В КОРЗИНУ"
+  },
+  "trust": {
+    "freeShipping": "Доставка бесплатно",
+    "warranty3y": "Гарантия 3 года",
+    "returns14d": "Возврат 14 дней"
+  },
+  "category": {
+    "sun": "Солнце",
+    "optical": "Оптика"
+  },
+  "gallery": {
+    "viewAlt": "{{name}} - вид {{number}}",
+    "thumbAlt": "Миниатюра {{number}}",
+    "modelThumbAlt": "{{name}} - миниатюра {{number}}",
+    "imageLabel": "Изображение {{number}}",
+    "goToImage": "К изображению {{number}}"
+  },
+  "seoDescription": "Оправа {{name}}, титан с покрытием золотом 18KT. Уникальный номер выгравирован на переносице. Renaissance Eyewear.",
   "bottomBar": {
     "viewProduct": "Смотреть товар",
     "adding": "ДОБАВЛЕНИЕ...",

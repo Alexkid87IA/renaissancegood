@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Minus, Plus, ArrowRight } from 'lucide-react';
 import { useCart } from '../../contexts/CartContext';
+import { useLocale } from '../../contexts/LocaleContext';
 import { getColorFromName } from '../../lib/colorMap';
 import { createSanitizedMarkup } from '../../lib/sanitize';
 import { ColorVariant, getColorSwatchStyle } from '../../lib/productGrouping';
@@ -90,7 +91,9 @@ export default function ProductSidebar({
 
   // Éditorial interne : si le modèle a une fiche (productEditorial.ts), on rend
   // la structure « maquette » ; sinon on retombe sur l'ancien rendu plus bas.
-  const editorial = product.modelName ? getModelEditorial(product.modelName) : null;
+  // La copy sort dans la langue du site (transcréations préparées, repli FR).
+  const { locale } = useLocale();
+  const editorial = product.modelName ? getModelEditorial(product.modelName, locale) : null;
 
   const handleAddToCart = async () => {
     if (!selectedVariant || !selectedVariant.availableForSale) {
@@ -113,15 +116,15 @@ export default function ProductSidebar({
   if (editorial) {
     const { model, collection, symbole, proof } = editorial;
     const matiereLine =
-      (model.matiere === 'titane' ? 'Titane plaqué or 18KT' : 'Acétate Mazzucchelli') +
-      (model.adaptable ? ' · Adaptable à votre vue' : '');
+      (model.matiere === 'titane' ? t('sidebar.materialTitanium') : t('sidebar.materialAcetate')) +
+      (model.adaptable ? ` · ${t('sidebar.adaptable')}` : '');
 
     return (
       <div>
         <div className="p-8 laptop:p-10 xl:p-12">
           {/* Chapitre / collection */}
           <p className="font-sans text-[10px] tracking-[0.28em] uppercase text-dark-text/45 mb-3">
-            Collection {collection.nom}
+            {t('sidebar.collectionTitle', { name: collection.nom })}
           </p>
 
           {/* Titre : chiffre romain + arabe, même taille et même typo */}
@@ -145,7 +148,7 @@ export default function ProductSidebar({
                 to="/opticiens"
                 className="group inline-flex items-center gap-2 border-b border-dark-text/40 pb-1.5 font-sans text-[11px] tracking-[0.24em] uppercase text-dark-text hover:border-dark-text transition-colors duration-300"
               >
-                Essayer en boutique
+                {t('sidebar.tryInStore')}
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </div>
@@ -170,7 +173,7 @@ export default function ProductSidebar({
                       key={variant.handle}
                       onClick={() => onColorVariantChange(index)}
                       className={`group min-w-0 transition-all duration-300 ${isSelected ? '' : 'opacity-70 hover:opacity-100'}`}
-                      title={`Coloris ${index + 1}`}
+                      title={t('sidebar.colorisNumber', { number: index + 1 })}
                     >
                       <div className={`w-full aspect-[4/3] overflow-hidden bg-[#f5f4f0] transition-all duration-300 ${
                         isSelected ? 'ring-2 ring-dark-text ring-offset-2' : 'ring-1 ring-dark-text/10 hover:ring-dark-text/30'
@@ -178,7 +181,7 @@ export default function ProductSidebar({
                         {variant.thumbnail ? (
                           <img
                             src={resizeShopifyImage(variant.thumbnail, 520, variant.product?.title, 0)}
-                            alt={`Coloris ${index + 1}`}
+                            alt={t('sidebar.colorisNumber', { number: index + 1 })}
                             className="w-full h-full object-contain p-2.5"
                             loading={isSelected ? 'eager' : 'lazy'}
                             decoding="async"
@@ -190,7 +193,7 @@ export default function ProductSidebar({
                       <p className={`font-sans text-[8px] tracking-[0.15em] uppercase text-center mt-2 transition-colors duration-300 ${
                         isSelected ? 'text-dark-text font-bold' : 'text-dark-text/45'
                       }`}>
-                        Coloris {index + 1}
+                        {t('sidebar.colorisNumber', { number: index + 1 })}
                       </p>
                     </button>
                   );
@@ -214,29 +217,29 @@ export default function ProductSidebar({
             </p>
           </EditorialAccordion>
 
-          <EditorialAccordion title="Dimensions">
+          <EditorialAccordion title={t('sidebar.dimensions')}>
             <p className="font-sans text-[13px] text-dark-text/70 mb-4">{model.morphologie}</p>
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center p-3 bg-neutral-50 rounded">
-                <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">Verre</p>
+                <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">{t('sidebar.lens')}</p>
                 <p className="font-sans text-sm font-medium text-dark-text">{model.dimensions.verre}mm</p>
               </div>
               <div className="text-center p-3 bg-neutral-50 rounded">
-                <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">Pont</p>
+                <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">{t('sidebar.bridge')}</p>
                 <p className="font-sans text-sm font-medium text-dark-text">{model.dimensions.pont}mm</p>
               </div>
               <div className="text-center p-3 bg-neutral-50 rounded">
-                <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">Branche</p>
+                <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">{t('sidebar.temple')}</p>
                 <p className="font-sans text-sm font-medium text-dark-text">{model.dimensions.branche}mm</p>
               </div>
             </div>
           </EditorialAccordion>
 
-          <EditorialAccordion title="Matière">
+          <EditorialAccordion title={t('sidebar.material')}>
             <p className="font-sans text-[14px] text-dark-text/80 leading-[1.8]">{matiereLine}</p>
           </EditorialAccordion>
 
-          <EditorialAccordion title={`Collection ${collection.nom}`}>
+          <EditorialAccordion title={t('sidebar.collectionTitle', { name: collection.nom })}>
             {collection.recit ? (
               <p className="font-sans text-[14px] text-dark-text/80 leading-[1.8]">{collection.recit}</p>
             ) : null}

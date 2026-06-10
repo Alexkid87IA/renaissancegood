@@ -1,12 +1,18 @@
 import { useState, useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { resizeShopifyImage } from '../../lib/imageUtils';
 
 interface MobileImageGalleryProps {
   images: string[];
   productName: string;
+  /** Titre Shopify brut (« Renaissance XXXIV Colori 1 ») : sert à la résolution
+   *  CDN Bunny dans resizeShopifyImage, comme sur desktop (ProductPage.tsx).
+   *  productName (traduit, sans « Colori ») ne matche pas titleToBunnyUrl. */
+  shopifyTitle: string;
 }
 
-export default function MobileImageGallery({ images, productName }: MobileImageGalleryProps) {
+export default function MobileImageGallery({ images, productName, shopifyTitle }: MobileImageGalleryProps) {
+  const { t } = useTranslation('product');
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -42,8 +48,8 @@ export default function MobileImageGallery({ images, productName }: MobileImageG
         {images.map((image, index) => (
           <img
             key={index}
-            src={resizeShopifyImage(image, 800, productName, index)}
-            alt={`${productName} - vue ${index + 1}`}
+            src={resizeShopifyImage(image, 800, shopifyTitle, index)}
+            alt={t('gallery.viewAlt', { name: productName, number: index + 1 })}
             className={`absolute inset-0 w-full h-full object-cover select-none transition-opacity duration-300 ease-out ${
               index === currentIndex ? 'opacity-100' : 'opacity-0'
             }`}
@@ -65,7 +71,7 @@ export default function MobileImageGallery({ images, productName }: MobileImageG
                   ? 'bg-dark-text w-6'
                   : 'bg-dark-text/25 w-2'
               }`}
-              aria-label={`Aller à l'image ${index + 1}`}
+              aria-label={t('gallery.goToImage', { number: index + 1 })}
             />
           ))}
         </div>
@@ -92,8 +98,8 @@ export default function MobileImageGallery({ images, productName }: MobileImageG
               }`}
             >
               <img
-                src={resizeShopifyImage(image, 100, productName, index)}
-                alt={`Miniature ${index + 1}`}
+                src={resizeShopifyImage(image, 100, shopifyTitle, index)}
+                alt={t('gallery.thumbAlt', { number: index + 1 })}
                 className="w-full h-full object-contain bg-[#f5f4f0] p-1"
                 loading="lazy"
                 decoding="async"

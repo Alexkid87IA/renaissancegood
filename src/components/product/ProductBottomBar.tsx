@@ -73,7 +73,7 @@ export default function ProductBottomBar({ product, selectedColorIndex, visible 
                 <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-lg border border-dark-text/10 shadow-sm overflow-hidden bg-neutral-50 flex-shrink-0">
                   {thumbnailUrl ? (
                     <img
-                      src={resizeShopifyImage(thumbnailUrl, 100)}
+                      src={resizeShopifyImage(thumbnailUrl, 100, product.name, 0)}
                       alt={product.modelName || product.name}
                       className="w-full h-full object-contain p-1.5"
                       loading="lazy"

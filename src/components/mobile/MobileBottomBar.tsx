@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../../contexts/CartContext';
 import { ShoppingBag, Check } from 'lucide-react';
@@ -11,12 +12,13 @@ interface MobileBottomBarProps {
 }
 
 export default function MobileBottomBar({ selectedVariant, productPrice, isOutOfStock = false }: MobileBottomBarProps) {
+  const { t } = useTranslation('product');
   const [addedToCart, setAddedToCart] = useState(false);
   const { addToCart, isLoading } = useCart();
 
   const handleAddToCart = async () => {
     if (!selectedVariant || !selectedVariant.availableForSale) {
-      alert('Ce produit n\'est pas disponible');
+      alert(t('sidebar.productUnavailable'));
       return;
     }
 
@@ -46,18 +48,18 @@ export default function MobileBottomBar({ selectedVariant, productPrice, isOutOf
 
           {/* Réassurance top */}
           <div className="flex items-center justify-center gap-4 mb-3">
-            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">Livraison offerte</span>
+            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">{t('trust.freeShipping')}</span>
             <span className="w-3 h-px bg-dark-text/10" />
-            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">Garantie 3 ans</span>
+            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">{t('trust.warranty3y')}</span>
             <span className="w-3 h-px bg-dark-text/10" />
-            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">Retour 14j</span>
+            <span className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.48] uppercase">{t('trust.returns14d')}</span>
           </div>
 
           {/* Prix + CTA */}
           <div className="flex items-center gap-4">
             {/* Price block */}
             <div className="flex-shrink-0 min-w-[80px]">
-              <p className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.35] uppercase mb-0.5">Prix</p>
+              <p className="font-sans text-[7px] tracking-[0.2em] text-dark-text/[0.35] uppercase mb-0.5">{t('price')}</p>
               <p className={`font-display text-xl font-bold tracking-tight ${isOutOfStock ? 'text-dark-text/25 line-through' : 'text-dark-text'}`}>
                 {selectedVariant?.price || productPrice}
               </p>
@@ -67,7 +69,7 @@ export default function MobileBottomBar({ selectedVariant, productPrice, isOutOf
             {isOutOfStock ? (
               <div className="flex-1 h-[52px] border border-dark-text/10 flex items-center justify-center">
                 <span className="font-sans text-[9px] tracking-[0.3em] font-medium text-dark-text/25 uppercase">
-                  Indisponible
+                  {t('mobile.unavailable')}
                 </span>
               </div>
             ) : (
@@ -89,7 +91,7 @@ export default function MobileBottomBar({ selectedVariant, productPrice, isOutOf
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                     >
-                      AJOUT...
+                      {t('sidebar.adding')}
                     </motion.span>
                   ) : addedToCart ? (
                     <motion.span
@@ -100,7 +102,7 @@ export default function MobileBottomBar({ selectedVariant, productPrice, isOutOf
                       className="flex items-center gap-2"
                     >
                       <Check className="w-3.5 h-3.5" />
-                      AJOUTÉ
+                      {t('mobile.added')}
                     </motion.span>
                   ) : (
                     <motion.span
@@ -111,7 +113,7 @@ export default function MobileBottomBar({ selectedVariant, productPrice, isOutOf
                       className="flex items-center gap-2.5"
                     >
                       <ShoppingBag className="w-3.5 h-3.5" />
-                      AJOUTER AU PANIER
+                      {t('mobile.addToCart')}
                     </motion.span>
                   )}
                 </AnimatePresence>

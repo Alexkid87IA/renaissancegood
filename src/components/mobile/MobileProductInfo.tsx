@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Product } from '../../types/product';
 
 interface MobileProductInfoProps {
@@ -12,6 +13,7 @@ export default function MobileProductInfo({
   selectedColorIndex,
   onColorChange
 }: MobileProductInfoProps) {
+  const { t } = useTranslation('product');
 
   const handleColorChange = (index: number) => {
     onColorChange(index);
@@ -52,7 +54,7 @@ export default function MobileProductInfo({
         <div className="mb-2">
           <div className="flex items-center justify-between mb-3">
             <span className="font-sans text-[9px] tracking-[0.3em] font-medium text-dark-text/40 uppercase">
-              Couleur
+              {t('color')}
             </span>
             <span className="font-sans text-[11px] text-dark-text/50 font-light">
               {product.colors[selectedColorIndex]?.name || ''}

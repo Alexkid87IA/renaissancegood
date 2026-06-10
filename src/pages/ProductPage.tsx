@@ -14,7 +14,6 @@ import { findRelatedColorVariants, getModelName, ColorVariant } from '../lib/pro
 import ProductSidebar from '../components/product/ProductSidebar';
 import ProductBottomBar from '../components/product/ProductBottomBar';
 import RelatedProducts from '../components/product/RelatedProducts';
-import ColorVariantsSection from '../components/product/ColorVariantsSection';
 import ProductPageMobile from '../components/mobile/ProductPageMobile';
 import { Product as ShopifyProductType } from '../components/ProductCard';
 import SEO from '../components/SEO';
@@ -380,7 +379,7 @@ export default function ProductPage() {
   const productSeo = product ? (
     <SEO
       title={product.modelName || product.name}
-      description={product.description?.substring(0, 160) || `Monture ${product.modelName || product.name}, titane plaqué or 18KT. Numéro unique gravé au pont. Renaissance Eyewear.`}
+      description={product.description?.substring(0, 160) || t('seoDescription', { name: product.modelName || product.name })}
       image={mainImageForSEO}
       url={`/product/${id}`}
       type="product"
@@ -448,7 +447,7 @@ export default function ProductPage() {
               >
                 <img
                   src={resizeShopifyImage(imageUrl, 1200, product.name, index)}
-                  alt={`${product.modelName} - vue ${index + 1}`}
+                  alt={t('gallery.viewAlt', { name: product.modelName, number: index + 1 })}
                   className="w-full block"
                   loading={index === 0 ? 'eager' : 'lazy'}
                   fetchpriority={index === 0 ? 'high' : 'auto'}
@@ -477,11 +476,11 @@ export default function ProductPage() {
                       ? 'ring-[1.5px] ring-dark-text ring-offset-1 w-11 h-11'
                       : 'opacity-50 hover:opacity-80 w-9 h-9'
                   }`}
-                  aria-label={`Image ${thumbIndex + 1}`}
+                  aria-label={t('gallery.imageLabel', { number: thumbIndex + 1 })}
                 >
                   <img
                     src={resizeShopifyImage(thumbUrl, 100, product.name, thumbIndex)}
-                    alt={`${product.modelName} - miniature ${thumbIndex + 1}`}
+                    alt={t('gallery.modelThumbAlt', { name: product.modelName, number: thumbIndex + 1 })}
                     className="w-full h-full object-contain bg-[#f5f4f0] p-1"
                     loading="lazy"
                     decoding="async"
@@ -506,14 +505,6 @@ export default function ProductPage() {
           />
         </div>
       </div>
-
-      {/* Section autres coloris */}
-      <ColorVariantsSection
-        colorVariants={colorVariants}
-        selectedColorVariantIndex={selectedColorVariantIndex}
-        onColorVariantChange={handleColorVariantChange}
-        currentHandle={id}
-      />
 
       {/* Related products */}
       <RelatedProducts currentProductId={product.id} limit={6} />

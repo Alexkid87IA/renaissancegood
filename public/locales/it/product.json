@@ -71,8 +71,48 @@
     "fab4Title": "Un cristallo in punta d'asta.",
     "fab4Desc": "Noto solo a chi porta.",
     "fab5Title": "Un numero inciso sul ponte.",
-    "fab5Desc": "Non un'edizione limitata. Un'identità."
+    "fab5Desc": "Non un'edizione limitata. Un'identità.",
+    "material": "Materiale",
+    "materialTitanium": "Titanio placcato oro 18KT",
+    "materialAcetate": "Acetato Mazzucchelli",
+    "collectionTitle": "Collezione {{name}}",
+    "tryInStore": "Prova in negozio",
+    "colorisNumber": "Coloris {{number}}"
   },
+  "mobile": {
+    "back": "Indietro",
+    "share": "Condividi",
+    "shareText": "Scopri {{name}} da Renaissance",
+    "lensWidthShort": "Larghezza lenti",
+    "templesShort": "Aste",
+    "sunOnlyTitle": "Solo da sole",
+    "sunOnlyDesc": "Non adattabile alla tua vista",
+    "adaptableDesc": "Compatibile con lenti graduate",
+    "tempUnavailable": "Temporaneamente non disponibile",
+    "frameAndLenses": "Montatura e lenti",
+    "frame": "Montatura",
+    "lenses": "Lenti",
+    "unavailable": "Non disponibile",
+    "added": "AGGIUNTO",
+    "addToCart": "AGGIUNGI AL CARRELLO"
+  },
+  "trust": {
+    "freeShipping": "Spedizione gratuita",
+    "warranty3y": "Garanzia 3 anni",
+    "returns14d": "Reso 14 giorni"
+  },
+  "category": {
+    "sun": "Sole",
+    "optical": "Ottica"
+  },
+  "gallery": {
+    "viewAlt": "{{name}} - vista {{number}}",
+    "thumbAlt": "Miniatura {{number}}",
+    "modelThumbAlt": "{{name}} - miniatura {{number}}",
+    "imageLabel": "Immagine {{number}}",
+    "goToImage": "Vai all'immagine {{number}}"
+  },
+  "seoDescription": "Montatura {{name}}, titanio placcato oro 18KT. Numero unico inciso sul ponte. Renaissance Eyewear.",
   "bottomBar": {
     "viewProduct": "Vedi il prodotto",
     "adding": "AGGIUNTA...",

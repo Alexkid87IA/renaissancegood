@@ -71,8 +71,48 @@
     "fab4Title": "Ein Kristall an der Bügelspitze.",
     "fab4Desc": "Nur dem Träger bekannt.",
     "fab5Title": "Eine auf dem Steg gravierte Nummer.",
-    "fab5Desc": "Keine limitierte Auflage. Eine Identität."
+    "fab5Desc": "Keine limitierte Auflage. Eine Identität.",
+    "material": "Material",
+    "materialTitanium": "Titan mit 18KT-Vergoldung",
+    "materialAcetate": "Mazzucchelli-Acetat",
+    "collectionTitle": "Kollektion {{name}}",
+    "tryInStore": "Im Geschäft anprobieren",
+    "colorisNumber": "Farbe {{number}}"
   },
+  "mobile": {
+    "back": "Zurück",
+    "share": "Teilen",
+    "shareText": "Entdecke {{name}} bei Renaissance",
+    "lensWidthShort": "Glasbreite",
+    "templesShort": "Bügel",
+    "sunOnlyTitle": "Nur als Sonnenbrille",
+    "sunOnlyDesc": "Nicht mit deiner Sehstärke machbar",
+    "adaptableDesc": "Mit Korrektionsgläsern machbar",
+    "tempUnavailable": "Vorübergehend nicht verfügbar",
+    "frameAndLenses": "Fassung & Gläser",
+    "frame": "Fassung",
+    "lenses": "Gläser",
+    "unavailable": "Nicht verfügbar",
+    "added": "HINZUGEFÜGT",
+    "addToCart": "IN DEN WARENKORB"
+  },
+  "trust": {
+    "freeShipping": "Versandkostenfrei",
+    "warranty3y": "3 Jahre Garantie",
+    "returns14d": "14 Tage Rückgabe"
+  },
+  "category": {
+    "sun": "Sonne",
+    "optical": "Optik"
+  },
+  "gallery": {
+    "viewAlt": "{{name}} - Ansicht {{number}}",
+    "thumbAlt": "Vorschaubild {{number}}",
+    "modelThumbAlt": "{{name}} - Vorschaubild {{number}}",
+    "imageLabel": "Bild {{number}}",
+    "goToImage": "Zu Bild {{number}}"
+  },
+  "seoDescription": "Fassung {{name}}, Titan mit 18KT-Vergoldung. Einmalige Nummer, auf dem Steg graviert. Renaissance Eyewear.",
   "bottomBar": {
     "viewProduct": "Produkt ansehen",
     "adding": "WIRD HINZUGEFÜGT...",

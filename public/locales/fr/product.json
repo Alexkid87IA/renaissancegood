@@ -71,8 +71,48 @@
     "fab4Title": "Un cristal en bout de branche.",
     "fab4Desc": "Connu du seul porteur.",
     "fab5Title": "Un numéro gravé au pont.",
-    "fab5Desc": "Pas une édition limitée. Une identité."
+    "fab5Desc": "Pas une édition limitée. Une identité.",
+    "material": "Matière",
+    "materialTitanium": "Titane plaqué or 18KT",
+    "materialAcetate": "Acétate Mazzucchelli",
+    "collectionTitle": "Collection {{name}}",
+    "tryInStore": "Essayer en boutique",
+    "colorisNumber": "Coloris {{number}}"
   },
+  "mobile": {
+    "back": "Retour",
+    "share": "Partager",
+    "shareText": "Découvrez {{name}} sur Renaissance",
+    "lensWidthShort": "Largeur verres",
+    "templesShort": "Branches",
+    "sunOnlyTitle": "Solaire uniquement",
+    "sunOnlyDesc": "Non adaptable en verres correcteurs",
+    "adaptableDesc": "Compatible verres correcteurs",
+    "tempUnavailable": "Temporairement indisponible",
+    "frameAndLenses": "Cadre & verres",
+    "frame": "Cadre",
+    "lenses": "Verres",
+    "unavailable": "Indisponible",
+    "added": "AJOUTÉ",
+    "addToCart": "AJOUTER AU PANIER"
+  },
+  "trust": {
+    "freeShipping": "Livraison offerte",
+    "warranty3y": "Garantie 3 ans",
+    "returns14d": "Retour 14j"
+  },
+  "category": {
+    "sun": "Solaire",
+    "optical": "Optique"
+  },
+  "gallery": {
+    "viewAlt": "{{name}} - vue {{number}}",
+    "thumbAlt": "Miniature {{number}}",
+    "modelThumbAlt": "{{name}} - miniature {{number}}",
+    "imageLabel": "Image {{number}}",
+    "goToImage": "Aller à l'image {{number}}"
+  },
+  "seoDescription": "Monture {{name}}, titane plaqué or 18KT. Numéro unique gravé au pont. Renaissance Eyewear.",
   "bottomBar": {
     "viewProduct": "Voir le produit",
     "adding": "AJOUT...",

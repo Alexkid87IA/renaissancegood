@@ -71,8 +71,48 @@
     "fab4Title": "A crystal at the temple tip.",
     "fab4Desc": "Known to the wearer alone.",
     "fab5Title": "A number engraved on the bridge.",
-    "fab5Desc": "Not a limited edition. An identity."
+    "fab5Desc": "Not a limited edition. An identity.",
+    "material": "Material",
+    "materialTitanium": "18KT gold-plated titanium",
+    "materialAcetate": "Mazzucchelli acetate",
+    "collectionTitle": "{{name}} collection",
+    "tryInStore": "Try in store",
+    "colorisNumber": "Color {{number}}"
   },
+  "mobile": {
+    "back": "Back",
+    "share": "Share",
+    "shareText": "Discover {{name}} at Renaissance",
+    "lensWidthShort": "Lens width",
+    "templesShort": "Temples",
+    "sunOnlyTitle": "Sun only",
+    "sunOnlyDesc": "Cannot take a prescription",
+    "adaptableDesc": "Works with prescription lenses",
+    "tempUnavailable": "Temporarily unavailable",
+    "frameAndLenses": "Frame & lenses",
+    "frame": "Frame",
+    "lenses": "Lenses",
+    "unavailable": "Unavailable",
+    "added": "ADDED",
+    "addToCart": "ADD TO CART"
+  },
+  "trust": {
+    "freeShipping": "Free shipping",
+    "warranty3y": "3-year warranty",
+    "returns14d": "14-day returns"
+  },
+  "category": {
+    "sun": "Sun",
+    "optical": "Optical"
+  },
+  "gallery": {
+    "viewAlt": "{{name}} - view {{number}}",
+    "thumbAlt": "Thumbnail {{number}}",
+    "modelThumbAlt": "{{name}} - thumbnail {{number}}",
+    "imageLabel": "Image {{number}}",
+    "goToImage": "Go to image {{number}}"
+  },
+  "seoDescription": "The {{name}} frame, 18KT gold-plated titanium. A unique number engraved on the bridge. Renaissance Eyewear.",
   "bottomBar": {
     "viewProduct": "View the product",
     "adding": "ADDING...",

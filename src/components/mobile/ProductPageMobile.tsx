@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ChevronLeft, Share2 } from 'lucide-react';
 import MobileImageGallery from './MobileImageGallery';
@@ -10,6 +11,7 @@ import MobileRelatedProducts from './MobileRelatedProducts';
 import { createSanitizedMarkup } from '../../lib/sanitize';
 import { ColorVariant, getColorSwatchStyle } from '../../lib/productGrouping';
 import { useProductData } from '../../hooks/useProductData';
+import { useLocale } from '../../contexts/LocaleContext';
 import { resizeShopifyImage } from '../../lib/imageUtils';
 import { Product } from '../../types/product';
 import { getModelEditorial } from '../../data/productEditorial';
@@ -28,6 +30,7 @@ export default function ProductPageMobile({
   onColorVariantChange
 }: ProductPageMobileProps) {
   const navigate = useNavigate();
+  const { t } = useTranslation('product');
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const {
     translatedName,
@@ -38,7 +41,9 @@ export default function ProductPageMobile({
   } = useProductData(product, selectedColorIndex);
 
   // Éditorial interne : si le modèle a une fiche, on rend la structure « maquette ».
-  const editorial = product.modelName ? getModelEditorial(product.modelName) : null;
+  // La copy sort dans la langue du site (transcréations préparées, repli FR).
+  const { locale } = useLocale();
+  const editorial = product.modelName ? getModelEditorial(product.modelName, locale) : null;
 
   const handleShare = async () => {
     if ('vibrate' in navigator) {
@@ -49,7 +54,7 @@ export default function ProductPageMobile({
       try {
         await navigator.share({
           title: translatedName,
-          text: `Découvrez ${translatedName} sur Renaissance`,
+          text: t('mobile.shareText', { name: translatedName }),
           url: window.location.href,
         });
       } catch {
@@ -59,8 +64,8 @@ export default function ProductPageMobile({
   };
 
   const matiereLine = editorial
-    ? (editorial.model.matiere === 'titane' ? 'Titane plaqué or 18KT' : 'Acétate Mazzucchelli') +
-      (editorial.model.adaptable ? ' · Adaptable à votre vue' : '')
+    ? (editorial.model.matiere === 'titane' ? t('sidebar.materialTitanium') : t('sidebar.materialAcetate')) +
+      (editorial.model.adaptable ? ` · ${t('sidebar.adaptable')}` : '')
     : '';
 
   const accordionSections = editorial
@@ -74,37 +79,37 @@ export default function ProductPageMobile({
           ),
         },
         {
-          title: 'DIMENSIONS',
+          title: t('sidebar.dimensions'),
           content: (
             <div className="space-y-4">
               <p className="font-sans text-[13px] text-dark-text/60 leading-[1.7] font-light">
                 {editorial.model.morphologie}
               </p>
               <div className="flex items-center justify-between">
-                <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">Largeur verres</span>
+                <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">{t('mobile.lensWidthShort')}</span>
                 <span className="font-sans text-sm text-dark-text/70 font-light">{editorial.model.dimensions.verre}mm</span>
               </div>
               <div className="w-full h-px bg-dark-text/5" />
               <div className="flex items-center justify-between">
-                <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">Pont</span>
+                <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">{t('sidebar.bridge')}</span>
                 <span className="font-sans text-sm text-dark-text/70 font-light">{editorial.model.dimensions.pont}mm</span>
               </div>
               <div className="w-full h-px bg-dark-text/5" />
               <div className="flex items-center justify-between">
-                <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">Branches</span>
+                <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">{t('mobile.templesShort')}</span>
                 <span className="font-sans text-sm text-dark-text/70 font-light">{editorial.model.dimensions.branche}mm</span>
               </div>
             </div>
           ),
         },
         {
-          title: 'MATIÈRE',
+          title: t('sidebar.material'),
           content: (
             <p className="font-sans text-sm text-dark-text/70 leading-[1.8] font-light">{matiereLine}</p>
           ),
         },
         {
-          title: `COLLECTION ${editorial.collection.nom.toUpperCase()}`,
+          title: t('sidebar.collectionTitle', { name: editorial.collection.nom }),
           content: editorial.collection.recit ? (
             <p className="font-sans text-sm text-dark-text/70 leading-[1.8] font-light">{editorial.collection.recit}</p>
           ) : (
@@ -127,7 +132,7 @@ export default function ProductPageMobile({
       ]
     : [
     {
-      title: 'DESCRIPTION',
+      title: t('description'),
       content: (
         <div
           className="font-sans text-sm text-dark-text/60 leading-[1.8] font-light description-content"
@@ -136,37 +141,37 @@ export default function ProductPageMobile({
       ),
     },
     {
-      title: 'CADRE & VERRES',
+      title: t('mobile.frameAndLenses'),
       content: (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">Cadre</span>
+            <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">{t('mobile.frame')}</span>
             <span className="font-sans text-sm text-dark-text/70 font-light">{product.frame}</span>
           </div>
           <div className="w-full h-px bg-dark-text/5" />
           <div className="flex items-center justify-between">
-            <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">Verres</span>
+            <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">{t('mobile.lenses')}</span>
             <span className="font-sans text-sm text-dark-text/70 font-light">{product.lens}</span>
           </div>
         </div>
       ),
     },
     {
-      title: 'DIMENSIONS',
+      title: t('sidebar.dimensions'),
       content: (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">Largeur verres</span>
+            <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">{t('mobile.lensWidthShort')}</span>
             <span className="font-sans text-sm text-dark-text/70 font-light">{product.dimensions.lens}</span>
           </div>
           <div className="w-full h-px bg-dark-text/5" />
           <div className="flex items-center justify-between">
-            <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">Pont</span>
+            <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">{t('sidebar.bridge')}</span>
             <span className="font-sans text-sm text-dark-text/70 font-light">{product.dimensions.bridge}</span>
           </div>
           <div className="w-full h-px bg-dark-text/5" />
           <div className="flex items-center justify-between">
-            <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">Branches</span>
+            <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">{t('mobile.templesShort')}</span>
             <span className="font-sans text-sm text-dark-text/70 font-light">{product.dimensions.temple}</span>
           </div>
         </div>
@@ -186,7 +191,7 @@ export default function ProductPageMobile({
         <button
           onClick={() => navigate(-1)}
           className="w-10 h-10 flex items-center justify-center active:scale-95 transition-transform"
-          aria-label="Retour"
+          aria-label={t('mobile.back')}
         >
           <ChevronLeft className="w-5 h-5 text-dark-text" />
         </button>
@@ -198,7 +203,7 @@ export default function ProductPageMobile({
         <button
           onClick={handleShare}
           className="w-10 h-10 flex items-center justify-center active:scale-95 transition-transform"
-          aria-label="Partager"
+          aria-label={t('mobile.share')}
         >
           <Share2 className="w-4 h-4 text-dark-text/60" />
         </button>
@@ -209,13 +214,14 @@ export default function ProductPageMobile({
         <MobileImageGallery
           images={product.images || []}
           productName={translatedName}
+          shopifyTitle={product.name}
         />
 
         {/* Product Info */}
         {editorial ? (
           <div className="bg-white px-6 pt-6 pb-4">
             <p className="font-sans text-dark-text/[0.48] text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
-              Collection {editorial.collection.nom}
+              {t('sidebar.collectionTitle', { name: editorial.collection.nom })}
             </p>
             <h1 className="font-display text-2xl font-bold text-dark-text tracking-[-0.02em] leading-[0.95] mb-2 uppercase">
               {editorial.model.romain} ({editorial.model.arabe})
@@ -236,6 +242,55 @@ export default function ProductPageMobile({
           />
         )}
 
+        {/* Coloris numérotés — sous le prix, même grille que desktop (ProductSidebar) */}
+        {colorVariants.length > 1 && onColorVariantChange && (
+          <div className="px-6 pb-6">
+            <div className="flex items-center justify-between mb-4">
+              <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
+                {t('sidebar.coloris')}
+              </span>
+              <span className="font-sans text-[10px] tracking-[0.1em] text-dark-text/40 uppercase">
+                {selectedColorVariantIndex + 1} / {colorVariants.length}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {colorVariants.map((variant, index) => {
+                const isSelected = selectedColorVariantIndex === index;
+                return (
+                  <button
+                    key={variant.handle}
+                    onClick={() => onColorVariantChange(index)}
+                    className={`min-w-0 transition-all duration-300 active:scale-95 ${isSelected ? '' : 'opacity-70'}`}
+                    title={t('sidebar.colorisNumber', { number: index + 1 })}
+                  >
+                    <div className={`w-full aspect-[4/3] overflow-hidden bg-[#f5f4f0] transition-all duration-300 ${
+                      isSelected ? 'ring-2 ring-dark-text ring-offset-2' : 'ring-1 ring-dark-text/10'
+                    }`}>
+                      {variant.thumbnail ? (
+                        <img
+                          src={resizeShopifyImage(variant.thumbnail, 520, variant.product?.title, 0)}
+                          alt={t('sidebar.colorisNumber', { number: index + 1 })}
+                          className="w-full h-full object-contain p-2.5"
+                          loading={isSelected ? 'eager' : 'lazy'}
+                          decoding="async"
+                          sizes="(max-width: 640px) 45vw, 240px"
+                        />
+                      ) : (
+                        <div className="w-full h-full" style={getColorSwatchStyle(variant.colorNumber, variant.colorName)} />
+                      )}
+                    </div>
+                    <p className={`font-sans text-[8px] tracking-[0.15em] uppercase text-center mt-2 transition-colors duration-300 ${
+                      isSelected ? 'text-dark-text font-bold' : 'text-dark-text/45'
+                    }`}>
+                      {t('sidebar.colorisNumber', { number: index + 1 })}
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Adaptable badge */}
         <div className="px-6 py-5 border-t border-dark-text/[0.08]">
           {isNonAdaptable ? (
@@ -248,10 +303,10 @@ export default function ProductPageMobile({
               </div>
               <div>
                 <p className="font-sans text-[10px] tracking-[0.15em] font-bold text-dark-text uppercase">
-                  Solaire uniquement
+                  {t('mobile.sunOnlyTitle')}
                 </p>
                 <p className="font-sans text-[11px] text-dark-text/[0.45] font-light mt-0.5">
-                  Non adaptable en verres correcteurs
+                  {t('mobile.sunOnlyDesc')}
                 </p>
               </div>
             </div>
@@ -264,10 +319,10 @@ export default function ProductPageMobile({
               </div>
               <div>
                 <p className="font-sans text-[10px] tracking-[0.15em] font-bold text-dark-text uppercase">
-                  Adaptable à votre vue
+                  {t('sidebar.adaptable')}
                 </p>
                 <p className="font-sans text-[11px] text-dark-text/[0.45] font-light mt-0.5">
-                  Compatible verres correcteurs
+                  {t('mobile.adaptableDesc')}
                 </p>
               </div>
             </div>
@@ -278,64 +333,13 @@ export default function ProductPageMobile({
         {isOutOfStock && (
           <div className="mx-6 mb-2 py-3 border border-dark-text/10">
             <p className="font-sans text-[9px] tracking-[0.3em] font-medium text-dark-text/40 uppercase text-center">
-              Temporairement indisponible
+              {t('mobile.tempUnavailable')}
             </p>
           </div>
         )}
 
         {/* Accordion */}
         <MobileAccordion sections={accordionSections} defaultOpen={0} />
-
-        {/* Sélecteur de coloris — après dimensions, avant related */}
-        {colorVariants.length > 1 && onColorVariantChange && (
-          <div className="px-6 py-6 border-t border-dark-text/[0.08]">
-            <div className="flex items-center justify-between mb-5">
-              <span className="font-sans text-[9px] tracking-[0.3em] font-medium text-dark-text/40 uppercase">
-                Autres coloris
-              </span>
-              <span className="font-sans text-[11px] text-dark-text/40">
-                {colorVariants.length - 1} coloris
-              </span>
-            </div>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {colorVariants.map((variant, index) => {
-                if (index === selectedColorVariantIndex) return null;
-                return (
-                  <button
-                    key={variant.handle}
-                    onClick={() => onColorVariantChange(index)}
-                    className="relative transition-all duration-200 active:scale-95 w-[calc(50%-0.375rem)]"
-                    title={variant.colorName}
-                  >
-                    <div className="w-full aspect-[4/3] overflow-hidden ring-1 ring-dark-text/10 bg-[#f5f4f0]">
-                      {variant.thumbnail ? (
-                        <img
-                          src={resizeShopifyImage(variant.thumbnail, 520, variant.product?.title, 0)}
-                          alt={variant.colorName}
-                          className="w-full h-full object-contain p-2.5"
-                          loading="lazy"
-                          decoding="async"
-                          sizes="(max-width: 640px) 45vw, 240px"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-dark-text/5" />
-                      )}
-                    </div>
-                    <div className="flex items-center gap-2 mt-2.5">
-                      <span
-                        className="w-2.5 h-2.5 rounded-full border border-dark-text/10 flex-shrink-0"
-                        style={getColorSwatchStyle(variant.colorNumber, variant.colorName)}
-                      />
-                      <span className="font-sans text-[10px] tracking-[0.1em] text-dark-text/50">
-                        {variant.colorName}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
 
         {/* Related products */}
         <MobileRelatedProducts currentProductId={product.id} limit={3} />

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { getProducts } from '../../lib/shopify';
 import { getModelName } from '../../lib/productGrouping';
@@ -35,6 +36,7 @@ interface MobileRelatedProductsProps {
 
 export default function MobileRelatedProducts({ currentProductId, limit = 5 }: MobileRelatedProductsProps) {
   const navigate = useNavigate();
+  const { t } = useTranslation('product');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -93,19 +95,19 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
         >
           <div>
             <p className="font-sans text-[8px] tracking-[0.35em] text-dark-text/30 uppercase mb-3 font-medium">
-              Poursuivre l'exploration
+              {t('related.continueExploring')}
             </p>
             <h2 className="font-display text-2xl font-bold text-dark-text tracking-[-0.03em] leading-[0.9]">
-              VOUS AIMEREZ
+              {t('related.youWillLove')}
               <br />
-              <span className="font-light italic tracking-[-0.02em]">aussi</span>
+              <span className="font-light italic tracking-[-0.02em]">{t('related.also')}</span>
             </h2>
           </div>
           <LocaleLink
             to="/shop"
             className="font-sans text-[8px] tracking-[0.2em] text-dark-text/[0.35] uppercase"
           >
-            Tout voir &rarr;
+            {t('related.viewAll')}
           </LocaleLink>
         </motion.div>
 
@@ -115,9 +117,9 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
           const imageUrl = featured.images.edges[0]?.node.url;
           const price = parseFloat(featured.priceRange.minVariantPrice.amount).toFixed(0);
           const modelName = getModelName(featured.title);
-          const category = featured.tags?.some(t =>
-            t.toLowerCase() === 'solaire' || t.toLowerCase() === 'sun'
-          ) ? 'Solaire' : 'Optique';
+          const category = featured.tags?.some(tag =>
+            tag.toLowerCase() === 'solaire' || tag.toLowerCase() === 'sun'
+          ) ? t('category.sun') : t('category.optical');
 
           return (
             <motion.div
@@ -164,9 +166,9 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
             const imageUrl = product.images.edges[0]?.node.url;
             const price = parseFloat(product.priceRange.minVariantPrice.amount).toFixed(0);
             const modelName = getModelName(product.title);
-            const category = product.tags?.some(t =>
-              t.toLowerCase() === 'solaire' || t.toLowerCase() === 'sun'
-            ) ? 'Solaire' : 'Optique';
+            const category = product.tags?.some(tag =>
+              tag.toLowerCase() === 'solaire' || tag.toLowerCase() === 'sun'
+            ) ? t('category.sun') : t('category.optical');
 
             return (
               <motion.div
@@ -219,7 +221,7 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
             className="group relative overflow-hidden border border-dark-text w-full py-4"
           >
             <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-white transition-colors duration-500">
-              Explorer la collection
+              {t('related.exploreCollection')}
             </span>
             <span className="absolute inset-0 bg-dark-text transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
           </button>
