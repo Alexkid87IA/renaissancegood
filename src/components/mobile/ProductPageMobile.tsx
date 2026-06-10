@@ -12,6 +12,7 @@ import { ColorVariant, getColorSwatchStyle } from '../../lib/productGrouping';
 import { useProductData } from '../../hooks/useProductData';
 import { resizeShopifyImage } from '../../lib/imageUtils';
 import { Product } from '../../types/product';
+import { getModelEditorial } from '../../data/productEditorial';
 
 interface ProductPageMobileProps {
   product: Product;
@@ -36,6 +37,9 @@ export default function ProductPageMobile({
     isOutOfStock,
   } = useProductData(product, selectedColorIndex);
 
+  // Éditorial interne : si le modèle a une fiche, on rend la structure « maquette ».
+  const editorial = product.modelName ? getModelEditorial(product.modelName) : null;
+
   const handleShare = async () => {
     if ('vibrate' in navigator) {
       navigator.vibrate(10);
@@ -54,7 +58,74 @@ export default function ProductPageMobile({
     }
   };
 
-  const accordionSections = [
+  const matiereLine = editorial
+    ? (editorial.model.matiere === 'titane' ? 'Titane plaqué or 18KT' : 'Acétate Mazzucchelli') +
+      (editorial.model.adaptable ? ' · Adaptable à votre vue' : '')
+    : '';
+
+  const accordionSections = editorial
+    ? [
+        {
+          title: editorial.proof.label.toUpperCase(),
+          content: (
+            <p className="font-sans text-sm italic text-dark-text/70 leading-[1.8]">
+              {editorial.proof.texte}
+            </p>
+          ),
+        },
+        {
+          title: 'DIMENSIONS',
+          content: (
+            <div className="space-y-4">
+              <p className="font-sans text-[13px] text-dark-text/60 leading-[1.7] font-light">
+                {editorial.model.morphologie}
+              </p>
+              <div className="flex items-center justify-between">
+                <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">Largeur verres</span>
+                <span className="font-sans text-sm text-dark-text/70 font-light">{editorial.model.dimensions.verre}mm</span>
+              </div>
+              <div className="w-full h-px bg-dark-text/5" />
+              <div className="flex items-center justify-between">
+                <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">Pont</span>
+                <span className="font-sans text-sm text-dark-text/70 font-light">{editorial.model.dimensions.pont}mm</span>
+              </div>
+              <div className="w-full h-px bg-dark-text/5" />
+              <div className="flex items-center justify-between">
+                <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">Branches</span>
+                <span className="font-sans text-sm text-dark-text/70 font-light">{editorial.model.dimensions.branche}mm</span>
+              </div>
+            </div>
+          ),
+        },
+        {
+          title: 'MATIÈRE',
+          content: (
+            <p className="font-sans text-sm text-dark-text/70 leading-[1.8] font-light">{matiereLine}</p>
+          ),
+        },
+        {
+          title: `COLLECTION ${editorial.collection.nom.toUpperCase()}`,
+          content: editorial.collection.recit ? (
+            <p className="font-sans text-sm text-dark-text/70 leading-[1.8] font-light">{editorial.collection.recit}</p>
+          ) : (
+            <></>
+          ),
+        },
+        {
+          title: `${editorial.symbole.nom.toUpperCase()} · ${editorial.symbole.etendard.toUpperCase()}`,
+          content: (
+            <div>
+              <p className="font-sans text-sm italic text-bronze leading-[1.7]">{editorial.symbole.definition}</p>
+              {editorial.symbole.deuxLectures && (
+                <p className="font-sans text-sm text-dark-text/70 leading-[1.8] font-light mt-3">
+                  {editorial.symbole.deuxLectures}
+                </p>
+              )}
+            </div>
+          ),
+        },
+      ]
+    : [
     {
       title: 'DESCRIPTION',
       content: (
@@ -141,11 +212,29 @@ export default function ProductPageMobile({
         />
 
         {/* Product Info */}
-        <MobileProductInfo
-          product={product}
-          selectedColorIndex={selectedColorIndex}
-          onColorChange={setSelectedColorIndex}
-        />
+        {editorial ? (
+          <div className="bg-white px-6 pt-6 pb-4">
+            <p className="font-sans text-dark-text/[0.48] text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
+              Collection {editorial.collection.nom}
+            </p>
+            <h1 className="font-display text-2xl font-bold text-dark-text tracking-[-0.02em] leading-[0.95] mb-2 uppercase">
+              {editorial.model.romain} ({editorial.model.arabe})
+            </h1>
+            <p className="font-display text-lg font-light text-dark-text/70 mb-4">{product.price}</p>
+            <p className="font-display italic text-base text-dark-text/90 leading-snug mb-3">
+              {editorial.model.legende}
+            </p>
+            <p className="font-sans text-sm text-dark-text/75 leading-[1.8]">
+              {editorial.model.description}
+            </p>
+          </div>
+        ) : (
+          <MobileProductInfo
+            product={product}
+            selectedColorIndex={selectedColorIndex}
+            onColorChange={setSelectedColorIndex}
+          />
+        )}
 
         {/* Adaptable badge */}
         <div className="px-6 py-5 border-t border-dark-text/[0.08]">

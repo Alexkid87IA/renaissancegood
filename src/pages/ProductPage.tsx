@@ -21,6 +21,7 @@ import SEO from '../components/SEO';
 import { resizeShopifyImage } from '../lib/imageUtils';
 import { Product, ProductVariant, ProductImage } from '../types/product';
 import Breadcrumb from '../components/Breadcrumb';
+import { getModelEditorial } from '../data/productEditorial';
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -101,6 +102,17 @@ export default function ProductPage() {
         const colors = variants.map(v => ({ name: v.colorName || '' }));
         const modelName = getModelName(shopifyProduct.title);
 
+        // Éditorial interne (productEditorial.ts) : dimensions réelles par modèle.
+        // Fallback sur les valeurs historiques tant que la fiche n'est pas remplie.
+        const editorial = getModelEditorial(modelName);
+        const dimensions = editorial
+          ? {
+              lens: `${editorial.model.dimensions.verre}mm`,
+              bridge: `${editorial.model.dimensions.pont}mm`,
+              temple: `${editorial.model.dimensions.branche}mm`,
+            }
+          : { lens: '51mm', bridge: '20mm', temple: '145mm' };
+
         const formattedProduct: Product = {
           id: shopifyProduct.id,
           name: shopifyProduct.title,
@@ -111,11 +123,7 @@ export default function ProductPage() {
           frame: colors[0]?.name || 'Default',
           lens: 'Clear Lens',
           colors: colors,
-          dimensions: {
-            lens: '51mm',
-            bridge: '20mm',
-            temple: '145mm'
-          },
+          dimensions,
           description: shopifyProduct.description || t('defaultDescription'),
           descriptionHtml: shopifyProduct.descriptionHtml || shopifyProduct.description,
           allImages: allImages,

@@ -124,7 +124,6 @@ export default function RelatedProducts({ currentProductId, limit = 6 }: Related
             >
               <ProductCard
                 product={product}
-                index={index}
                 isHovered={hoveredIndex === index}
                 onHover={() => setHoveredIndex(index)}
                 onLeave={() => setHoveredIndex(null)}
@@ -162,14 +161,12 @@ export default function RelatedProducts({ currentProductId, limit = 6 }: Related
 
 function ProductCard({
   product,
-  index,
   isHovered,
   onHover,
   onLeave,
   featured = false,
 }: {
   product: Product;
-  index: number;
   isHovered: boolean;
   onHover: () => void;
   onLeave: () => void;
@@ -227,13 +224,6 @@ function ProductCard({
         <div className={`absolute inset-0 bg-dark-text/[0.03] transition-opacity duration-500 ${
           isHovered ? 'opacity-100' : 'opacity-0'
         }`} />
-
-        {/* Numéro discret */}
-        <div className="absolute top-4 sm:top-5 left-4 sm:left-5">
-          <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/25 font-medium">
-            {String(index + 1).padStart(2, '0')}
-          </span>
-        </div>
       </div>
 
       {/* Infos produit */}
@@ -256,13 +246,6 @@ function ProductCard({
         } ${isHovered ? 'text-dark-text/80' : ''}`}>
           {price}&nbsp;€
         </p>
-      </div>
-
-      {/* Ligne d'accentuation animée */}
-      <div className="mt-4 sm:mt-5 h-px bg-dark-text/5 relative overflow-hidden">
-        <div className={`absolute inset-y-0 left-0 bg-dark-text/30 transition-all duration-700 ease-out ${
-          isHovered ? 'w-full' : 'w-0'
-        }`} />
       </div>
     </LocaleLink>
   );

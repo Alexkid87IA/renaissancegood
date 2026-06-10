@@ -139,11 +139,6 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                       sizes="(max-width: 640px) 100vw, 520px"
                     />
                   )}
-                  <div className="absolute top-3 left-3">
-                    <span className="font-sans text-[8px] tracking-[0.2em] text-dark-text/25 font-medium">
-                      01
-                    </span>
-                  </div>
                 </div>
                 <div className="pt-4 flex items-start justify-between">
                   <div>
@@ -158,7 +153,6 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                     {price}&nbsp;€
                   </p>
                 </div>
-                <div className="mt-4 h-px bg-dark-text/5" />
               </LocaleLink>
             </motion.div>
           );
@@ -194,11 +188,6 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                         sizes="(max-width: 640px) 45vw, 220px"
                       />
                     )}
-                    <div className="absolute top-3 left-3">
-                      <span className="font-sans text-[8px] tracking-[0.2em] text-dark-text/25 font-medium">
-                        {String(index + 2).padStart(2, '0')}
-                      </span>
-                    </div>
                   </div>
                   <div className="pt-3">
                     <p className="font-sans text-[7px] tracking-[0.25em] text-dark-text/30 uppercase mb-1">
@@ -211,7 +200,6 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                       {price}&nbsp;€
                     </p>
                   </div>
-                  <div className="mt-3 h-px bg-dark-text/5" />
                 </LocaleLink>
               </motion.div>
             );

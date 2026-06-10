@@ -123,13 +123,6 @@ export default function ColorVariantsSection({
                       {price}&nbsp;€
                     </p>
                   </div>
-
-                  {/* Ligne d'accentuation */}
-                  <div className="mt-4 h-px bg-dark-text/5 relative overflow-hidden">
-                    <div className={`absolute inset-y-0 left-0 bg-dark-text/30 transition-all duration-700 ease-out ${
-                      hoveredIndex === index ? 'w-full' : 'w-0'
-                    }`} />
-                  </div>
                 </LocaleLink>
               </motion.div>
             );

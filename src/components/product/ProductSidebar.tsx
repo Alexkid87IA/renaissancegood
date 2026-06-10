@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Minus, Plus } from 'lucide-react';
+import { Minus, Plus, ArrowRight } from 'lucide-react';
 import { useCart } from '../../contexts/CartContext';
 import { getColorFromName } from '../../lib/colorMap';
 import { createSanitizedMarkup } from '../../lib/sanitize';
@@ -9,6 +10,48 @@ import { ColorVariant, getColorSwatchStyle } from '../../lib/productGrouping';
 import { useProductData } from '../../hooks/useProductData';
 import { resizeShopifyImage } from '../../lib/imageUtils';
 import { Product } from '../../types/product';
+import { getModelEditorial } from '../../data/productEditorial';
+
+// Accordéon éditorial — même pattern visuel que les sections de la fiche.
+function EditorialAccordion({
+  title,
+  defaultOpen = false,
+  children,
+}: {
+  title: string;
+  defaultOpen?: boolean;
+  children: ReactNode;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="border-b border-dark-text/10">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between py-5 group"
+      >
+        <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase text-left">
+          {title}
+        </span>
+        <motion.div animate={{ rotate: open ? 0 : 45 }} transition={{ duration: 0.2 }}>
+          {open ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+        </motion.div>
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="pb-6">{children}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 interface ProductSidebarProps {
   product: Product;
@@ -45,6 +88,10 @@ export default function ProductSidebar({
   const [addedToCart, setAddedToCart] = useState(false);
   const { addToCart, isLoading } = useCart();
 
+  // Éditorial interne : si le modèle a une fiche (productEditorial.ts), on rend
+  // la structure « maquette » ; sinon on retombe sur l'ancien rendu plus bas.
+  const editorial = product.modelName ? getModelEditorial(product.modelName) : null;
+
   const handleAddToCart = async () => {
     if (!selectedVariant || !selectedVariant.availableForSale) {
       alert(t('sidebar.productUnavailable'));
@@ -59,6 +106,152 @@ export default function ProductSidebar({
       // Add to cart error silently handled
     }
   };
+
+  // ==========================================================================
+  // RENDU ÉDITORIAL (structure maquette, habillage clair du site)
+  // ==========================================================================
+  if (editorial) {
+    const { model, collection, symbole, proof } = editorial;
+    const matiereLine =
+      (model.matiere === 'titane' ? 'Titane plaqué or 18KT' : 'Acétate Mazzucchelli') +
+      (model.adaptable ? ' · Adaptable à votre vue' : '');
+
+    return (
+      <div>
+        <div className="p-8 laptop:p-10 xl:p-12">
+          {/* Chapitre / collection */}
+          <p className="font-sans text-[10px] tracking-[0.28em] uppercase text-dark-text/45 mb-3">
+            Collection {collection.nom}
+          </p>
+
+          {/* Titre : chiffre romain + arabe, même taille et même typo */}
+          <h1 className="font-display text-3xl laptop:text-4xl xl:text-5xl font-bold text-dark-text mb-4 leading-[0.95] uppercase">
+            {model.romain} ({model.arabe})
+          </h1>
+
+          {/* Prix + actions (liens fléchés, jamais de bouton qui crie) */}
+          <div ref={priceRef} className="mb-6 pb-6 border-b border-dark-text/10">
+            <span className="font-display text-2xl font-bold text-dark-text">{displayPrice}</span>
+            <div className="flex flex-wrap gap-x-8 gap-y-3 mt-5">
+              <button
+                onClick={handleAddToCart}
+                disabled={isLoading || !selectedVariant?.availableForSale}
+                className="group inline-flex items-center gap-2 border-b border-dark-text/40 pb-1.5 font-sans text-[11px] tracking-[0.24em] uppercase text-dark-text hover:border-dark-text transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                {isLoading ? t('sidebar.adding') : addedToCart ? t('sidebar.added') : t('sidebar.add')}
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+              <Link
+                to="/opticiens"
+                className="group inline-flex items-center gap-2 border-b border-dark-text/40 pb-1.5 font-sans text-[11px] tracking-[0.24em] uppercase text-dark-text hover:border-dark-text transition-colors duration-300"
+              >
+                Essayer en boutique
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Coloris numérotés — juste sous les actions */}
+          {colorVariants.length > 1 && onColorVariantChange && (
+            <div className="mb-2 pb-6 border-b border-dark-text/10">
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
+                  {t('sidebar.coloris')}
+                </span>
+                <span className="font-sans text-[10px] tracking-[0.1em] text-dark-text/40 uppercase">
+                  {selectedColorVariantIndex + 1} / {colorVariants.length}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {colorVariants.map((variant, index) => {
+                  const isSelected = selectedColorVariantIndex === index;
+                  return (
+                    <button
+                      key={variant.handle}
+                      onClick={() => onColorVariantChange(index)}
+                      className={`group min-w-0 transition-all duration-300 ${isSelected ? '' : 'opacity-70 hover:opacity-100'}`}
+                      title={`Coloris ${index + 1}`}
+                    >
+                      <div className={`w-full aspect-[4/3] overflow-hidden bg-[#f5f4f0] transition-all duration-300 ${
+                        isSelected ? 'ring-2 ring-dark-text ring-offset-2' : 'ring-1 ring-dark-text/10 hover:ring-dark-text/30'
+                      }`}>
+                        {variant.thumbnail ? (
+                          <img
+                            src={resizeShopifyImage(variant.thumbnail, 520, variant.product?.title, 0)}
+                            alt={`Coloris ${index + 1}`}
+                            className="w-full h-full object-contain p-2.5"
+                            loading={isSelected ? 'eager' : 'lazy'}
+                            decoding="async"
+                          />
+                        ) : (
+                          <div className="w-full h-full" style={getColorSwatchStyle(variant.colorNumber, variant.colorName)} />
+                        )}
+                      </div>
+                      <p className={`font-sans text-[8px] tracking-[0.15em] uppercase text-center mt-2 transition-colors duration-300 ${
+                        isSelected ? 'text-dark-text font-bold' : 'text-dark-text/45'
+                      }`}>
+                        Coloris {index + 1}
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Légende + description courte (primaire, visible) */}
+          <p className="font-display italic text-lg laptop:text-xl text-dark-text/90 leading-snug mb-4">
+            {model.legende}
+          </p>
+          <p className="font-sans text-[14px] text-dark-text/80 leading-[1.8] mb-6 pb-6 border-b border-dark-text/10">
+            {model.description}
+          </p>
+
+          {/* Secondaire — accordéons (+/−), même rythme que la fiche actuelle */}
+          <EditorialAccordion title={proof.label} defaultOpen>
+            <p className="font-sans text-[14px] italic text-dark-text/85 leading-[1.8]">
+              {proof.texte}
+            </p>
+          </EditorialAccordion>
+
+          <EditorialAccordion title="Dimensions">
+            <p className="font-sans text-[13px] text-dark-text/70 mb-4">{model.morphologie}</p>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="text-center p-3 bg-neutral-50 rounded">
+                <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">Verre</p>
+                <p className="font-sans text-sm font-medium text-dark-text">{model.dimensions.verre}mm</p>
+              </div>
+              <div className="text-center p-3 bg-neutral-50 rounded">
+                <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">Pont</p>
+                <p className="font-sans text-sm font-medium text-dark-text">{model.dimensions.pont}mm</p>
+              </div>
+              <div className="text-center p-3 bg-neutral-50 rounded">
+                <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">Branche</p>
+                <p className="font-sans text-sm font-medium text-dark-text">{model.dimensions.branche}mm</p>
+              </div>
+            </div>
+          </EditorialAccordion>
+
+          <EditorialAccordion title="Matière">
+            <p className="font-sans text-[14px] text-dark-text/80 leading-[1.8]">{matiereLine}</p>
+          </EditorialAccordion>
+
+          <EditorialAccordion title={`Collection ${collection.nom}`}>
+            {collection.recit ? (
+              <p className="font-sans text-[14px] text-dark-text/80 leading-[1.8]">{collection.recit}</p>
+            ) : null}
+          </EditorialAccordion>
+
+          <EditorialAccordion title={`${symbole.nom} · ${symbole.etendard}`}>
+            <p className="font-sans text-[14px] italic text-bronze leading-[1.7]">{symbole.definition}</p>
+            {symbole.deuxLectures && (
+              <p className="font-sans text-[14px] text-dark-text/80 leading-[1.8] mt-3">{symbole.deuxLectures}</p>
+            )}
+          </EditorialAccordion>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
