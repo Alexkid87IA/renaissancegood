@@ -54,6 +54,10 @@ export interface ModelEditorial {
   romain: string;
   /** Chiffre arabe affiché entre parenthèses. Ex : 34. */
   arabe: number;
+  /** Mention de collaboration, affichée après la parenthèse du titre.
+   *  Ex : "x FRENCH CUT" → « Renaissance IV (4) x FRENCH CUT ».
+   *  Absent = titre standard. (Décision Yassin 2026-06-12, fiche IV.) */
+  collab?: string;
   /** Phrase courte en italique, en tête de fiche. PAR MODÈLE. */
   legende: string;
   /** Texte court, voix doctrine. PAR MODÈLE. */
@@ -68,10 +72,11 @@ export interface ModelEditorial {
   dimensions: Dimensions;
   /** Aide morphologie, en murmure. Ex : "Convient aux visages moyens." */
   morphologie: string;
-  /** Renvoi vers le récit de collection partagé. */
-  collection: CollectionId;
-  /** Renvoi vers le symbole partagé. */
-  symbole: SymboleId;
+  /** Renvoi vers le récit de collection partagé. Absent = hors collection. */
+  collection?: CollectionId;
+  /** Renvoi vers le symbole partagé. Absent = visage seul (Bible 8.1 :
+   *  « une paire sans symbole est complète »). La fiche n'affiche pas le bloc. */
+  symbole?: SymboleId;
   /** Tant que `brouillon` : copy non validée, ne pas publier le texte. */
   copyStatut: CopyStatut;
 }
@@ -105,8 +110,10 @@ export interface ProofBlock {
 /** Vue assemblée prête à rendre : modèle + collection + symbole résolus. */
 export interface ResolvedEditorial {
   model: ModelEditorial;
-  collection: Collection;
-  symbole: Symbole;
+  /** Absent quand le modèle est hors collection. */
+  collection?: Collection;
+  /** Absent quand le modèle porte le visage seul (Bible 8.1). */
+  symbole?: Symbole;
   proof: ProofBlock;
   trust: readonly string[];
 }
@@ -293,6 +300,162 @@ export const MODELS: Record<string, ModelEditorial> = {
     symbole: 'trident',
     copyStatut: 'valide',
   },
+
+  // ── LOT 1 (2026-06-12) ─────────────────────────────────────────────────
+  'Renaissance II': {
+    romain: 'Renaissance II',
+    arabe: 2,
+    // BROUILLON — passé renaissance-copywriter, en attente de validation Yassin.
+    legende: "Un cercle de métal fin. Rien d'autre à déclarer.",
+    // Faits : photos dossier 02 (stries pont/tenons/branches, R sur verre,
+    // strass) + réponses Yassin 2026-06-12 (stries = détail voulu simple,
+    // premiers modèles, sans signification).
+    description:
+      'La rondeur stricte. Un fil de métal ferme le cercle, et des stries ' +
+      'noires courent du pont au départ des branches. Du détail voulu simple, ' +
+      'depuis les premières heures de la Maison. Pas de symbole : le R sur le ' +
+      'verre, le strass au bout. Le visage seul suffit.',
+    forme: 'ronde cerclée',
+    // Matière : ancienne description + fiche Shopify (titane plaqué or 18KT).
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 (_MESURES EYEFOREYE, double relevé concordant).
+    dimensions: { verre: 51, pont: 20, branche: 140 },
+    morphologie: 'Convient aux visages fins à moyens.',
+    // Visage seul : ni collection, ni symbole (Bible 8.1).
+    // Copy validée par Yassin le 2026-06-12 (rendu localhost contrôlé).
+    copyStatut: 'valide',
+  },
+
+  'Renaissance III': {
+    romain: 'Renaissance III',
+    arabe: 3,
+    // BROUILLON — passé renaissance-copywriter, travaillé avec Yassin le 2026-06-12.
+    legende: "L'aviateur, repris angle par angle.",
+    // Faits : photos dossier 03 (angles, double pont, charnières striées).
+    // « double pont » = terme métier validé par Yassin (équivalents imposés en
+    // transcréation : double bridge, Doppelsteg, doble puente, doppio ponte,
+    // двойной мост). Seul le Coloris 1 est en vente (décision Yassin 2026-06-12,
+    // photos C2/C3 marquées d'un R incrusté, sans original).
+    description:
+      'Une silhouette que tout le monde connaît. Les courbes deviennent des ' +
+      'angles, le verre tombe net. Double pont. Aux charnières, le métal est ' +
+      'strié. Il ne reste rien à adoucir.',
+    forme: 'aviateur double pont',
+    // Matière : ancienne description + fiche Shopify (titane plaqué or 18KT).
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures données par Yassin le 2026-06-12 (III absente d'eyeforeye).
+    dimensions: { verre: 59, pont: 18, branche: 145 },
+    morphologie: 'Convient aux visages moyens à larges.',
+    // Visage seul : ni collection, ni symbole (Bible 8.1).
+    // Copy validée par Yassin le 2026-06-12.
+    copyStatut: 'valide',
+  },
+
+  // ── LOT 2 (2026-06-12) ─────────────────────────────────────────────────
+  // Clé = titre Shopify (« Renaissance x FRENCH CUT IV Colori n » → getModelName).
+  'Renaissance x FRENCH CUT IV': {
+    // Titre affiché « Renaissance IV (4) x FRENCH CUT » (décision Yassin 2026-06-12).
+    romain: 'Renaissance IV',
+    arabe: 4,
+    collab: 'x FRENCH CUT',
+    // Copy validée par Yassin le 2026-06-12 (rendu localhost contrôlé,
+    // version larme précisée + titre collab insécable).
+    legende: 'Un seul verre. Deux noms gravés dedans.',
+    // Faits : photos dossier 04 (verre unique ligne haute droite, gravure
+    // « RENAISSANCE X FRENCHCUT » sur le verre, larme noire au bas du verre
+    // droit, branches double câble torsadé, embouts bordeaux acétate
+    // Mazzucchelli confirmés Yassin 2026-06-12). Décision Yassin 2026-06-12
+    // (brouillon IV) : première collaboration de la Maison ; le mot « masque »
+    // n'apparaît jamais ; la larme = clin d'œil au tatouage, portée sur le
+    // verre au lieu de la peau, sens : ce qui renaît après l'épreuve.
+    description:
+      'La première collaboration de la Maison. Un seul verre, les deux noms ' +
+      'gravés dans le dégradé, les branches en deux câbles torsadés ' +
+      "jusqu'au bordeaux. Au bas du verre, une larme. C'est celle qu'on " +
+      "tatoue sous l'œil, pour une perte ou une épreuve traversée. Ici, " +
+      'elle est posée sur le verre au lieu de la peau. Elle ne raconte pas ' +
+      "la chute. Elle dit qu'on est resté debout. Elle dit ce qui renaît.",
+    forme: 'verre unique',
+    // Matière : confirmée Yassin 2026-06-12 (+ filet Shopify « Titane plaqué or 18Kt »).
+    matiere: 'titane',
+    // Tag Shopify « non-adaptable » (relevé 2026-06-12, les 3 coloris en ligne).
+    adaptable: false,
+    // eyeforeye cassée sur ce modèle (valeurs brutes 150/150/X, fichier
+    // _MESURES EYEFOREYE 2026-06-11). Décision Yassin (note 2026-06-12) :
+    // 150 (largeur du verre unique) · 12 (pont) · 150 (branches).
+    dimensions: { verre: 150, pont: 12, branche: 150 },
+    // Déduction verre unique 150 mm, confirmée Yassin 2026-06-12.
+    morphologie: 'Convient aux visages moyens à larges.',
+    // Collab hors collections et hors symboles : visage seul (Bible 8.1).
+    copyStatut: 'valide',
+  },
+
+  'Renaissance VI': {
+    romain: 'Renaissance VI',
+    arabe: 6,
+    // Copy validée par Yassin le 2026-06-12.
+    legende: "Le pont est strié. C'est lui qu'on retient.",
+    // Faits : photos dossier 06 (aviateur aux coins taillés, cerclé entier,
+    // double pont à bloc strié noir, stries aux départs de branches,
+    // gravure « RENAISSANCE CE 18KT » en branche, R sur le verre).
+    // Décisions Yassin 2026-06-12 : photos font foi (l'ancienne description
+    // « forme douce » ne décrit pas ce modèle) ; C2 or franc.
+    description:
+      "L'aviateur, les coins taillés net. Double pont : celui du bas porte " +
+      "des stries noires, les mêmes qu'au départ des branches. " +
+      'RENAISSANCE et 18KT gravés dans la branche. Le R sur le verre fait ' +
+      'le reste.',
+    forme: 'aviateur cerclé double pont',
+    // Matière : titane plaqué or rose, confirmé Yassin 2026-06-12.
+    matiere: 'titane',
+    // Aucun tag restrictif sur Shopify (VI Colori 2, seul coloris en ligne).
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 + gravure branche « VI 59□16-145 »
+    // (6 C2 DETAIL.jpg) : deux sources concordantes.
+    dimensions: { verre: 59, pont: 16, branche: 145 },
+    // Décision Yassin 2026-06-12.
+    morphologie: 'Convient aux visages moyens. Les visages fins la portent oversize.',
+    // Visage seul : ni collection, ni symbole (Bible 8.1).
+    copyStatut: 'valide',
+  },
+
+  // Clé = titre Shopify (« Renaissance VIII x OCHO Colori n » → getModelName).
+  'Renaissance VIII x OCHO': {
+    // Titre affiché « Renaissance VIII (8) x OCHO » (gabarit collab, cf. IV).
+    romain: 'Renaissance VIII',
+    arabe: 8,
+    collab: 'x OCHO',
+    // Copy validée par Yassin le 2026-06-12.
+    legende: "Le 8 d'un côté. Le R de l'autre.",
+    // Faits : photos dossier 08 (acétate épais rectangulaire, coins cassés net,
+    // monogramme 8 à la charnière, gravures « RENAISSANCE CE 18/300 » C1 et
+    // « 188/300 » C2). Décisions Yassin 2026-06-12 (brouillon VIII) : collab
+    // avec le rappeur SDM, Ocho est sa marque, logo redessiné par la Maison
+    // (le 8 sur une branche, le R dans l'écriture d'Ocho sur l'autre) ;
+    // 300 exemplaires, 100 par coloris, comptés d'un seul fil ; verres unis
+    // foncés = signature de l'invité (même décision que le masque IV) ;
+    // acétate Mazzucchelli confirmé. « Une des premières collabs rappeur x
+    // lunetier » : invérifiable, ne s'écrit pas (Credo : se prouve, ne
+    // s'annonce pas). Jamais « édition limitée ».
+    description:
+      "La rencontre avec SDM. Son 8, le signe d'Ocho, scelle une branche ; " +
+      "le R de Renaissance répond sur l'autre, dessiné dans l'écriture " +
+      "d'Ocho. L'acétate Mazzucchelli, épais, taillé droit, les coins " +
+      'cassés net. Trois cents exemplaires, numérotés à la branche, cent ' +
+      'par coloris. Le reste se tait.',
+    forme: 'rectangulaire',
+    matiere: 'acetate',
+    // Aucun tag restrictif sur Shopify (relevé 2026-06-12).
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 (« VIII (COLLAB SDM / OCHO) »).
+    dimensions: { verre: 57, pont: 19, branche: 142 },
+    // Déduction verre 57, confirmée Yassin 2026-06-12.
+    morphologie: 'Convient aux visages moyens à larges.',
+    // Collab hors collections et hors symboles : visage seul (Bible 8.1).
+    copyStatut: 'valide',
+  },
 };
 
 // ---------------------------------------------------------------------------
@@ -311,6 +474,57 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
           'A grip on the real. The Trident comes out of the metal and into the lens: ' +
           'it holds it, it carries it. Rimless. Nothing around, just three points and what they grasp.',
         morphologie: 'Fits medium faces.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
+      'Renaissance II': {
+        legende: 'A circle of thin metal. Nothing else to declare.',
+        description:
+          'Roundness, kept strict. A thread of metal closes the circle, and black grooves ' +
+          'run from the bridge to where the temples begin. A detail meant to be simple, ' +
+          'from the first hours of the House. No symbol: the R on the lens, the crystal ' +
+          'at the tip. The face alone is enough.',
+        morphologie: 'Suits narrow to medium faces.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
+      'Renaissance III': {
+        legende: 'The aviator, redrawn angle by angle.',
+        description:
+          'A silhouette everyone knows. The curves become angles, the lens falls clean. ' +
+          'Double bridge. At the hinges, the metal is grooved. Nothing left to soften.',
+        morphologie: 'Suits medium to wide faces.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
+      'Renaissance x FRENCH CUT IV': {
+        legende: 'A single lens. Two names engraved in it.',
+        description:
+          'The first collaboration of the House. A single lens, both names ' +
+          'engraved in the gradient, the temples two cables twisted down to ' +
+          'bordeaux tips. At the bottom of the lens, a teardrop. The one ' +
+          'tattooed under the eye, for a loss, or a trial you lived through. ' +
+          'Here it rests on the lens instead of the skin. It does not tell of ' +
+          'the fall. It says you stayed standing. It says what is reborn.',
+        morphologie: 'Fits medium to wide faces.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
+      'Renaissance VI': {
+        legende: "The bridge is grooved. That's the part you remember.",
+        description:
+          'An aviator, corners cut clean. Double bridge: the lower one carries ' +
+          'black grooves, the same ones found where the temples begin. ' +
+          'RENAISSANCE and 18KT engraved on the temple. The R on the lens ' +
+          'does the rest.',
+        morphologie: 'Suits medium faces. Narrow faces wear it oversize.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
+      'Renaissance VIII x OCHO': {
+        legende: 'The 8 on one side. The R on the other.',
+        description:
+          'The meeting with SDM. His 8, the sign of Ocho, seals one temple; ' +
+          "the R of Renaissance answers on the other, drawn in Ocho's own " +
+          'hand. Mazzucchelli acetate, thick, cut straight, the corners ' +
+          'broken clean. Three hundred pairs, each numbered on the temple, ' +
+          'one hundred per coloris. The rest keeps quiet.',
+        morphologie: 'Fits medium to wide faces.',
       },
     },
     collections: {
@@ -356,6 +570,60 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
           'er hält es fest, er trägt es. Rimless. Nichts darum herum, nur die drei Spitzen und das, was sie packen.',
         morphologie: 'Für mittelgroße Gesichter.',
       },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
+      'Renaissance II': {
+        legende: 'Ein Kreis aus feinem Metall. Sonst nichts zu deklarieren.',
+        description:
+          'Die strenge Rundung. Ein Faden aus Metall schließt den Kreis, und schwarze ' +
+          'Rillen laufen vom Steg bis zum Ansatz der Bügel. Ein Detail, bewusst einfach ' +
+          'gehalten, seit den ersten Stunden des Hauses. Kein Symbol: das R auf dem Glas, ' +
+          'der Kristall an der Bügelspitze. Das Gesicht allein genügt.',
+        morphologie: 'Geeignet für schmale bis mittlere Gesichter.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
+      'Renaissance III': {
+        legende: 'Der Aviator, Winkel für Winkel neu gefasst.',
+        description:
+          'Eine Silhouette, die jeder kennt. Die Kurven werden zu Winkeln, das Glas ' +
+          'fällt sauber ab. Doppelsteg. An den Scharnieren ist das Metall geriffelt. ' +
+          'Es bleibt nichts mehr zu mildern.',
+        morphologie: 'Geeignet für mittlere bis breite Gesichter.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
+      'Renaissance x FRENCH CUT IV': {
+        legende: 'Ein einziges Glas. Zwei Namen darin graviert.',
+        description:
+          'Die erste Zusammenarbeit des Hauses. Ein einziges Glas, beide Namen ' +
+          'in den Verlauf graviert, die Bügel zwei verdrillte Kabel bis in die ' +
+          'bordeauxroten Spitzen. Unten am Glas eine Träne. Es ist die, die ' +
+          'man sich unter das Auge tätowieren lässt, für einen Verlust oder ' +
+          'eine durchstandene Prüfung. Hier liegt sie auf dem Glas statt auf ' +
+          'der Haut. Sie erzählt nicht vom Fall. Sie sagt, dass man aufrecht ' +
+          'geblieben ist. Sie sagt, was wiedergeboren wird.',
+        morphologie: 'Für mittlere bis breite Gesichter.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
+      'Renaissance VI': {
+        legende: 'Der Steg ist gerillt. Ihn vergisst man nicht.',
+        description:
+          'Die Pilotenform, die Ecken scharf geschnitten. Doppelsteg: der ' +
+          'untere trägt schwarze Rillen, dieselben wie am Bügelansatz. ' +
+          'RENAISSANCE und 18KT, in den Bügel graviert. Das R auf dem Glas ' +
+          'erledigt den Rest.',
+        morphologie: 'Passt zu mittleren Gesichtern. Schmale Gesichter tragen sie oversize.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
+      'Renaissance VIII x OCHO': {
+        legende: 'Die 8 auf der einen Seite. Das R auf der anderen.',
+        description:
+          'Die Begegnung mit SDM. Seine 8, das Zeichen von Ocho, besiegelt ' +
+          'den einen Bügel; das R von Renaissance antwortet auf dem anderen, ' +
+          'gezeichnet in der Schrift von Ocho. Das Mazzucchelli-Acetat, dick, ' +
+          'gerade geschnitten, die Ecken sauber gebrochen. Dreihundert ' +
+          'Exemplare, nummeriert am Bügel, hundert pro Coloris. Der Rest ' +
+          'schweigt.',
+        morphologie: 'Für mittlere bis breite Gesichter.',
+      },
     },
     collections: {
       heritage: {
@@ -399,6 +667,58 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
           'El dominio sobre lo real. El Tridente sale del metal y entra en la lente: ' +
           'la aprieta, la lleva. Rimless. Nada alrededor, solo las tres puntas y lo que aferran.',
         morphologie: 'Para rostros medianos.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
+      'Renaissance II': {
+        legende: 'Un círculo de metal fino. Nada más que declarar.',
+        description:
+          'La redondez estricta. Un hilo de metal cierra el círculo, y unas estrías negras ' +
+          'corren del puente al arranque de las patillas. Un detalle que se quiso sencillo, ' +
+          'desde las primeras horas de la Casa. Sin símbolo: la R en la lente, el cristal ' +
+          'en la punta. El rostro solo basta.',
+        morphologie: 'Conviene a los rostros de finos a medios.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
+      'Renaissance III': {
+        legende: 'El aviador, retomado ángulo a ángulo.',
+        description:
+          'Una silueta que todo el mundo conoce. Las curvas se vuelven ángulos, ' +
+          'la lente cae en seco. Doble puente. En las bisagras, el metal está ' +
+          'estriado. No queda nada que suavizar.',
+        morphologie: 'Para rostros de medianos a anchos.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
+      'Renaissance x FRENCH CUT IV': {
+        legende: 'Una sola lente. Dos nombres grabados dentro.',
+        description:
+          'La primera colaboración de la Casa. Una sola lente, los dos nombres ' +
+          'grabados en el degradado, las patillas en dos cables trenzados hasta ' +
+          'el burdeos. En la parte baja de la lente, una lágrima. La que se ' +
+          'tatúa bajo el ojo, por una pérdida o una prueba superada. Aquí va ' +
+          'sobre la lente, no sobre la piel. No cuenta la caída. Dice que uno ' +
+          'siguió en pie. Dice lo que renace.',
+        morphologie: 'Indicada para rostros de medianos a anchos.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
+      'Renaissance VI': {
+        legende: 'El puente está estriado. Es el que se recuerda.',
+        description:
+          'El aviador, con los ángulos tallados en seco. Doble puente: el de ' +
+          'abajo lleva estrías negras, las mismas que en el arranque de las ' +
+          'patillas. RENAISSANCE y 18KT grabados en la patilla. La R en la ' +
+          'lente hace el resto.',
+        morphologie: 'Conviene a los rostros medianos. Los rostros finos la llevan oversize.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
+      'Renaissance VIII x OCHO': {
+        legende: 'El 8 a un lado. La R al otro.',
+        description:
+          'El encuentro con SDM. Su 8, el signo de Ocho, sella una patilla; ' +
+          'la R de Renaissance responde en la otra, dibujada con la letra de ' +
+          'Ocho. El acetato Mazzucchelli, grueso, tallado recto, las esquinas ' +
+          'rotas en seco. Trescientos ejemplares, numerados en la patilla, ' +
+          'cien por coloris. El resto calla.',
+        morphologie: 'Para rostros de medios a anchos.',
       },
     },
     collections: {
@@ -444,6 +764,58 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
           'la stringe, la porta. Rimless. Niente intorno, solo le tre punte e ciò che afferrano.',
         morphologie: 'Adatta ai visi medi.',
       },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
+      'Renaissance II': {
+        legende: "Un cerchio di metallo sottile. Nient'altro da dichiarare.",
+        description:
+          'La rotondità rigorosa. Un filo di metallo chiude il cerchio, e strie nere ' +
+          "corrono dal ponte all'attacco delle aste. Un dettaglio voluto semplice, fin " +
+          'dalle prime ore della Maison. Nessun simbolo: la R sulla lente, il cristallo ' +
+          'in punta. Il volto, da solo, basta.',
+        morphologie: 'Adatta ai visi da sottili a medi.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
+      // « aviator » = lessico occhialeria (la forme), « aviatore » désignerait le pilote.
+      'Renaissance III': {
+        legende: "L'aviator, ripreso angolo per angolo.",
+        description:
+          'Una silhouette che tutti conoscono. Le curve diventano angoli, la lente ' +
+          'scende netta. Doppio ponte. Alle cerniere, il metallo è striato. ' +
+          'Non resta niente da addolcire.',
+        morphologie: 'Adatta ai visi da medi a larghi.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
+      'Renaissance x FRENCH CUT IV': {
+        legende: 'Una sola lente. Due nomi incisi dentro.',
+        description:
+          'La prima collaborazione della Maison. Una sola lente, i due nomi ' +
+          'incisi nella sfumatura, le aste in due cavi ritorti fino al ' +
+          "bordeaux. In basso sulla lente, una lacrima. È quella che si tatua " +
+          "sotto l'occhio, per una perdita o una prova attraversata. Qui è " +
+          'posata sulla lente invece che sulla pelle. Non racconta la caduta. ' +
+          'Dice che si è rimasti in piedi. Dice ciò che rinasce.',
+        morphologie: 'Adatta ai visi da medi a larghi.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
+      'Renaissance VI': {
+        legende: 'Il ponte è striato. Nella memoria resta lui.',
+        description:
+          "L'aviator, gli angoli tagliati netti. Doppio ponte: quello in " +
+          "basso porta strie nere, le stesse dell'attacco delle aste. " +
+          "RENAISSANCE e 18KT incisi sull'asta. La R sulla lente fa il resto.",
+        morphologie: 'Adatta ai visi medi. I visi sottili la portano oversize.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
+      'Renaissance VIII x OCHO': {
+        legende: "L'8 da un lato. La R dall'altro.",
+        description:
+          "L'incontro con SDM. Il suo 8, il segno di Ocho, sigilla un'asta; " +
+          "la R di Renaissance risponde sull'altra, disegnata nella grafia " +
+          "di Ocho. L'acetato Mazzucchelli, spesso, tagliato dritto, gli " +
+          'angoli spezzati di netto. Trecento esemplari, numerati ' +
+          "sull'asta, cento per coloris. Il resto tace.",
+        morphologie: 'Adatta ai visi da medi a larghi.',
+      },
     },
     collections: {
       heritage: {
@@ -487,6 +859,56 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
           'Хватка за реальность. Трезубец выходит из металла и входит в линзу: ' +
           'сжимает её, несёт её. Безободковая оправа. Вокруг ничего, только три зубца и то, во что они вцепились.',
         morphologie: 'Подходит для лиц среднего размера.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
+      'Renaissance II': {
+        legende: 'Тонкий круг металла. Больше заявлять нечего.',
+        description:
+          'Строгая округлость. Нить металла замыкает круг, и чёрные бороздки бегут ' +
+          'от переносицы к началу заушников. Деталь, задуманная простой, с первых ' +
+          'часов Дома. Без символа: R на линзе, кристалл на конце. Одного лица достаточно.',
+        morphologie: 'Подходит узким и средним лицам.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
+      'Renaissance III': {
+        legende: 'Авиатор, перечерченный угол за углом.',
+        description:
+          'Силуэт, который знают все. Изгибы становятся углами, линза срезана чётко. ' +
+          'Двойной мост. На шарнирах металл рифлёный. Смягчать больше нечего.',
+        morphologie: 'Подходит для средних и широких лиц.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
+      'Renaissance x FRENCH CUT IV': {
+        legende: 'Одна линза. Внутри выгравированы два имени.',
+        description:
+          'Первая совместная работа Дома. Одна линза, оба имени выгравированы ' +
+          'прямо в градиенте, заушники сплетены в два витых троса и уходят в ' +
+          'бордовый на наконечниках. У нижнего края линзы застыла слеза. Та ' +
+          'самая, что татуируют под глазом: знак потери или пройденного ' +
+          'испытания. Здесь она легла на линзу, а не на кожу. Она не ' +
+          'рассказывает о падении. Она говорит, что ты устоял. Она говорит о ' +
+          'том, что рождается заново.',
+        morphologie: 'Подходит для лиц от среднего до широкого.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
+      'Renaissance VI': {
+        legende: 'Мост рифлёный. Его и запоминают.',
+        description:
+          'Авиатор, углы срезаны чётко. Двойной мост: на нижнем чёрные ' +
+          'бороздки, те же, что и у начала заушников. RENAISSANCE и 18KT ' +
+          'выгравированы на заушнике. R на линзе делает остальное.',
+        morphologie: 'Подходит для лиц среднего размера. На узких лицах она сидит оверсайз.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
+      'Renaissance VIII x OCHO': {
+        legende: '8 с одной стороны. R с другой.',
+        description:
+          'Встреча с SDM. Его 8, знак Ocho, запечатывает один заушник. ' +
+          'R Renaissance отвечает на другом, выведенный почерком Ocho. ' +
+          'Толстый ацетат Mazzucchelli, прямой срез, углы сколоты начисто. ' +
+          'Триста экземпляров, номер на заушнике, по сто в каждом цвете. ' +
+          'Остальное молчит.',
+        morphologie: 'Подходит для лиц от средних до широких.',
       },
     },
     collections: {
@@ -550,8 +972,12 @@ export function getModelEditorial(modelName: string, lang: string = 'fr'): Resol
   const tr = lang !== 'fr' ? TRANSLATIONS[lang as Exclude<Lang, 'fr'>] : undefined;
   return {
     model: { ...model, ...defined(tr?.models?.[modelName]) },
-    collection: { ...COLLECTIONS[model.collection], ...defined(tr?.collections?.[model.collection]) },
-    symbole: { ...SYMBOLES[model.symbole], ...defined(tr?.symboles?.[model.symbole]) },
+    collection: model.collection
+      ? { ...COLLECTIONS[model.collection], ...defined(tr?.collections?.[model.collection]) }
+      : undefined,
+    symbole: model.symbole
+      ? { ...SYMBOLES[model.symbole], ...defined(tr?.symboles?.[model.symbole]) }
+      : undefined,
     proof: { ...PROOF, ...defined(tr?.proof) },
     trust: tr?.trust ?? TRUST,
   };

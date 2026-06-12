@@ -17,7 +17,7 @@ import RelatedProducts from '../components/product/RelatedProducts';
 import ProductPageMobile from '../components/mobile/ProductPageMobile';
 import { Product as ShopifyProductType } from '../components/ProductCard';
 import SEO from '../components/SEO';
-import { resizeShopifyImage } from '../lib/imageUtils';
+import { resizeShopifyImage, getBunnyImages } from '../lib/imageUtils';
 import { Product, ProductVariant, ProductImage } from '../types/product';
 import Breadcrumb from '../components/Breadcrumb';
 import { getModelEditorial } from '../data/productEditorial';
@@ -171,6 +171,11 @@ export default function ProductPage() {
   // Images à afficher
   const displayImages = useMemo(() => {
     if (!product) return [];
+
+    // Photothèque validée : si le coloris est dans la table Bunny, on ne sert
+    // que ces images. Les anciennes images Shopify ne complètent jamais.
+    const bunnyImages = getBunnyImages(product.name);
+    if (bunnyImages) return bunnyImages;
 
     const selectedVariant = product.variants[selectedColorIndex];
     const images = product.allImages || [];

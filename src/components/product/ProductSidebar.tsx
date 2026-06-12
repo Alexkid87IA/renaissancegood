@@ -2,7 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Minus, Plus, ArrowRight } from 'lucide-react';
+import { ChevronDown, ArrowRight } from 'lucide-react';
 import { useCart } from '../../contexts/CartContext';
 import { useLocale } from '../../contexts/LocaleContext';
 import { getColorFromName } from '../../lib/colorMap';
@@ -33,8 +33,8 @@ function EditorialAccordion({
         <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase text-left">
           {title}
         </span>
-        <motion.div animate={{ rotate: open ? 0 : 45 }} transition={{ duration: 0.2 }}>
-          {open ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+        <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+          <ChevronDown className="w-4 h-4" />
         </motion.div>
       </button>
       <AnimatePresence>
@@ -122,14 +122,17 @@ export default function ProductSidebar({
     return (
       <div>
         <div className="p-8 laptop:p-10 xl:p-12">
-          {/* Chapitre / collection */}
-          <p className="font-sans text-[10px] tracking-[0.28em] uppercase text-dark-text/45 mb-3">
-            {t('sidebar.collectionTitle', { name: collection.nom })}
-          </p>
+          {/* Chapitre / collection — absent quand le modèle est hors collection */}
+          {collection && (
+            <p className="font-sans text-[10px] tracking-[0.28em] uppercase text-dark-text/45 mb-3">
+              {t('sidebar.collectionTitle', { name: collection.nom })}
+            </p>
+          )}
 
           {/* Titre : chiffre romain + arabe, même taille et même typo */}
-          <h1 className="font-display text-3xl laptop:text-4xl xl:text-5xl font-bold text-dark-text mb-4 leading-[0.95] uppercase">
+          <h1 className="font-display text-3xl laptop:text-4xl xl:text-5xl font-bold text-dark-text mb-4 leading-[1.12] uppercase">
             {model.romain} ({model.arabe})
+            {model.collab ? ` ${model.collab.replace(/ /g, ' ')}` : ''}
           </h1>
 
           {/* Prix + actions (liens fléchés, jamais de bouton qui crie) */}
@@ -239,18 +242,22 @@ export default function ProductSidebar({
             <p className="font-sans text-[14px] text-dark-text/80 leading-[1.8]">{matiereLine}</p>
           </EditorialAccordion>
 
-          <EditorialAccordion title={t('sidebar.collectionTitle', { name: collection.nom })}>
-            {collection.recit ? (
-              <p className="font-sans text-[14px] text-dark-text/80 leading-[1.8]">{collection.recit}</p>
-            ) : null}
-          </EditorialAccordion>
+          {collection && (
+            <EditorialAccordion title={t('sidebar.collectionTitle', { name: collection.nom })}>
+              {collection.recit ? (
+                <p className="font-sans text-[14px] text-dark-text/80 leading-[1.8]">{collection.recit}</p>
+              ) : null}
+            </EditorialAccordion>
+          )}
 
-          <EditorialAccordion title={`${symbole.nom} · ${symbole.etendard}`}>
-            <p className="font-sans text-[14px] italic text-bronze leading-[1.7]">{symbole.definition}</p>
-            {symbole.deuxLectures && (
-              <p className="font-sans text-[14px] text-dark-text/80 leading-[1.8] mt-3">{symbole.deuxLectures}</p>
-            )}
-          </EditorialAccordion>
+          {symbole && (
+            <EditorialAccordion title={`${symbole.nom} · ${symbole.etendard}`}>
+              <p className="font-sans text-[14px] italic text-bronze leading-[1.7]">{symbole.definition}</p>
+              {symbole.deuxLectures && (
+                <p className="font-sans text-[14px] text-dark-text/80 leading-[1.8] mt-3">{symbole.deuxLectures}</p>
+              )}
+            </EditorialAccordion>
+          )}
         </div>
       </div>
     );
@@ -471,10 +478,10 @@ export default function ProductSidebar({
               {t('sidebar.dimensions')}
             </span>
             <motion.div
-              animate={{ rotate: showDimensions ? 0 : 45 }}
+              animate={{ rotate: showDimensions ? 180 : 0 }}
               transition={{ duration: 0.2 }}
             >
-              {showDimensions ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+              <ChevronDown className="w-4 h-4" />
             </motion.div>
           </button>
 
@@ -516,10 +523,10 @@ export default function ProductSidebar({
               {t('sidebar.fabrication')}
             </span>
             <motion.div
-              animate={{ rotate: showFabrication ? 0 : 45 }}
+              animate={{ rotate: showFabrication ? 180 : 0 }}
               transition={{ duration: 0.2 }}
             >
-              {showFabrication ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+              <ChevronDown className="w-4 h-4" />
             </motion.div>
           </button>
 

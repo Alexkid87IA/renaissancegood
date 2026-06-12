@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 
 interface AccordionSection {
   title: string;
@@ -36,15 +37,11 @@ export default function MobileAccordion({ sections, defaultOpen }: MobileAccordi
               {section.title}
             </span>
             <motion.div
-              animate={{ rotate: openIndex === index ? 45 : 0 }}
+              animate={{ rotate: openIndex === index ? 180 : 0 }}
               transition={{ duration: 0.2 }}
               className="w-4 h-4 flex items-center justify-center"
             >
-              <span className="block w-3 h-px bg-dark-text/40 relative">
-                <span className={`absolute inset-0 bg-dark-text/40 transition-transform duration-200 ${
-                  openIndex === index ? 'rotate-0' : 'rotate-90'
-                }`} />
-              </span>
+              <ChevronDown className="w-4 h-4 text-dark-text/40" />
             </motion.div>
           </button>
 

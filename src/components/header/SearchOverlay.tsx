@@ -111,22 +111,41 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
 
   const normalizedQuery = normalizeFilterValue(query.trim());
   const searchResults = useMemo(() => {
-    const candidates = products.filter((product) => {
-      if (!productMatchesCollection(product, selectedCollection)) return false;
-      if (!normalizedQuery) return true;
+    // Recherche mot par mot : chaque mot tapé doit se retrouver quelque part.
+    // Un mot entier (ex. « iv ») pèse plus qu'un morceau de mot (« iv » dans
+    // « xxxiv ») pour que le modèle exact passe devant.
+    const queryTokens = normalizedQuery.split(/\s+/).filter(Boolean);
 
-      const haystack = normalizeFilterValue([
-        product.title,
-        product.handle,
-        product.description,
-        ...(product.tags || []),
-        ...(product.collections?.edges?.map((edge) => edge.node.title) || []),
-      ].join(' '));
+    const scored = products
+      .filter((product) => productMatchesCollection(product, selectedCollection))
+      .map((product) => {
+        if (queryTokens.length === 0) return { product, score: 1 };
 
-      return haystack.includes(normalizedQuery);
-    });
+        const haystack = normalizeFilterValue([
+          product.title,
+          product.handle,
+          product.description,
+          ...(product.tags || []),
+          ...(product.collections?.edges?.map((edge) => edge.node.title) || []),
+        ].join(' '));
+        const words = new Set(haystack.split(/[^a-z0-9]+/));
 
-    return candidates.slice(0, normalizedQuery ? 6 : 4);
+        let score = 0;
+        for (const token of queryTokens) {
+          if (words.has(token)) {
+            score += 2;
+          } else if (haystack.includes(token)) {
+            score += 1;
+          } else {
+            return { product, score: 0 };
+          }
+        }
+        return { product, score };
+      })
+      .filter((entry) => entry.score > 0)
+      .sort((a, b) => b.score - a.score);
+
+    return scored.map((entry) => entry.product).slice(0, normalizedQuery ? 6 : 4);
   }, [normalizedQuery, products, selectedCollection]);
 
   const handleClose = useCallback(() => {

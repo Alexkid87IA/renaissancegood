@@ -108,27 +108,32 @@ export default function ProductPageMobile({
             <p className="font-sans text-sm text-dark-text/70 leading-[1.8] font-light">{matiereLine}</p>
           ),
         },
-        {
-          title: t('sidebar.collectionTitle', { name: editorial.collection.nom }),
-          content: editorial.collection.recit ? (
-            <p className="font-sans text-sm text-dark-text/70 leading-[1.8] font-light">{editorial.collection.recit}</p>
-          ) : (
-            <></>
-          ),
-        },
-        {
-          title: `${editorial.symbole.nom.toUpperCase()} · ${editorial.symbole.etendard.toUpperCase()}`,
-          content: (
-            <div>
-              <p className="font-sans text-sm italic text-bronze leading-[1.7]">{editorial.symbole.definition}</p>
-              {editorial.symbole.deuxLectures && (
-                <p className="font-sans text-sm text-dark-text/70 leading-[1.8] font-light mt-3">
-                  {editorial.symbole.deuxLectures}
-                </p>
-              )}
-            </div>
-          ),
-        },
+        // Collection et symbole : absents quand le modèle porte le visage seul (Bible 8.1).
+        ...(editorial.collection
+          ? [{
+              title: t('sidebar.collectionTitle', { name: editorial.collection.nom }),
+              content: editorial.collection.recit ? (
+                <p className="font-sans text-sm text-dark-text/70 leading-[1.8] font-light">{editorial.collection.recit}</p>
+              ) : (
+                <></>
+              ),
+            }]
+          : []),
+        ...(editorial.symbole
+          ? [{
+              title: `${editorial.symbole.nom.toUpperCase()} · ${editorial.symbole.etendard.toUpperCase()}`,
+              content: (
+                <div>
+                  <p className="font-sans text-sm italic text-bronze leading-[1.7]">{editorial.symbole.definition}</p>
+                  {editorial.symbole.deuxLectures && (
+                    <p className="font-sans text-sm text-dark-text/70 leading-[1.8] font-light mt-3">
+                      {editorial.symbole.deuxLectures}
+                    </p>
+                  )}
+                </div>
+              ),
+            }]
+          : []),
       ]
     : [
     {
@@ -220,11 +225,16 @@ export default function ProductPageMobile({
         {/* Product Info */}
         {editorial ? (
           <div className="bg-white px-6 pt-6 pb-4">
-            <p className="font-sans text-dark-text/[0.48] text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
-              {t('sidebar.collectionTitle', { name: editorial.collection.nom })}
-            </p>
-            <h1 className="font-display text-2xl font-bold text-dark-text tracking-[-0.02em] leading-[0.95] mb-2 uppercase">
+            {editorial.collection && (
+              <p className="font-sans text-dark-text/[0.48] text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
+                {t('sidebar.collectionTitle', { name: editorial.collection.nom })}
+              </p>
+            )}
+            <h1 className="font-display text-2xl font-bold text-dark-text tracking-[-0.02em] leading-[1.12] mb-2 uppercase">
               {editorial.model.romain} ({editorial.model.arabe})
+              {editorial.model.collab
+                ? ` ${editorial.model.collab.replace(/ /g, ' ')}`
+                : ''}
             </h1>
             <p className="font-display text-lg font-light text-dark-text/70 mb-4">{product.price}</p>
             <p className="font-display italic text-base text-dark-text/90 leading-snug mb-3">
