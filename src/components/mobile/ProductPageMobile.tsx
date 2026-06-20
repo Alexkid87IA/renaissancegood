@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { ChevronLeft, Share2 } from 'lucide-react';
+import { ChevronLeft, Share2, ArrowRight } from 'lucide-react';
 import MobileImageGallery from './MobileImageGallery';
 import MobileProductInfo from './MobileProductInfo';
 import MobileAccordion from './MobileAccordion';
@@ -15,6 +15,7 @@ import { useLocale } from '../../contexts/LocaleContext';
 import { resizeShopifyImage } from '../../lib/imageUtils';
 import { Product } from '../../types/product';
 import { getModelEditorial } from '../../data/productEditorial';
+import { useCart } from '../../contexts/CartContext';
 
 interface ProductPageMobileProps {
   product: Product;
@@ -39,6 +40,23 @@ export default function ProductPageMobile({
     isNonAdaptable,
     isOutOfStock,
   } = useProductData(product, selectedColorIndex);
+
+  // Ajout au panier dans la fiche (en plus de la barre fixe du bas, répétition
+  // assumée, demande Yassin 2026-06-20). Même logique que MobileBottomBar.
+  const { addToCart, isLoading } = useCart();
+  const [addedToCart, setAddedToCart] = useState(false);
+  const selectedVariant = product.variants[selectedColorIndex];
+
+  const handleAddToCart = async () => {
+    if (!selectedVariant?.availableForSale) return;
+    try {
+      await addToCart(selectedVariant.id);
+      setAddedToCart(true);
+      setTimeout(() => setAddedToCart(false), 2500);
+    } catch {
+      // erreur silencieuse, comme la barre du bas
+    }
+  };
 
   // Éditorial interne : si le modèle a une fiche, on rend la structure « maquette ».
   // La copy sort dans la langue du site (transcréations préparées, repli FR).
@@ -68,6 +86,15 @@ export default function ProductPageMobile({
       (editorial.model.adaptable ? ` · ${t('sidebar.adaptable')}` : '')
     : '';
 
+  // Tailles (51 / 53) : le verre affiché suit la taille choisie. Le pont et la
+  // branche sont identiques d'une taille à l'autre.
+  const verreParTaille = (() => {
+    const v = product.variants[selectedColorIndex]?.colorName?.trim();
+    return editorial && product.variants.length > 1 && v && /^\d{1,2}$/.test(v)
+      ? parseInt(v, 10)
+      : editorial?.model.dimensions.verre;
+  })();
+
   const accordionSections = editorial
     ? [
         {
@@ -87,7 +114,7 @@ export default function ProductPageMobile({
               </p>
               <div className="flex items-center justify-between">
                 <span className="font-sans text-[9px] tracking-[0.2em] text-dark-text/40 uppercase">{t('mobile.lensWidthShort')}</span>
-                <span className="font-sans text-sm text-dark-text/70 font-light">{editorial.model.dimensions.verre}mm</span>
+                <span className="font-sans text-sm text-dark-text/70 font-light">{verreParTaille}mm</span>
               </div>
               <div className="w-full h-px bg-dark-text/5" />
               <div className="flex items-center justify-between">
@@ -237,12 +264,23 @@ export default function ProductPageMobile({
                 : ''}
             </h1>
             <p className="font-display text-lg font-light text-dark-text/70 mb-4">{product.price}</p>
-            <p className="font-display italic text-base text-dark-text/90 leading-snug mb-3">
-              {editorial.model.legende}
-            </p>
-            <p className="font-sans text-sm text-dark-text/75 leading-[1.8]">
-              {editorial.model.description}
-            </p>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <button
+                onClick={handleAddToCart}
+                disabled={isLoading || !selectedVariant?.availableForSale}
+                className="group inline-flex items-center gap-2 border-b border-dark-text/40 pb-1.5 font-sans text-[11px] tracking-[0.24em] uppercase text-dark-text disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                {isLoading ? t('sidebar.adding') : addedToCart ? t('sidebar.added') : t('sidebar.add')}
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+              <button
+                onClick={() => navigate('/opticiens')}
+                className="group inline-flex items-center gap-2 border-b border-dark-text/40 pb-1.5 font-sans text-[11px] tracking-[0.24em] uppercase text-dark-text"
+              >
+                {t('sidebar.tryInStore')}
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+            </div>
           </div>
         ) : (
           <MobileProductInfo
@@ -298,6 +336,56 @@ export default function ProductPageMobile({
                 );
               })}
             </div>
+          </div>
+        )}
+
+        {/* Taille — variantes internes du produit (ex. 51 / 53) */}
+        {product.variants.length > 1 &&
+          product.variants.every((v) => /^\d{1,2}$/.test((v.colorName || '').trim())) && (
+          <div className="px-6 pb-6">
+            <div className="flex items-center justify-between mb-3">
+              <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
+                {t('size')}
+              </span>
+              <span className="font-sans text-[11px] text-dark-text/50 font-light">
+                {product.variants[selectedColorIndex]?.colorName
+                  ? `${product.variants[selectedColorIndex].colorName} mm`
+                  : ''}
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-2.5">
+              {product.variants.map((variant, index) => {
+                const isSelected = selectedColorIndex === index;
+                const isAvailable = variant.availableForSale;
+                return (
+                  <button
+                    key={variant.id}
+                    onClick={() => setSelectedColorIndex(index)}
+                    disabled={!isAvailable}
+                    className={`px-6 py-2.5 font-sans text-sm tracking-[0.1em] border transition-all duration-300 active:scale-95 ${
+                      isSelected
+                        ? 'border-dark-text bg-dark-text text-white'
+                        : 'border-dark-text/20 text-dark-text'
+                    } ${!isAvailable ? 'opacity-40 cursor-not-allowed line-through' : ''}`}
+                  >
+                    {variant.colorName}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Légende + description — placées sous les coloris et la taille, même
+            ordre que le desktop : on choisit, puis on lit. */}
+        {editorial && (
+          <div className="bg-white px-6 pb-4">
+            <p className="font-display italic text-base text-dark-text/90 leading-snug mb-3">
+              {editorial.model.legende}
+            </p>
+            <p className="font-sans text-sm text-dark-text/75 leading-[1.8]">
+              {editorial.model.description}
+            </p>
           </div>
         )}
 

@@ -119,6 +119,15 @@ export default function ProductSidebar({
       (model.matiere === 'titane' ? t('sidebar.materialTitanium') : t('sidebar.materialAcetate')) +
       (model.adaptable ? ` · ${t('sidebar.adaptable')}` : '');
 
+    // Tailles (51 / 53) : le verre affiché suit la taille choisie. Le pont et la
+    // branche sont identiques d'une taille à l'autre.
+    const verreParTaille = (() => {
+      const v = product.variants[selectedColorIndex]?.colorName?.trim();
+      return product.variants.length > 1 && v && /^\d{1,2}$/.test(v)
+        ? parseInt(v, 10)
+        : model.dimensions.verre;
+    })();
+
     return (
       <div>
         <div className="p-8 laptop:p-10 xl:p-12">
@@ -205,6 +214,45 @@ export default function ProductSidebar({
             </div>
           )}
 
+          {/* Taille — variantes internes du produit (ex. 51 / 53). Les coloris
+              sont des produits séparés ; ici on choisit la taille de CE coloris. */}
+          {product.variants.length > 1 &&
+            product.variants.every((v) => /^\d{1,2}$/.test((v.colorName || '').trim())) && (
+            <div className="mb-2 pb-6 border-b border-dark-text/10">
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
+                  {t('size')}
+                </span>
+                <span className="font-sans text-sm text-dark-text/70">
+                  {product.variants[selectedColorIndex]?.colorName
+                    ? `${product.variants[selectedColorIndex].colorName} mm`
+                    : t('sidebar.select')}
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {product.variants.map((variant, index) => {
+                  const isSelected = selectedColorIndex === index;
+                  const isAvailable = variant.availableForSale;
+                  return (
+                    <button
+                      key={variant.id}
+                      onClick={() => onColorChange(index)}
+                      disabled={!isAvailable}
+                      className={`relative px-6 py-2.5 font-sans text-sm tracking-[0.1em] border transition-all duration-300 ${
+                        isSelected
+                          ? 'border-dark-text bg-dark-text text-white'
+                          : 'border-dark-text/20 text-dark-text hover:border-dark-text/50'
+                      } ${!isAvailable ? 'opacity-40 cursor-not-allowed line-through' : ''}`}
+                      title={`${variant.colorName} mm${!isAvailable ? ` (${t('sidebar.soldOut')})` : ''}`}
+                    >
+                      {variant.colorName}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {/* Légende + description courte (primaire, visible) */}
           <p className="font-display italic text-lg laptop:text-xl text-dark-text/90 leading-snug mb-4">
             {model.legende}
@@ -225,7 +273,7 @@ export default function ProductSidebar({
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center p-3 bg-neutral-50 rounded">
                 <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">{t('sidebar.lens')}</p>
-                <p className="font-sans text-sm font-medium text-dark-text">{model.dimensions.verre}mm</p>
+                <p className="font-sans text-sm font-medium text-dark-text">{verreParTaille}mm</p>
               </div>
               <div className="text-center p-3 bg-neutral-50 rounded">
                 <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/50 uppercase mb-1">{t('sidebar.bridge')}</p>
@@ -402,11 +450,20 @@ export default function ProductSidebar({
         {/* ========================================
             SÉLECTION DE VARIANTES INTERNES (si plusieurs)
             ======================================== */}
-        {product.variants.length > 1 && (
+        {product.variants.length > 1 && (() => {
+          // Les variantes internes d'un produit Renaissance sont des TAILLES
+          // (ex. 51 / 53), jamais des couleurs (les coloris sont des produits
+          // séparés). On rend donc un vrai sélecteur de taille quand les valeurs
+          // sont numériques ; on garde le rendu couleur en repli défensif.
+          const isSizeVariant = product.variants.every(
+            (v) => /^\d{1,2}$/.test((v.colorName || '').trim())
+          );
+
+          return (
           <div className="mb-8 pb-8 border-b border-dark-text/10">
             <div className="flex items-center justify-between mb-5">
               <span className="font-sans text-[10px] tracking-[0.2em] font-bold text-dark-text uppercase">
-                {t('sidebar.variant')}
+                {isSizeVariant ? t('size') : t('sidebar.variant')}
               </span>
               <span className="font-sans text-sm text-dark-text/70">
                 {product.variants[selectedColorIndex]?.colorName || t('sidebar.select')}
@@ -416,9 +473,28 @@ export default function ProductSidebar({
             {/* Grille des boutons de variante */}
             <div className="flex flex-wrap gap-3">
               {product.variants.map((variant, index) => {
-                const colorValue = getColorFromName(variant.colorName || '');
                 const isSelected = selectedColorIndex === index;
                 const isAvailable = variant.availableForSale;
+
+                if (isSizeVariant) {
+                  return (
+                    <button
+                      key={variant.id}
+                      onClick={() => onColorChange(index)}
+                      disabled={!isAvailable}
+                      className={`relative px-6 py-2.5 font-sans text-sm tracking-[0.1em] border transition-all duration-300 ${
+                        isSelected
+                          ? 'border-dark-text bg-dark-text text-white'
+                          : 'border-dark-text/20 text-dark-text hover:border-dark-text/50'
+                      } ${!isAvailable ? 'opacity-40 cursor-not-allowed line-through' : ''}`}
+                      title={`${variant.colorName} mm${!isAvailable ? ` (${t('sidebar.soldOut')})` : ''}`}
+                    >
+                      {variant.colorName}
+                    </button>
+                  );
+                }
+
+                const colorValue = getColorFromName(variant.colorName || '');
 
                 return (
                   <button
@@ -466,7 +542,8 @@ export default function ProductSidebar({
               </p>
             )}
           </div>
-        )}
+          );
+        })()}
 
         {/* Dimensions */}
         <div className="mb-6 pb-6 border-b border-dark-text/10">

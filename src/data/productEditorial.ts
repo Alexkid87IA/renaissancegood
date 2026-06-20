@@ -267,7 +267,11 @@ export const SYMBOLES: Record<SymboleId, Symbole> = {
     definition:
       "La rue qu'on ne trouve sur aucune carte. Paris gravé dans l'or, " +
       "l'adresse que chacun emporte où il va.",
-    deuxLectures: '', // TODO — Bible 8.8.
+    // Bible 8.8, reformulé avec Yassin le 2026-06-20 : français naturel, sans
+    // le procédé « la mémoire / le choix » ; le sens de l'appartenance, direct.
+    deuxLectures:
+      'Depuis 1844, chaque rue de Paris porte sa plaque. Celle-ci ne nomme ' +
+      "pas une rue, mais ceux qui en sont.",
   },
 };
 
@@ -456,6 +460,212 @@ export const MODELS: Record<string, ModelEditorial> = {
     // Collab hors collections et hors symboles : visage seul (Bible 8.1).
     copyStatut: 'valide',
   },
+
+  'Renaissance IX': {
+    romain: 'Renaissance IX',
+    arabe: 9,
+    // Copy validée par Yassin le 2026-06-12.
+    legende: "Une corde d'or, tendue d'un verre à l'autre.",
+    // Faits : photos dossier 09 (9 C1 FACE : aviateur cerclé, barre frontale
+    // torsadée en corde, pont strié de noir dessous, liseré noir au tour des
+    // verres, embouts acétate bordeaux ; 9 C1 DETAIL : « RENAISSANCE » gravé
+    // dans la barre frontale, blocs striés noirs aux côtés, R sur le verre ;
+    // 9 C1 TROIS-QUARTS : branches en deux câbles torsadés).
+    // Décisions Yassin 2026-06-12 : titane plaqué or 18KT confirmé ;
+    // le noir se dit sans nommer la technique, « liseré noir » pour le tour
+    // des verres ; verre 61 = « Convient aux visages larges. »
+    description:
+      'Le fil tourné en corde. La torsade court au front, d\'un verre à ' +
+      "l'autre, au-dessus d'un pont strié de noir. RENAISSANCE gravé dans " +
+      'la barre, sous la corde. Un liseré noir suit le tour des verres. ' +
+      "Les branches, deux câbles torsadés, jusqu'à l'embout bordeaux.",
+    forme: 'aviateur cerclé double pont',
+    matiere: 'titane',
+    // Aucun tag restrictif sur Shopify (relevé 2026-06-12, « Renaissance IX
+    // Colori 1 », seul coloris en ligne).
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 (relevé IX C1).
+    dimensions: { verre: 61, pont: 14, branche: 145 },
+    // Décision Yassin 2026-06-12 (verre 61, au-dessus du repère 59).
+    morphologie: 'Convient aux visages larges.',
+    // Visage seul : ni collection, ni symbole (Bible 8.1).
+    copyStatut: 'valide',
+  },
+
+  'Renaissance X': {
+    romain: 'Renaissance X',
+    arabe: 10,
+    // Copy validée par Yassin le 2026-06-12.
+    legende: 'La couleur, sans le cadre.',
+    // Faits : photos dossier 10 (10 C3 FACE : rimless, verres carrés adoucis
+    // dégradé jaune orangé, pont courbé strié en or rosé, blocs striés de
+    // noir aux côtés, R sur le verre ; 10 C3 TROIS-QUARTS : branches en deux
+    // câbles torsadés argentés, embouts acétate bordeaux, strass au bout).
+    // Décisions Yassin 2026-06-12 : titane plaqué or 18KT confirmé ;
+    // lecture C3 confirmée (métal or rosé, câbles argentés, embouts
+    // bordeaux) ; le « miel » du brouillon était un effet du verre orangé.
+    description:
+      'Le verre nu. Il tient par le pont courbé, en or rosé, et par deux ' +
+      "blocs striés de noir sur les côtés. Les branches, deux câbles " +
+      "d'argent torsadés, jusqu'à l'embout bordeaux. Le verre fait le reste.",
+    forme: 'rimless',
+    matiere: 'titane',
+    // Aucun tag restrictif sur Shopify (« Renaissance X Colori 3 » créé le
+    // 2026-06-12, seul coloris en ligne sur eyeforeye, relevé 2026-06-11).
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 (relevé « X C3 », seul coloris publié).
+    dimensions: { verre: 58, pont: 16, branche: 145 },
+    // Décision Yassin 2026-06-12 : verre 58 rangé avec le repère 59.
+    morphologie: 'Convient aux visages moyens à larges.',
+    // Visage seul : ni collection, ni symbole (Bible 8.1).
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XI': {
+    romain: 'Renaissance XI',
+    arabe: 11,
+    // Copy validée par Yassin le 2026-06-20.
+    legende: 'Huit angles, aucune courbe.',
+    // Faits : photos dossier 11 (FACE C1 à C5 en taille 51 + 53 C1 : octogone
+    // aplati, huit côtés, angles coupés francs, cerclage métal fin, pont droit ;
+    // DETAIL : stries aux charnières et au départ de branche, RENAISSANCE gravé
+    // sur la ligne du haut, R sur le verre, strass au bout). Forme confirmée
+    // octogonale (et non hexagonale) par Yassin + lecture directe de la photo.
+    // La petite gravure en œil sur un verre = logo distributeur Eye For Eye
+    // (décision Yassin 2026-06-10), pas un symbole de Maison.
+    description:
+      "L'octogone tenu net. Le métal trace huit côtés, chaque angle coupé " +
+      'franc. Aux charnières, des stries serrent le cerclage, les mêmes ' +
+      'courent sur la branche. RENAISSANCE gravé sur la ligne du haut.',
+    forme: 'octogonal cerclé',
+    // Matière : titane plaqué or 18KT confirmé par Yassin le 2026-06-20.
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11. La XI existe en DEUX tailles, vendues comme
+    // variantes Shopify (51 / 53) : verre 51 ou 53, même pont 21, même branche
+    // 140. Valeur de base 51 ; le bloc Dimensions affiche le verre de la taille
+    // sélectionnée (51 ou 53) via verreParTaille (ProductSidebar / ProductPageMobile).
+    dimensions: { verre: 51, pont: 21, branche: 140 },
+    morphologie: 'Convient aux visages fins à moyens.',
+    // Visage seul : ni collection, ni symbole (Bible 8.1).
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XII': {
+    romain: 'Renaissance XII',
+    arabe: 12,
+    // Copy validée par Yassin le 2026-06-20.
+    legende: 'Une adresse vissée sur la branche.',
+    // Faits : photos dossier 12 (FACE C1/C2/C3 : rectangulaire massif, acétate
+    // taillé dans la masse, coins du haut en biseau, pont plein, verres presque
+    // carrés ; TROIS-QUARTS : plaque parisienne « AVENUE DE LA RENAISSANCE »
+    // vissée sur la branche avec « XII » au cartouche, marquage interne
+    // « RENAISSANCE CE 18KT PGX », R sur le verre, strass au bout).
+    // Décisions Yassin 2026-06-20 : acétate Mazzucchelli confirmé et dit en
+    // clair ; branches du C2 noires (le bleu vu de face est un reflet) ;
+    // symbole plaque parisienne affirmé sur la fiche. 3 coloris actifs sur
+    // Shopify (C1 noir, C2 cristal à branches noires, C3 ambre à branches écaille).
+    description:
+      "L'acétate Mazzucchelli pris dans la masse, coupé droit. Les coins du " +
+      'haut sont taillés en biais. Sur la branche, une plaque d\'or porte une ' +
+      'adresse : Avenue de la Renaissance. Le numéro douze est gravé dessus. ' +
+      "Elle n'est sur aucune carte.",
+    forme: 'rectangulaire',
+    matiere: 'acetate',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 (relevés C2 et C3 concordants : 55·21·145).
+    dimensions: { verre: 55, pont: 21, branche: 145 },
+    morphologie: 'Convient aux visages moyens à larges.',
+    // Symbole : la plaque parisienne · Appartenance (Bible 8.8). Pas une
+    // collection : le seul symbole qui voyage. La XII est la première fiche
+    // à le porter (deuxLectures rempli ce jour).
+    symbole: 'plaque-parisienne',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XIII': {
+    romain: 'Renaissance XIII',
+    arabe: 13,
+    // Copy validée par Yassin le 2026-06-20.
+    legende: "Le carré de l'aviateur, deux ponts.",
+    // Faits : photos dossier 13 (FACE C1 : aviateur étiré au carré, dit
+    // navigateur ; double pont, la barre du haut porte « RENAISSANCE CE 18KT »
+    // gravé, le pont du bas est plus fin ; côtés striés ; R sur le verre,
+    // logo œil Eye For Eye sur l'autre verre, « MADE IN KOREA » en branche).
+    // Décisions Yassin 2026-06-20 : titane plaqué or 18KT confirmé ; forme
+    // « navigateur double pont » pour la distinguer de la III ; chute sur le
+    // visage seul. Un seul coloris en vente sur Shopify (Colori 1, 609 €) ;
+    // les 6 autres coloris de la photothèque ne sont pas en ligne.
+    description:
+      'La barre du haut porte le nom, gravé dans le métal. Dessous, un ' +
+      'second pont, plus fin. Aux côtés, le métal est strié. Pas de symbole : ' +
+      'le R sur le verre, le strass au bout. Le visage seul suffit.',
+    forme: 'navigateur double pont',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 (relevés C3, C6, C7 concordants : 57·17·140).
+    dimensions: { verre: 57, pont: 17, branche: 140 },
+    morphologie: 'Convient aux visages moyens à larges.',
+    // Visage seul : ni collection, ni symbole (Bible 8.1).
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XIV': {
+    romain: 'Renaissance XIV',
+    arabe: 14,
+    // Copy validée par Yassin le 2026-06-20.
+    legende: "L'aviateur aux angles francs.",
+    // Faits : photos dossier 14 (FACE C1/C2/C3 : aviateur, le bas du verre
+    // descend en angles coupés nets, pas en goutte ; double pont, deux barres
+    // fines ; TROIS-QUARTS : branches en deux câbles métalliques torsadés
+    // façon corde, du bloc strié à l'embout noir ; gravure « RENAISSANCE CE
+    // 18KT », « MADE IN KOREA », R sur le verre, logo œil Eye For Eye sur
+    // l'autre). Le signe du modèle = les branches tressées (la IX a la corde
+    // au front, pas aux branches ; ne pas confondre, mêmes cotes 61·14·145).
+    // Décisions Yassin 2026-06-20 : titane plaqué or 18KT ; chute sur le R,
+    // pas sur « le visage seul suffit ».
+    description:
+      'Le bas du verre coupé net. Deux ponts fins, les branches tournées en ' +
+      'corde. Le R sur le verre fait le reste.',
+    forme: 'aviateur double pont',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 (relevés C1, C2, C3 concordants : 61·14·145,
+    // cote identique à la IX, montures distinctes).
+    dimensions: { verre: 61, pont: 14, branche: 145 },
+    morphologie: 'Convient aux visages larges.',
+    // Visage seul : ni collection, ni symbole (Bible 8.1). Trois coloris en
+    // vente sur Shopify (C1, C2, C3 à 539 € ; C1 et C3 créés le 2026-06-20,
+    // photos uploadées depuis le PC, stock 2 chacun).
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XVI': {
+    romain: 'Renaissance XVI',
+    arabe: 16,
+    // Copy validée par Yassin le 2026-06-20.
+    legende: 'Un ovale rimless, taillé en diamond cut.',
+    // Faits : photos dossier 16 (FACE/DETAIL/TROIS-QUARTS C1/C2/C3 : ovale
+    // rimless, le bord du verre taillé en diamond cut sur TOUT le tour, pas
+    // seulement le haut ; pont court strié ; branches en double barre torsadée
+    // façon câble ; gravure « RENAISSANCE CE 18KT », « MADE IN KOREA », R sur
+    // le verre, logo œil Eye For Eye sur l'autre, strass au bout).
+    // Décisions Yassin 2026-06-20 : titane plaqué or 18KT ; « diamond cut » et
+    // « double barre torsadée » adoubés (vocabulaire métier) ; chute sur le R.
+    description:
+      "Le verre n'a pas de cadre. Son bord est taillé en diamond cut, tout " +
+      'le tour. Le pont est strié. Les branches : double barre torsadée. ' +
+      'Le R sur le verre fait le reste.',
+    forme: 'ovale rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 (relevé C3 : 59·16·145).
+    dimensions: { verre: 59, pont: 16, branche: 145 },
+    morphologie: 'Convient aux visages moyens à larges.',
+    // Visage seul : ni collection, ni symbole (Bible 8.1). Deux coloris en
+    // vente sur Shopify (C3 709 € en stock, C2 759 € en rupture) ; C1 archivé.
+    copyStatut: 'valide',
+  },
 };
 
 // ---------------------------------------------------------------------------
@@ -525,6 +735,26 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
           'broken clean. Three hundred pairs, each numbered on the temple, ' +
           'one hundred per coloris. The rest keeps quiet.',
         morphologie: 'Fits medium to wide faces.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
+      'Renaissance IX': {
+        legende: 'A cord of gold, strung from one lens to the other.',
+        description:
+          'Wire turned into cord. The twist runs across the brow, lens to ' +
+          'lens, above a bridge scored with black. RENAISSANCE engraved in ' +
+          'the bar, beneath the cord. A thin black line follows the rim of ' +
+          'each lens. The temples, two twisted cables, down to the burgundy ' +
+          'tips.',
+        morphologie: 'Suits wide faces.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
+      'Renaissance X': {
+        legende: 'The color, without the frame.',
+        description:
+          'The bare lens. It holds on by the curved bridge, rose gold, and ' +
+          'by two black-grooved blocks at the sides. The temples, two ' +
+          'twisted silver cables, run to a burgundy tip. The lens does the rest.',
+        morphologie: 'Suits medium to wide faces.',
       },
     },
     collections: {
@@ -624,6 +854,27 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
           'schweigt.',
         morphologie: 'Für mittlere bis breite Gesichter.',
       },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
+      'Renaissance IX': {
+        legende: 'Eine Kordel aus Gold, gespannt von Glas zu Glas.',
+        description:
+          'Der Draht zur Kordel gedreht. Die Windung läuft über die Stirn, ' +
+          'von Glas zu Glas, über einem schwarz gerillten Steg. RENAISSANCE ' +
+          'in die Leiste graviert, unter der Kordel. Eine schwarze Linie ' +
+          'fasst die Gläser ein. Die Bügel: zwei gedrehte Kabel, bis zur ' +
+          'bordeauxroten Bügelspitze.',
+        morphologie: 'Für breite Gesichter.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
+      'Renaissance X': {
+        legende: 'Die Farbe, ohne den Rand.',
+        description:
+          'Das nackte Glas. Gehalten vom gebogenen Steg in Roségold und von ' +
+          'zwei schwarz gerillten Blöcken an den Seiten. Die Bügel: zwei ' +
+          'gedrehte Silberkabel, bis zum Bügelende in Bordeaux. Das Glas ' +
+          'macht den Rest.',
+        morphologie: 'Für mittlere bis breite Gesichter.',
+      },
     },
     collections: {
       heritage: {
@@ -719,6 +970,27 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
           'rotas en seco. Trescientos ejemplares, numerados en la patilla, ' +
           'cien por coloris. El resto calla.',
         morphologie: 'Para rostros de medios a anchos.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
+      'Renaissance IX': {
+        legende: 'Una cuerda de oro, tendida de una lente a otra.',
+        description:
+          'El hilo, vuelto cuerda. El trenzado recorre el frente, de una ' +
+          'lente a otra, sobre un puente estriado de negro. RENAISSANCE ' +
+          'grabado en la barra, bajo la cuerda. Un ribete negro sigue el ' +
+          'contorno de las lentes. Las patillas, dos cables trenzados, ' +
+          'hasta el terminal burdeos.',
+        morphologie: 'Para rostros anchos.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
+      'Renaissance X': {
+        legende: 'El color, sin el marco.',
+        description:
+          'La lente desnuda. Se sostiene por el puente curvado, de oro ' +
+          'rosado, y por dos bloques con estrías negras a los lados. Las ' +
+          'patillas, dos cables de plata trenzados, hasta el terminal ' +
+          'burdeos. La lente hace el resto.',
+        morphologie: 'Para rostros de medianos a anchos.',
       },
     },
     collections: {
@@ -816,6 +1088,26 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
           "sull'asta, cento per coloris. Il resto tace.",
         morphologie: 'Adatta ai visi da medi a larghi.',
       },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
+      'Renaissance IX': {
+        legende: "Una corda d'oro, tesa da una lente all'altra.",
+        description:
+          'Il filo ritorto in corda. Il torciglione corre lungo il ' +
+          "frontale, da una lente all'altra, sopra un ponte striato di " +
+          'nero. RENAISSANCE inciso nella barra, sotto la corda. Un ' +
+          'filetto nero segue il contorno delle lenti. Le aste, due cavi ' +
+          'ritorti, fino al terminale bordeaux.',
+        morphologie: 'Adatta ai visi larghi.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
+      'Renaissance X': {
+        legende: 'Il colore, senza la cornice.',
+        description:
+          'La lente nuda. Si regge sul ponte curvo, in oro rosa, e su due ' +
+          "blocchi striati di nero ai lati. Le aste, due cavi d'argento " +
+          'ritorti, fino al terminale bordeaux. La lente fa il resto.',
+        morphologie: 'Adatta ai visi da medi a larghi.',
+      },
     },
     collections: {
       heritage: {
@@ -909,6 +1201,27 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
           'Триста экземпляров, номер на заушнике, по сто в каждом цвете. ' +
           'Остальное молчит.',
         morphologie: 'Подходит для лиц от средних до широких.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
+      'Renaissance IX': {
+        legende: 'Золотой шнур, натянутый от линзы к линзе.',
+        description:
+          'Нить, свитая в шнур. Витки бегут по верху оправы, от линзы к ' +
+          'линзе, над мостом с чёрными бороздками. RENAISSANCE ' +
+          'выгравировано на планке, под шнуром. Чёрный кант повторяет ' +
+          'контур линз. Заушники, два витых троса, до бордового ' +
+          'наконечника.',
+        morphologie: 'Подходит для широких лиц.',
+      },
+      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
+      'Renaissance X': {
+        legende: 'Цвет, без рамы.',
+        description:
+          'Голая линза. Её держат изогнутый мост из розового золота и два ' +
+          'блока с чёрными бороздками по бокам. Заушники, два витых ' +
+          'серебряных троса, до бордового наконечника. Остальное делает ' +
+          'линза.',
+        morphologie: 'Подходит для средних и широких лиц.',
       },
     },
     collections: {

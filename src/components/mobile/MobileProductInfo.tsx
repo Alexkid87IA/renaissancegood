@@ -24,6 +24,12 @@ export default function MobileProductInfo({
 
   const selectedVariant = product.variants[selectedColorIndex];
 
+  // Variantes internes = TAILLES (51 / 53), pas des couleurs : libellé adapté.
+  const isSizeVariant =
+    !!product.colors &&
+    product.colors.length > 1 &&
+    product.colors.every((c) => /^\d{1,2}$/.test((c.name || '').trim()));
+
   return (
     <motion.div
       className="bg-white px-6 pt-6 pb-4"
@@ -54,7 +60,7 @@ export default function MobileProductInfo({
         <div className="mb-2">
           <div className="flex items-center justify-between mb-3">
             <span className="font-sans text-[9px] tracking-[0.3em] font-medium text-dark-text/40 uppercase">
-              {t('color')}
+              {isSizeVariant ? t('size') : t('color')}
             </span>
             <span className="font-sans text-[11px] text-dark-text/50 font-light">
               {product.colors[selectedColorIndex]?.name || ''}
