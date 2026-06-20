@@ -201,11 +201,20 @@ export const COLLECTIONS: Record<CollectionId, Collection> = {
   },
   versailles: {
     nom: 'Versailles',
-    recit: '', // TODO — récit à écrire (chapitre Fleur de lys).
+    // BROUILLON 2026-06-20 (à valider) — dérivé de la Bible 8.3 (fleur de lys,
+    // MAÎTRISE, l'encadré « Personne ne nous a faits nobles. On a appris le geste »).
+    recit:
+      "Versailles n'est pas un trône, c'est un atelier. La Fleur de lys y dit " +
+      "la maîtrise française : la noblesse d'un geste transmis, jamais un titre " +
+      "reçu. Personne ne nous a faits nobles. On a appris le geste.",
   },
   isis: {
     nom: 'Isis',
-    recit: '', // TODO — récit à écrire (chapitre égyptien).
+    // BROUILLON 2026-06-21 (à valider) — chapitre égyptien (Bible 8.4 à 8.7).
+    recit:
+      "Isis rassemble les signes de l'Égypte : l'ankh, le scarabée, le cobra, " +
+      "l'œil d'Horus. Sculptés dans le métal, ils disent ce qui traverse le " +
+      'temps, se protège et renaît.',
   },
 };
 
@@ -231,7 +240,11 @@ export const SYMBOLES: Record<SymboleId, Symbole> = {
     etendard: 'Maîtrise',
     definition:
       "L'héritage français. La noblesse d'un geste transmis, la fierté d'une origine assumée.",
-    deuxLectures: '', // TODO — Bible 8.3.
+    // Bible 8.3, repris pour la fiche XXXVII (2026-06-20).
+    deuxLectures:
+      'La mémoire y lit la fleur de France, celle des ateliers qui ' +
+      'travaillaient pour les palais. Le choix y lit trois pétales tenus par ' +
+      "une seule attache : ce qu'on devient sans titre.",
   },
   ankh: {
     nom: "L'Ankh",
@@ -245,13 +258,19 @@ export const SYMBOLES: Record<SymboleId, Symbole> = {
     etendard: 'Renaissance',
     definition:
       'Le passage et la transformation. Ce qui traverse les épreuves, ce qui renaît plus fort.',
-    deuxLectures: '', // TODO — Bible 8.5.
+    // Bible 8.5, repris pour la fiche LVIII (2026-06-21).
+    deuxLectures:
+      'La mémoire y lit la renaissance, notre nom dit par une autre ' +
+      "civilisation. Le choix y lit la lenteur tenue : on avance chaque jour.",
   },
   cobra: {
     nom: 'Le Cobra',
     etendard: 'Protection',
     definition: "L'éveil silencieux. Celui qui voit avant d'être vu.",
-    deuxLectures: '', // TODO — Bible 8.6.
+    // Bible 8.6, repris pour la fiche LX (2026-06-21).
+    deuxLectures:
+      'La mémoire y lit le gardien du seuil. Le choix y lit l\'éveil ' +
+      "silencieux : celui qui voit avant d'être vu.",
   },
   'oeil-horus': {
     nom: "L'Œil d'Horus",
@@ -259,7 +278,10 @@ export const SYMBOLES: Record<SymboleId, Symbole> = {
     definition:
       "L'œil qui ne se ferme jamais. Brisé puis rendu entier, il voit ce que les autres " +
       'regardent sans voir.',
-    deuxLectures: '', // TODO — Bible 8.7.
+    // Bible 8.7, repris pour la fiche LV (2026-06-21).
+    deuxLectures:
+      'La mémoire y lit le gardien qui veille. Le choix y lit la lucidité : ' +
+      'voir vraiment, pendant que les autres regardent.',
   },
   'plaque-parisienne': {
     nom: 'La plaque parisienne',
@@ -664,6 +686,804 @@ export const MODELS: Record<string, ModelEditorial> = {
     morphologie: 'Convient aux visages moyens à larges.',
     // Visage seul : ni collection, ni symbole (Bible 8.1). Deux coloris en
     // vente sur Shopify (C3 709 € en stock, C2 759 € en rupture) ; C1 archivé.
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XVII': {
+    romain: 'Renaissance XVII',
+    arabe: 17,
+    // Copy validée par Yassin le 2026-06-20.
+    legende: 'Taillée tout autour, comme une pierre.',
+    // Faits : photos dossier 17 (FACE/PROFIL/DETAIL C1 à C8 ouvertes). Forme
+    // rectangulaire à coins coupés net, rimless, bord du verre taillé en diamond
+    // cut sur TOUT le tour (du pont au bas du verre) ; attache verre-branche en
+    // double boucle lisse ; gravure « RENAISSANCE CE 18KT », « MADE IN KOREA »,
+    // R sur le verre, strass au bout.
+    // Verdict Yassin/agent 2026-06-20 : aucun trident (l'ancienne pub Shopify
+    // l'annonçait à tort) -> visage seul. Chute sur la taille, pas sur le R :
+    // c'est elle qui fait le caractère du modèle.
+    description:
+      'La taille à la place du cadre. Des facettes en pointe courent tout ' +
+      'le tour du verre, du pont au bas. Rimless. La lumière joue sur chaque arête.',
+    forme: 'rectangulaire rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 58·17·140 (5 coloris relevés identiques).
+    dimensions: { verre: 58, pont: 17, branche: 140 },
+    morphologie: 'Pour les visages moyens à larges.',
+    // Visage seul : ni collection, ni symbole (Bible 8.1). Quatre coloris en
+    // vente sur Shopify (C1 809 €, C2 809 € en rupture, C3 759 €, C4 759 €) ;
+    // les dossiers photo C5 à C8 ne sont pas au catalogue.
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XVIII': {
+    romain: 'Renaissance XVIII',
+    arabe: 18,
+    // Copy validée par Yassin le 2026-06-20.
+    legende: 'Un carré qui se tient droit.',
+    // Faits : photos dossier 18 (FACE/TROIS-QUARTS/DETAIL C1 à C4). Carré
+    // cerclé, coins juste adoucis ; fil de métal fin tout le tour ; double barre
+    // au pont ; bloc de lignes serrées à l'attache des branches ; gravure
+    // « RENAISSANCE CE 18KT », « MADE IN KOREA », R sur le verre, strass au bout.
+    // Verdict 2026-06-20 : aucun symbole (l'« œil » du verre = logo Eye For Eye,
+    // pas Isis, décision Yassin 2026-06-10) -> visage seul. On ne compte pas les
+    // barres (l'ancienne pub disait « triple », le brouillon « quatre »).
+    description:
+      'Le carré, les coins juste adoucis. Un fil de métal en fait le tour, ' +
+      'deux barres au-dessus du nez. Pas de symbole : le R sur le verre, ' +
+      'le strass au bout. Le visage seul suffit.',
+    forme: 'carré cerclé',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 48·18·140 (4 coloris relevés identiques).
+    dimensions: { verre: 48, pont: 18, branche: 140 },
+    morphologie: 'Pour les visages fins.',
+    // Visage seul : ni collection, ni symbole (Bible 8.1). Sur Shopify, seul le
+    // C4 était en vente (539 €) ; C3 créé ce jour (Eye For Eye a les 4 coloris,
+    // C1/C2 en PGX photochromique laissés en attente). Verre 48 = visages fins.
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XIX': {
+    romain: 'Renaissance XIX',
+    arabe: 19,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'Le rond, et les stries qui ferment le pont.',
+    // Faits : photos dossier 19 (FACE/TROIS-QUARTS/DETAIL C1 à C4). Cercle rond,
+    // cerclé, métal fin plaqué or ; deux barres striées au pont, le même trait à
+    // la tempe ; gravure « RENAISSANCE CE 18KT », « MADE IN KOREA », R sur le
+    // verre, strass au bout. Aucun symbole -> visage seul. Mot « pantos » écarté
+    // (loi de langue : non adoubé, on dit « le rond »).
+    description:
+      'Le cercle, en métal fin. Deux barres striées ferment le pont, ' +
+      'le même trait revient à la tempe. Pas de symbole : le R sur le verre, ' +
+      'le strass au bout. Le visage seul suffit.',
+    forme: 'rond cerclé',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 49·18·140 (4 coloris relevés identiques).
+    dimensions: { verre: 49, pont: 18, branche: 140 },
+    morphologie: 'Pour les visages fins à moyens.',
+    // Visage seul (Bible 8.1). PGX au relevé sur C1/C2 (à clarifier, sans effet
+    // sur la fiche). Dispo Shopify à revérifier.
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XX': {
+    romain: 'Renaissance XX',
+    arabe: 20,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'Huit côtés taillés net dans l\'acétate.',
+    // Faits : photos dossier 20 (FACE/TROIS-QUARTS/DETAIL, 3 coloris). Octogone
+    // taillé épais dans l'acétate, huit côtés ; un trait d'or entre dans la
+    // branche (Bible 7.2 : l'acétate porte l'or quelque part). Le chevron d'or
+    // de la branche est un motif, pas un symbole (Bible 8.1) -> visage seul.
+    description:
+      "L'octogone, taillé épais dans l'acétate. Huit côtés serrent le verre, " +
+      "aucun ne plie. Sur la branche, un trait d'or entre dans la matière. " +
+      'Pas de symbole : le visage seul.',
+    forme: 'octogonal',
+    matiere: 'acetate',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 (table normalisée, ordre brut variable) :
+    // 49·23·145.
+    dimensions: { verre: 49, pont: 23, branche: 145 },
+    morphologie: 'Pour les visages fins à moyens.',
+    // Visage seul (Bible 8.1). 3 coloris ACTIFS sur Shopify (C1/C2/C3, 489 €,
+    // sous le plancher doctrine 529 € -> à trancher comme II/III/VI). Gravure
+    // « 18KT » non lisible sur photos (acétate + trait d'or confirmés).
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XXI': {
+    romain: 'Renaissance XXI',
+    arabe: 21,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'Un rectangle d\'acétate, la branche en marches.',
+    // Faits : photos dossier 21 (FACE/TROIS-QUARTS/DETAIL, 5 coloris + 1 portée).
+    // Rectangle d'acétate épais, coins du bas taillés net ; la branche descend
+    // par marches, un V de métal s'y loge ; étiquette laser « XXI 53 » sur le
+    // verre. Aucun symbole (le V et la barre = dessin de forme) -> visage seul.
+    description:
+      "L'angle, tenu. Un rectangle d'acétate épais, les coins du bas taillés " +
+      "net. Sur le côté, la branche descend par marches, un V de métal s'y " +
+      'loge. Pas de symbole : le visage seul.',
+    forme: 'rectangulaire',
+    matiere: 'acetate',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 53·20·145.
+    dimensions: { verre: 53, pont: 20, branche: 145 },
+    morphologie: 'Pour les visages moyens.',
+    // Visage seul (Bible 8.1). C3 et C5 activés sur Shopify le 2026-06-21 (stock
+    // 0, à la demande de Yassin) -> la fiche s'affiche, coloris en rupture.
+    // 489 € sous le plancher doctrine 529 € (à trancher). Finitions variables.
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XXX': {
+    romain: 'Renaissance XXX',
+    arabe: 30,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'Une adresse de Paris, vissée sur la tempe.',
+    // Faits : photos dossier 30 (plaque « AVENUE DE LA RENAISSANCE » gravée dans
+    // l'or, cartouche « XXX », prise dans la branche — vue 30 C1 PROFIL.jpg,
+    // 30 C4 TROIS-QUARTS.png). Rectangle d'acétate épais, coins coupés net.
+    // Symbole plaque parisienne (Bible 8.8) -> bloc SYMBOLES partagé, pas de
+    // collection (le symbole qui voyage). Lexique de l'ancienne pub (autorité,
+    // pouvoir) écarté.
+    description:
+      "L'adresse qu'on emporte. Avenue de la Renaissance, gravée dans l'or, " +
+      "prise dans la branche. Autour, un rectangle d'acétate épais, coins " +
+      "coupés net. Le verre se loge dans la matière et s'y tient.",
+    forme: 'rectangulaire',
+    matiere: 'acetate',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 55·19·145 (sans drapeau PGX).
+    dimensions: { verre: 55, pont: 19, branche: 145 },
+    morphologie: 'Pour les visages moyens.',
+    // Symbole plaque parisienne (Bible 8.8) ; pas de collection. Sur Shopify :
+    // C1/C2 actifs (529 €, pile au plancher doctrine). C4 à part ou variante du
+    // C1 : à trancher.
+    symbole: 'plaque-parisienne',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XXII': {
+    romain: 'Renaissance XXII',
+    arabe: 22,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'Le haut tenu droit, le verre nu en bas.',
+    // Faits : photos dossier 22 (FACE/TROIS-QUARTS/DETAIL, 3 coloris). Grande
+    // face rectangulaire en acétate, sommet droit fermé par une barre de métal ;
+    // le bas du verre est dégagé, tenu par un fil de métal. Aucun symbole (le
+    // chevron de branche = construction, Bible 8.1) -> visage seul.
+    description:
+      'Le front droit. Une barre de métal ferme le haut ; en bas, la matière ' +
+      "s'arrête et un fil tient le verre nu. Pas de symbole : le visage seul.",
+    forme: 'rectangulaire',
+    matiere: 'acetate',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 58·15·143 (aucun PGX).
+    dimensions: { verre: 58, pont: 15, branche: 143 },
+    morphologie: 'Pour les visages moyens à larges.',
+    // Visage seul (Bible 8.1). 3 coloris actifs Shopify à 489 € (sous le
+    // plancher doctrine 529 € -> à trancher comme II/III/VI/XX).
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XXVII': {
+    romain: 'Renaissance XXVII',
+    arabe: 27,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'Le navigateur carré, tenu par trois pointes.',
+    // Faits : photos dossier 27 (3 coloris, FACE/TROIS-QUARTS/PROFIL). À chaque
+    // tempe, trois pointes sortent du métal et tiennent le verre (pas de fil de
+    // cerclage côté tempe) = le Trident (Bible 8.2). Titane plaqué or 18KT
+    // (« RENAISSANCE CE 18KT TITANIUM » gravé). Navigateur carré, double pont.
+    description:
+      'Le signe d\'abord. À chaque tempe, trois pointes sortent du métal et ' +
+      'tiennent le verre : le Trident porte la monture, il ne la décore pas. ' +
+      'Puis la ligne, un navigateur carré, double pont droit, le bas du verre ' +
+      'coupé net.',
+    forme: 'navigateur double pont',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 59·17·145 (3 coloris identiques).
+    dimensions: { verre: 59, pont: 17, branche: 145 },
+    morphologie: 'Pour les visages moyens à larges.',
+    collection: 'heritage',
+    symbole: 'trident',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XXIX': {
+    romain: 'Renaissance XXIX',
+    arabe: 29,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'La goutte du pilote, tenue par trois pointes.',
+    // Faits : photos dossier 29 (3 coloris). Trois pointes par tempe tiennent le
+    // verre = le Trident (Bible 8.2). Titane plaqué or 18KT (« 18KT TITANIUM »
+    // gravé). Forme goutte de pilote, haut coupé franc, deux barres au pont.
+    description:
+      'Le trident d\'abord. Trois pointes à chaque tempe sortent du métal et ' +
+      'tiennent le verre. Dessous, la goutte du pilote, le haut coupé franc, ' +
+      'deux barres droites au pont. Trois pointes, une seule main.',
+    forme: 'aviateur double pont',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 58·15·145 (relevé C1/C3 ; C2 supposé idem).
+    dimensions: { verre: 58, pont: 15, branche: 145 },
+    morphologie: 'Pour les visages moyens à larges.',
+    collection: 'heritage',
+    symbole: 'trident',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XXXII': {
+    romain: 'Renaissance XXXII',
+    arabe: 32,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'Trois dents mordent le verre, il ne bouge plus.',
+    // Faits : photos dossier 32 (FACE C2/C3/C6/C7). Trois pointes par tempe
+    // entrent dans le bord du verre et le tiennent = le Trident (Bible 8.2),
+    // même famille que la XXXIV. Rimless, pourtour taillé en facettes (diamond
+    // cut). Chevrons au pont et épi de branche = construction, pas symbole.
+    description:
+      'La prise par la tempe. Le Trident plante trois pointes dans le bord du ' +
+      'verre et le tient. Rimless. Le pourtour est taillé en facettes, chaque ' +
+      'angle prend le jour.',
+    forme: 'rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 58·17·140 (2 coloris relevés ; aucun PGX).
+    dimensions: { verre: 58, pont: 17, branche: 140 },
+    morphologie: 'Pour les visages moyens à larges.',
+    collection: 'heritage',
+    symbole: 'trident',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XXXVI': {
+    romain: 'Renaissance XXXVI',
+    arabe: 36,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'Le grand carré rimless, tenu par le trident.',
+    // Faits : photos dossier 36 (C1/C2/C3, FACE/PROFIL/TROIS-QUARTS). Grand
+    // verre carré rimless ; à chaque tempe, trois pointes sortent du métal et
+    // pincent le verre = le Trident (Bible 8.2). Chevrons pont/branche =
+    // construction. Trident vu à la tempe (et non « sur la branche » de l'ancienne pub).
+    description:
+      'La place prise. Un grand verre carré, sans rien autour. Rimless. ' +
+      'Le trident sort du métal et pince le verre à la tempe, trois pointes ' +
+      'de chaque côté.',
+    forme: 'carré rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 56·17·140 (C1/C3 relevés ; C2 supposé idem).
+    dimensions: { verre: 56, pont: 17, branche: 140 },
+    morphologie: 'Pour les visages moyens à larges.',
+    collection: 'heritage',
+    symbole: 'trident',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XXXVII': {
+    romain: 'Renaissance XXXVII',
+    arabe: 37,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'La fleur de lys aux deux tempes, un verre entre elles.',
+    // Faits : photos dossier 37 (3 coloris). À chaque tempe, une pièce sculptée
+    // symétrique (volutes + pointe) tient le verre et le relie à la branche =
+    // fleur de lys stylisée (chapitre Versailles, Bible 8.3). Aux tempes, pas au
+    // centre (le centre porte le pont strié). Forme large rimless, haut droit.
+    description:
+      'La maîtrise sans titre. La fleur de lys tient le verre à chaque ' +
+      'tempe. Rimless, le haut tiré droit, le regard passe entier.',
+    forme: 'rectangulaire rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 63·13·135 (3 coloris identiques).
+    dimensions: { verre: 63, pont: 13, branche: 135 },
+    // Verre 63 au-delà du dernier repère (59 = moyens à larges) -> larges.
+    morphologie: 'Pour les visages larges.',
+    collection: 'versailles',
+    symbole: 'fleur-de-lys',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XXXVIII': {
+    romain: 'Renaissance XXXVIII',
+    arabe: 38,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: "Deux ponts l'un sur l'autre, le métal à nu.",
+    // Faits : photos dossier 38 (4 coloris, FACE/TROIS-QUARTS). Double pont
+    // strié, coins taillés net, fil de métal autour du verre ; stries du pont
+    // bas jusqu'à la branche. Aucun symbole -> visage seul. ATTENTION : les
+    // pièces colorées sont des CLIPS solaires amovibles, pas les verres (verres
+    // clairs) ; non décrits tant que la question "vendu avec clips ?" n'est pas tranchée.
+    description:
+      'Le métal à nu. Deux ponts superposés, les coins taillés net, les ' +
+      "stries courent jusqu'à la branche. Pas de symbole : le R sur le verre suffit.",
+    forme: 'rectangulaire double pont',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 54·20·140 (C2/C3/C4 relevés ; C1 supposé idem).
+    dimensions: { verre: 54, pont: 20, branche: 140 },
+    morphologie: 'Pour les visages moyens.',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XXXIX': {
+    romain: 'Renaissance XXXIX',
+    arabe: 39,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'La fleur de lys tient le verre, une autre veille au pont.',
+    // Faits : photos dossier 39 (5 coloris, FACE/TROIS-QUARTS). La fleur de lys
+    // est sculptée aux deux coins et agrippe le verre nu (mounts rimless) ; une
+    // autre fleur dressée au pont (finition variable selon coloris). Chapitre
+    // Versailles (Bible 8.3). Forme rimless.
+    description:
+      'La maîtrise du geste. La fleur de lys agrippe le verre nu, trois ' +
+      'volutes à chaque coin. Rimless. Au pont, une autre veille.',
+    forme: 'rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 57·16·140 (5 coloris identiques).
+    dimensions: { verre: 57, pont: 16, branche: 140 },
+    morphologie: 'Pour les visages moyens à larges.',
+    collection: 'versailles',
+    symbole: 'fleur-de-lys',
+    copyStatut: 'valide',
+  },
+
+  // Shopify renommé le 2026-06-21 : « XXXX » -> « XL » (romain additif corrigé,
+  // les 3 coloris). Clé et titre désormais en romain standard.
+  'Renaissance XL': {
+    romain: 'Renaissance XL',
+    arabe: 40,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'Six angles fins, et pas un qui force la voix.',
+    // Faits : photos dossier 40 - XL (C1/C2/C3, FACE/TROIS-QUARTS). SIX côtés
+    // par verre comptés sur les 3 faces (hexagone, et non octogone comme
+    // l'ancienne pub). Fil de titane, anneau ouvert qui accroche la branche
+    // près de la tempe. Aucun symbole -> visage seul.
+    description:
+      'Six côtés tirés au fil de titane, le cercle fermé net. Près de la ' +
+      "tempe, un anneau ouvert accroche la branche. Pas de symbole : le R sur " +
+      'le verre suffit.',
+    forme: 'hexagonal',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 (ligne « XXXX ») : 56·18·140.
+    dimensions: { verre: 56, pont: 18, branche: 140 },
+    morphologie: 'Pour les visages moyens.',
+    copyStatut: 'valide',
+  },
+
+  // Shopify renommé le 2026-06-21 : « XXXXIII » -> « XLIII ».
+  'Renaissance XLIII': {
+    romain: 'Renaissance XLIII',
+    arabe: 43,
+    // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
+    legende: 'Un rectangle de métal fin, les stries noircies près de la charnière.',
+    // Faits : photos dossier 43 - XLIII (4 coloris, FACE/TROIS-QUARTS). Cerclage
+    // fin, rectangle aux coins du bas coupés net ; près de la charnière, des
+    // lignes gravées aux creux noircis (construction, pas un symbole, Bible 8.1).
+    // L'« œil » sur le verre = logo Eye For Eye. Visage seul.
+    description:
+      'Le visage suffit. Un fil de métal ferme le rectangle, les coins du bas ' +
+      'coupés net. Près de la charnière, des lignes noircies courent dans le ' +
+      'métal. Posé, droit, sans rien à déclarer.',
+    forme: 'rectangulaire',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 54·18·140.
+    dimensions: { verre: 54, pont: 18, branche: 140 },
+    morphologie: 'Pour les visages moyens.',
+    copyStatut: 'valide',
+  },
+
+  // Shopify renommé le 2026-06-21 : « XXXXII » -> « XLII ».
+  'Renaissance XLII': {
+    romain: 'Renaissance XLII',
+    arabe: 42,
+    // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
+    legende: 'Le bord du verre taillé à vif, tout le tour.',
+    // Faits : photos dossier 42 (4 coloris, FACE/TROIS-QUARTS). Verre rimless,
+    // bord taillé à vif sur tout le tour (dents serrées, irrégulier - PAS un
+    // diamond cut net) ; pont strié. Aucun symbole -> visage seul.
+    description:
+      'Rien ne cercle le verre. Son bord est taillé à vif tout le tour, en ' +
+      'dents serrées qui prennent la lumière. Rimless. Le pont est strié. ' +
+      'Pas de symbole : le visage seul.',
+    forme: 'rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 (ligne « XXXXII ») : 56·17·140 (1 coloris relevé).
+    dimensions: { verre: 56, pont: 17, branche: 140 },
+    morphologie: 'Pour les visages moyens à larges.',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance L': {
+    romain: 'Renaissance L',
+    arabe: 50,
+    // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
+    legende: "L'acétate coupé net, l'adresse en or sur la branche.",
+    // Faits : photos dossier 50 - L (3 coloris). Plaque d'or « AVENUE DE LA
+    // RENAISSANCE » prise dans la branche (symbole plaque parisienne, Bible 8.8)
+    // ; acétate épais, coins coupés net. Pas de collection (le symbole qui
+    // voyage). « pans coupés »/« charnière double bras » convertis en clair.
+    description:
+      "L'adresse qu'on emporte. Un acétate épais, les coins coupés net. Sur " +
+      "la branche, une plaque d'or : Avenue de la Renaissance, la rue qu'aucune " +
+      'carte ne porte.',
+    forme: 'rectangulaire',
+    matiere: 'acetate',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 51·21·138 (3 coloris identiques).
+    dimensions: { verre: 51, pont: 21, branche: 138 },
+    morphologie: 'Pour les visages fins à moyens.',
+    // Symbole plaque parisienne (Bible 8.8) ; pas de collection. Coloris à
+    // branches d'une teinte différente de la face (C2 écaille, C3 noires).
+    symbole: 'plaque-parisienne',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XLIV': {
+    romain: 'Renaissance XLIV',
+    arabe: 44,
+    // Copy intégrée 2026-06-21 (relecture Yassin). Shopify renommé XXXXIV->XLIV.
+    legende: 'Le verre suspendu entre les pointes du trident.',
+    // Faits : photos dossier 44 - XLIV (C1/C3/C5/C6). Trident : trois pointes
+    // sculptées à chaque coin entrent dans le verre et le tiennent (rimless).
+    // Gravure « RENAISSANCE Cé 18KT TITANIUM » lue (C1/C5). Pont gravé d'arêtes.
+    description:
+      'L\'ancrage. De chaque côté, le trident sort du métal et entre dans le ' +
+      'verre, il le porte seul. Rimless. Un pont gravé d\'arêtes, le verre ' +
+      'suspendu entre les pointes.',
+    forme: 'rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 (ligne « XXXXIV ») : 57·17·140 (3 relevés identiques).
+    dimensions: { verre: 57, pont: 17, branche: 140 },
+    morphologie: 'Pour les visages moyens à larges.',
+    collection: 'heritage',
+    symbole: 'trident',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance LII': {
+    romain: 'Renaissance LII',
+    arabe: 52,
+    // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
+    legende: 'Une barre droite au-dessus du regard, tout s\'aligne dessous.',
+    // Faits : photos dossier 52 - LII (4 coloris). Ligne pilote tenue au carré,
+    // barre plate au front + fil de métal au pont dessous. AUCUN symbole sculpté
+    // -> visage seul. NB : Shopify classe LII en « Collection ISIS » à tort
+    // (aucun ankh/scarabée/cobra/œil d'Horus ; l'« œil » du verre = logo Eye For
+    // Eye) -> à reclasser côté Shopify (décision Yassin).
+    description:
+      'La ligne pilote, tenue au carré. Une barre plate court d\'un côté à ' +
+      "l'autre, un fil de métal ferme le pont dessous. Pas de symbole : le R " +
+      'sur le verre, le strass au bout. Le visage seul suffit.',
+    forme: 'navigateur double pont',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 59·17·145 (4 coloris identiques).
+    dimensions: { verre: 59, pont: 17, branche: 145 },
+    morphologie: 'Pour les visages moyens à larges.',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance LI': {
+    romain: 'Renaissance LI',
+    arabe: 51,
+    // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
+    legende: 'La fleur de lys aux tempes, le bord du verre taillé en facettes.',
+    // Faits : photos dossier 51 - LI (3 coloris). À chaque tempe, une pièce
+    // sculptée (volutes + élément central) tient le verre sans cadre = fleur de
+    // lys (chapitre Versailles) ; la copy Shopify de la Maison dit déjà « La
+    // Fleur de Lys ». Bord du verre taillé en facettes. NB design à vérifier
+    // (Bible 8.1 « une forme à nous » : l'agent note une proximité avec un
+    // joaillier connu).
+    description:
+      'La fleur de lys tient la tempe, des deux côtés. De là part le verre, ' +
+      'sans cadre. Rimless. Le bord taillé en facettes, la lumière s\'y casse.',
+    forme: 'rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 56·17·140 (3 coloris identiques ; distinct
+    // du XI taille 51 qui mesure 51).
+    dimensions: { verre: 56, pont: 17, branche: 140 },
+    morphologie: 'Pour les visages moyens.',
+    collection: 'versailles',
+    symbole: 'fleur-de-lys',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance LIII': {
+    romain: 'Renaissance LIII',
+    arabe: 53,
+    // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
+    legende: 'Le nom gravé en haut du verre, il faut s\'approcher pour le lire.',
+    // Faits : photos dossier 53 - LIII (5 coloris). Rectangle au fil fin ; pont
+    // et double barre portent les mêmes lignes serrées (construction, pas un
+    // symbole). AUCUN symbole -> visage seul. NB : Shopify classe LIII en
+    // « Collection ISIS » + « Carré » à tort (forme rectangulaire, aucun signe
+    // isiaque) -> à reclasser côté Shopify (décision Yassin).
+    description:
+      'Un rectangle au fil fin. Le pont et la double barre portent les mêmes ' +
+      'lignes serrées dans le métal. Pas de symbole : le R sur le verre, le ' +
+      'strass au bout. Le visage seul suffit.',
+    forme: 'rectangulaire',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 58·17·140 (distinct du XI taille 53).
+    dimensions: { verre: 58, pont: 17, branche: 140 },
+    morphologie: 'Pour les visages moyens à larges.',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance LIV': {
+    romain: 'Renaissance LIV',
+    arabe: 54,
+    // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
+    legende: 'Une plaque au-dessus de chaque verre, comme une enseigne.',
+    // Faits : photos dossier 54 - LIV (4 coloris). Demi-cerclé (le cercle tient
+    // le haut, un fil tend le bas — « nylor », dit en clair) ; plaque gravée
+    // RENAISSANCE posée en sourcil ; octogone adouci, pont strié. Le « nylor »
+    // est de la construction, pas un symbole (Bible 8.1) -> visage seul.
+    description:
+      'Le nom d\'abord. RENAISSANCE gravé dans une plaque, posée en sourcil ' +
+      'sur chaque verre. Le cercle tient le haut, le bas reste nu. Un octogone ' +
+      'adouci, un pont strié.',
+    forme: 'octogonal',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 54·19·145.
+    dimensions: { verre: 54, pont: 19, branche: 145 },
+    morphologie: 'Pour les visages moyens.',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance LV': {
+    romain: 'Renaissance LV',
+    arabe: 55,
+    // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
+    legende: "L'œil d'Horus, ajouré dans la branche.",
+    // Faits : photos dossier 55 - LV (3 coloris). L'œil d'Horus est découpé
+    // (ajouré) dans le métal des deux branches = symbole Isis (Bible 8.7),
+    // distinct du R (verre gauche) et du logo Eye For Eye (verre droit). Rimless,
+    // bord du verre taillé en facettes (diamond cut). « 18KT TITANIUM » gravé.
+    description:
+      "L'œil qui veille. Sur chaque branche, l'œil d'Horus est découpé dans " +
+      'le métal. Rimless. Le bord du verre est taillé en facettes, la lumière ' +
+      "s'y casse.",
+    forme: 'rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 58·18·145 (3 coloris identiques).
+    dimensions: { verre: 58, pont: 18, branche: 145 },
+    morphologie: 'Pour les visages moyens à larges.',
+    collection: 'isis',
+    symbole: 'oeil-horus',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance LVI': {
+    romain: 'Renaissance LVI',
+    arabe: 56,
+    // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
+    legende: "Huit côtés taillés net, le jour qui s'accroche au bas du verre.",
+    // Faits : photos dossier 56 - LVI (3 coloris). Octogone étiré rimless ; bord
+    // bas extérieur taillé en gradins/chevrons ; pointe en relief à chaque coin ;
+    // double barre striée au pont. La « pyramide » (tag Shopify) et la frise de
+    // hiéroglyphes ne sont PAS des symboles maîtres (Bible 8.1) -> visage seul.
+    description:
+      "L'octogone tenu sans cadre. Les verres tombent en huit côtés, le bord " +
+      'bas taillé en gradins qui accrochent le jour. Rimless. Une pointe en ' +
+      'relief ferme chaque coin.',
+    forme: 'octogonal rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 60·18·145. Verre 60 > 59 -> larges.
+    dimensions: { verre: 60, pont: 18, branche: 145 },
+    morphologie: 'Pour les visages larges.',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance LVII': {
+    romain: 'Renaissance LVII',
+    arabe: 57,
+    // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
+    legende: "L'adresse en clair, et la même en hiéroglyphes.",
+    // Faits : photos dossier 57 - LVII (3 coloris). Petit rectangle cerclé,
+    // angles coupés, titane plaqué or + branches acétate noir. Porte DEUX fois
+    // l'adresse : « Avenue de la Renaissance » en lettres sur la branche, et la
+    // même redite en hiéroglyphes à la charnière. C'est la plaque parisienne
+    // redite (Bible 8.8, « déjà redite en hiéroglyphes ») -> symbole qui voyage,
+    // pas Isis, pas de collection.
+    description:
+      'La même rue, deux fois. Avenue de la Renaissance sur la branche, en ' +
+      'lettres ; à la charnière, la même adresse redite en hiéroglyphes. Un ' +
+      'petit rectangle cerclé, les angles coupés.',
+    forme: 'rectangulaire',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 54·20·145.
+    dimensions: { verre: 54, pont: 20, branche: 145 },
+    morphologie: 'Pour les visages moyens.',
+    symbole: 'plaque-parisienne',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance LVIII': {
+    romain: 'Renaissance LVIII',
+    arabe: 58,
+    // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
+    legende: 'Un scarabée posé à la charnière, et il ne repart pas.',
+    // Faits : photos dossier 58 - LVIII (3 coloris). Acétate épais, coins du
+    // haut coupés net ; à la charnière, un scarabée pressé dans le métal, vu de
+    // dessus comme un sceau, sans pierre = symbole Isis (Bible 8.5).
+    description:
+      "Le sceau d'abord. L'acétate est taillé épais, les coins du haut coupés " +
+      'net. À la charnière, un scarabée pressé dans le métal, vu de dessus, ' +
+      'comme un cachet. Le reste se tait.',
+    forme: 'rectangulaire',
+    matiere: 'acetate',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 55·19·145.
+    dimensions: { verre: 55, pont: 19, branche: 145 },
+    morphologie: 'Pour les visages moyens à larges.',
+    collection: 'isis',
+    symbole: 'scarabee',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance LX': {
+    romain: 'Renaissance LX',
+    arabe: 60,
+    // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
+    legende: 'Un cobra à chaque tempe, il mord le verre et le garde.',
+    // Faits : photos dossier 60 - LX (3 coloris). À chaque tempe une tête de
+    // cobra dressée, de profil, mord le bord du verre ; corps en écailles sur la
+    // branche ; pierre sertie sur le crâne = symbole Isis (Bible 8.6, dressé et
+    // de profil, conforme). Quatre griffes + morsure tiennent le verre (comptées).
+    description:
+      'La garde silencieuse. À chaque tempe, une tête de cobra mord le bord ' +
+      'du verre, son corps en écailles court le long de la branche. Une pierre ' +
+      'brille sur sa tête. Il ne menace pas, il veille.',
+    forme: 'rond cerclé',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 57·20·138 (3 coloris identiques).
+    dimensions: { verre: 57, pont: 20, branche: 138 },
+    morphologie: 'Pour les visages moyens à larges.',
+    collection: 'isis',
+    symbole: 'cobra',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance LXI': {
+    romain: 'Renaissance LXI',
+    arabe: 61,
+    // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
+    legende: "Le verre facetté, les branches d'acétate qui portent l'or.",
+    // Faits : photos dossier 61 - LXI (4 coloris). Rimless, verre facetté tout
+    // le tour (diamond cut) ; combiné métal plaqué or 18KT + branches acétate
+    // (gravure « RENAISSANCE CE 18KT »). La frise de hiéroglyphes sur la branche
+    // est gravée en surface (décoration), PAS l'ankh sobre de Bible 8.4 et pas
+    // une construction porteuse -> aucun symbole, visage seul. Tag Shopify
+    // « Ankh » à revoir (décision Yassin).
+    description:
+      'La taille à vif. Le verre tient seul, facetté sur tout son tour, ' +
+      'chaque angle rend la lumière. Rimless. Deux boucles de métal le serrent, ' +
+      "des branches d'acétate portent l'or. Pas de symbole : le visage seul.",
+    forme: 'rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 56·18·145 (4 coloris identiques).
+    dimensions: { verre: 56, pont: 18, branche: 145 },
+    morphologie: 'Pour les visages moyens.',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XXXV': {
+    romain: 'Renaissance XXXV',
+    arabe: 35,
+    // Copy intégrée 2026-06-21 (photos du dossier 35 retrouvées, re-prep).
+    legende: "Le trident mord le verre, dans une face d'acétate.",
+    // Faits : photos dossier 35 - XXXV (3 coloris). Trois pointes de métal à
+    // chaque coin mordent l'acétate et tiennent le verre = le Trident (Bible
+    // 8.2), net sur le C3 cristal. Combiné : face acétate pleine, branches
+    // titane gravées de chevrons (construction). Gravure « 18KT TITANIUM ».
+    description:
+      'Le trident sort du métal et prend le verre. Trois pointes à chaque ' +
+      'coin, qui mordent et qui portent. Une face droite, pleine, taillée d\'un ' +
+      'bloc. Les branches filent en titane, gravées jusqu\'au bout.',
+    forme: 'rectangulaire',
+    matiere: 'acetate',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 53·21·140 (3 coloris ; C2 = PGX).
+    dimensions: { verre: 53, pont: 21, branche: 140 },
+    morphologie: 'Pour les visages fins à moyens.',
+    collection: 'heritage',
+    symbole: 'trident',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XXXIII': {
+    romain: 'Renaissance XXXIII',
+    arabe: 33,
+    // Copy intégrée 2026-06-21 (mesures données par Yassin : XXXIII absente du
+    // relevé eyeforeye).
+    legende: 'Le bord taillé à vif, le trident pour le pincer.',
+    // Faits : photos dossier 33 - XXXIII. Rimless, bord du verre taillé en
+    // petites dents (facettes) ; à la tempe, trois pointes sortent du métal et
+    // serrent le verre = le Trident (Bible 8.2). L'« œil » sur le verre = logo
+    // Eye For Eye. Sur Shopify : C3 actif (659 €), C1/C2 archivés.
+    description:
+      'La prise sur le verre. Le bord taillé en petites dents, la lumière s\'y ' +
+      'accroche. Rimless. À la tempe, trois pointes sortent du métal et serrent ' +
+      'le verre.',
+    forme: 'rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures données par Yassin le 2026-06-21 : 56·17·140 (absente du relevé eyeforeye).
+    dimensions: { verre: 56, pont: 17, branche: 140 },
+    morphologie: 'Pour les visages moyens à larges.',
+    collection: 'heritage',
+    symbole: 'trident',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance LIX': {
+    romain: 'Renaissance LIX',
+    arabe: 59,
+    // Copy intégrée 2026-06-21. Symbole = COBRA, confirmé par Yassin (il connaît
+    // le design) ; la lecture photo de l'agent voyait une tête de félin, classée
+    // cobra sur sa décision. Chapitre Isis (Bible 8.6).
+    legende: 'Le cobra à chaque tempe, et le verre sans cadre.',
+    // Faits : photos dossier 59 - LIX (3 coloris). À chaque tempe, une tête de
+    // cobra sculptée saisit le verre et le porte ; une pierre sertie ; rimless,
+    // double pont strié. L'« œil » sur le verre = logo Eye For Eye.
+    description:
+      'La garde sans cadre. À chaque tempe, le cobra sculpté saisit le verre ' +
+      'et le porte. Rimless. Double pont, une pierre prise dans le métal.',
+    forme: 'rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures eyeforeye 2026-06-11 : 55·18·140 (3 coloris ; PGX).
+    dimensions: { verre: 55, pont: 18, branche: 140 },
+    morphologie: 'Pour les visages moyens à larges.',
+    collection: 'isis',
+    symbole: 'cobra',
+    copyStatut: 'valide',
+  },
+
+  'Renaissance XLI': {
+    romain: 'Renaissance XLI',
+    arabe: 41,
+    // Copy intégrée 2026-06-21 (mesures données par Yassin ; XLI absente du
+    // relevé eyeforeye). Shopify renommé XXXXI->XLI.
+    legende: 'La fleur de lys fait la charnière et tient le verre.',
+    // Faits : photos dossier 41 - XLI (3 coloris). À chaque bout, une fleur de
+    // lys sculptée articule la branche et porte le verre sans cadre = chapitre
+    // Versailles (Bible 8.3). Rimless, bas du verre taillé en facettes.
+    description:
+      'La fleur de lys tient le verre. Une à chaque bout, sculptée dans le ' +
+      'métal, elle articule la branche et le porte. Rimless. Le bas du verre ' +
+      "taillé en facettes, la lumière s'y prend.",
+    forme: 'rimless',
+    matiere: 'titane',
+    adaptable: true,
+    // Mesures données par Yassin le 2026-06-21 : 56·17·140 (absente du relevé eyeforeye).
+    dimensions: { verre: 56, pont: 17, branche: 140 },
+    morphologie: 'Pour les visages moyens à larges.',
+    collection: 'versailles',
+    symbole: 'fleur-de-lys',
     copyStatut: 'valide',
   },
 };

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { getProducts } from '../../lib/shopify';
 import { getModelName } from '../../lib/productGrouping';
 import LocaleLink from '../LocaleLink';
-import T from '../TranslatedText';
+import ModelTitle from '../ModelTitle';
 import { resizeShopifyImage } from '../../lib/imageUtils';
 
 interface Product {
@@ -148,7 +148,7 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                       {category}
                     </p>
                     <h3 className="font-display text-lg font-bold text-dark-text uppercase tracking-[-0.01em] leading-tight">
-                      <T>{modelName}</T>
+                      <ModelTitle name={modelName} />
                     </h3>
                   </div>
                   <p className="font-sans text-dark-text/[0.45] text-sm mt-1">
@@ -196,7 +196,7 @@ export default function MobileRelatedProducts({ currentProductId, limit = 5 }: M
                       {category}
                     </p>
                     <h3 className="font-display text-sm font-bold text-dark-text uppercase tracking-[-0.01em] leading-tight">
-                      <T>{modelName}</T>
+                      <ModelTitle name={modelName} />
                     </h3>
                     <p className="font-sans text-dark-text/[0.45] text-xs mt-1">
                       {price}&nbsp;€

@@ -223,7 +223,13 @@ function titleToBunnyFolder(title: string): string | null {
   if (!match) return null;
 
   const [, rawModel, size, colori] = match;
-  const model = rawModel.toUpperCase();
+  // Les titres Shopify sont passés en romain standard (XL..XLIV) le 2026-06-21,
+  // mais les dossiers Bunny restent en graphie additive (XXXX..XXXXIV). On mappe
+  // le romain affiché vers le nom de dossier réel pour ne pas casser les images.
+  const FOLDER_ALIAS: Record<string, string> = {
+    XL: 'XXXX', XLI: 'XXXXI', XLII: 'XXXXII', XLIII: 'XXXXIII', XLIV: 'XXXXIV',
+  };
+  const model = FOLDER_ALIAS[rawModel.toUpperCase()] ?? rawModel.toUpperCase();
   return size ? `${model}-${size}-Colori-${colori}` : `${model}-Colori-${colori}`;
 }
 

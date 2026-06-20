@@ -17,7 +17,7 @@ const celebrities = [
   {
     name: 'Artiste 3',
     role: 'Créateur',
-    model: 'Héritage XXXXIV',
+    model: 'Héritage XLIV',
     image: 'https://26.staticbtf.eno.do/v1/92-default/3272c50bae44f63ac7a7f3d1dfdba07d/media.jpg',
   },
   {

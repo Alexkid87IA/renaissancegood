@@ -10,7 +10,7 @@ import { GroupedProduct, getColorSwatchStyle } from '../lib/productGrouping';
 import type { ColorVariant } from '../lib/productGrouping';
 import { getProductDescription } from '../data/productDescriptions';
 import LocaleLink from './LocaleLink';
-import T from './TranslatedText';
+import ModelTitle from './ModelTitle';
 import { resizeShopifyImage } from '../lib/imageUtils';
 
 interface GroupedProductCardProps {
@@ -195,7 +195,7 @@ const GridCard = memo(function GridCard({
         <div className="pt-4 pb-2">
           <div className="flex items-start justify-between gap-4">
             <h3 className="font-display text-xl sm:text-2xl font-bold text-dark-text tracking-normal leading-[0.95] uppercase break-words">
-              <T>{groupedProduct.modelName}</T>
+              <ModelTitle name={groupedProduct.modelName} />
             </h3>
             <p className="font-sans text-sm font-semibold text-dark-text whitespace-nowrap pt-0.5">
               {price}&nbsp;€
@@ -451,7 +451,7 @@ const EditorialCard = memo(function EditorialCard({
             <h3 className={`font-display text-2xl xl:text-3xl font-bold text-dark-text tracking-[-0.02em] leading-[0.95] uppercase transition-colors duration-500 ${
               isHovered ? 'text-bronze' : ''
             }`}>
-              <T>{groupedProduct.modelName}</T>
+              <ModelTitle name={groupedProduct.modelName} />
             </h3>
 
             <div className={`w-12 h-px mt-6 mb-5 transition-all duration-500 ${
@@ -592,7 +592,7 @@ const EditorialCard = memo(function EditorialCard({
               </p>
             )}
             <h3 className="font-display text-lg font-bold text-dark-text tracking-[-0.01em] leading-tight uppercase">
-              <T>{groupedProduct.modelName}</T>
+              <ModelTitle name={groupedProduct.modelName} />
             </h3>
             <div className="w-8 h-px bg-dark-text/[0.15] mt-3 mb-3" />
             <p className="font-sans text-base font-semibold text-dark-text">

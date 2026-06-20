@@ -4,6 +4,7 @@
 // ========================================
 
 import { Product } from '../components/ProductCard';
+import { getModelEditorial } from '../data/productEditorial';
 
 // Type pour un produit groupé avec ses variantes de couleur
 export interface GroupedProduct {
@@ -35,6 +36,14 @@ export function getModelName(title: string): string {
   }
   // Si pas de pattern "Colori", retourner le titre complet
   return title;
+}
+
+/**
+ * Numéro arabe du modèle (depuis l'éditorial), à afficher à côté du romain.
+ * Ex : "Renaissance XL" → 40. null si le modèle n'a pas d'entrée éditoriale.
+ */
+export function getModelArabe(modelName: string): number | null {
+  return getModelEditorial(modelName)?.model.arabe ?? null;
 }
 
 /**

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ColorVariant, getColorSwatchStyle, getModelName } from '../../lib/productGrouping';
 import LocaleLink from '../LocaleLink';
-import T from '../TranslatedText';
+import ModelTitle from '../ModelTitle';
 import { resizeShopifyImage } from '../../lib/imageUtils';
 
 interface ColorVariantsSectionProps {
@@ -115,7 +115,7 @@ export default function ColorVariantsSection({
                     <h3 className={`font-display font-bold text-dark-text text-base sm:text-lg leading-tight uppercase tracking-[-0.01em] transition-all duration-500 ${
                       hoveredIndex === index ? 'translate-x-1' : ''
                     }`}>
-                      <T>{modelName}</T>
+                      <ModelTitle name={modelName} />
                     </h3>
                     <p className={`font-sans text-sm text-dark-text/50 mt-1 transition-all duration-500 ${
                       hoveredIndex === index ? 'text-dark-text/80' : ''
