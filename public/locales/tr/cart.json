@@ -41,8 +41,8 @@
   "variant": "Varyant:",
   "unitPrice": "Birim fiyat",
   "removeFromCart": "Sepetten kaldır",
-  "decreaseQuantity": "Adeti azalt",
-  "increaseQuantity": "Adeti artır",
+  "decreaseQuantity": "Adedi azalt",
+  "increaseQuantity": "Adedi artır",
   "checkoutForm": {
     "email": "E-posta adresi",
     "firstName": "Ad",
@@ -202,7 +202,7 @@
     "checkout": "Siparişi tamamla",
     "viewCart": "Tüm sepeti gör",
     "taxesNote": "Vergiler ve teslimat ücretleri bir sonraki adımda hesaplanacak",
-    "decreaseQty": "Adeti azalt",
-    "increaseQty": "Adeti artır"
+    "decreaseQty": "Adedi azalt",
+    "increaseQty": "Adedi artır"
   }
 }

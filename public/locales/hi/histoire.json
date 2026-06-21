@@ -54,7 +54,7 @@
     },
     "symboles": {
       "seoTitle": "चिह्न",
-      "seoDescription": "Renaissance Eyewear के चिह्न: Trident, फ़्ल्योर-दे-लीस, Ankh, स्कारब, कोबरा, होरस की आँख, Paris की प्लेट। टाइटेनियम में उकेरे सात चिह्न।"
+      "seoDescription": "Renaissance Eyewear के चिह्न: Trident, Fleur de lys, Ankh, Scarabée, Cobra, Horus की आँख, Paris की प्लेट। टाइटेनियम में उकेरे सात चिह्न।"
     }
   },
   "blog": {
@@ -113,19 +113,19 @@
     "symbol1Name": "Trident",
     "symbol1Subtitle": "सर्वोच्चता",
     "symbol1Desc": "कल, आज और कल के बीच संतुलन। जो नींव रखता है, जो बनाता है, जो टिका रहता है, उसमें जड़।",
-    "symbol2Name": "फ़्ल्योर-दे-लीस",
+    "symbol2Name": "Fleur de lys",
     "symbol2Subtitle": "हुनर पर पकड़",
-    "symbol2Desc": "फ़्रांसीसी विरासत। सौंपे गए एक हुनर की कुलीनता, एक मूल को अपनाने का गर्व।",
+    "symbol2Desc": "फ़्रांस से चला आया हुनर। सौंपे गए एक काम की कुलीनता, अपने मूल को अपनाने का गर्व।",
     "symbol3Name": "Ankh",
     "symbol3Subtitle": "अनंतता",
     "symbol3Desc": "वह साँस जो जोड़ती है। जो बनाने वालों को उनसे जोड़ता है जो आगे बढ़ाएँगे।",
-    "symbol4Name": "स्कारब",
+    "symbol4Name": "Scarabée",
     "symbol4Subtitle": "Renaissance",
     "symbol4Desc": "गुज़रना और बदलना। जो परीक्षाओं से गुज़रता है, जो पहले से मज़बूत होकर फिर जन्म लेता है।",
-    "symbol5Name": "कोबरा",
+    "symbol5Name": "Cobra",
     "symbol5Subtitle": "रक्षा",
     "symbol5Desc": "ख़ामोश जागृति। वह जो देखे जाने से पहले देख लेता है।",
-    "symbol6Name": "होरस की आँख",
+    "symbol6Name": "Horus की आँख",
     "symbol6Subtitle": "साफ़ नज़र",
     "symbol6Desc": "वह आँख जो कभी नहीं मुँदती। टूटी, फिर पूरी की गई, वह वही देखती है जिसे दूसरे देखते हुए भी नहीं देखते।",
     "symbol7Name": "Paris की प्लेट",
@@ -185,9 +185,9 @@
     "collection2Name": "Héritage",
     "collection2Desc": "Trident। जो आगे सौंपा जाता है।",
     "collection3Name": "Versailles",
-    "collection3Desc": "फ़्ल्योर-दे-लीस। जो खड़ा किया जाता है।",
+    "collection3Desc": "Fleur de lys। जो खड़ा किया जाता है।",
     "collection4Name": "Isis",
-    "collection4Desc": "Ankh, स्कारब, आँख। जो पाँच हज़ार साल से गुज़रता है।",
+    "collection4Desc": "Ankh, Scarabée, आँख। जो पाँच हज़ार साल से गुज़रता है।",
     "quote": "हम मॉडल नहीं जमा करते। हम चिह्न जमा करते हैं।",
     "scroll": "स्क्रॉल करें"
   },
