@@ -1,0 +1,704 @@
+{
+  "template": {
+    "legalInfo": "Yasal Bilgiler",
+    "lastUpdated": "Son güncelleme",
+    "needHelp": "Yardım lazım",
+    "question": "Bir soru mu var?",
+    "hereForYou": "Senin için buradayız.",
+    "contactUs": "Bize ulaş"
+  },
+
+  "cgv": {
+    "title": "Genel Satış Koşulları",
+    "lastUpdated": "6 Ekim 2025",
+    "intro": "İşbu Genel Satış Koşulları (GSK), <strong>Renaissance Eyewear</strong> tarafından <strong>renaissanceeyewear.fr</strong> sitesinde gerçekleştirilen ürün satışlarını düzenler. Her sipariş, işbu GSK'nın koşulsuz kabulü anlamına gelir.",
+    "article1Title": "Madde 1 - Yasal Bilgiler",
+    "article1Text": "<strong>Ticari unvan:</strong> Renaissance Eyewear<br /><strong>Merkez:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France<br /><strong>E-posta:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a><br /><strong>İnternet sitesi:</strong> <a href=\"https://renaissanceeyewear.fr\">renaissanceeyewear.fr</a><br /><strong>Barındırma:</strong> Shopify Inc., 151 O'Connor Street, Ground floor, Ottawa, ON K2P 2L8, Canada",
+    "article2Title": "Madde 2 - Konu",
+    "article2Text": "İşbu GSK'nın konusu, Renaissance Eyewear tarafından sunulan gözlük ve aksesuarların çevrimiçi satışı kapsamında tarafların hak ve yükümlülüklerini tanımlamaktır.",
+    "article3Title": "Madde 3 - Ürünler",
+    "article3_1Title": "3.1 Açıklama",
+    "article3_1Text": "Renaissance Eyewear, Kore'de yapılan ve şu özellikleri taşıyan gözlükler sunar:",
+    "article3_1Items": [
+      "Kesin bitişli, kalın metal çerçeveler",
+      "7 simge: Trident, Fleur de Lys, Ankh, Scarabée, Cobra, Horus'un Gözü, Paris Plakası",
+      "Sap ucunda imza kristal",
+      "Köprüye kazınmış seri numarası: bir kimlik, sınırlı sayıda üretim değil",
+      "Temalı koleksiyonlar: Héritage, Versailles, Isis"
+    ],
+    "article3_2Title": "3.2 Fiyat",
+    "article3_2Text": "Fiyatlar avro cinsinden, vergiler dahil belirtilmiştir. Fiyat aralığı, model ve seriye göre 529€ ile 829€ arasındadır.",
+    "article3_2Items": [
+      "Fiyatlara, yürürlükteki orandaki KDV dahildir",
+      "Teslimat ücretleri tüm varış noktaları için <strong>ücretsizdir</strong>",
+      "Renaissance Eyewear fiyatlarını dilediği zaman değiştirme hakkını saklı tutar, ancak ürünler sipariş onayı anındaki yürürlükteki fiyat üzerinden faturalandırılır"
+    ],
+    "article3_3Title": "3.3 Stok Durumu",
+    "article3_3Text": "Ürünler mevcut stoklarla sınırlı olarak sunulur. Sipariş verildikten sonra stokta bulunmama durumunda, müşteri en kısa sürede bilgilendirilir ve şunlardan birini seçebilir:",
+    "article3_3Items": [
+      "Siparişin iptali ve tam geri ödeme",
+      "Eşdeğer bir ürünle değişim",
+      "Bir sonraki stok yenilemesi için bekleme listesine kayıt"
+    ],
+    "article4Title": "Madde 4 - Siparişler",
+    "article4_1Title": "4.1 Sipariş süreci",
+    "article4_1Items": [
+      "Ürün seçimi ve sepete ekleme",
+      "Sepetin onayı ve siparişin kontrolü",
+      "Müşteri hesabı oluşturma ya da giriş",
+      "Teslimat ve fatura bilgilerinin girilmesi",
+      "Ödeme yönteminin seçimi",
+      "Son onay ve GSK'nın kabulü",
+      "Güvenli ödeme"
+    ],
+    "article4_2Title": "4.2 Sipariş onayı",
+    "article4_2Text": "Ödemenin onaylanmasının hemen ardından e-postayla bir sipariş onayı gönderilir. Bu onay şunları özetler:",
+    "article4_2Items": [
+      "Sipariş numarası",
+      "Sipariş edilen ürünler",
+      "Toplam tutar",
+      "Teslimat adresi",
+      "Tahmini teslimat süresi"
+    ],
+    "article4_3Title": "4.3 Hukuki ehliyet",
+    "article4_3Text": "Sipariş yalnızca reşit ve hukuken ehil bir kişi tarafından verilebilir. Müşteri, sipariş vererek gerekli hukuki ehliyete sahip olduğunu beyan eder.",
+    "article5Title": "Madde 5 - Ödeme",
+    "article5_1Title": "5.1 Kabul edilen ödeme yöntemleri",
+    "article5_1Items": [
+      "Banka kartı (Visa, Mastercard, American Express)",
+      "PayPal",
+      "Shopify Payments tarafından sunulan diğer yöntemler"
+    ],
+    "article5_2Title": "5.2 Ödeme güvenliği",
+    "article5_2Text": "Ödemeler Shopify Payments tarafından güvenli hale getirilir. Renaissance Eyewear banka kartının tüm verilerine erişemez. İşlemler şifrelidir ve PCI-DSS standartlarına uygundur.",
+    "article5_3Title": "5.3 Ödemenin muacceliyeti",
+    "article5_3Text": "Ödeme, sipariş anında derhal muacceldir. Sipariş yalnızca ödeme onayından sonra işleme alınır.",
+    "article6Title": "Madde 6 - Teslimat",
+    "article6_1Title": "6.1 Teslimat bölgeleri",
+    "article6_1Text": "Renaissance Eyewear, bilinen bir coğrafi kısıtlama olmaksızın dünyanın her yerine teslimat yapar.",
+    "article6_2Title": "6.2 Teslimat süreleri",
+    "article6_2Items": [
+      "<strong>Hazırlık:</strong> 24 ila 48 iş saati",
+      "<strong>Fransa Anakarası:</strong> Gönderimden sonra 1-2 iş günü",
+      "<strong>Avrupa Birliği:</strong> Gönderimden sonra 2-3 iş günü",
+      "<strong>Uluslararası:</strong> Gönderimden sonra 3-7 iş günü"
+    ],
+    "article6_3Title": "6.3 Taşıyıcı",
+    "article6_3Text": "Siparişler, takip numarasıyla Colissimo aracılığıyla gönderilir.",
+    "article6_4Title": "6.4 Teslimat ücretleri",
+    "article6_4Text": "<strong>Teslimat ücretsizdir</strong>, tüm varış noktaları için.",
+    "article6_5Title": "6.5 Siparişin teslim alınması",
+    "article6_5Text": "Müşteri, teslim alırken paketin durumunu kontrol etmelidir. Görünür her hasar, 48 saat içinde taşıyıcıya ve Renaissance Eyewear'a bildirilmelidir.",
+    "article7Title": "Madde 7 - Cayma Hakkı",
+    "article7_1Title": "7.1 Süre",
+    "article7_1Text": "Yürürlükteki mevzuata uygun olarak, müşteri ürünleri teslim aldığı tarihten itibaren 14 takvim günü içinde, gerekçe göstermeden ve ceza ödemeden cayma hakkını kullanabilir.",
+    "article7_2Title": "7.2 Koşullar",
+    "article7_2Text": "Cayma hakkını kullanmak için müşteri:",
+    "article7_2Items": [
+      "Müşteri hizmetlerine <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a> adresinden ulaşmalı",
+      "Sipariş numarasını belirtmeli",
+      "Ürünü, tüm etiketleri zarar görmemiş şekilde orijinal ambalajıyla iade etmeli"
+    ],
+    "article7_3Title": "7.3 İade masrafları",
+    "article7_3Text": "İade masrafları, Fransa ve Avrupa Birliği'ndeki siparişler için Renaissance Eyewear tarafından karşılanır.",
+    "article7_4Title": "7.4 Geri ödeme",
+    "article7_4Text": "Geri ödeme, iade edilen ürünün teslim alınmasından sonraki 14 gün içinde, alışverişte kullanılan ödeme yöntemine yapılır.",
+    "article7_5Title": "7.5 İstisnalar",
+    "article7_5Text": "Cayma hakkı, müşterinin özelliklerine göre kişiselleştirilmiş ya da özel olarak yapılmış ürünler için geçerli değildir.",
+    "article8Title": "Madde 8 - Garantiler",
+    "article8_1Title": "8.1 Yasal uygunluk garantisi",
+    "article8_1Text": "Tüm ürünler, Tüketici Kanunu'nun L. 217-4 ve devamı maddelerinde öngörülen yasal uygunluk garantisinden ve Medeni Kanun'un 1641 ve devamı maddelerinde öngörülen gizli ayıplara karşı garantiden yararlanır.",
+    "article8_2Title": "8.2 Üretici garantisi",
+    "article8_2Text": "Ek olarak, Renaissance Eyewear şunları kapsayan <strong>3 yıllık</strong> bir üretici garantisi sunar:",
+    "article8_2Items": [
+      "Üretim hataları",
+      "Malzeme ayıpları",
+      "Menteşe ya da sap sorunları"
+    ],
+    "article8_3Title": "8.3 Garanti dışı durumlar",
+    "article8_3Text": "Garanti şunları kapsamaz:",
+    "article8_3Items": [
+      "Ürünün normal aşınması",
+      "Anormal kullanım ya da kazadan kaynaklanan hasarlar",
+      "Yetkisiz üçüncü kişilerce yapılan değişiklik ya da onarımlar",
+      "Camlardaki çizikler (üretim hatası hariç)"
+    ],
+    "article8_4Title": "8.4 Garantinin uygulanması",
+    "article8_4Text": "Garantiyi işletmek için müşteri, müşteri hizmetlerine şunlarla başvurmalıdır:",
+    "article8_4Items": [
+      "Sipariş numarası",
+      "Sorunun açıklaması",
+      "Gerekirse fotoğraflar"
+    ],
+    "article9Title": "Madde 9 - Sorumluluk",
+    "article9_1Title": "9.1 Renaissance Eyewear'ın sorumluluğu",
+    "article9_1Text": "Renaissance Eyewear, açıklamalara uygun ve mesleki kalitede ürünler sunmayı taahhüt eder. Sorumluluğu şu durumlarda doğmaz:",
+    "article9_1Items": [
+      "Mücbir sebep hâlinde",
+      "Ürünün anormal ya da uygunsuz kullanımı hâlinde",
+      "Ürünün müşteri ya da üçüncü kişi tarafından değiştirilmesi hâlinde"
+    ],
+    "article9_2Title": "9.2 Sorumluluğun sınırlandırılması",
+    "article9_2Text": "Renaissance Eyewear'ın sorumluluğu, ilgili siparişin tutarıyla sınırlıdır.",
+    "article10Title": "Madde 10 - Fikrî Mülkiyet",
+    "article10Text1": "Sitedeki tüm öğeler (metinler, görseller, logolar, simgeler, tasarımlar) telif hakkı ve marka hakkıyla korunmaktadır. Renaissance simgeleri (Trident, Fleur de Lys, Ankh, Scarabée, Cobra, Horus'un Gözü, Paris Plakası) ve \"Renaissance Eyewear\" adı tescilli markadır.",
+    "article10Text2": "Kısmen dahi olsa her türlü çoğaltma, temsil ya da kullanım, önceden yazılı izin alınmadan kesinlikle yasaktır.",
+    "article11Title": "Madde 11 - Kişisel Verilerin Korunması",
+    "article11Text1": "Toplanan bilgiler, siparişlerin yönetimi ve müşteri ilişkilerine yönelik bir bilişim işlemine konu olur. KVKB'ye (GDPR) uygun olarak, verilerinize erişim, düzeltme, silme ve taşınabilirlik hakkına sahipsiniz.",
+    "article11Text2": "Daha fazla bilgi için <a href=\"/confidentialite\">Gizlilik Politikamıza</a> bakın.",
+    "article12Title": "Madde 12 - Arabuluculuk ve Uyuşmazlıkların Çözümü",
+    "article12_1Title": "12.1 Şikâyetler",
+    "article12_1Text": "Her türlü şikâyet için müşteri öncelikle müşteri hizmetlerine <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a> adresinden başvurmalıdır. 48 iş saati içinde yanıt vermeyi taahhüt ederiz.",
+    "article12_2Title": "12.2 Tüketici arabuluculuğu",
+    "article12_2Text": "Tüketici Kanunu'nun L. 612-1 maddesine uygun olarak, uyuşmazlık hâlinde müşteri, uyuşmazlığın dostane çözümü için ücretsiz olarak bir tüketici arabulucusuna başvurabilir.",
+    "article12_3Title": "12.3 Uygulanacak hukuk",
+    "article12_3Text": "İşbu GSK Fransız hukukuna tabidir. Yorumuna ya da uygulanmasına ilişkin her uyuşmazlık, münhasıran Fransız mahkemelerinin yetkisindedir.",
+    "article13Title": "Madde 13 - GSK'da Değişiklikler",
+    "article13Text": "Renaissance Eyewear, işbu GSK'yı dilediği zaman değiştirme hakkını saklı tutar. Geçerli GSK, siparişin verildiği anda yürürlükte olandır.",
+    "article14Title": "Madde 14 - İletişim",
+    "article14Text": "İşbu GSK ile ilgili her türlü soru için bize ulaşabilirsiniz:",
+    "article14Items": [
+      "<strong>E-posta:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Adres:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France",
+      "<strong>Yanıt süresi:</strong> 48 iş saati içinde"
+    ]
+  },
+
+  "confidentialite": {
+    "title": "Gizlilik politikası",
+    "lastUpdated": "6 Ekim 2025",
+    "intro": "Bu gizlilik politikası, <strong>renaissanceeyewear.fr</strong> sitesini (« Site ») ziyaret ettiğinizde, hizmetlerimizi kullandığınızda ya da satın alma yaptığınızda veya Site ile ilgili başka bir şekilde bizimle iletişim kurduğunuzda (birlikte « Hizmetler »), <strong>Renaissance Eyewear</strong>'ın (« Site », « biz », « bizim » ya da « bizler ») kişisel bilgilerinizi nasıl topladığını, kullandığını ve açıkladığını anlatır. Bu gizlilik politikası bakımından « siz », « sizin » ve « size » sözcükleri; ister müşteri, ister site ziyaretçisi, ister bu politikaya uygun olarak bilgilerini topladığımız başka bir kişi olun, Hizmetlerin kullanıcısı olarak sizi belirtir.",
+    "readCarefully": "Lütfen bu gizlilik politikasını dikkatle okuyun.",
+    "changesTitle": "Bu gizlilik politikasındaki değişiklikler",
+    "changesText": "Uygulamalarımızdaki değişiklikleri yansıtmak için ya da başka işletme, hukuki veya düzenleyici nedenlerle bu gizlilik politikasını zaman zaman güncelleyebiliriz. Gözden geçirilmiş gizlilik politikasını Site'de yayımlar, « Son güncelleme » tarihini yeniler ve yürürlükteki mevzuatın gerektirdiği diğer önlemleri alırız.",
+    "howWeCollectTitle": "Kişisel bilgilerinizi nasıl topluyor ve kullanıyoruz",
+    "howWeCollectText1": "Hizmetleri sunmak için, son 12 ay içinde aşağıda belirtildiği gibi çeşitli kaynaklardan sizinle ilgili kişisel bilgiler topladık ve toplamaktayız. Topladığımız ve kullandığımız bilgiler, bizimle nasıl etkileşim kurduğunuza göre değişir.",
+    "howWeCollectText2": "Aşağıda belirtilen özel kullanımlara ek olarak, sizinle ilgili topladığımız bilgileri sizinle iletişim kurmak, Hizmetleri sunmak ya da iyileştirmek, yürürlükteki yasal yükümlülüklere uymak, geçerli hizmet koşullarına uyulmasını sağlamak ve Hizmetleri, haklarımızı ve kullanıcılarımızın ya da başkalarının haklarını korumak veya savunmak için kullanabiliriz.",
+    "personalInfoTitle": "Topladığımız kişisel bilgiler",
+    "personalInfoText": "Sizinle ilgili edindiğimiz kişisel bilgi türleri, Site'mizle nasıl etkileşim kurduğunuza ve Hizmetlerimizi nasıl kullandığınıza bağlıdır. « Kişisel bilgiler » terimini kullandığımızda, sizi tanımlayan, sizinle ilgili olan, sizi tanımlayan ya da sizinle ilişkilendirilebilen bilgileri kastediyoruz.",
+    "directInfoTitle": "Doğrudan sizden topladığımız bilgiler",
+    "directInfoText": "Hizmetlerimiz aracılığıyla doğrudan bize gönderdiğiniz bilgiler şunları içerebilir:",
+    "directInfoItems": [
+      "<strong>İletişim bilgileri</strong>, özellikle adınız, adresiniz, telefon numaranız ve e-postanız.",
+      "<strong>Sipariş bilgileri</strong>, özellikle adınız, fatura adresiniz, teslimat adresiniz, ödeme onayınız, e-postanız ve telefon numaranız.",
+      "<strong>Hesap bilgileri</strong>, özellikle kullanıcı adınız, parolanız, güvenlik sorularınız ve hesap güvenliği amacıyla kullanılan diğer bilgiler.",
+      "<strong>Müşteri hizmetleri bilgileri</strong>, özellikle bizimle iletişiminize dahil etmeyi seçtiğiniz bilgiler."
+    ],
+    "usageInfoTitle": "Kullanımınıza dair topladığımız bilgiler",
+    "usageInfoText": "Ayrıca, Hizmetlerle olan etkileşiminize ilişkin bazı bilgileri otomatik olarak toplayabiliriz (« Kullanım Verileri »). Bunun için çerezler, pikseller ve benzeri teknolojiler (« Çerezler ») kullanabiliriz. Kullanım Verileri; Site'mize ve hesabınıza nasıl eriştiğiniz ve bunları nasıl kullandığınız hakkında bilgileri, cihaz bilgilerini, tarayıcı bilgilerini, ağ bağlantınıza ilişkin bilgileri, IP adresinizi ve Hizmetlerle etkileşiminize ilişkin diğer bilgileri içerebilir.",
+    "thirdPartyInfoTitle": "Üçüncü kişilerden edindiğimiz bilgiler",
+    "thirdPartyInfoText": "Son olarak, sizinle ilgili bilgileri üçüncü kişilerden, özellikle bizim adımıza bilgi toplayabilecek tedarikçi ve hizmet sağlayıcılardan edinebiliriz, örneğin:",
+    "thirdPartyInfoItems": [
+      "Shopify gibi, Site'mizi ve Hizmetlerimizi destekleyen şirketler.",
+      "Siparişlerinizi yerine getirmek için ödemenizi işleyen, ödeme bilgilerini toplayan ödeme işleme kuruluşlarımız."
+    ],
+    "howWeUseTitle": "Kişisel bilgilerinizi nasıl kullanıyoruz",
+    "providingServicesTitle": "Ürünlerin ve Hizmetlerin sunulması",
+    "providingServicesText": "Sizinle aramızdaki sözleşmeyi yerine getirmek için Hizmetleri size sunmak amacıyla kişisel bilgilerinizi kullanırız; özellikle ödemelerinizi işlemek, siparişlerinizi yerine getirmek, hesabınıza, alışverişlerinize, iadelerinize, değişimlerinize ya da diğer işlemlerinize ilişkin bildirimler göndermek için.",
+    "marketingTitle": "Pazarlama ve reklam",
+    "marketingText": "Kişisel bilgilerinizi pazarlama ve tanıtım amacıyla kullanabiliriz; örneğin e-posta, SMS ya da posta yoluyla pazarlama, reklam ve tanıtım iletileri göndermek ve size ürün veya hizmet reklamları göstermek için.",
+    "securityTitle": "Güvenlik ve dolandırıcılığın önlenmesi",
+    "securityText": "Olası dolandırıcı, yasa dışı ya da kötü niyetli faaliyetleri tespit etmek, soruşturmak veya bunlara karşı önlem almak için kişisel bilgilerinizi kullanırız.",
+    "cookiesTitle": "Çerezler",
+    "cookiesText1": "Birçok internet sitesi gibi, Site'mizde çerez kullanıyoruz. Mağazamızı Shopify ile işletirken kullandığımız çerezler hakkında ayrıntılı bilgi için <a href=\"https://www.shopify.com/legal/cookies\" target=\"_blank\" rel=\"noopener noreferrer\">https://www.shopify.com/legal/cookies</a> adresine gidin.",
+    "cookiesText2": "Çoğu tarayıcı çerezleri varsayılan olarak otomatik kabul eder, ancak tarayıcı denetimleri sayesinde çerezleri silecek ya da reddedecek şekilde tarayıcınızı yapılandırmayı seçebilirsiniz.",
+    "disclosureTitle": "Kişisel bilgileri nasıl açıklıyoruz",
+    "disclosureText": "Bazı durumlarda kişisel bilgilerinizi üçüncü kişilere açıklayabiliriz, özellikle:",
+    "disclosureItems": [
+      "Bizim adımıza hizmet veren tedarikçiler ya da diğer üçüncü kişiler (örn. bilişim yönetimi, ödeme işleme, veri analizi, müşteri hizmetleri).",
+      "Size hizmet sunmak ve reklam göstermek için ticari ve pazarlama partnerleri.",
+      "Bizden belirli bilgileri üçüncü kişilere açıklamamızı istediğinizde ya da başka bir şekilde buna onay verdiğinizde."
+    ],
+    "childrenTitle": "Çocuklara ilişkin veriler",
+    "childrenText": "Hizmetler çocuklar tarafından kullanılmak üzere tasarlanmamıştır ve çocuklara ait hiçbir kişisel bilgiyi bilerek toplamayız.",
+    "retentionTitle": "Bilgilerinizin güvenliği ve saklanması",
+    "retentionText": "Hiçbir güvenlik önleminin kusursuz ya da kırılamaz olmadığını ve « mutlak güvenlik » garanti edemeyeceğimizi unutmayın. Ayrıca, bize gönderdiğiniz bilgiler aktarımları sırasında güvenli olmayabilir.",
+    "rightsTitle": "Haklarınız",
+    "rightsText": "İkamet ettiğiniz yere bağlı olarak, aşağıdaki haklardan yararlanabilirsiniz:",
+    "rightsItems": [
+      "<strong>Erişim/bilgi edinme hakkı</strong>: Sizinle ilgili sakladığımız kişisel bilgilere erişim talep edebilirsiniz.",
+      "<strong>Silme hakkı</strong>: Sizinle ilgili sakladığımız kişisel bilgileri silmemizi talep edebilirsiniz.",
+      "<strong>Düzeltme hakkı</strong>: Sizinle ilgili sakladığımız kişisel bilgileri düzeltmemizi talep edebilirsiniz.",
+      "<strong>Taşınabilirlik hakkı</strong>: Sizinle ilgili sakladığımız kişisel bilgilerin bir kopyasını alabilirsiniz.",
+      "<strong>İletişim tercihlerinin yönetimi</strong>: Size tanıtım e-postaları gönderebiliriz; bunları dilediğiniz an almayı reddedebilirsiniz."
+    ],
+    "internationalTitle": "Uluslararası kullanıcılar",
+    "internationalText": "Kişisel bilgilerinizi yaşadığınız ülkenin dışında aktarabileceğimizi, saklayabileceğimizi ve işleyebileceğimizi unutmayın.",
+    "contactTitle": "İletişim",
+    "contactText": "Gizlilik uygulamalarımız ya da bu gizlilik politikası hakkında sorularınız varsa veya sahip olduğunuz haklardan birini kullanmak istiyorsanız, lütfen bize ulaşın:",
+    "contactInfo": "<strong>E-posta:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a><br /><strong>Adres:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France"
+  },
+
+  "cookies": {
+    "title": "Çerez Politikası",
+    "lastUpdated": "6 Ekim 2025",
+    "intro": "Bu politika, <strong>Renaissance Eyewear</strong>'ın <strong>renaissanceeyewear.fr</strong> sitemizde çerezleri ve benzeri teknolojileri nasıl kullandığını anlatır.",
+    "whatIsTitle": "Çerez nedir?",
+    "whatIsText": "Çerez, bir internet sitesini ziyaret ettiğinizde bilgisayarınıza, tabletinize ya da telefonunuza yerleştirilen küçük bir metin dosyasıdır. Çerezler, sitenin cihazınızı tanımasını ve belirli bir süre boyunca işlemlerinizi ve tercihlerinizi hatırlamasını sağlar.",
+    "whyTitle": "Çerezleri neden kullanıyoruz?",
+    "whyText": "Çerezleri birkaç nedenle kullanıyoruz:",
+    "whyItems": [
+      "Sitenin teknik olarak düzgün çalışmasını sağlamak",
+      "Tercihlerini hatırlamak (dil, para birimi, sepetteki ürünler)",
+      "Gezinme deneyimini iyileştirmek",
+      "Sitenin trafiğini ve kullanımını analiz etmek",
+      "İçeriği ve reklamları kişiselleştirmek"
+    ],
+    "typesTitle": "Kullanılan Çerez Türleri",
+    "essentialTitle": "1. Kesinlikle Gerekli Çerezler",
+    "essentialText": "Bu çerezler sitenin düzgün çalışması için temeldir. Sitede gezinmeni ve temel işlevlerini kullanmanı sağlar.",
+    "essentialExamples": "Örnekler:",
+    "essentialItems": [
+      "Hesabına giriş için oturum çerezleri",
+      "Sepet çerezleri",
+      "Güvenlik ve kimlik doğrulama çerezleri"
+    ],
+    "essentialDuration": "<strong>Saklama süresi:</strong> Oturum (tarayıcı kapatıldığında silinir) ya da 30 güne kadar.",
+    "personalizationTitle": "2. Kişiselleştirme Çerezleri",
+    "personalizationText": "Bu çerezler, siteye bir sonraki ziyaretini kişiselleştirmek için işlemlerine dair ayrıntıları saklar.",
+    "personalizationExamples": "Örnekler:",
+    "personalizationItems": [
+      "Tercih ettiğin dilin hatırlanması",
+      "Görüntüleme tercihlerinin hatırlanması",
+      "Para birimi seçimlerinin hatırlanması"
+    ],
+    "personalizationDuration": "<strong>Saklama süresi:</strong> 12 aya kadar.",
+    "advertisingTitle": "3. Reklam Çerezleri",
+    "advertisingText": "Bu çerezler, ticari iletişimi en iyi hale getirmek ve sana başka sitelerde reklam göstermek için kullanılır.",
+    "advertisingExamples": "Örnekler:",
+    "advertisingItems": [
+      "Yeniden hedefleme reklam çerezleri (Facebook Pixel, Google Ads)",
+      "Reklam etkinliği ölçüm çerezleri"
+    ],
+    "advertisingDuration": "<strong>Saklama süresi:</strong> 13 aya kadar.",
+    "analyticsTitle": "4. Analiz Çerezleri",
+    "analyticsText": "Bu çerezler, siteyle nasıl etkileşim kurduğunu anlamamıza yardımcı olur. Bu verileri iyileştirilecek alanları belirlemek için kullanırız.",
+    "analyticsExamples": "Örnekler:",
+    "analyticsItems": [
+      "Google Analytics (trafik analizi, ziyaret edilen sayfalar, ziyaret süresi)",
+      "A/B testi çerezleri"
+    ],
+    "analyticsDuration": "<strong>Saklama süresi:</strong> 24 aya kadar.",
+    "thirdPartyTitle": "Üçüncü Taraf Çerezleri",
+    "thirdPartyText": "Bazı çerezler, kullandığımız üçüncü taraf hizmetler tarafından yerleştirilir:",
+    "shopifyTitle": "Shopify",
+    "shopifyText": "Çevrimiçi mağazamız Shopify üzerinde barındırılır. Shopify çerezleri hakkında daha fazla bilgi için: <a href=\"https://www.shopify.com/legal/cookies\" target=\"_blank\" rel=\"noopener noreferrer\">https://www.shopify.com/legal/cookies</a>",
+    "googleAnalyticsTitle": "Google Analytics",
+    "googleAnalyticsText": "Sitemizin kullanımını analiz etmek için Google Analytics kullanıyoruz. Daha fazla bilgi için: <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\">Google Gizlilik Politikası</a>",
+    "socialTitle": "Sosyal Ağlar",
+    "socialText": "Sosyal içeriklerimizle etkileşim kurduğunda sosyal ağ platformları (Instagram, Facebook) tarafından çerezler yerleştirilebilir.",
+    "manageTitle": "Çerez Tercihlerini Nasıl Yönetirsin?",
+    "bannerTitle": "Çerez Bandımız Aracılığıyla",
+    "bannerText": "İlk ziyaretinde, kabul ettiğin çerezleri seçmeni sağlayan bir bant çıkar. Tercihlerini dilediğin an, sayfanın altındaki \"Çerezlerimi yönet\" bağlantısına tıklayarak değiştirebilirsin.",
+    "browserTitle": "Tarayıcın Aracılığıyla",
+    "browserText": "Çoğu tarayıcı çerezleri varsayılan olarak otomatik kabul eder, ancak tarayıcı ayarlarını şunlar için değiştirebilirsin:",
+    "browserItems": [
+      "Tüm çerezleri reddetmek",
+      "Yalnızca bazı çerezleri kabul etmek",
+      "Bir çerez yerleştirilmeden önce uyarılmak",
+      "Mevcut çerezleri silmek"
+    ],
+    "instructionsTitle": "Tarayıcıya Göre Talimatlar",
+    "instructionsItems": [
+      "<strong>Google Chrome:</strong> Menü → Ayarlar → Gizlilik ve güvenlik → Çerezler",
+      "<strong>Mozilla Firefox:</strong> Menü → Seçenekler → Gizlilik ve güvenlik",
+      "<strong>Safari:</strong> Tercihler → Gizlilik → Çerezler ve site verileri",
+      "<strong>Microsoft Edge:</strong> Ayarlar → Çerezler ve site izinleri"
+    ],
+    "gpcTitle": "Global Privacy Control (GPC) Sinyali",
+    "gpcText1": "Sitemiz, Global Privacy Control (GPC) sinyalini tanır. Bu sinyali tarayıcında etkinleştirirsen, bunu paylaşımı ya da hedefli reklamı reddetmeye yönelik geçerli bir talep olarak değerlendiririz.",
+    "gpcText2": "Daha fazla bilgi için: <a href=\"https://globalprivacycontrol.org/\" target=\"_blank\" rel=\"noopener noreferrer\">https://globalprivacycontrol.org/</a>",
+    "consequencesTitle": "Çerezleri Reddetmenin Sonuçları",
+    "consequencesText": "Bazı çerezlerin engellenmesi ya da silinmesinin şunlara yol açabileceğini unutma:",
+    "consequencesItems": [
+      "Kullanıcı deneyimine zarar vermek",
+      "Sitenin bazı işlevlerine erişimi engellemek",
+      "Her ziyarette yeniden kimlik doğrulama gerektirmek",
+      "Sepetini kaydetmemek"
+    ],
+    "updateTitle": "Bu Politikanın Güncellenmesi",
+    "updateText": "Uygulamalarımızdaki değişiklikleri yansıtmak için ya da başka işletme, hukuki veya düzenleyici nedenlerle bu çerez politikasını zaman zaman güncelleyebiliriz.",
+    "contactTitle": "İletişim",
+    "contactText": "Çerez kullanımımız hakkında her türlü soru için bize ulaşabilirsin:",
+    "contactItems": [
+      "<strong>E-posta:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Adres:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France"
+    ]
+  },
+
+  "mentions": {
+    "title": "Yasal Bilgiler",
+    "section1Title": "1. Site Sahibi",
+    "section1Text": "<strong>Ticari unvan:</strong> Renaissance Eyewear<br /><strong>Hukuki biçim:</strong> [Doldurulacak]<br /><strong>Sermaye:</strong> [Doldurulacak]<br /><strong>Merkez:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France<br /><strong>SIRET:</strong> [Doldurulacak]<br /><strong>E-posta:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a><br /><strong>Yayın yönetmeni:</strong> [Doldurulacak]",
+    "section2Title": "2. Site Barındırma",
+    "section2Text1": "<strong>renaissanceeyewear.fr</strong> sitesi şu kuruluş tarafından barındırılır:",
+    "section2Text2": "<strong>Shopify Inc.</strong><br />151 O'Connor Street, Ground floor<br />Ottawa, ON K2P 2L8<br />Canada<br />İnternet sitesi: <a href=\"https://www.shopify.com\" target=\"_blank\" rel=\"noopener noreferrer\">www.shopify.com</a>",
+    "section3Title": "3. Fikrî Mülkiyet",
+    "section3_1Title": "3.1 Site içeriği",
+    "section3_1Text": "<strong>renaissanceeyewear.fr</strong> sitesindeki, sınırlama olmaksızın grafikler, görseller, metinler, videolar, animasyonlar, sesler, logolar, gif'ler ve simgeler ile bunların biçimlendirmesi dahil tüm içerik; diğer partner şirketlere ya da yazarlara ait markalar, logolar veya içerikler hariç, Renaissance Eyewear'ın münhasır mülkiyetidir.",
+    "section3_2Title": "3.2 Tescilli markalar",
+    "section3_2Text": "Aşağıdaki markalar tescilli ve korumalıdır:",
+    "section3_2Items": [
+      "<strong>Renaissance Eyewear</strong> (ad ve logo)",
+      "<strong>7 Simge:</strong> Trident, Fleur de Lys, Ankh, Scarabée, Cobra, Horus'un Gözü, Paris Plakası",
+      "<strong>Koleksiyonlar:</strong> Héritage, Versailles, Isis",
+      "<strong>Slogan:</strong> « Her gün değer kazansın diye »"
+    ],
+    "section3_3Title": "3.3 Çoğaltma yasağı",
+    "section3_3Text": "Kullanılan yöntem ya da işlem ne olursa olsun, site öğelerinin tamamının ya da bir bölümünün her türlü çoğaltılması, temsili, değiştirilmesi, yayımlanması, uyarlanması, Renaissance Eyewear'ın önceden yazılı izni olmadan yasaktır.",
+    "section3_4Title": "3.4 Köprü bağlantılar",
+    "section3_4Text": "Sitenin ya da içerdiği herhangi bir öğenin yetkisiz her türlü kullanımı, taklit teşkil eden bir eylem sayılacak ve Fikrî Mülkiyet Kanunu'nun L.335-2 ve devamı maddelerine uygun olarak takip edilecektir.",
+    "section4Title": "4. Kişisel Veriler",
+    "section4Text1": "Kişisel verilerinizin işlenmesi, Genel Veri Koruma Tüzüğü'ne (GDPR) uygun olarak <a href=\"/confidentialite\">Gizlilik Politikamızla</a> düzenlenir.",
+    "section4Text2": "<strong>Veri sorumlusu:</strong> Renaissance Eyewear<br /><strong>Kişisel veriler iletişim:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+    "section5Title": "5. Çerezler",
+    "section5Text": "Site, gezinme deneyimini iyileştirmek için çerezler kullanır. Çerez kullanımımız hakkında daha fazla bilgi için <a href=\"/cookies\">Çerez Politikamıza</a> bakın.",
+    "section6Title": "6. Kullanım Koşulları",
+    "section6Text": "Sitenin kullanımı, <a href=\"/conditions-utilisation\">Hizmet Koşullarının</a> ve <a href=\"/cgv\">Genel Satış Koşullarının</a> tam ve eksiksiz kabulü anlamına gelir.",
+    "section7Title": "7. Sorumluluğun Sınırlandırılması",
+    "section7_1Title": "7.1 Site içeriği",
+    "section7_1Text": "Renaissance Eyewear, bu sitede yayımlanan bilgilerin doğruluğunu ve güncelliğini en iyi şekilde sağlamaya çalışır. Ancak Renaissance Eyewear, bu sitede sunulan bilgilerin doğruluğunu, kesinliğini ya da eksiksizliğini garanti edemez.",
+    "section7_2Title": "7.2 Sitenin erişilebilirliği",
+    "section7_2Text": "Renaissance Eyewear, renaissanceeyewear.fr sitesine erişim sırasında kullanıcının cihazında oluşan doğrudan ve dolaylı zararlardan sorumlu tutulamaz. Renaissance Eyewear sitenin sürekli erişilebilirliğini garanti etmez ve bakım işlemleri için siteye erişimi kesebilir.",
+    "section7_3Title": "7.3 Dış bağlantılar",
+    "section7_3Text": "Site, başka sitelere bağlantılar içerebilir. Renaissance Eyewear bu siteler üzerinde hiçbir denetim uygulamaz ve içeriklerine ilişkin her türlü sorumluluğu reddeder.",
+    "section8Title": "8. Uygulanacak Hukuk ve Yetki",
+    "section8Text": "İşbu yasal bilgiler Fransız hukukuna tabidir. Uyuşmazlık hâlinde ve dostane bir anlaşmaya varılamazsa, uyuşmazlık yetkili Fransız mahkemelerine taşınacaktır.",
+    "section9Title": "9. Künye",
+    "section9_1Title": "9.1 Tasarım ve Geliştirme",
+    "section9_1Text": "<strong>Tasarım:</strong> Renaissance Eyewear<br /><strong>Geliştirme:</strong> [Doldurulacak]<br /><strong>Platform:</strong> Shopify",
+    "section9_2Title": "9.2 Yazı tipleri",
+    "section9_2Items": [
+      "<strong>Serif:</strong> Playfair Display (Google Fonts)",
+      "<strong>Sans-serif:</strong> DM Sans (Google Fonts)"
+    ],
+    "section9_3Title": "9.3 Fotoğraflar",
+    "section9_3Text": "Tüm ürün fotoğrafları Renaissance Eyewear'ın mülkiyetindedir ve izin alınmadan çoğaltılamaz.",
+    "section10Title": "10. İletişim",
+    "section10Text": "Yasal bilgilerle ilgili her türlü soru için bize ulaşabilirsiniz:",
+    "section10Items": [
+      "<strong>E-posta:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Adres:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France",
+      "<strong>Yanıt süresi:</strong> 48 iş saati içinde"
+    ],
+    "section11Title": "11. Güncelleme",
+    "section11Text": "İşbu yasal bilgiler dilediğimiz zaman güncellenebilir. Düzenli olarak gözden geçirmeni öneririz."
+  },
+
+  "conditions": {
+    "title": "Hizmet Koşulları",
+    "intro": "<strong>Renaissance Eyewear</strong> sitesinin ve hizmetlerinin kullanımı işbu Hizmet Koşullarıyla düzenlenir. Sipariş vererek bu koşulları tam olarak kabul edersin.",
+    "section1Title": "1. Erişim ve Siparişler",
+    "accessTitle": "Siteye erişim",
+    "accessText": "Sitenin erişilebilirliğini sağlamak için elimizden geleni yaparız, ancak sürekli erişim garantisi vermeyiz. Bakım ya da mücbir sebep nedeniyle kesintiler olabilir.",
+    "ordersTitle": "Siparişler",
+    "ordersItems": [
+      "Yalnızca reşit ve hukuken ehil kişiler sipariş verebilir.",
+      "İletilen bilgiler doğru ve eksiksiz olmalıdır.",
+      "Uyuşmazlık ya da ödememe durumunda her siparişi reddetme hakkımızı saklı tutarız.",
+      "Siparişinin onaylanması, işbu koşulların yanı sıra sipariş anında mevcut ürünlerin fiyat ve açıklamalarının kabulü anlamına gelir."
+    ],
+    "section2Title": "2. Ödeme Koşulları ve Fiyatlar",
+    "pricesTitle": "Fiyatlar",
+    "pricesItems": [
+      "Fiyatlar avro cinsinden, vergiler dahil belirtilmiştir.",
+      "Fiyatlara ücretsiz teslimat dahildir.",
+      "Fiyatlarımızı dilediğimiz zaman değiştirme hakkımızı saklı tutarız, ancak ürünler sipariş onayı anındaki yürürlükteki fiyatlar üzerinden faturalandırılır."
+    ],
+    "paymentTitle": "Ödeme",
+    "paymentItems": [
+      "Ödeme; banka kartı, PayPal ya da sipariş süreci sırasında sunulan başka bir yöntemle yapılır.",
+      "Ödemeler, partnerimiz Shopify Payments aracılığıyla güvenli hale getirilir.",
+      "Siparişin yalnızca ödeme onayından sonra işleme alınır."
+    ],
+    "section3Title": "3. Fikrî Mülkiyet",
+    "section3Text": "Renaissance Eyewear sitesinin tüm öğeleri (metinler, görseller, grafikler, logo, simgeler, sesler, yazılımlar) Renaissance Eyewear'ın ya da partnerlerinin münhasır mülkiyetidir. Kullanılan yöntem ya da işlem ne olursa olsun, site öğelerinin tamamının ya da bir bölümünün her türlü çoğaltılması, temsili, değiştirilmesi, yayımlanması veya uyarlanması, önceden yazılı izin alınmadan yasaktır.",
+    "brandsTitle": "Markalar ve Simgeler",
+    "brandsText": "Renaissance simgeleri (Trident, Fleur de Lys, Ankh, Scarabée, Cobra, Horus'un Gözü, Paris Plakası), Renaissance Eyewear logosu ve koleksiyon adları (Héritage, Versailles, Isis) tescilli markadır. Bu markaların yetkisiz her türlü kullanımı kesinlikle yasaktır.",
+    "section4Title": "4. Sorumluluk",
+    "liabilityTitle": "Sorumluluğun sınırlandırılması",
+    "liabilityText": "Renaissance Eyewear şunlardan sorumlu tutulamaz:",
+    "liabilityItems": [
+      "Dış nedenlere bağlı site arızalarından (internet bağlantı sorunları, sunucu kesintileri vb.)",
+      "Mücbir sebep olaylarına bağlı gecikmelerden (doğal afetler, grevler, salgınlar vb.)",
+      "Ürünlerin uygunsuz kullanımından",
+      "Sitenin ya da ürünlerin kullanımından doğan dolaylı zararlardan"
+    ],
+    "warrantyTitle": "Garantiler",
+    "warrantyText": "Ürünlerimiz, Tüketici Kanunu hükümlerine uygun olarak yasal uygunluk garantisinden ve gizli ayıplara karşı garantiden yararlanır.",
+    "section5Title": "5. Kişisel Verilerin Korunması",
+    "section5Text1": "Genel Veri Koruma Tüzüğü'ne (GDPR) uygun olarak, kişisel verilerine erişim, düzeltme, silme ve taşınabilirlik hakkına sahipsin. Bu hakları kullanmak için ya da verilerinin işlenmesine ilişkin her türlü soru için bize <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a> adresinden ulaş.",
+    "section5Text2": "Daha fazla bilgi için <a href=\"/confidentialite\">Gizlilik Politikamıza</a> bak.",
+    "section6Title": "6. Uygulanacak Hukuk ve Yetki",
+    "section6Text": "İşbu hizmet koşulları Fransız hukukuna tabidir. Uyuşmazlık hâlinde ve dostane bir anlaşmaya varılamazsa, uyuşmazlık yetkili Fransız mahkemelerine taşınacaktır.",
+    "section7Title": "7. Müşteri Hizmetleri",
+    "section7Text": "Hizmet Koşullarımızla ilgili her türlü soru için bize ulaşabilirsin:",
+    "section7Items": [
+      "<strong>E-posta:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Adres:</strong> 4 RUE DES METIERS, HETTANGE GRANDE, 57330, France",
+      "<strong>Yanıt süresi:</strong> 48 iş saati içinde"
+    ],
+    "section8Title": "8. Koşulların Değiştirilmesi",
+    "section8Text": "Renaissance Eyewear işbu hizmet koşullarını dilediği zaman değiştirme hakkını saklı tutar. Geçerli koşullar, siparişin anında yürürlükte olanlardır. Her değişiklik, son değişiklik tarihinin güncellenmesiyle bu sayfada yayımlanır.",
+    "section9Title": "9. Koşulların Kabulü",
+    "section9Text": "Renaissance Eyewear sitesinin kullanımı, işbu hizmet koşullarının tam ve eksiksiz kabulü anlamına gelir. Bu koşulları kabul etmiyorsan, lütfen sitemizi kullanma ve sipariş verme."
+  },
+
+  "garantie": {
+    "title": "Garanti ve Satış Sonrası Servis",
+    "seoTitle": "Garanti ve Satış Sonrası Servis",
+    "seoDescription": "Renaissance Eyewear 3 yıl garanti. Gözlüklerin için satış sonrası servis, onarım, bakım ve öneriler. Memnuniyet garantili.",
+    "warrantyTitle": "Üretici Garantisi",
+    "warrantyText": "Tüm Renaissance ürünleri, satın alma tarihinden itibaren, üretim ve malzeme hatalarını kapsayan <strong>3 yıllık üretici garantisinden</strong> yararlanır.",
+    "coveredTitle": "Kapsanan",
+    "coveredItems": [
+      "Üretim hataları (kaynak, montaj, bitişler)",
+      "Malzeme hataları (metal, asetat, parçalar)",
+      "Menteşe ya da sap sorunları",
+      "Kazıma ya da taş yuvası hataları"
+    ],
+    "notCoveredTitle": "Kapsanmayan",
+    "notCoveredItems": [
+      "Günlük kullanımdan kaynaklanan normal aşınma",
+      "Kazara hasarlar (düşme, darbe, ezilme)",
+      "Camlarda ya da kaplamada çizikler",
+      "Yetkisiz bir üçüncü kişi tarafından yapılan değişiklik ya da onarımlar",
+      "Uygunsuz kullanım ya da ihmal",
+      "Kimyasal maddelere maruz kalmaktan kaynaklanan hasarlar"
+    ],
+    "afterSalesTitle": "Satış Sonrası Servis",
+    "afterSalesText": "Satış sonrası servisimiz, tam memnuniyetini ve Renaissance gözlüklerinin ömrünü sağlamaya adanmıştır.",
+    "warrantyRepairTitle": "Garanti kapsamında onarımlar",
+    "warrantyRepairText": "Gözlüğünde garanti kapsamında bir kusur varsa:",
+    "warrantyRepairItems": [
+      "Sipariş numaran ve kusurun fotoğraflarıyla <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a> adresinden bize ulaş",
+      "Ekibimiz isteğini 48 saat içinde değerlendirir",
+      "Garanti geçerliyse, sana ön ödemeli bir iade etiketi göndeririz",
+      "Gözlüğü orijinal ambalajıyla iade et",
+      "Onarımı ya da değişimi 15 iş günü içinde gerçekleştiririz"
+    ],
+    "outOfWarrantyTitle": "Garanti dışı onarımlar",
+    "outOfWarrantyText": "Garanti kapsamında olmayan hasarlar için ücretli bir onarım hizmeti sunuyoruz:",
+    "outOfWarrantyItems": [
+      "Gözlüğün ulaşmasından sonra 48 saat içinde ücretsiz fiyat teklifi",
+      "Onarımın türüne göre uygun fiyatlar",
+      "Onarım süresi: karmaşıklığa göre 2 ila 4 hafta",
+      "İade masrafları Renaissance tarafından karşılanır"
+    ],
+    "repairTypesTitle": "Sunulan onarım türleri",
+    "repairTypesItems": [
+      "<strong>Menteşe değişimi</strong>: Menteşelerin hasar gördüyse",
+      "<strong>Sapların düzeltilmesi</strong>: İlk biçimini geri kazanmak için",
+      "<strong>Burun pedlerinin değişimi</strong>: En iyi konfor için",
+      "<strong>Parlatma</strong>: Metale ilk parlaklığını geri vermek için",
+      "<strong>Kristalin yeniden yerleştirilmesi</strong>: Bir kristal düştüyse",
+      "<strong>Ayar</strong>: Kusursuz bir uyum için"
+    ],
+    "maintenanceTitle": "Bakım ve Koruma",
+    "cleaningTitle": "Günlük temizlik",
+    "cleaningItems": [
+      "Yalnızca gözlüğünle birlikte verilen mikrofiber bezi kullan",
+      "Daha derin bir temizlik için ılık sabunlu su kullan",
+      "Mikrofiber bezle nazikçe kurula",
+      "Asla kimyasal madde, alkol ya da çözücü kullanma"
+    ],
+    "storageTitle": "Saklama",
+    "storageItems": [
+      "Takmadığın zaman gözlüğünü her zaman kutusunda sakla",
+      "Çiziklerden kaçınmak için asla yüzü aşağı bakacak şekilde koyma",
+      "Yüksek sıcaklıklara uzun süre maruz bırakma (torpido gözü, kalorifer)",
+      "Nemli bir ortamda bırakma"
+    ],
+    "precautionsTitle": "Kullanım önlemleri",
+    "precautionsItems": [
+      "Sapların dengesini korumak için gözlüğünü her zaman iki elle tut",
+      "Gözlüğünü başının üstüne takma, bu sapları bozar",
+      "Gözlüğünü düzenli olarak bir optisyene ayarlat",
+      "Laka, parfüm ve kozmetiklerle temasından kaçın"
+    ],
+    "opticiansTitle": "Partner Optisyenlerimizde",
+    "opticiansText": "Fransa'daki 250'den fazla partner optisyenimiz sana şu konularda yardımcı olabilir:",
+    "opticiansItems": [
+      "Ücretsiz ayar ve düzenlemeler",
+      "Profesyonel temizlik",
+      "Burun pedi değişimi",
+      "Kişiye özel bakım önerileri",
+      "Gözlüğünün durumunun değerlendirilmesi"
+    ],
+    "findOptician": "Sana en yakın partner optisyeni bul",
+    "certificateTitle": "Orijinallik Belgesi",
+    "certificateText": "Her Renaissance gözlüğü, numaralı bir orijinallik belgesiyle gelir. Bu belge, her garanti ya da satış sonrası servis isteği için gereklidir. Onu satın alma faturanla birlikte özenle sakla.",
+    "contactTitle": "Satış Sonrası Servis İletişim",
+    "contactText": "Satış sonrası servis ekibimiz emrinde:",
+    "contactItems": [
+      "<strong>E-posta:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Telefon:</strong> <a href=\"tel:+33142868200\">+33 1 42 86 82 00</a>",
+      "<strong>Çalışma saatleri:</strong> Pazartesiden Cumaya, 9.00-18.00",
+      "<strong>Yanıt süresi:</strong> 48 iş saati içinde"
+    ],
+    "qualityTitle": "Kalite Taahhüdü",
+    "qualityText1": "Renaissance, en yüksek kalitede ürünler sunmayı taahhüt eder. Her gözlük Kore'de uzman ustalar tarafından elde yapılır ve gönderimden önce titiz kalite kontrollerinden geçer.",
+    "qualityText2": "Tüm önlemlerimize karşın gözlüğünle bir sorun yaşarsan, bunu hızla ve tam memnuniyetinle çözmek için elimizden geleni yaparız."
+  },
+
+  "remboursement": {
+    "title": "Geri ödeme politikası",
+    "section1Title": "1. İade ve Geri Ödeme Politikası",
+    "section1Text": "Renaissance Eyewear tam memnuniyetini sağlamak ister. Bir ürünün sana uymaması durumunda, neden ne olursa olsun, aşağıdaki koşullarla iade hakkından yararlanabilirsin:",
+    "returnConditionsTitle": "İade Koşulları",
+    "returnConditionsItems": [
+      "<strong>Cayma süresi</strong>: Ürünü bize iade etmek için, siparişini teslim aldığın tarihten itibaren 14 günün var.",
+      "<strong>Ürünün durumu</strong>: Ürün, orijinal ambalajı ve tüm etiketleri zarar görmemiş şekilde, kusursuz bir durumda iade edilmelidir.",
+      "<strong>Koşullar</strong>: İadeyi başlatmak için, sipariş numaranı belirterek müşteri hizmetlerimize e-postayla <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a> adresinden ulaş."
+    ],
+    "costsTitle": "Masraflar ve İşlem",
+    "costsItems": [
+      "<strong>İade masrafları</strong>: İade masrafları Renaissance Eyewear tarafından karşılanır.",
+      "<strong>Geri ödeme ya da değişim</strong>: Seçimine göre ya tam geri ödeme ya da değişim sunuyoruz. İşlem (kontrol, geri ödeme ya da yeni ürünün gönderimi), iade edilen ürünün teslim alınmasından itibaren en geç 14 gün içinde gerçekleştirilir."
+    ],
+    "section2Title": "2. Garanti",
+    "section2Text": "Tüm ürünlerimiz, üretim hatalarını kapsayan 3 yıllık üretici garantisinden yararlanır. Bu garanti normal aşınmayı, kazara hasarları ya da ürünün uygunsuz kullanımını kapsamaz.",
+    "section3Title": "3. Satış Sonrası Servis",
+    "section3Text": "Siparişin, bir iade ya da değişim hakkında her türlü soru için müşteri hizmetlerimiz emrinde:",
+    "section3Items": [
+      "<strong>E-posta:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Yanıt süresi:</strong> 48 iş saati içinde yanıt vermeyi taahhüt ederiz"
+    ],
+    "section4Title": "4. Özel Durumlar",
+    "customProductsTitle": "Kişiselleştirilmiş ya da özel yapım ürünler",
+    "customProductsText": "Özellikle senin için yapılan ürünler (kişiselleştirme, özel ayarlamalar), üretim hatası hariç iade edilemez.",
+    "damagedProductsTitle": "Hasarlı ya da kusurlu ürünler",
+    "damagedProductsText": "Hasarlı ya da kusurlu bir ürün alırsan, lütfen ürünün fotoğraflarıyla hemen bize ulaş. İadeyi ve değişimi senin için ücretsiz düzenleriz.",
+    "section5Title": "5. Geri Ödeme",
+    "section5Text": "İaden alınıp incelendikten sonra, iade edilen ürünü teslim aldığımızı bildiren bir e-posta göndeririz. Geri ödeme, iadenin onaylanmasından sonraki 14 gün içinde, alışverişte kullanılan ödeme yöntemine yapılır."
+  },
+
+  "expedition": {
+    "title": "Gönderim",
+    "seoTitle": "Teslimat",
+    "seoDescription": "Renaissance Eyewear ücretsiz teslimat. 24-48 saat içinde gönderim, Colissimo takibi ve uluslararası teslimat. Sürelerimizi ve koşullarımızı keşfet.",
+    "policyTitle": "Gönderim Politikası",
+    "policyText": "Siparişlerini hızlı ve tam bir şeffaflıkla göndermeyi taahhüt ediyoruz.",
+    "zoneTitle": "Teslimat Bölgesi ve Yöntemi",
+    "zoneItems": [
+      "<strong>Teslimat bölgesi</strong>: Gönderim, bilinen bir hariç tutulmuş coğrafi bölge olmaksızın uluslararası yapılır.",
+      "<strong>Taşıyıcı</strong>: Paketler, standart teslimat olarak Colissimo aracılığıyla gönderilir."
+    ],
+    "delaysTitle": "Süreler ve Takip",
+    "delaysItems": [
+      "<strong>Gönderim</strong>: Siparişler 24 ila 48 iş saati içinde hazırlanır ve gönderilir.",
+      "<strong>Teslimat</strong>: Teslimat süresi, varış noktasına göre gönderimden sonra 1 ila 3 iş günü arasında tahmin edilir.",
+      "<strong>Takip</strong>: Sana bir takip numarası iletilir ve paketini La Poste sitesi üzerinden çevrimiçi takip edebilirsin."
+    ],
+    "costsTitle": "Teslimat Ücretleri",
+    "costsText": "<strong>Teslimat ücretsiz</strong>: Varış noktası ne olursa olsun, tüm siparişler için standart teslimatı ücretsiz sunuyoruz.",
+    "detailedZonesTitle": "Ayrıntılı Teslimat Bölgeleri",
+    "franceTitle": "Fransa Anakarası",
+    "franceItems": [
+      "<strong>Süre</strong>: Gönderimden sonra 1-2 iş günü",
+      "<strong>Taşıyıcı</strong>: Colissimo",
+      "<strong>Ücret</strong>: Ücretsiz"
+    ],
+    "euTitle": "Avrupa Birliği",
+    "euItems": [
+      "<strong>Süre</strong>: Gönderimden sonra 2-3 iş günü",
+      "<strong>Taşıyıcı</strong>: Colissimo International",
+      "<strong>Ücret</strong>: Ücretsiz"
+    ],
+    "internationalTitle": "Uluslararası (AB dışı)",
+    "internationalItems": [
+      "<strong>Süre</strong>: Gönderimden sonra 3-7 iş günü (varış noktasına göre)",
+      "<strong>Taşıyıcı</strong>: Colissimo International",
+      "<strong>Ücret</strong>: Ücretsiz",
+      "<strong>Not</strong>: Yerel mevzuata göre gümrük masrafları uygulanabilir. Bu masraflar alıcıya aittir."
+    ],
+    "preparationTitle": "Siparişin Hazırlanması",
+    "preparationText": "Her Renaissance gözlük çifti, orijinal kutusunda özenle paketlenir; yanında bir orijinallik belgesi ve bir bakım rehberi verilir. Ambalajlarımız taşıma sırasında her gözlüğü korur.",
+    "trackingTitle": "Bildirim ve Takip",
+    "trackingText": "Siparişin atölyelerimizden ayrılır ayrılmaz e-postayla bir gönderim onayı alırsın. Bu e-posta şunları içerir:",
+    "trackingItems": [
+      "Takip numaran",
+      "Taşıyıcının sitesine doğrudan bir bağlantı",
+      "Tahmini teslimat tarihi"
+    ],
+    "issuesTitle": "Teslimat Sorunları",
+    "notReceivedTitle": "Ulaşmayan paket",
+    "notReceivedText": "Paketin belirtilen sürelerde ulaşmadıysa, lütfen önce takibi çevrimiçi kontrol et. Sorun sürerse, sipariş numaranla <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a> adresinden bize ulaş.",
+    "damagedTitle": "Hasarlı paket",
+    "damagedText": "Paketin hasarlı ulaşırsa, lütfen:",
+    "damagedItems": [
+      "Paketin ve içeriğinin fotoğraflarını çek",
+      "Müşteri hizmetlerimize hemen ulaş",
+      "Orijinal ambalajı sakla"
+    ],
+    "damagedResolution": "En kısa sürede bir değişim ya da geri ödeme düzenleriz.",
+    "partnerTitle": "Partner Optisyenlerimizde Teslimat",
+    "partnerText": "Daha da kişisel bir deneyim için, siparişini doğrudan Fransa'daki 250'den fazla partner optisyenimizden birine teslim ettirmeyi seçebilirsin. Bu seçenek hakkında daha fazla bilgi için bize ulaş.",
+    "contactTitle": "Müşteri Hizmetleri İletişim",
+    "contactText": "Teslimatınla ilgili her türlü soru için:",
+    "contactItems": [
+      "<strong>E-posta:</strong> <a href=\"mailto:contact@renaissanceeyewear.com\">contact@renaissanceeyewear.com</a>",
+      "<strong>Yanıt süresi:</strong> 48 iş saati içinde"
+    ]
+  },
+
+  "guideTailles": {
+    "title": "Beden Rehberi",
+    "seoTitle": "Beden Rehberi",
+    "seoDescription": "Yüzüne tam uyan Renaissance Eyewear gözlüğünü bul. Ölçüler, yüz biçimleri ve gözlüğünü seçmek için öneriler rehberi.",
+    "heroSupertitle": "Yardım ve Öneriler",
+    "heroTitle1": "BEDEN",
+    "heroTitle2": "REHBERİ.",
+    "heroSubtitle": "Sana göre gözlüğü bul.",
+    "heroDescription": "Gözlüklerimizin ölçülerini anlamak ve yüz hatlarına tam uyanı seçmek için eksiksiz bir rehber.",
+    "section01": "01",
+    "dimensionsTitle": "Ölçüleri anlamak",
+    "measurementsDiagram": "Ölçü şeması",
+    "lensWidth": "Cam genişliği",
+    "lensWidthDesc": "Bir camın en geniş noktasından ölçülen yatay mesafesi.",
+    "lensWidthRange": "45 mm ile 58 mm",
+    "bridge": "Köprü",
+    "bridgeDesc": "Burun kemeri hizasında, iki cam arasındaki mesafe.",
+    "bridgeRange": "14 mm ile 24 mm",
+    "temples": "Saplar",
+    "templesDesc": "Sapların menteşeden uca kadar uzunluğu.",
+    "templesRange": "135 mm ile 150 mm",
+    "standardFormat": "Renaissance Standart Formatı",
+    "standardFormatDesc": "Ölçülerimiz bu formatta belirtilir:",
+    "standardFormatExample": "52-20-145",
+    "lensLabel": "Cam (mm)",
+    "bridgeLabel": "Köprü (mm)",
+    "templesLabel": "Saplar (mm)",
+    "section02": "02",
+    "findSizeTitle": "Bedenini bul",
+    "sizeS": "Beden S",
+    "sizeSmall": "Küçük",
+    "sizeSDesc": "İnce yüzler ve narin hatlar için ideal.",
+    "sizeM": "Beden M",
+    "sizeMedium": "Orta",
+    "sizeMDesc": "En yaygın beden, çoğu yüz hattına uyar.",
+    "sizeL": "Beden L",
+    "sizeLarge": "Büyük",
+    "sizeLDesc": "Geniş yüzler ve iri hatlar için.",
+    "mostCommon": "En yaygın",
+    "lensShort": "Cam",
+    "bridgeShort": "Köprü",
+    "templesShort": "Saplar",
+    "section03": "03",
+    "faceShapeTitle": "Yüz biçimine göre seç",
+    "ovalFace": "Oval Yüz",
+    "ovalAdvice": "En dengeli biçim. Tüm gözlük biçimleri sana yakışır. Oranları korumak için ne fazla büyük ne fazla küçük modelleri tercih et.",
+    "roundFace": "Yuvarlak Yüz",
+    "roundAdvice": "Yüzü inceltmek için dikdörtgen ya da geometrik gözlükleri seç. Yuvarlaklığı artıracak fazla yuvarlak biçimlerden kaçın.",
+    "squareFace": "Kare Yüz",
+    "squareAdvice": "Yuvarlak ya da oval gözlükler köşeli hatları yumuşatır. Kelebek biçimler özellikle yakışır.",
+    "rectangularFace": "Dikdörtgen Yüz",
+    "rectangularAdvice": "Yüzü görsel olarak kısaltmak için cam yüksekliği fazla gözlükleri seç. Altıgen biçimler iyi durur.",
+    "ctaSupertitle": "Denemek lazım",
+    "ctaTitle": "Mağazada dene.",
+    "ctaSubtitle": "Fransa'da 250'den fazla partner optisyen.",
+    "ctaDescription": "Koleksiyonlarımızı denemek ve kişisel öneri almak için partner optisyenlerimizden birine git.",
+    "findOptician": "Bir optisyen bul",
+    "contactUs": "Bize ulaş"
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "hero": {
+    "label": "Maison",
+    "title": "RENAISSANCE",
+    "subtitle": "2019 में, एक इनकार से जन्मी।"
+  },
+  "signature": {
+    "label": "हमारी पहचान",
+    "title": "सात सहस्राब्दी\nपुराने चिह्न",
+    "description": "हर फ़्रेम अपने भीतर अनंतता का एक टुकड़ा रखता है। सात चिह्न जो सभ्यताओं से गुज़रते हैं, Maison Renaissance के सात अध्याय।"
+  },
+  "savoirFaire": {
+    "label": "Atelier",
+    "title": "हमारी\nबनावट",
+    "description": "हर फ़्रेम Paris, कोरिया और इटली के बीच आकार लेता है। हम जल्दी नहीं बनाते। हम सही बनाते हैं।"
+  },
+  "fondateurs": {
+    "label": "संस्थापक",
+    "title": "एक Paris की\nदृष्टि"
+  },
+  "valeurs": {
+    "label": "हमारे मूल्य",
+    "title": "RENAISSANCE\nका वचन"
+  },
+  "engagement": {
+    "label": "वचन",
+    "title": "ताकि यह कभी\nन भूले"
+  },
+  "ambassadeurs": {
+    "label": "एम्बेसडर",
+    "title": "वे RENAISSANCE\nपहनते हैं"
+  },
+  "manifeste": {
+    "label": "Manifeste",
+    "title": "LE MANIFESTE\nRENAISSANCE",
+    "description": "हम जो रचते हैं वह सिर्फ़ एक चीज़ नहीं है। यह सौंपने का एक काम है।"
+  },
+  "symboles": {
+    "label": "चिह्न",
+    "title": "सात शाश्वत\nचिह्न"
+  },
+  "page": {
+    "histoire": {
+      "seoTitle": "हमारी कहानी",
+      "seoDescription": "2019 में एक इनकार से जन्मी: जो टिकना चाहिए, उसे मिटते देखने का इनकार। तीन कारीगर, अपने चुनाव से भाई। जो पहना जाता है। जो आगे सौंपा जाता है।"
+    },
+    "savoirFaire": {
+      "seoTitle": "Atelier",
+      "seoDescription": "Renaissance Eyewear का atelier: Paris में डिज़ाइन किया गया, Paris, कोरिया और इटली के बीच बना। 18KT गोल्ड-प्लेटेड टाइटेनियम, Mazzucchelli एसीटेट।"
+    },
+    "manifeste": {
+      "seoTitle": "Manifeste",
+      "seoDescription": "Renaissance Eyewear का manifeste। जो पहना जाता है। जो आगे सौंपा जाता है।"
+    },
+    "symboles": {
+      "seoTitle": "चिह्न",
+      "seoDescription": "Renaissance Eyewear के चिह्न: Trident, फ़्ल्योर-दे-लीस, Ankh, स्कारब, कोबरा, होरस की आँख, Paris की प्लेट। टाइटेनियम में उकेरे सात चिह्न।"
+    }
+  },
+  "blog": {
+    "seoTitle": "Le Manifeste - Blog",
+    "seoDescription": "Renaissance Eyewear की दुनिया। हमारे चिह्नों, हमारी सामग्री और Maison की कहानी पर लेख।",
+    "heroLabel": "ख़बरें और संस्कृति",
+    "heroTitleLine1": "LE",
+    "heroTitleLine2": "MANIFESTE.",
+    "heroSubtitle": "कहानियाँ, चिह्न और सामग्री।",
+    "heroDescription": "वस्तु से परे Renaissance की दुनिया खोजें।",
+    "loading": "लेख लोड हो रहे हैं...",
+    "emptyTitle": "पहले लेख जल्द ही आ रहे हैं",
+    "emptyDescription": "हम अपने चिह्नों, अपनी सामग्री और Renaissance की दुनिया पर लेख तैयार कर रहे हैं।",
+    "readArticle": "लेख पढ़ें",
+    "newsletterLabel": "Newsletter",
+    "newsletterTitle": "कुछ न छूटे।",
+    "newsletterSubtitle": "हमारे लेख सीधे पाएँ।",
+    "emailPlaceholder": "आपका ईमेल पता",
+    "subscribe": "साइन अप करें"
+  },
+  "article": {
+    "loading": "लेख लोड हो रहा है...",
+    "notFoundTitle": "लेख नहीं मिला",
+    "notFoundDescription": "यह लेख मौजूद नहीं है या हटा दिया गया है।",
+    "backToArticles": "लेखों पर वापस जाएँ",
+    "label": "Le Manifeste",
+    "share": "शेयर करें",
+    "authorBio": "Maison Renaissance एक ही आवाज़ में लिखती है।",
+    "ctaLabel": "हमारी रचनाएँ",
+    "ctaTitle": "हमारे संग्रह खोजें।",
+    "ctaSubtitle": "हर चिह्न एक कहानी कहता है।",
+    "ctaButton": "संग्रह देखें"
+  },
+  "heroHistoire": {
+    "label": "हमारी कहानी",
+    "title": "एक भूला हुआ शब्द।",
+    "subtitle": "फिर से बहाल करने के लिए सही।",
+    "description": "एक शब्द उनके लिए बहुत बड़ा जिनके पास कहने को कुछ नहीं। पर सही उनके लिए जिनके पास बहाल करने को कुछ है।",
+    "mobileTitle": "एक भूला हुआ शब्द।",
+    "mobileSubtitle": "फिर से बहाल करने के लिए सही।",
+    "mobileDescription": "एक शब्द उनके लिए बहुत बड़ा जिनके पास कहने को कुछ नहीं। पर सही उनके लिए जिनके पास बहाल करने को कुछ है।"
+  },
+  "fondateursSection": {
+    "label": "मूल",
+    "title": "एक इनकार से जन्मी।",
+    "subtitle": "जो टिकना चाहिए, उसे मिटते देखने का इनकार।",
+    "description": "तीन कारीगरों ने सालों तक गुणवत्ता को पीछे हटते देखा। उन्होंने इसके उलट करने का फ़ैसला किया। ऐसे फ़्रेम गढ़ना जो एक मौसम नहीं, एक ज़िंदगी साथ दें। वह माँगना जो बाज़ार ने माँगना छोड़ दिया।\nहर फ़्रेम यह वचन रखता है: एक ऐसी वस्तु जो टिकने के लिए सोची गई, बदले जाने के लिए नहीं।",
+    "mobileDescription": "तीन कारीगरों ने सालों तक गुणवत्ता को पीछे हटते देखा। उन्होंने इसके उलट करने का फ़ैसला किया। हर फ़्रेम यह वचन रखता है: एक ऐसी वस्तु जो टिकने के लिए सोची गई, बदले जाने के लिए नहीं।",
+    "cta": "हमारी रचनाएँ खोजें"
+  },
+  "symbolesSection": {
+    "label": "हमारे चिह्न",
+    "title": "सात चिह्न।",
+    "subtitle": "धातु में उकेरे हुए।",
+    "description": "जो हम पहनते हैं वह बताता है कि हम क्या मानते हैं।",
+    "symbol1Name": "Trident",
+    "symbol1Subtitle": "सर्वोच्चता",
+    "symbol1Desc": "कल, आज और कल के बीच संतुलन। जो नींव रखता है, जो बनाता है, जो टिका रहता है, उसमें जड़।",
+    "symbol2Name": "फ़्ल्योर-दे-लीस",
+    "symbol2Subtitle": "हुनर पर पकड़",
+    "symbol2Desc": "फ़्रांसीसी विरासत। सौंपे गए एक हुनर की कुलीनता, एक मूल को अपनाने का गर्व।",
+    "symbol3Name": "Ankh",
+    "symbol3Subtitle": "अनंतता",
+    "symbol3Desc": "वह साँस जो जोड़ती है। जो बनाने वालों को उनसे जोड़ता है जो आगे बढ़ाएँगे।",
+    "symbol4Name": "स्कारब",
+    "symbol4Subtitle": "Renaissance",
+    "symbol4Desc": "गुज़रना और बदलना। जो परीक्षाओं से गुज़रता है, जो पहले से मज़बूत होकर फिर जन्म लेता है।",
+    "symbol5Name": "कोबरा",
+    "symbol5Subtitle": "रक्षा",
+    "symbol5Desc": "ख़ामोश जागृति। वह जो देखे जाने से पहले देख लेता है।",
+    "symbol6Name": "होरस की आँख",
+    "symbol6Subtitle": "साफ़ नज़र",
+    "symbol6Desc": "वह आँख जो कभी नहीं मुँदती। टूटी, फिर पूरी की गई, वह वही देखती है जिसे दूसरे देखते हुए भी नहीं देखते।",
+    "symbol7Name": "Paris की प्लेट",
+    "symbol7Subtitle": "अपनापन",
+    "symbol7Desc": "« Avenue de la Renaissance », सोने में उकेरी हुई। वह सड़क जो किसी नक़्शे पर नहीं मिलती, वह पता जो हर कोई जहाँ जाए साथ ले जाता है।"
+  },
+  "signatureSection": {
+    "label": "पहचान",
+    "title": "अपने लिए एक चिह्न।",
+    "subtitle": "बस तुम और जो तुम जानते हो।",
+    "description": "टांग के सिरे पर। एक क्रिस्टल। सुई की नोक से भी छोटा। पास आओ। चिह्न उभरते हैं, धातु में उकेरे हुए। ब्रिज पर, एक नंबर। तुम्हारे लिए उकेरा हुआ। वह सिर्फ़ एक बार होगा। तुम्हारी तरह।",
+    "mobileDescription": "टांग के सिरे पर। एक क्रिस्टल। सुई की नोक से भी छोटा। धातु में उकेरे चिह्न। ब्रिज पर, एक अनोखा नंबर। तुम्हारी तरह।",
+    "cta": "हमारी रचनाएँ खोजें"
+  },
+  "savoirFaireSection": {
+    "label": "बनावट",
+    "title": "वहाँ बनीं जहाँ बारीकी एक अनुशासन है।",
+    "subtitle": "फ़्रांस, कोरिया, इटली।",
+    "description": "हमारे फ़्रेम फ़्रांस, कोरिया और इटली के बीच जान पाते हैं, ऐसी फ़ैक्ट्रियों में जहाँ कठोरता एक संस्कृति है। हर जगह अपनी पकड़ देती है: एशिया में टाइटेनियम की बारीकी, यूरोप में फ़िनिश की सटीकता। हम अपने साझेदार उनकी माँग के लिए चुनते हैं, उनकी रफ़्तार के लिए नहीं।",
+    "stat1Value": "18KT",
+    "stat1Label": "असली सोना, प्लेटेड",
+    "stat2Value": "टाइटेनियम",
+    "stat2Label": "हल्का, मज़बूत",
+    "stat3Value": "इटली",
+    "stat3Label": "Mazzucchelli एसीटेट",
+    "mobileStat1Label": "18KT सोना",
+    "mobileStat2Label": "टाइटेनियम",
+    "mobileStat3Label": "एसीटेट",
+    "cta": "Atelier"
+  },
+  "valeursSection": {
+    "label": "हमारे मूल्य",
+    "title": "चार रेशे। एक मुकुट।",
+    "subtitle": "जिन पर मोलभाव नहीं।",
+    "valeur1Title": "झूठ से इनकार",
+    "valeur1Desc": "हर शब्द, हर तस्वीर के सामने: यह साबित करता है, या ऐलान करता है? अगर ऐलान करता है, तो हम काट देते हैं।",
+    "valeur1Keyword": "सच",
+    "valeur2Title": "हुनर पर पकड़",
+    "valeur2Desc": "जिस टाइटेनियम को हाथ में संभाला जाता है। जो सोना उतरता नहीं। जो टिकने के लिए नहीं बना, वह atelier से बाहर नहीं जाता।",
+    "valeur2Keyword": "हाथ",
+    "valeur3Title": "वचन",
+    "valeur3Desc": "हम वही कहते हैं जिसे निभा सकें। कभी सेल नहीं: जो कीमत गिरती है, वह वापस लिया गया वचन है।",
+    "valeur3Keyword": "निभाव",
+    "valeur4Title": "सम्मान",
+    "valeur4Desc": "किसी आदमी को हम उसके पास से नहीं नापते, बल्कि उससे जिसे वह निभाता है। तस्वीरों में भी, काउंटर पर भी।",
+    "valeur4Keyword": "नज़र",
+    "valeur5Title": "सौंपना",
+    "valeur5Desc": "जो ठीक से बना है वह सुधरता है; जो सुधरता है वह रखा जाता है; जो रखा जाता है वह आगे सौंपा जाता है।",
+    "valeur5Keyword": "मुकुट"
+  },
+  "collectionsSection": {
+    "label": "संग्रह",
+    "countLabel": "4 संग्रह",
+    "title": "एक Maison. चार संग्रह. कोई इत्तेफ़ाक़ नहीं।",
+    "collection1Name": "मूल",
+    "collection1Desc": "जहाँ सब शुरू होता है। धारियाँ। पहचान।",
+    "collection2Name": "Héritage",
+    "collection2Desc": "Trident। जो आगे सौंपा जाता है।",
+    "collection3Name": "Versailles",
+    "collection3Desc": "फ़्ल्योर-दे-लीस। जो खड़ा किया जाता है।",
+    "collection4Name": "Isis",
+    "collection4Desc": "Ankh, स्कारब, आँख। जो पाँच हज़ार साल से गुज़रता है।",
+    "quote": "हम मॉडल नहीं जमा करते। हम चिह्न जमा करते हैं।",
+    "scroll": "स्क्रॉल करें"
+  },
+  "engagementSection": {
+    "label": "हमारा वचन",
+    "title": "जो ठीक से बना है वह सुधरता है।",
+    "subtitle": "हम इसे निभाते हैं।",
+    "description": "हमारे फ़्रेम समायोजित किए जाने, संभाले जाने, सुधारे जाने के लिए गढ़े गए हैं। क्योंकि एक अच्छी बनी वस्तु एक दूसरे मौके की हक़दार है, और अक्सर तीसरे की भी। वारंटी ख़त्म होने के बाद भी, हमें लिखें: हम मामला-दर-मामला देखते हैं कि हम क्या कर सकते हैं।",
+    "engagement1Title": "टिकाव",
+    "engagement1Desc": "हमारे दादा-दादी अपनी चीज़ें संभालते थे। हमारे माँ-बाप ने फेंकना शुरू किया। हम चुनते हैं।",
+    "engagement1Stat": "3 साल",
+    "engagement1StatLabel": "निर्माता वारंटी",
+    "engagement2Title": "पारदर्शिता",
+    "engagement2Desc": "हर रचना का एक मूल है। फ़्रांसीसी डिज़ाइन। कोरियाई बनावट। हम तुम्हें सब बताते हैं क्योंकि हमारे पास छुपाने को कुछ नहीं।",
+    "engagement2Stat": "2019",
+    "engagement2StatLabel": "से",
+    "engagement3Title": "निष्पक्षता",
+    "engagement3Desc": "250 से ज़्यादा ऑप्टिशियन। कुछ पहले दिन से। हम रिश्ते बनाते हैं, ठेके नहीं।",
+    "engagement3Stat": "250+",
+    "engagement3StatLabel": "साझेदार",
+    "cta": "हमारी रचनाएँ खोजें"
+  },
+  "ambassadeursSection": {
+    "label": "एम्बेसडर",
+    "rightLabel": "वे Renaissance पहनते हैं",
+    "title": "वे Renaissance पहनते हैं",
+    "description": "जाने-पहचाने चेहरे। अलग-अलग सफ़र। एक बात समान: वे वही पहनते हैं जो टिकता है।",
+    "quote": "वे Renaissance दिखावे के लिए नहीं पहनते। वे इसे इसलिए पहनते हैं क्योंकि यह उन जैसा है। क्योंकि यह उनके बारे में कुछ कहता है।",
+    "ambassador1Name": "Sophie Marceau",
+    "ambassador1Role": "अभिनेत्री और निर्देशक",
+    "ambassador1Collection": "Héritage संग्रह",
+    "ambassador2Name": "Omar Sy",
+    "ambassador2Role": "अभिनेता और निर्माता",
+    "ambassador2Collection": "Versailles संग्रह",
+    "ambassador3Name": "Léa Seydoux",
+    "ambassador3Role": "अभिनेत्री",
+    "ambassador3Collection": "Isis संग्रह",
+    "ambassador4Name": "Vincent Cassel",
+    "ambassador4Role": "अभिनेता",
+    "ambassador4Collection": "Héritage संग्रह",
+    "ambassador5Name": "Marion Cotillard",
+    "ambassador5Role": "अभिनेत्री",
+    "ambassador5Collection": "Versailles संग्रह"
+  }
+}

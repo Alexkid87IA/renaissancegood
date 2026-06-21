@@ -698,7 +698,7 @@ function NavLink({
       onPointerEnter={onMouseEnter}
       onMouseMove={onMouseEnter}
       onFocus={onMouseEnter}
-      className={`group relative whitespace-nowrap font-sans text-[9.35px] xl:text-[9.9px] 2xl:text-[10.45px] tracking-[0.22em] font-medium uppercase pb-1 transition-colors duration-300 ${colorClass}`}
+      className={`group relative whitespace-nowrap font-sans text-[10px] xl:text-[10.5px] 2xl:text-[11px] tracking-[0.22em] font-medium uppercase pb-1 transition-colors duration-300 ${colorClass}`}
       aria-current={isActive ? 'page' : undefined}
     >
       {children}

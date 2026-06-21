@@ -1,0 +1,46 @@
+{
+  "home": {
+    "title": "Kalıcı gözlükler. Renaissance Eyewear",
+    "description": "Fransız gözlük Maison'u, 2019'da doğdu. Titanyum, 18 ayar altın kaplama, Mazzucchelli asetat. Her çift, köprüsünde kazınmış numarasını taşır. Takılan. Devredilen."
+  },
+  "shop": {
+    "title": "Tüm yaratımlar",
+    "description": "Renaissance Eyewear kataloğu bir zaman çizgisi gibi okunur: her model bir roma rakamı, her çift köprüsünde kazınmış numarasını taşır. Titanyum, 18 ayar altın kaplama, Mazzucchelli asetat."
+  },
+  "heritage": {
+    "title": "Héritage Koleksiyonu",
+    "description": "Renaissance Eyewear Héritage Koleksiyonu. Trident: üç uç, tek sap. Titanyum, 18 ayar altın kaplama. Modalara boyun eğmeden onları aşan biçimler."
+  },
+  "versailles": {
+    "title": "Versailles Koleksiyonu",
+    "description": "Renaissance Eyewear Versailles Koleksiyonu. Fleur de lys: üç yaprak, tek bağ. Titanyum, 18 ayar altın kaplama, elde parlatılmış. Aşırıya kaçmadan parlayan."
+  },
+  "isis": {
+    "title": "Isis Koleksiyonu",
+    "description": "Renaissance Eyewear Isis Koleksiyonu. Ankh, scarabée, cobra, Horus'un gözü. Beş bin yılı aşan, titanyuma kazınmış işaretler."
+  },
+  "histoire": {
+    "title": "Hikâyemiz",
+    "description": "2019'da bir reddedişten doğdu: kalması gerekenin yok olup gitmesine karşı. Üç meslek adamı, kendi seçtikleri kardeşler. Takılan. Devredilen."
+  },
+  "cart": {
+    "title": "Sepetin",
+    "description": "Renaissance Eyewear sepetin."
+  },
+  "contact": {
+    "title": "İletişim",
+    "description": "Renaissance Eyewear ile iletişime geç. Bir soru, bir öneri, bir ayar. Her istek bir yanıt alır."
+  },
+  "faq": {
+    "title": "SSS",
+    "description": "Renaissance Eyewear gözlükleri hakkında sık sorulan sorular. Siparişler, teslimat, iadeler ve garanti."
+  },
+  "blog": {
+    "title": "Manifesto",
+    "description": "Renaissance Eyewear Maison'unun yazıları."
+  },
+  "storeLocator": {
+    "title": "Bir Optisyen Bul",
+    "description": "Sana yakın bir Renaissance Eyewear optisyeni bul: öneri, deneme, ayar. Öneri, gereken kadar zaman alır."
+  }
+}

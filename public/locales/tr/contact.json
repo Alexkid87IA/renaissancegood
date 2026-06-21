@@ -1,0 +1,205 @@
+{
+  "title": "İletişim",
+  "subtitle": "Seni dinliyoruz",
+  "form": {
+    "name": "Ad",
+    "email": "E-posta",
+    "subject": "Konu",
+    "message": "Mesaj",
+    "send": "Gönder",
+    "sending": "Gönderiliyor...",
+    "sent": "Mesaj gönderildi!",
+    "sentDesc": "Sana en kısa sürede yanıt vereceğiz."
+  },
+  "info": {
+    "email": "E-posta",
+    "phone": "Telefon",
+    "address": "Adres",
+    "hours": "Çalışma saatleri"
+  },
+  "storeLocator": {
+    "title": "Bir optisyen bul",
+    "subtitle": "Fransa'da ve uluslararası 250'den fazla optisyen",
+    "search": "Bir şehir ara...",
+    "nearMe": "Çevremde",
+    "noResults": "Bu bölgede optisyen bulunamadı.",
+    "directions": "Yol tarifi",
+    "phone": "Ara",
+    "filters": "Filtreler"
+  },
+  "guarantee": {
+    "title": "Garanti",
+    "subtitle": "3 yıl üretici garantisi. İyi yapılan da onarılır: bize yaz."
+  },
+  "sizeGuide": {
+    "title": "Beden rehberi",
+    "subtitle": "Sana göre gözlüğü bul"
+  },
+  "orderTracking": {
+    "title": "Sipariş takibi",
+    "subtitle": "Siparişini gerçek zamanlı takip et",
+    "orderNumber": "Sipariş numarası",
+    "email": "E-posta adresi",
+    "track": "Takip et",
+    "status": "Durum"
+  },
+  "contactPage": {
+    "seo": {
+      "title": "İletişim",
+      "description": "Renaissance Eyewear ile iletişime geç. Bir soru, bir öneri, bir ayar: her istek bir yanıt alır."
+    },
+    "hero": {
+      "label": "Maison",
+      "titleLine1": "BİZE",
+      "titleLine2": "YAZ.",
+      "titleMobile": "BİZE YAZ.",
+      "subtitle": "Seni dinliyoruz.",
+      "description": "Ekibimiz; koleksiyonlarımız, siparişlerin ya da partner optisyen ağıyla ilgili tüm sorularını yanıtlamak için hazır.",
+      "descriptionMobile": "Ekibimiz tüm sorularını yanıtlamak için hazır.",
+      "cta": "Bir mesaj yaz",
+      "scroll": "Kaydır"
+    },
+    "cards": {
+      "emailTitle": "E-posta",
+      "emailDetail": "contact@renaissanceeyewear.com",
+      "emailSub": "48 saat içinde yanıt",
+      "phoneTitle": "Telefon",
+      "phoneDetail": "+33 1 42 86 82 00",
+      "phoneSub": "Pzt-Cum",
+      "hoursTitle": "Çalışma saatleri",
+      "hoursDetail": "9.00-18.00",
+      "hoursSub": "Pazartesiden cumaya"
+    },
+    "formSection": {
+      "label": "Mesaj",
+      "title": "Bize yaz.",
+      "subtitle": "Sana kısa sürede döneceğiz.",
+      "nameLabel": "Ad soyad *",
+      "namePlaceholder": "Adın",
+      "emailLabel": "E-posta *",
+      "emailPlaceholder": "senin@eposta.com",
+      "phoneLabel": "Telefon",
+      "phonePlaceholder": "+33 6 12 34 56 78",
+      "subjectLabel": "Konu *",
+      "subjectGeneral": "Genel soru",
+      "subjectOrder": "Siparişim",
+      "subjectProduct": "Ürün sorusu",
+      "subjectReturn": "İade ya da değişim",
+      "subjectSav": "Satış sonrası servis",
+      "subjectPartner": "Partner olmak",
+      "subjectOther": "Diğer",
+      "messageLabel": "Mesaj *",
+      "messagePlaceholder": "İsteğini anlat...",
+      "sent": "Mesaj gönderildi",
+      "sending": "Gönderiliyor...",
+      "submit": "Mesajı gönder",
+      "requiredFields": "* Zorunlu alanlar"
+    },
+    "sidebar": {
+      "locationLabel": "Konum",
+      "locationTitle": "Paris, Fransa",
+      "locationDescription": "Renaissance Maison'u Paris'te kurulu. Her şey burada çizilir.",
+      "networkLabel": "Ağ",
+      "networkTitle": "Denemek mi istiyorsun?",
+      "networkDescription": "Gözlükleri denemek için Fransa'daki ve uluslararası optisyenlerimizden birine git. Öneri, gereken kadar zaman alır.",
+      "networkCta": "Bir optisyen bul",
+      "socialLabel": "Bizi takip et",
+      "socialDescription": "Yeni koleksiyonlarımızı ve Maison'dan haberleri keşfet."
+    }
+  },
+  "storeLocatorPage": {
+    "seo": {
+      "title": "Bir Partner Optisyen Bul",
+      "description": "Fransa'da ve uluslararası, sana yakın bir Renaissance Eyewear optisyeni bul. Gözlükleri dene. Öneri, gereken kadar zaman alır."
+    },
+    "hero": {
+      "label": "Partner Ağı",
+      "titleLine1": "OPTİSYENİNİ",
+      "titleLine2": "BUL.",
+      "subtitle": "Sana yakın.",
+      "description": "Her optisyen aynı titizliği paylaşır: zaman ayırmak, ayarlamak, eşlik etmek.",
+      "opticians": "Optisyen",
+      "countries": "Ülke",
+      "cta": "Bir optisyen ara",
+      "scroll": "Kaydır"
+    },
+    "search": {
+      "label": "Konumla",
+      "title": "Bir optisyen ara",
+      "resultsCount": "{{countries}} ülkede {{count}} partner optisyen",
+      "resultsCountPlural": "{{countries}} ülkede {{count}} partner optisyen"
+    },
+    "cta": {
+      "label": "Partner olmak",
+      "title": "Optisyen misin?",
+      "subtitle": "Ağa katıl.",
+      "description": "Renaissance ağına katıl ve müşterilerine titanyum, 18 ayar altın kaplama, köprüsünde numaralı gözlükler sun. Bize yaz.",
+      "button": "Partner ol"
+    }
+  },
+  "suiviCommande": {
+    "seo": {
+      "title": "Sipariş Takibi",
+      "description": "Renaissance Eyewear siparişini takip et. Nerede olduğunu görmek için sipariş numaranı ve e-postanı gir."
+    },
+    "hero": {
+      "label": "Müşteri Hizmetleri",
+      "titleLine1": "SİPARİŞİNİ",
+      "titleLine2": "TAKİP ET.",
+      "subtitle": "İçin rahat olsun.",
+      "scroll": "Kaydır"
+    },
+    "form": {
+      "orderNumberLabel": "Sipariş numarası",
+      "emailLabel": "E-posta adresi",
+      "orderPlaceholder": "#1001",
+      "emailPlaceholder": "senin@eposta.com",
+      "submit": "Siparişimi takip et",
+      "error": "Lütfen sipariş numaranı ve e-postanı gir."
+    },
+    "reassurance": {
+      "freeShipping": "Teslimat ücretsiz",
+      "warranty": "3 yıl garanti",
+      "returns": "14 gün iade"
+    },
+    "faqSection": {
+      "label": "Sık sorulan sorular",
+      "titleLine1": "SANA",
+      "titleLine2": "yanıt veriyoruz.",
+      "allQuestions": "Tüm sorular",
+      "questions": {
+        "whereIsOrder": {
+          "q": "Siparişim nerede?",
+          "a": "Gönderimin ardından takip numaranla birlikte bir e-posta alırsın. Teslimat, Fransa anakarasında 1 ila 3 iş günü, AB için 2-3 gün sürer."
+        },
+        "deliveryTimes": {
+          "q": "Teslimat süreleri ne kadar?",
+          "a": "Siparişler 24-48 saat içinde gönderilir. Teslimat, Fransa anakarasında 1-2 iş günü, AB için 2-3 gün, uluslararası için 3-7 gün sürer."
+        },
+        "noConfirmation": {
+          "q": "Onay e-postamı almadım.",
+          "a": "Spam ve istenmeyen posta klasörlerini kontrol et. Onayını bulamazsan, adınla ve sipariş tarihinle contact@renaissanceeyewear.com adresinden bize ulaş."
+        },
+        "modifyOrder": {
+          "q": "Siparişimi değiştirebilir ya da iptal edebilir miyim?",
+          "a": "Siparişini onayladıktan sonraki 2 saat içinde, hemen bizimle iletişime geçerek değiştirebilir ya da iptal edebilirsin. Bu sürenin ardından siparişin hazırlanmaya başlar."
+        },
+        "returnPolicy": {
+          "q": "İade politikanız nedir?",
+          "a": "Siparişini iade etmek için teslim aldığın tarihten itibaren 14 günün var. Ürün, ambalajı zarar görmemiş şekilde, ilk haliyle olmalıdır. İade masrafları Renaissance tarafından karşılanır."
+        },
+        "refundDelay": {
+          "q": "Param ne zaman iade edilir?",
+          "a": "İaden teslim alınıp onaylandıktan sonraki 14 gün içinde, alışverişte kullandığın ödeme yöntemine geri ödeme yapılır."
+        }
+      }
+    },
+    "ctaBottom": {
+      "label": "Müşteri Hizmetleri",
+      "title": "Bir soru mu var?",
+      "subtitle": "Ekibimiz seni dinliyor.",
+      "contactUs": "Bize ulaş",
+      "viewFaq": "SSS'ye bak"
+    }
+  }
+}

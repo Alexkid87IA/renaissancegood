@@ -19,7 +19,7 @@
 /** Langues du site. Le français est la langue maître : toute copy naît en FR,
  *  validée, puis transcréée via les skills renaissance-copywriter-{en,de,es,it,ru}.
  *  Jamais de traduction machine sur la copy de la Maison. */
-export type Lang = 'fr' | 'en' | 'de' | 'es' | 'it' | 'ru';
+export type Lang = 'fr' | 'en' | 'de' | 'es' | 'it' | 'ru' | 'tr' | 'hi';
 
 export type CollectionId = 'heritage' | 'versailles' | 'isis';
 
@@ -1495,588 +1495,1764 @@ export const MODELS: Record<string, ModelEditorial> = {
 // ---------------------------------------------------------------------------
 
 export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslations>> = {
-  // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-10).
-  en: {
-    models: {
-      'Renaissance XXXIV': {
-        legende: 'Three claws. Nothing else holds the lens.',
-        description:
-          'A grip on the real. The Trident comes out of the metal and into the lens: ' +
-          'it holds it, it carries it. Rimless. Nothing around, just three points and what they grasp.',
-        morphologie: 'Fits medium faces.',
+  "en": {
+    "models": {
+      "Renaissance XXXIV": {
+        "legende": "Three claws. Nothing else holds the lens.",
+        "description": "A grip on the real. The Trident comes out of the metal and into the lens: it holds it, it carries it. Rimless. Nothing around, just three points and what they grasp.",
+        "morphologie": "Fits medium faces."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
-      'Renaissance II': {
-        legende: 'A circle of thin metal. Nothing else to declare.',
-        description:
-          'Roundness, kept strict. A thread of metal closes the circle, and black grooves ' +
-          'run from the bridge to where the temples begin. A detail meant to be simple, ' +
-          'from the first hours of the House. No symbol: the R on the lens, the crystal ' +
-          'at the tip. The face alone is enough.',
-        morphologie: 'Suits narrow to medium faces.',
+      "Renaissance II": {
+        "legende": "A circle of thin metal. Nothing else to declare.",
+        "description": "Roundness, kept strict. A thread of metal closes the circle, and black grooves run from the bridge to where the temples begin. A detail meant to be simple, from the first hours of the House. No symbol: the R on the lens, the crystal at the tip. The face alone is enough.",
+        "morphologie": "Suits narrow to medium faces."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
-      'Renaissance III': {
-        legende: 'The aviator, redrawn angle by angle.',
-        description:
-          'A silhouette everyone knows. The curves become angles, the lens falls clean. ' +
-          'Double bridge. At the hinges, the metal is grooved. Nothing left to soften.',
-        morphologie: 'Suits medium to wide faces.',
+      "Renaissance III": {
+        "legende": "The aviator, redrawn angle by angle.",
+        "description": "A silhouette everyone knows. The curves become angles, the lens falls clean. Double bridge. At the hinges, the metal is grooved. Nothing left to soften.",
+        "morphologie": "Suits medium to wide faces."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
-      'Renaissance x FRENCH CUT IV': {
-        legende: 'A single lens. Two names engraved in it.',
-        description:
-          'The first collaboration of the House. A single lens, both names ' +
-          'engraved in the gradient, the temples two cables twisted down to ' +
-          'bordeaux tips. At the bottom of the lens, a teardrop. The one ' +
-          'tattooed under the eye, for a loss, or a trial you lived through. ' +
-          'Here it rests on the lens instead of the skin. It does not tell of ' +
-          'the fall. It says you stayed standing. It says what is reborn.',
-        morphologie: 'Fits medium to wide faces.',
+      "Renaissance x FRENCH CUT IV": {
+        "legende": "A single lens. Two names engraved in it.",
+        "description": "The first collaboration of the House. A single lens, both names engraved in the gradient, the temples two cables twisted down to bordeaux tips. At the bottom of the lens, a teardrop. The one tattooed under the eye, for a loss, or a trial you lived through. Here it rests on the lens instead of the skin. It does not tell of the fall. It says you stayed standing. It says what is reborn.",
+        "morphologie": "Fits medium to wide faces."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
-      'Renaissance VI': {
-        legende: "The bridge is grooved. That's the part you remember.",
-        description:
-          'An aviator, corners cut clean. Double bridge: the lower one carries ' +
-          'black grooves, the same ones found where the temples begin. ' +
-          'RENAISSANCE and 18KT engraved on the temple. The R on the lens ' +
-          'does the rest.',
-        morphologie: 'Suits medium faces. Narrow faces wear it oversize.',
+      "Renaissance VI": {
+        "legende": "The bridge is grooved. That's the part you remember.",
+        "description": "An aviator, corners cut clean. Double bridge: the lower one carries black grooves, the same ones found where the temples begin. RENAISSANCE and 18KT engraved on the temple. The R on the lens does the rest.",
+        "morphologie": "Suits medium faces. Narrow faces wear it oversize."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
-      'Renaissance VIII x OCHO': {
-        legende: 'The 8 on one side. The R on the other.',
-        description:
-          'The meeting with SDM. His 8, the sign of Ocho, seals one temple; ' +
-          "the R of Renaissance answers on the other, drawn in Ocho's own " +
-          'hand. Mazzucchelli acetate, thick, cut straight, the corners ' +
-          'broken clean. Three hundred pairs, each numbered on the temple, ' +
-          'one hundred per coloris. The rest keeps quiet.',
-        morphologie: 'Fits medium to wide faces.',
+      "Renaissance VIII x OCHO": {
+        "legende": "The 8 on one side. The R on the other.",
+        "description": "The meeting with SDM. His 8, the sign of Ocho, seals one temple; the R of Renaissance answers on the other, drawn in Ocho's own hand. Mazzucchelli acetate, thick, cut straight, the corners broken clean. Three hundred pairs, each numbered on the temple, one hundred per coloris. The rest keeps quiet.",
+        "morphologie": "Fits medium to wide faces."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
-      'Renaissance IX': {
-        legende: 'A cord of gold, strung from one lens to the other.',
-        description:
-          'Wire turned into cord. The twist runs across the brow, lens to ' +
-          'lens, above a bridge scored with black. RENAISSANCE engraved in ' +
-          'the bar, beneath the cord. A thin black line follows the rim of ' +
-          'each lens. The temples, two twisted cables, down to the burgundy ' +
-          'tips.',
-        morphologie: 'Suits wide faces.',
+      "Renaissance IX": {
+        "legende": "A cord of gold, strung from one lens to the other.",
+        "description": "Wire turned into cord. The twist runs across the brow, lens to lens, above a bridge scored with black. RENAISSANCE engraved in the bar, beneath the cord. A thin black line follows the rim of each lens. The temples, two twisted cables, down to the burgundy tips.",
+        "morphologie": "Suits wide faces."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-en, 2026-06-12).
-      'Renaissance X': {
-        legende: 'The color, without the frame.',
-        description:
-          'The bare lens. It holds on by the curved bridge, rose gold, and ' +
-          'by two black-grooved blocks at the sides. The temples, two ' +
-          'twisted silver cables, run to a burgundy tip. The lens does the rest.',
-        morphologie: 'Suits medium to wide faces.',
+      "Renaissance X": {
+        "legende": "The color, without the frame.",
+        "description": "The bare lens. It holds on by the curved bridge, rose gold, and by two black-grooved blocks at the sides. The temples, two twisted silver cables, run to a burgundy tip. The lens does the rest.",
+        "morphologie": "Suits medium to wide faces."
       },
+      "Renaissance XI": {
+        "legende": "Eight angles, not a single curve.",
+        "description": "The octagon held clean. The metal traces eight sides, every angle cut sharp. At the hinges, grooves grip the rim, the same ones run along the temple. RENAISSANCE engraved along the top line.",
+        "morphologie": "Suits narrow to medium faces."
+      },
+      "Renaissance XII": {
+        "legende": "An address screwed onto the temple.",
+        "description": "Mazzucchelli acetate taken from the block, cut straight. The top corners are angled off. On the temple, a gold plate carries an address: Avenue de la Renaissance. The number twelve is engraved on it. It is on no map.",
+        "morphologie": "Suits medium to wide faces."
+      },
+      "Renaissance XIII": {
+        "legende": "The aviator squared off, two bridges.",
+        "description": "The top bar carries the name, engraved in the metal. Beneath it, a second bridge, thinner. At the sides, the metal is grooved. No symbol: the R on the lens, the crystal at the tip. The face alone is enough.",
+        "morphologie": "Suits medium to wide faces."
+      },
+      "Renaissance XIV": {
+        "legende": "The aviator with clean angles.",
+        "description": "The bottom of the lens cut clean. Two thin bridges, the temples turned into cord. The R on the lens does the rest.",
+        "morphologie": "Suits wide faces."
+      },
+      "Renaissance XVI": {
+        "legende": "An oval rimless, cut in diamond cut.",
+        "description": "The lens has no frame. Its edge is cut in diamond cut, all the way around. The bridge is grooved. The temples: twisted double bar. The R on the lens does the rest.",
+        "morphologie": "Suits medium to wide faces."
+      },
+      "Renaissance XVII": {
+        "legende": "Cut all around, like a stone.",
+        "description": "The cut in place of the frame. Pointed facets run all the way around the lens, from the bridge to the bottom. Rimless. The light plays on every ridge.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance XVIII": {
+        "legende": "A square that holds itself straight.",
+        "description": "The square, the corners just softened. A thread of metal runs around it, two bars above the nose. No symbol: the R on the lens, the crystal at the tip. The face alone is enough.",
+        "morphologie": "For narrow faces."
+      },
+      "Renaissance XIX": {
+        "legende": "The round, and the grooves that close the bridge.",
+        "description": "The circle, in thin metal. Two grooved bars close the bridge, the same line returns at the temple. No symbol: the R on the lens, the crystal at the tip. The face alone is enough.",
+        "morphologie": "For narrow to medium faces."
+      },
+      "Renaissance XX": {
+        "legende": "Eight sides cut clean in the acetate.",
+        "description": "The octagon, cut thick in the acetate. Eight sides grip the lens, none of them bend. On the temple, a line of gold enters the material. No symbol: the face alone.",
+        "morphologie": "For narrow to medium faces."
+      },
+      "Renaissance XXI": {
+        "legende": "A rectangle of acetate, the temple in steps.",
+        "description": "The angle, held. A rectangle of thick acetate, the bottom corners cut clean. On the side, the temple steps down, a metal V set into it. No symbol: the face alone.",
+        "morphologie": "For medium faces."
+      },
+      "Renaissance XXII": {
+        "legende": "The top held straight, the bare lens below.",
+        "description": "The straight brow. A bar of metal closes the top; below, the material stops and a thread holds the bare lens. No symbol: the face alone.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance XXVII": {
+        "legende": "The square navigator, held by three points.",
+        "description": "The sign first. At each temple, three points come out of the metal and hold the lens: the Trident carries the frame, it does not decorate it. Then the line, a square navigator, straight double bridge, the bottom of the lens cut clean.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance XXIX": {
+        "legende": "The pilot's teardrop, held by three points.",
+        "description": "The Trident first. Three points at each temple come out of the metal and hold the lens. Below, the pilot's teardrop, the top cut clean, two straight bars at the bridge. Three points, a single hand.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance XXX": {
+        "legende": "An address in Paris, screwed onto the temple.",
+        "description": "The address you carry with you. Avenue de la Renaissance, engraved in gold, set into the temple. Around it, a rectangle of thick acetate, corners cut clean. The lens settles into the material and holds there.",
+        "morphologie": "For medium faces."
+      },
+      "Renaissance XXXII": {
+        "legende": "Three teeth bite the lens, it no longer moves.",
+        "description": "The grip at the temple. The Trident drives three points into the edge of the lens and holds it. Rimless. The rim is cut in facets, every angle takes the light.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance XXXIII": {
+        "legende": "The edge cut raw, the Trident to pinch it.",
+        "description": "The grip on the lens. The edge cut in small teeth, the light catches on it. Rimless. At the temple, three points come out of the metal and grip the lens.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance XXXV": {
+        "legende": "The Trident bites the lens, in a face of acetate.",
+        "description": "The Trident comes out of the metal and takes the lens. Three points at each corner, that bite and that carry. A straight face, full, cut from one block. The temples run on in titanium, engraved all the way to the tip.",
+        "morphologie": "For narrow to medium faces."
+      },
+      "Renaissance XXXVI": {
+        "legende": "The big square rimless, held by the Trident.",
+        "description": "The place taken. A big square lens, nothing around it. Rimless. The Trident comes out of the metal and pinches the lens at the temple, three points on each side.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance XXXVII": {
+        "legende": "The Fleur de lys at both temples, a lens between them.",
+        "description": "Mastery without a title. The Fleur de lys holds the lens at each temple. Rimless, the top drawn straight, the gaze passes through whole.",
+        "morphologie": "For wide faces."
+      },
+      "Renaissance XXXVIII": {
+        "legende": "Two bridges one above the other, the metal bare.",
+        "description": "The bare metal. Two stacked bridges, the corners cut clean, the grooves run all the way to the temple. No symbol: the R on the lens is enough.",
+        "morphologie": "For medium faces."
+      },
+      "Renaissance XXXIX": {
+        "legende": "The Fleur de lys holds the lens, another watches at the bridge.",
+        "description": "Mastery of the gesture. The Fleur de lys grips the bare lens, three scrolls at each corner. Rimless. At the bridge, another keeps watch.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance XL": {
+        "legende": "Six fine angles, and not one that raises its voice.",
+        "description": "Six sides drawn in titanium wire, the circle closed clean. Near the temple, an open ring catches the temple arm. No symbol: the R on the lens is enough.",
+        "morphologie": "For medium faces."
+      },
+      "Renaissance XLI": {
+        "legende": "The Fleur de lys makes the hinge and holds the lens.",
+        "description": "The Fleur de lys holds the lens. One at each end, sculpted in the metal, it works the temple and carries the lens. Rimless. The bottom of the lens cut in facets, the light catches in it.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance XLII": {
+        "legende": "The edge of the lens cut raw, all the way around.",
+        "description": "Nothing frames the lens. Its edge is cut raw all the way around, in tight teeth that take the light. Rimless. The bridge is grooved. No symbol: the face alone.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance XLIII": {
+        "legende": "A rectangle of thin metal, the grooves blackened near the hinge.",
+        "description": "The face is enough. A thread of metal closes the rectangle, the bottom corners cut clean. Near the hinge, blackened lines run through the metal. Set down, straight, with nothing to declare.",
+        "morphologie": "For medium faces."
+      },
+      "Renaissance XLIV": {
+        "legende": "The lens suspended between the points of the Trident.",
+        "description": "The anchor. On each side, the Trident comes out of the metal and into the lens, it carries it alone. Rimless. A bridge engraved with ridges, the lens suspended between the points.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance L": {
+        "legende": "The acetate cut clean, the address in gold on the temple.",
+        "description": "The address you carry with you. Thick acetate, the corners cut clean. On the temple, a gold plate: Avenue de la Renaissance, the street no map carries.",
+        "morphologie": "For narrow to medium faces."
+      },
+      "Renaissance LI": {
+        "legende": "The Fleur de lys at the temples, the edge of the lens cut in facets.",
+        "description": "The Fleur de lys holds the temple, on both sides. From there the lens runs out, without a frame. Rimless. The edge cut in facets, the light breaks on it.",
+        "morphologie": "For medium faces."
+      },
+      "Renaissance LII": {
+        "legende": "A straight bar above the gaze, everything lines up beneath it.",
+        "description": "The pilot line, held square. A flat bar runs from one side to the other, a thread of metal closes the bridge below. No symbol: the R on the lens, the crystal at the tip. The face alone is enough.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance LIII": {
+        "legende": "The name engraved at the top of the lens, you have to come close to read it.",
+        "description": "A rectangle on a thin thread. The bridge and the double bar carry the same tight lines in the metal. No symbol: the R on the lens, the crystal at the tip. The face alone is enough.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance LIV": {
+        "legende": "A plate above each lens, like a sign.",
+        "description": "The name first. RENAISSANCE engraved in a plate, set as a brow over each lens. The circle holds the top, the bottom stays bare. A softened octagon, a grooved bridge.",
+        "morphologie": "For medium faces."
+      },
+      "Renaissance LV": {
+        "legende": "The Eye of Horus, cut open in the temple.",
+        "description": "The eye that keeps watch. On each temple, the Eye of Horus is cut out of the metal. Rimless. The edge of the lens is cut in facets, the light breaks on it.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance LVI": {
+        "legende": "Eight sides cut clean, the light catching at the bottom of the lens.",
+        "description": "The octagon held without a frame. The lenses fall in eight sides, the bottom edge cut in steps that catch the light. Rimless. A raised point closes each corner.",
+        "morphologie": "For wide faces."
+      },
+      "Renaissance LVII": {
+        "legende": "The address in plain words, and the same in hieroglyphs.",
+        "description": "The same street, twice. Avenue de la Renaissance on the temple, in letters; at the hinge, the same address said again in hieroglyphs. A small rimmed rectangle, the angles cut.",
+        "morphologie": "For medium faces."
+      },
+      "Renaissance LVIII": {
+        "legende": "A scarab set at the hinge, and it does not leave.",
+        "description": "The seal first. The acetate is cut thick, the top corners cut clean. At the hinge, a scarab pressed into the metal, seen from above, like a stamp. The rest keeps quiet.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance LIX": {
+        "legende": "The cobra at each temple, and the lens without a frame.",
+        "description": "The watch without a frame. At each temple, the sculpted cobra seizes the lens and carries it. Rimless. Double bridge, a stone set in the metal.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance LX": {
+        "legende": "A cobra at each temple, it bites the lens and keeps it.",
+        "description": "The silent guard. At each temple, a cobra's head bites the edge of the lens, its scaled body running along the temple. A stone shines on its head. It does not threaten, it keeps watch.",
+        "morphologie": "For medium to wide faces."
+      },
+      "Renaissance LXI": {
+        "legende": "The faceted lens, the acetate temples that carry the gold.",
+        "description": "The raw cut. The lens holds on its own, faceted all the way around, every angle returns the light. Rimless. Two loops of metal grip it, acetate temples carry the gold. No symbol: the face alone.",
+        "morphologie": "For medium faces."
+      }
     },
-    collections: {
-      heritage: {
-        recit:
-          'What comes before us builds us. Héritage gathers the frames that carry the Trident. ' +
-          'Shapes that pass through trends without ever bowing to them.',
-      },
+    "collections": {
+      "heritage": {
+        "recit": "What comes before us builds us. Héritage gathers the frames that carry the Trident. Shapes that pass through trends without ever bowing to them."
+      }
     },
-    symboles: {
-      trident: {
-        nom: 'The Trident',
-        etendard: 'Sovereignty',
-        definition:
-          'The balance of yesterday, today, and tomorrow. An anchor in what founds, ' +
-          'what builds, what lasts.',
-        deuxLectures:
-          'Memory reads generations in it: three points, a single shaft. ' +
-          'Choice reads the refusal of the replaceable.',
-      },
+    "symboles": {
+      "trident": {
+        "nom": "The Trident",
+        "etendard": "Sovereignty",
+        "definition": "The balance of yesterday, today, and tomorrow. An anchor in what founds, what builds, what lasts.",
+        "deuxLectures": "Memory reads generations in it: three points, a single shaft. Choice reads the refusal of the replaceable."
+      }
     },
-    proof: {
-      label: 'The signature',
-      texte:
-        'The R in the lens, for the person across from you. The crystal at the temple tip, ' +
-        'behind the ear. Known to the wearer alone. And on the bridge, a number: it will exist only once.',
+    "proof": {
+      "label": "The signature",
+      "texte": "The R in the lens, for the person across from you. The crystal at the temple tip, behind the ear. Known to the wearer alone. And on the bridge, a number: it will exist only once."
     },
-    trust: [
-      '14-day returns',
-      '3-year manufacturer warranty',
-      'Designed in Paris, made in Korea',
-      'Secure payment',
-      '250+ opticians',
-    ],
+    "trust": [
+      "14-day returns",
+      "3-year manufacturer warranty",
+      "Designed in Paris, made in Korea",
+      "Secure payment",
+      "250+ opticians"
+    ]
   },
-  // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-10).
-  de: {
-    models: {
-      'Renaissance XXXIV': {
-        legende: 'Drei Krallen. Nur an ihnen hält das Glas.',
-        description:
-          'Der Griff nach dem Wirklichen. Der Dreizack tritt aus dem Metall und dringt ins Glas: ' +
-          'er hält es fest, er trägt es. Rimless. Nichts darum herum, nur die drei Spitzen und das, was sie packen.',
-        morphologie: 'Für mittelgroße Gesichter.',
+  "de": {
+    "models": {
+      "Renaissance XXXIV": {
+        "legende": "Drei Krallen. Nur an ihnen hält das Glas.",
+        "description": "Der Griff nach dem Wirklichen. Der Dreizack tritt aus dem Metall und dringt ins Glas: er hält es fest, er trägt es. Rimless. Nichts darum herum, nur die drei Spitzen und das, was sie packen.",
+        "morphologie": "Für mittelgroße Gesichter."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
-      'Renaissance II': {
-        legende: 'Ein Kreis aus feinem Metall. Sonst nichts zu deklarieren.',
-        description:
-          'Die strenge Rundung. Ein Faden aus Metall schließt den Kreis, und schwarze ' +
-          'Rillen laufen vom Steg bis zum Ansatz der Bügel. Ein Detail, bewusst einfach ' +
-          'gehalten, seit den ersten Stunden des Hauses. Kein Symbol: das R auf dem Glas, ' +
-          'der Kristall an der Bügelspitze. Das Gesicht allein genügt.',
-        morphologie: 'Geeignet für schmale bis mittlere Gesichter.',
+      "Renaissance II": {
+        "legende": "Ein Kreis aus feinem Metall. Sonst nichts zu deklarieren.",
+        "description": "Die strenge Rundung. Ein Faden aus Metall schließt den Kreis, und schwarze Rillen laufen vom Steg bis zum Ansatz der Bügel. Ein Detail, bewusst einfach gehalten, seit den ersten Stunden des Hauses. Kein Symbol: das R auf dem Glas, der Kristall an der Bügelspitze. Das Gesicht allein genügt.",
+        "morphologie": "Geeignet für schmale bis mittlere Gesichter."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
-      'Renaissance III': {
-        legende: 'Der Aviator, Winkel für Winkel neu gefasst.',
-        description:
-          'Eine Silhouette, die jeder kennt. Die Kurven werden zu Winkeln, das Glas ' +
-          'fällt sauber ab. Doppelsteg. An den Scharnieren ist das Metall geriffelt. ' +
-          'Es bleibt nichts mehr zu mildern.',
-        morphologie: 'Geeignet für mittlere bis breite Gesichter.',
+      "Renaissance III": {
+        "legende": "Der Aviator, Winkel für Winkel neu gefasst.",
+        "description": "Eine Silhouette, die jeder kennt. Die Kurven werden zu Winkeln, das Glas fällt sauber ab. Doppelsteg. An den Scharnieren ist das Metall geriffelt. Es bleibt nichts mehr zu mildern.",
+        "morphologie": "Geeignet für mittlere bis breite Gesichter."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
-      'Renaissance x FRENCH CUT IV': {
-        legende: 'Ein einziges Glas. Zwei Namen darin graviert.',
-        description:
-          'Die erste Zusammenarbeit des Hauses. Ein einziges Glas, beide Namen ' +
-          'in den Verlauf graviert, die Bügel zwei verdrillte Kabel bis in die ' +
-          'bordeauxroten Spitzen. Unten am Glas eine Träne. Es ist die, die ' +
-          'man sich unter das Auge tätowieren lässt, für einen Verlust oder ' +
-          'eine durchstandene Prüfung. Hier liegt sie auf dem Glas statt auf ' +
-          'der Haut. Sie erzählt nicht vom Fall. Sie sagt, dass man aufrecht ' +
-          'geblieben ist. Sie sagt, was wiedergeboren wird.',
-        morphologie: 'Für mittlere bis breite Gesichter.',
+      "Renaissance x FRENCH CUT IV": {
+        "legende": "Ein einziges Glas. Zwei Namen darin graviert.",
+        "description": "Die erste Zusammenarbeit des Hauses. Ein einziges Glas, beide Namen in den Verlauf graviert, die Bügel zwei verdrillte Kabel bis in die bordeauxroten Spitzen. Unten am Glas eine Träne. Es ist die, die man sich unter das Auge tätowieren lässt, für einen Verlust oder eine durchstandene Prüfung. Hier liegt sie auf dem Glas statt auf der Haut. Sie erzählt nicht vom Fall. Sie sagt, dass man aufrecht geblieben ist. Sie sagt, was wiedergeboren wird.",
+        "morphologie": "Für mittlere bis breite Gesichter."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
-      'Renaissance VI': {
-        legende: 'Der Steg ist gerillt. Ihn vergisst man nicht.',
-        description:
-          'Die Pilotenform, die Ecken scharf geschnitten. Doppelsteg: der ' +
-          'untere trägt schwarze Rillen, dieselben wie am Bügelansatz. ' +
-          'RENAISSANCE und 18KT, in den Bügel graviert. Das R auf dem Glas ' +
-          'erledigt den Rest.',
-        morphologie: 'Passt zu mittleren Gesichtern. Schmale Gesichter tragen sie oversize.',
+      "Renaissance VI": {
+        "legende": "Der Steg ist gerillt. Ihn vergisst man nicht.",
+        "description": "Die Pilotenform, die Ecken scharf geschnitten. Doppelsteg: der untere trägt schwarze Rillen, dieselben wie am Bügelansatz. RENAISSANCE und 18KT, in den Bügel graviert. Das R auf dem Glas erledigt den Rest.",
+        "morphologie": "Passt zu mittleren Gesichtern. Schmale Gesichter tragen sie oversize."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
-      'Renaissance VIII x OCHO': {
-        legende: 'Die 8 auf der einen Seite. Das R auf der anderen.',
-        description:
-          'Die Begegnung mit SDM. Seine 8, das Zeichen von Ocho, besiegelt ' +
-          'den einen Bügel; das R von Renaissance antwortet auf dem anderen, ' +
-          'gezeichnet in der Schrift von Ocho. Das Mazzucchelli-Acetat, dick, ' +
-          'gerade geschnitten, die Ecken sauber gebrochen. Dreihundert ' +
-          'Exemplare, nummeriert am Bügel, hundert pro Coloris. Der Rest ' +
-          'schweigt.',
-        morphologie: 'Für mittlere bis breite Gesichter.',
+      "Renaissance VIII x OCHO": {
+        "legende": "Die 8 auf der einen Seite. Das R auf der anderen.",
+        "description": "Die Begegnung mit SDM. Seine 8, das Zeichen von Ocho, besiegelt den einen Bügel; das R von Renaissance antwortet auf dem anderen, gezeichnet in der Schrift von Ocho. Das Mazzucchelli-Acetat, dick, gerade geschnitten, die Ecken sauber gebrochen. Dreihundert Exemplare, nummeriert am Bügel, hundert pro Coloris. Der Rest schweigt.",
+        "morphologie": "Für mittlere bis breite Gesichter."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
-      'Renaissance IX': {
-        legende: 'Eine Kordel aus Gold, gespannt von Glas zu Glas.',
-        description:
-          'Der Draht zur Kordel gedreht. Die Windung läuft über die Stirn, ' +
-          'von Glas zu Glas, über einem schwarz gerillten Steg. RENAISSANCE ' +
-          'in die Leiste graviert, unter der Kordel. Eine schwarze Linie ' +
-          'fasst die Gläser ein. Die Bügel: zwei gedrehte Kabel, bis zur ' +
-          'bordeauxroten Bügelspitze.',
-        morphologie: 'Für breite Gesichter.',
+      "Renaissance IX": {
+        "legende": "Eine Kordel aus Gold, gespannt von Glas zu Glas.",
+        "description": "Der Draht zur Kordel gedreht. Die Windung läuft über die Stirn, von Glas zu Glas, über einem schwarz gerillten Steg. RENAISSANCE in die Leiste graviert, unter der Kordel. Eine schwarze Linie fasst die Gläser ein. Die Bügel: zwei gedrehte Kabel, bis zur bordeauxroten Bügelspitze.",
+        "morphologie": "Für breite Gesichter."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-de, 2026-06-12).
-      'Renaissance X': {
-        legende: 'Die Farbe, ohne den Rand.',
-        description:
-          'Das nackte Glas. Gehalten vom gebogenen Steg in Roségold und von ' +
-          'zwei schwarz gerillten Blöcken an den Seiten. Die Bügel: zwei ' +
-          'gedrehte Silberkabel, bis zum Bügelende in Bordeaux. Das Glas ' +
-          'macht den Rest.',
-        morphologie: 'Für mittlere bis breite Gesichter.',
+      "Renaissance X": {
+        "legende": "Die Farbe, ohne den Rand.",
+        "description": "Das nackte Glas. Gehalten vom gebogenen Steg in Roségold und von zwei schwarz gerillten Blöcken an den Seiten. Die Bügel: zwei gedrehte Silberkabel, bis zum Bügelende in Bordeaux. Das Glas macht den Rest.",
+        "morphologie": "Für mittlere bis breite Gesichter."
       },
+      "Renaissance XI": {
+        "legende": "Acht Winkel, keine einzige Kurve.",
+        "description": "Das Achteck, sauber gehalten. Das Metall zieht acht Seiten, jeder Winkel scharf geschnitten. An den Scharnieren fassen Rillen das Gestell, dieselben laufen über den Bügel. RENAISSANCE, in die obere Linie graviert.",
+        "morphologie": "Geeignet für schmale bis mittlere Gesichter."
+      },
+      "Renaissance XII": {
+        "legende": "Eine Adresse, auf den Bügel geschraubt.",
+        "description": "Das Mazzucchelli-Acetat aus dem Block genommen, gerade geschnitten. Die oberen Ecken schräg getrennt. Auf dem Bügel trägt eine Goldplakette eine Adresse: Avenue de la Renaissance. Die Zwölf ist darauf graviert. Sie steht auf keiner Karte.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XIII": {
+        "legende": "Das Quadrat des Aviators, zwei Stege.",
+        "description": "Die obere Leiste trägt den Namen, ins Metall graviert. Darunter ein zweiter Steg, feiner. An den Seiten ist das Metall gerillt. Kein Symbol: das R auf dem Glas, der Kristall an der Bügelspitze. Das Gesicht allein genügt.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XIV": {
+        "legende": "Der Aviator mit scharfen Winkeln.",
+        "description": "Der untere Glasrand sauber geschnitten. Zwei feine Stege, die Bügel zur Kordel gedreht. Das R auf dem Glas erledigt den Rest.",
+        "morphologie": "Für breite Gesichter."
+      },
+      "Renaissance XVI": {
+        "legende": "Ein randloses Oval, in Diamond Cut geschliffen.",
+        "description": "Das Glas hat keinen Rand. Sein Saum ist in Diamond Cut geschliffen, rundherum. Der Steg ist gerillt. Die Bügel: zwei gedrehte Stränge. Das R auf dem Glas erledigt den Rest.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XVII": {
+        "legende": "Geschliffen rundherum, wie ein Stein.",
+        "description": "Der Schliff an der Stelle des Rands. Spitze Facetten laufen rund um das Glas, vom Steg bis nach unten. Rimless. Das Licht spielt auf jeder Kante.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XVIII": {
+        "legende": "Ein Quadrat, das aufrecht steht.",
+        "description": "Das Quadrat, die Ecken nur leicht gemildert. Ein Faden aus Metall fasst es ein, zwei Leisten über der Nase. Kein Symbol: das R auf dem Glas, der Kristall an der Bügelspitze. Das Gesicht allein genügt.",
+        "morphologie": "Für schmale Gesichter."
+      },
+      "Renaissance XIX": {
+        "legende": "Das Runde, und die Rillen, die den Steg schließen.",
+        "description": "Der Kreis, aus feinem Metall. Zwei gerillte Leisten schließen den Steg, derselbe Strich kehrt an der Schläfe wieder. Kein Symbol: das R auf dem Glas, der Kristall an der Bügelspitze. Das Gesicht allein genügt.",
+        "morphologie": "Für schmale bis mittlere Gesichter."
+      },
+      "Renaissance XX": {
+        "legende": "Acht Seiten, sauber aus dem Acetat geschnitten.",
+        "description": "Das Achteck, dick aus dem Acetat geschnitten. Acht Seiten fassen das Glas, keine gibt nach. Auf dem Bügel dringt ein Goldstrich in das Material. Kein Symbol: das Gesicht allein.",
+        "morphologie": "Für schmale bis mittlere Gesichter."
+      },
+      "Renaissance XXI": {
+        "legende": "Ein Rechteck aus Acetat, der Bügel in Stufen.",
+        "description": "Der Winkel, gehalten. Ein Rechteck aus dickem Acetat, die unteren Ecken sauber geschnitten. An der Seite fällt der Bügel in Stufen ab, ein V aus Metall sitzt darin. Kein Symbol: das Gesicht allein.",
+        "morphologie": "Für mittlere Gesichter."
+      },
+      "Renaissance XXII": {
+        "legende": "Oben gerade gehalten, unten das nackte Glas.",
+        "description": "Die gerade Stirn. Eine Leiste aus Metall schließt nach oben ab; unten endet das Material, und ein Faden hält das nackte Glas. Kein Symbol: das Gesicht allein.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XXVII": {
+        "legende": "Der quadratische Navigator, gehalten von drei Spitzen.",
+        "description": "Das Zeichen zuerst. An jeder Schläfe treten drei Spitzen aus dem Metall und halten das Glas: der Dreizack trägt die Fassung, er schmückt sie nicht. Dann die Linie, ein quadratischer Navigator, gerader Doppelsteg, der untere Glasrand sauber geschnitten.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XXIX": {
+        "legende": "Der Tropfen des Piloten, gehalten von drei Spitzen.",
+        "description": "Der Dreizack zuerst. Drei Spitzen an jeder Schläfe treten aus dem Metall und halten das Glas. Darunter der Tropfen des Piloten, oben scharf geschnitten, zwei gerade Leisten am Steg. Drei Spitzen, eine einzige Hand.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XXX": {
+        "legende": "Eine Pariser Adresse, an die Schläfe geschraubt.",
+        "description": "Die Adresse, die man mitnimmt. Avenue de la Renaissance, ins Gold graviert, in den Bügel gefasst. Darum ein Rechteck aus dickem Acetat, die Ecken sauber geschnitten. Das Glas bettet sich ins Material und hält darin.",
+        "morphologie": "Für mittlere Gesichter."
+      },
+      "Renaissance XXXII": {
+        "legende": "Drei Zähne beißen ins Glas, es bewegt sich nicht mehr.",
+        "description": "Der Griff an der Schläfe. Der Dreizack schlägt drei Spitzen in den Glasrand und hält es fest. Rimless. Der Saum ist facettiert geschliffen, jeder Winkel fängt das Licht.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XXXIII": {
+        "legende": "Der Rand scharf geschliffen, der Dreizack, um ihn zu fassen.",
+        "description": "Der Griff nach dem Glas. Der Rand in kleinen Zähnen geschliffen, das Licht hängt sich daran. Rimless. An der Schläfe treten drei Spitzen aus dem Metall und fassen das Glas.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XXXV": {
+        "legende": "Der Dreizack beißt ins Glas, in einer Front aus Acetat.",
+        "description": "Der Dreizack tritt aus dem Metall und nimmt das Glas. Drei Spitzen an jeder Ecke, die beißen und die tragen. Eine gerade Front, voll, aus einem Block geschnitten. Die Bügel ziehen in Titan davon, graviert bis zur Spitze.",
+        "morphologie": "Für schmale bis mittlere Gesichter."
+      },
+      "Renaissance XXXVI": {
+        "legende": "Das große randlose Quadrat, gehalten vom Dreizack.",
+        "description": "Der eingenommene Platz. Ein großes quadratisches Glas, nichts darum herum. Rimless. Der Dreizack tritt aus dem Metall und kneift das Glas an der Schläfe, drei Spitzen auf jeder Seite.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XXXVII": {
+        "legende": "Die Lilie an beiden Schläfen, ein Glas dazwischen.",
+        "description": "Die Meisterschaft ohne Titel. Die Lilie hält das Glas an jeder Schläfe. Rimless, oben gerade gezogen, der Blick geht ganz hindurch.",
+        "morphologie": "Für breite Gesichter."
+      },
+      "Renaissance XXXVIII": {
+        "legende": "Zwei Stege übereinander, das Metall blank.",
+        "description": "Das blanke Metall. Zwei Stege übereinander, die Ecken sauber geschnitten, die Rillen laufen bis zum Bügel. Kein Symbol: das R auf dem Glas genügt.",
+        "morphologie": "Für mittlere Gesichter."
+      },
+      "Renaissance XXXIX": {
+        "legende": "Die Lilie hält das Glas, eine andere wacht am Steg.",
+        "description": "Die Meisterschaft der Geste. Die Lilie greift das nackte Glas, drei Voluten an jeder Ecke. Rimless. Am Steg wacht eine andere.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XL": {
+        "legende": "Sechs feine Winkel, und keiner, der die Stimme hebt.",
+        "description": "Sechs Seiten, gezogen aus einem Faden aus Titan, der Kreis sauber geschlossen. Nahe der Schläfe fasst ein offener Ring den Bügel. Kein Symbol: das R auf dem Glas genügt.",
+        "morphologie": "Für mittlere Gesichter."
+      },
+      "Renaissance XLI": {
+        "legende": "Die Lilie bildet das Scharnier und hält das Glas.",
+        "description": "Die Lilie hält das Glas. Eine an jedem Ende, ins Metall gearbeitet, sie führt den Bügel und trägt es. Rimless. Der untere Glasrand facettiert geschliffen, das Licht fängt sich daran.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XLII": {
+        "legende": "Der Glasrand scharf geschliffen, rundherum.",
+        "description": "Nichts fasst das Glas ein. Sein Rand ist scharf geschliffen, rundherum, in dichten Zähnen, die das Licht fangen. Rimless. Der Steg ist gerillt. Kein Symbol: das Gesicht allein.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance XLIII": {
+        "legende": "Ein Rechteck aus feinem Metall, die Rillen am Scharnier geschwärzt.",
+        "description": "Das Gesicht genügt. Ein Faden aus Metall schließt das Rechteck, die unteren Ecken sauber geschnitten. Nahe dem Scharnier laufen geschwärzte Linien durchs Metall. Gesetzt, gerade, ohne etwas zu deklarieren.",
+        "morphologie": "Für mittlere Gesichter."
+      },
+      "Renaissance XLIV": {
+        "legende": "Das Glas, aufgehängt zwischen den Spitzen des Dreizacks.",
+        "description": "Die Verankerung. Auf jeder Seite tritt der Dreizack aus dem Metall und dringt ins Glas, er trägt es allein. Rimless. Ein Steg, in Kanten graviert, das Glas aufgehängt zwischen den Spitzen.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance L": {
+        "legende": "Das Acetat sauber geschnitten, die Adresse in Gold auf dem Bügel.",
+        "description": "Die Adresse, die man mitnimmt. Ein dickes Acetat, die Ecken sauber geschnitten. Auf dem Bügel eine Goldplakette: Avenue de la Renaissance, die Straße, die keine Karte trägt.",
+        "morphologie": "Für schmale bis mittlere Gesichter."
+      },
+      "Renaissance LI": {
+        "legende": "Die Lilie an den Schläfen, der Glasrand in Facetten geschliffen.",
+        "description": "Die Lilie hält die Schläfe, auf beiden Seiten. Von dort geht das Glas aus, ohne Rand. Rimless. Der Rand in Facetten geschliffen, das Licht bricht sich daran.",
+        "morphologie": "Für mittlere Gesichter."
+      },
+      "Renaissance LII": {
+        "legende": "Eine gerade Leiste über dem Blick, alles richtet sich darunter aus.",
+        "description": "Die Pilotenlinie, im Quadrat gehalten. Eine flache Leiste läuft von einer Seite zur anderen, ein Faden aus Metall schließt den Steg darunter. Kein Symbol: das R auf dem Glas, der Kristall an der Bügelspitze. Das Gesicht allein genügt.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance LIII": {
+        "legende": "Der Name oben ins Glas graviert, man muss näher treten, um ihn zu lesen.",
+        "description": "Ein Rechteck am feinen Faden. Der Steg und die Doppelleiste tragen dieselben dichten Linien im Metall. Kein Symbol: das R auf dem Glas, der Kristall an der Bügelspitze. Das Gesicht allein genügt.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance LIV": {
+        "legende": "Eine Plakette über jedem Glas, wie ein Schild.",
+        "description": "Der Name zuerst. RENAISSANCE in eine Plakette graviert, als Braue über jedes Glas gesetzt. Der Kreis hält oben, unten bleibt es nackt. Ein gemildertes Achteck, ein gerillter Steg.",
+        "morphologie": "Für mittlere Gesichter."
+      },
+      "Renaissance LV": {
+        "legende": "Das Auge des Horus, durchbrochen im Bügel.",
+        "description": "Das Auge, das wacht. Auf jedem Bügel ist das Auge des Horus aus dem Metall geschnitten. Rimless. Der Glasrand ist in Facetten geschliffen, das Licht bricht sich daran.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance LVI": {
+        "legende": "Acht Seiten sauber geschnitten, das Licht, das sich unten am Glas hält.",
+        "description": "Das Achteck, gehalten ohne Rand. Die Gläser fallen in acht Seiten, der untere Rand in Stufen geschliffen, die das Licht fangen. Rimless. Eine erhabene Spitze schließt jede Ecke.",
+        "morphologie": "Für breite Gesichter."
+      },
+      "Renaissance LVII": {
+        "legende": "Die Adresse im Klartext, und dieselbe in Hieroglyphen.",
+        "description": "Dieselbe Straße, zweimal. Avenue de la Renaissance auf dem Bügel, in Lettern; am Scharnier dieselbe Adresse, wiederholt in Hieroglyphen. Ein kleines gefasstes Rechteck, die Winkel geschnitten.",
+        "morphologie": "Für mittlere Gesichter."
+      },
+      "Renaissance LVIII": {
+        "legende": "Ein Skarabäus am Scharnier gesetzt, und er geht nicht wieder fort.",
+        "description": "Das Siegel zuerst. Das Acetat ist dick geschnitten, die oberen Ecken sauber getrennt. Am Scharnier ein Skarabäus, ins Metall gepresst, von oben gesehen, wie ein Stempel. Der Rest schweigt.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance LIX": {
+        "legende": "Die Kobra an jeder Schläfe, und das Glas ohne Rand.",
+        "description": "Die Wache ohne Rand. An jeder Schläfe ergreift die gearbeitete Kobra das Glas und trägt es. Rimless. Doppelsteg, ein Stein im Metall gefasst.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance LX": {
+        "legende": "Eine Kobra an jeder Schläfe, sie beißt ins Glas und hält es.",
+        "description": "Die stille Wache. An jeder Schläfe beißt ein Kobrakopf in den Glasrand, ihr Körper aus Schuppen läuft den Bügel entlang. Ein Stein glänzt auf ihrem Kopf. Sie droht nicht, sie wacht.",
+        "morphologie": "Für mittlere bis breite Gesichter."
+      },
+      "Renaissance LXI": {
+        "legende": "Das Glas facettiert, die Bügel aus Acetat, die das Gold tragen.",
+        "description": "Der Schliff, scharf. Das Glas hält allein, facettiert rundherum, jeder Winkel gibt das Licht zurück. Rimless. Zwei Metallschlaufen fassen es, Bügel aus Acetat tragen das Gold. Kein Symbol: das Gesicht allein.",
+        "morphologie": "Für mittlere Gesichter."
+      }
     },
-    collections: {
-      heritage: {
-        recit:
-          'Was uns vorausgeht, baut uns. Héritage versammelt die Fassungen, die den Dreizack tragen. ' +
-          'Formen, die durch die Moden gehen, ohne sich ihnen je zu beugen.',
-      },
+    "collections": {
+      "heritage": {
+        "recit": "Was uns vorausgeht, baut uns. Héritage versammelt die Fassungen, die den Dreizack tragen. Formen, die durch die Moden gehen, ohne sich ihnen je zu beugen."
+      }
     },
-    symboles: {
-      trident: {
-        nom: 'Der Dreizack',
-        etendard: 'Souveränität',
-        definition:
-          'Das Gleichgewicht zwischen Gestern, Heute und Morgen. Die Verankerung in dem, ' +
-          'was gründet, was baut, was bleibt.',
-        deuxLectures:
-          'Das Gedächtnis liest darin die Generationen: drei Spitzen, ein einziger Schaft. ' +
-          'Die Wahl liest darin die Absage an das Ersetzbare.',
-      },
+    "symboles": {
+      "trident": {
+        "nom": "Der Dreizack",
+        "etendard": "Souveränität",
+        "definition": "Das Gleichgewicht zwischen Gestern, Heute und Morgen. Die Verankerung in dem, was gründet, was baut, was bleibt.",
+        "deuxLectures": "Das Gedächtnis liest darin die Generationen: drei Spitzen, ein einziger Schaft. Die Wahl liest darin die Absage an das Ersetzbare."
+      }
     },
-    proof: {
-      label: 'Die Signatur',
-      texte:
-        'Das R im Glas, für das Gegenüber. Der Kristall an der Bügelspitze, hinter dem Ohr. ' +
-        'Nur dem Träger bekannt. Und auf dem Steg eine Nummer: Es gibt sie kein zweites Mal.',
+    "proof": {
+      "label": "Die Signatur",
+      "texte": "Das R im Glas, für das Gegenüber. Der Kristall an der Bügelspitze, hinter dem Ohr. Nur dem Träger bekannt. Und auf dem Steg eine Nummer: Es gibt sie kein zweites Mal."
     },
-    trust: [
-      'Rückgabe innerhalb von 14 Tagen',
-      '3 Jahre Herstellergarantie',
-      'Entworfen in Paris, gefertigt in Korea',
-      'Sichere Zahlung',
-      'Über 250 Optiker',
-    ],
+    "trust": [
+      "Rückgabe innerhalb von 14 Tagen",
+      "3 Jahre Herstellergarantie",
+      "Entworfen in Paris, gefertigt in Korea",
+      "Sichere Zahlung",
+      "Über 250 Optiker"
+    ]
   },
-  // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-10).
-  es: {
-    models: {
-      'Renaissance XXXIV': {
-        legende: 'Tres garras. La lente solo se sostiene en ellas.',
-        description:
-          'El dominio sobre lo real. El Tridente sale del metal y entra en la lente: ' +
-          'la aprieta, la lleva. Rimless. Nada alrededor, solo las tres puntas y lo que aferran.',
-        morphologie: 'Para rostros medianos.',
+  "es": {
+    "models": {
+      "Renaissance XXXIV": {
+        "legende": "Tres garras. La lente solo se sostiene en ellas.",
+        "description": "El dominio sobre lo real. El Tridente sale del metal y entra en la lente: la aprieta, la lleva. Rimless. Nada alrededor, solo las tres puntas y lo que aferran.",
+        "morphologie": "Para rostros medianos."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
-      'Renaissance II': {
-        legende: 'Un círculo de metal fino. Nada más que declarar.',
-        description:
-          'La redondez estricta. Un hilo de metal cierra el círculo, y unas estrías negras ' +
-          'corren del puente al arranque de las patillas. Un detalle que se quiso sencillo, ' +
-          'desde las primeras horas de la Casa. Sin símbolo: la R en la lente, el cristal ' +
-          'en la punta. El rostro solo basta.',
-        morphologie: 'Conviene a los rostros de finos a medios.',
+      "Renaissance II": {
+        "legende": "Un círculo de metal fino. Nada más que declarar.",
+        "description": "La redondez estricta. Un hilo de metal cierra el círculo, y unas estrías negras corren del puente al arranque de las patillas. Un detalle que se quiso sencillo, desde las primeras horas de la Casa. Sin símbolo: la R en la lente, el cristal en la punta. El rostro solo basta.",
+        "morphologie": "Conviene a los rostros de finos a medios."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
-      'Renaissance III': {
-        legende: 'El aviador, retomado ángulo a ángulo.',
-        description:
-          'Una silueta que todo el mundo conoce. Las curvas se vuelven ángulos, ' +
-          'la lente cae en seco. Doble puente. En las bisagras, el metal está ' +
-          'estriado. No queda nada que suavizar.',
-        morphologie: 'Para rostros de medianos a anchos.',
+      "Renaissance III": {
+        "legende": "El aviador, retomado ángulo a ángulo.",
+        "description": "Una silueta que todo el mundo conoce. Las curvas se vuelven ángulos, la lente cae en seco. Doble puente. En las bisagras, el metal está estriado. No queda nada que suavizar.",
+        "morphologie": "Para rostros de medianos a anchos."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
-      'Renaissance x FRENCH CUT IV': {
-        legende: 'Una sola lente. Dos nombres grabados dentro.',
-        description:
-          'La primera colaboración de la Casa. Una sola lente, los dos nombres ' +
-          'grabados en el degradado, las patillas en dos cables trenzados hasta ' +
-          'el burdeos. En la parte baja de la lente, una lágrima. La que se ' +
-          'tatúa bajo el ojo, por una pérdida o una prueba superada. Aquí va ' +
-          'sobre la lente, no sobre la piel. No cuenta la caída. Dice que uno ' +
-          'siguió en pie. Dice lo que renace.',
-        morphologie: 'Indicada para rostros de medianos a anchos.',
+      "Renaissance x FRENCH CUT IV": {
+        "legende": "Una sola lente. Dos nombres grabados dentro.",
+        "description": "La primera colaboración de la Casa. Una sola lente, los dos nombres grabados en el degradado, las patillas en dos cables trenzados hasta el burdeos. En la parte baja de la lente, una lágrima. La que se tatúa bajo el ojo, por una pérdida o una prueba superada. Aquí va sobre la lente, no sobre la piel. No cuenta la caída. Dice que uno siguió en pie. Dice lo que renace.",
+        "morphologie": "Indicada para rostros de medianos a anchos."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
-      'Renaissance VI': {
-        legende: 'El puente está estriado. Es el que se recuerda.',
-        description:
-          'El aviador, con los ángulos tallados en seco. Doble puente: el de ' +
-          'abajo lleva estrías negras, las mismas que en el arranque de las ' +
-          'patillas. RENAISSANCE y 18KT grabados en la patilla. La R en la ' +
-          'lente hace el resto.',
-        morphologie: 'Conviene a los rostros medianos. Los rostros finos la llevan oversize.',
+      "Renaissance VI": {
+        "legende": "El puente está estriado. Es el que se recuerda.",
+        "description": "El aviador, con los ángulos tallados en seco. Doble puente: el de abajo lleva estrías negras, las mismas que en el arranque de las patillas. RENAISSANCE y 18KT grabados en la patilla. La R en la lente hace el resto.",
+        "morphologie": "Conviene a los rostros medianos. Los rostros finos la llevan oversize."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
-      'Renaissance VIII x OCHO': {
-        legende: 'El 8 a un lado. La R al otro.',
-        description:
-          'El encuentro con SDM. Su 8, el signo de Ocho, sella una patilla; ' +
-          'la R de Renaissance responde en la otra, dibujada con la letra de ' +
-          'Ocho. El acetato Mazzucchelli, grueso, tallado recto, las esquinas ' +
-          'rotas en seco. Trescientos ejemplares, numerados en la patilla, ' +
-          'cien por coloris. El resto calla.',
-        morphologie: 'Para rostros de medios a anchos.',
+      "Renaissance VIII x OCHO": {
+        "legende": "El 8 a un lado. La R al otro.",
+        "description": "El encuentro con SDM. Su 8, el signo de Ocho, sella una patilla; la R de Renaissance responde en la otra, dibujada con la letra de Ocho. El acetato Mazzucchelli, grueso, tallado recto, las esquinas rotas en seco. Trescientos ejemplares, numerados en la patilla, cien por coloris. El resto calla.",
+        "morphologie": "Para rostros de medios a anchos."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
-      'Renaissance IX': {
-        legende: 'Una cuerda de oro, tendida de una lente a otra.',
-        description:
-          'El hilo, vuelto cuerda. El trenzado recorre el frente, de una ' +
-          'lente a otra, sobre un puente estriado de negro. RENAISSANCE ' +
-          'grabado en la barra, bajo la cuerda. Un ribete negro sigue el ' +
-          'contorno de las lentes. Las patillas, dos cables trenzados, ' +
-          'hasta el terminal burdeos.',
-        morphologie: 'Para rostros anchos.',
+      "Renaissance IX": {
+        "legende": "Una cuerda de oro, tendida de una lente a otra.",
+        "description": "El hilo, vuelto cuerda. El trenzado recorre el frente, de una lente a otra, sobre un puente estriado de negro. RENAISSANCE grabado en la barra, bajo la cuerda. Un ribete negro sigue el contorno de las lentes. Las patillas, dos cables trenzados, hasta el terminal burdeos.",
+        "morphologie": "Para rostros anchos."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-es, 2026-06-12).
-      'Renaissance X': {
-        legende: 'El color, sin el marco.',
-        description:
-          'La lente desnuda. Se sostiene por el puente curvado, de oro ' +
-          'rosado, y por dos bloques con estrías negras a los lados. Las ' +
-          'patillas, dos cables de plata trenzados, hasta el terminal ' +
-          'burdeos. La lente hace el resto.',
-        morphologie: 'Para rostros de medianos a anchos.',
+      "Renaissance X": {
+        "legende": "El color, sin el marco.",
+        "description": "La lente desnuda. Se sostiene por el puente curvado, de oro rosado, y por dos bloques con estrías negras a los lados. Las patillas, dos cables de plata trenzados, hasta el terminal burdeos. La lente hace el resto.",
+        "morphologie": "Para rostros de medianos a anchos."
       },
+      "Renaissance XI": {
+        "legende": "Ocho ángulos, ninguna curva.",
+        "description": "El octógono mantenido nítido. El metal traza ocho lados, cada ángulo cortado a filo. En las bisagras, unas estrías aprietan el aro, las mismas corren por la patilla. RENAISSANCE grabado en la línea de arriba.",
+        "morphologie": "Conviene a los rostros de finos a medios."
+      },
+      "Renaissance XII": {
+        "legende": "Una dirección atornillada en la patilla.",
+        "description": "El acetato Mazzucchelli tomado de la masa, cortado recto. Las esquinas de arriba están talladas al bies. En la patilla, una placa de oro lleva una dirección: Avenue de la Renaissance. El número doce va grabado encima. No está en ningún mapa.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XIII": {
+        "legende": "El cuadrado del aviador, dos puentes.",
+        "description": "La barra de arriba lleva el nombre, grabado en el metal. Debajo, un segundo puente, más fino. A los lados, el metal está estriado. Sin símbolo: la R en la lente, el cristal en la punta. El rostro solo basta.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XIV": {
+        "legende": "El aviador de ángulos en seco.",
+        "description": "La parte baja de la lente cortada en seco. Dos puentes finos, las patillas vueltas cuerda. La R en la lente hace el resto.",
+        "morphologie": "Para rostros anchos."
+      },
+      "Renaissance XVI": {
+        "legende": "Un óvalo rimless, tallado en diamond cut.",
+        "description": "La lente no tiene marco. Su borde está tallado en diamond cut, todo el contorno. El puente está estriado. Las patillas: doble barra trenzada. La R en la lente hace el resto.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XVII": {
+        "legende": "Tallada todo alrededor, como una piedra.",
+        "description": "La talla en lugar del marco. Unas facetas en punta corren por todo el contorno de la lente, del puente a la parte baja. Rimless. La luz juega en cada arista.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XVIII": {
+        "legende": "Un cuadrado que se sostiene erguido.",
+        "description": "El cuadrado, las esquinas apenas suavizadas. Un hilo de metal le da la vuelta, dos barras encima de la nariz. Sin símbolo: la R en la lente, el cristal en la punta. El rostro solo basta.",
+        "morphologie": "Para rostros finos."
+      },
+      "Renaissance XIX": {
+        "legende": "El redondo, y las estrías que cierran el puente.",
+        "description": "El círculo, en metal fino. Dos barras estriadas cierran el puente, el mismo trazo vuelve en la sien. Sin símbolo: la R en la lente, el cristal en la punta. El rostro solo basta.",
+        "morphologie": "Para rostros de finos a medios."
+      },
+      "Renaissance XX": {
+        "legende": "Ocho lados tallados en seco en el acetato.",
+        "description": "El octógono, tallado grueso en el acetato. Ocho lados aprietan la lente, ninguno cede. En la patilla, un trazo de oro entra en la materia. Sin símbolo: el rostro solo.",
+        "morphologie": "Para rostros de finos a medios."
+      },
+      "Renaissance XXI": {
+        "legende": "Un rectángulo de acetato, la patilla en escalones.",
+        "description": "El ángulo, sostenido. Un rectángulo de acetato grueso, las esquinas de abajo talladas en seco. En el lado, la patilla baja por escalones, una V de metal se aloja en ella. Sin símbolo: el rostro solo.",
+        "morphologie": "Para rostros medianos."
+      },
+      "Renaissance XXII": {
+        "legende": "La parte alta mantenida recta, la lente desnuda abajo.",
+        "description": "El frente recto. Una barra de metal cierra la parte de arriba; abajo, la materia se detiene y un hilo sostiene la lente desnuda. Sin símbolo: el rostro solo.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XXVII": {
+        "legende": "El navegador cuadrado, sostenido por tres puntas.",
+        "description": "El signo primero. En cada sien, tres puntas salen del metal y sostienen la lente: el Tridente lleva la montura, no la adorna. Luego la línea, un navegador cuadrado, doble puente recto, la parte baja de la lente cortada en seco.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XXIX": {
+        "legende": "La gota del piloto, sostenida por tres puntas.",
+        "description": "El tridente primero. Tres puntas en cada sien salen del metal y sostienen la lente. Debajo, la gota del piloto, la parte de arriba cortada en seco, dos barras rectas en el puente. Tres puntas, una sola mano.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XXX": {
+        "legende": "Una dirección de París, atornillada en la sien.",
+        "description": "La dirección que uno se lleva. Avenue de la Renaissance, grabada en el oro, tomada en la patilla. Alrededor, un rectángulo de acetato grueso, esquinas cortadas en seco. La lente se aloja en la materia y se sostiene en ella.",
+        "morphologie": "Para rostros medianos."
+      },
+      "Renaissance XXXII": {
+        "legende": "Tres dientes muerden la lente, ya no se mueve.",
+        "description": "La presa por la sien. El Tridente clava tres puntas en el borde de la lente y la sostiene. Rimless. El contorno está tallado en facetas, cada ángulo toma la luz.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XXXIII": {
+        "legende": "El borde tallado a filo, el tridente para pellizcarlo.",
+        "description": "La presa sobre la lente. El borde tallado en dientes pequeños, la luz se prende en ellos. Rimless. En la sien, tres puntas salen del metal y aprietan la lente.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XXXV": {
+        "legende": "El tridente muerde la lente, en una cara de acetato.",
+        "description": "El tridente sale del metal y toma la lente. Tres puntas en cada esquina, que muerden y que sostienen. Una cara recta, plena, tallada de un bloque. Las patillas siguen en titanio, grabadas hasta el final.",
+        "morphologie": "Para rostros de finos a medios."
+      },
+      "Renaissance XXXVI": {
+        "legende": "El gran cuadrado rimless, sostenido por el tridente.",
+        "description": "El lugar tomado. Una gran lente cuadrada, sin nada alrededor. Rimless. El tridente sale del metal y pellizca la lente en la sien, tres puntas a cada lado.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XXXVII": {
+        "legende": "La fleur de lys en las dos sienes, una lente entre ellas.",
+        "description": "La maestría sin título. La fleur de lys sostiene la lente en cada sien. Rimless, la parte de arriba tirada recta, la mirada pasa entera.",
+        "morphologie": "Para rostros anchos."
+      },
+      "Renaissance XXXVIII": {
+        "legende": "Dos puentes uno sobre otro, el metal al desnudo.",
+        "description": "El metal al desnudo. Dos puentes superpuestos, las esquinas talladas en seco, las estrías corren hasta la patilla. Sin símbolo: la R en la lente basta.",
+        "morphologie": "Para rostros medianos."
+      },
+      "Renaissance XXXIX": {
+        "legende": "La fleur de lys sostiene la lente, otra vela en el puente.",
+        "description": "La maestría del gesto. La fleur de lys aferra la lente desnuda, tres volutas en cada esquina. Rimless. En el puente, otra vela.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XL": {
+        "legende": "Seis ángulos finos, y ni uno que fuerce la voz.",
+        "description": "Seis lados tirados con hilo de titanio, el círculo cerrado en seco. Cerca de la sien, un anillo abierto engancha la patilla. Sin símbolo: la R en la lente basta.",
+        "morphologie": "Para rostros medianos."
+      },
+      "Renaissance XLI": {
+        "legende": "La fleur de lys hace la bisagra y sostiene la lente.",
+        "description": "La fleur de lys sostiene la lente. Una en cada extremo, esculpida en el metal, articula la patilla y la lleva. Rimless. La parte baja de la lente tallada en facetas, la luz se prende en ella.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XLII": {
+        "legende": "El borde de la lente tallado a filo, todo el contorno.",
+        "description": "Nada cerca la lente. Su borde está tallado a filo todo el contorno, en dientes apretados que toman la luz. Rimless. El puente está estriado. Sin símbolo: el rostro solo.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance XLIII": {
+        "legende": "Un rectángulo de metal fino, las estrías ennegrecidas cerca de la bisagra.",
+        "description": "El rostro basta. Un hilo de metal cierra el rectángulo, las esquinas de abajo cortadas en seco. Cerca de la bisagra, unas líneas ennegrecidas corren por el metal. Puesto, recto, sin nada que declarar.",
+        "morphologie": "Para rostros medianos."
+      },
+      "Renaissance XLIV": {
+        "legende": "La lente suspendida entre las puntas del tridente.",
+        "description": "El anclaje. A cada lado, el tridente sale del metal y entra en la lente, la lleva solo. Rimless. Un puente grabado en aristas, la lente suspendida entre las puntas.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance L": {
+        "legende": "El acetato cortado en seco, la dirección en oro en la patilla.",
+        "description": "La dirección que uno se lleva. Un acetato grueso, las esquinas cortadas en seco. En la patilla, una placa de oro: Avenue de la Renaissance, la calle que ningún mapa lleva.",
+        "morphologie": "Para rostros de finos a medios."
+      },
+      "Renaissance LI": {
+        "legende": "La fleur de lys en las sienes, el borde de la lente tallado en facetas.",
+        "description": "La fleur de lys sostiene la sien, a los dos lados. De ahí parte la lente, sin marco. Rimless. El borde tallado en facetas, la luz se rompe en él.",
+        "morphologie": "Para rostros medianos."
+      },
+      "Renaissance LII": {
+        "legende": "Una barra recta sobre la mirada, todo se alinea debajo.",
+        "description": "La línea piloto, mantenida en cuadrado. Una barra plana corre de un lado a otro, un hilo de metal cierra el puente debajo. Sin símbolo: la R en la lente, el cristal en la punta. El rostro solo basta.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance LIII": {
+        "legende": "El nombre grabado en lo alto de la lente, hay que acercarse para leerlo.",
+        "description": "Un rectángulo de hilo fino. El puente y la doble barra llevan las mismas líneas apretadas en el metal. Sin símbolo: la R en la lente, el cristal en la punta. El rostro solo basta.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance LIV": {
+        "legende": "Una placa sobre cada lente, como un rótulo.",
+        "description": "El nombre primero. RENAISSANCE grabado en una placa, puesta a modo de ceja sobre cada lente. El círculo sostiene la parte de arriba, la de abajo queda desnuda. Un octógono suavizado, un puente estriado.",
+        "morphologie": "Para rostros medianos."
+      },
+      "Renaissance LV": {
+        "legende": "El ojo de Horus, calado en la patilla.",
+        "description": "El ojo que vela. En cada patilla, el ojo de Horus está calado en el metal. Rimless. El borde de la lente está tallado en facetas, la luz se rompe en él.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance LVI": {
+        "legende": "Ocho lados tallados en seco, el día que se prende en la parte baja de la lente.",
+        "description": "El octógono sostenido sin marco. Las lentes caen en ocho lados, el borde de abajo tallado en gradas que prenden el día. Rimless. Una punta en relieve cierra cada esquina.",
+        "morphologie": "Para rostros anchos."
+      },
+      "Renaissance LVII": {
+        "legende": "La dirección en claro, y la misma en jeroglíficos.",
+        "description": "La misma calle, dos veces. Avenue de la Renaissance en la patilla, en letras; en la bisagra, la misma dirección repetida en jeroglíficos. Un pequeño rectángulo cerclado, los ángulos cortados.",
+        "morphologie": "Para rostros medianos."
+      },
+      "Renaissance LVIII": {
+        "legende": "Un escarabajo posado en la bisagra, y no se va.",
+        "description": "El sello primero. El acetato está tallado grueso, las esquinas de arriba cortadas en seco. En la bisagra, un escarabajo prensado en el metal, visto desde arriba, como un cuño. El resto calla.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance LIX": {
+        "legende": "El cobra en cada sien, y la lente sin marco.",
+        "description": "La guardia sin marco. En cada sien, el cobra esculpido toma la lente y la lleva. Rimless. Doble puente, una piedra prendida en el metal.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance LX": {
+        "legende": "Un cobra en cada sien, muerde la lente y la guarda.",
+        "description": "La guardia silenciosa. En cada sien, una cabeza de cobra muerde el borde de la lente, su cuerpo en escamas corre a lo largo de la patilla. Una piedra brilla en su cabeza. No amenaza, vela.",
+        "morphologie": "Para rostros de medianos a anchos."
+      },
+      "Renaissance LXI": {
+        "legende": "La lente facetada, las patillas de acetato que llevan el oro.",
+        "description": "La talla a filo. La lente se sostiene sola, facetada en todo su contorno, cada ángulo devuelve la luz. Rimless. Dos lazos de metal la aprietan, unas patillas de acetato llevan el oro. Sin símbolo: el rostro solo.",
+        "morphologie": "Para rostros medianos."
+      }
     },
-    collections: {
-      heritage: {
-        recit:
-          'Lo que nos precede nos construye. Héritage reúne las monturas que llevan el Tridente. ' +
-          'Formas que atraviesan las modas sin someterse nunca a ellas.',
-      },
+    "collections": {
+      "heritage": {
+        "recit": "Lo que nos precede nos construye. Héritage reúne las monturas que llevan el Tridente. Formas que atraviesan las modas sin someterse nunca a ellas."
+      }
     },
-    symboles: {
-      trident: {
-        nom: 'El Tridente',
-        etendard: 'Soberanía',
-        definition:
-          'El equilibrio entre ayer, hoy y mañana. El anclaje en lo que funda, ' +
-          'lo que construye, lo que perdura.',
-        deuxLectures:
-          'La memoria lee en él las generaciones: tres puntas, una sola asta. ' +
-          'La elección lee en él el rechazo de lo reemplazable.',
-      },
+    "symboles": {
+      "trident": {
+        "nom": "El Tridente",
+        "etendard": "Soberanía",
+        "definition": "El equilibrio entre ayer, hoy y mañana. El anclaje en lo que funda, lo que construye, lo que perdura.",
+        "deuxLectures": "La memoria lee en él las generaciones: tres puntas, una sola asta. La elección lee en él el rechazo de lo reemplazable."
+      }
     },
-    proof: {
-      label: 'La firma',
-      texte:
-        'La R en la lente, para quien está enfrente. El cristal en la punta de la patilla, ' +
-        'detrás de la oreja. Solo lo conoce quien la lleva. Y en el puente, un número: solo existirá una vez.',
+    "proof": {
+      "label": "La firma",
+      "texte": "La R en la lente, para quien está enfrente. El cristal en la punta de la patilla, detrás de la oreja. Solo lo conoce quien la lleva. Y en el puente, un número: solo existirá una vez."
     },
-    trust: [
-      'Devolución en 14 días',
-      'Garantía del fabricante de 3 años',
-      'Diseñada en París, fabricada en Corea',
-      'Pago seguro',
-      'Más de 250 ópticos',
-    ],
+    "trust": [
+      "Devolución en 14 días",
+      "Garantía del fabricante de 3 años",
+      "Diseñada en París, fabricada en Corea",
+      "Pago seguro",
+      "Más de 250 ópticos"
+    ]
   },
-  // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-10).
-  it: {
-    models: {
-      'Renaissance XXXIV': {
-        legende: 'Tre griffe. La lente si regge solo su di loro.',
-        description:
-          'La presa sul reale. Il Tridente esce dal metallo ed entra nella lente: ' +
-          'la stringe, la porta. Rimless. Niente intorno, solo le tre punte e ciò che afferrano.',
-        morphologie: 'Adatta ai visi medi.',
+  "it": {
+    "models": {
+      "Renaissance XXXIV": {
+        "legende": "Tre griffe. La lente si regge solo su di loro.",
+        "description": "La presa sul reale. Il Tridente esce dal metallo ed entra nella lente: la stringe, la porta. Rimless. Niente intorno, solo le tre punte e ciò che afferrano.",
+        "morphologie": "Adatta ai visi medi."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
-      'Renaissance II': {
-        legende: "Un cerchio di metallo sottile. Nient'altro da dichiarare.",
-        description:
-          'La rotondità rigorosa. Un filo di metallo chiude il cerchio, e strie nere ' +
-          "corrono dal ponte all'attacco delle aste. Un dettaglio voluto semplice, fin " +
-          'dalle prime ore della Maison. Nessun simbolo: la R sulla lente, il cristallo ' +
-          'in punta. Il volto, da solo, basta.',
-        morphologie: 'Adatta ai visi da sottili a medi.',
+      "Renaissance II": {
+        "legende": "Un cerchio di metallo sottile. Nient'altro da dichiarare.",
+        "description": "La rotondità rigorosa. Un filo di metallo chiude il cerchio, e strie nere corrono dal ponte all'attacco delle aste. Un dettaglio voluto semplice, fin dalle prime ore della Maison. Nessun simbolo: la R sulla lente, il cristallo in punta. Il volto, da solo, basta.",
+        "morphologie": "Adatta ai visi da sottili a medi."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
-      // « aviator » = lessico occhialeria (la forme), « aviatore » désignerait le pilote.
-      'Renaissance III': {
-        legende: "L'aviator, ripreso angolo per angolo.",
-        description:
-          'Una silhouette che tutti conoscono. Le curve diventano angoli, la lente ' +
-          'scende netta. Doppio ponte. Alle cerniere, il metallo è striato. ' +
-          'Non resta niente da addolcire.',
-        morphologie: 'Adatta ai visi da medi a larghi.',
+      "Renaissance III": {
+        "legende": "L'aviator, ripreso angolo per angolo.",
+        "description": "Una silhouette che tutti conoscono. Le curve diventano angoli, la lente scende netta. Doppio ponte. Alle cerniere, il metallo è striato. Non resta niente da addolcire.",
+        "morphologie": "Adatta ai visi da medi a larghi."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
-      'Renaissance x FRENCH CUT IV': {
-        legende: 'Una sola lente. Due nomi incisi dentro.',
-        description:
-          'La prima collaborazione della Maison. Una sola lente, i due nomi ' +
-          'incisi nella sfumatura, le aste in due cavi ritorti fino al ' +
-          "bordeaux. In basso sulla lente, una lacrima. È quella che si tatua " +
-          "sotto l'occhio, per una perdita o una prova attraversata. Qui è " +
-          'posata sulla lente invece che sulla pelle. Non racconta la caduta. ' +
-          'Dice che si è rimasti in piedi. Dice ciò che rinasce.',
-        morphologie: 'Adatta ai visi da medi a larghi.',
+      "Renaissance x FRENCH CUT IV": {
+        "legende": "Una sola lente. Due nomi incisi dentro.",
+        "description": "La prima collaborazione della Maison. Una sola lente, i due nomi incisi nella sfumatura, le aste in due cavi ritorti fino al bordeaux. In basso sulla lente, una lacrima. È quella che si tatua sotto l'occhio, per una perdita o una prova attraversata. Qui è posata sulla lente invece che sulla pelle. Non racconta la caduta. Dice che si è rimasti in piedi. Dice ciò che rinasce.",
+        "morphologie": "Adatta ai visi da medi a larghi."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
-      'Renaissance VI': {
-        legende: 'Il ponte è striato. Nella memoria resta lui.',
-        description:
-          "L'aviator, gli angoli tagliati netti. Doppio ponte: quello in " +
-          "basso porta strie nere, le stesse dell'attacco delle aste. " +
-          "RENAISSANCE e 18KT incisi sull'asta. La R sulla lente fa il resto.",
-        morphologie: 'Adatta ai visi medi. I visi sottili la portano oversize.',
+      "Renaissance VI": {
+        "legende": "Il ponte è striato. Nella memoria resta lui.",
+        "description": "L'aviator, gli angoli tagliati netti. Doppio ponte: quello in basso porta strie nere, le stesse dell'attacco delle aste. RENAISSANCE e 18KT incisi sull'asta. La R sulla lente fa il resto.",
+        "morphologie": "Adatta ai visi medi. I visi sottili la portano oversize."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
-      'Renaissance VIII x OCHO': {
-        legende: "L'8 da un lato. La R dall'altro.",
-        description:
-          "L'incontro con SDM. Il suo 8, il segno di Ocho, sigilla un'asta; " +
-          "la R di Renaissance risponde sull'altra, disegnata nella grafia " +
-          "di Ocho. L'acetato Mazzucchelli, spesso, tagliato dritto, gli " +
-          'angoli spezzati di netto. Trecento esemplari, numerati ' +
-          "sull'asta, cento per coloris. Il resto tace.",
-        morphologie: 'Adatta ai visi da medi a larghi.',
+      "Renaissance VIII x OCHO": {
+        "legende": "L'8 da un lato. La R dall'altro.",
+        "description": "L'incontro con SDM. Il suo 8, il segno di Ocho, sigilla un'asta; la R di Renaissance risponde sull'altra, disegnata nella grafia di Ocho. L'acetato Mazzucchelli, spesso, tagliato dritto, gli angoli spezzati di netto. Trecento esemplari, numerati sull'asta, cento per coloris. Il resto tace.",
+        "morphologie": "Adatta ai visi da medi a larghi."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
-      'Renaissance IX': {
-        legende: "Una corda d'oro, tesa da una lente all'altra.",
-        description:
-          'Il filo ritorto in corda. Il torciglione corre lungo il ' +
-          "frontale, da una lente all'altra, sopra un ponte striato di " +
-          'nero. RENAISSANCE inciso nella barra, sotto la corda. Un ' +
-          'filetto nero segue il contorno delle lenti. Le aste, due cavi ' +
-          'ritorti, fino al terminale bordeaux.',
-        morphologie: 'Adatta ai visi larghi.',
+      "Renaissance IX": {
+        "legende": "Una corda d'oro, tesa da una lente all'altra.",
+        "description": "Il filo ritorto in corda. Il torciglione corre lungo il frontale, da una lente all'altra, sopra un ponte striato di nero. RENAISSANCE inciso nella barra, sotto la corda. Un filetto nero segue il contorno delle lenti. Le aste, due cavi ritorti, fino al terminale bordeaux.",
+        "morphologie": "Adatta ai visi larghi."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-it, 2026-06-12).
-      'Renaissance X': {
-        legende: 'Il colore, senza la cornice.',
-        description:
-          'La lente nuda. Si regge sul ponte curvo, in oro rosa, e su due ' +
-          "blocchi striati di nero ai lati. Le aste, due cavi d'argento " +
-          'ritorti, fino al terminale bordeaux. La lente fa il resto.',
-        morphologie: 'Adatta ai visi da medi a larghi.',
+      "Renaissance X": {
+        "legende": "Il colore, senza la cornice.",
+        "description": "La lente nuda. Si regge sul ponte curvo, in oro rosa, e su due blocchi striati di nero ai lati. Le aste, due cavi d'argento ritorti, fino al terminale bordeaux. La lente fa il resto.",
+        "morphologie": "Adatta ai visi da medi a larghi."
       },
+      "Renaissance XI": {
+        "legende": "Otto angoli, nessuna curva.",
+        "description": "L'ottagono tenuto netto. Il metallo traccia otto lati, ogni angolo tagliato di netto. Alle cerniere, delle strie stringono la cerchiatura, le stesse corrono lungo l'asta. RENAISSANCE inciso sulla linea in alto.",
+        "morphologie": "Adatta ai visi da sottili a medi."
+      },
+      "Renaissance XII": {
+        "legende": "Un indirizzo avvitato sull'asta.",
+        "description": "L'acetato Mazzucchelli preso nel pieno, tagliato dritto. Gli angoli in alto sono tagliati in obliquo. Sull'asta, una placca d'oro porta un indirizzo: Avenue de la Renaissance. Il numero dodici vi è inciso sopra. Non è su nessuna mappa.",
+        "morphologie": "Adatta ai visi da medi a larghi."
+      },
+      "Renaissance XIII": {
+        "legende": "Il quadrato dell'aviator, due ponti.",
+        "description": "La barra in alto porta il nome, inciso nel metallo. Sotto, un secondo ponte, più sottile. Ai lati, il metallo è striato. Nessun simbolo: la R sulla lente, il cristallo in punta. Il volto, da solo, basta.",
+        "morphologie": "Adatta ai visi da medi a larghi."
+      },
+      "Renaissance XIV": {
+        "legende": "L'aviator dagli angoli netti.",
+        "description": "Il fondo della lente tagliato netto. Due ponti sottili, le aste ritorte in corda. La R sulla lente fa il resto.",
+        "morphologie": "Adatta ai visi larghi."
+      },
+      "Renaissance XVI": {
+        "legende": "Un ovale rimless, tagliato in diamond cut.",
+        "description": "La lente non ha cornice. Il suo bordo è tagliato in diamond cut, tutt'intorno. Il ponte è striato. Le aste: doppia barra ritorta. La R sulla lente fa il resto.",
+        "morphologie": "Adatta ai visi da medi a larghi."
+      },
+      "Renaissance XVII": {
+        "legende": "Tagliata tutt'intorno, come una pietra.",
+        "description": "Il taglio al posto della cornice. Delle faccette a punta corrono tutt'intorno alla lente, dal ponte al fondo. Rimless. La luce gioca su ogni spigolo.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance XVIII": {
+        "legende": "Un quadrato che sta dritto.",
+        "description": "Il quadrato, gli angoli appena addolciti. Un filo di metallo ne fa il giro, due barre sopra il naso. Nessun simbolo: la R sulla lente, il cristallo in punta. Il volto, da solo, basta.",
+        "morphologie": "Per i visi sottili."
+      },
+      "Renaissance XIX": {
+        "legende": "Il tondo, e le strie che chiudono il ponte.",
+        "description": "Il cerchio, in metallo sottile. Due barre striate chiudono il ponte, lo stesso tratto torna alla tempia. Nessun simbolo: la R sulla lente, il cristallo in punta. Il volto, da solo, basta.",
+        "morphologie": "Per i visi da sottili a medi."
+      },
+      "Renaissance XX": {
+        "legende": "Otto lati tagliati netti nell'acetato.",
+        "description": "L'ottagono, tagliato spesso nell'acetato. Otto lati stringono la lente, nessuno cede. Sull'asta, un tratto d'oro entra nella materia. Nessun simbolo: il volto, da solo.",
+        "morphologie": "Per i visi da sottili a medi."
+      },
+      "Renaissance XXI": {
+        "legende": "Un rettangolo d'acetato, l'asta a gradini.",
+        "description": "L'angolo, tenuto. Un rettangolo d'acetato spesso, gli angoli in basso tagliati netti. Sul lato, l'asta scende a gradini, una V di metallo vi si annida. Nessun simbolo: il volto, da solo.",
+        "morphologie": "Per i visi medi."
+      },
+      "Renaissance XXII": {
+        "legende": "L'alto tenuto dritto, la lente nuda in basso.",
+        "description": "La fronte dritta. Una barra di metallo chiude l'alto; in basso, la materia si ferma e un filo regge la lente nuda. Nessun simbolo: il volto, da solo.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance XXVII": {
+        "legende": "Il navigatore quadrato, tenuto da tre punte.",
+        "description": "Il segno, prima. A ogni tempia, tre punte escono dal metallo e tengono la lente: il Tridente porta la montatura, non la decora. Poi la linea, un navigatore quadrato, doppio ponte dritto, il fondo della lente tagliato netto.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance XXIX": {
+        "legende": "La goccia del pilota, tenuta da tre punte.",
+        "description": "Il tridente, prima. Tre punte a ogni tempia escono dal metallo e tengono la lente. Sotto, la goccia del pilota, l'alto tagliato netto, due barre dritte al ponte. Tre punte, una sola mano.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance XXX": {
+        "legende": "Un indirizzo di Parigi, avvitato sulla tempia.",
+        "description": "L'indirizzo che si porta con sé. Avenue de la Renaissance, incisa nell'oro, presa nell'asta. Intorno, un rettangolo d'acetato spesso, angoli tagliati netti. La lente si annida nella materia e vi si tiene.",
+        "morphologie": "Per i visi medi."
+      },
+      "Renaissance XXXII": {
+        "legende": "Tre denti mordono la lente, non si muove più.",
+        "description": "La presa dalla tempia. Il Tridente pianta tre punte nel bordo della lente e la tiene. Rimless. Il contorno è tagliato a faccette, ogni angolo prende la luce.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance XXXIII": {
+        "legende": "Il bordo tagliato a vivo, il tridente per stringerlo.",
+        "description": "La presa sulla lente. Il bordo tagliato a piccoli denti, la luce vi si aggrappa. Rimless. Alla tempia, tre punte escono dal metallo e stringono la lente.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance XXXV": {
+        "legende": "Il tridente morde la lente, in un frontale d'acetato.",
+        "description": "Il tridente esce dal metallo e prende la lente. Tre punte a ogni angolo, che mordono e che portano. Un frontale dritto, pieno, tagliato d'un blocco. Le aste filano in titanio, incise fino in punta.",
+        "morphologie": "Per i visi da sottili a medi."
+      },
+      "Renaissance XXXVI": {
+        "legende": "Il grande quadrato rimless, tenuto dal tridente.",
+        "description": "Il posto preso. Una grande lente quadrata, senza niente intorno. Rimless. Il tridente esce dal metallo e stringe la lente alla tempia, tre punte da ogni lato.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance XXXVII": {
+        "legende": "Il giglio alle due tempie, una lente in mezzo.",
+        "description": "La maestria senza titolo. Il giglio tiene la lente a ogni tempia. Rimless, l'alto tirato dritto, lo sguardo passa intero.",
+        "morphologie": "Per i visi larghi."
+      },
+      "Renaissance XXXVIII": {
+        "legende": "Due ponti l'uno sull'altro, il metallo nudo.",
+        "description": "Il metallo nudo. Due ponti sovrapposti, gli angoli tagliati netti, le strie corrono fino all'asta. Nessun simbolo: la R sulla lente basta.",
+        "morphologie": "Per i visi medi."
+      },
+      "Renaissance XXXIX": {
+        "legende": "Il giglio tiene la lente, un altro veglia al ponte.",
+        "description": "La maestria del gesto. Il giglio afferra la lente nuda, tre volute a ogni angolo. Rimless. Al ponte, un altro veglia.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance XL": {
+        "legende": "Sei angoli sottili, e nessuno che alzi la voce.",
+        "description": "Sei lati tirati con il filo di titanio, il cerchio chiuso netto. Vicino alla tempia, un anello aperto aggancia l'asta. Nessun simbolo: la R sulla lente basta.",
+        "morphologie": "Per i visi medi."
+      },
+      "Renaissance XLI": {
+        "legende": "Il giglio fa la cerniera e tiene la lente.",
+        "description": "Il giglio tiene la lente. Uno a ogni estremità, scolpito nel metallo, articola l'asta e la porta. Rimless. Il fondo della lente tagliato a faccette, la luce vi si prende.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance XLII": {
+        "legende": "Il bordo della lente tagliato a vivo, tutt'intorno.",
+        "description": "Niente cerchia la lente. Il suo bordo è tagliato a vivo tutt'intorno, a denti fitti che prendono la luce. Rimless. Il ponte è striato. Nessun simbolo: il volto, da solo.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance XLIII": {
+        "legende": "Un rettangolo di metallo sottile, le strie annerite vicino alla cerniera.",
+        "description": "Il volto basta. Un filo di metallo chiude il rettangolo, gli angoli in basso tagliati netti. Vicino alla cerniera, delle linee annerite corrono nel metallo. Posato, dritto, senza niente da dichiarare.",
+        "morphologie": "Per i visi medi."
+      },
+      "Renaissance XLIV": {
+        "legende": "La lente sospesa tra le punte del tridente.",
+        "description": "L'ancoraggio. Da ogni lato, il tridente esce dal metallo ed entra nella lente, la porta da solo. Rimless. Un ponte inciso di spigoli, la lente sospesa tra le punte.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance L": {
+        "legende": "L'acetato tagliato netto, l'indirizzo in oro sull'asta.",
+        "description": "L'indirizzo che si porta con sé. Un acetato spesso, gli angoli tagliati netti. Sull'asta, una placca d'oro: Avenue de la Renaissance, la via che nessuna mappa porta.",
+        "morphologie": "Per i visi da sottili a medi."
+      },
+      "Renaissance LI": {
+        "legende": "Il giglio alle tempie, il bordo della lente tagliato a faccette.",
+        "description": "Il giglio tiene la tempia, da entrambi i lati. Da lì parte la lente, senza cornice. Rimless. Il bordo tagliato a faccette, la luce vi si spezza.",
+        "morphologie": "Per i visi medi."
+      },
+      "Renaissance LII": {
+        "legende": "Una barra dritta sopra lo sguardo, sotto si allinea tutto.",
+        "description": "La linea pilota, tenuta al quadrato. Una barra piatta corre da un lato all'altro, un filo di metallo chiude il ponte sotto. Nessun simbolo: la R sulla lente, il cristallo in punta. Il volto, da solo, basta.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance LIII": {
+        "legende": "Il nome inciso in alto sulla lente, bisogna avvicinarsi per leggerlo.",
+        "description": "Un rettangolo dal filo sottile. Il ponte e la doppia barra portano le stesse linee fitte nel metallo. Nessun simbolo: la R sulla lente, il cristallo in punta. Il volto, da solo, basta.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance LIV": {
+        "legende": "Una placca sopra ogni lente, come un'insegna.",
+        "description": "Il nome, prima. RENAISSANCE inciso in una placca, posata a sopracciglio su ogni lente. Il cerchio tiene l'alto, il basso resta nudo. Un ottagono addolcito, un ponte striato.",
+        "morphologie": "Per i visi medi."
+      },
+      "Renaissance LV": {
+        "legende": "L'occhio di Horus, traforato nell'asta.",
+        "description": "L'occhio che veglia. Su ogni asta, l'occhio di Horus è traforato nel metallo. Rimless. Il bordo della lente è tagliato a faccette, la luce vi si spezza.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance LVI": {
+        "legende": "Otto lati tagliati netti, la luce che si aggrappa al fondo della lente.",
+        "description": "L'ottagono tenuto senza cornice. Le lenti scendono in otto lati, il bordo in basso tagliato a gradini che catturano la luce. Rimless. Una punta in rilievo chiude ogni angolo.",
+        "morphologie": "Per i visi larghi."
+      },
+      "Renaissance LVII": {
+        "legende": "L'indirizzo in chiaro, e lo stesso in geroglifici.",
+        "description": "La stessa via, due volte. Avenue de la Renaissance sull'asta, in lettere; alla cerniera, lo stesso indirizzo ridetto in geroglifici. Un piccolo rettangolo cerchiato, gli angoli tagliati.",
+        "morphologie": "Per i visi medi."
+      },
+      "Renaissance LVIII": {
+        "legende": "Uno scarabeo posato alla cerniera, e non riparte.",
+        "description": "Il sigillo, prima. L'acetato è tagliato spesso, gli angoli in alto tagliati netti. Alla cerniera, uno scarabeo premuto nel metallo, visto dall'alto, come un timbro. Il resto tace.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance LIX": {
+        "legende": "Il cobra a ogni tempia, e la lente senza cornice.",
+        "description": "La guardia senza cornice. A ogni tempia, il cobra scolpito afferra la lente e la porta. Rimless. Doppio ponte, una pietra presa nel metallo.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance LX": {
+        "legende": "Un cobra a ogni tempia, morde la lente e la custodisce.",
+        "description": "La guardia silenziosa. A ogni tempia, una testa di cobra morde il bordo della lente, il suo corpo a squame corre lungo l'asta. Una pietra brilla sulla sua testa. Non minaccia, veglia.",
+        "morphologie": "Per i visi da medi a larghi."
+      },
+      "Renaissance LXI": {
+        "legende": "La lente sfaccettata, le aste d'acetato che portano l'oro.",
+        "description": "Il taglio a vivo. La lente si tiene da sola, sfaccettata su tutto il suo contorno, ogni angolo restituisce la luce. Rimless. Due anelli di metallo la stringono, delle aste d'acetato portano l'oro. Nessun simbolo: il volto, da solo.",
+        "morphologie": "Per i visi medi."
+      }
     },
-    collections: {
-      heritage: {
-        recit:
-          'Ciò che ci precede ci costruisce. Héritage riunisce le montature che portano il Tridente. ' +
-          'Forme che attraversano le mode senza mai piegarsi.',
-      },
+    "collections": {
+      "heritage": {
+        "recit": "Ciò che ci precede ci costruisce. Héritage riunisce le montature che portano il Tridente. Forme che attraversano le mode senza mai piegarsi."
+      }
     },
-    symboles: {
-      trident: {
-        nom: 'Il Tridente',
-        etendard: 'Sovranità',
-        definition:
-          "L'equilibrio tra ieri, oggi e domani. Il radicamento in ciò che fonda, " +
-          'ciò che costruisce, ciò che dura.',
-        deuxLectures:
-          'La memoria vi legge le generazioni: tre punte, un solo manico. ' +
-          'La scelta vi legge il rifiuto del sostituibile.',
-      },
+    "symboles": {
+      "trident": {
+        "nom": "Il Tridente",
+        "etendard": "Sovranità",
+        "definition": "L'equilibrio tra ieri, oggi e domani. Il radicamento in ciò che fonda, ciò che costruisce, ciò che dura.",
+        "deuxLectures": "La memoria vi legge le generazioni: tre punte, un solo manico. La scelta vi legge il rifiuto del sostituibile."
+      }
     },
-    proof: {
-      label: 'La firma',
-      texte:
-        "La R sulla lente, per chi sta di fronte. Il cristallo in punta d'asta, dietro l'orecchio. " +
-        'Noto solo a chi porta. E sul ponte, un numero: esisterà una volta sola.',
+    "proof": {
+      "label": "La firma",
+      "texte": "La R sulla lente, per chi sta di fronte. Il cristallo in punta d'asta, dietro l'orecchio. Noto solo a chi porta. E sul ponte, un numero: esisterà una volta sola."
     },
-    trust: [
-      'Reso entro 14 giorni',
-      'Garanzia del produttore: 3 anni',
-      'Disegnata a Parigi, fabbricata in Corea',
-      'Pagamento sicuro',
-      'Oltre 250 ottici',
-    ],
+    "trust": [
+      "Reso entro 14 giorni",
+      "Garanzia del produttore: 3 anni",
+      "Disegnata a Parigi, fabbricata in Corea",
+      "Pagamento sicuro",
+      "Oltre 250 ottici"
+    ]
   },
-  // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-10).
-  ru: {
-    models: {
-      'Renaissance XXXIV': {
-        legende: 'Три когтя. Линза держится только на них.',
-        description:
-          'Хватка за реальность. Трезубец выходит из металла и входит в линзу: ' +
-          'сжимает её, несёт её. Безободковая оправа. Вокруг ничего, только три зубца и то, во что они вцепились.',
-        morphologie: 'Подходит для лиц среднего размера.',
+  "ru": {
+    "models": {
+      "Renaissance XXXIV": {
+        "legende": "Три когтя. Линза держится только на них.",
+        "description": "Хватка за реальность. Трезубец выходит из металла и входит в линзу: сжимает её, несёт её. Безободковая оправа. Вокруг ничего, только три зубца и то, во что они вцепились.",
+        "morphologie": "Подходит для лиц среднего размера."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
-      'Renaissance II': {
-        legende: 'Тонкий круг металла. Больше заявлять нечего.',
-        description:
-          'Строгая округлость. Нить металла замыкает круг, и чёрные бороздки бегут ' +
-          'от переносицы к началу заушников. Деталь, задуманная простой, с первых ' +
-          'часов Дома. Без символа: R на линзе, кристалл на конце. Одного лица достаточно.',
-        morphologie: 'Подходит узким и средним лицам.',
+      "Renaissance II": {
+        "legende": "Тонкий круг металла. Больше заявлять нечего.",
+        "description": "Строгая округлость. Нить металла замыкает круг, и чёрные бороздки бегут от переносицы к началу заушников. Деталь, задуманная простой, с первых часов Дома. Без символа: R на линзе, кристалл на конце. Одного лица достаточно.",
+        "morphologie": "Подходит узким и средним лицам."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
-      'Renaissance III': {
-        legende: 'Авиатор, перечерченный угол за углом.',
-        description:
-          'Силуэт, который знают все. Изгибы становятся углами, линза срезана чётко. ' +
-          'Двойной мост. На шарнирах металл рифлёный. Смягчать больше нечего.',
-        morphologie: 'Подходит для средних и широких лиц.',
+      "Renaissance III": {
+        "legende": "Авиатор, перечерченный угол за углом.",
+        "description": "Силуэт, который знают все. Изгибы становятся углами, линза срезана чётко. Двойной мост. На шарнирах металл рифлёный. Смягчать больше нечего.",
+        "morphologie": "Подходит для средних и широких лиц."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
-      'Renaissance x FRENCH CUT IV': {
-        legende: 'Одна линза. Внутри выгравированы два имени.',
-        description:
-          'Первая совместная работа Дома. Одна линза, оба имени выгравированы ' +
-          'прямо в градиенте, заушники сплетены в два витых троса и уходят в ' +
-          'бордовый на наконечниках. У нижнего края линзы застыла слеза. Та ' +
-          'самая, что татуируют под глазом: знак потери или пройденного ' +
-          'испытания. Здесь она легла на линзу, а не на кожу. Она не ' +
-          'рассказывает о падении. Она говорит, что ты устоял. Она говорит о ' +
-          'том, что рождается заново.',
-        morphologie: 'Подходит для лиц от среднего до широкого.',
+      "Renaissance x FRENCH CUT IV": {
+        "legende": "Одна линза. Внутри выгравированы два имени.",
+        "description": "Первая совместная работа Дома. Одна линза, оба имени выгравированы прямо в градиенте, заушники сплетены в два витых троса и уходят в бордовый на наконечниках. У нижнего края линзы застыла слеза. Та самая, что татуируют под глазом: знак потери или пройденного испытания. Здесь она легла на линзу, а не на кожу. Она не рассказывает о падении. Она говорит, что ты устоял. Она говорит о том, что рождается заново.",
+        "morphologie": "Подходит для лиц от среднего до широкого."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
-      'Renaissance VI': {
-        legende: 'Мост рифлёный. Его и запоминают.',
-        description:
-          'Авиатор, углы срезаны чётко. Двойной мост: на нижнем чёрные ' +
-          'бороздки, те же, что и у начала заушников. RENAISSANCE и 18KT ' +
-          'выгравированы на заушнике. R на линзе делает остальное.',
-        morphologie: 'Подходит для лиц среднего размера. На узких лицах она сидит оверсайз.',
+      "Renaissance VI": {
+        "legende": "Мост рифлёный. Его и запоминают.",
+        "description": "Авиатор, углы срезаны чётко. Двойной мост: на нижнем чёрные бороздки, те же, что и у начала заушников. RENAISSANCE и 18KT выгравированы на заушнике. R на линзе делает остальное.",
+        "morphologie": "Подходит для лиц среднего размера. На узких лицах она сидит оверсайз."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
-      'Renaissance VIII x OCHO': {
-        legende: '8 с одной стороны. R с другой.',
-        description:
-          'Встреча с SDM. Его 8, знак Ocho, запечатывает один заушник. ' +
-          'R Renaissance отвечает на другом, выведенный почерком Ocho. ' +
-          'Толстый ацетат Mazzucchelli, прямой срез, углы сколоты начисто. ' +
-          'Триста экземпляров, номер на заушнике, по сто в каждом цвете. ' +
-          'Остальное молчит.',
-        morphologie: 'Подходит для лиц от средних до широких.',
+      "Renaissance VIII x OCHO": {
+        "legende": "8 с одной стороны. R с другой.",
+        "description": "Встреча с SDM. Его 8, знак Ocho, запечатывает один заушник. R Renaissance отвечает на другом, выведенный почерком Ocho. Толстый ацетат Mazzucchelli, прямой срез, углы сколоты начисто. Триста экземпляров, номер на заушнике, по сто в каждом цвете. Остальное молчит.",
+        "morphologie": "Подходит для лиц от средних до широких."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
-      'Renaissance IX': {
-        legende: 'Золотой шнур, натянутый от линзы к линзе.',
-        description:
-          'Нить, свитая в шнур. Витки бегут по верху оправы, от линзы к ' +
-          'линзе, над мостом с чёрными бороздками. RENAISSANCE ' +
-          'выгравировано на планке, под шнуром. Чёрный кант повторяет ' +
-          'контур линз. Заушники, два витых троса, до бордового ' +
-          'наконечника.',
-        morphologie: 'Подходит для широких лиц.',
+      "Renaissance IX": {
+        "legende": "Золотой шнур, натянутый от линзы к линзе.",
+        "description": "Нить, свитая в шнур. Витки бегут по верху оправы, от линзы к линзе, над мостом с чёрными бороздками. RENAISSANCE выгравировано на планке, под шнуром. Чёрный кант повторяет контур линз. Заушники, два витых троса, до бордового наконечника.",
+        "morphologie": "Подходит для широких лиц."
       },
-      // Transcréé depuis le FR validé (skill renaissance-copywriter-ru, 2026-06-12).
-      'Renaissance X': {
-        legende: 'Цвет, без рамы.',
-        description:
-          'Голая линза. Её держат изогнутый мост из розового золота и два ' +
-          'блока с чёрными бороздками по бокам. Заушники, два витых ' +
-          'серебряных троса, до бордового наконечника. Остальное делает ' +
-          'линза.',
-        morphologie: 'Подходит для средних и широких лиц.',
+      "Renaissance X": {
+        "legende": "Цвет, без рамы.",
+        "description": "Голая линза. Её держат изогнутый мост из розового золота и два блока с чёрными бороздками по бокам. Заушники, два витых серебряных троса, до бордового наконечника. Остальное делает линза.",
+        "morphologie": "Подходит для средних и широких лиц."
       },
+      "Renaissance XI": {
+        "legende": "Восемь углов, ни одного изгиба.",
+        "description": "Восьмиугольник, удержанный чётко. Металл прочерчивает восемь сторон, каждый угол срезан начисто. На шарнирах бороздки сжимают ободок, те же бегут по заушнику. RENAISSANCE выгравировано по верхней линии.",
+        "morphologie": "Подходит узким и средним лицам."
+      },
+      "Renaissance XII": {
+        "legende": "Адрес, привинченный к заушнику.",
+        "description": "Ацетат Mazzucchelli, взятый из массива, срезан прямо. Верхние углы скошены. На заушнике золотая пластина несёт адрес: Avenue de la Renaissance. На ней выгравирован номер двенадцать. Этой улицы нет ни на одной карте.",
+        "morphologie": "Подходит для средних и широких лиц."
+      },
+      "Renaissance XIII": {
+        "legende": "Квадрат авиатора, два моста.",
+        "description": "Верхняя планка несёт имя, выгравированное в металле. Под ней второй мост, тоньше. По бокам металл рифлёный. Без символа: R на линзе, кристалл на конце. Одного лица достаточно.",
+        "morphologie": "Подходит для средних и широких лиц."
+      },
+      "Renaissance XIV": {
+        "legende": "Авиатор с чёткими углами.",
+        "description": "Низ линзы срезан начисто. Два тонких моста, заушники свиты в шнур. R на линзе делает остальное.",
+        "morphologie": "Подходит для широких лиц."
+      },
+      "Renaissance XVI": {
+        "legende": "Овал без ободка, в огранке diamond cut.",
+        "description": "У линзы нет оправы. Её край огранён в diamond cut, по всему контуру. Мост рифлёный. Заушники: двойная витая планка. R на линзе делает остальное.",
+        "morphologie": "Подходит для средних и широких лиц."
+      },
+      "Renaissance XVII": {
+        "legende": "Огранена по всему контуру, как камень.",
+        "description": "Огранка вместо оправы. Острые грани бегут по всему контуру линзы, от моста к низу. Безободковая оправа. Свет играет на каждом ребре.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance XVIII": {
+        "legende": "Квадрат, который держится прямо.",
+        "description": "Квадрат, углы лишь слегка смягчены. Нить металла обводит его кругом, две планки над переносицей. Без символа: R на линзе, кристалл на конце. Одного лица достаточно.",
+        "morphologie": "Для узких лиц."
+      },
+      "Renaissance XIX": {
+        "legende": "Круг и бороздки, что замыкают мост.",
+        "description": "Круг, из тонкого металла. Две рифлёные планки замыкают мост, тот же штрих возвращается у виска. Без символа: R на линзе, кристалл на конце. Одного лица достаточно.",
+        "morphologie": "Для узких и средних лиц."
+      },
+      "Renaissance XX": {
+        "legende": "Восемь сторон, срезанных начисто в ацетате.",
+        "description": "Восьмиугольник, вырезанный толсто из ацетата. Восемь сторон сжимают линзу, ни одна не гнётся. На заушнике золотой штрих входит в материал. Без символа: одно лицо.",
+        "morphologie": "Для узких и средних лиц."
+      },
+      "Renaissance XXI": {
+        "legende": "Прямоугольник из ацетата, заушник ступенями.",
+        "description": "Угол, удержанный. Прямоугольник из толстого ацетата, нижние углы срезаны начисто. Сбоку заушник спускается ступенями, в него вписан металлический V. Без символа: одно лицо.",
+        "morphologie": "Для средних лиц."
+      },
+      "Renaissance XXII": {
+        "legende": "Верх держится прямо, внизу линза голая.",
+        "description": "Прямой лоб. Металлическая планка замыкает верх; внизу материал обрывается, и нить держит голую линзу. Без символа: одно лицо.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance XXVII": {
+        "legende": "Квадратный навигатор, удержанный тремя зубцами.",
+        "description": "Сначала знак. У каждого виска три зубца выходят из металла и держат линзу: Трезубец несёт оправу, а не украшает её. Затем линия, квадратный навигатор, прямой двойной мост, низ линзы срезан начисто.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance XXIX": {
+        "legende": "Капля пилота, удержанная тремя зубцами.",
+        "description": "Сначала трезубец. По три зубца у каждого виска выходят из металла и держат линзу. Под ними капля пилота, верх срезан начисто, две прямые планки на мосту. Три зубца, одна рука.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance XXX": {
+        "legende": "Адрес Парижа, привинченный к виску.",
+        "description": "Адрес, который носят с собой. Avenue de la Renaissance, выгравированная в золоте, взята в заушник. Вокруг толстый прямоугольник из ацетата, углы срезаны начисто. Линза входит в материал и держится в нём.",
+        "morphologie": "Для средних лиц."
+      },
+      "Renaissance XXXII": {
+        "legende": "Три зуба впиваются в линзу, и она замирает.",
+        "description": "Хватка от виска. Трезубец вонзает три зубца в край линзы и держит её. Безободковая оправа. Контур огранён в грани, каждый угол ловит свет.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance XXXIII": {
+        "legende": "Край огранён начисто, трезубец, чтобы зажать его.",
+        "description": "Хватка за линзу. Край огранён мелкими зубьями, свет на нём цепляется. Безободковая оправа. У виска три зубца выходят из металла и сжимают линзу.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance XXXV": {
+        "legende": "Трезубец впивается в линзу, в ацетатной оправе.",
+        "description": "Трезубец выходит из металла и берёт линзу. Три зубца у каждого угла, они впиваются и держат. Прямая оправа, цельная, вырезанная из массива. Заушники уходят титаном, выгравированы до самого конца.",
+        "morphologie": "Для узких и средних лиц."
+      },
+      "Renaissance XXXVI": {
+        "legende": "Большой квадрат без ободка, удержанный трезубцем.",
+        "description": "Захваченное место. Большая квадратная линза, вокруг ничего. Безободковая оправа. Трезубец выходит из металла и зажимает линзу у виска, по три зубца с каждой стороны.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance XXXVII": {
+        "legende": "Лилия у обоих висков, линза между ними.",
+        "description": "Мастерство без титула. Лилия держит линзу у каждого виска. Безободковая оправа, верх вытянут прямо, взгляд проходит целиком.",
+        "morphologie": "Для широких лиц."
+      },
+      "Renaissance XXXVIII": {
+        "legende": "Два моста один над другим, металл обнажён.",
+        "description": "Обнажённый металл. Два моста наложены друг на друга, углы срезаны начисто, бороздки бегут до заушника. Без символа: R на линзе достаточно.",
+        "morphologie": "Для средних лиц."
+      },
+      "Renaissance XXXIX": {
+        "legende": "Лилия держит линзу, другая бережёт мост.",
+        "description": "Мастерство жеста. Лилия вцепляется в голую линзу, три завитка у каждого угла. Безободковая оправа. На мосту бережёт другая.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance XL": {
+        "legende": "Шесть тонких углов, и ни один не повышает голос.",
+        "description": "Шесть сторон, вытянутых нитью титана, круг замкнут чётко. У виска открытое кольцо подхватывает заушник. Без символа: R на линзе достаточно.",
+        "morphologie": "Для средних лиц."
+      },
+      "Renaissance XLI": {
+        "legende": "Лилия служит шарниром и держит линзу.",
+        "description": "Лилия держит линзу. По одной на каждом конце, изваянная в металле, она образует шарнир и несёт её. Безободковая оправа. Низ линзы огранён в грани, свет в нём ловится.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance XLII": {
+        "legende": "Край линзы огранён начисто, по всему контуру.",
+        "description": "Линзу ничто не обводит. Её край огранён начисто по всему контуру, мелкими зубьями, что ловят свет. Безободковая оправа. Мост рифлёный. Без символа: одно лицо.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance XLIII": {
+        "legende": "Прямоугольник из тонкого металла, бороздки зачернены у шарнира.",
+        "description": "Лица достаточно. Нить металла замыкает прямоугольник, нижние углы срезаны начисто. У шарнира зачернённые линии бегут в металле. Спокойный, прямой, заявлять нечего.",
+        "morphologie": "Для средних лиц."
+      },
+      "Renaissance XLIV": {
+        "legende": "Линза подвешена между зубцами трезубца.",
+        "description": "Якорь. С каждой стороны трезубец выходит из металла и входит в линзу, он несёт её один. Безободковая оправа. Мост выгравирован рёбрами, линза подвешена между зубцами.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance L": {
+        "legende": "Ацетат срезан начисто, золотой адрес на заушнике.",
+        "description": "Адрес, который носят с собой. Толстый ацетат, углы срезаны начисто. На заушнике золотая пластина: Avenue de la Renaissance, улица, которой нет ни на одной карте.",
+        "morphologie": "Для узких и средних лиц."
+      },
+      "Renaissance LI": {
+        "legende": "Лилия у висков, край линзы огранён в грани.",
+        "description": "Лилия держит висок, с обеих сторон. От неё расходится линза, без оправы. Безободковая оправа. Край огранён в грани, свет в нём дробится.",
+        "morphologie": "Для средних лиц."
+      },
+      "Renaissance LII": {
+        "legende": "Прямая планка над взглядом, всё под ней выравнивается.",
+        "description": "Линия пилота, удержанная квадратом. Плоская планка бежит от края до края, нить металла замыкает мост под ней. Без символа: R на линзе, кристалл на конце. Одного лица достаточно.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance LIII": {
+        "legende": "Имя выгравировано вверху линзы, надо подойти, чтобы прочесть.",
+        "description": "Прямоугольник из тонкой нити. Мост и двойная планка несут те же тесные линии в металле. Без символа: R на линзе, кристалл на конце. Одного лица достаточно.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance LIV": {
+        "legende": "Пластина над каждой линзой, как вывеска.",
+        "description": "Сначала имя. RENAISSANCE выгравировано на пластине, посаженной бровью над каждой линзой. Ободок держит верх, низ остаётся голым. Смягчённый восьмиугольник, рифлёный мост.",
+        "morphologie": "Для средних лиц."
+      },
+      "Renaissance LV": {
+        "legende": "Око Гора, прорезанное в заушнике.",
+        "description": "Око, что бережёт. На каждом заушнике око Гора прорезано в металле. Безободковая оправа. Край линзы огранён в грани, свет в нём дробится.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance LVI": {
+        "legende": "Восемь сторон, срезанных начисто, свет цепляется за низ линзы.",
+        "description": "Восьмиугольник, удержанный без оправы. Линзы спадают восемью сторонами, нижний край огранён ступенями, что ловят свет. Безободковая оправа. Рельефный зубец замыкает каждый угол.",
+        "morphologie": "Для широких лиц."
+      },
+      "Renaissance LVII": {
+        "legende": "Адрес открыто, и тот же иероглифами.",
+        "description": "Та же улица, дважды. Avenue de la Renaissance на заушнике, буквами; у шарнира тот же адрес повторён иероглифами. Маленький прямоугольник в ободке, углы срезаны.",
+        "morphologie": "Для средних лиц."
+      },
+      "Renaissance LVIII": {
+        "legende": "Скарабей лёг у шарнира, и он не уходит.",
+        "description": "Сначала печать. Ацетат вырезан толсто, верхние углы срезаны начисто. У шарнира скарабей вдавлен в металл, виден сверху, как оттиск. Остальное молчит.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance LIX": {
+        "legende": "Кобра у каждого виска, и линза без оправы.",
+        "description": "Стража без оправы. У каждого виска изваянная кобра берёт линзу и несёт её. Безободковая оправа. Двойной мост, камень взят в металл.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance LX": {
+        "legende": "Кобра у каждого виска, она кусает линзу и хранит её.",
+        "description": "Безмолвная стража. У каждого виска голова кобры кусает край линзы, её тело в чешуе бежит вдоль заушника. Камень горит на её голове. Она не угрожает, она бережёт.",
+        "morphologie": "Для средних и широких лиц."
+      },
+      "Renaissance LXI": {
+        "legende": "Огранённая линза, ацетатные заушники, что несут золото.",
+        "description": "Огранка начисто. Линза держится одна, огранена по всему контуру, каждый угол отдаёт свет. Безободковая оправа. Две металлические петли сжимают её, ацетатные заушники несут золото. Без символа: одно лицо.",
+        "morphologie": "Для средних лиц."
+      }
     },
-    collections: {
-      heritage: {
-        recit:
-          'То, что было до нас, строит нас. Héritage собирает оправы, несущие Трезубец. ' +
-          'Формы, которые проходят сквозь моду и никогда ей не подчиняются.',
-      },
+    "collections": {
+      "heritage": {
+        "recit": "То, что было до нас, строит нас. Héritage собирает оправы, несущие Трезубец. Формы, которые проходят сквозь моду и никогда ей не подчиняются."
+      }
     },
-    symboles: {
-      trident: {
-        nom: 'Трезубец',
-        etendard: 'Суверенитет',
-        definition:
-          'Равновесие между вчера, сегодня и завтра. Опора на то, что лежит в основании, ' +
-          'что строит, что остаётся.',
-        deuxLectures:
-          'Память читает в нём поколения: три зубца, одна рукоять. ' +
-          'Выбор читает в нём отказ от заменимого.',
-      },
+    "symboles": {
+      "trident": {
+        "nom": "Трезубец",
+        "etendard": "Суверенитет",
+        "definition": "Равновесие между вчера, сегодня и завтра. Опора на то, что лежит в основании, что строит, что остаётся.",
+        "deuxLectures": "Память читает в нём поколения: три зубца, одна рукоять. Выбор читает в нём отказ от заменимого."
+      }
     },
-    proof: {
-      label: 'Подпись',
-      texte:
-        'R на линзе, для того, кто напротив. Кристалл на конце заушника, за ухом. ' +
-        'О нём знает только владелец. И на переносице номер: второго не будет.',
+    "proof": {
+      "label": "Подпись",
+      "texte": "R на линзе, для того, кто напротив. Кристалл на конце заушника, за ухом. О нём знает только владелец. И на переносице номер: второго не будет."
     },
-    trust: [
-      'Возврат в течение 14 дней',
-      'Гарантия производителя 3 года',
-      'Создана в Париже, изготовлена в Корее',
-      'Защищённая оплата',
-      '250+ салонов оптики',
-    ],
+    "trust": [
+      "Возврат в течение 14 дней",
+      "Гарантия производителя 3 года",
+      "Создана в Париже, изготовлена в Корее",
+      "Защищённая оплата",
+      "250+ салонов оптики"
+    ]
   },
+  "tr": {
+    "models": {
+      "Renaissance XXXIV": {
+        "legende": "Üç pençe. Cam yalnızca onlara tutunur.",
+        "description": "Gerçeğin üstündeki tutuş. Trident metalden çıkar ve camın içine girer: sıkar, taşır. Rimless. Çevresinde hiçbir şey yok; yalnızca üç uç ve tuttukları.",
+        "morphologie": "Orta yüzlere uygun."
+      },
+      "Renaissance II": {
+        "legende": "İnce metalden bir halka. Söylenecek başka şey yok.",
+        "description": "Katı yuvarlaklık. İnce bir metal teli halkayı kapatır; köprüden sapların başladığı yere kadar siyah çizgiler iner. Sade olması istenmiş bir detay, Maison'un ilk günlerinden beri. Sembol yok: cam üzerinde R, ucunda kristal. Yüzün kendisi yeter.",
+        "morphologie": "İnce ve orta yüzlere uygun."
+      },
+      "Renaissance III": {
+        "legende": "Aviator, açı açı yeniden çizildi.",
+        "description": "Herkesin tanıdığı bir hat. Kıvrımlar açıya döner, cam temiz iner. Çift köprü. Menteşelerde metal çizgili. Yumuşatılacak hiçbir şey kalmadı.",
+        "morphologie": "Orta ve geniş yüzlere uygun."
+      },
+      "Renaissance x FRENCH CUT IV": {
+        "legende": "Tek bir cam. İçine kazınmış iki isim.",
+        "description": "Maison'un ilk ortak çalışması. Tek bir cam, iki isim degradenin içine kazınmış, saplar bordoya kadar inen iki bükümlü kablo. Camın altında bir damla. Bir kaybın ya da atlatılmış bir sınavın ardından gözün altına yapılan o damla. Burada teninin değil camın üzerinde duruyor. Düşüşü anlatmaz. Ayakta kaldığını söyler. Yeniden doğanı söyler.",
+        "morphologie": "Orta ve geniş yüzlere uygun."
+      },
+      "Renaissance VI": {
+        "legende": "Köprü çizgili. Akılda kalan o.",
+        "description": "Aviator, köşeleri temiz kesilmiş. Çift köprü: alttaki siyah çizgiler taşır, aynıları sapların başladığı yerde de var. Sapta RENAISSANCE ve 18KT kazınmış. Camdaki R gerisini yapar.",
+        "morphologie": "Orta yüzlere uygun. İnce yüzler onu daha geniş taşır."
+      },
+      "Renaissance VIII x OCHO": {
+        "legende": "Bir yanda 8. Diğer yanda R.",
+        "description": "SDM ile karşılaşma. Onun 8'i, Ocho'nun işareti, bir sapı mühürler; Renaissance'ın R'si diğer sapta yanıt verir, Ocho'nun el yazısıyla çizilmiş. Mazzucchelli asetat, kalın, düz kesilmiş, köşeleri temiz kırılmış. Üç yüz çift, sapta numaralı, her coloris için yüz tane. Gerisi susar.",
+        "morphologie": "Orta ve geniş yüzlere uygun."
+      },
+      "Renaissance IX": {
+        "legende": "Altın bir ip, bir camdan diğerine gerilmiş.",
+        "description": "İpe dönmüş tel. Büküm alında koşar, camdan cama, siyah çizgili bir köprünün üstünde. İpin altında, bara RENAISSANCE kazınmış. İnce bir siyah hat camların çevresini izler. Saplar, iki bükümlü kablo, bordo uca kadar.",
+        "morphologie": "Geniş yüzlere uygun."
+      },
+      "Renaissance X": {
+        "legende": "Renk, çerçeve olmadan.",
+        "description": "Çıplak cam. Pembe altın eğri köprüye ve yanlardaki iki siyah çizgili bloğa tutunur. Saplar, iki bükümlü gümüş kablo, bordo uca kadar iner. Gerisini cam yapar.",
+        "morphologie": "Orta ve geniş yüzlere uygun."
+      },
+      "Renaissance XI": {
+        "legende": "Sekiz açı, tek bir kıvrım yok.",
+        "description": "Sekizgen, temiz tutulmuş. Metal sekiz kenar çizer, her açı keskin kesilmiş. Menteşelerde çizgiler çerçeveyi sıkar, aynıları sapta da koşar. Üst hat boyunca RENAISSANCE kazınmış.",
+        "morphologie": "İnce ve orta yüzlere uygun."
+      },
+      "Renaissance XII": {
+        "legende": "Sapa vidalanmış bir adres.",
+        "description": "Mazzucchelli asetat, kütleden alınmış, düz kesilmiş. Üst köşeler eğik kesilmiş. Sapta, altından bir levha bir adres taşır: Avenue de la Renaissance. Üstüne on iki numara kazınmış. Hiçbir haritada yok.",
+        "morphologie": "Orta ve geniş yüzlere uygun."
+      },
+      "Renaissance XIII": {
+        "legende": "Aviator'ün kare hali, iki köprü.",
+        "description": "Üstteki bar ismi taşır, metale kazınmış. Altında, ikinci bir köprü, daha ince. Yanlarda metal çizgili. Sembol yok: cam üzerinde R, ucunda kristal. Yüzün kendisi yeter.",
+        "morphologie": "Orta ve geniş yüzlere uygun."
+      },
+      "Renaissance XIV": {
+        "legende": "Açıları temiz aviator.",
+        "description": "Camın altı temiz kesilmiş. İki ince köprü, saplar ipe dönmüş. Camdaki R gerisini yapar.",
+        "morphologie": "Geniş yüzlere uygun."
+      },
+      "Renaissance XVI": {
+        "legende": "Diamond Cut'la kesilmiş oval bir Rimless.",
+        "description": "Camın çerçevesi yok. Kenarı Diamond Cut'la kesilmiş, tüm çevresi boyunca. Köprü çizgili. Saplar: bükümlü çift bar. Camdaki R gerisini yapar.",
+        "morphologie": "Orta ve geniş yüzlere uygun."
+      },
+      "Renaissance XVII": {
+        "legende": "Bir taş gibi, tüm çevresi kesilmiş.",
+        "description": "Çerçevenin yerinde kesim. Sivri yüzler camın tüm çevresinde koşar, köprüden alta kadar. Rimless. Işık her sırtta oynar.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance XVIII": {
+        "legende": "Dik duran bir kare.",
+        "description": "Kare, köşeleri sadece yumuşatılmış. Bir metal teli çevresini dolaşır, burnun üstünde iki bar. Sembol yok: cam üzerinde R, ucunda kristal. Yüzün kendisi yeter.",
+        "morphologie": "İnce yüzler için."
+      },
+      "Renaissance XIX": {
+        "legende": "Yuvarlak, ve köprüyü kapatan çizgiler.",
+        "description": "Halka, ince metalden. İki çizgili bar köprüyü kapatır, aynı çizgi şakakta geri döner. Sembol yok: cam üzerinde R, ucunda kristal. Yüzün kendisi yeter.",
+        "morphologie": "İnce ve orta yüzler için."
+      },
+      "Renaissance XX": {
+        "legende": "Asetatta temiz kesilmiş sekiz kenar.",
+        "description": "Sekizgen, asetatta kalın kesilmiş. Sekiz kenar camı sıkar, hiçbiri bükülmez. Sapta, bir altın çizgi malzemenin içine girer. Sembol yok: yalnızca yüz.",
+        "morphologie": "İnce ve orta yüzler için."
+      },
+      "Renaissance XXI": {
+        "legende": "Asetattan bir dikdörtgen, sap basamak basamak.",
+        "description": "Tutulmuş açı. Kalın asetattan bir dikdörtgen, alt köşeleri temiz kesilmiş. Yanda, sap basamak basamak iner, içine metal bir V oturur. Sembol yok: yalnızca yüz.",
+        "morphologie": "Orta yüzler için."
+      },
+      "Renaissance XXX": {
+        "legende": "Paris'ten bir adres, şakağa vidalanmış.",
+        "description": "Yanında taşıdığın adres. Avenue de la Renaissance, altına kazınmış, sapın içine alınmış. Çevresinde, kalın asetattan bir dikdörtgen, köşeleri temiz kesilmiş. Cam malzemeye oturur ve orada durur.",
+        "morphologie": "Orta yüzler için."
+      },
+      "Renaissance XXII": {
+        "legende": "Üst dik tutulmuş, altta çıplak cam.",
+        "description": "Düz alın. Metal bir bar üstü kapatır; altta, malzeme biter ve bir tel çıplak camı tutar. Sembol yok: yalnızca yüz.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance XXVII": {
+        "legende": "Kare navigatör, üç uçla tutulmuş.",
+        "description": "Önce işaret. Her şakakta, üç uç metalden çıkar ve camı tutar: Trident çerçeveyi taşır, süslemez. Sonra hat, bir kare navigatör, düz çift köprü, camın altı temiz kesilmiş.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance XXIX": {
+        "legende": "Pilotun damlası, üç uçla tutulmuş.",
+        "description": "Önce Trident. Her şakaktaki üç uç metalden çıkar ve camı tutar. Altında, pilotun damlası, üstü temiz kesilmiş, köprüde iki düz bar. Üç uç, tek bir el.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance XXXII": {
+        "legende": "Üç diş camı ısırır, artık kımıldamaz.",
+        "description": "Şakaktan tutuş. Trident üç ucu camın kenarına sürer ve tutar. Rimless. Çevre yüzlerle kesilmiş, her açı ışığı alır.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance XXXVI": {
+        "legende": "Büyük kare Rimless, Trident'le tutulmuş.",
+        "description": "Alınmış yer. Büyük bir kare cam, çevresinde hiçbir şey yok. Rimless. Trident metalden çıkar ve camı şakaktan kıstırır, her yanda üç uç.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance XXXVII": {
+        "legende": "İki şakakta Fleur de lys, aralarında bir cam.",
+        "description": "Unvansız ustalık. Fleur de lys camı her şakaktan tutar. Rimless, üst düz çekilmiş, bakış olduğu gibi geçer.",
+        "morphologie": "Geniş yüzler için."
+      },
+      "Renaissance XXXVIII": {
+        "legende": "Üst üste iki köprü, metal çıplak.",
+        "description": "Çıplak metal. Üst üste binmiş iki köprü, köşeler temiz kesilmiş, çizgiler sapa kadar koşar. Sembol yok: camdaki R yeter.",
+        "morphologie": "Orta yüzler için."
+      },
+      "Renaissance XXXIX": {
+        "legende": "Fleur de lys camı tutar, bir başkası köprüde bekler.",
+        "description": "Elin ustalığı. Fleur de lys çıplak camı kavrar, her köşede üç kıvrım. Rimless. Köprüde, bir başkası bekler.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance XL": {
+        "legende": "Altı ince açı, hiçbiri sesini yükseltmez.",
+        "description": "Altı kenar titanyum telle çekilmiş, halka temiz kapatılmış. Şakağın yakınında, açık bir halka sapı yakalar. Sembol yok: camdaki R yeter.",
+        "morphologie": "Orta yüzler için."
+      },
+      "Renaissance XLIII": {
+        "legende": "İnce metalden bir dikdörtgen, menteşe yakınında karartılmış çizgiler.",
+        "description": "Yüz yeter. Bir metal teli dikdörtgeni kapatır, alt köşeler temiz kesilmiş. Menteşe yakınında, karartılmış çizgiler metalin içinde koşar. Konmuş, düz, söyleyecek bir şeyi olmadan.",
+        "morphologie": "Orta yüzler için."
+      },
+      "Renaissance XLII": {
+        "legende": "Camın kenarı çiğden kesilmiş, tüm çevresi.",
+        "description": "Hiçbir şey camı çevrelemez. Kenarı tüm çevresi boyunca çiğden kesilmiş, ışığı alan sık dişlerle. Rimless. Köprü çizgili. Sembol yok: yalnızca yüz.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance L": {
+        "legende": "Asetat temiz kesilmiş, sapta altından adres.",
+        "description": "Yanında taşıdığın adres. Kalın bir asetat, köşeleri temiz kesilmiş. Sapta, altından bir levha: Avenue de la Renaissance, hiçbir haritanın taşımadığı sokak.",
+        "morphologie": "İnce ve orta yüzler için."
+      },
+      "Renaissance XLIV": {
+        "legende": "Cam, Trident'in uçları arasında asılı.",
+        "description": "Tutunuş. Her yandan, Trident metalden çıkar ve camın içine girer, onu tek başına taşır. Rimless. Sırtlarla kazınmış bir köprü, cam uçların arasında asılı.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance LII": {
+        "legende": "Bakışın üstünde düz bir bar, altında her şey hizalanır.",
+        "description": "Pilot hattı, kareye tutulmuş. Düz bir bar bir yandan diğerine koşar, altta bir metal teli köprüyü kapatır. Sembol yok: cam üzerinde R, ucunda kristal. Yüzün kendisi yeter.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance LI": {
+        "legende": "Şakaklarda Fleur de lys, camın kenarı yüzlerle kesilmiş.",
+        "description": "Fleur de lys şakağı tutar, iki yandan. Oradan cam çıkar, çerçevesiz. Rimless. Kenar yüzlerle kesilmiş, ışık üstünde kırılır.",
+        "morphologie": "Orta yüzler için."
+      },
+      "Renaissance LIII": {
+        "legende": "İsim camın üstüne kazınmış, okumak için yaklaşmak gerek.",
+        "description": "İnce telden bir dikdörtgen. Köprü ve çift bar metalde aynı sık çizgileri taşır. Sembol yok: cam üzerinde R, ucunda kristal. Yüzün kendisi yeter.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance LIV": {
+        "legende": "Her camın üstünde bir levha, bir tabela gibi.",
+        "description": "Önce isim. RENAISSANCE bir levhaya kazınmış, her camın üstüne kaş gibi konmuş. Halka üstü tutar, alt çıplak kalır. Yumuşatılmış bir sekizgen, çizgili bir köprü.",
+        "morphologie": "Orta yüzler için."
+      },
+      "Renaissance LV": {
+        "legende": "Œil d'Horus, sapta oyularak açılmış.",
+        "description": "Bekleyen göz. Her sapta, Œil d'Horus metalden oyulmuş. Rimless. Camın kenarı yüzlerle kesilmiş, ışık üstünde kırılır.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance LVI": {
+        "legende": "Sekiz kenar temiz kesilmiş, ışık camın altına tutunur.",
+        "description": "Çerçevesiz tutulmuş sekizgen. Camlar sekiz kenarda iner, alt kenar ışığı yakalayan basamaklarla kesilmiş. Rimless. Her köşeyi kabartma bir uç kapatır.",
+        "morphologie": "Geniş yüzler için."
+      },
+      "Renaissance LVII": {
+        "legende": "Adres açıkça, ve aynısı hiyerogliflerle.",
+        "description": "Aynı sokak, iki kez. Avenue de la Renaissance sapta, harflerle; menteşede, aynı adres hiyerogliflerle yinelenmiş. Küçük çerçeveli bir dikdörtgen, açıları kesilmiş.",
+        "morphologie": "Orta yüzler için."
+      },
+      "Renaissance LVIII": {
+        "legende": "Menteşeye konmuş bir scarabée, ve geri gitmez.",
+        "description": "Önce mühür. Asetat kalın kesilmiş, üst köşeler temiz. Menteşede, metale bastırılmış bir scarabée, yukarıdan bir mühür gibi görünür. Gerisi susar.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance LX": {
+        "legende": "Her şakakta bir cobra, camı ısırır ve korur.",
+        "description": "Sessiz nöbet. Her şakakta, bir cobra başı camın kenarını ısırır, pullu gövdesi sap boyunca koşar. Başında bir taş parlar. Tehdit etmez, bekler.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance LXI": {
+        "legende": "Cam yüzlerle kesilmiş, asetat saplar altını taşır.",
+        "description": "Çiğden kesim. Cam tek başına durur, tüm çevresi yüzlerle kesilmiş, her açı ışığı verir. Rimless. İki metal halka onu sıkar, asetat saplar altını taşır. Sembol yok: yalnızca yüz.",
+        "morphologie": "Orta yüzler için."
+      },
+      "Renaissance XXXV": {
+        "legende": "Trident camı ısırır, asetat bir yüzün içinde.",
+        "description": "Trident metalden çıkar ve camı alır. Her köşede üç uç, ısırır ve taşır. Düz, dolu bir yüz, tek bir bloktan kesilmiş. Saplar titanyumda uzar, uca kadar kazınmış.",
+        "morphologie": "İnce ve orta yüzler için."
+      },
+      "Renaissance XXXIII": {
+        "legende": "Kenar çiğden kesilmiş, Trident onu kıstırır.",
+        "description": "Camın üstündeki tutuş. Kenar küçük dişlerle kesilmiş, ışık üstüne tutunur. Rimless. Şakakta, üç uç metalden çıkar ve camı sıkar.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance LIX": {
+        "legende": "Her şakakta cobra, ve cam çerçevesiz.",
+        "description": "Çerçevesiz nöbet. Her şakakta, oyulmuş cobra camı kavrar ve taşır. Rimless. Çift köprü, metale alınmış bir taş.",
+        "morphologie": "Orta ve geniş yüzler için."
+      },
+      "Renaissance XLI": {
+        "legende": "Fleur de lys menteşeyi yapar ve camı tutar.",
+        "description": "Fleur de lys camı tutar. Her uçta bir tane, metale oyulmuş, sapı eklemler ve camı taşır. Rimless. Camın altı yüzlerle kesilmiş, ışık üstüne tutunur.",
+        "morphologie": "Orta ve geniş yüzler için."
+      }
+    }
+  },
+  "hi": {
+    "models": {
+      "Renaissance XXXIV": {
+        "legende": "तीन पंजे। लेंस सिर्फ़ इन्हीं पर टिका है।",
+        "description": "असल पर पकड़। Trident धातु से निकलता है और लेंस में उतरता है: वह उसे जकड़ता है, वह उसे थामता है। रिमलेस। आसपास कुछ नहीं, बस तीन नोकें और जो वे पकड़े हुए हैं।",
+        "morphologie": "मध्यम चेहरों के लिए।"
+      },
+      "Renaissance II": {
+        "legende": "पतली धातु का एक घेरा। और कुछ कहने को नहीं।",
+        "description": "सख़्त गोलाई। धातु का एक महीन तार घेरे को बंद करता है, और काली धारियाँ ब्रिज से टांगों की शुरुआत तक चलती हैं। शुरू से ही जान-बूझकर रखी गई सादगी, Maison के पहले घंटों से। कोई प्रतीक नहीं: लेंस पर R, सिरे पर क्रिस्टल। चेहरा ही काफ़ी है।",
+        "morphologie": "पतले से मध्यम चेहरों के लिए।"
+      },
+      "Renaissance III": {
+        "legende": "वही aviator, कोने दर कोने नए सिरे से।",
+        "description": "एक ऐसी बनावट जिसे सब पहचानते हैं। वक्र अब कोनों में बदल जाते हैं, लेंस साफ़ कटता है। डबल ब्रिज। काज पर धातु धारीदार है। अब और कुछ नरम करने को बचा नहीं।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance x FRENCH CUT IV": {
+        "legende": "एक ही लेंस। उसमें दो नाम उकेरे हुए।",
+        "description": "Maison का पहला साथ। एक ही लेंस, दोनों नाम रंग की ढलान में उकेरे हुए, टांगें दो मुड़े तारों में bordeaux सिरे तक। लेंस के नीचे एक आँसू। वही जो आँख के नीचे गुदवाया जाता है, किसी खोने पर, या झेली गई एक परीक्षा पर। यहाँ वह त्वचा की जगह लेंस पर टिका है। वह गिरने की बात नहीं कहता। वह कहता है कि तुम खड़े रहे। वह कहता है जो फिर से जन्म लेता है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance VI": {
+        "legende": "ब्रिज धारीदार है। यही याद रह जाता है।",
+        "description": "एक aviator, कोने साफ़ कटे। डबल ब्रिज: नीचे वाला काली धारियाँ लिए है, वही जो टांगों की शुरुआत पर हैं। RENAISSANCE और 18KT टांग में उकेरे हुए। बाकी लेंस पर R कर देता है।",
+        "morphologie": "मध्यम चेहरों के लिए। पतले चेहरे इसे oversize पहनते हैं।"
+      },
+      "Renaissance VIII x OCHO": {
+        "legende": "एक तरफ़ 8। दूसरी तरफ़ R।",
+        "description": "SDM से मुलाक़ात। उसका 8, Ocho का निशान, एक टांग पर मुहर लगाता है; Renaissance का R दूसरी ओर जवाब देता है, Ocho की अपनी लिखावट में गढ़ा हुआ। Mazzucchelli एसीटेट, मोटा, सीधा कटा, कोने साफ़ टूटे हुए। तीन सौ जोड़ी, हर एक टांग पर गिनी हुई, हर Coloris में सौ। बाकी सब चुप रहता है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance IX": {
+        "legende": "सोने की एक रस्सी, एक लेंस से दूसरे तक तनी हुई।",
+        "description": "तार रस्सी में बटा हुआ। बल माथे पर चलता है, एक लेंस से दूसरे तक, एक काली धारियों वाले ब्रिज के ऊपर। RENAISSANCE उसी पट्टी में उकेरा हुआ, रस्सी के नीचे। एक महीन काली रेखा हर लेंस के किनारे साथ चलती है। टांगें, दो मुड़े तार, bordeaux सिरे तक।",
+        "morphologie": "चौड़े चेहरों के लिए।"
+      },
+      "Renaissance X": {
+        "legende": "रंग, बिना किसी ढाँचे के।",
+        "description": "नंगा लेंस। वह टिकता है घुमे हुए ब्रिज से, गुलाबी सोने का, और दोनों ओर काली धारियों वाले दो ब्लॉक से। टांगें, चाँदी के दो मुड़े तार, bordeaux सिरे तक। बाकी लेंस कर देता है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XI": {
+        "legende": "आठ कोने, एक भी वक्र नहीं।",
+        "description": "अष्टकोण, साफ़ थमा हुआ। धातु आठ भुजाएँ खींचती है, हर कोना तीखा कटा। काज पर धारियाँ घेरे को जकड़ती हैं, वही टांग पर चलती हैं। RENAISSANCE ऊपरी रेखा पर उकेरा हुआ।",
+        "morphologie": "पतले से मध्यम चेहरों के लिए।"
+      },
+      "Renaissance XII": {
+        "legende": "टांग पर कसा हुआ एक पता।",
+        "description": "Mazzucchelli एसीटेट एक ही टुकड़े से लिया, सीधा कटा। ऊपर के कोने तिरछे काटे गए हैं। टांग पर, सोने की एक पट्टी एक पता लिए है: Avenue de la Renaissance. उस पर बारह का अंक उकेरा हुआ। यह किसी नक्शे पर नहीं है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XIII": {
+        "legende": "aviator चौकोर किया हुआ, दो ब्रिज।",
+        "description": "ऊपर की पट्टी नाम लिए है, धातु में उकेरा हुआ। उसके नीचे, एक दूसरा ब्रिज, ज़्यादा पतला। बगल में, धातु धारीदार है। कोई प्रतीक नहीं: लेंस पर R, सिरे पर क्रिस्टल। चेहरा ही काफ़ी है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XIV": {
+        "legende": "साफ़ कोनों वाला aviator।",
+        "description": "लेंस का निचला हिस्सा साफ़ कटा। दो पतले ब्रिज, टांगें रस्सी में मुड़ी हुई। बाकी लेंस पर R कर देता है।",
+        "morphologie": "चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XVI": {
+        "legende": "एक oval रिमलेस, डायमंड कट में तराशा।",
+        "description": "लेंस का कोई ढाँचा नहीं। उसका किनारा डायमंड कट में तराशा है, पूरे चारों ओर। ब्रिज धारीदार है। टांगें: डबल बार (मुड़ी हुई)। बाकी लेंस पर R कर देता है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XVII": {
+        "legende": "चारों ओर तराशी हुई, किसी पत्थर की तरह।",
+        "description": "ढाँचे की जगह तराश। नुकीले पहलू लेंस के पूरे तौर पर चलते हैं, ब्रिज से नीचे तक। रिमलेस। हर धार पर रोशनी खेलती है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XVIII": {
+        "legende": "एक चौकोर जो सीधा खड़ा रहता है।",
+        "description": "चौकोर, कोने बस ज़रा नरम किए हुए। धातु का एक तार उसके चारों ओर चलता है, नाक के ऊपर दो बार। कोई प्रतीक नहीं: लेंस पर R, सिरे पर क्रिस्टल। चेहरा ही काफ़ी है।",
+        "morphologie": "पतले चेहरों के लिए।"
+      },
+      "Renaissance XIX": {
+        "legende": "गोल, और वे धारियाँ जो ब्रिज को बंद करती हैं।",
+        "description": "घेरा, महीन धातु में। दो धारीदार बार ब्रिज को बंद करती हैं, वही रेखा कनपटी पर लौटती है। कोई प्रतीक नहीं: लेंस पर R, सिरे पर क्रिस्टल। चेहरा ही काफ़ी है।",
+        "morphologie": "पतले से मध्यम चेहरों के लिए।"
+      },
+      "Renaissance XX": {
+        "legende": "एसीटेट में आठ भुजाएँ, साफ़ तराशी हुईं।",
+        "description": "अष्टकोण, एसीटेट में मोटा तराशा हुआ। आठ भुजाएँ लेंस को जकड़ती हैं, एक भी झुकती नहीं। टांग पर, सोने की एक रेखा मादे में उतरती है। कोई प्रतीक नहीं: चेहरा अकेला।",
+        "morphologie": "पतले से मध्यम चेहरों के लिए।"
+      },
+      "Renaissance XXI": {
+        "legende": "एसीटेट का एक आयत, टांग सीढ़ियों में।",
+        "description": "कोण, थमा हुआ। मोटे एसीटेट का एक आयत, नीचे के कोने साफ़ कटे। बगल में, टांग सीढ़ियों में उतरती है, धातु का एक V उसमें जड़ा हुआ। कोई प्रतीक नहीं: चेहरा अकेला।",
+        "morphologie": "मध्यम चेहरों के लिए।"
+      },
+      "Renaissance XXX": {
+        "legende": "Paris का एक पता, कनपटी पर कसा हुआ।",
+        "description": "वह पता जिसे तुम साथ ले जाते हो। Avenue de la Renaissance, सोने में उकेरा हुआ, टांग में जड़ा हुआ। उसके चारों ओर, मोटे एसीटेट का एक आयत, कोने साफ़ कटे। लेंस मादे में बैठता है और वहीं टिका रहता है।",
+        "morphologie": "मध्यम चेहरों के लिए।"
+      },
+      "Renaissance XXII": {
+        "legende": "ऊपर सीधा थमा हुआ, नीचे नंगा लेंस।",
+        "description": "सीधा माथा। धातु की एक बार ऊपर को बंद करती है; नीचे, मादा रुक जाता है और एक तार नंगे लेंस को थामता है। कोई प्रतीक नहीं: चेहरा अकेला।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XXVII": {
+        "legende": "चौकोर navigator, तीन नोकों से थमा हुआ।",
+        "description": "पहले निशान। हर कनपटी पर तीन नोकें धातु से निकलकर लेंस को थामती हैं: Trident मॉनिटर को नहीं सजाता, उसे थामता है। फिर रेखा, एक चौकोर navigator, सीधा डबल ब्रिज, लेंस का निचला हिस्सा साफ़ कटा।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XXIX": {
+        "legende": "पायलट की बूँद, तीन नोकों से थमी हुई।",
+        "description": "पहले Trident। हर कनपटी पर तीन नोकें धातु से निकलकर लेंस को थामती हैं। नीचे, पायलट की बूँद, ऊपर साफ़ कटा, ब्रिज पर दो सीधी बार। तीन नोकें, एक ही हाथ।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XXXII": {
+        "legende": "तीन दाँत लेंस को काटते हैं, वह फिर हिलता नहीं।",
+        "description": "कनपटी से पकड़। Trident तीन नोकें लेंस के किनारे में गाड़ता है और उसे थामता है। रिमलेस। पूरा किनारा पहलुओं में तराशा है, हर कोना रोशनी पकड़ता है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XXXVI": {
+        "legende": "बड़ा चौकोर रिमलेस, Trident से थमा हुआ।",
+        "description": "जगह ले ली गई। एक बड़ा चौकोर लेंस, आसपास कुछ नहीं। रिमलेस। Trident धातु से निकलकर लेंस को कनपटी पर दबाता है, हर ओर तीन नोकें।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XXXVII": {
+        "legende": "दोनों कनपटियों पर fleur de lys, बीच में एक लेंस।",
+        "description": "बिना किसी पद के महारत। Fleur de lys हर कनपटी पर लेंस को थामती है। रिमलेस, ऊपर सीधा खिंचा हुआ, नज़र पूरी आर-पार जाती है।",
+        "morphologie": "चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XXXVIII": {
+        "legende": "दो ब्रिज एक के ऊपर एक, धातु नंगी।",
+        "description": "नंगी धातु। दो ब्रिज एक पर एक, कोने साफ़ कटे, धारियाँ टांग तक चलती हैं। कोई प्रतीक नहीं: लेंस पर R काफ़ी है।",
+        "morphologie": "मध्यम चेहरों के लिए।"
+      },
+      "Renaissance XXXIX": {
+        "legende": "Fleur de lys लेंस को थामती है, एक और ब्रिज पर पहरा देती है।",
+        "description": "हाथ की महारत। Fleur de lys नंगे लेंस को जकड़ती है, हर कोने पर तीन बल। रिमलेस। ब्रिज पर, एक और पहरा देती है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XL": {
+        "legende": "छह महीन कोने, और कोई भी आवाज़ ऊँची नहीं करता।",
+        "description": "छह भुजाएँ टाइटेनियम के तार में खींची हुईं, घेरा साफ़ बंद। कनपटी के पास, एक खुला छल्ला टांग को पकड़ता है। कोई प्रतीक नहीं: लेंस पर R काफ़ी है।",
+        "morphologie": "मध्यम चेहरों के लिए।"
+      },
+      "Renaissance XLIII": {
+        "legende": "महीन धातु का एक आयत, काज के पास धारियाँ काली पड़ी हुईं।",
+        "description": "चेहरा काफ़ी है। धातु का एक तार आयत को बंद करता है, नीचे के कोने साफ़ कटे। काज के पास, काली पड़ी रेखाएँ धातु में चलती हैं। टिका हुआ, सीधा, कुछ कहने को नहीं।",
+        "morphologie": "मध्यम चेहरों के लिए।"
+      },
+      "Renaissance XLII": {
+        "legende": "लेंस का किनारा कच्चा तराशा, पूरे चारों ओर।",
+        "description": "लेंस को कुछ घेरता नहीं। उसका किनारा पूरे तौर पर कच्चा तराशा है, घनी दाँतियों में जो रोशनी पकड़ती हैं। रिमलेस। ब्रिज धारीदार है। कोई प्रतीक नहीं: चेहरा अकेला।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance L": {
+        "legende": "एसीटेट साफ़ कटा, टांग पर सोने में पता।",
+        "description": "वह पता जिसे तुम साथ ले जाते हो। मोटा एसीटेट, कोने साफ़ कटे। टांग पर, सोने की एक पट्टी: Avenue de la Renaissance, वह सड़क जिसे कोई नक्शा नहीं रखता।",
+        "morphologie": "पतले से मध्यम चेहरों के लिए।"
+      },
+      "Renaissance XLIV": {
+        "legende": "लेंस Trident की नोकों के बीच टँगा हुआ।",
+        "description": "लंगर। दोनों ओर, Trident धातु से निकलकर लेंस में उतरता है, वह उसे अकेला थामता है। रिमलेस। एक ब्रिज जिस पर धारें उकेरी हैं, लेंस नोकों के बीच टँगा हुआ।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance LII": {
+        "legende": "नज़र के ऊपर एक सीधी बार, नीचे सब उसी से सधता है।",
+        "description": "पायलट रेखा, चौकोर थमी हुई। एक चपटी बार एक ओर से दूसरी ओर चलती है, धातु का एक तार नीचे ब्रिज को बंद करता है। कोई प्रतीक नहीं: लेंस पर R, सिरे पर क्रिस्टल। चेहरा ही काफ़ी है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance LI": {
+        "legende": "कनपटियों पर fleur de lys, लेंस का किनारा पहलुओं में तराशा।",
+        "description": "Fleur de lys कनपटी को थामती है, दोनों ओर। वहीं से लेंस निकलता है, बिना किसी ढाँचे के। रिमलेस। किनारा पहलुओं में तराशा, रोशनी उस पर टूटती है।",
+        "morphologie": "मध्यम चेहरों के लिए।"
+      },
+      "Renaissance LIII": {
+        "legende": "नाम लेंस के ऊपर उकेरा हुआ, पढ़ने के लिए पास आना पड़ता है।",
+        "description": "महीन तार पर एक आयत। ब्रिज और डबल बार धातु में वही घनी रेखाएँ लिए हैं। कोई प्रतीक नहीं: लेंस पर R, सिरे पर क्रिस्टल। चेहरा ही काफ़ी है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance LIV": {
+        "legende": "हर लेंस के ऊपर एक पट्टी, किसी नामपट्ट की तरह।",
+        "description": "पहले नाम। RENAISSANCE एक पट्टी में उकेरा हुआ, हर लेंस पर भौंह की तरह रखा। घेरा ऊपर को थामता है, नीचे नंगा रहता है। एक नरम अष्टकोण, एक धारीदार ब्रिज।",
+        "morphologie": "मध्यम चेहरों के लिए।"
+      },
+      "Renaissance LV": {
+        "legende": "Horus की आँख, टांग में काटकर बनी हुई।",
+        "description": "वह आँख जो पहरा देती है। हर टांग पर, Horus की आँख धातु में से काटी हुई है। रिमलेस। लेंस का किनारा पहलुओं में तराशा है, रोशनी उस पर टूटती है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance LVI": {
+        "legende": "आठ भुजाएँ साफ़ तराशी हुईं, रोशनी लेंस के नीचे अटकती है।",
+        "description": "अष्टकोण, बिना ढाँचे के थमा हुआ। लेंस आठ भुजाओं में उतरते हैं, निचला किनारा सीढ़ियों में तराशा जो रोशनी पकड़ता है। रिमलेस। एक उभरी नोक हर कोने को बंद करती है।",
+        "morphologie": "चौड़े चेहरों के लिए।"
+      },
+      "Renaissance LVII": {
+        "legende": "पता साफ़ शब्दों में, और वही चित्रलिपि में।",
+        "description": "वही सड़क, दो बार। Avenue de la Renaissance टांग पर, अक्षरों में; काज पर, वही पता फिर से चित्रलिपि में। एक छोटा घेरेदार आयत, कोने कटे हुए।",
+        "morphologie": "मध्यम चेहरों के लिए।"
+      },
+      "Renaissance LVIII": {
+        "legende": "काज पर बैठा एक scarabée, और वह वहाँ से जाता नहीं।",
+        "description": "पहले मुहर। एसीटेट मोटा तराशा हुआ, ऊपर के कोने साफ़ कटे। काज पर, एक scarabée धातु में दबा हुआ, ऊपर से देखा, किसी मुहर की तरह। बाकी सब चुप रहता है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance LX": {
+        "legende": "हर कनपटी पर एक cobra, वह लेंस को काटता है और संभालता है।",
+        "description": "खामोश पहरा। हर कनपटी पर, एक cobra का सिर लेंस के किनारे को काटता है, उसका छिलकेदार शरीर टांग के साथ चलता है। उसके सिर पर एक पत्थर चमकता है। वह धमकाता नहीं, वह पहरा देता है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance LXI": {
+        "legende": "लेंस पहलुओं में तराशा, टांगें एसीटेट की जो सोना थामती हैं।",
+        "description": "कच्ची तराश। लेंस अकेला टिकता है, पूरे तौर पर पहलुओं में तराशा, हर कोना रोशनी लौटाता है। रिमलेस। धातु की दो लूप उसे जकड़ती हैं, एसीटेट की टांगें सोना थामती हैं। कोई प्रतीक नहीं: चेहरा अकेला।",
+        "morphologie": "मध्यम चेहरों के लिए।"
+      },
+      "Renaissance XXXV": {
+        "legende": "एसीटेट के एक फ्रेम में, Trident लेंस को काटता है।",
+        "description": "Trident धातु से निकलकर लेंस को पकड़ता है। हर कोने पर तीन नोकें, जो काटती हैं और थामती हैं। एक सीधा फ्रेम, भरा हुआ, एक ही टुकड़े से तराशा। टांगें टाइटेनियम में चलती हैं, सिरे तक उकेरी हुईं।",
+        "morphologie": "पतले से मध्यम चेहरों के लिए।"
+      },
+      "Renaissance XXXIII": {
+        "legende": "किनारा कच्चा तराशा, और Trident उसे दबाने को।",
+        "description": "लेंस पर पकड़। किनारा छोटी दाँतियों में तराशा, रोशनी उस पर अटकती है। रिमलेस। कनपटी पर, तीन नोकें धातु से निकलकर लेंस को जकड़ती हैं।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance LIX": {
+        "legende": "हर कनपटी पर cobra, और लेंस बिना ढाँचे के।",
+        "description": "बिना ढाँचे का पहरा। हर कनपटी पर, तराशा हुआ cobra लेंस को पकड़ता है और थामता है। रिमलेस। डबल ब्रिज, धातु में जड़ा एक पत्थर।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      },
+      "Renaissance XLI": {
+        "legende": "Fleur de lys काज बनती है और लेंस थामती है।",
+        "description": "Fleur de lys लेंस को थामती है। हर सिरे पर एक, धातु में तराशी, वह टांग को चलाती है और लेंस को थामती है। रिमलेस। लेंस का निचला हिस्सा पहलुओं में तराशा, रोशनी उसमें अटकती है।",
+        "morphologie": "मध्यम से चौड़े चेहरों के लिए।"
+      }
+    }
+  }
 };
 
 // ---------------------------------------------------------------------------

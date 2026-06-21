@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import HttpBackend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-export const SUPPORTED_LOCALES = ['fr', 'en', 'ru', 'it', 'de', 'es'] as const;
+export const SUPPORTED_LOCALES = ['fr', 'en', 'ru', 'it', 'de', 'es', 'tr', 'hi'] as const;
 export type SupportedLocale = (typeof SUPPORTED_LOCALES)[number];
 
 export const LOCALE_TO_SHOPIFY: Record<SupportedLocale, string> = {
@@ -13,6 +13,8 @@ export const LOCALE_TO_SHOPIFY: Record<SupportedLocale, string> = {
   it: 'IT',
   de: 'DE',
   es: 'ES',
+  tr: 'TR',
+  hi: 'HI',
 };
 
 export const LOCALE_TO_OG: Record<SupportedLocale, string> = {
@@ -22,6 +24,8 @@ export const LOCALE_TO_OG: Record<SupportedLocale, string> = {
   it: 'it_IT',
   de: 'de_DE',
   es: 'es_ES',
+  tr: 'tr_TR',
+  hi: 'hi_IN',
 };
 
 export const LOCALE_TO_HREFLANG: Record<SupportedLocale, string> = {
@@ -31,6 +35,8 @@ export const LOCALE_TO_HREFLANG: Record<SupportedLocale, string> = {
   it: 'it-IT',
   de: 'de-DE',
   es: 'es-ES',
+  tr: 'tr-TR',
+  hi: 'hi-IN',
 };
 
 export function isSupportedLocale(lang: string): lang is SupportedLocale {

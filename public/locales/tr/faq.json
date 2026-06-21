@@ -1,0 +1,130 @@
+{
+  "title": "SSS",
+  "subtitle": "Sık sorulan sorular",
+  "description": "En sık sorulan sorularının yanıtlarını burada bulursun.",
+  "categories": {
+    "all": "Tümü",
+    "orders": "Siparişler",
+    "shipping": "Teslimat",
+    "returns": "İadeler",
+    "products": "Ürünler",
+    "warranty": "Garanti",
+    "stores": "Mağazalar"
+  },
+  "contactUs": "Yanıtını bulamadın mı?",
+  "contactCta": "Bize ulaş",
+  "seo": {
+    "title": "Sık Sorulan Sorular (SSS)",
+    "description": "Renaissance Eyewear gözlükleriyle ilgili sorularının yanıtlarını bul: sipariş, teslimat, iade, bakım, garanti ve partner optisyenler."
+  },
+  "hero": {
+    "label": "Yardım ve Destek",
+    "titleLine1": "SIK SORULAN",
+    "titleLine2": "SORULAR.",
+    "subtitle": "Bilinmesi gereken her şey.",
+    "answers": "Yanıt",
+    "categoriesCount": "Kategori"
+  },
+  "categoryNames": {
+    "orderPayment": "Sipariş ve Ödeme",
+    "delivery": "Teslimat",
+    "returnsExchanges": "İade ve Değişim",
+    "productsCare": "Ürünler ve Bakım",
+    "partnerOpticians": "Partner Optisyenler",
+    "contactSupport": "İletişim ve Destek"
+  },
+  "questions": {
+    "paymentMethods": {
+      "q": "Hangi ödeme yöntemlerini kabul ediyorsunuz?",
+      "a": "Banka kartlarını (Visa, Mastercard, American Express), PayPal'ı ve banka havalesini kabul ediyoruz. Tüm ödemeler güvenli ve şifrelidir."
+    },
+    "modifyOrder": {
+      "q": "Siparişimi değiştirebilir ya da iptal edebilir miyim?",
+      "a": "Siparişini onayladıktan sonraki 2 saat içinde, hemen bizimle iletişime geçerek değiştirebilir ya da iptal edebilirsin. Bu sürenin ardından siparişin hazırlanmaya başlar."
+    },
+    "invoice": {
+      "q": "Fatura alacak mıyım?",
+      "a": "Evet, siparişin gönderilir gönderilmez ayrıntılı bir fatura e-postayla sana iletilir."
+    },
+    "deliveryTimes": {
+      "q": "Teslimat süreleri ne kadar?",
+      "a": "Siparişler 24-48 saat içinde gönderilir. Teslimat, Fransa anakarasında 1-2 iş günü, AB için 2-3 gün, uluslararası için 3-7 gün sürer."
+    },
+    "freeShipping": {
+      "q": "Teslimat ücretsiz mi?",
+      "a": "Evet, teslimat tüm siparişlerde, gideceği yer ne olursa olsun ücretsizdir."
+    },
+    "trackOrder": {
+      "q": "Siparişimi takip edebilir miyim?",
+      "a": "Evet, siparişin gönderilir gönderilmez e-postayla bir takip numarası alırsın. Paketini gerçek zamanlı olarak takip edebilirsin."
+    },
+    "internationalShipping": {
+      "q": "Uluslararası teslimat yapıyor musunuz?",
+      "a": "Evet, dünyanın her yerine teslimat yapıyoruz. Ülkeye göre gümrük masrafları uygulanabilir ve bunlar alıcıya aittir."
+    },
+    "returnPolicy": {
+      "q": "İade politikanız nedir?",
+      "a": "Siparişini iade etmek için teslim aldığın tarihten itibaren 14 günün var. Ürün, ambalajı zarar görmemiş şekilde, ilk haliyle olmalıdır. İade masrafları Renaissance tarafından karşılanır."
+    },
+    "howToReturn": {
+      "q": "İade nasıl yapılır?",
+      "a": "Sipariş numaranla birlikte contact@renaissanceeyewear.com adresinden müşteri hizmetlerimize ulaş. Sana ön ödemeli bir iade etiketi ve talimatları göndereceğiz."
+    },
+    "refundDelay": {
+      "q": "Param ne zaman iade edilir?",
+      "a": "İaden teslim alınıp onaylandıktan sonraki 14 gün içinde, alışverişte kullandığın ödeme yöntemine geri ödeme yapılır."
+    },
+    "exchangeFrame": {
+      "q": "Gözlüğümü değiştirebilir miyim?",
+      "a": "Evet, ücretsiz değişim sunuyoruz. Gözlüğünün değişimini düzenlemek için bize ulaş."
+    },
+    "chooseSize": {
+      "q": "Doğru gözlük bedenini nasıl seçerim?",
+      "a": "Her modelin ölçülerini ayrıntılı veren Beden Rehberimize bak. Ayrıca 250'den fazla partner optisyenimizden birinde gözlüklerimizi deneyebilirsin."
+    },
+    "prescriptionLenses": {
+      "q": "Gözlükler numaralı camlara uygun mu?",
+      "a": "Evet, tüm optik gözlüklerimize numaralı camlarını taktırabilirsin. Montaj için bir partner optisyene git."
+    },
+    "cleanGlasses": {
+      "q": "Renaissance gözlüğümün bakımını nasıl yaparım?",
+      "a": "Gözlüğünü, birlikte verilen mikrofiber bezle temizle. Sert kimyasallardan kaçın. Takmadığın zaman kutusunda sakla."
+    },
+    "warranty": {
+      "q": "Gözlüklerin garantisi nedir?",
+      "a": "Tüm gözlüklerimiz, üretim hatalarını kapsayan 3 yıllık üretici garantisine sahiptir."
+    },
+    "tryBeforeBuy": {
+      "q": "Almadan önce gözlükleri deneyebilir miyim?",
+      "a": "Evet, koleksiyonlarımızı denemek ve kişisel öneri almak için Fransa'daki 250'den fazla partner optisyenimizden birine git."
+    },
+    "findOptician": {
+      "q": "Partner optisyeni nasıl bulurum?",
+      "a": "Sana en yakın satış noktasını bulmak için \"Bir Optisyen Bul\" sayfasındaki optisyen bulucumuzu kullan."
+    },
+    "samePrices": {
+      "q": "Fiyatlar çevrimiçi ve optisyenlerde aynı mı?",
+      "a": "Evet, fiyatlarımız sitemizde ve partner optisyenlerimizde aynıdır."
+    },
+    "contactService": {
+      "q": "Müşteri hizmetlerine nasıl ulaşırım?",
+      "a": "Bize contact@renaissanceeyewear.com adresinden e-postayla ya da +33 1 42 86 82 00 numaralı telefondan (Pzt-Cum, 9.00-18.00) ulaşabilirsin."
+    },
+    "responseDelay": {
+      "q": "Müşteri hizmetlerinin yanıt süresi nedir?",
+      "a": "Tüm isteklere en geç 48 iş saati içinde yanıt vermeyi taahhüt ediyoruz."
+    },
+    "customization": {
+      "q": "Kişiselleştirme hizmeti sunuyor musunuz?",
+      "a": "Kişiselleştirme ihtiyaçlarını konuşmak için bize ulaş. Bazı seçenekler talep üzerine sunulabilir."
+    }
+  },
+  "cta": {
+    "label": "Yardım lazım",
+    "title": "Başka bir soru mu var?",
+    "subtitle": "Senin için buradayız.",
+    "description": "Ekibimiz, tüm sorularını yanıtlamak için emrinde.",
+    "contactUs": "Bize ulaş",
+    "callUs": "+33 1 42 86 82 00"
+  }
+}

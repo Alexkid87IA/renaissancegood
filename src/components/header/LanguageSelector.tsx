@@ -111,4 +111,6 @@ export const SUPPORTED_LANGUAGES: Language[] = [
   { code: 'IT', label: 'Italiano', flag: '' },
   { code: 'DE', label: 'Deutsch', flag: '' },
   { code: 'ES', label: 'Espa\u00f1ol', flag: '' },
+  { code: 'TR', label: 'T\u00fcrk\u00e7e', flag: '' },
+  { code: 'HI', label: '\u0939\u093f\u0928\u094d\u0926\u0940', flag: '' },
 ];

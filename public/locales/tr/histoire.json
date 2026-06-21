@@ -1,0 +1,235 @@
+{
+  "hero": {
+    "label": "Maison",
+    "title": "RENAISSANCE",
+    "subtitle": "2019'da, bir reddedişten doğdu."
+  },
+  "signature": {
+    "label": "İmzamız",
+    "title": "YEDİ\nBİN YILLIK SEMBOL",
+    "description": "Her gözlük içinde bir sonsuzluk parçası taşır. Uygarlıkları aşan yedi sembol, Renaissance Maison'unun yedi bölümü."
+  },
+  "savoirFaire": {
+    "label": "Atölye",
+    "title": "BİZİM\nYAPIMIMIZ",
+    "description": "Her gözlük Paris, Kore ve İtalya arasında biçim alır. Hızlı üretmiyoruz. Doğru üretiyoruz."
+  },
+  "fondateurs": {
+    "label": "Kurucular",
+    "title": "BİR PARİS\nGÖRÜŞÜ"
+  },
+  "valeurs": {
+    "label": "Değerlerimiz",
+    "title": "RENAISSANCE\nTAAHHÜDÜ"
+  },
+  "engagement": {
+    "label": "Taahhüt",
+    "title": "BU HİÇ\nUNUTULMASIN DİYE"
+  },
+  "ambassadeurs": {
+    "label": "Elçiler",
+    "title": "RENAISSANCE\nTAKIYORLAR"
+  },
+  "manifeste": {
+    "label": "Manifesto",
+    "title": "RENAISSANCE\nMANİFESTOSU",
+    "description": "Yarattığımız yalnızca bir aksesuar değil. Bir devir hareketi."
+  },
+  "symboles": {
+    "label": "Semboller",
+    "title": "YEDİ EBEDÎ\nSEMBOL"
+  },
+  "page": {
+    "histoire": {
+      "seoTitle": "Hikâyemiz",
+      "seoDescription": "2019'da bir reddedişten doğdu: kalması gerekenin yok olup gitmesine karşı. Üç meslek adamı, kendi seçtikleri kardeşler. Takılan. Devredilen."
+    },
+    "savoirFaire": {
+      "seoTitle": "Atölye",
+      "seoDescription": "Renaissance Eyewear atölyesi: Paris'te çizilir, Paris, Kore ve İtalya arasında yapılır. Titanyum, 18 ayar altın kaplama, Mazzucchelli asetat."
+    },
+    "manifeste": {
+      "seoTitle": "Manifesto",
+      "seoDescription": "Renaissance Eyewear manifestosu. Takılan. Devredilen."
+    },
+    "symboles": {
+      "seoTitle": "Semboller",
+      "seoDescription": "Renaissance Eyewear sembolleri: trident, fleur de lys, ankh, scarabée, cobra, Horus'un gözü, Paris plakası. Titanyuma kazınmış yedi işaret."
+    }
+  },
+  "blog": {
+    "seoTitle": "Manifesto - Blog",
+    "seoDescription": "Renaissance Eyewear evreni. Sembollerimiz, malzemelerimiz ve Maison'un hikâyesi üzerine yazılar.",
+    "heroLabel": "Haberler ve Kültür",
+    "heroTitleLine1": "MANİ-",
+    "heroTitleLine2": "FESTO.",
+    "heroSubtitle": "Hikâyeler, semboller ve malzemeler.",
+    "heroDescription": "Renaissance evrenini nesnenin ötesinde keşfet.",
+    "loading": "Yazılar yükleniyor...",
+    "emptyTitle": "İlk yazılar yakında geliyor",
+    "emptyDescription": "Sembollerimiz, malzemelerimiz ve Renaissance evreni üzerine yazılar hazırlıyoruz.",
+    "readArticle": "Yazıyı oku",
+    "newsletterLabel": "Bülten",
+    "newsletterTitle": "Hiçbir şeyi kaçırma.",
+    "newsletterSubtitle": "Yazılarımızı doğrudan al.",
+    "emailPlaceholder": "E-posta adresin",
+    "subscribe": "Kaydol"
+  },
+  "article": {
+    "loading": "Yazı yükleniyor...",
+    "notFoundTitle": "Yazı bulunamadı",
+    "notFoundDescription": "Bu yazı yok ya da silinmiş.",
+    "backToArticles": "Yazılara dön",
+    "label": "Manifesto",
+    "share": "Paylaş",
+    "authorBio": "Renaissance Maison'u tek bir sesle yazar.",
+    "ctaLabel": "Yaratımlarımız",
+    "ctaTitle": "Koleksiyonlarımızı keşfet.",
+    "ctaSubtitle": "Her sembol bir hikâye anlatır.",
+    "ctaButton": "Koleksiyonları gör"
+  },
+  "heroHistoire": {
+    "label": "Hikâyemiz",
+    "title": "UNUTULMUŞ BİR SÖZ.",
+    "subtitle": "Onarmak için tam yerinde.",
+    "description": "Söyleyecek bir şeyi olmayanlar için fazla büyük bir söz. Ama onaracak bir şeyi olanlar için tam yerinde.",
+    "mobileTitle": "Unutulmuş bir söz.",
+    "mobileSubtitle": "Onarmak için tam yerinde.",
+    "mobileDescription": "Söyleyecek bir şeyi olmayanlar için fazla büyük bir söz. Ama onaracak bir şeyi olanlar için tam yerinde."
+  },
+  "fondateursSection": {
+    "label": "Köken",
+    "title": "BİR REDDEDİŞTEN DOĞDU.",
+    "subtitle": "Kalması gerekenin yok olmasına karşı.",
+    "description": "Üç meslek adamı, yıllarca kalitenin geri gidişini gördü. Tersini yapmaya karar verdiler. Bir mevsime değil, bir ömre eşlik eden gözlükler tasarlamaya. Pazarın istemeyi bıraktığını istemeye.\nHer gözlük bu sözü taşır: değiştirilmek için değil, kalmak için düşünülmüş bir nesnenin sözünü.",
+    "mobileDescription": "Üç meslek adamı, yıllarca kalitenin geri gidişini gördü. Tersini yapmaya karar verdiler. Her gözlük bu sözü taşır: değiştirilmek için değil, kalmak için düşünülmüş bir nesnenin sözünü.",
+    "cta": "Yaratımlarımızı keşfet"
+  },
+  "symbolesSection": {
+    "label": "Sembollerimiz",
+    "title": "YEDİ SEMBOL.",
+    "subtitle": "Metale kazınmış.",
+    "description": "Taşıdığın, neye inandığını anlatır.",
+    "symbol1Name": "Trident",
+    "symbol1Subtitle": "Egemenlik",
+    "symbol1Desc": "Dünle, bugünle ve yarınla denge. Kuranın, inşa edenin, süreklinin içine demir atmak.",
+    "symbol2Name": "Fleur de Lys",
+    "symbol2Subtitle": "Ustalık",
+    "symbol2Desc": "Fransız mirası. Devredilen bir elin soyluluğu, sahiplenilen bir kökenin gururu.",
+    "symbol3Name": "Ankh",
+    "symbol3Subtitle": "Sonsuzluk",
+    "symbol3Desc": "Bağlayan nefes. İnşa edenleri sürdürecek olanlara bağlayan.",
+    "symbol4Name": "Scarabée",
+    "symbol4Subtitle": "Yeniden Doğuş",
+    "symbol4Desc": "Geçiş ve dönüşüm. Sınavları aşan, eskisinden güçlü yeniden doğan.",
+    "symbol5Name": "Cobra",
+    "symbol5Subtitle": "Koruma",
+    "symbol5Desc": "Sessiz uyanış. Görülmeden önce gören.",
+    "symbol6Name": "Horus'un Gözü",
+    "symbol6Subtitle": "Berraklık",
+    "symbol6Desc": "Hiç kapanmayan göz. Kırılıp yeniden bütünlenen; başkalarının bakıp da göremediğini görür.",
+    "symbol7Name": "Paris Plakası",
+    "symbol7Subtitle": "Aidiyet",
+    "symbol7Desc": "Altına kazınmış «Avenue de la Renaissance». Hiçbir haritada bulunmayan sokak, herkesin gittiği yere taşıdığı adres."
+  },
+  "signatureSection": {
+    "label": "İmza",
+    "title": "KENDİN İÇİN BİR İŞARET.",
+    "subtitle": "Sadece sen ve bildiğin.",
+    "description": "Sap ucunda. Bir kristal. Bir iğne başından küçük. Yaklaş. Semboller belirir, metale kazınmış. Köprüde, bir numara. Senin için kazınmış. Yalnızca bir kez var olacak. Senin gibi.",
+    "mobileDescription": "Sap ucunda. Bir kristal. Bir iğne başından küçük. Metale kazınmış semboller. Köprüde, tek bir numara. Senin gibi.",
+    "cta": "Yaratımlarımızı keşfet"
+  },
+  "savoirFaireSection": {
+    "label": "Yapım",
+    "title": "KESİNLİĞİN BİR DİSİPLİN OLDUĞU YERDE YAPILDI.",
+    "subtitle": "Fransa, Kore, İtalya.",
+    "description": "Gözlüklerimiz Fransa, Kore ve İtalya arasında, titizliğin bir kültür olduğu atölyelerde hayat bulur. Her yer kendi ustalığını katar: Asya'da titanyumun inceliği, Avrupa'da bitişlerin kesinliği. Partnerlerimizi hızları için değil, titizlikleri için seçiyoruz.",
+    "stat1Value": "18KT",
+    "stat1Label": "Gerçek altın, kaplama",
+    "stat2Value": "Titanyum",
+    "stat2Label": "Hafif, dayanıklı",
+    "stat3Value": "İtalya",
+    "stat3Label": "Mazzucchelli asetat",
+    "mobileStat1Label": "18 ayar altın",
+    "mobileStat2Label": "Titanyum",
+    "mobileStat3Label": "Asetat",
+    "cta": "Atölye"
+  },
+  "valeursSection": {
+    "label": "Değerlerimiz",
+    "title": "DÖRT LİF. BİR TAÇ.",
+    "subtitle": "Pazarlık edilmez.",
+    "valeur1Title": "Sahteyi Reddetmek",
+    "valeur1Desc": "Her sözün, her görüntünün önünde: bu kanıtlıyor mu, yoksa ilan mı ediyor? İlan ediyorsa, keseriz.",
+    "valeur1Keyword": "Gerçek",
+    "valeur2Title": "Ustalık",
+    "valeur2Desc": "Eğilip yerine dönen titanyum. Soyulmayan altın. Kalmak için yapılmamış olan atölyeden çıkmaz.",
+    "valeur2Keyword": "El",
+    "valeur3Title": "Söz",
+    "valeur3Desc": "Yalnızca tutabileceğimizi söz veririz. Asla indirim yok: düşen bir fiyat, geri alınan bir sözdür.",
+    "valeur3Keyword": "Tutulan",
+    "valeur4Title": "Saygı",
+    "valeur4Desc": "Bir insanı sahip olduklarıyla değil, onurlandırdıklarıyla ölçeriz. Görüntülerde de, tezgâhta da.",
+    "valeur4Keyword": "Bakış",
+    "valeur5Title": "Devir",
+    "valeur5Desc": "İyi yapılan onarılır; onarılan saklanır; saklanan devredilir.",
+    "valeur5Keyword": "Taç"
+  },
+  "collectionsSection": {
+    "label": "Koleksiyonlar",
+    "countLabel": "4 Koleksiyon",
+    "title": "Bir maison. Dört koleksiyon. Sıfır tesadüf.",
+    "collection1Name": "Kökenler",
+    "collection1Desc": "Her şeyin başladığı yer. Çizgiler. İmza.",
+    "collection2Name": "Héritage",
+    "collection2Desc": "Trident. Devredilen.",
+    "collection3Name": "Versailles",
+    "collection3Desc": "Fleur de Lys. İnşa edilen.",
+    "collection4Name": "Isis",
+    "collection4Desc": "Ankh, scarabée, göz. 5.000 yılı aşan.",
+    "quote": "Modeller biriktirilmez. Semboller biriktirilir.",
+    "scroll": "Kaydır"
+  },
+  "engagementSection": {
+    "label": "Taahhüdümüz",
+    "title": "İYİ YAPILAN ONARILIR.",
+    "subtitle": "Biz bunu uyguluyoruz.",
+    "description": "Gözlüklerimiz ayarlanmak, bakımı yapılmak, onarılmak için tasarlandı. Çünkü iyi yapılmış bir nesne ikinci bir şansı, çoğu zaman bir üçüncüsünü de hak eder. Garanti bitmiş olsa bile, bize yaz: ne yapabileceğimize tek tek bakarız.",
+    "engagement1Title": "Dayanıklılık",
+    "engagement1Desc": "Büyükannelerimiz eşyalarını saklardı. Anne babalarımız atmaya başladı. Biz seçiyoruz.",
+    "engagement1Stat": "3 yıl",
+    "engagement1StatLabel": "Üretici garantisi",
+    "engagement2Title": "İzlenebilirlik",
+    "engagement2Desc": "Her parçanın bir kökeni var. Fransız tasarımı. Kore yapımı. Sana her şeyi söylüyoruz çünkü saklayacak bir şeyimiz yok.",
+    "engagement2Stat": "2019",
+    "engagement2StatLabel": "Doğuş",
+    "engagement3Title": "Hakkaniyet",
+    "engagement3Desc": "250'den fazla optisyen. Bazıları ilk günden beri. Sözleşmeler değil, ilişkiler kuruyoruz.",
+    "engagement3Stat": "250+",
+    "engagement3StatLabel": "Partner",
+    "cta": "Yaratımlarımızı keşfet"
+  },
+  "ambassadeursSection": {
+    "label": "Elçiler",
+    "rightLabel": "Renaissance takıyorlar",
+    "title": "Renaissance takıyorlar",
+    "description": "Tanıdık yüzler. Farklı yollar. Ortak nokta: kalanı takıyorlar.",
+    "quote": "Renaissance'ı gösteriş için takmıyorlar. Kendilerine benzediği için takıyorlar. Onlar hakkında bir şey söylediği için.",
+    "ambassador1Name": "Sophie Marceau",
+    "ambassador1Role": "Oyuncu ve Yönetmen",
+    "ambassador1Collection": "Héritage Koleksiyonu",
+    "ambassador2Name": "Omar Sy",
+    "ambassador2Role": "Oyuncu ve Yapımcı",
+    "ambassador2Collection": "Versailles Koleksiyonu",
+    "ambassador3Name": "Léa Seydoux",
+    "ambassador3Role": "Oyuncu",
+    "ambassador3Collection": "Isis Koleksiyonu",
+    "ambassador4Name": "Vincent Cassel",
+    "ambassador4Role": "Oyuncu",
+    "ambassador4Collection": "Héritage Koleksiyonu",
+    "ambassador5Name": "Marion Cotillard",
+    "ambassador5Role": "Oyuncu",
+    "ambassador5Collection": "Versailles Koleksiyonu"
+  }
+}
