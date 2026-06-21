@@ -20,6 +20,11 @@ export interface CollectionPageConfig {
   seoUrl: string;
   heroVideo?: string;
   heroPoster?: string;
+  // Variantes mobiles : le hero mobile est une bande horizontale, donc on peut
+  // y servir une vidéo/poster au format paysage même si le desktop est en portrait.
+  // Absents => on retombe sur heroVideo / heroPoster.
+  heroVideoMobile?: string;
+  heroPosterMobile?: string;
 }
 
 interface HeroProps {
@@ -174,8 +179,8 @@ function VideoHero({ heroRef, config, prefix, imageY }: HeroProps) {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
           <video
-            src={config.heroVideo}
-            poster={config.heroPoster || config.heroImage}
+            src={config.heroVideoMobile || config.heroVideo}
+            poster={config.heroPosterMobile || config.heroPoster || config.heroImage}
             autoPlay
             loop
             muted

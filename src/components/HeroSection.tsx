@@ -4,9 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 
-const HERO_VIDEO_DESKTOP = 'https://renaissance-cdn.b-cdn.net/videos/hero-accueil.mp4';
-const HERO_VIDEO_MOBILE = 'https://renaissance-cdn.b-cdn.net/videos/hero-accueil-mobile-v3.mp4';
-const HERO_POSTER = '/hero-poster.webp';
+// Hero accueil = la vidéo TRIO ISIS (21 juin 2026), hébergée sur Bunny CDN (videos/).
+const HERO_VIDEO_DESKTOP = 'https://renaissance-cdn.b-cdn.net/videos/HERO_16_9_ISIS_web.mp4';
+const HERO_VIDEO_MOBILE = 'https://renaissance-cdn.b-cdn.net/videos/HERO_9_16_ISIS_web.mp4';
+const HERO_POSTER = 'https://renaissance-cdn.b-cdn.net/videos/HERO_16_9_ISIS_poster.jpg';
+const HERO_POSTER_MOBILE = 'https://renaissance-cdn.b-cdn.net/videos/HERO_9_16_ISIS_poster.jpg';
 const VIDEO_SPEED = 0.7;
 
 type TransitionPhase = 'video' | 'blackout' | 'shimmer' | 'reveal';
@@ -193,6 +195,7 @@ export default function HeroSection() {
         <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <motion.video
             src={HERO_VIDEO_MOBILE}
+            poster={HERO_POSTER_MOBILE}
             autoPlay
             muted
             loop
