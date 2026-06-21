@@ -1,131 +1,54 @@
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import { useTranslation } from 'react-i18next';
-import CollectionStoryPanel from './CollectionStoryPanel';
+
+const IMAGE = '/home-collections/allframes-1.jpg';
 
 export default function CollectionAllFrames() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
   const navigate = useLocalizedNavigate();
   const { t } = useTranslation('home');
   const [isLoading, setIsLoading] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
-  const textInView = useInView(textRef, { once: true, amount: 0.3 });
 
   const handleNavigate = () => {
     setIsLoading(true);
-    setTimeout(() => {
-      navigate('/shop');
-    }, 300);
+    setTimeout(() => navigate('/shop'), 300);
   };
 
   return (
     <motion.section
       ref={sectionRef}
       style={sectionStyle}
-      className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-50 overflow-hidden"
+      onClick={handleNavigate}
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-50 overflow-hidden bg-[#000000] cursor-pointer group"
+      data-header-theme="dark"
       data-indicator-theme="light"
     >
-      {/* DESKTOP VERSION */}
-      <div className="h-full bg-white hidden md:flex flex-row" data-header-theme="light">
-        <div className="w-full md:w-[62%] h-full relative overflow-hidden" data-header-theme="dark">
-          <motion.img
-            src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
-            alt="Nos créations"
-            style={imageMotionStyle}
-            className="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
-          />
-        </div>
+      <motion.img
+        src={IMAGE}
+        alt={t('allFrames.title')}
+        loading="lazy"
+        style={imageMotionStyle}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+      />
 
-        <CollectionStoryPanel
-          panelRef={textRef}
-          active={textInView}
-          index="04"
-          label={t('allFrames.mobileLabel')}
-          title={t('allFrames.title')}
-          subtitle={t('allFrames.subtitle')}
-          ctaLabel={isLoading ? t('allFrames.loading') : t('allFrames.cta')}
-          onClick={handleNavigate}
-          disabled={isLoading}
-        />
+      {/* voile bas pour tenir le texte, sans noyer l'image (Bible 7.6) */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/60 via-[#000000]/15 to-[#000000]/25 pointer-events-none" />
+
+      <div className="absolute inset-0 flex flex-col items-center justify-end pb-[12%] px-6 pointer-events-none text-center [text-shadow:0_2px_16px_rgba(0,0,0,0.55)]">
+        <span className="font-sans text-[11px] sm:text-[12px] tracking-[0.35em] font-medium uppercase text-white border-b border-white/30 pb-2 transition-colors duration-500 group-hover:border-white/60">
+          {isLoading ? t('allFrames.loading') : t('allFrames.mobileLabel')}
+        </span>
       </div>
 
-      {/* MOBILE — Éditorial luxe */}
-      <div className="md:hidden relative h-full bg-[#000000] overflow-hidden" onClick={handleNavigate} data-header-theme="dark">
-        <motion.div className="absolute inset-0" style={imageMotionStyle}>
-          <img
-            src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
-            alt="Nos créations"
-            className="w-full h-full object-cover object-[center_35%]"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]/60" />
-        </motion.div>
-
-        <div className="relative h-full flex flex-col justify-end px-7 pb-14">
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-sans text-white/40 text-[8px] tracking-[0.5em] uppercase font-medium mb-4"
-          >
-            {t('allFrames.mobileLabel')}
-          </motion.p>
-
-          <motion.h3
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.9, delay: 0.35 }}
-            className="font-display text-[2.6rem] sm:text-5xl font-bold text-white tracking-[-0.04em] leading-[0.88] mb-2"
-          >
-            {t('allFrames.mobileTitle')}
-          </motion.h3>
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.9, delay: 0.5 }}
-            className="font-display text-[2.6rem] sm:text-5xl font-light italic text-white/80 tracking-[-0.04em] leading-[0.88]"
-          >
-            {t('allFrames.mobileSubtitle')}
-          </motion.p>
-
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="w-10 h-px bg-white/25 origin-left mt-5 mb-5"
-          />
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex items-center gap-5"
-          >
-            <span className="font-display text-[13px] italic text-white/70 tracking-[-0.01em]">
-              {isLoading ? '...' : t('allFrames.mobileCta')}
-            </span>
-            <span className="w-px h-3 bg-white/[0.15]" />
-            <span className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/[0.35] font-medium">
-              {t('allFrames.mobileTag')}
-            </span>
-          </motion.div>
+      {isLoading && (
+        <div className="absolute inset-0 bg-[#000000]/90 flex items-center justify-center z-10">
+          <div className="w-10 h-10 border border-bronze/30 border-t-bronze rounded-full animate-spin" />
         </div>
-
-        {isLoading && (
-          <div className="absolute inset-0 bg-[#000000]/90 flex items-center justify-center z-10">
-            <div className="w-8 h-8 border border-bronze/30 border-t-bronze rounded-full animate-spin" />
-          </div>
-        )}
-      </div>
+      )}
     </motion.section>
   );
 }

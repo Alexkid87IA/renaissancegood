@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import HeroSection from '../components/HeroSection';
-import CollectionHeritage from '../components/CollectionHeritage';
-import CollectionVersailles from '../components/CollectionVersailles';
-import CollectionIsis from '../components/CollectionIsis';
+import CollectionTriptych from '../components/CollectionTriptych';
 import CollectionAllFrames from '../components/CollectionAllFrames';
 import HistoireSection from '../components/HistoireSection';
 import TryInStoreSection from '../components/TryInStoreSection';
@@ -11,18 +9,6 @@ import FabricationSection from '../components/FabricationSection';
 import ReassuranceSection from '../components/ReassuranceSection';
 import SEO from '../components/SEO';
 import { useSectionSnap } from '../hooks/useSectionSnap';
-
-function MobileDivider() {
-  return (
-    <div className="lg:hidden relative py-6 bg-[#000000]">
-      <div className="flex items-center gap-4 px-7">
-        <div className="flex-1 h-px bg-white/[0.15]" />
-        <div className="w-1.5 h-1.5 bg-bronze/60 rotate-45" />
-        <div className="flex-1 h-px bg-white/[0.15]" />
-      </div>
-    </div>
-  );
-}
 
 export default function HomePage() {
   const { t } = useTranslation('home');
@@ -47,21 +33,11 @@ export default function HomePage() {
         url="/"
       />
       <HeroSection />
-      <MobileDivider />
-      <CollectionHeritage />
-      <MobileDivider />
-      <CollectionVersailles />
-      <MobileDivider />
-      <CollectionIsis />
-      <MobileDivider />
+      <CollectionTriptych />
       <CollectionAllFrames />
-      <MobileDivider />
       <TryInStoreSection />
-      <MobileDivider />
       <HistoireSection />
-      <MobileDivider />
       <FabricationSection />
-      <MobileDivider />
       <ReassuranceSection />
     </>
   );

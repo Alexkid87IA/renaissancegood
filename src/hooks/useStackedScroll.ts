@@ -15,10 +15,14 @@ function useIsDesktop() {
   return desktop;
 }
 
-export function useStackedScroll(ref: RefObject<HTMLElement>) {
+export function useStackedScroll(
+  ref: RefObject<HTMLElement>,
+  mode: 'desktop' | 'mobile' = 'desktop'
+) {
   const isDesktop = useIsDesktop();
   const reducedMotion = useReducedMotion();
-  const active = isDesktop && !reducedMotion;
+  const inViewport = mode === 'mobile' ? !isDesktop : isDesktop;
+  const active = inViewport && !reducedMotion;
 
   const { scrollYProgress: exitProgress } = useScroll({
     target: ref,

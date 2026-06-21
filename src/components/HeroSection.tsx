@@ -7,8 +7,9 @@ import { useStackedScroll } from '../hooks/useStackedScroll';
 // Hero accueil = la vidéo TRIO ISIS (21 juin 2026), hébergée sur Bunny CDN (videos/).
 const HERO_VIDEO_DESKTOP = 'https://renaissance-cdn.b-cdn.net/videos/HERO_16_9_ISIS_web.mp4';
 const HERO_VIDEO_MOBILE = 'https://renaissance-cdn.b-cdn.net/videos/HERO_9_16_ISIS_web.mp4';
-const HERO_POSTER = 'https://renaissance-cdn.b-cdn.net/videos/HERO_16_9_ISIS_poster.jpg';
-const HERO_POSTER_MOBILE = 'https://renaissance-cdn.b-cdn.net/videos/HERO_9_16_ISIS_poster.jpg';
+// Posters HD (21 juin 2026) : photo trio ISIS pleine résolution, remplace la frame vidéo basse def.
+const HERO_POSTER = 'https://renaissance-cdn.b-cdn.net/videos/HERO_16_9_ISIS_poster_v2.jpg';
+const HERO_POSTER_MOBILE = 'https://renaissance-cdn.b-cdn.net/videos/HERO_9_16_ISIS_poster_v2.jpg';
 const VIDEO_SPEED = 0.7;
 
 type TransitionPhase = 'video' | 'blackout' | 'shimmer' | 'reveal';
@@ -52,6 +53,7 @@ export default function HeroSection() {
   const slowConnection = useSlowConnection();
 
   const [phase, setPhase] = useState<TransitionPhase>('video');
+  const [mobileEnded, setMobileEnded] = useState(false);
   const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
 
   useEffect(() => {
@@ -60,19 +62,21 @@ export default function HeroSection() {
     const videos = section.querySelectorAll<HTMLVideoElement>('video');
     videos.forEach((v) => {
       v.playbackRate = VIDEO_SPEED;
-      v.onended = () => {
-        setPhase('blackout');
-        setTimeout(() => setPhase('shimmer'), 1200);
-        setTimeout(() => setPhase('reveal'), 2800);
-      };
     });
   }, [slowConnection]);
+
+  // Desktop : la vidéo joue une fois puis enchaîne la transition cinématique vers le poster.
+  const handleDesktopEnded = () => {
+    setPhase('blackout');
+    setTimeout(() => setPhase('shimmer'), 1200);
+    setTimeout(() => setPhase('reveal'), 2800);
+  };
 
   return (
     <motion.section
       ref={sectionRef}
       style={sectionStyle}
-      className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-10"
+      className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-10"
       data-header-theme="dark"
     >
       {/* DESKTOP VERSION */}
@@ -92,6 +96,7 @@ export default function HeroSection() {
             muted
             playsInline
             preload="metadata"
+            onEnded={handleDesktopEnded}
             style={imageMotionStyle}
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
@@ -198,14 +203,27 @@ export default function HeroSection() {
             poster={HERO_POSTER_MOBILE}
             autoPlay
             muted
-            loop
             playsInline
             preload="metadata"
+            onEnded={() => setMobileEnded(true)}
             className="w-full h-full object-cover object-[center_30%]"
             initial={{ scale: 1.03 }}
             animate={{ scale: 1 }}
             transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
           />
+          {/* La vidéo joue une fois, puis se fige sur le poster HD (comme desktop). */}
+          <AnimatePresence>
+            {mobileEnded && (
+              <motion.img
+                src={HERO_POSTER_MOBILE}
+                alt="Renaissance Eyewear"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0 w-full h-full object-cover object-[center_30%]"
+              />
+            )}
+          </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-[#000000]/70 to-transparent" />
         </motion.div>
