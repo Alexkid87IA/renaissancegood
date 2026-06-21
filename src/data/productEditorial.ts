@@ -201,20 +201,27 @@ export const COLLECTIONS: Record<CollectionId, Collection> = {
   },
   versailles: {
     nom: 'Versailles',
-    // BROUILLON 2026-06-20 (à valider) — dérivé de la Bible 8.3 (fleur de lys,
-    // MAÎTRISE, l'encadré « Personne ne nous a faits nobles. On a appris le geste »).
+    // VALIDÉ 2026-06-21 (Yassin) — fleur de lys (Bible 8.3). Reformulé pour
+    // retirer l'implication « fabrication française » : les montures sont
+    // produites en Corée (fait assumé, cf. titane). La frenchité reste portée
+    // par le symbole (la fleur de France) et la posture « on a appris le geste »,
+    // jamais par un atelier français.
     recit:
-      "Versailles n'est pas un trône, c'est un atelier. La Fleur de lys y dit " +
-      "la maîtrise française : la noblesse d'un geste transmis, jamais un titre " +
-      "reçu. Personne ne nous a faits nobles. On a appris le geste.",
+      'La fleur de France, sans le trône. Sur nos montures, elle ne dit pas ' +
+      "un rang reçu : trois pétales, une seule attache, le lien qu'on choisit. " +
+      'Personne ne nous a faits nobles. On a appris le geste.',
   },
   isis: {
     nom: 'Isis',
-    // BROUILLON 2026-06-21 (à valider) — chapitre égyptien (Bible 8.4 à 8.7).
+    // VALIDÉ 2026-06-21 (Yassin) — chapitre égyptien (Bible 8.4 à 8.7). Mapping
+    // des 4 étendards dans l'ordre : relie=ankh, renaît=scarabée, veille=cobra,
+    // voit=œil d'Horus. Chute = thème survivance (Bible 8.9). « Une civilisation »
+    // plutôt que « L'Égypte » nommée (décision Yassin).
     recit:
-      "Isis rassemble les signes de l'Égypte : l'ankh, le scarabée, le cobra, " +
-      "l'œil d'Horus. Sculptés dans le métal, ils disent ce qui traverse le " +
-      'temps, se protège et renaît.',
+      "Une civilisation s'efface, ses signes tiennent encore. Isis réunit les " +
+      "quatre : l'ankh, le scarabée, le cobra, l'œil d'Horus. Sculptés dans le " +
+      'métal, ils disent ce qui relie, ce qui renaît, ce qui veille, ce qui ' +
+      'voit. Ce qui traverse le temps.',
   },
 };
 
@@ -239,7 +246,7 @@ export const SYMBOLES: Record<SymboleId, Symbole> = {
     nom: 'La Fleur de lys',
     etendard: 'Maîtrise',
     definition:
-      "L'héritage français. La noblesse d'un geste transmis, la fierté d'une origine assumée.",
+      "La fleur de France. La noblesse n'est pas dans le sang, mais dans la main : on la reconnaît à ce qu'un homme sait faire, jamais à d'où il vient.",
     // Bible 8.3, repris pour la fiche XXXVII (2026-06-20).
     deuxLectures:
       'La mémoire y lit la fleur de France, celle des ateliers qui ' +
@@ -1731,6 +1738,12 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
     "collections": {
       "heritage": {
         "recit": "What comes before us builds us. Héritage gathers the frames that carry the Trident. Shapes that pass through trends without ever bowing to them."
+      },
+      "versailles": {
+        "recit": "The flower of France, without the throne. On our frames it speaks no rank handed down: three petals, one fastening, the bond you choose. No one made us noble. We learned the gesture."
+      },
+      "isis": {
+        "recit": "A civilisation fades, its signs still hold. Isis brings the four together: the ankh, the scarab, the cobra, the Eye of Horus. Cut into the metal, they say what binds, what is reborn, what watches, what sees. What crosses time."
       }
     },
     "symboles": {
@@ -1989,6 +2002,12 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
     "collections": {
       "heritage": {
         "recit": "Was uns vorausgeht, baut uns. Héritage versammelt die Fassungen, die den Dreizack tragen. Formen, die durch die Moden gehen, ohne sich ihnen je zu beugen."
+      },
+      "versailles": {
+        "recit": "Die Blume Frankreichs, ohne den Thron. Auf unseren Fassungen spricht sie nicht von einem ererbten Rang: drei Blütenblätter, ein einziger Halt, das Band, das man wählt. Niemand hat uns adelig gemacht. Wir haben die Geste gelernt."
+      },
+      "isis": {
+        "recit": "Eine Zivilisation verlischt, ihre Zeichen halten noch. Isis vereint die vier: das Ankh, den Skarabäus, die Kobra, das Auge des Horus. Ins Metall gearbeitet, sagen sie, was verbindet, was wiederkehrt, was wacht, was sieht. Was die Zeit durchquert."
       }
     },
     "symboles": {
@@ -2247,6 +2266,12 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
     "collections": {
       "heritage": {
         "recit": "Lo que nos precede nos construye. Héritage reúne las monturas que llevan el Tridente. Formas que atraviesan las modas sin someterse nunca a ellas."
+      },
+      "versailles": {
+        "recit": "La flor de Francia, sin el trono. En nuestras monturas no dice un rango recibido: tres pétalos, un solo amarre, el lazo que uno elige. Nadie nos hizo nobles. Aprendimos el gesto."
+      },
+      "isis": {
+        "recit": "Una civilización se borra, sus signos aún resisten. Isis reúne los cuatro: el ankh, el escarabajo, el cobra, el ojo de Horus. Esculpidos en el metal, dicen lo que une, lo que renace, lo que vela, lo que ve. Lo que atraviesa el tiempo."
       }
     },
     "symboles": {
@@ -2505,6 +2530,12 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
     "collections": {
       "heritage": {
         "recit": "Ciò che ci precede ci costruisce. Héritage riunisce le montature che portano il Tridente. Forme che attraversano le mode senza mai piegarsi."
+      },
+      "versailles": {
+        "recit": "Il fiore di Francia, senza il trono. Sulle nostre montature non dice un rango ricevuto: tre petali, un solo aggancio, il legame che si sceglie. Nessuno ci ha fatti nobili. Abbiamo imparato il gesto."
+      },
+      "isis": {
+        "recit": "Una civiltà si cancella, i suoi segni reggono ancora. Isis riunisce i quattro: l'ankh, lo scarabeo, il cobra, l'occhio di Horus. Scolpiti nel metallo, dicono ciò che lega, ciò che rinasce, ciò che veglia, ciò che vede. Ciò che attraversa il tempo."
       }
     },
     "symboles": {
@@ -2763,6 +2794,12 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
     "collections": {
       "heritage": {
         "recit": "То, что было до нас, строит нас. Héritage собирает оправы, несущие Трезубец. Формы, которые проходят сквозь моду и никогда ей не подчиняются."
+      },
+      "versailles": {
+        "recit": "Цветок Франции, без трона. На наших оправах он говорит не о полученном звании: три лепестка, одно крепление, связь, которую выбирают. Никто не делал нас знатными. Мы выучили жест."
+      },
+      "isis": {
+        "recit": "Цивилизация стирается, её знаки держатся ещё. Isis собирает четыре: анх, скарабей, кобра, око Гора. Высеченные в металле, они говорят о том, что связывает, что возрождается, что бережёт, что видит. О том, что проходит сквозь время."
       }
     },
     "symboles": {
@@ -3016,6 +3053,17 @@ export const TRANSLATIONS: Partial<Record<Exclude<Lang, 'fr'>, EditorialTranslat
         "legende": "Fleur de lys menteşeyi yapar ve camı tutar.",
         "description": "Fleur de lys camı tutar. Her uçta bir tane, metale oyulmuş, sapı eklemler ve camı taşır. Rimless. Camın altı yüzlerle kesilmiş, ışık üstüne tutunur.",
         "morphologie": "Orta ve geniş yüzler için."
+      }
+    },
+    "collections": {
+      "heritage": {
+        "recit": "Bizden önce gelen, bizi kuran. Héritage, Trident taşıyan çerçeveleri bir araya getirir. Modaların içinden geçen, ama hiçbirine boyun eğmeyen hatlar."
+      },
+      "versailles": {
+        "recit": "Fransa'nın çiçeği, tahtsız. Çerçevelerimizde, alınmış bir unvanı söylemez: üç yaprak, tek bir bağ, seçtiğin bağ. Kimse bizi soylu doğurmadı. O eli öğrendik."
+      },
+      "isis": {
+        "recit": "Bir uygarlık silinir, işaretleri hâlâ ayakta. Isis dördünü bir araya getirir: Ankh, scarabée, cobra, Œil d'Horus. Metale oyulmuş, bağlayanı söylerler, yeniden doğanı, gözeteni, göreni. Zamanı aşanı."
       }
     }
   },

@@ -5,14 +5,14 @@ import { useRef, useState } from 'react';
 const symbols = [
   {
     name: 'Le Trident',
-    subtitle: 'Pouvoir',
+    subtitle: 'Souveraineté',
     description: "L'équilibre entre hier, aujourd'hui et demain. L'ancrage dans ce qui fonde, ce qui construit, ce qui perdure.",
     image: 'https://renaissance-cdn.b-cdn.net/TRIDENT%20SYMBOL.png'
   },
   {
     name: 'La Fleur de Lys',
-    subtitle: 'Exigence',
-    description: "L'héritage français. La noblesse d'un geste transmis, la fierté d'une origine assumée.",
+    subtitle: 'Maîtrise',
+    description: "La fleur de France. La noblesse n'est pas dans le sang, mais dans la main : on la reconnaît à ce qu'un homme sait faire, jamais à d'où il vient.",
     image: 'https://renaissance-cdn.b-cdn.net/FLEUR%20DE%20LYS%20SYMBOL.png'
   },
   {
