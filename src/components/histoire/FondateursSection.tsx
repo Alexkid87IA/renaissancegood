@@ -35,7 +35,6 @@ export default function FondateursSection() {
               {t('fondateursSection.subtitle')}
             </motion.p>
 
-            <motion.div variants={fade} className="w-12 h-px bg-dark-text/[0.15] mb-6" />
 
             <motion.p variants={fade} className="font-sans text-dark-text/50 text-[13px] md:text-sm leading-[1.75] font-light mb-8 xl:mb-10">
               {t('fondateursSection.description')}
@@ -43,7 +42,7 @@ export default function FondateursSection() {
 
             <motion.div variants={fade}>
               <LocaleLink to="/shop">
-                <button className="group relative overflow-hidden border border-dark-text px-10 py-4 transition-all duration-500">
+                <button className="group relative overflow-hidden rounded-2xl border border-dark-text/[0.45] px-9 py-4 transition-all duration-500">
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text group-hover:text-beige transition-colors duration-500">
                     {t('fondateursSection.cta')}
                   </span>
@@ -56,7 +55,7 @@ export default function FondateursSection() {
 
         <div className="w-full md:w-1/2 h-full relative overflow-hidden group">
           <img
-            src="https://26.staticbtf.eno.do/v1/106-default/95a5f4f8ed2bc82a4fe05bac8a7efdff/media.jpg"
+            src="https://renaissance-cdn.b-cdn.net/fondateurs.webp"
             alt="Les 3 fondateurs de Renaissance"
             loading="lazy"
             className="w-full h-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.03] group-hover:brightness-[1.05]"
@@ -69,7 +68,7 @@ export default function FondateursSection() {
       {/* MOBILE */}
       <div className="h-screen md:hidden relative overflow-hidden">
         <img
-          src="https://26.staticbtf.eno.do/v1/106-default/95a5f4f8ed2bc82a4fe05bac8a7efdff/media.jpg"
+          src="https://renaissance-cdn.b-cdn.net/fondateurs.webp"
           alt="Les 3 fondateurs de Renaissance"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -96,11 +95,8 @@ export default function FondateursSection() {
               {t('fondateursSection.mobileDescription')}
             </p>
             <LocaleLink to="/shop" className="block">
-              <button className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[9px] tracking-[0.25em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]">
+              <button className="inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-7 py-3 font-sans text-[9px] tracking-[0.24em] font-medium uppercase text-white active:bg-white active:text-[#0a0a0a] transition-colors duration-300">
                 <span>{t('fondateursSection.cta')}</span>
-                <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
               </button>
             </LocaleLink>
           </motion.div>

@@ -9,7 +9,7 @@ export default function CollectionsThemesSection() {
     {
       name: t('collectionsSection.collection1Name'),
       description: t('collectionsSection.collection1Desc'),
-      image: 'https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png'
+      image: 'https://renaissance-cdn.b-cdn.net/campagne-trident.webp'
     },
     {
       name: t('collectionsSection.collection2Name'),

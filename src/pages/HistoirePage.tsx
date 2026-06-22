@@ -27,7 +27,7 @@ export default function HistoirePage() {
     };
   }, [isDesktop]);
 
-  // Défilement vers la section ciblée par l'ancre (#savoir-faire, #symboles) ;
+  // Défilement vers la section ciblée par l'ancre (#fabrication, #symboles) ;
   // sinon, retour en haut de page comme avant. Plusieurs tentatives échelonnées
   // pour rattraper le reflow (chargement de la page lazy + images des sections).
   useEffect(() => {

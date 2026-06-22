@@ -9,12 +9,12 @@ export default function SavoirFaireSection() {
   const contentInView = useInView(contentRef, { once: true, amount: 0.28 });
 
   return (
-    <motion.section id="savoir-faire" className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-30 bg-[#000000] overflow-hidden">
+    <motion.section id="fabrication" className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-30 bg-[#000000] overflow-hidden">
       {/* DESKTOP */}
       <div className="hidden md:flex h-full bg-[#000000]">
         <div className="w-[46%] h-full relative overflow-hidden">
           <img
-            src="https://renaissance-cdn.b-cdn.net/atelier.png"
+            src="https://renaissance-cdn.b-cdn.net/atelier.webp"
             alt="Atelier de fabrication Renaissance"
             className="w-full h-full object-cover"
             loading="lazy"
@@ -32,7 +32,6 @@ export default function SavoirFaireSection() {
         >
           <div className="w-full max-w-[43rem]">
             <motion.div variants={fade} className="flex items-center gap-5 mb-6">
-              <span className="h-px w-14 bg-bronze/[0.55]" />
               <p className="font-sans text-bronze/[0.65] text-[9px] tracking-[0.42em] font-medium uppercase">
                 {t('savoirFaireSection.label')}
               </p>
@@ -70,7 +69,7 @@ export default function SavoirFaireSection() {
       {/* MOBILE */}
       <div className="h-screen md:hidden relative overflow-hidden">
         <img
-          src="https://renaissance-cdn.b-cdn.net/atelier.png"
+          src="https://renaissance-cdn.b-cdn.net/atelier.webp"
           alt="Atelier de fabrication Renaissance"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"

@@ -36,7 +36,7 @@ export default function EngagementSection() {
       <div className="hidden md:flex h-full bg-[#000000]">
         <div className="w-[46%] h-full relative overflow-hidden">
           <img
-            src="https://renaissance-cdn.b-cdn.net/portrait.png"
+            src="https://renaissance-cdn.b-cdn.net/portrait.webp"
             alt="Renaissance Eyewear - Engagement"
             className="w-full h-full object-cover object-center"
             loading="lazy"
@@ -54,7 +54,6 @@ export default function EngagementSection() {
         >
           <div className="w-full max-w-[43rem]">
             <motion.div variants={fade} className="flex items-center gap-5 mb-6">
-              <span className="h-px w-14 bg-bronze/[0.55]" />
               <p className="font-sans text-bronze/[0.65] text-[9px] tracking-[0.42em] font-medium uppercase">
                 {t('engagementSection.label')}
               </p>
@@ -86,11 +85,11 @@ export default function EngagementSection() {
 
             <motion.div variants={fade}>
               <LocaleLink to="/shop">
-                <button className="group relative overflow-hidden border border-white/[0.18] px-10 py-4 transition-all duration-500 hover:border-bronze/60">
-                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                <button className="group relative overflow-hidden rounded-2xl border border-white/[0.55] px-9 py-4 transition-all duration-500">
+                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white group-hover:text-[#0a0a0a] transition-colors duration-500">
                     {t('engagementSection.cta')}
                   </span>
-                  <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </button>
               </LocaleLink>
             </motion.div>
@@ -101,7 +100,7 @@ export default function EngagementSection() {
       {/* MOBILE */}
       <div className="h-screen md:hidden relative overflow-hidden">
         <img
-          src="https://renaissance-cdn.b-cdn.net/portrait.png"
+          src="https://renaissance-cdn.b-cdn.net/portrait.webp"
           alt="Renaissance Eyewear - Engagement"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
@@ -139,11 +138,8 @@ export default function EngagementSection() {
             </div>
 
             <LocaleLink to="/shop" className="block w-full">
-              <button className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[9px] tracking-[0.25em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]">
+              <button className="inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-7 py-3 font-sans text-[9px] tracking-[0.24em] font-medium uppercase text-white active:bg-white active:text-[#0a0a0a] transition-colors duration-300">
                 <span>{t('engagementSection.cta')}</span>
-                <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
               </button>
             </LocaleLink>
           </motion.div>

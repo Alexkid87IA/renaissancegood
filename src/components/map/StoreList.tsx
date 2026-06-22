@@ -81,13 +81,13 @@ export default function StoreList({ stores, selectedStore, onSelectStore, search
               )}
 
               {/* Actions */}
-              <div className="flex gap-2 mt-4 pt-4 border-t border-dark-text/[0.08]">
+              <div className="flex gap-2 mt-4 justify-end">
                 <a
                   href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.fullAddress)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="group/btn relative overflow-hidden rounded-xl flex-1 flex items-center justify-center gap-2 px-4 py-2.5 border border-dark-text/[0.15] transition-all duration-500 hover:border-dark-text"
+                  className="group/btn relative overflow-hidden rounded-xl inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-dark-text/[0.15] transition-all duration-500 hover:border-dark-text"
                 >
                   <ExternalLink className="w-3.5 h-3.5 relative z-10 transition-colors duration-500 group-hover/btn:text-white" />
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.2em] font-medium uppercase transition-colors duration-500 group-hover/btn:text-white">

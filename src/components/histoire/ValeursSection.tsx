@@ -37,7 +37,7 @@ export default function ValeursSection() {
       {/* DESKTOP */}
       <div className="hidden md:block h-full relative bg-[#000000]">
         <img
-          src="https://renaissance-cdn.b-cdn.net/campgane.png"
+          src="https://renaissance-cdn.b-cdn.net/campagne-valeurs.webp"
           alt="Campagne Renaissance - Nos valeurs"
           className="absolute inset-0 h-full w-full object-cover opacity-45"
           loading="lazy"
@@ -50,7 +50,6 @@ export default function ValeursSection() {
           <div className="grid w-full grid-cols-[0.92fr_1.08fr] items-start gap-12 xl:gap-16">
             <div className="max-w-[33rem] pt-3">
               <div className="flex items-center gap-5 mb-6">
-              <span className="h-px w-14 bg-bronze/[0.55]" />
               <p className="font-sans text-bronze/[0.65] text-[9px] tracking-[0.42em] font-medium uppercase">
                 {t('valeursSection.label')}
               </p>
@@ -93,8 +92,8 @@ export default function ValeursSection() {
       {/* MOBILE */}
       <div className="h-screen md:hidden relative overflow-hidden">
         <img
-          src="https://renaissance-cdn.b-cdn.net/campgane.png"
-          alt="Campagne Renaissance"
+          src="https://renaissance-cdn.b-cdn.net/campagne-valeurs.webp"
+          alt="Renaissance - Né d'un refus"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />

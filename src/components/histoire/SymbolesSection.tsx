@@ -41,13 +41,13 @@ export default function SymbolesSection() {
       name: t('symbolesSection.symbol6Name'),
       subtitle: t('symbolesSection.symbol6Subtitle'),
       description: t('symbolesSection.symbol6Desc'),
-      image: 'https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png'
+      image: 'https://renaissance-cdn.b-cdn.net/symboles-bg.webp'
     },
     {
       name: t('symbolesSection.symbol7Name'),
       subtitle: t('symbolesSection.symbol7Subtitle'),
       description: t('symbolesSection.symbol7Desc'),
-      image: 'https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png'
+      image: 'https://renaissance-cdn.b-cdn.net/symboles-bg.webp'
     }
   ];
   const contentRef = useRef<HTMLDivElement>(null);
@@ -81,7 +81,6 @@ export default function SymbolesSection() {
               {t('symbolesSection.subtitle')}
             </motion.p>
 
-            <motion.div variants={fade} className="w-12 h-px bg-dark-text/[0.15] mb-6" />
 
             <motion.p variants={fade} className="font-sans text-dark-text/50 text-[13px] md:text-sm leading-[1.75] font-light mb-7">
               {t('symbolesSection.description')}
@@ -121,7 +120,7 @@ export default function SymbolesSection() {
 
         <div className="w-full md:w-1/2 h-full relative overflow-hidden" data-header-theme="dark">
           <img
-            src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
+            src="https://renaissance-cdn.b-cdn.net/symboles-bg.webp"
             alt="Renaissance Eyewear · Symboles"
             className="w-full h-full object-cover"
             loading="lazy"
@@ -133,7 +132,7 @@ export default function SymbolesSection() {
       {/* MOBILE */}
       <div className="h-screen md:hidden relative overflow-hidden" data-header-theme="dark">
         <img
-          src="https://renaissance-cdn.b-cdn.net/96a1a738-99de-4d9e-854e-cd8bf2a06b5f.png"
+          src="https://renaissance-cdn.b-cdn.net/symboles-bg.webp"
           alt="Renaissance Eyewear · Symboles"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"

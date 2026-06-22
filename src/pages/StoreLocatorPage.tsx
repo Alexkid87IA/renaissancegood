@@ -192,17 +192,11 @@ export default function StoreLocatorPage() {
       />
 
       {/* HERO — Split éditorial */}
-      <div className="h-[100dvh] lg:h-screen relative overflow-hidden">
+      <div className="h-[100dvh] lg:h-screen relative overflow-hidden" data-header-theme="dark">
         {/* DESKTOP */}
         <div className="relative h-full overflow-hidden hidden lg:flex">
           {/* Left Panel — Content */}
           <div className="w-[42%] bg-[#000000] relative flex flex-col justify-center px-12 xl:px-20 2xl:px-28">
-            {/* Top label */}
-            <div className="absolute top-10 left-12 xl:left-20 2xl:left-28">
-              <p className="font-sans text-bronze/[0.68] text-[9px] tracking-[0.4em] font-medium uppercase">
-                {t('storeLocatorPage.hero.label')}
-              </p>
-            </div>
 
             <motion.div
               ref={contentRef}
@@ -286,16 +280,6 @@ export default function StoreLocatorPage() {
               fetchpriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]" />
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="absolute top-24 left-6"
-            >
-              <p className="text-white/50 text-[9px] tracking-[0.3em] uppercase font-sans font-medium">
-                {t('storeLocatorPage.hero.label')}
-              </p>
-            </motion.div>
           </div>
 
           {/* Content bottom */}

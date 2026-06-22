@@ -1,7 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ChevronDown } from 'lucide-react';
 import { stagger, fade } from './shared';
 
 export default function HeroHistoireSection() {
@@ -14,7 +13,7 @@ export default function HeroHistoireSection() {
       {/* DESKTOP */}
       <div className="relative h-full overflow-hidden hidden lg:block">
         <img
-          src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
+          src="https://renaissance-cdn.b-cdn.net/campagne-trident.webp"
           alt="Renaissance Eyewear - Notre Histoire"
           className="absolute inset-0 w-full h-full object-cover object-[center_42%]"
           fetchpriority="high"
@@ -42,7 +41,6 @@ export default function HeroHistoireSection() {
             </motion.h1>
 
             <motion.div variants={fade} className="flex items-start gap-8 max-w-3xl">
-              <span className="mt-3 h-px w-16 shrink-0 bg-bronze/[0.55]" />
               <p className="font-sans text-white/[0.68] text-sm xl:text-base leading-[1.9] font-light">
                 {t('heroHistoire.description')}
               </p>
@@ -55,7 +53,7 @@ export default function HeroHistoireSection() {
       <div className="relative h-full overflow-hidden lg:hidden">
         <div className="absolute inset-0">
           <img
-            src="https://renaissance-cdn.b-cdn.net/PHOTO%20CAMPAGNE%20TRIDENT.png"
+            src="https://renaissance-cdn.b-cdn.net/campagne-trident.webp"
             alt="Renaissance Eyewear - Notre Histoire"
             className="w-full h-full object-cover object-[center_30%]"
             fetchpriority="high"
@@ -83,20 +81,6 @@ export default function HeroHistoireSection() {
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex-shrink-0"
-          >
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              className="flex justify-center"
-            >
-              <ChevronDown className="w-5 h-5 text-white/60" strokeWidth={1.5} />
-            </motion.div>
-          </motion.div>
         </div>
       </div>
     </motion.section>

@@ -12,7 +12,7 @@
   "savoirFaire": {
     "label": "L'atelier",
     "title": "NOTRE\nFABRICATION",
-    "description": "Chaque monture prend forme entre Paris, la Corée et l'Italie. On ne produit pas vite. On produit juste."
+    "description": "Dessinées à Paris, fabriquées en Corée, l'acétate vient d'Italie. On ne produit pas vite. On produit juste."
   },
   "fondateurs": {
     "label": "Les fondateurs",
@@ -41,12 +41,12 @@
   },
   "page": {
     "histoire": {
-      "seoTitle": "Notre Histoire",
-      "seoDescription": "Née en 2019 d'un refus : celui de voir disparaître ce qui doit durer. Trois hommes du métier, frères par choix. Ce qui se porte. Ce qui se transmet."
+      "seoTitle": "Notre Histoire — Lunetterie Renaissance, Paris",
+      "seoDescription": "Renaissance, maison française de lunetterie née en 2019 d'un refus. Montures titane plaquées or 18KT, dessinées à Paris. Trois hommes du métier, frères par choix : ce qui se porte, ce qui se transmet."
     },
     "savoirFaire": {
       "seoTitle": "L'atelier",
-      "seoDescription": "L'atelier Renaissance Eyewear : dessiné à Paris, fabriqué entre Paris, la Corée et l'Italie. Titane plaqué or 18KT, acétate Mazzucchelli."
+      "seoDescription": "L'atelier Renaissance Eyewear : dessiné à Paris, fabriqué en Corée, acétate d'Italie. Titane plaqué or 18KT, acétate Mazzucchelli."
     },
     "manifeste": {
       "seoTitle": "Manifeste",
@@ -90,9 +90,9 @@
   },
   "heroHistoire": {
     "label": "Notre Histoire",
-    "title": "UN MOT OUBLIÉ.",
-    "subtitle": "Parfait pour restaurer.",
-    "description": "Un mot trop grand pour ceux qui n'ont rien à dire. Mais parfait pour ceux qui ont quelque chose à restaurer.",
+    "title": "Le temps fait le tri.",
+    "subtitle": "On l'a choisi comme juge.",
+    "description": "Le monde va vite, il jette, il recommence. On a choisi l'inverse : des montures faites pour durer, et passer d'une main à l'autre. Ce qui est bien fait, le temps le garde.",
     "mobileTitle": "Un mot oublié.",
     "mobileSubtitle": "Parfait pour restaurer.",
     "mobileDescription": "Un mot trop grand pour ceux qui n'ont rien à dire. Mais parfait pour ceux qui ont quelque chose à restaurer."
@@ -143,8 +143,8 @@
   "savoirFaireSection": {
     "label": "Fabrication",
     "title": "FABRIQUÉES LÀ OÙ LA PRÉCISION EST UNE DISCIPLINE.",
-    "subtitle": "France, Corée, Italie.",
-    "description": "Nos montures prennent vie entre la France, la Corée et l'Italie, dans des manufactures où la rigueur est une culture. Chaque lieu apporte sa maîtrise : la finesse du titane en Asie, la précision des finitions en Europe. Nous choisissons nos partenaires pour leur exigence, pas pour leur rapidité.",
+    "subtitle": "Paris, Corée, Italie.",
+    "description": "Dessinées à Paris, fabriquées en Corée, l'acétate vient d'Italie. On ne produit pas vite. On produit juste.",
     "stat1Value": "18KT",
     "stat1Label": "Or véritable, plaqué",
     "stat2Value": "Titane",

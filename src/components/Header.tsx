@@ -43,7 +43,7 @@ const LOGO_LIGHT = 'https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%
 
 // Pages avec un hero plein écran : header transparent (logo seul) en haut,
 // puis header solide dès qu'on scrolle.
-const HERO_ROUTES = ['/', '/shop', '/histoire', '/fabrication', '/collections/heritage', '/collections/versailles', '/collections/isis'];
+const HERO_ROUTES = ['/', '/shop', '/histoire', '/fabrication', '/opticiens', '/collections/heritage', '/collections/versailles', '/collections/isis'];
 const MENU_HERO_IMAGES = [
   'https://renaissance-cdn.b-cdn.net/campgane.png',
   'https://renaissance-cdn.b-cdn.net/packshot%202.png',
