@@ -64,7 +64,7 @@
     "label": "Ausgewähltes Netz",
     "title": "IN DER BOUTIQUE PROBIEREN.",
     "subtitle": "Online bestellen.",
-    "description": "Manches wählt man nicht am Bildschirm. Um unsere Fassungen zu entdecken, ersetzt nichts die Geste: sie aufsetzen, sie spüren, sie deinem Gesicht anpassen. Unsere Optiker empfangen dich. Die Beratung nimmt sich die Zeit, die sie braucht.",
+    "description": "Beim Optiker aufsetzen, online bestellen. Die gleiche Sorgfalt, wo immer Sie sind.",
     "cta": "Optiker finden",
     "ctaShop": "Online kaufen",
     "guarantees": "Versand frei · Rückgabe 14 Tage · Herstellergarantie 3 Jahre",
@@ -90,9 +90,9 @@
     "item1Title": "Optiker",
     "item1Desc": "Ausgewählt, in Frankreich und anderswo",
     "item2Title": "Versand",
-    "item2Desc": "Frei ab 500€",
+    "item2Desc": "Immer kostenlos",
     "item3Title": "Gewährleistung",
-    "item3Desc": "Wir stehen für das, was wir fertigen",
+    "item3Desc": "Herstellergarantie, 3 Jahre",
     "item4Title": "Gesichert",
     "item4Desc": "Verschlüsselte Zahlung",
     "freeShipping": "Versand frei",
@@ -108,5 +108,77 @@
   "seo": {
     "title": "Brillen, die bleiben. Renaissance Eyewear",
     "description": "Französisches Brillenhaus, entstanden 2019. Titan mit 18KT-Vergoldung, Mazzucchelli-Acetat. Jedes Paar trägt seine auf dem Steg gravierte Nummer. Was man trägt. Was man weitergibt."
+  },
+  "fabricationPage": {
+    "seoTitle": "Die Herstellung — Renaissance",
+    "seoDescription": "Vom Titandraht zur fertigen Brille. Zwölf Handgriffe, viele Hände.",
+    "label": "Die Werkstatt",
+    "title": "VOM DRAHT",
+    "subtitle": "zur Brille.",
+    "intro": "In Paris gezeichnet, in Korea gefertigt. Alles beginnt mit einem Titandraht. Der Rest ist die Hand.",
+    "steps": [
+      {
+        "n": "01",
+        "t": "Der Draht",
+        "d": "Alles beginnt mit einem Titandraht. Wir wählen die richtige Dicke für jedes Teil."
+      },
+      {
+        "n": "02",
+        "t": "Der Schnitt",
+        "d": "Jedes Teil wird auf Maß zugeschnitten. Die Bügel, der Steg."
+      },
+      {
+        "n": "03",
+        "t": "Die Form",
+        "d": "Das Zeichen wird in den Stahl der Gussform gegraben. Die Fleur de Lys entsteht hier, noch vor dem Metall."
+      },
+      {
+        "n": "04",
+        "t": "Die Presse",
+        "d": "Die fertige Gussform kommt in die Presse."
+      },
+      {
+        "n": "05",
+        "t": "Die Gestalt",
+        "d": "Unter der Presse fällt das Zuviel ab. Das Teil bekommt seine Form."
+      },
+      {
+        "n": "06",
+        "t": "Das Scharnier",
+        "d": "Das Scharnier wird von Hand eingepasst. Dann prüfen wir jedes einzeln."
+      },
+      {
+        "n": "07",
+        "t": "Das Muster",
+        "d": "Das durchbrochene Muster wird in den Bügel gepresst."
+      },
+      {
+        "n": "08",
+        "t": "Das Bad",
+        "d": "Ein Bad, dann das erste Polieren von Hand."
+      },
+      {
+        "n": "09",
+        "t": "Die Lötung",
+        "d": "Wir löten die Front. Die beiden Ringe finden ihren Platz."
+      },
+      {
+        "n": "10",
+        "t": "Der Glanz",
+        "d": "Wir polieren weiter, von Hand, bis nichts mehr hakt."
+      },
+      {
+        "n": "11",
+        "t": "Die Farbe",
+        "d": "Das Gold legt sich auf, dann wird es geschützt. Das Material behält sein Licht."
+      },
+      {
+        "n": "12",
+        "t": "Die Brille",
+        "d": "Der Steg führt sie zusammen. Die Brille ist da."
+      }
+    ],
+    "closing": "Wir machen es nicht schnell. Wir machen es richtig.",
+    "cta": "Unsere Brillen ansehen"
   }
 }

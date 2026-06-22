@@ -8,7 +8,8 @@
     "collections": "Kollektionen",
     "laMaison": "Das Haus",
     "services": "Service",
-    "aide": "Hilfe"
+    "aide": "Hilfe",
+    "fabrication": "HERSTELLUNG"
   },
   "header": {
     "search": "Suchen",
@@ -94,7 +95,8 @@
     "isisSubtitle": "Das Anch. Der Skarabäus. Die Kobra. Das Horusauge.",
     "ourHistory": "Unsere Geschichte",
     "savoirFaire": "Die Werkstatt",
-    "ourOpticians": "Unsere Optiker"
+    "ourOpticians": "Unsere Optiker",
+    "fabrication": "Die Herstellung"
   },
   "loading": "Laden",
   "error": "Kollektion konnte nicht geladen werden",

@@ -8,7 +8,8 @@
     "collections": "Коллекции",
     "laMaison": "Дом",
     "services": "Услуги",
-    "aide": "Помощь"
+    "aide": "Помощь",
+    "fabrication": "ПРОИЗВОДСТВО"
   },
   "header": {
     "search": "Искать",
@@ -94,7 +95,8 @@
     "isisSubtitle": "Анх. Скарабей. Кобра. Око Гора.",
     "ourHistory": "Наша история",
     "savoirFaire": "Мастерская",
-    "ourOpticians": "Наши оптики"
+    "ourOpticians": "Наши оптики",
+    "fabrication": "Производство"
   },
   "loading": "Загрузка",
   "error": "Не удалось загрузить коллекцию",

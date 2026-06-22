@@ -8,7 +8,8 @@
     "collections": "Koleksiyonlar",
     "laMaison": "Maison",
     "services": "Hizmetler",
-    "aide": "Yardım"
+    "aide": "Yardım",
+    "fabrication": "ÜRETİM"
   },
   "header": {
     "search": "Ara",
@@ -94,7 +95,8 @@
     "isisSubtitle": "Ankh. Scarabée. Cobra. Horus'un Gözü.",
     "ourHistory": "Hikâyemiz",
     "savoirFaire": "Atölye",
-    "ourOpticians": "Optisyenlerimiz"
+    "ourOpticians": "Optisyenlerimiz",
+    "fabrication": "Üretim"
   },
   "loading": "Yükleniyor",
   "error": "Koleksiyon yüklenemedi",

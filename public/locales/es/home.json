@@ -64,7 +64,7 @@
     "label": "Red escogida",
     "title": "PRUÉBALAS EN LA ÓPTICA.",
     "subtitle": "Pide en línea.",
-    "description": "Hay cosas que no se eligen en una pantalla. Para descubrir nuestras monturas, nada sustituye al gesto: probarlas, sentirlas, ajustarlas a tu cara. Nuestros ópticos te reciben. El consejo se toma el tiempo que hace falta.",
+    "description": "Se prueba en la óptica, se pide en línea. El mismo cuidado, esté donde esté.",
     "cta": "Encontrar un óptico",
     "ctaShop": "Comprar en línea",
     "guarantees": "Envío gratis · Devoluciones 14 días · Garantía del fabricante 3 años",
@@ -90,9 +90,9 @@
     "item1Title": "Ópticos",
     "item1Desc": "Escogidos, en Francia y fuera",
     "item2Title": "Envío",
-    "item2Desc": "Gratis a partir de 500€",
+    "item2Desc": "Siempre gratis",
     "item3Title": "Garantía",
-    "item3Desc": "Respondemos por lo que fabricamos",
+    "item3Desc": "Del fabricante, 3 años",
     "item4Title": "Seguro",
     "item4Desc": "Pago cifrado",
     "freeShipping": "Envío gratis",
@@ -108,5 +108,77 @@
   "seo": {
     "title": "Gafas que duran. Renaissance Eyewear",
     "description": "Casa francesa de óptica, nacida en 2019. Titanio chapado en oro 18KT, acetato Mazzucchelli. Cada par lleva su número grabado en el puente. Lo que se lleva. Lo que se transmite."
+  },
+  "fabricationPage": {
+    "seoTitle": "La fabricación — Renaissance",
+    "seoDescription": "Del hilo de titanio a la montura terminada. Doce gestos, muchas manos.",
+    "label": "El taller",
+    "title": "DEL HILO",
+    "subtitle": "a la montura.",
+    "intro": "Dibujadas en París, fabricadas en Corea. Todo parte de un hilo de titanio. El resto es la mano.",
+    "steps": [
+      {
+        "n": "01",
+        "t": "El hilo",
+        "d": "Todo empieza por un hilo de titanio, elegido con el grosor justo según la pieza."
+      },
+      {
+        "n": "02",
+        "t": "El corte",
+        "d": "Cada pieza se corta a su medida. Las patillas, el puente."
+      },
+      {
+        "n": "03",
+        "t": "El molde",
+        "d": "El símbolo se cava en el acero del molde. La fleur de lys nace aquí, antes que el metal."
+      },
+      {
+        "n": "04",
+        "t": "La prensa",
+        "d": "El molde terminado ocupa su lugar en la prensa."
+      },
+      {
+        "n": "05",
+        "t": "La forma",
+        "d": "Bajo la prensa, lo que sobra cae. La pieza encuentra su forma."
+      },
+      {
+        "n": "06",
+        "t": "La bisagra",
+        "d": "La bisagra se ajusta a mano, luego se revisa una a una."
+      },
+      {
+        "n": "07",
+        "t": "El motivo",
+        "d": "El motivo calado se prensa en la patilla."
+      },
+      {
+        "n": "08",
+        "t": "El baño",
+        "d": "Un baño, luego el primer pulido a mano."
+      },
+      {
+        "n": "09",
+        "t": "La soldadura",
+        "d": "Se suelda el frente: los dos aros ocupan su lugar."
+      },
+      {
+        "n": "10",
+        "t": "El pulido",
+        "d": "Se pule más, a mano, hasta que nada engancha."
+      },
+      {
+        "n": "11",
+        "t": "El color",
+        "d": "El oro se posa, luego se protege. El material guarda su luz."
+      },
+      {
+        "n": "12",
+        "t": "La montura",
+        "d": "El puente las une. La montura ha nacido."
+      }
+    ],
+    "closing": "No producimos rápido. Producimos bien.",
+    "cta": "Ver nuestras monturas"
   }
 }

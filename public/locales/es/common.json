@@ -8,7 +8,8 @@
     "collections": "Colecciones",
     "laMaison": "La Casa",
     "services": "Servicios",
-    "aide": "Ayuda"
+    "aide": "Ayuda",
+    "fabrication": "LA FABRICACIÓN"
   },
   "header": {
     "search": "Buscar",
@@ -94,7 +95,8 @@
     "isisSubtitle": "El Anj. El Escarabajo. La Cobra. El Ojo de Horus.",
     "ourHistory": "Nuestra Historia",
     "savoirFaire": "El taller",
-    "ourOpticians": "Nuestros Ópticos"
+    "ourOpticians": "Nuestros Ópticos",
+    "fabrication": "La fabricación"
   },
   "loading": "Cargando",
   "error": "No se ha podido cargar la colección",

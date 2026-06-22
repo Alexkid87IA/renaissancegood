@@ -77,7 +77,7 @@ export default function FabricationPage() {
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.05]"
               />
               {/* Voile uniforme : le texte reste lisible quelle que soit la photo */}
-              <div className="absolute inset-0 bg-[#000000]/45 transition-colors duration-500 group-hover:bg-[#000000]/65" />
+              <div className="absolute inset-0 bg-[#000000]/55 transition-colors duration-500 group-hover:bg-[#000000]/70" />
               {/* Numéro — haut à gauche */}
               <p className="absolute top-5 left-5 font-display text-[#d8b88a] text-3xl font-light leading-none [text-shadow:0_2px_18px_rgba(0,0,0,0.9)]">
                 {step.n}

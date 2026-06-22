@@ -64,7 +64,7 @@
     "label": "A chosen network",
     "title": "TRY IN STORE.",
     "subtitle": "Order online.",
-    "description": "Some things aren't chosen on a screen. To know our frames, nothing replaces the gesture: trying them, feeling them, fitting them to your face. Our opticians receive you. The advice takes the time it needs.",
+    "description": "Try it at the optician, order it online. The same care, wherever you are.",
     "cta": "Find an optician",
     "ctaShop": "Buy online",
     "guarantees": "Free shipping · 14-day returns · 3-year manufacturer warranty",
@@ -90,9 +90,9 @@
     "item1Title": "Opticians",
     "item1Desc": "Chosen, in France and beyond",
     "item2Title": "Shipping",
-    "item2Desc": "Free from 500€",
+    "item2Desc": "Always free",
     "item3Title": "Warranty",
-    "item3Desc": "We stand by what we make",
+    "item3Desc": "Manufacturer, 3 years",
     "item4Title": "Secure",
     "item4Desc": "Encrypted payment",
     "freeShipping": "Free shipping",
@@ -108,5 +108,77 @@
   "seo": {
     "title": "Glasses that last. Renaissance Eyewear",
     "description": "French eyewear maison, born in 2019. 18KT gold-plated titanium, Mazzucchelli acetate. Every pair carries its number engraved on the bridge. What you wear. What you hand down."
+  },
+  "fabricationPage": {
+    "seoTitle": "The making — Renaissance",
+    "seoDescription": "From titanium wire to finished frame. Twelve steps, many hands.",
+    "label": "The workshop",
+    "title": "FROM WIRE",
+    "subtitle": "to frame.",
+    "intro": "Drawn in Paris, made in Korea. It all starts with a titanium wire. The rest is the hand.",
+    "steps": [
+      {
+        "n": "01",
+        "t": "The wire",
+        "d": "It all starts with a titanium wire, picked at the right thickness for the piece."
+      },
+      {
+        "n": "02",
+        "t": "The cut",
+        "d": "Each piece is cut to its own size. The temples, the bridge."
+      },
+      {
+        "n": "03",
+        "t": "The mold",
+        "d": "The symbol is carved into the steel of the mold. The fleur de lys is born here, before the metal."
+      },
+      {
+        "n": "04",
+        "t": "The press",
+        "d": "The finished mold takes its place on the press."
+      },
+      {
+        "n": "05",
+        "t": "The shape",
+        "d": "Under the press, the extra falls away. The piece finds its shape."
+      },
+      {
+        "n": "06",
+        "t": "The hinge",
+        "d": "The hinge is set by hand, then checked one by one."
+      },
+      {
+        "n": "07",
+        "t": "The pattern",
+        "d": "The open pattern is pressed into the temple."
+      },
+      {
+        "n": "08",
+        "t": "The bath",
+        "d": "A bath, then the first polish by hand."
+      },
+      {
+        "n": "09",
+        "t": "The weld",
+        "d": "We weld the front: the two circles take their place."
+      },
+      {
+        "n": "10",
+        "t": "The polish",
+        "d": "We polish again, by hand, until nothing catches."
+      },
+      {
+        "n": "11",
+        "t": "The color",
+        "d": "The gold goes on, then it is protected. The metal keeps its light."
+      },
+      {
+        "n": "12",
+        "t": "The frame",
+        "d": "The bridge brings them together. The frame is born."
+      }
+    ],
+    "closing": "We don't make fast. We make right.",
+    "cta": "See our frames"
   }
 }

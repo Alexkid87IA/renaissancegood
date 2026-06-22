@@ -8,7 +8,8 @@
     "collections": "Collections",
     "laMaison": "The House",
     "services": "Services",
-    "aide": "Help"
+    "aide": "Help",
+    "fabrication": "THE MAKING"
   },
   "header": {
     "search": "Search",
@@ -94,7 +95,8 @@
     "isisSubtitle": "The Ankh. The Scarab. The Cobra. The Eye of Horus.",
     "ourHistory": "Our Story",
     "savoirFaire": "The workshop",
-    "ourOpticians": "Our opticians"
+    "ourOpticians": "Our opticians",
+    "fabrication": "The making"
   },
   "loading": "Loading",
   "error": "Unable to load the collection",

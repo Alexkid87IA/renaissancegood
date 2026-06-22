@@ -1,6 +1,6 @@
 {
   "hero": {
-    "label": "Her gün değer kazansın diye",
+    "label": "Pour que chaque jour compte",
     "title1": "Takılan.",
     "title2": "Devredilen.",
     "description": "Değiştirilmeyen gözlükler. Eli kısaltmayı reddeden ellerin yaptığı.",
@@ -64,7 +64,7 @@
     "label": "Seçilmiş ağ",
     "title": "MAĞAZADA DENE.",
     "subtitle": "Çevrimiçi sipariş ver.",
-    "description": "Bir gözlük ekranda değil, yüzde seçilir. Optisyenlerimiz seni bekliyor.",
+    "description": "Gözlükçüde denenir, internetten ısmarlanır. Aynı özen, neredeyseniz orada.",
     "cta": "Bir optisyen bul",
     "ctaShop": "Çevrimiçi al",
     "guarantees": "Teslimat ücretsiz · 14 gün iade · 3 yıl üretici garantisi",
@@ -90,9 +90,9 @@
     "item1Title": "Optisyenler",
     "item1Desc": "Seçilmiş, Fransa'da ve başka yerlerde",
     "item2Title": "Teslimat",
-    "item2Desc": "500€'dan itibaren ücretsiz",
+    "item2Desc": "Her zaman ücretsiz",
     "item3Title": "Garanti",
-    "item3Desc": "Yaptığımızı sahipleniriz",
+    "item3Desc": "Üretici garantisi, 3 yıl",
     "item4Title": "Güvenli",
     "item4Desc": "Şifreli ödeme",
     "freeShipping": "Teslimat ücretsiz",
@@ -107,5 +107,77 @@
   "seo": {
     "title": "Kalıcı gözlükler",
     "description": "Fransız gözlük Maison'u, 2019'da doğdu. Titanyum, 18 ayar altın kaplama, Mazzucchelli asetat. Her çift, köprüsünde kazınmış numarasını taşır. Devredilen."
+  },
+  "fabricationPage": {
+    "seoTitle": "Üretim — Renaissance",
+    "seoDescription": "Titanyum telden bitmiş gözlüğe. On iki hareket, bir sürü el.",
+    "label": "Atölye",
+    "title": "TELDEN",
+    "subtitle": "gözlüğe.",
+    "intro": "Paris'te çizildi, Kore'de yapıldı. Her şey bir titanyum telle başlar. Gerisi eldir.",
+    "steps": [
+      {
+        "n": "01",
+        "t": "Tel",
+        "d": "Her şey bir titanyum telle başlar. Parçaya göre doğru kalınlıkta seçilir."
+      },
+      {
+        "n": "02",
+        "t": "Kesim",
+        "d": "Her parça kendi ölçüsünde kesilir. Saplar, köprü."
+      },
+      {
+        "n": "03",
+        "t": "Kalıp",
+        "d": "Simge, kalıbın çeliğine oyulur. Fleur de lys burada doğar, metalden önce."
+      },
+      {
+        "n": "04",
+        "t": "Pres",
+        "d": "Biten kalıp presteki yerini alır."
+      },
+      {
+        "n": "05",
+        "t": "Biçim",
+        "d": "Presin altında fazlalık düşer. Parça biçimini bulur."
+      },
+      {
+        "n": "06",
+        "t": "Menteşe",
+        "d": "Menteşe elle ayarlanır, sonra tek tek kontrol edilir."
+      },
+      {
+        "n": "07",
+        "t": "Desen",
+        "d": "Oyma desen sapa preslenir."
+      },
+      {
+        "n": "08",
+        "t": "Banyo",
+        "d": "Bir banyo, sonra ilk parlatma elle yapılır."
+      },
+      {
+        "n": "09",
+        "t": "Kaynak",
+        "d": "Ön yüz kaynaklanır: iki halka yerini alır."
+      },
+      {
+        "n": "10",
+        "t": "Parlatma",
+        "d": "Yine elle parlatılır, hiçbir yere takılmayana kadar."
+      },
+      {
+        "n": "11",
+        "t": "Renk",
+        "d": "Altın oturur, sonra korunur. Madde ışığını tutar."
+      },
+      {
+        "n": "12",
+        "t": "Gözlük",
+        "d": "Köprü ikisini birleştirir. Gözlük doğdu."
+      }
+    ],
+    "closing": "Hızlı üretmiyoruz. Doğru üretiyoruz.",
+    "cta": "Gözlüklerimizi gör"
   }
 }

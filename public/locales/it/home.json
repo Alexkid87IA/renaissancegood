@@ -64,7 +64,7 @@
     "label": "Rete scelta",
     "title": "PROVA IN NEGOZIO.",
     "subtitle": "Ordina online.",
-    "description": "Certe cose non si scelgono su uno schermo. Per scoprire le nostre montature, niente sostituisce il gesto: provarle, sentirle, regolarle sul tuo viso. I nostri ottici ti accolgono. Il consiglio prende il tempo che serve.",
+    "description": "La provi dall'ottico, la ordini online. Stessa cura, ovunque tu sia.",
     "cta": "Trova un ottico",
     "ctaShop": "Acquista online",
     "guarantees": "Spedizione offerta · Resi 14 giorni · Garanzia del produttore 3 anni",
@@ -90,9 +90,9 @@
     "item1Title": "Ottici",
     "item1Desc": "Scelti, in Francia e altrove",
     "item2Title": "Spedizione",
-    "item2Desc": "Offerta da 500€",
+    "item2Desc": "Sempre gratuita",
     "item3Title": "Garanzia",
-    "item3Desc": "Rispondiamo di ciò che fabbrichiamo",
+    "item3Desc": "Produttore, 3 anni",
     "item4Title": "Sicuro",
     "item4Desc": "Pagamento crittografato",
     "freeShipping": "Spedizione offerta",
@@ -108,5 +108,77 @@
   "seo": {
     "title": "Occhiali che durano. Renaissance Eyewear",
     "description": "Maison francese di occhialeria, nata nel 2019. Titanio placcato oro 18KT, acetato Mazzucchelli. Ogni paio porta il suo numero inciso sul ponte. Ciò che si porta. Ciò che si trasmette."
+  },
+  "fabricationPage": {
+    "seoTitle": "La fabbricazione — Renaissance",
+    "seoDescription": "Dal filo di titanio alla montatura finita. Dodici gesti, tante mani.",
+    "label": "L'atelier",
+    "title": "DAL FILO",
+    "subtitle": "alla montatura.",
+    "intro": "Disegnate a Parigi, fatte in Corea. Tutto parte da un filo di titanio. Il resto è la mano.",
+    "steps": [
+      {
+        "n": "01",
+        "t": "Il filo",
+        "d": "Tutto comincia da un filo di titanio, scelto dello spessore giusto per ogni pezzo."
+      },
+      {
+        "n": "02",
+        "t": "Il taglio",
+        "d": "Ogni pezzo è tagliato su misura. Le aste, il ponte."
+      },
+      {
+        "n": "03",
+        "t": "Lo stampo",
+        "d": "Il simbolo è scavato nell'acciaio dello stampo. La fleur de lys nasce qui, prima del metallo."
+      },
+      {
+        "n": "04",
+        "t": "La pressa",
+        "d": "Lo stampo finito prende posto sulla pressa."
+      },
+      {
+        "n": "05",
+        "t": "La forma",
+        "d": "Sotto la pressa, il di più cade. Il pezzo trova la sua forma."
+      },
+      {
+        "n": "06",
+        "t": "La cerniera",
+        "d": "La cerniera è regolata a mano, poi controllata una per una."
+      },
+      {
+        "n": "07",
+        "t": "Il motivo",
+        "d": "Il motivo traforato è premuto nell'asta."
+      },
+      {
+        "n": "08",
+        "t": "Il bagno",
+        "d": "Un bagno, poi la prima lucidatura a mano."
+      },
+      {
+        "n": "09",
+        "t": "La saldatura",
+        "d": "Si salda il frontale: i due cerchi prendono posto."
+      },
+      {
+        "n": "10",
+        "t": "La lucidatura",
+        "d": "Si lucida ancora, a mano, finché niente impiglia."
+      },
+      {
+        "n": "11",
+        "t": "Il colore",
+        "d": "L'oro si posa, poi si protegge. La materia tiene la sua luce."
+      },
+      {
+        "n": "12",
+        "t": "La montatura",
+        "d": "Il ponte li unisce. La montatura è nata."
+      }
+    ],
+    "closing": "Non produciamo in fretta. Produciamo giusto.",
+    "cta": "Vedi le nostre montature"
   }
 }
