@@ -201,5 +201,12 @@
       "contactUs": "Contáctanos",
       "viewFaq": "Consultar la FAQ"
     }
+  },
+  "map": {
+    "label": "Mapa interactivo",
+    "notice": "El mapa lo proporciona Mapbox. Al mostrarlo, se conecta a un servicio externo.",
+    "show": "Mostrar el mapa",
+    "external": "El mapa se conecta a un servicio externo.",
+    "loading": "Cargando el mapa y los ópticos filtrados."
   }
 }

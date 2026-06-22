@@ -124,7 +124,7 @@ export default function Footer() {
         </div>
 
         {/* Main Content */}
-        <div className="relative max-w-[1600px] mx-auto px-12 lg:px-20 xl:px-28 pt-24 pb-20">
+        <div className="relative max-w-[1600px] mx-auto px-12 lg:px-20 xl:px-28 pt-16 pb-12">
           <motion.div
             ref={mainRef}
             variants={stagger}
@@ -133,32 +133,26 @@ export default function Footer() {
             className="grid grid-cols-[280px_1fr] gap-20"
           >
             {/* Left — Brand */}
-            <motion.div variants={fade}>
-              <img
-                src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%20blanc-Photoroom.png"
-                alt="Renaissance Eyewear"
-                className="h-20 lg:h-24 w-auto object-contain mb-8"
-                loading="lazy"
-              />
-              <p className="font-sans text-xs text-white/50 leading-[1.9] max-w-[260px] font-light mb-10">
+            <motion.div variants={fade} className="flex flex-col h-full">
+              <p className="font-sans text-sm text-white/60 leading-[1.85] max-w-[280px] font-light">
                 {t('footer.brandDescription')}
               </p>
-              <div className="space-y-3.5 mb-10">
+              <div className="space-y-3.5 mb-10 mt-auto">
                 <a href="mailto:contact@renaissanceeyewear.com" className="flex items-center gap-3 group">
                   <Mail className="w-3.5 h-3.5 text-white/50 group-hover:text-white/50 transition-colors duration-500" />
-                  <span className="font-sans text-[11px] text-white/60 group-hover:text-white/60 transition-colors duration-500">
+                  <span className="font-sans text-[11px] text-white/72 group-hover:text-white/90 transition-colors duration-500">
                     contact@renaissanceeyewear.com
                   </span>
                 </a>
                 <a href="tel:+33142868200" className="flex items-center gap-3 group">
                   <Phone className="w-3.5 h-3.5 text-white/50 group-hover:text-white/50 transition-colors duration-500" />
-                  <span className="font-sans text-[11px] text-white/60 group-hover:text-white/60 transition-colors duration-500">
+                  <span className="font-sans text-[11px] text-white/72 group-hover:text-white/90 transition-colors duration-500">
                     +33 1 42 86 82 00
                   </span>
                 </a>
                 <LocaleLink to="/opticiens" className="flex items-center gap-3 group">
                   <MapPin className="w-3.5 h-3.5 text-white/50 group-hover:text-white/50 transition-colors duration-500" />
-                  <span className="font-sans text-[11px] text-white/60 group-hover:text-white/60 transition-colors duration-500">
+                  <span className="font-sans text-[11px] text-white/72 group-hover:text-white/90 transition-colors duration-500">
                     {t('footer.findOptician')}
                   </span>
                 </LocaleLink>
@@ -184,7 +178,7 @@ export default function Footer() {
                 ]},
                 { title: t('nav.laMaison'), links: [
                   { to: '/histoire', label: t('footerLinks.ourHistory') },
-                  { to: '/histoire#savoir-faire', label: t('footerLinks.savoirFaire') },
+                  { to: '/fabrication', label: t('footerLinks.fabrication') },
                   { to: '/histoire#symboles', label: t('footerLinks.fiveSymbols') },
                   { to: '/blog', label: t('footerLinks.manifeste') },
                 ]},
@@ -202,12 +196,12 @@ export default function Footer() {
                 ]},
               ].map((col) => (
                 <div key={col.title}>
-                  <h4 className="font-sans text-[10px] tracking-[0.3em] text-white/50 uppercase mb-3 font-semibold">{col.title}</h4>
+                  <h4 className="font-sans text-[10px] tracking-[0.3em] text-white/65 uppercase mb-3 font-semibold">{col.title}</h4>
                   <div className="w-8 h-px bg-white/10 mb-5" />
                   <ul className="space-y-3.5">
                     {col.links.map(({ to, label }) => (
                       <li key={to}>
-                        <LocaleLink to={to} className="font-sans text-[12px] text-white/60 hover:text-white/70 hover:translate-x-1 transition-all duration-500 font-light inline-block">
+                        <LocaleLink to={to} className="font-sans text-[12px] text-white/70 hover:text-white/90 hover:translate-x-1 transition-all duration-500 font-light inline-block">
                           {label}
                         </LocaleLink>
                       </li>
@@ -216,12 +210,12 @@ export default function Footer() {
                 </div>
               ))}
 
-              {/* PQCJCN — below link columns, aligned right */}
-              <div className="col-span-4 mt-8 flex justify-end">
+              {/* Signature manuscrite — centrée sous les colonnes (logo RENAISSANCE retiré) */}
+              <div className="col-span-4 mt-6 flex justify-center">
                 <img
-                  src="https://renaissance-cdn.b-cdn.net/fd9d5fd3-567f-4abb-9157-6f52b4ccb3c5.png"
-                  alt="Pour Que Cela Ne s'Oublie Jamais"
-                  className="w-full max-w-[500px] lg:max-w-[600px] h-auto object-contain"
+                  src="https://renaissance-cdn.b-cdn.net/signature-pqcjc.webp"
+                  alt="Pour que chaque jour compte"
+                  className="w-full max-w-[360px] lg:max-w-[440px] h-auto object-contain opacity-90"
                   loading="lazy"
                 />
               </div>
@@ -231,7 +225,7 @@ export default function Footer() {
 
         {/* Trust */}
         <div className="relative border-t border-white/[0.06]">
-          <div className="max-w-[1600px] mx-auto px-12 lg:px-20 xl:px-28 py-14">
+          <div className="max-w-[1600px] mx-auto px-12 lg:px-20 xl:px-28 py-10">
             <motion.div
               ref={trustRef}
               variants={stagger}
@@ -375,7 +369,7 @@ export default function Footer() {
             ]},
             { key: 'laMaison', title: t('nav.laMaison'), links: [
               { to: '/histoire', label: t('footerLinks.ourHistory') },
-              { to: '/histoire#savoir-faire', label: t('footerLinks.savoirFaire') },
+              { to: '/fabrication', label: t('footerLinks.fabrication') },
               { to: '/histoire#symboles', label: t('footerLinks.fiveSymbols') },
               { to: '/blog', label: t('footerLinks.manifeste') },
             ]},
@@ -399,7 +393,7 @@ export default function Footer() {
                 aria-expanded={openAccordion === col.key}
                 aria-controls={`footer-accordion-${col.key}`}
               >
-                <h4 className="font-sans text-[10px] tracking-[0.3em] text-white/50 uppercase font-semibold">
+                <h4 className="font-sans text-[10px] tracking-[0.3em] text-white/65 uppercase font-semibold">
                   {col.title}
                 </h4>
                 <motion.div

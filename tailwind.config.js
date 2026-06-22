@@ -18,11 +18,11 @@ export default {
         'dark-bg': '#1a1a1a',
       },
       fontFamily: {
-        // Titres / encadrés : Fraunces (display chaude et lisible ; le wordmark reste Didot).
-        serif: ['Fraunces', 'Bodoni Moda', 'serif'],
-        display: ['Fraunces', 'Bodoni Moda', 'serif'],
-        // Texte courant et mentions : Mulish (lisible en petit corps).
-        sans: ['Mulish', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        // Titres / encadrés : Cormorant Garamond (auto-hébergée ; le wordmark reste Didot).
+        serif: ['Cormorant Garamond', 'serif'],
+        display: ['Cormorant Garamond', 'serif'],
+        // Texte courant et mentions : Mulish (auto-hébergée, lisible en petit corps).
+        sans: ['Mulish Variable', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
       },
       letterSpacing: {
         'luxury': '0.15em',

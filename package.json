@@ -11,6 +11,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.app.json"
   },
   "dependencies": {
+    "@fontsource-variable/mulish": "^5.2.8",
+    "@fontsource/cormorant-garamond": "^5.2.11",
     "@netlify/functions": "^5.1.2",
     "@shopify/hydrogen-react": "^2025.7.0",
     "@stripe/react-stripe-js": "^5.4.1",

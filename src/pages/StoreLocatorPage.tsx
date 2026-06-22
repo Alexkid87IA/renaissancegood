@@ -25,7 +25,8 @@ const MAP_PLACEHOLDER_MARKERS = [
   ['86%', '68%'],
 ];
 
-function MapLoadingState({ count, loading }: { count: number; loading: boolean }) {
+function MapLoadingState({ count, loading, onEnable }: { count: number; loading: boolean; onEnable?: () => void }) {
+  const { t } = useTranslation('contact');
   return (
     <>
       <div className="relative h-full min-h-[50vh] lg:min-h-0 overflow-hidden bg-[#ece8df]" aria-live="polite">
@@ -61,16 +62,29 @@ function MapLoadingState({ count, loading }: { count: number; loading: boolean }
               )}
             </div>
             <p className="font-sans text-[9px] tracking-[0.34em] uppercase font-bold text-bronze mb-3">
-              Carte interactive
+              {t('map.label')}
             </p>
             <p className="font-display text-3xl font-bold text-dark-text leading-none tracking-normal mb-3 tabular-nums">
               {count}
             </p>
-            <p className="font-sans text-xs text-dark-text/50 leading-[1.7]">
-              {loading
-                ? 'Chargement de la carte et des opticiens filtrés.'
-                : 'La carte se charge dès que vous arrivez sur cette zone.'}
-            </p>
+            {onEnable && !loading ? (
+              <>
+                <p className="font-sans text-xs text-dark-text/50 leading-[1.7] mb-5">
+                  {t('map.notice')}
+                </p>
+                <button
+                  type="button"
+                  onClick={onEnable}
+                  className="inline-flex items-center justify-center rounded-2xl border border-dark-text/40 px-8 py-3.5 font-sans text-[10px] tracking-[0.3em] font-medium uppercase text-dark-text transition-colors duration-300 hover:bg-dark-text hover:text-beige"
+                >
+                  {t('map.show')}
+                </button>
+              </>
+            ) : (
+              <p className="font-sans text-xs text-dark-text/50 leading-[1.7]">
+                {loading ? t('map.loading') : t('map.external')}
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -92,12 +106,13 @@ export default function StoreLocatorPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('ALL');
   const [userLocation, setUserLocation] = useState<{lat: number; lng: number} | null>(null);
+  // Cliquer pour afficher la carte : Mapbox n'est contacté qu'après action volontaire (RGPD).
+  const [mapEnabled, setMapEnabled] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
   const ctaRef = useRef<HTMLDivElement>(null);
   const ctaInView = useInView(ctaRef, { once: true, amount: 0.3 });
   const mapRef = useRef<HTMLDivElement>(null);
-  const mapInView = useInView(mapRef, { once: true, amount: 0.05 });
 
   // Scroll to top on mount
   useEffect(() => {
@@ -148,7 +163,8 @@ export default function StoreLocatorPage() {
     return filtered;
   }, [searchQuery, selectedCountry]);
 
-  const shouldLoadMap = mapInView || userLocation !== null || selectedStore !== null;
+  // Plus de chargement auto au scroll : clic explicite, géoloc ou sélection d'un opticien (actions volontaires).
+  const shouldLoadMap = mapEnabled || userLocation !== null || selectedStore !== null;
 
   // Get user's location
   const getUserLocation = () => {
@@ -377,7 +393,7 @@ export default function StoreLocatorPage() {
                 />
               </Suspense>
             ) : (
-              <MapLoadingState count={filteredStores.length} loading={false} />
+              <MapLoadingState count={filteredStores.length} loading={false} onEnable={() => setMapEnabled(true)} />
             )}
           </div>
 

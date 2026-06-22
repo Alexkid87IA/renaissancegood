@@ -15,6 +15,8 @@ import ScrollToTop from './components/ScrollToTop';
 import NavigationProgress from './components/NavigationProgress';
 import LangLayout from './components/LangLayout';
 import ErrorBoundary from './components/ErrorBoundary';
+import { hasConsent, onConsentChange } from './lib/consent';
+import { loadAnalytics } from './lib/analytics';
 
 // Auto-reload on stale chunk after deployment
 // Forces a cache-busting reload by appending a timestamp query param
@@ -141,9 +143,17 @@ function AppContent() {
     sessionStorage.removeItem('_reload_stale');
   }, []);
 
+  // Robinet à consentement : les traceurs ne se chargent qu'après accord.
+  useEffect(() => {
+    if (hasConsent()) loadAnalytics();
+    return onConsentChange((v) => { if (v === 'accepted') loadAnalytics(); });
+  }, []);
+
   // Check for checkout path with or without lang prefix
   const pathParts = useMemo(() => location.pathname.split('/').filter(Boolean), [location.pathname]);
   const isCheckout = pathParts.includes('checkout');
+  // Accueil : le footer est rendu DANS l'empilement (HomePage) pour monter sur Fabrication.
+  const isHome = pathParts.length === 0 || (pathParts.length === 1 && isSupportedLocale(pathParts[0]));
 
   // Derive locale from URL so Header/Footer (outside Routes) get the correct locale
   const locale: SupportedLocale = useMemo(() => {
@@ -192,7 +202,7 @@ function AppContent() {
             </Suspense>
           </ErrorBoundary>
         </main>
-        {!isCheckout && (
+        {!isCheckout && !isHome && (
           <div className="relative z-[100]">
             <Footer />
           </div>

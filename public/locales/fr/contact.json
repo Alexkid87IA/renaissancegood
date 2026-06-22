@@ -201,5 +201,12 @@
       "contactUs": "Nous contacter",
       "viewFaq": "Consulter la FAQ"
     }
+  },
+  "map": {
+    "label": "Carte interactive",
+    "notice": "La carte est fournie par Mapbox. En l'affichant, elle se connecte à un service externe.",
+    "show": "Afficher la carte",
+    "external": "La carte se connecte à un service externe.",
+    "loading": "Chargement de la carte et des opticiens filtrés."
   }
 }

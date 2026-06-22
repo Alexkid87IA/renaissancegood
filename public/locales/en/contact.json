@@ -201,5 +201,12 @@
       "contactUs": "Contact us",
       "viewFaq": "See the FAQ"
     }
+  },
+  "map": {
+    "label": "Interactive map",
+    "notice": "The map is provided by Mapbox. Showing it connects to an external service.",
+    "show": "Show the map",
+    "external": "The map connects to an external service.",
+    "loading": "Loading the map and the filtered opticians."
   }
 }

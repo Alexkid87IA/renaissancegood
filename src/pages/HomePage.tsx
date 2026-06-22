@@ -6,6 +6,7 @@ import CollectionAllFrames from '../components/CollectionAllFrames';
 import HistoireSection from '../components/HistoireSection';
 import TryInStoreSection from '../components/TryInStoreSection';
 import FabricationSection from '../components/FabricationSection';
+import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { useSectionSnap } from '../hooks/useSectionSnap';
 
@@ -37,6 +38,10 @@ export default function HomePage() {
       <TryInStoreSection />
       <HistoireSection />
       <FabricationSection />
+      {/* Footer dans l'empilement : il monte sur Fabrication comme les autres sections. */}
+      <div className="relative z-[100]">
+        <Footer />
+      </div>
     </>
   );
 }

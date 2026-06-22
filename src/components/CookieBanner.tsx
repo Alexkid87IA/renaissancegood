@@ -2,27 +2,25 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import LocaleLink from './LocaleLink';
-
-const STORAGE_KEY = 'cookie-consent';
+import { getConsent, setConsent } from '../lib/consent';
 
 export default function CookieBanner() {
   const { t } = useTranslation('common');
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem(STORAGE_KEY);
-    if (!consent) {
+    if (!getConsent()) {
       setVisible(true);
     }
   }, []);
 
   function handleAccept() {
-    localStorage.setItem(STORAGE_KEY, 'accepted');
+    setConsent('accepted');
     setVisible(false);
   }
 
   function handleRefuse() {
-    localStorage.setItem(STORAGE_KEY, 'refused');
+    setConsent('refused');
     setVisible(false);
   }
 

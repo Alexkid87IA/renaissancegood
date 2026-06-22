@@ -201,5 +201,12 @@
       "contactUs": "Bize ulaş",
       "viewFaq": "SSS'ye bak"
     }
+  },
+  "map": {
+    "label": "İnteraktif harita",
+    "notice": "Harita Mapbox tarafından sağlanır. Gösterildiğinde harici bir hizmete bağlanır.",
+    "show": "Haritayı göster",
+    "external": "Harita harici bir hizmete bağlanır.",
+    "loading": "Harita ve filtrelenen optisyenler yükleniyor."
   }
 }

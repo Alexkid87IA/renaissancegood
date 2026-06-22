@@ -17,7 +17,7 @@ export default function NewsletterPopup() {
   const [error, setError] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Trigger logic: scroll deep enough OR 60s timeout (whichever first)
+  // Trigger logic: scroll deep enough OR 45s timeout (whichever first)
   useEffect(() => {
     if (localStorage.getItem(STORAGE_KEY)) return;
 
@@ -37,7 +37,7 @@ export default function NewsletterPopup() {
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    const timer = setTimeout(show, 60000);
+    const timer = setTimeout(show, 45000);
 
     return () => {
       window.removeEventListener('scroll', onScroll);
