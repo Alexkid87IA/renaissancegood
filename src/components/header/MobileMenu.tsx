@@ -119,7 +119,7 @@ export default function MobileMenu({
 
   const MAISON_LINKS = [
     { to: '/histoire', label: t('mobileMenu.ourHistory') },
-    { to: '/histoire#savoir-faire', label: t('mobileMenu.savoirFaire') },
+    { to: '/fabrication', label: t('mobileMenu.fabrication') },
     { to: '/opticiens', label: t('mobileMenu.ourOpticians') },
   ];
 

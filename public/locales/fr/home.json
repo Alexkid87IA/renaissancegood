@@ -64,7 +64,7 @@
     "label": "Réseau choisi",
     "title": "ESSAYEZ EN BOUTIQUE.",
     "subtitle": "Commandez en ligne.",
-    "description": "Une monture se choisit sur le visage, pas sur un écran. Nos opticiens vous reçoivent.",
+    "description": "On l'essaie chez l'opticien, on la commande en ligne. Le même soin, où que vous soyez.",
     "cta": "Trouver un opticien",
     "ctaShop": "Acheter en ligne",
     "guarantees": "Livraison offerte · Retours 14 jours · Garantie constructeur 3 ans",
@@ -90,9 +90,9 @@
     "item1Title": "Opticiens",
     "item1Desc": "Choisis, en France et ailleurs",
     "item2Title": "Livraison",
-    "item2Desc": "Offerte dès 500€",
+    "item2Desc": "Toujours offerte",
     "item3Title": "Garantie",
-    "item3Desc": "On assume ce qu'on fabrique",
+    "item3Desc": "Constructeur, 3 ans",
     "item4Title": "Sécurisé",
     "item4Desc": "Paiement crypté",
     "freeShipping": "Livraison offerte",
@@ -107,5 +107,77 @@
   "seo": {
     "title": "Lunettes qui durent",
     "description": "Maison française de lunetterie, née en 2019. Titane plaqué or 18KT, acétate Mazzucchelli. Chaque paire porte son numéro gravé au pont. Ce qui se transmet."
+  },
+  "fabricationPage": {
+    "seoTitle": "La fabrication — Renaissance",
+    "seoDescription": "Du fil de titane à la monture finie. Douze gestes, beaucoup de mains.",
+    "label": "L'atelier",
+    "title": "DU FIL",
+    "subtitle": "à la monture.",
+    "intro": "Dessinées à Paris, fabriquées en Corée. Tout part d'un fil de titane. Le reste, c'est la main.",
+    "steps": [
+      {
+        "n": "01",
+        "t": "Le fil",
+        "d": "Tout commence par un fil de titane, choisi à la bonne épaisseur selon la pièce."
+      },
+      {
+        "n": "02",
+        "t": "La coupe",
+        "d": "Chaque pièce est taillée à sa mesure. Les branches, le pont."
+      },
+      {
+        "n": "03",
+        "t": "Le moule",
+        "d": "Le symbole est creusé dans l'acier du moule. La fleur de lys naît ici, avant le métal."
+      },
+      {
+        "n": "04",
+        "t": "La presse",
+        "d": "Le moule fini prend sa place sur la presse."
+      },
+      {
+        "n": "05",
+        "t": "La forme",
+        "d": "Sous presse, le surplus tombe. La pièce trouve sa forme."
+      },
+      {
+        "n": "06",
+        "t": "La charnière",
+        "d": "La charnière est ajustée à la main, puis vérifiée une à une."
+      },
+      {
+        "n": "07",
+        "t": "Le motif",
+        "d": "Le motif ajouré est pressé dans la branche."
+      },
+      {
+        "n": "08",
+        "t": "Le bain",
+        "d": "Un bain, puis le premier polissage à la main."
+      },
+      {
+        "n": "09",
+        "t": "La soudure",
+        "d": "On soude la face : les deux cercles prennent leur place."
+      },
+      {
+        "n": "10",
+        "t": "Le poli",
+        "d": "On polit encore, à la main, jusqu'à ce que rien n'accroche."
+      },
+      {
+        "n": "11",
+        "t": "La couleur",
+        "d": "L'or se pose, puis se protège. La matière garde sa lumière."
+      },
+      {
+        "n": "12",
+        "t": "La monture",
+        "d": "Le pont les réunit. La monture est née."
+      }
+    ],
+    "closing": "On ne produit pas vite. On produit juste.",
+    "cta": "Voir nos montures"
   }
 }

@@ -6,7 +6,6 @@ import CollectionAllFrames from '../components/CollectionAllFrames';
 import HistoireSection from '../components/HistoireSection';
 import TryInStoreSection from '../components/TryInStoreSection';
 import FabricationSection from '../components/FabricationSection';
-import ReassuranceSection from '../components/ReassuranceSection';
 import SEO from '../components/SEO';
 import { useSectionSnap } from '../hooks/useSectionSnap';
 
@@ -38,7 +37,6 @@ export default function HomePage() {
       <TryInStoreSection />
       <HistoireSection />
       <FabricationSection />
-      <ReassuranceSection />
     </>
   );
 }

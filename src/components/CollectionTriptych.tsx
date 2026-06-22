@@ -86,7 +86,7 @@ export default function CollectionTriptych() {
               <p className="font-display text-xl font-light italic text-white/60 tracking-[-0.02em] mb-6">
                 {t(`${panel.key}.subtitle`)}
               </p>
-              <span className="font-display text-[13px] italic text-white/70 tracking-[-0.01em] border-b border-white/30 pb-1.5">
+              <span className="inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-7 py-3 font-sans text-[9px] tracking-[0.24em] font-medium uppercase text-white hover:bg-white hover:text-[#0a0a0a] active:bg-white active:text-[#0a0a0a] transition-colors duration-300">
                 {t(`${panel.key}.discover`)}
               </span>
             </div>

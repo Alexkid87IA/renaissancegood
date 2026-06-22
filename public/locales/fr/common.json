@@ -8,7 +8,8 @@
     "collections": "Collections",
     "laMaison": "La Maison",
     "services": "Services",
-    "aide": "Aide"
+    "aide": "Aide",
+    "fabrication": "FABRICATION"
   },
   "header": {
     "search": "Rechercher",
@@ -94,7 +95,8 @@
     "isisSubtitle": "L'Ankh. Le Scarabée. Le Cobra. L'Œil d'Horus.",
     "ourHistory": "Notre Histoire",
     "savoirFaire": "L'atelier",
-    "ourOpticians": "Nos Opticiens"
+    "ourOpticians": "Nos Opticiens",
+    "fabrication": "La fabrication"
   },
   "loading": "Chargement",
   "error": "Impossible de charger la collection",

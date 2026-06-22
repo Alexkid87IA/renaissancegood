@@ -45,6 +45,7 @@ const VersaillesCollectionPage = lazyWithRetry(() => import('./pages/VersaillesC
 const IsisCollectionPage = lazyWithRetry(() => import('./pages/IsisCollectionPage'));
 const ProductPage = lazyWithRetry(() => import('./pages/ProductPage'));
 const HistoirePage = lazyWithRetry(() => import('./pages/HistoirePage'));
+const FabricationPage = lazyWithRetry(() => import('./pages/FabricationPage'));
 const CartPage = lazyWithRetry(() => import('./pages/CartPage'));
 const ShopPage = lazyWithRetry(() => import('./pages/ShopPage'));
 const BlogPage = lazyWithRetry(() => import('./pages/BlogPage'));
@@ -90,6 +91,7 @@ function AppRoutes() {
       <Route path="collections/isis" element={<IsisCollectionPage />} />
       <Route path="product/:id" element={<ProductPage />} />
       <Route path="histoire" element={<HistoirePage />} />
+      <Route path="fabrication" element={<FabricationPage />} />
       <Route path="cart" element={<CartPage />} />
       <Route path="checkout" element={<CheckoutPage />} />
       <Route path="checkout/confirmation" element={<CheckoutConfirmationPage />} />

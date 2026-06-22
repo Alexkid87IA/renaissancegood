@@ -39,7 +39,7 @@ export default function CollectionAllFrames() {
       <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/60 via-[#000000]/15 to-[#000000]/25 pointer-events-none" />
 
       <div className="absolute inset-0 flex flex-col items-center justify-end pb-[12%] px-6 pointer-events-none text-center [text-shadow:0_2px_16px_rgba(0,0,0,0.55)]">
-        <span className="font-sans text-[11px] sm:text-[12px] tracking-[0.35em] font-medium uppercase text-white border-b border-white/30 pb-2 transition-colors duration-500 group-hover:border-white/60">
+        <span className="pointer-events-auto inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-8 py-3.5 font-sans text-[11px] sm:text-[12px] tracking-[0.3em] font-medium uppercase text-white hover:bg-white hover:text-[#0a0a0a] active:bg-white active:text-[#0a0a0a] transition-colors duration-500">
           {isLoading ? t('allFrames.loading') : t('allFrames.mobileLabel')}
         </span>
       </div>

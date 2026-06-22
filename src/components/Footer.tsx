@@ -84,12 +84,12 @@ export default function Footer() {
                       required
                       aria-label={t('footer.emailPlaceholder')}
                       disabled={submitting}
-                      className="flex-1 px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-sm font-sans placeholder:text-white/50 focus:outline-none focus:border-white/30 transition-all duration-500 disabled:opacity-50"
+                      className="flex-1 px-5 py-4 rounded-2xl bg-white/[0.04] border border-white/[0.08] text-white text-sm font-sans placeholder:text-white/50 focus:outline-none focus:border-white/30 transition-all duration-500 disabled:opacity-50"
                     />
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="group relative overflow-hidden border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white disabled:opacity-50"
+                      className="group relative overflow-hidden rounded-2xl border border-white/20 px-8 py-4 transition-all duration-500 hover:border-white disabled:opacity-50"
                     >
                       <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/80 group-hover:text-[#000000] transition-colors duration-500 flex items-center gap-2">
                         {submitting ? t('footer.subscribing', { defaultValue: 'Envoi...' }) : t('footer.subscribe')}
@@ -330,12 +330,12 @@ export default function Footer() {
                   required
                   aria-label={t('footer.emailPlaceholder')}
                   disabled={submitting}
-                  className="w-full px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-[13px] font-sans placeholder:text-white/50 focus:outline-none focus:border-white/25 transition-all duration-500 text-center disabled:opacity-50 rounded-none"
+                  className="w-full px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-[13px] font-sans placeholder:text-white/50 focus:outline-none focus:border-white/25 transition-all duration-500 text-center disabled:opacity-50 rounded-2xl"
                 />
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-white py-4 disabled:opacity-50 active:bg-white/90 transition-colors"
+                  className="w-full bg-white py-4 rounded-2xl disabled:opacity-50 active:bg-white/90 transition-colors"
                 >
                   <span className="font-sans text-[9px] tracking-[0.3em] font-semibold uppercase text-[#000000] flex items-center justify-center gap-2">
                     {submitting ? t('footer.subscribing', { defaultValue: 'Envoi...' }) : t('footer.subscribe')}

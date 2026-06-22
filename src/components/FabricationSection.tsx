@@ -5,7 +5,9 @@ import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import HomeEditorialBlock from './HomeEditorialBlock';
 
-const FABRICATION_IMAGE = 'https://renaissance-cdn.b-cdn.net/try-in-store.jpg';
+// Matrices gravees (fleur de lys), etalonnees chaud (Bunny, 21 juin 2026).
+const FABRICATION_IMAGE_DESKTOP = 'https://renaissance-cdn.b-cdn.net/fabrication-16-9.jpg';
+const FABRICATION_IMAGE_MOBILE = 'https://renaissance-cdn.b-cdn.net/fabrication-9-16.jpg';
 
 export default function FabricationSection() {
   const { t } = useTranslation('home');
@@ -37,7 +39,7 @@ export default function FabricationSection() {
       {/* DESKTOP */}
       <div className="relative h-full hidden md:block overflow-hidden">
         <motion.img
-          src={FABRICATION_IMAGE}
+          src={FABRICATION_IMAGE_DESKTOP}
           alt="Renaissance Eyewear - Fabrication"
           style={imageMotionStyle}
           className="absolute inset-0 w-full h-full object-cover"
@@ -58,12 +60,12 @@ export default function FabricationSection() {
               label={t('fabrication.label')}
               title={t('fabrication.title')}
               subtitle={t('fabrication.subtitle')}
+              decorLines={false}
             >
               <div
                 data-fabrication-reading-panel
-                className="relative w-[min(48rem,calc(100vw-8rem))] border border-white/[0.14] bg-[#060504]/[0.58] px-6 py-6 shadow-[0_28px_90px_rgba(0,0,0,0.44)] backdrop-blur-[1px]"
+                className="relative w-[min(48rem,calc(100vw-8rem))] rounded-3xl border border-white/[0.14] bg-[#060504]/[0.58] px-6 py-6 shadow-[0_28px_90px_rgba(0,0,0,0.44)] backdrop-blur-[1px]"
               >
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-bronze/[0.70] via-white/[0.18] to-transparent" />
                 <p className="max-w-[42rem] font-sans text-[15px] xl:text-base leading-[1.85] font-light text-white/[0.84]">
                   {t('fabrication.description')}
                 </p>
@@ -91,10 +93,13 @@ export default function FabricationSection() {
                 </div>
 
                 <LocaleLink
-                  to="/histoire"
-                  className="mt-6 inline-flex min-w-[14rem] items-center justify-center border border-white/[0.28] px-7 py-4 font-sans text-[9px] tracking-[0.28em] font-medium uppercase text-white/[0.88] transition-all duration-500 hover:border-bronze/70 hover:text-bronze"
+                  to="/fabrication"
+                  className="group/btn relative overflow-hidden mt-6 inline-flex min-w-[14rem] items-center justify-center rounded-2xl border border-white/[0.55] px-9 py-4 transition-colors duration-500"
                 >
-                  {t('fabrication.cta')}
+                  <span className="absolute inset-0 origin-left scale-x-0 bg-white transition-transform duration-500 ease-out group-hover/btn:scale-x-100" />
+                  <span className="relative z-10 font-sans text-[9px] tracking-[0.28em] font-medium uppercase text-white group-hover/btn:text-[#0a0a0a] transition-colors duration-500">
+                    {t('fabrication.cta')}
+                  </span>
                 </LocaleLink>
               </div>
             </HomeEditorialBlock>
@@ -105,7 +110,7 @@ export default function FabricationSection() {
       {/* MOBILE */}
       <div className="md:hidden relative h-full bg-[#000000] overflow-hidden">
         <motion.img
-          src={FABRICATION_IMAGE}
+          src={FABRICATION_IMAGE_MOBILE}
           alt="Renaissance Eyewear - Fabrication"
           style={imageMotionStyle}
           className="absolute inset-0 w-full h-full object-cover"
@@ -115,7 +120,7 @@ export default function FabricationSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#000000]/30 to-[#000000]/90" />
 
         {/* Content — bas */}
-        <div className="absolute bottom-0 left-0 right-0 px-6 pb-8">
+        <div className="absolute bottom-0 left-0 right-0 px-6 pb-8 flex flex-col items-center text-center">
           <p className="font-sans text-white/40 text-[8px] tracking-[0.4em] font-medium uppercase mb-3">
             {t('fabrication.label')}
           </p>
@@ -127,7 +132,7 @@ export default function FabricationSection() {
           </p>
 
           {/* Stats — 2x2 grid */}
-          <div className="grid grid-cols-2 gap-y-5 gap-x-6 mb-6">
+          <div className="grid grid-cols-2 gap-y-5 gap-x-6 mb-6 w-full max-w-xs">
             {STATS.map((stat) => (
               <div key={stat.label}>
                 <p className="font-display text-3xl text-white font-bold tracking-tight leading-none mb-1.5">
@@ -141,12 +146,12 @@ export default function FabricationSection() {
           </div>
 
           {/* CTA */}
-          <LocaleLink to="/histoire">
-            <button className="group relative overflow-hidden w-full border border-white/20 px-6 py-4 transition-all duration-500 hover:border-bronze/60 active:scale-[0.98]">
-              <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#000000] transition-colors duration-500">
+          <LocaleLink to="/fabrication">
+            <button className="group relative overflow-hidden rounded-2xl border border-white/[0.45] px-9 py-4 transition-all duration-500 active:scale-[0.98]">
+              <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white group-hover:text-[#0a0a0a] group-active:text-[#0a0a0a] transition-colors duration-500">
                 {t('fabrication.cta')}
               </span>
-              <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 group-active:scale-x-100 transition-transform duration-500 origin-left" />
             </button>
           </LocaleLink>
         </div>

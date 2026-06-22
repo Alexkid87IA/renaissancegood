@@ -168,12 +168,12 @@ export default function HeroSection() {
           <div>
             <button
               onClick={() => navigate('/shop')}
-              className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[10px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]"
+              className="group/btn relative overflow-hidden inline-flex items-center justify-center rounded-2xl border border-white/[0.55] px-9 py-4 transition-colors duration-500"
             >
-              <span>{t('hero.cta')}</span>
-              <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <span className="absolute inset-0 origin-left scale-x-0 bg-white transition-transform duration-500 ease-out group-hover/btn:scale-x-100" />
+              <span className="relative z-10 font-sans text-[10px] tracking-[0.3em] font-medium uppercase text-white group-hover/btn:text-[#0a0a0a] transition-colors duration-500">
+                {t('hero.cta')}
+              </span>
             </button>
           </div>
         </div>
@@ -185,12 +185,12 @@ export default function HeroSection() {
         >
           <button
             onClick={() => navigate('/opticiens')}
-            className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[10px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]"
+            className="group/btn relative overflow-hidden inline-flex items-center justify-center rounded-2xl border border-white/[0.55] px-9 py-4 transition-colors duration-500"
           >
-            <span>{t('hero.ctaSecondary')}</span>
-            <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+            <span className="absolute inset-0 origin-left scale-x-0 bg-white transition-transform duration-500 ease-out group-hover/btn:scale-x-100" />
+            <span className="relative z-10 font-sans text-[10px] tracking-[0.3em] font-medium uppercase text-white group-hover/btn:text-[#0a0a0a] transition-colors duration-500">
+              {t('hero.ctaSecondary')}
+            </span>
           </button>
         </div>
       </div>
@@ -225,11 +225,11 @@ export default function HeroSection() {
             )}
           </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-[#000000]/70 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-[55%] bg-gradient-to-t from-[#000000] via-[#000000]/[0.62] to-transparent" />
         </motion.div>
 
         {/* Contenu */}
-        <div className="relative h-full flex flex-col justify-end px-7 pb-14">
+        <div className="relative h-full flex flex-col items-center text-center justify-end px-7 pb-14">
 
           {/* Titre éditorial */}
           <motion.div
@@ -265,31 +265,22 @@ export default function HeroSection() {
             </motion.h1>
           </motion.div>
 
-          {/* Ligne de séparation fine */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
-            className="w-10 h-px bg-white/25 origin-left mb-5"
-          />
-
-          {/* CTA discret */}
+          {/* CTA — deux boutons aux extremites */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.6 }}
-            className="flex items-center gap-5"
+            className="flex items-center justify-between gap-3 w-full"
           >
             <button
               onClick={() => navigate('/shop')}
-              className="font-display text-[13px] italic text-white/70 tracking-[-0.01em] active:text-white transition-colors duration-300"
+              className="inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-5 py-3.5 font-sans text-[8.5px] tracking-[0.22em] font-medium uppercase text-white hover:bg-white hover:text-[#0a0a0a] active:bg-white active:text-[#0a0a0a] transition-colors duration-300"
             >
               {t('hero.cta')}
             </button>
-            <span className="w-px h-3 bg-white/[0.15]" />
             <button
               onClick={() => navigate('/opticiens')}
-              className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/[0.35] font-medium active:text-white/60 transition-colors duration-300"
+              className="inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-5 py-3.5 font-sans text-[8.5px] tracking-[0.22em] font-medium uppercase text-white hover:bg-white hover:text-[#0a0a0a] active:bg-white active:text-[#0a0a0a] transition-colors duration-300"
             >
               {t('hero.mobileOpticians')}
             </button>

@@ -5,12 +5,24 @@ import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import HomeEditorialBlock from './HomeEditorialBlock';
 
+// Desktop : photo groupe (campagne 2K24, Bunny 22 juin 2026). Mobile : image historique.
+const TRY_IMAGE_DESKTOP = 'https://renaissance-cdn.b-cdn.net/try-in-store-desktop.jpg';
+const TRY_IMAGE_MOBILE = 'https://renaissance-cdn.b-cdn.net/try-in-store.jpg';
+
 export default function TryInStoreSection() {
   const { t } = useTranslation('home');
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
   const { sectionStyle, imageMotionStyle } = useStackedScroll(sectionRef);
+
+  // Engagements fusionnés depuis l'ancienne section Réassurance.
+  const ENGAGEMENTS = [
+    { title: t('reassurance.item1Title'), desc: t('reassurance.item1Desc') },
+    { title: t('reassurance.item2Title'), desc: t('reassurance.item2Desc') },
+    { title: t('reassurance.item3Title'), desc: t('reassurance.item3Desc') },
+    { title: t('reassurance.item4Title'), desc: t('reassurance.item4Desc') },
+  ];
 
   return (
     <motion.section
@@ -19,104 +31,93 @@ export default function TryInStoreSection() {
       className="snap-section h-[100dvh] lg:h-screen sticky top-0 z-[60] bg-[#000000] overflow-hidden"
       data-header-theme="dark"
     >
-      {/* DESKTOP */}
-      <div className="h-full hidden md:flex flex-row">
-        {/* Left - Content */}
-        <div className="relative w-1/2 overflow-hidden bg-black flex items-center justify-center px-12 lg:px-20 xl:px-24">
+      {/* DESKTOP — image plein cadre, degrade noir depuis la gauche */}
+      <div className="relative h-full hidden md:block overflow-hidden">
+        <motion.img
+          src={TRY_IMAGE_DESKTOP}
+          alt="Essayez en boutique"
+          style={imageMotionStyle}
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#000000]/[0.55] to-[#000000]/0 pointer-events-none" />
+        <div className="absolute left-0 top-0 h-full w-[64%] bg-gradient-to-r from-[#000000]/[0.72] via-[#000000]/[0.38] to-transparent pointer-events-none" />
+
+        <div className="relative h-full flex items-center px-12 lg:px-20 xl:px-24">
           <HomeEditorialBlock
             panelRef={contentRef}
             active={contentInView}
             index="05"
-            label={t('tryInStore.label')}
             title={t('tryInStore.title')}
             subtitle={t('tryInStore.subtitle')}
+            titleSize="md"
+            decorLines={false}
             description={t('tryInStore.description')}
             actions={[
               { label: t('tryInStore.cta'), href: '/opticiens' },
               { label: t('tryInStore.ctaShop'), href: '/shop', variant: 'secondary' },
             ]}
-            meta={t('tryInStore.guarantees')}
-          />
-        </div>
-
-        {/* Right - Image */}
-        <div className="w-1/2 h-full relative overflow-hidden">
-          <motion.img
-            src="https://renaissance-cdn.b-cdn.net/try-in-store.jpg"
-            alt="Essayez en boutique"
-            style={imageMotionStyle}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, #000000 0%, rgba(0,0,0,0.4) 30%, transparent 100%), linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)' }} />
+          >
+            <div className="grid grid-cols-2 gap-x-10 gap-y-7">
+              {ENGAGEMENTS.map((e) => (
+                <div key={e.title}>
+                  <p className="font-sans text-[11px] tracking-[0.24em] text-bronze/[0.80] uppercase font-medium mb-2 leading-[1.5]">
+                    {e.title}
+                  </p>
+                  <p className="font-sans text-base lg:text-[17px] text-white/[0.72] leading-snug font-light">
+                    {e.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </HomeEditorialBlock>
         </div>
       </div>
 
-      {/* MOBILE — Éditorial luxe */}
+      {/* MOBILE */}
       <div className="md:hidden relative h-full bg-[#000000] overflow-hidden">
         <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
-            src="https://renaissance-cdn.b-cdn.net/try-in-store.jpg"
+            src={TRY_IMAGE_MOBILE}
             alt="Essayez en boutique"
             className="w-full h-full object-cover object-[center_30%]"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/20 via-[#000000]/35 to-[#000000]/[0.92]" />
         </motion.div>
 
-        <div className="relative h-full flex flex-col justify-end px-7 pb-14">
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-sans text-white/40 text-[8px] tracking-[0.5em] uppercase font-medium mb-4"
-          >
+        <div className="relative h-full flex flex-col items-center text-center justify-end px-7 pb-12">
+          <p className="font-sans text-white/40 text-[8px] tracking-[0.5em] uppercase font-medium mb-3">
             {t('tryInStore.label')}
-          </motion.p>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.9, delay: 0.35 }}
-            className="font-display text-[2.6rem] sm:text-5xl font-bold text-white tracking-[-0.04em] leading-[0.88] mb-2"
-          >
+          </p>
+          <h2 className="font-display text-[2.4rem] sm:text-5xl font-bold text-white tracking-[-0.04em] leading-[0.88]">
             {t('tryInStore.mobileTitle1')}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.9, delay: 0.5 }}
-            className="font-display text-[2.6rem] sm:text-5xl font-light italic text-white/80 tracking-[-0.04em] leading-[0.88]"
-          >
+          </h2>
+          <p className="font-display text-[2.4rem] sm:text-5xl font-light italic text-white/80 tracking-[-0.04em] leading-[0.88] mb-5">
             {t('tryInStore.mobileTitle2')}
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="w-10 h-px bg-white/25 origin-left mt-5 mb-5"
-          />
+          <div className="grid grid-cols-2 gap-x-5 gap-y-4 mb-6 w-full">
+            {ENGAGEMENTS.map((e) => (
+              <div key={e.title}>
+                <p className="font-sans text-[9px] tracking-[0.22em] text-bronze/[0.78] uppercase font-medium mb-1">
+                  {e.title}
+                </p>
+                <p className="font-sans text-[13px] text-white/[0.68] leading-snug font-light">
+                  {e.desc}
+                </p>
+              </div>
+            ))}
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex items-center gap-5"
-          >
-            <LocaleLink to="/opticiens" className="font-display text-[13px] italic text-white/70 tracking-[-0.01em] active:text-white transition-colors duration-300">
+          <div className="flex items-center justify-between gap-3 w-full">
+            <LocaleLink to="/opticiens" className="inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-5 py-3.5 font-sans text-[8.5px] tracking-[0.22em] font-medium uppercase text-white hover:bg-white hover:text-[#0a0a0a] active:bg-white active:text-[#0a0a0a] transition-colors duration-300">
               {t('tryInStore.cta')}
             </LocaleLink>
-            <span className="w-px h-3 bg-white/[0.15]" />
-            <LocaleLink to="/shop" className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/[0.45] font-medium active:text-white/60 transition-colors duration-300">
+            <LocaleLink to="/shop" className="inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-5 py-3.5 font-sans text-[8.5px] tracking-[0.22em] font-medium uppercase text-white hover:bg-white hover:text-[#0a0a0a] active:bg-white active:text-[#0a0a0a] transition-colors duration-300">
               {t('tryInStore.ctaShop')}
             </LocaleLink>
-          </motion.div>
+          </div>
         </div>
       </div>
     </motion.section>

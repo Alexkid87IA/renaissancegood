@@ -43,7 +43,7 @@ const LOGO_LIGHT = 'https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%
 
 // Pages avec un hero plein écran : header transparent (logo seul) en haut,
 // puis header solide dès qu'on scrolle.
-const HERO_ROUTES = ['/', '/shop', '/histoire', '/collections/heritage', '/collections/versailles', '/collections/isis'];
+const HERO_ROUTES = ['/', '/shop', '/histoire', '/fabrication', '/collections/heritage', '/collections/versailles', '/collections/isis'];
 const MENU_HERO_IMAGES = [
   'https://renaissance-cdn.b-cdn.net/campgane.png',
   'https://renaissance-cdn.b-cdn.net/packshot%202.png',
@@ -345,6 +345,7 @@ export default function Header() {
                           { to: '/collections/isis', label: t('nav.isis') },
                           { to: '/shop', label: t('nav.explorer') },
                           { to: '/histoire', label: t('nav.histoire') },
+                          { to: '/fabrication', label: t('nav.fabrication') },
                         ].map((item) => (
                           <LocaleLink
                             key={item.to}
@@ -376,6 +377,9 @@ export default function Header() {
                   </NavLink>
                   <NavLink to={localePath('/histoire')} light={whiteLeft} rawPath={rawPath} routeMatch="/histoire" onMouseEnter={() => handleMenuEnter('histoire')} onClick={closeMenu}>
                     {t('nav.histoire')}
+                  </NavLink>
+                  <NavLink to={localePath('/fabrication')} light={whiteLeft} rawPath={rawPath} routeMatch="/fabrication" onMouseEnter={() => handleMenuEnter(null)} onClick={closeMenu}>
+                    {t('nav.fabrication')}
                   </NavLink>
                 </nav>
               )}

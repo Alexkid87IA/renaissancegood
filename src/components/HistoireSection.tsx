@@ -5,6 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { useStackedScroll } from '../hooks/useStackedScroll';
 import HomeEditorialBlock from './HomeEditorialBlock';
 
+// Desktop : homme lisant le Renaissance Times (campagne Versailles, Bunny 22 juin 2026). Mobile : image historique.
+const HISTOIRE_IMAGE_DESKTOP = 'https://renaissance-cdn.b-cdn.net/histoire-desktop.jpg';
+const HISTOIRE_IMAGE_MOBILE = 'https://renaissance-cdn.b-cdn.net/histoire-mobile.jpg';
+
 export default function HistoireSection() {
   const { t } = useTranslation('home');
   const sectionRef = useRef<HTMLElement>(null);
@@ -20,10 +24,19 @@ export default function HistoireSection() {
       id="histoire"
       data-header-theme="dark"
     >
-      {/* DESKTOP */}
-      <div className="h-full hidden md:flex flex-row">
-        {/* Left - Content */}
-        <div className="relative w-1/2 overflow-hidden bg-black flex items-center justify-center px-12 lg:px-20 xl:px-24">
+      {/* DESKTOP — image plein cadre, degrade noir depuis la gauche */}
+      <div className="relative h-full hidden md:block overflow-hidden">
+        <motion.img
+          src={HISTOIRE_IMAGE_DESKTOP}
+          alt="Né d'un refus - Renaissance Eyewear"
+          style={imageMotionStyle}
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-[#000000]/[0.55] to-[#000000]/0 pointer-events-none" />
+        <div className="absolute left-0 top-0 h-full w-[64%] bg-gradient-to-r from-[#000000]/[0.72] via-[#000000]/[0.38] to-transparent pointer-events-none" />
+
+        <div className="relative h-full flex items-center px-12 lg:px-20 xl:px-24">
           <HomeEditorialBlock
             panelRef={contentRef}
             active={contentInView}
@@ -31,22 +44,11 @@ export default function HistoireSection() {
             label={t('histoire.label')}
             title={t('histoire.title')}
             subtitle={t('histoire.subtitle')}
+            decorLines={false}
             description={t('histoire.description')}
             actions={[{ label: t('histoire.cta'), href: '/histoire' }]}
             meta={t('histoire.since')}
           />
-        </div>
-
-        {/* Right - Image */}
-        <div className="w-1/2 h-full relative overflow-hidden">
-          <motion.img
-            src="https://renaissance-cdn.b-cdn.net/ne-dun-refus.jpg"
-            alt="Né d'un refus - Renaissance Eyewear"
-            style={imageMotionStyle}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, #000000 0%, rgba(0,0,0,0.4) 30%, transparent 100%), linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 50%, rgba(0,0,0,0.2) 100%)' }} />
         </div>
       </div>
 
@@ -54,15 +56,15 @@ export default function HistoireSection() {
       <div className="md:hidden relative h-full bg-[#000000] overflow-hidden">
         <motion.div className="absolute inset-0" style={imageMotionStyle}>
           <img
-            src="https://renaissance-cdn.b-cdn.net/ne-dun-refus.jpg"
+            src={HISTOIRE_IMAGE_MOBILE}
             alt="Né d'un refus - Renaissance Eyewear"
             className="w-full h-full object-cover object-[center_30%]"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-[#000000]/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/20 via-[#000000]/35 to-[#000000]/[0.92]" />
         </motion.div>
 
-        <div className="relative h-full flex flex-col justify-end px-7 pb-14">
+        <div className="relative h-full flex flex-col items-center text-center justify-end px-7 pb-14">
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -87,30 +89,21 @@ export default function HistoireSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, delay: 0.5 }}
-            className="font-display text-[2.6rem] sm:text-5xl font-light italic text-white/80 tracking-[-0.04em] leading-[0.88]"
+            className="font-display text-[2.6rem] sm:text-5xl font-light italic text-white/80 tracking-[-0.04em] leading-[0.88] mb-7"
           >
             {t('histoire.mobileTitle2')}
           </motion.p>
-
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="w-10 h-px bg-white/25 origin-left mt-5 mb-5"
-          />
 
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex items-center gap-5"
+            className="flex flex-col items-center gap-4"
           >
-            <LocaleLink to="/histoire" className="font-display text-[13px] italic text-white/70 tracking-[-0.01em] active:text-white transition-colors duration-300">
+            <LocaleLink to="/histoire" className="inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-7 py-3 font-sans text-[9px] tracking-[0.24em] font-medium uppercase text-white hover:bg-white hover:text-[#0a0a0a] active:bg-white active:text-[#0a0a0a] transition-colors duration-300">
               {t('histoire.mobileCta')}
             </LocaleLink>
-            <span className="w-px h-3 bg-white/[0.15]" />
             <span className="font-sans text-[8px] tracking-[0.25em] uppercase text-white/[0.45] font-medium">
               {t('histoire.since')}
             </span>
