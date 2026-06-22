@@ -219,9 +219,7 @@ export default function StoreLocatorPage() {
                 {t('storeLocatorPage.hero.subtitle')}
               </motion.p>
 
-              <motion.div variants={fade} className="w-12 h-px bg-bronze/[0.45] mb-8 xl:mb-10" />
-
-              <motion.p variants={fade} className="font-sans text-white/[0.62] text-[13px] xl:text-sm leading-[1.9] font-light max-w-md mb-8">
+              <motion.p variants={fade} className="mt-8 xl:mt-10 font-sans text-white/[0.62] text-[13px] xl:text-sm leading-[1.9] font-light max-w-md mb-8">
                 {t('storeLocatorPage.hero.description')}
               </motion.p>
 
@@ -252,27 +250,22 @@ export default function StoreLocatorPage() {
                     const section = document.querySelector('[data-search-section]');
                     section?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="group relative overflow-hidden border border-white/[0.15] px-10 py-4 transition-all duration-500 hover:border-bronze/60"
+                  className="group/btn relative overflow-hidden inline-flex items-center justify-center rounded-2xl border border-white/[0.55] px-10 py-4 transition-colors duration-500"
                 >
-                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/70 group-hover:text-[#0a0a0a] transition-colors duration-500">
+                  <span className="absolute inset-0 origin-left scale-x-0 bg-white transition-transform duration-500 ease-out group-hover/btn:scale-x-100" />
+                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white group-hover/btn:text-[#0a0a0a] transition-colors duration-500">
                     {t('storeLocatorPage.hero.cta')}
                   </span>
-                  <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </button>
               </motion.div>
             </motion.div>
 
-            {/* Bottom scroll indicator */}
-            <div className="absolute bottom-10 left-12 xl:left-20 2xl:left-28 flex items-center gap-3">
-              <div className="w-8 h-px bg-white/[0.15]" />
-              <span className="font-sans text-white/[0.15] text-[9px] tracking-[0.3em] uppercase">{t('storeLocatorPage.hero.scroll')}</span>
-            </div>
           </div>
 
           {/* Right Panel — Image */}
           <div className="flex-1 relative overflow-hidden">
             <img
-              src="https://renaissance-cdn.b-cdn.net/packshot%20copie.png"
+              src="https://renaissance-cdn.b-cdn.net/opticiens-hero.webp"
               alt="Renaissance Eyewear - Opticiens partenaires"
               className="absolute inset-0 w-full h-full object-cover"
               fetchpriority="high"
@@ -287,7 +280,7 @@ export default function StoreLocatorPage() {
           {/* Image top */}
           <div className="relative h-[50%] overflow-hidden">
             <img
-              src="https://renaissance-cdn.b-cdn.net/packshot%20copie.png"
+              src="https://renaissance-cdn.b-cdn.net/opticiens-hero.webp"
               alt="Renaissance Eyewear - Opticiens partenaires"
               className="w-full h-full object-cover object-center"
               fetchpriority="high"
@@ -306,23 +299,23 @@ export default function StoreLocatorPage() {
           </div>
 
           {/* Content bottom */}
-          <div className="flex-1 bg-[#000000] px-6 flex flex-col justify-center relative">
+          <div className="flex-1 bg-[#000000] px-6 flex flex-col justify-center items-center text-center relative">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col items-center"
             >
               <h1 className="font-display text-3xl sm:text-4xl font-bold text-white mb-2 tracking-[-0.03em] leading-[0.9]">
                 {t('storeLocatorPage.hero.titleLine1')}
                 <br />{t('storeLocatorPage.hero.titleLine2')}
               </h1>
-              <p className="font-display text-lg sm:text-xl font-light italic text-white/[0.68] tracking-[-0.02em] mb-5">
+              <p className="font-display text-lg sm:text-xl font-light italic text-white/[0.68] tracking-[-0.02em] mb-6">
                 {t('storeLocatorPage.hero.subtitle')}
               </p>
-              <div className="w-10 h-px bg-bronze/[0.45] mb-5" />
 
               {/* Stats mobile */}
-              <div className="flex items-center gap-5 mb-6">
+              <div className="flex items-center justify-center gap-5 mb-6">
                 <div>
                   <p className="font-display text-2xl font-bold text-white leading-none">{opticiansData.length}+</p>
                   <p className="font-sans text-[8px] tracking-[0.3em] uppercase text-white/[0.52] mt-1">{t('storeLocatorPage.hero.opticians')}</p>
@@ -339,7 +332,7 @@ export default function StoreLocatorPage() {
                   const section = document.querySelector('[data-search-section]');
                   section?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="w-full bg-white text-dark-text px-8 py-4 font-sans text-[9px] tracking-[0.3em] font-medium uppercase hover:bg-white/90 transition-all duration-300 active:scale-[0.98]"
+                className="inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-9 py-3.5 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white active:bg-white active:text-[#0a0a0a] transition-colors duration-300"
               >
                 {t('storeLocatorPage.hero.cta')}
               </button>

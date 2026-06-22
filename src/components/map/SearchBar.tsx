@@ -23,6 +23,8 @@ const COUNTRIES = [
   { code: 'GRE', label: 'Grèce' },
   { code: 'ALB', label: 'Albanie' },
   { code: 'UAE', label: 'Dubai' },
+  { code: 'CAN', label: 'Canada' },
+  { code: 'RUS', label: 'Russie' },
 ];
 
 export default function SearchBar({
@@ -69,7 +71,7 @@ export default function SearchBar({
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder="Ville, code postal ou nom d'opticien..."
-            className="w-full pl-11 pr-4 py-3.5 border border-dark-text/[0.08] bg-white font-sans text-sm text-dark-text placeholder:text-dark-text/30 focus:outline-none focus:border-dark-text/25 transition-colors duration-300"
+            className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-dark-text/[0.08] bg-white font-sans text-sm text-dark-text placeholder:text-dark-text/30 focus:outline-none focus:border-dark-text/25 transition-colors duration-300"
           />
         </div>
 
@@ -77,7 +79,7 @@ export default function SearchBar({
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full lg:w-auto px-5 py-3.5 border border-dark-text/[0.08] bg-white hover:border-dark-text/20 transition-colors duration-300 flex items-center justify-between gap-4 min-w-[200px]"
+            className="w-full lg:w-auto px-5 py-3.5 rounded-2xl border border-dark-text/[0.08] bg-white hover:border-dark-text/20 transition-colors duration-300 flex items-center justify-between gap-4 min-w-[200px]"
           >
             <span className="font-sans text-[11px] tracking-[0.15em] font-medium uppercase text-dark-text/[0.55]">
               {selectedCountryData.label}
@@ -89,7 +91,7 @@ export default function SearchBar({
 
           {/* Dropdown Menu */}
           {isDropdownOpen && (
-            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-dark-text/[0.08] shadow-lg z-50 max-h-[300px] overflow-y-auto">
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl border border-dark-text/[0.08] shadow-lg z-50 max-h-[300px] overflow-y-auto">
               {availableCountries.map((country) => {
                 const count = country.code === 'ALL'
                   ? Object.values(countryCounts).reduce((a, b) => a + b, 0)
@@ -122,7 +124,7 @@ export default function SearchBar({
         {/* Geolocation Button */}
         <button
           onClick={onGetLocation}
-          className="group relative overflow-hidden px-5 py-3.5 border border-dark-text/[0.08] bg-white transition-all duration-500 hover:border-dark-text/20 flex items-center justify-center gap-2"
+          className="group relative overflow-hidden px-5 py-3.5 rounded-2xl border border-dark-text/[0.08] bg-white transition-all duration-500 hover:border-dark-text/20 flex items-center justify-center gap-2"
           title="Utiliser ma position actuelle"
         >
           <MapPin className="w-4 h-4 relative z-10 text-dark-text/[0.35] group-hover:text-dark-text transition-colors duration-300" />

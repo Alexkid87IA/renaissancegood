@@ -28,9 +28,6 @@ export default function StoreList({ stores, selectedStore, onSelectStore, search
     <div className="p-6 lg:p-8">
       {/* Header */}
       <div className="mb-6 lg:mb-8">
-        <p className="font-sans text-[8px] tracking-[0.3em] font-bold text-dark-text uppercase mb-1">
-          # Opticiens
-        </p>
         <p className="font-display text-3xl lg:text-4xl font-bold text-dark-text leading-none mb-2">
           {stores.length}
         </p>
@@ -38,8 +35,6 @@ export default function StoreList({ stores, selectedStore, onSelectStore, search
           {searchQuery ? `résultat${stores.length > 1 ? 's' : ''} pour "${searchQuery}"` : 'partenaires disponibles'}
         </p>
       </div>
-
-      <div className="w-full h-px bg-dark-text/10 mb-6" />
 
       {/* Store List */}
       <div className="space-y-3">
@@ -50,7 +45,7 @@ export default function StoreList({ stores, selectedStore, onSelectStore, search
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: Math.min(index * 0.03, 0.5) }}
             onClick={() => onSelectStore(store)}
-            className={`group cursor-pointer border transition-all duration-500 ${
+            className={`group cursor-pointer rounded-2xl border transition-all duration-500 ${
               selectedStore?.id === store.id
                 ? 'border-bronze bg-bronze/5'
                 : 'border-dark-text/[0.08] hover:border-bronze/40 bg-white'
@@ -92,7 +87,7 @@ export default function StoreList({ stores, selectedStore, onSelectStore, search
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="group/btn relative overflow-hidden flex-1 flex items-center justify-center gap-2 px-4 py-2.5 border border-dark-text/[0.15] transition-all duration-500 hover:border-dark-text"
+                  className="group/btn relative overflow-hidden rounded-xl flex-1 flex items-center justify-center gap-2 px-4 py-2.5 border border-dark-text/[0.15] transition-all duration-500 hover:border-dark-text"
                 >
                   <ExternalLink className="w-3.5 h-3.5 relative z-10 transition-colors duration-500 group-hover/btn:text-white" />
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.2em] font-medium uppercase transition-colors duration-500 group-hover/btn:text-white">
