@@ -35,6 +35,28 @@
     "title": "LE MANIFESTE\nRENAISSANCE",
     "description": "Ce que nous créons n'est pas seulement un accessoire. C'est un acte de transmission."
   },
+  "manifestePage": {
+    "label": "Le Manifeste",
+    "hook": "Le monde va vite.\nOn a choisi l'inverse.",
+    "devise": "Pour que chaque jour compte.",
+    "paragraphs": [
+      "Renaissance n'est pas née d'un hommage au passé. Elle est née d'un refus. Refus de voir disparaître ce qui doit durer. Refus de ce qui brille sans peser.",
+      "Le monde va vite. Il jette, il recommence, il porte pour être vu. On a choisi l'inverse.",
+      "Ce qui a de la valeur se prouve, il ne s'annonce pas. La lunette n'est pas ce qu'on possède. C'est le signe qu'on a compris. On le reconnaît de près. De loin, c'est une belle paire, et c'est très bien ainsi.",
+      "Un matin, on pose la même monture qu'hier. Un jour, une autre main la reprendra. Entre les deux, des années, un numéro gravé au pont, une réparation ou deux. Ce qui est bien fait se répare ; ce qui se répare se garde ; ce qui se garde se transmet.",
+      "On n'a pas besoin de tout savoir pour entrer. Il suffit de sentir que tout ne se vaut pas. Le reste vient en le portant.",
+      "On n'hérite pas d'une lignée. On la fonde."
+    ],
+    "proofsLabel": "Ce qui le prouve",
+    "proofs": [
+      "Un numéro gravé au pont. Le vôtre.",
+      "Titane. Il ne rouille pas, la peau l'oublie.",
+      "Ce qui se casse, la Maison le répare.",
+      "Dessinées à Paris."
+    ],
+    "closing": "Si ces lignes vous ont parlé, vous savez déjà pourquoi.",
+    "cta": "Découvrir nos créations"
+  },
   "symboles": {
     "label": "Les symboles",
     "title": "SEPT SYMBOLES\nÉTERNELS"
@@ -103,7 +125,7 @@
     "subtitle": "Celui de voir disparaître ce qui doit durer.",
     "description": "Trois hommes du métier ont vu la qualité reculer pendant des années. Ils ont décidé de faire l'inverse. Concevoir des montures qui accompagnent une vie, pas une saison. Exiger ce que le marché a cessé d'exiger.\nChaque monture porte cette promesse : celle d'un objet pensé pour durer, pas pour être remplacé.",
     "mobileDescription": "Trois hommes du métier ont vu la qualité reculer pendant des années. Ils ont décidé de faire l'inverse. Chaque monture porte cette promesse : celle d'un objet pensé pour durer, pas pour être remplacé.",
-    "cta": "Découvrir nos créations"
+    "cta": "Le Manifeste"
   },
   "symbolesSection": {
     "label": "Nos Symboles",
@@ -112,25 +134,25 @@
     "description": "Ce que l'on porte raconte ce que l'on croit.",
     "symbol1Name": "Le Trident",
     "symbol1Subtitle": "Souveraineté",
-    "symbol1Desc": "L'équilibre entre hier, aujourd'hui et demain. L'ancrage dans ce qui fonde, ce qui construit, ce qui perdure.",
+    "symbol1Desc": "Le trident traverse les civilisations : l'arme de Poséidon, le sceptre de Shiva, le signe du pouvoir depuis la nuit des temps. On l'a choisi pour ce qu'il représente : la souveraineté. Trois pointes, un seul manche, comme les trois qui ont fondé la Maison.",
     "symbol2Name": "La Fleur de Lys",
     "symbol2Subtitle": "Maîtrise",
-    "symbol2Desc": "La fleur de France. La noblesse n'est pas dans le sang, mais dans la main : on la reconnaît à ce qu'un homme sait faire, jamais à d'où il vient.",
+    "symbol2Desc": "Pendant des siècles, la fleur de lys a couronné les rois de France : la noblesse reçue à la naissance. Chez nous, elle dit le contraire. Personne ne nous a faits nobles, on a appris le geste. La maîtrise ne se reçoit pas, elle se prouve à la main.",
     "symbol3Name": "L'Ankh",
     "symbol3Subtitle": "Éternité",
-    "symbol3Desc": "Le souffle qui relie. Ce qui connecte ceux qui construisent à ceux qui continueront.",
+    "symbol3Desc": "Dans l'Égypte ancienne, l'ankh était la clé de la vie, tenue par les dieux : la croix qui ne meurt pas. On l'a choisie pour l'éternité. Elle n'ouvre pas une porte, elle ouvre un passage : de ceux qui ont construit à ceux qui suivront.",
     "symbol4Name": "Le Scarabée",
     "symbol4Subtitle": "Renaissance",
-    "symbol4Desc": "Le passage et la transformation. Ce qui traverse les épreuves, ce qui renaît plus fort qu'avant.",
+    "symbol4Desc": "Pour les Égyptiens, le scarabée roulait le soleil et le faisait renaître chaque matin. Le signe de la renaissance depuis des millénaires : il porte le nom de la Maison. Ce qui renaît est plus solide que ce qui n'est jamais tombé.",
     "symbol5Name": "Le Cobra",
     "symbol5Subtitle": "Protection",
-    "symbol5Desc": "L'éveil silencieux. Celui qui voit avant d'être vu.",
+    "symbol5Desc": "Le cobra se dressait sur la couronne des pharaons, prêt à frapper avant même qu'on le voie. On l'a pris pour la protection. Il ne prévient pas. Il veille.",
     "symbol6Name": "L'Œil d'Horus",
     "symbol6Subtitle": "Lucidité",
-    "symbol6Desc": "L'œil qui ne se ferme jamais. Brisé puis rendu entier, il voit ce que les autres regardent sans voir.",
+    "symbol6Desc": "Dans le mythe égyptien, l'œil d'Horus fut arraché dans un combat, puis reconstitué morceau par morceau. Le regard brisé, puis rendu entier. On l'a choisi pour la lucidité : l'œil qui ne se ferme jamais, et voit ce que les autres regardent sans voir.",
     "symbol7Name": "La Plaque parisienne",
     "symbol7Subtitle": "Appartenance",
-    "symbol7Desc": "« Avenue de la Renaissance », gravée dans l'or. La rue qu'on ne trouve sur aucune carte, l'adresse que chacun emporte où il va."
+    "symbol7Desc": "La plaque de rue bleue, on la reconnaît tous : c'est Paris. La nôtre indique « Avenue de la Renaissance », gravée dans l'or, une rue qu'on ne trouve sur aucune carte. Le seul symbole qui voyage : elle passe où l'on passe."
   },
   "signatureSection": {
     "label": "La Signature",
@@ -144,17 +166,17 @@
     "label": "Fabrication",
     "title": "FABRIQUÉES LÀ OÙ LA PRÉCISION EST UNE DISCIPLINE.",
     "subtitle": "Paris, Corée, Italie.",
-    "description": "Dessinées à Paris, fabriquées en Corée, l'acétate vient d'Italie. On ne produit pas vite. On produit juste.",
+    "description": "Dessinées à Paris, fabriquées en Corée, l'acétate vient d'Italie. Tout part d'un fil de titane : douze gestes, beaucoup de mains, jusqu'à la monture.",
     "stat1Value": "18KT",
-    "stat1Label": "Or véritable, plaqué",
+    "stat1Label": "Plaqué or 18 carats",
     "stat2Value": "Titane",
-    "stat2Label": "Léger, résistant",
+    "stat2Label": "Léger, ne rouille jamais",
     "stat3Value": "Italie",
-    "stat3Label": "Acétate Mazzucchelli",
-    "mobileStat1Label": "Or 18KT",
-    "mobileStat2Label": "Titane",
-    "mobileStat3Label": "Acétate",
-    "cta": "L'atelier"
+    "stat3Label": "Mazzucchelli, depuis 1849",
+    "mobileStat1Label": "Or 18 carats",
+    "mobileStat2Label": "Ne rouille pas",
+    "mobileStat3Label": "Mazzucchelli",
+    "cta": "Voir la fabrication"
   },
   "valeursSection": {
     "label": "Nos Valeurs",

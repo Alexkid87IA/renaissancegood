@@ -51,6 +51,12 @@ interface SEOProps {
   faqItems?: FAQItem[];
   // Pour les pages avec LocalBusiness (opticiens)
   localBusiness?: LocalBusinessProps;
+  // Pour les pages procédé (ex: fabrication) — aide l'AI search
+  howTo?: {
+    name: string;
+    description?: string;
+    steps: { name: string; text: string }[];
+  };
   noIndex?: boolean;
 }
 
@@ -68,6 +74,7 @@ export default function SEO({
   article,
   faqItems,
   localBusiness,
+  howTo,
   noIndex = false,
 }: SEOProps) {
   const { locale } = useLocale();
@@ -174,6 +181,20 @@ export default function SEO({
         '@type': 'Answer',
         text: item.answer,
       },
+    })),
+  } : null;
+
+  // JSON-LD pour HowTo (procédé de fabrication) — surtout pour l'AI search
+  const howToSchema = howTo && howTo.steps.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: howTo.name,
+    ...(howTo.description && { description: howTo.description }),
+    step: howTo.steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: s.text,
     })),
   } : null;
 
@@ -302,6 +323,12 @@ export default function SEO({
       {faqSchema && (
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
+        </script>
+      )}
+
+      {howToSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(howToSchema)}
         </script>
       )}
 

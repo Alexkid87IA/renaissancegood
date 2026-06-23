@@ -35,6 +35,28 @@
     "title": "DAS MANIFEST\nVON RENAISSANCE",
     "description": "Was wir schaffen, ist nicht nur ein Accessoire. Es ist ein Akt der Weitergabe."
   },
+  "manifestePage": {
+    "label": "Das Manifest",
+    "hook": "Die Welt ist schnell.\nWir haben das Gegenteil gewählt.",
+    "devise": "Pour que chaque jour compte.",
+    "paragraphs": [
+      "Renaissance entstand nicht aus einer Verbeugung vor der Vergangenheit. Sie entstand aus einer Weigerung. Der Weigerung, verschwinden zu lassen, was bleiben soll. Der Weigerung gegen das, was glänzt, ohne zu wiegen.",
+      "Die Welt ist schnell. Sie wirft weg, fängt von vorn an, trägt, um gesehen zu werden. Wir haben das Gegenteil gewählt.",
+      "Was Wert hat, beweist sich, es kündigt sich nicht an. Eine Brille ist nicht das, was man besitzt. Sie ist das Zeichen, dass man verstanden hat. Aus der Nähe erkennt man sie. Von Weitem ist sie ein schönes Paar, und das ist gut so.",
+      "An einem Morgen setzt man dieselbe Fassung auf wie gestern. Eines Tages nimmt sie eine andere Hand. Dazwischen Jahre, eine Nummer, in den Steg graviert, eine Reparatur oder zwei. Was gut gemacht ist, wird repariert; was repariert wird, wird behalten; was behalten wird, wird weitergegeben.",
+      "Man muss nicht alles wissen, um einzutreten. Es genügt zu spüren, dass nicht alles gleich viel wert ist. Der Rest kommt beim Tragen.",
+      "Man erbt keine Linie. Man begründet sie."
+    ],
+    "proofsLabel": "Was es beweist",
+    "proofs": [
+      "Eine Nummer, in den Steg graviert. Ihre.",
+      "Titan. Es rostet nicht, die Haut vergisst es.",
+      "Was zerbricht, reparieren wir.",
+      "Entworfen in Paris."
+    ],
+    "closing": "Wenn diese Zeilen Sie berührt haben, wissen Sie schon, warum.",
+    "cta": "Unsere Kreationen entdecken"
+  },
   "symboles": {
     "label": "Die Symbole",
     "title": "SIEBEN EWIGE\nSYMBOLE"
@@ -103,7 +125,7 @@
     "subtitle": "Der, zuzusehen, wie verschwindet, was bleiben soll.",
     "description": "Drei Männer vom Fach haben die Qualität jahrelang zurückgehen sehen. Sie haben beschlossen, das Gegenteil zu tun. Fassungen zu entwerfen, die ein Leben begleiten, keine Saison. Zu verlangen, was der Markt nicht mehr verlangt.\nJede Fassung trägt dieses Versprechen: das eines Objekts, gedacht, um zu bleiben, nicht um ersetzt zu werden.",
     "mobileDescription": "Drei Männer vom Fach haben die Qualität jahrelang zurückgehen sehen. Sie haben beschlossen, das Gegenteil zu tun. Jede Fassung trägt dieses Versprechen: das eines Objekts, gedacht, um zu bleiben, nicht um ersetzt zu werden.",
-    "cta": "Unsere Kreationen entdecken"
+    "cta": "Das Manifest"
   },
   "symbolesSection": {
     "label": "Unsere Symbole",
@@ -112,25 +134,25 @@
     "description": "Was man trägt, erzählt, woran man glaubt.",
     "symbol1Name": "Der Dreizack",
     "symbol1Subtitle": "Souveränität",
-    "symbol1Desc": "Das Gleichgewicht zwischen gestern, heute und morgen. Der Halt in dem, was gründet, was aufbaut, was bleibt.",
+    "symbol1Desc": "Der Dreizack durchzieht alle Kulturen: die Waffe Poseidons, der Stab Shivas, das Zeichen der Macht seit Anbeginn der Zeit. Wir haben ihn für das gewählt, wofür er steht: Souveränität. Drei Spitzen, ein Schaft, wie die drei, die das Haus gegründet haben.",
     "symbol2Name": "Die Lilie",
     "symbol2Subtitle": "Meisterschaft",
-    "symbol2Desc": "Die Blume Frankreichs. Adel liegt nicht im Blut, sondern in der Hand: man erkennt ihn an dem, was ein Mensch kann, nie daran, woher er kommt.",
+    "symbol2Desc": "Jahrhundertelang krönte die Lilie die Könige Frankreichs: Adel von Geburt. Bei uns sagt sie das Gegenteil. Niemand hat uns adlig gemacht, wir haben das Handwerk gelernt. Meisterschaft wird nicht verliehen, sie beweist sich an der Hand.",
     "symbol3Name": "Das Anch",
     "symbol3Subtitle": "Ewigkeit",
-    "symbol3Desc": "Der Atem, der verbindet. Was die, die aufbauen, mit denen verbindet, die weitermachen.",
+    "symbol3Desc": "Im alten Ägypten war das Anch der Schlüssel des Lebens, von den Göttern gehalten: das Kreuz, das nicht stirbt. Wir haben es für die Ewigkeit gewählt. Es öffnet keine Tür, es öffnet einen Übergang: von denen, die gebaut haben, zu denen, die folgen werden.",
     "symbol4Name": "Der Skarabäus",
     "symbol4Subtitle": "Wiedergeburt",
-    "symbol4Desc": "Der Übergang und die Verwandlung. Was die Prüfungen durchquert, was stärker wiederkehrt als zuvor.",
+    "symbol4Desc": "Für die Ägypter rollte der Skarabäus die Sonne und ließ sie jeden Morgen neu aufgehen. Das Zeichen der Wiedergeburt seit Jahrtausenden: er trägt den Namen des Hauses. Was wiedergeboren wird, ist stärker als das, was nie gefallen ist.",
     "symbol5Name": "Die Kobra",
     "symbol5Subtitle": "Schutz",
-    "symbol5Desc": "Das stille Erwachen. Wer sieht, bevor er gesehen wird.",
+    "symbol5Desc": "Die Kobra erhob sich auf der Krone der Pharaonen, bereit zuzuschlagen, bevor man sie überhaupt sah. Wir haben sie für den Schutz gewählt. Sie warnt nicht. Sie wacht.",
     "symbol6Name": "Das Horusauge",
     "symbol6Subtitle": "Klarheit",
-    "symbol6Desc": "Das Auge, das sich nie schließt. Zerbrochen und wieder ganz gemacht, sieht es, was die anderen anschauen, ohne zu sehen.",
+    "symbol6Desc": "Im ägyptischen Mythos wurde das Auge des Horus in einem Kampf herausgerissen und dann Stück für Stück wieder zusammengesetzt. Der Blick zerbrochen, dann wieder ganz. Wir haben es für die Klarheit gewählt: das Auge, das sich nie schließt und sieht, was andere ansehen, ohne zu sehen.",
     "symbol7Name": "Die Pariser Straßenplakette",
     "symbol7Subtitle": "Zugehörigkeit",
-    "symbol7Desc": "« Avenue de la Renaissance », ins Gold graviert. Die Straße, die auf keiner Karte steht, die Adresse, die jeder mitnimmt, wohin er geht."
+    "symbol7Desc": "Das blaue Straßenschild, wir alle erkennen es: das ist Paris. Auf unserem steht « Avenue de la Renaissance », in Gold graviert, eine Straße, die auf keiner Karte zu finden ist. Das einzige Symbol, das reist: es geht, wohin man geht."
   },
   "signatureSection": {
     "label": "Die Signatur",
@@ -144,17 +166,17 @@
     "label": "Fertigung",
     "title": "GEFERTIGT, WO PRÄZISION EINE DISZIPLIN IST.",
     "subtitle": "Frankreich, Korea, Italien.",
-    "description": "Unsere Fassungen entstehen zwischen Frankreich, Korea und Italien, in Werkstätten, in denen Sorgfalt eine Kultur ist. Jeder Ort bringt seine Meisterschaft ein: die Feinheit des Titans in Asien, die Genauigkeit der Verarbeitung in Europa. Wir wählen unsere Partner nach ihrem Anspruch, nicht nach ihrem Tempo.",
+    "description": "Entworfen in Paris, gefertigt in Korea, das Acetat kommt aus Italien. Alles beginnt mit einem Titandraht: zwölf Schritte, viele Hände, bis zur Fassung.",
     "stat1Value": "18KT",
-    "stat1Label": "Echtes Gold, vergoldet",
+    "stat1Label": "Vergoldet, 18 Karat",
     "stat2Value": "Titan",
-    "stat2Label": "Leicht, widerstandsfähig",
+    "stat2Label": "Leicht, rostet nie",
     "stat3Value": "Italien",
-    "stat3Label": "Mazzucchelli-Acetat",
-    "mobileStat1Label": "Gold 18KT",
-    "mobileStat2Label": "Titan",
-    "mobileStat3Label": "Acetat",
-    "cta": "Die Werkstatt"
+    "stat3Label": "Mazzucchelli, seit 1849",
+    "mobileStat1Label": "18 Karat Gold",
+    "mobileStat2Label": "Rostet nie",
+    "mobileStat3Label": "Mazzucchelli",
+    "cta": "Die Herstellung ansehen"
   },
   "valeursSection": {
     "label": "Unsere Werte",

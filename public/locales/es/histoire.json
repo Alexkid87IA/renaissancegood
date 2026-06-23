@@ -35,6 +35,28 @@
     "title": "EL MANIFIESTO\nRENAISSANCE",
     "description": "Lo que creamos no es solo un accesorio. Es un acto de transmisión."
   },
+  "manifestePage": {
+    "label": "El Manifiesto",
+    "hook": "El mundo va deprisa.\nElegimos lo contrario.",
+    "devise": "Pour que chaque jour compte.",
+    "paragraphs": [
+      "Renaissance no nació de un homenaje al pasado. Nació de un rechazo. El rechazo a dejar desaparecer lo que debe durar. El rechazo a lo que brilla sin pesar.",
+      "El mundo va deprisa. Tira, vuelve a empezar, se pone para que lo vean. Elegimos lo contrario.",
+      "Lo que tiene valor se demuestra, no se anuncia. Las gafas no son lo que se posee. Son la señal de que se ha entendido. Se reconocen de cerca. De lejos, son un bonito par, y está muy bien así.",
+      "Una mañana, te pones la misma montura que ayer. Un día, otra mano la tomará. En medio, años, un número grabado en el puente, una reparación o dos. Lo que está bien hecho se repara; lo que se repara se guarda; lo que se guarda se transmite.",
+      "No hace falta saberlo todo para entrar. Basta con sentir que no todo vale lo mismo. El resto llega al llevarlas.",
+      "Un linaje no se hereda. Se funda."
+    ],
+    "proofsLabel": "Lo que lo demuestra",
+    "proofs": [
+      "Un número grabado en el puente. El tuyo.",
+      "Titanio. No se oxida, la piel lo olvida.",
+      "Lo que se rompe, lo reparamos.",
+      "Diseñadas en París."
+    ],
+    "closing": "Si estas líneas te han hablado, ya sabes por qué.",
+    "cta": "Descubrir nuestras creaciones"
+  },
   "symboles": {
     "label": "Los símbolos",
     "title": "SIETE SÍMBOLOS\nETERNOS"
@@ -103,7 +125,7 @@
     "subtitle": "El de ver desaparecer lo que debe durar.",
     "description": "Tres hombres del oficio vieron la calidad retroceder durante años. Decidieron hacer lo contrario. Crear monturas que acompañan una vida, no una temporada. Exigir lo que el mercado dejó de exigir.\nCada montura lleva esa promesa: la de un objeto pensado para durar, no para ser reemplazado.",
     "mobileDescription": "Tres hombres del oficio vieron la calidad retroceder durante años. Decidieron hacer lo contrario. Cada montura lleva esa promesa: la de un objeto pensado para durar, no para ser reemplazado.",
-    "cta": "Descubrir nuestras creaciones"
+    "cta": "El Manifiesto"
   },
   "symbolesSection": {
     "label": "Nuestros Símbolos",
@@ -112,25 +134,25 @@
     "description": "Lo que uno lleva cuenta lo que uno cree.",
     "symbol1Name": "El Tridente",
     "symbol1Subtitle": "Soberanía",
-    "symbol1Desc": "El equilibrio entre ayer, hoy y mañana. El anclaje en lo que funda, lo que construye, lo que perdura.",
+    "symbol1Desc": "El tridente atraviesa todas las civilizaciones: el arma de Poseidón, el cetro de Shiva, el signo del poder desde el principio de los tiempos. Lo elegimos por lo que representa: la soberanía. Tres puntas, un solo mango, como los tres que fundaron la Maison.",
     "symbol2Name": "La Flor de Lis",
     "symbol2Subtitle": "Maestría",
-    "symbol2Desc": "La flor de Francia. La nobleza no está en la sangre, sino en la mano: se reconoce por lo que un hombre sabe hacer, nunca por de dónde viene.",
+    "symbol2Desc": "Durante siglos, la flor de lis coronó a los reyes de Francia: la nobleza recibida al nacer. Aquí dice lo contrario. Nadie nos hizo nobles, aprendimos el oficio. La maestría no se recibe, se prueba con la mano.",
     "symbol3Name": "El Anj",
     "symbol3Subtitle": "Eternidad",
-    "symbol3Desc": "El aliento que une. Lo que conecta a quienes construyen con quienes continuarán.",
+    "symbol3Desc": "En el antiguo Egipto, el anj era la llave de la vida, sostenida por los dioses: la cruz que no muere. La elegimos por la eternidad. No abre una puerta, abre un paso: de los que construyeron a los que seguirán.",
     "symbol4Name": "El Escarabajo",
     "symbol4Subtitle": "Renacimiento",
-    "symbol4Desc": "El paso y la transformación. Lo que atraviesa las pruebas, lo que renace más fuerte que antes.",
+    "symbol4Desc": "Para los egipcios, el escarabajo hacía rodar el sol y lo hacía renacer cada mañana. El signo del renacimiento desde hace milenios: lleva el nombre de la Maison. Lo que renace es más sólido que lo que nunca cayó.",
     "symbol5Name": "La Cobra",
     "symbol5Subtitle": "Protección",
-    "symbol5Desc": "El despertar silencioso. El que ve antes de ser visto.",
+    "symbol5Desc": "La cobra se erguía sobre la corona de los faraones, lista para atacar antes incluso de que la vieras. La tomamos para la protección. No avisa. Vela.",
     "symbol6Name": "El Ojo de Horus",
     "symbol6Subtitle": "Lucidez",
-    "symbol6Desc": "El ojo que nunca se cierra. Roto y luego devuelto entero, ve lo que los demás miran sin ver.",
+    "symbol6Desc": "En el mito egipcio, el ojo de Horus fue arrancado en un combate y luego reconstituido pieza a pieza. La mirada rota, y después entera. Lo elegimos por la lucidez: el ojo que no se cierra nunca, y ve lo que los demás miran sin ver.",
     "symbol7Name": "La Placa parisina",
     "symbol7Subtitle": "Pertenencia",
-    "symbol7Desc": "«Avenue de la Renaissance», grabada en el oro. La calle que no aparece en ningún mapa, la dirección que cada uno se lleva allá donde va."
+    "symbol7Desc": "La placa de calle azul, todos la reconocemos: es París. La nuestra indica « Avenue de la Renaissance », grabada en oro, una calle que no figura en ningún mapa. El único símbolo que viaja: va a donde uno va."
   },
   "signatureSection": {
     "label": "La Firma",
@@ -144,17 +166,17 @@
     "label": "Fabricación",
     "title": "FABRICADAS DONDE LA PRECISIÓN ES UNA DISCIPLINA.",
     "subtitle": "Francia, Corea, Italia.",
-    "description": "Nuestras monturas cobran vida entre Francia, Corea e Italia, en fábricas donde el rigor es una cultura. Cada lugar aporta su maestría: la finura del titanio en Asia, la precisión de los acabados en Europa. Elegimos a nuestros socios por su exigencia, no por su rapidez.",
+    "description": "Diseñadas en París, fabricadas en Corea, el acetato viene de Italia. Todo empieza con un hilo de titanio: doce gestos, muchas manos, hasta la montura.",
     "stat1Value": "18KT",
-    "stat1Label": "Oro de verdad, chapado",
+    "stat1Label": "Chapado en oro de 18 quilates",
     "stat2Value": "Titanio",
-    "stat2Label": "Ligero, resistente",
+    "stat2Label": "Ligero, no se oxida",
     "stat3Value": "Italia",
-    "stat3Label": "Acetato Mazzucchelli",
-    "mobileStat1Label": "Oro 18KT",
-    "mobileStat2Label": "Titanio",
-    "mobileStat3Label": "Acetato",
-    "cta": "El taller"
+    "stat3Label": "Mazzucchelli, desde 1849",
+    "mobileStat1Label": "Oro 18 quilates",
+    "mobileStat2Label": "No se oxida",
+    "mobileStat3Label": "Mazzucchelli",
+    "cta": "Ver la fabricación"
   },
   "valeursSection": {
     "label": "Nuestros Valores",

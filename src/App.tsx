@@ -47,6 +47,7 @@ const VersaillesCollectionPage = lazyWithRetry(() => import('./pages/VersaillesC
 const IsisCollectionPage = lazyWithRetry(() => import('./pages/IsisCollectionPage'));
 const ProductPage = lazyWithRetry(() => import('./pages/ProductPage'));
 const HistoirePage = lazyWithRetry(() => import('./pages/HistoirePage'));
+const ManifestePage = lazyWithRetry(() => import('./pages/ManifestePage'));
 const FabricationPage = lazyWithRetry(() => import('./pages/FabricationPage'));
 const CartPage = lazyWithRetry(() => import('./pages/CartPage'));
 const ShopPage = lazyWithRetry(() => import('./pages/ShopPage'));
@@ -112,7 +113,7 @@ function AppRoutes() {
       <Route path="suivi-commande" element={<SuiviCommandePage />} />
 
       {/* Pages magazine/histoire — sections repliées sur /histoire (redirections 301) */}
-      <Route path="manifeste" element={<Navigate to="/histoire" replace />} />
+      <Route path="manifeste" element={<ManifestePage />} />
       <Route path="manifesto" element={<Navigate to="/histoire" replace />} />
       <Route path="atelier" element={<Navigate to="/histoire" replace />} />
       <Route path="savoir-faire" element={<Navigate to="/histoire" replace />} />

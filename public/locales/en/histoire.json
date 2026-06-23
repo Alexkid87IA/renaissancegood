@@ -35,6 +35,28 @@
     "title": "THE RENAISSANCE\nMANIFESTO",
     "description": "What we make is not just an accessory. It is an act of transmission."
   },
+  "manifestePage": {
+    "label": "The Manifesto",
+    "hook": "The world moves fast.\nWe chose the opposite.",
+    "devise": "Pour que chaque jour compte.",
+    "paragraphs": [
+      "Renaissance was not born from a tribute to the past. It was born from a refusal. A refusal to let what should last disappear. A refusal of what shines without weight.",
+      "The world moves fast. It throws away, it starts over, it wears to be seen. We chose the opposite.",
+      "What has value proves itself, it does not announce itself. Glasses are not what you own. They are the sign that you have understood. You know it up close. From afar, it is a fine pair, and that is just right.",
+      "One morning, you put on the same frame as yesterday. One day, another hand will take it up. In between, years, a number engraved on the bridge, a repair or two. What is well made is repaired; what is repaired is kept; what is kept is passed on.",
+      "You do not need to know everything to come in. It is enough to feel that not everything is worth the same. The rest comes as you wear it.",
+      "You do not inherit a line. You found one."
+    ],
+    "proofsLabel": "What proves it",
+    "proofs": [
+      "A number engraved on the bridge. Yours.",
+      "Titanium. It does not rust, the skin forgets it.",
+      "What breaks, we repair.",
+      "Designed in Paris."
+    ],
+    "closing": "If these lines spoke to you, you already know why.",
+    "cta": "Discover our creations"
+  },
   "symboles": {
     "label": "The symbols",
     "title": "SEVEN ETERNAL\nSYMBOLS"
@@ -103,7 +125,7 @@
     "subtitle": "The refusal to watch what should last disappear.",
     "description": "Three men of the trade watched quality slip for years. They decided to do the opposite. To design frames that go with a life, not a season. To ask of the work what the market stopped asking.\nEvery frame carries that promise: an object meant to last, not to be replaced.",
     "mobileDescription": "Three men of the trade watched quality slip for years. They decided to do the opposite. Every frame carries that promise: an object meant to last, not to be replaced.",
-    "cta": "Discover our creations"
+    "cta": "The Manifesto"
   },
   "symbolesSection": {
     "label": "Our Symbols",
@@ -112,25 +134,25 @@
     "description": "What you wear tells what you believe.",
     "symbol1Name": "The Trident",
     "symbol1Subtitle": "Sovereignty",
-    "symbol1Desc": "The balance between yesterday, today and tomorrow. An anchor in what founds, what builds, what lasts.",
+    "symbol1Desc": "The trident runs through every civilization: the weapon of Poseidon, the staff of Shiva, the sign of power since the dawn of time. We chose it for what it stands for: sovereignty. Three points, one shaft, like the three who founded the Maison.",
     "symbol2Name": "The Fleur de Lys",
     "symbol2Subtitle": "Mastery",
-    "symbol2Desc": "The flower of France. Nobility isn't in the blood, but in the hand: you know it by what a man can do, never by where he comes from.",
+    "symbol2Desc": "For centuries, the fleur-de-lis crowned the kings of France: nobility received at birth. With us, it says the opposite. No one made us noble, we learned the work. Mastery is not received, it is proven by the hand.",
     "symbol3Name": "The Ankh",
     "symbol3Subtitle": "Eternity",
-    "symbol3Desc": "The breath that binds. What connects those who build to those who will carry on.",
+    "symbol3Desc": "In ancient Egypt, the ankh was the key of life, held by the gods: the cross that does not die. We chose it for eternity. It does not open a door, it opens a passage: from those who built to those who will follow.",
     "symbol4Name": "The Scarab",
     "symbol4Subtitle": "Rebirth",
-    "symbol4Desc": "Passage and transformation. What comes through the trials, what is reborn stronger than before.",
+    "symbol4Desc": "For the Egyptians, the scarab rolled the sun and made it rise again each morning. The sign of rebirth for millennia: it carries the name of the Maison. What is reborn is stronger than what never fell.",
     "symbol5Name": "The Cobra",
     "symbol5Subtitle": "Protection",
-    "symbol5Desc": "The silent awakening. The one who sees before being seen.",
+    "symbol5Desc": "The cobra rose on the crown of the pharaohs, ready to strike before you even saw it. We took it for protection. It gives no warning. It watches.",
     "symbol6Name": "The Eye of Horus",
     "symbol6Subtitle": "Lucidity",
-    "symbol6Desc": "The eye that never closes. Broken then made whole, it sees what others look at without seeing.",
+    "symbol6Desc": "In Egyptian myth, the eye of Horus was torn out in a battle, then pieced back together. The gaze broken, then made whole. We chose it for clarity: the eye that never closes, and sees what others look at without seeing.",
     "symbol7Name": "The Parisian street plaque",
     "symbol7Subtitle": "Belonging",
-    "symbol7Desc": "\"Avenue de la Renaissance\", engraved in gold. The street you'll find on no map, the address each of us carries wherever we go."
+    "symbol7Desc": "The blue street sign, we all recognize it: it is Paris. Ours reads « Avenue de la Renaissance », engraved in gold, a street found on no map. The only symbol that travels: it goes where you go."
   },
   "signatureSection": {
     "label": "The Signature",
@@ -144,17 +166,17 @@
     "label": "Making",
     "title": "MADE WHERE PRECISION IS A DISCIPLINE.",
     "subtitle": "France, Korea, Italy.",
-    "description": "Our frames come to life between France, Korea and Italy, in workshops where rigor is a culture. Each place brings its mastery: the fineness of titanium in Asia, the precision of the finishes in Europe. We choose our partners for their standards, not their speed.",
+    "description": "Designed in Paris, made in Korea, the acetate comes from Italy. It all starts with a titanium wire: twelve steps, many hands, all the way to the frame.",
     "stat1Value": "18KT",
-    "stat1Label": "Real gold, plated",
+    "stat1Label": "18-carat gold plated",
     "stat2Value": "Titanium",
-    "stat2Label": "Light, strong",
+    "stat2Label": "Light, never rusts",
     "stat3Value": "Italy",
-    "stat3Label": "Mazzucchelli acetate",
-    "mobileStat1Label": "18KT gold",
-    "mobileStat2Label": "Titanium",
-    "mobileStat3Label": "Acetate",
-    "cta": "The workshop"
+    "stat3Label": "Mazzucchelli, since 1849",
+    "mobileStat1Label": "18-carat gold",
+    "mobileStat2Label": "Never rusts",
+    "mobileStat3Label": "Mazzucchelli",
+    "cta": "See how it's made"
   },
   "valeursSection": {
     "label": "Our Values",

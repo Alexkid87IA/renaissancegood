@@ -107,7 +107,7 @@ export default function EngagementSection() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/52 to-black/12" />
 
-        <div className="relative h-full flex flex-col justify-end px-6 pb-10">
+        <div className="relative h-full flex flex-col items-center text-center justify-end px-6 pb-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -99,7 +99,7 @@ export default function ValeursSection() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/96 via-black/72 to-black/30" />
 
-        <div className="relative h-full overflow-y-auto px-6 pt-24 pb-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="relative h-full overflow-y-auto text-center px-6 pt-24 pb-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <p className="font-sans text-bronze/[0.72] text-[8px] tracking-[0.4em] font-medium uppercase mb-4">
             {t('valeursSection.label')}
           </p>

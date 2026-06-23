@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import LocaleLink from '../LocaleLink';
 import { stagger, fade } from './shared';
 
 export default function SavoirFaireSection() {
@@ -11,24 +12,22 @@ export default function SavoirFaireSection() {
   return (
     <motion.section id="fabrication" className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-30 bg-[#000000] overflow-hidden">
       {/* DESKTOP */}
-      <div className="hidden md:flex h-full bg-[#000000]">
-        <div className="w-[46%] h-full relative overflow-hidden">
-          <img
-            src="https://renaissance-cdn.b-cdn.net/atelier.webp"
-            alt="Atelier de fabrication Renaissance"
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-[#000000]/8" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#000000] to-transparent" />
-        </div>
+      <div className="hidden md:block relative h-full overflow-hidden bg-[#000000]">
+        <img
+          src="https://renaissance-cdn.b-cdn.net/atelier-bw.webp"
+          alt="Atelier de fabrication Renaissance"
+          className="absolute inset-0 w-full h-full object-cover object-[left_center]"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[#000000]/10" />
+        <div className="absolute inset-0 bg-gradient-to-l from-[#000000]/95 via-[#000000]/68 to-transparent" />
 
         <motion.div
           ref={contentRef}
           variants={stagger}
           initial="hidden"
           animate={contentInView ? 'visible' : 'hidden'}
-          className="w-[54%] flex h-full items-center justify-center overflow-hidden px-10 py-24 lg:px-14 xl:px-20"
+          className="absolute inset-0 flex h-full items-center justify-end px-10 py-24 lg:px-14 xl:px-20"
         >
           <div className="w-full max-w-[43rem]">
             <motion.div variants={fade} className="flex items-center gap-5 mb-6">
@@ -62,6 +61,17 @@ export default function SavoirFaireSection() {
                 <p className="font-sans text-[9px] tracking-[0.24em] text-white/[0.42] uppercase font-medium leading-[1.5]">{t('savoirFaireSection.stat3Label')}</p>
               </div>
             </motion.div>
+
+            <motion.div variants={fade} className="mt-9 flex justify-end">
+              <LocaleLink to="/fabrication">
+                <button className="group relative overflow-hidden rounded-2xl border border-white/[0.45] px-9 py-4 transition-all duration-500">
+                  <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white group-hover:text-[#0a0a0a] transition-colors duration-500">
+                    {t('savoirFaireSection.cta')}
+                  </span>
+                  <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </button>
+              </LocaleLink>
+            </motion.div>
           </div>
         </motion.div>
       </div>
@@ -69,14 +79,14 @@ export default function SavoirFaireSection() {
       {/* MOBILE */}
       <div className="h-screen md:hidden relative overflow-hidden">
         <img
-          src="https://renaissance-cdn.b-cdn.net/atelier.webp"
+          src="https://renaissance-cdn.b-cdn.net/atelier-bw.webp"
           alt="Atelier de fabrication Renaissance"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/52 to-black/10" />
 
-        <div className="relative h-full flex flex-col justify-end px-6 pb-10">
+        <div className="relative h-full flex flex-col items-center text-center justify-end px-6 pb-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -107,6 +117,12 @@ export default function SavoirFaireSection() {
                 <p className="font-sans text-[7px] tracking-[0.18em] text-white/40 uppercase leading-[1.5]">{t('savoirFaireSection.mobileStat3Label')}</p>
               </div>
             </div>
+
+            <LocaleLink to="/fabrication" className="mt-7 inline-flex">
+              <button className="inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-7 py-3 font-sans text-[9px] tracking-[0.24em] font-medium uppercase text-white active:bg-white active:text-[#0a0a0a] transition-colors duration-300">
+                <span>{t('savoirFaireSection.cta')}</span>
+              </button>
+            </LocaleLink>
           </motion.div>
         </div>
       </div>

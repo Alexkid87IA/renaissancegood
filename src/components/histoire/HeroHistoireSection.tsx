@@ -18,9 +18,9 @@ export default function HeroHistoireSection() {
           className="absolute inset-0 w-full h-full object-cover object-[center_42%]"
           fetchpriority="high"
         />
-        <div className="absolute inset-0 bg-[#000000]/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#000000]/90 via-[#000000]/42 to-[#000000]/5" />
-        <div className="absolute inset-x-0 bottom-0 h-[46%] bg-gradient-to-t from-[#000000] via-[#000000]/55 to-transparent" />
+        <div className="absolute inset-0 bg-[#000000]/8" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000]/85 via-[#000000]/28 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-[34%] bg-gradient-to-t from-[#000000]/95 via-[#000000]/38 to-transparent" />
 
         <div className="absolute inset-0 flex items-end px-10 xl:px-16 2xl:px-24 pb-14 xl:pb-20 pt-28">
           <motion.div
@@ -34,14 +34,14 @@ export default function HeroHistoireSection() {
               {t('heroHistoire.label')}
             </motion.p>
 
-            <motion.h1 variants={fade} className="font-display text-6xl xl:text-8xl 2xl:text-[8.5rem] font-bold text-white tracking-[-0.04em] leading-[0.84] mb-6">
+            <motion.h1 variants={fade} className="font-display text-5xl xl:text-7xl 2xl:text-[6.5rem] font-bold text-white tracking-[-0.04em] leading-[0.84] mb-6">
               {t('heroHistoire.title')}
               <br />
-              <span className="font-light italic text-white/[0.78]">{t('heroHistoire.subtitle')}</span>
+              <span className="font-light italic text-white/[0.78] text-[2.15rem] xl:text-[3.25rem] 2xl:text-[4.7rem]">{t('heroHistoire.subtitle')}</span>
             </motion.h1>
 
-            <motion.div variants={fade} className="flex items-start gap-8 max-w-3xl">
-              <p className="font-sans text-white/[0.68] text-sm xl:text-base leading-[1.9] font-light">
+            <motion.div variants={fade} className="flex items-start gap-8 max-w-xl">
+              <p className="font-sans text-white/[0.75] text-sm xl:text-base leading-[1.7] font-light">
                 {t('heroHistoire.description')}
               </p>
             </motion.div>
@@ -61,7 +61,7 @@ export default function HeroHistoireSection() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/15 to-black/88" />
         </div>
 
-        <div className="relative h-full flex flex-col justify-end pb-8 px-6">
+        <div className="relative h-full flex flex-col items-center text-center justify-end pb-8 px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

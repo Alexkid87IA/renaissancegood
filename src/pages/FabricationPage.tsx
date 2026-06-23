@@ -43,6 +43,11 @@ export default function FabricationPage() {
         title={t('fabricationPage.seoTitle')}
         description={t('fabricationPage.seoDescription')}
         url="/fabrication"
+        howTo={{
+          name: `${t('fabricationPage.title')} ${t('fabricationPage.subtitle')}`,
+          description: t('fabricationPage.seoDescription'),
+          steps: steps.map((s) => ({ name: s.t, text: s.d })),
+        }}
       />
 
       {/* ===================== DESKTOP — mosaïque éditoriale ===================== */}
@@ -72,7 +77,7 @@ export default function FabricationPage() {
             >
               <img
                 src={imgDesktop(step.n)}
-                alt={step.t}
+                alt={`${step.t}. ${step.d}`}
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.05]"
               />
@@ -127,7 +132,7 @@ export default function FabricationPage() {
             >
               <img
                 src={imgMobile(step.n)}
-                alt={step.t}
+                alt={`${step.t}. ${step.d}`}
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/45 via-[#000000]/15 to-[#000000]/90" />

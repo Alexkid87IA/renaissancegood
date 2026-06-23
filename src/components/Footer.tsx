@@ -180,7 +180,7 @@ export default function Footer() {
                   { to: '/histoire', label: t('footerLinks.ourHistory') },
                   { to: '/fabrication', label: t('footerLinks.fabrication') },
                   { to: '/histoire#symboles', label: t('footerLinks.fiveSymbols') },
-                  { to: '/blog', label: t('footerLinks.manifeste') },
+                  { to: '/manifeste', label: t('footerLinks.manifeste') },
                 ]},
                 { title: t('nav.services'), links: [
                   { to: '/livraison', label: t('footerLinks.shipping') },
@@ -371,7 +371,7 @@ export default function Footer() {
               { to: '/histoire', label: t('footerLinks.ourHistory') },
               { to: '/fabrication', label: t('footerLinks.fabrication') },
               { to: '/histoire#symboles', label: t('footerLinks.fiveSymbols') },
-              { to: '/blog', label: t('footerLinks.manifeste') },
+              { to: '/manifeste', label: t('footerLinks.manifeste') },
             ]},
             { key: 'services', title: t('nav.services'), links: [
               { to: '/livraison', label: t('footerLinks.shipping') },

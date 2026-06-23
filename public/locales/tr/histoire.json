@@ -35,6 +35,28 @@
     "title": "RENAISSANCE\nMANİFESTOSU",
     "description": "Yarattığımız yalnızca bir aksesuar değil. Bir devir hareketi."
   },
+  "manifestePage": {
+    "label": "Manifesto",
+    "hook": "Dünya hızlı.\nBiz tersini seçtik.",
+    "devise": "Pour que chaque jour compte.",
+    "paragraphs": [
+      "Renaissance geçmişe bir övgüden doğmadı. Bir reddedişten doğdu. Kalması gerekenin yok olmasına izin vermeyi reddetmekten. Ağırlığı olmadan parlayanı reddetmekten.",
+      "Dünya hızlı. Atar, yeniden başlar, görülmek için takar. Biz tersini seçtik.",
+      "Değeri olan kendini kanıtlar, ilan etmez. Gözlük sahip olunan şey değildir. Anladığının işaretidir. Yakından tanınır. Uzaktan güzel bir gözlüktür, ve bu çok iyidir.",
+      "Bir sabah, dünkü çerçeveyi takarsın. Bir gün, başka bir el onu devralır. Arada yıllar, köprüye kazınmış bir numara, bir iki onarım. İyi yapılmış olan onarılır; onarılan saklanır; saklanan aktarılır.",
+      "İçeri girmek için her şeyi bilmek gerekmez. Her şeyin aynı değerde olmadığını hissetmek yeter. Gerisi takarken gelir.",
+      "Bir soy miras alınmaz. Kurulur."
+    ],
+    "proofsLabel": "Bunu kanıtlayan",
+    "proofs": [
+      "Köprüye kazınmış bir numara. Sizinki.",
+      "Titanyum. Paslanmaz, ten onu unutur.",
+      "Kırılanı onarırız.",
+      "Paris'te tasarlandı."
+    ],
+    "closing": "Bu satırlar size dokunduysa, nedenini zaten biliyorsunuz.",
+    "cta": "Yaratımlarımızı keşfet"
+  },
   "symboles": {
     "label": "Semboller",
     "title": "YEDİ EBEDÎ\nSEMBOL"
@@ -103,7 +125,7 @@
     "subtitle": "Kalması gerekenin yok olmasına karşı.",
     "description": "Üç meslek adamı, yıllarca kalitenin geri gidişini gördü. Tersini yapmaya karar verdiler. Bir mevsime değil, bir ömre eşlik eden gözlükler tasarlamaya. Pazarın istemeyi bıraktığını istemeye.\nHer gözlük bu sözü taşır: değiştirilmek için değil, kalmak için düşünülmüş bir nesnenin sözünü.",
     "mobileDescription": "Üç meslek adamı, yıllarca kalitenin geri gidişini gördü. Tersini yapmaya karar verdiler. Her gözlük bu sözü taşır: değiştirilmek için değil, kalmak için düşünülmüş bir nesnenin sözünü.",
-    "cta": "Yaratımlarımızı keşfet"
+    "cta": "Manifesto"
   },
   "symbolesSection": {
     "label": "Sembollerimiz",
@@ -112,25 +134,25 @@
     "description": "Taşıdığın, neye inandığını anlatır.",
     "symbol1Name": "Trident",
     "symbol1Subtitle": "Egemenlik",
-    "symbol1Desc": "Dünle, bugünle ve yarınla denge. Kuranın, inşa edenin, süreklinin içine demir atmak.",
+    "symbol1Desc": "Trident her uygarlıktan geçer: Poseidon'un silahı, Shiva'nın asası, zamanın başından beri gücün simgesi. Onu temsil ettiği şey için seçtik: egemenlik. Üç uç, tek sap, Maison'u kuran üç kişi gibi.",
     "symbol2Name": "Fleur de Lys",
     "symbol2Subtitle": "Ustalık",
-    "symbol2Desc": "Fransa'nın çiçeği. Soyluluk kanda değil, eldedir: bir insanı yaptığı işten tanırsın, geldiği yerden değil.",
+    "symbol2Desc": "Yüzyıllar boyunca zambak, Fransa krallarını taçlandırdı: doğuştan gelen soyluluk. Bizde tam tersini söyler. Kimse bizi soylu yapmadı, zanaatı öğrendik. Ustalık verilmez, elle kanıtlanır.",
     "symbol3Name": "Ankh",
     "symbol3Subtitle": "Sonsuzluk",
-    "symbol3Desc": "Bağlayan nefes. İnşa edenleri sürdürecek olanlara bağlayan.",
+    "symbol3Desc": "Antik Mısır'da ankh, tanrıların tuttuğu yaşam anahtarıydı: ölmeyen haç. Onu sonsuzluk için seçtik. Bir kapı açmaz, bir geçit açar: inşa edenlerden devam edeceklere.",
     "symbol4Name": "Scarabée",
     "symbol4Subtitle": "Yeniden Doğuş",
-    "symbol4Desc": "Geçiş ve dönüşüm. Sınavları aşan, eskisinden güçlü yeniden doğan.",
+    "symbol4Desc": "Mısırlılar için bokböceği güneşi yuvarlar ve her sabah yeniden doğmasını sağlardı. Binlerce yıldır yeniden doğuşun simgesi: Maison'un adını taşır. Yeniden doğan, hiç düşmemiş olandan daha sağlamdır.",
     "symbol5Name": "Cobra",
     "symbol5Subtitle": "Koruma",
-    "symbol5Desc": "Sessiz uyanış. Görülmeden önce gören.",
+    "symbol5Desc": "Kobra, firavunların tacında dikilirdi, siz görmeden önce vurmaya hazır. Onu korunma için aldık. Uyarmaz. Gözetler.",
     "symbol6Name": "Horus'un Gözü",
     "symbol6Subtitle": "Berraklık",
-    "symbol6Desc": "Hiç kapanmayan göz. Kırılıp yeniden bütünlenen; başkalarının bakıp da göremediğini görür.",
+    "symbol6Desc": "Mısır mitinde Horus'un gözü bir savaşta söküldü, sonra parça parça yeniden birleştirildi. Kırılan, sonra bütün hâle gelen bakış. Onu berraklık için seçtik: hiç kapanmayan ve başkalarının görmeden baktığını gören göz.",
     "symbol7Name": "Paris Plakası",
     "symbol7Subtitle": "Aidiyet",
-    "symbol7Desc": "Altına kazınmış «Avenue de la Renaissance». Hiçbir haritada bulunmayan sokak, herkesin gittiği yere taşıdığı adres."
+    "symbol7Desc": "Mavi sokak tabelasını hepimiz tanırız: bu Paris'tir. Bizimkinde « Avenue de la Renaissance » yazar, altına kazınmış, hiçbir haritada bulunmayan bir sokak. Yolculuk eden tek simge: nereye gidersen oraya gider."
   },
   "signatureSection": {
     "label": "İmza",
@@ -144,17 +166,17 @@
     "label": "Yapım",
     "title": "KESİNLİĞİN BİR DİSİPLİN OLDUĞU YERDE YAPILDI.",
     "subtitle": "Fransa, Kore, İtalya.",
-    "description": "Gözlüklerimiz Fransa, Kore ve İtalya arasında, titizliğin bir kültür olduğu atölyelerde hayat bulur. Her yer kendi ustalığını katar: Asya'da titanyumun inceliği, Avrupa'da bitişlerin kesinliği. Partnerlerimizi hızları için değil, titizlikleri için seçiyoruz.",
+    "description": "Paris'te tasarlandı, Kore'de üretildi, asetat İtalya'dan gelir. Her şey bir titanyum telle başlar: on iki adım, birçok el, çerçeveye kadar.",
     "stat1Value": "18KT",
-    "stat1Label": "Gerçek altın, kaplama",
+    "stat1Label": "18 ayar altın kaplama",
     "stat2Value": "Titanyum",
-    "stat2Label": "Hafif, dayanıklı",
+    "stat2Label": "Hafif, paslanmaz",
     "stat3Value": "İtalya",
-    "stat3Label": "Mazzucchelli asetat",
+    "stat3Label": "Mazzucchelli, 1849'dan beri",
     "mobileStat1Label": "18 ayar altın",
-    "mobileStat2Label": "Titanyum",
-    "mobileStat3Label": "Asetat",
-    "cta": "Atölye"
+    "mobileStat2Label": "Paslanmaz",
+    "mobileStat3Label": "Mazzucchelli",
+    "cta": "Nasıl yapıldığını gör"
   },
   "valeursSection": {
     "label": "Değerlerimiz",
