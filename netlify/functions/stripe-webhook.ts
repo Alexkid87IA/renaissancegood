@@ -153,10 +153,16 @@ const handler: Handler = async (event: HandlerEvent) => {
     const firstName = nameParts.shift() || '';
     const lastName = nameParts.join(' ');
 
+    // TVA française : prix TTC, donc TVA incluse = total × 0,20/1,20. Shopify ne
+    // la calcule pas seul sur une commande créée par API, on la fournit.
+    const tva = Math.round(chargedTotal * (0.2 / 1.2) * 100) / 100;
+
     const order: Record<string, unknown> = {
       email,
       phone,
       financialStatus: 'PAID',
+      taxesIncluded: true,
+      taxLines: [{ title: 'TVA', rate: 0.2, priceSet: money(tva, currencyCode) }],
       lineItems: lines.map((l) => ({ variantId: l.merchandise?.id, quantity: l.quantity })),
       shippingLines: [{ title: 'Livraison', priceSet: money(shipping, currencyCode) }],
       transactions: [
@@ -173,7 +179,7 @@ const handler: Handler = async (event: HandlerEvent) => {
     }
 
     if (ship?.address) {
-      order.shippingAddress = {
+      const addr = {
         firstName,
         lastName,
         address1: ship.address.line1 || undefined,
@@ -183,6 +189,8 @@ const handler: Handler = async (event: HandlerEvent) => {
         countryCode: ship.address.country || 'FR',
         phone: ship.phone || undefined,
       };
+      order.shippingAddress = addr;
+      order.billingAddress = addr; // facturation = livraison, comme une vraie commande
     }
 
     const data = await adminGraphQL(
