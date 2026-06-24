@@ -311,7 +311,7 @@ export default function Footer() {
       <div className="md:hidden">
 
         {/* Newsletter — vidéo plein écran + overlay + texte */}
-        <div className="relative min-h-screen flex items-center overflow-hidden">
+        <div className="relative min-h-screen flex items-end overflow-hidden">
           <video
             src="https://renaissance-cdn.b-cdn.net/videos/hero-accueil-mobile-v3.mp4"
             autoPlay
@@ -321,50 +321,46 @@ export default function Footer() {
             preload="metadata"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/72 via-[#000000]/55 to-[#000000]/88" />
-          <div className="relative w-full px-6 py-20 text-center">
-            <p className="font-sans text-[8px] tracking-[0.4em] text-white/50 uppercase font-medium mb-5">
+          <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/65 via-[#000000]/15 to-transparent" />
+          <div className="relative w-full px-6 pb-8 pt-16 text-center">
+            <p className="font-sans text-[8px] tracking-[0.4em] text-white/70 uppercase font-medium mb-3">
               {t('footer.newsletterLabel')}
             </p>
-            <h2 className="font-display text-3xl font-bold text-white tracking-[-0.03em] leading-[0.95] mb-2">
+            <h2 className="font-display text-[1.75rem] font-bold text-white tracking-[-0.03em] leading-[1.05] mb-6">
               {t('footer.newsletterTitle')}
             </h2>
-            <p className="font-display text-lg font-light italic text-white/40 tracking-[-0.02em] mb-8">
-              {t('footer.newsletterSubtitle')}
-            </p>
-            <div className="w-10 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-8" />
-            <p className="font-sans text-white/50 text-[12px] leading-[1.9] font-light mb-10 max-w-[280px] mx-auto">
-              {t('footer.newsletterDescriptionMobile')}
-            </p>
 
             {!subscribed ? (
-              <form onSubmit={handleNewsletterSubmit} className="space-y-3.5">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={t('footer.emailPlaceholder')}
-                  required
-                  aria-label={t('footer.emailPlaceholder')}
-                  disabled={submitting}
-                  className="w-full px-5 py-4 bg-white/[0.04] border border-white/[0.08] text-white text-[13px] font-sans placeholder:text-white/50 focus:outline-none focus:border-white/25 transition-all duration-500 text-center disabled:opacity-50 rounded-2xl"
-                />
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full bg-white py-4 rounded-2xl disabled:opacity-50 active:bg-white/90 transition-colors"
-                >
-                  <span className="font-sans text-[9px] tracking-[0.3em] font-semibold uppercase text-[#000000] flex items-center justify-center gap-2">
-                    {submitting ? t('footer.subscribing', { defaultValue: 'Envoi...' }) : t('footer.subscribe')}
-                    {!submitting && <ArrowRight className="w-3.5 h-3.5" />}
-                  </span>
-                </button>
+              <>
+                <form onSubmit={handleNewsletterSubmit} className="relative max-w-[360px] mx-auto">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={t('footer.emailPlaceholderCta')}
+                    required
+                    aria-label={t('footer.emailPlaceholderCta')}
+                    disabled={submitting}
+                    className="w-full pl-6 pr-14 py-4 bg-white/[0.06] border border-white/25 text-white text-[13px] font-sans placeholder:text-white/75 focus:outline-none focus:border-white/50 transition-all duration-500 text-center disabled:opacity-50 rounded-2xl"
+                  />
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    aria-label={t('footer.subscribe')}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-xl bg-white/90 active:bg-white disabled:opacity-50 transition-colors"
+                  >
+                    <ArrowRight className="w-3.5 h-3.5 text-[#000000]" />
+                  </button>
+                </form>
+                <p className="font-sans text-white/55 text-[11px] leading-[1.6] font-light mt-4 max-w-[280px] mx-auto">
+                  {t('footer.newsletterDescriptionMobile')}
+                </p>
                 {error && (
                   <p className="font-sans text-xs text-red-400 mt-2 text-center" role="alert" aria-live="polite">
                     {t('footer.subscribeError', { defaultValue: 'Une erreur est survenue. Veuillez réessayer.' })}
                   </p>
                 )}
-              </form>
+              </>
             ) : (
               <div className="py-4">
                 <p className="font-sans text-sm text-white font-medium">
