@@ -10,8 +10,8 @@ export default function IsisCollectionPage() {
     seoUrl: '/collections/isis',
     // Desktop : colonne portrait -> vidéo verticale 9:16.
     // Mobile : plein cadre portrait -> vidéo verticale 9:16 (adaptée).
-    heroVideo: 'https://renaissance-cdn.b-cdn.net/videos/HERO_9_16_ISIS_web.mp4',
-    heroPoster: 'https://renaissance-cdn.b-cdn.net/videos/HERO_9_16_ISIS_poster.jpg',
+    heroVideo: 'https://renaissance-cdn.b-cdn.net/videos/HERO_16_9_ISIS_web.mp4',
+    heroPoster: 'https://renaissance-cdn.b-cdn.net/videos/HERO_16_9_ISIS_poster.jpg',
     heroVideoMobile: 'https://renaissance-cdn.b-cdn.net/videos/HERO_9_16_ISIS_web.mp4',
     heroPosterMobile: 'https://renaissance-cdn.b-cdn.net/videos/HERO_9_16_ISIS_poster.jpg',
   };

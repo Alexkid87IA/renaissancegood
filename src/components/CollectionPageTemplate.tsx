@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
-import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
 import { getProducts } from '../lib/shopify';
@@ -32,10 +32,9 @@ interface HeroProps {
   heroRef: React.Ref<HTMLDivElement>;
   config: CollectionPageConfig;
   prefix: string;
-  imageY: MotionValue<string>;
 }
 
-function VideoHero({ heroRef, config, prefix, imageY }: HeroProps) {
+function VideoHero({ heroRef, config, prefix }: HeroProps) {
   const { t } = useTranslation('collections');
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -59,70 +58,61 @@ function VideoHero({ heroRef, config, prefix, imageY }: HeroProps) {
   return (
     <div ref={heroRef} className="h-screen relative overflow-hidden bg-[#000000]" data-header-theme="dark">
 
-      {/* ── DESKTOP — Même layout trapèze que ImageHero, vidéo à la place de l'image ── */}
-      <div className="relative h-full overflow-hidden hidden lg:flex">
-        <div className="w-[52%] relative flex flex-col justify-center pl-16 xl:pl-32 2xl:pl-44 pr-10 xl:pr-12 overflow-hidden">
-          <motion.div
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } }
-            }}
-            initial="hidden"
-            animate="visible"
-            className="relative z-10"
-          >
-            <motion.h1
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
-              }}
-              className="font-display text-[clamp(4.25rem,5.75vw,8rem)] font-bold text-white tracking-normal leading-[0.84] mb-4 max-w-full break-words"
-            >
-              {t(`${prefix}.heroTitle`)}
-            </motion.h1>
+      {/* ── DESKTOP — Vidéo plein écran + overlay + texte en surimpression ── */}
+      <div className="relative h-full overflow-hidden hidden lg:block">
+        <video
+          ref={videoRef}
+          src={config.heroVideo}
+          poster={config.heroPoster || config.heroImage}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/50 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#000000]/60 to-transparent" />
 
-            <motion.p variants={fade} className="font-display text-lg xl:text-xl 2xl:text-2xl font-light italic text-white/[0.68] tracking-[-0.02em] leading-[1] mb-6 xl:mb-8">
-              {t(`${prefix}.heroSubtitle`)}
-            </motion.p>
-
-            <motion.p variants={fade} className="font-sans text-white/[0.62] text-xs xl:text-[13px] 2xl:text-sm leading-[2] font-light max-w-xs mb-8 xl:mb-10">
-              {t(`${prefix}.heroDescription`)}
-            </motion.p>
-
-            <motion.div variants={fade}>
-              <button
-                onClick={scrollToProducts}
-                className="group relative overflow-hidden rounded-2xl border border-white/[0.45] px-9 py-4 transition-all duration-500"
-              >
-                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 group-hover:text-[#0a0a0a]">{t(`${prefix}.exploreCollection`)}</span>
-                <span className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-              </button>
-            </motion.div>
-          </motion.div>
-
-        </div>
-
-        {/* Zone droite — Vidéo avec clip-path trapèze (même forme que l'image) */}
         <motion.div
-          className="w-[48%] relative overflow-hidden"
-          initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
-          animate={{ clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0% 100%)' }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } }
+          }}
+          initial="hidden"
+          animate="visible"
+          className="absolute left-8 xl:left-12 bottom-10 xl:bottom-12 max-w-xl"
+          style={{ filter: 'drop-shadow(0 2px 20px rgba(0,0,0,0.8)) drop-shadow(0 4px 40px rgba(0,0,0,0.5))' }}
         >
-          <motion.video
-            ref={videoRef}
-            src={config.heroVideo}
-            poster={config.heroPoster || config.heroImage}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ y: imageY }}
-          />
-        </motion.div>
+          <motion.p variants={fade} className="font-sans text-white text-xs tracking-[0.2em] uppercase mb-2">
+            {t(`${prefix}.heroLabel`)}
+          </motion.p>
 
+          <motion.h1
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+            }}
+            className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-[-0.03em] leading-[0.95]"
+          >
+            {t(`${prefix}.heroTitle`)}<br />
+            <span className="font-light italic">{t(`${prefix}.heroSubtitle`)}</span>
+          </motion.h1>
+
+          <motion.p variants={fade} className="font-sans text-white text-sm mb-6 leading-relaxed max-w-md">
+            {t(`${prefix}.heroDescription`)}
+          </motion.p>
+
+          <motion.div variants={fade}>
+            <button
+              onClick={scrollToProducts}
+              className="group relative overflow-hidden inline-flex items-center justify-center rounded-2xl border border-white/[0.55] px-9 py-4 transition-colors duration-500"
+            >
+              <span className="absolute inset-0 origin-left scale-x-0 bg-white transition-transform duration-500 ease-out group-hover:scale-x-100" />
+              <span className="relative z-10 font-sans text-[10px] tracking-[0.3em] font-medium uppercase text-white group-hover:text-[#0a0a0a] transition-colors duration-500">{t(`${prefix}.exploreCollection`)}</span>
+            </button>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* ── MOBILE — Vidéo plein cadre + overlay bas + texte centré ── */}
@@ -167,7 +157,7 @@ function VideoHero({ heroRef, config, prefix, imageY }: HeroProps) {
   );
 }
 
-function ImageHero({ heroRef, config, prefix, imageY }: HeroProps) {
+function ImageHero({ heroRef, config, prefix }: HeroProps) {
   const { t } = useTranslation('collections');
 
   const scrollToProducts = useCallback(() => {
@@ -176,66 +166,58 @@ function ImageHero({ heroRef, config, prefix, imageY }: HeroProps) {
 
   return (
     <div ref={heroRef} className="h-screen relative overflow-hidden bg-[#000000]" data-header-theme="dark">
-      {/* DESKTOP */}
-      <div className="relative h-full overflow-hidden hidden lg:flex">
-        <div className="w-[52%] relative flex flex-col justify-center pl-16 xl:pl-32 2xl:pl-44 pr-10 xl:pr-12 overflow-hidden">
-          <motion.div
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } }
-            }}
-            initial="hidden"
-            animate="visible"
-            className="relative z-10"
-          >
-            <motion.h1
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
-              }}
-              className="font-display text-[clamp(4.25rem,5.75vw,8rem)] font-bold text-white tracking-normal leading-[0.84] mb-4 max-w-full break-words"
-            >
-              {t(`${prefix}.heroTitle`)}
-            </motion.h1>
-
-            <motion.p variants={fade} className="font-display text-lg xl:text-xl 2xl:text-2xl font-light italic text-white/[0.68] tracking-[-0.02em] leading-[1] mb-6 xl:mb-8">
-              {t(`${prefix}.heroSubtitle`)}
-            </motion.p>
-
-            <motion.p variants={fade} className="font-sans text-white/[0.62] text-xs xl:text-[13px] 2xl:text-sm leading-[2] font-light max-w-xs mb-8 xl:mb-10">
-              {t(`${prefix}.heroDescription`)}
-            </motion.p>
-
-            <motion.div variants={fade}>
-              <button
-                onClick={scrollToProducts}
-                className="group relative overflow-hidden rounded-2xl border border-white/[0.45] px-9 py-4 transition-all duration-500"
-              >
-                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 group-hover:text-[#0a0a0a]">{t(`${prefix}.exploreCollection`)}</span>
-                <span className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-              </button>
-            </motion.div>
-          </motion.div>
-
-        </div>
+      {/* DESKTOP — Image plein écran + overlay + texte */}
+      <div className="relative h-full overflow-hidden hidden lg:block">
+        <img
+          src={config.heroImage}
+          alt={t(`${prefix}.heroImageAlt`)}
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchpriority="high"
+          decoding="sync"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/50 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#000000]/60 to-transparent" />
 
         <motion.div
-          className="w-[48%] relative overflow-hidden"
-          initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
-          animate={{ clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0% 100%)' }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } }
+          }}
+          initial="hidden"
+          animate="visible"
+          className="absolute left-8 xl:left-12 bottom-10 xl:bottom-12 max-w-xl"
+          style={{ filter: 'drop-shadow(0 2px 20px rgba(0,0,0,0.8)) drop-shadow(0 4px 40px rgba(0,0,0,0.5))' }}
         >
-          <motion.img
-            src={config.heroImage}
-            alt={t(`${prefix}.heroImageAlt`)}
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ y: imageY }}
-            fetchpriority="high"
-            decoding="sync"
-            loading="eager"
-          />
-        </motion.div>
+          <motion.p variants={fade} className="font-sans text-white text-xs tracking-[0.2em] uppercase mb-2">
+            {t(`${prefix}.heroLabel`)}
+          </motion.p>
 
+          <motion.h1
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+            }}
+            className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-[-0.03em] leading-[0.95]"
+          >
+            {t(`${prefix}.heroTitle`)}<br />
+            <span className="font-light italic">{t(`${prefix}.heroSubtitle`)}</span>
+          </motion.h1>
+
+          <motion.p variants={fade} className="font-sans text-white text-sm mb-6 leading-relaxed max-w-md">
+            {t(`${prefix}.heroDescription`)}
+          </motion.p>
+
+          <motion.div variants={fade}>
+            <button
+              onClick={scrollToProducts}
+              className="group relative overflow-hidden inline-flex items-center justify-center rounded-2xl border border-white/[0.55] px-9 py-4 transition-colors duration-500"
+            >
+              <span className="absolute inset-0 origin-left scale-x-0 bg-white transition-transform duration-500 ease-out group-hover:scale-x-100" />
+              <span className="relative z-10 font-sans text-[10px] tracking-[0.3em] font-medium uppercase text-white group-hover:text-[#0a0a0a] transition-colors duration-500">{t(`${prefix}.exploreCollection`)}</span>
+            </button>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* MOBILE — Image plein cadre + overlay bas + texte centré */}
@@ -282,11 +264,6 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
   const { t } = useTranslation('collections');
   const { shopifyLanguage } = useLocale();
   const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
 
   const prefix = config.translationPrefix;
 
@@ -357,14 +334,12 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
           heroRef={heroRef}
           config={config}
           prefix={prefix}
-          imageY={imageY}
         />
       ) : (
         <ImageHero
           heroRef={heroRef}
           config={config}
           prefix={prefix}
-          imageY={imageY}
         />
       )}
 

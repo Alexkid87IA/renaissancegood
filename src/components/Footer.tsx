@@ -52,14 +52,26 @@ export default function Footer() {
 
         {/* Newsletter */}
         <div className="relative border-b border-white/[0.06]">
-          <div className="max-w-[1600px] mx-auto px-12 lg:px-20 xl:px-28 py-28 lg:py-32">
-            <motion.div
-              ref={newsletterRef}
-              variants={stagger}
-              initial="hidden"
-              animate={newsletterInView ? "visible" : "hidden"}
-              className="max-w-2xl mx-auto text-center"
-            >
+          <div className="max-w-[1600px] mx-auto px-12 lg:px-20 xl:px-28 py-24 lg:py-28">
+            <div className="flex items-center gap-16 lg:gap-24">
+              <div className="w-[300px] xl:w-[340px] shrink-0">
+                <video
+                  src="https://renaissance-cdn.b-cdn.net/videos/hero-accueil-mobile-v3.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="w-full aspect-[9/16] object-cover rounded-2xl"
+                />
+              </div>
+              <motion.div
+                ref={newsletterRef}
+                variants={stagger}
+                initial="hidden"
+                animate={newsletterInView ? "visible" : "hidden"}
+                className="flex-1 text-center"
+              >
               <motion.p variants={fade} className="font-sans text-[9px] tracking-[0.4em] text-white/50 uppercase font-medium mb-4">
                 {t('footer.newsletterLabel')}
               </motion.p>
@@ -119,7 +131,8 @@ export default function Footer() {
                   </p>
                 )}
               </motion.div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
 
@@ -297,9 +310,19 @@ export default function Footer() {
       {/* ═══════════════════════════════════════ */}
       <div className="md:hidden">
 
-        {/* Newsletter */}
-        <div className="px-6 py-20">
-          <div className="text-center">
+        {/* Newsletter — vidéo plein écran + overlay + texte */}
+        <div className="relative min-h-screen flex items-center overflow-hidden">
+          <video
+            src="https://renaissance-cdn.b-cdn.net/videos/hero-accueil-mobile-v3.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/72 via-[#000000]/55 to-[#000000]/88" />
+          <div className="relative w-full px-6 py-20 text-center">
             <p className="font-sans text-[8px] tracking-[0.4em] text-white/50 uppercase font-medium mb-5">
               {t('footer.newsletterLabel')}
             </p>

@@ -155,11 +155,15 @@ export default function ShopPage() {
       <div className="h-screen relative" data-header-theme="dark">
         {/* Desktop */}
         <div className="relative h-full overflow-hidden hidden lg:block">
-          <img
-            src="https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_06AM.jpeg"
-            alt="Renaissance Eyewear - Explorer"
+          <video
+            src="https://renaissance-cdn.b-cdn.net/videos/HERO_16_9_CREATIONS_web.mp4"
+            poster="https://renaissance-cdn.b-cdn.net/videos/HERO_16_9_CREATIONS_poster.jpg"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover object-center"
-            fetchpriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
           <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/60 to-transparent" />
@@ -200,14 +204,15 @@ export default function ShopPage() {
         {/* Mobile */}
         <div className="relative h-full overflow-hidden lg:hidden">
           <div className="absolute inset-0">
-            <motion.img
-              src="https://renaissance-cdn.b-cdn.net/Generated%20Image%20January%2029%2C%202026%20-%205_06AM.jpeg"
-              alt="Renaissance Eyewear - Explorer"
-              className="w-full h-full object-cover object-[center_30%]"
-              initial={{ scale: 1.08 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
-              fetchpriority="high"
+            <video
+              src="https://renaissance-cdn.b-cdn.net/videos/HERO_9_16_CREATIONS_web.mp4"
+              poster="https://renaissance-cdn.b-cdn.net/videos/HERO_9_16_CREATIONS_poster.jpg"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/40 via-transparent to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-[#000000]/70 to-transparent" />
