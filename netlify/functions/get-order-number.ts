@@ -7,15 +7,20 @@ import type { Handler, HandlerEvent } from '@netlify/functions';
 const ADMIN_API_VERSION = '2025-01';
 
 const ALLOWED_ORIGINS = [
-  'https://www.renaissance-paris.com',
-  'https://renaissance-paris.com',
-  'https://renaissance-paris.netlify.app',
+  'https://renaissanceeyewear.fr',
+  'https://www.renaissanceeyewear.fr',
+  'https://gleeful-bonbon-80d767.netlify.app',
   'http://localhost:4444',
   'http://localhost:3000',
 ];
 
+// Autorise les domaines listés + toute adresse Netlify (production et URL de test).
+function isAllowedOrigin(origin?: string): origin is string {
+  return !!origin && (ALLOWED_ORIGINS.includes(origin) || /^https:\/\/[a-z0-9-]+\.netlify\.app$/i.test(origin));
+}
+
 function getCorsHeaders(origin?: string) {
-  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  const allowedOrigin = isAllowedOrigin(origin) ? origin : ALLOWED_ORIGINS[0];
   return {
     'Access-Control-Allow-Origin': allowedOrigin,
     'Access-Control-Allow-Headers': 'Content-Type',
