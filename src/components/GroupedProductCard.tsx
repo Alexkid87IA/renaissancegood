@@ -510,11 +510,9 @@ const EditorialCard = memo(function EditorialCard({
             )}
 
             <div className="mt-8">
-              <span className="group/btn inline-flex items-center gap-3 border-b border-dark-text/[0.4] pb-1.5 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text transition-colors duration-500 group-hover/btn:text-bronze group-hover/btn:border-bronze/[0.6]">
-                <span>{t('sidebar.discover')}</span>
-                <svg className="w-4 h-4 transition-transform duration-500 group-hover/btn:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+              <span className="relative inline-flex items-center overflow-hidden rounded-2xl border border-dark-text/[0.45] px-7 py-3 transition-all duration-500">
+                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-dark-text transition-colors duration-500 group-hover:text-beige">{t('sidebar.discover')}</span>
+                <span className="absolute inset-0 bg-dark-text scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </span>
             </div>
           </div>

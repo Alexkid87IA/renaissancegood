@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
-import { getProductsByCollection } from '../lib/shopify';
-import { getGroupedProducts, GroupedProduct } from '../lib/productGrouping';
+import { getProducts } from '../lib/shopify';
+import { getGroupedProductsForCollection, GroupedProduct } from '../lib/productGrouping';
+import type { CollectionId } from '../data/productEditorial';
 import { Product } from './ProductCard';
 import GroupedProductCard from './GroupedProductCard';
 import SEO from './SEO';
@@ -60,18 +61,7 @@ function VideoHero({ heroRef, config, prefix, imageY }: HeroProps) {
 
       {/* ── DESKTOP — Même layout trapèze que ImageHero, vidéo à la place de l'image ── */}
       <div className="relative h-full overflow-hidden hidden lg:flex">
-        <div className="w-[52%] relative flex flex-col justify-center pl-10 xl:pl-20 2xl:pl-28 pr-10 xl:pr-12 overflow-hidden">
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            style={{ transformOrigin: 'center' }}
-          >
-            <div className="w-[140%] h-px bg-white/[0.04] rotate-[20deg]" />
-          </motion.div>
-
-
+        <div className="w-[52%] relative flex flex-col justify-center pl-16 xl:pl-32 2xl:pl-44 pr-10 xl:pr-12 overflow-hidden">
           <motion.div
             variants={{
               hidden: {},
@@ -95,8 +85,6 @@ function VideoHero({ heroRef, config, prefix, imageY }: HeroProps) {
               {t(`${prefix}.heroSubtitle`)}
             </motion.p>
 
-            <motion.div variants={fade} className="w-10 h-px bg-bronze/[0.45] mb-6 xl:mb-8" />
-
             <motion.p variants={fade} className="font-sans text-white/[0.62] text-xs xl:text-[13px] 2xl:text-sm leading-[2] font-light max-w-xs mb-8 xl:mb-10">
               {t(`${prefix}.heroDescription`)}
             </motion.p>
@@ -104,32 +92,21 @@ function VideoHero({ heroRef, config, prefix, imageY }: HeroProps) {
             <motion.div variants={fade}>
               <button
                 onClick={scrollToProducts}
-                className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]"
+                className="group relative overflow-hidden rounded-2xl border border-white/[0.45] px-9 py-4 transition-all duration-500"
               >
-                <span>{t(`${prefix}.exploreCollection`)}</span>
-                <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 group-hover:text-[#0a0a0a]">{t(`${prefix}.exploreCollection`)}</span>
+                <span className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </button>
             </motion.div>
           </motion.div>
 
-          <motion.div
-            className="absolute bottom-10 left-10 xl:left-20 2xl:left-28 flex items-center gap-3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            <div className="w-8 h-px bg-white/[0.15]" />
-            <span className="font-sans text-white/[0.15] text-[9px] tracking-[0.3em] uppercase">{t('scroll')}</span>
-          </motion.div>
         </div>
 
         {/* Zone droite — Vidéo avec clip-path trapèze (même forme que l'image) */}
         <motion.div
           className="w-[48%] relative overflow-hidden"
           initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
-          animate={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
+          animate={{ clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0% 100%)' }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.video
@@ -144,54 +121,25 @@ function VideoHero({ heroRef, config, prefix, imageY }: HeroProps) {
             className="absolute inset-0 w-full h-full object-cover"
             style={{ y: imageY }}
           />
-          <div
-            className="absolute inset-0 pointer-events-none opacity-100"
-            style={{
-              backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 79px, rgba(255,255,255,0.03) 79px, rgba(255,255,255,0.03) 80px)',
-            }}
-          />
         </motion.div>
 
-        <motion.div
-          className="absolute bottom-20 left-[20%] right-[20%] flex items-center z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          <div className="flex-1 h-px bg-white/[0.06]" />
-          <motion.div
-            className="w-2 h-2 bg-white/[0.06] mx-3"
-            style={{ transform: 'rotate(45deg)' }}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
-          />
-          <div className="flex-1 h-px bg-white/[0.06]" />
-        </motion.div>
       </div>
 
-      {/* ── MOBILE — Vidéo clip diagonale + contenu bas ── */}
-      <div className="relative h-full overflow-hidden lg:hidden flex flex-col">
-        <motion.div
-          className="relative h-[50%] overflow-hidden"
-          initial={{ clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
-          animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0% 100%)' }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-        >
-          <video
-            src={config.heroVideoMobile || config.heroVideo}
-            poster={config.heroPosterMobile || config.heroPoster || config.heroImage}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
-        </motion.div>
+      {/* ── MOBILE — Vidéo plein cadre + overlay bas + texte centré ── */}
+      <div className="relative h-full overflow-hidden lg:hidden">
+        <video
+          src={config.heroVideoMobile || config.heroVideo}
+          poster={config.heroPosterMobile || config.heroPoster || config.heroImage}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent" />
 
-        <div className="flex-1 px-6 flex flex-col justify-center">
+        <div className="relative h-full flex flex-col items-center text-center justify-end px-6 pb-12">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -203,30 +151,15 @@ function VideoHero({ heroRef, config, prefix, imageY }: HeroProps) {
             <p className="font-display text-lg font-light italic text-white/[0.68] tracking-[-0.02em] mb-4">
               {t(`${prefix}.heroSubtitle`)}
             </p>
-            <div className="w-8 h-px bg-bronze/[0.45] mb-4" />
             <p className="text-white/[0.62] text-sm font-sans leading-relaxed font-light mb-6">
               {t(`${prefix}.heroDescription`)}
             </p>
             <button
               onClick={scrollToProducts}
-              className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6] active:text-bronze"
+              className="inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-7 py-3 font-sans text-[9px] tracking-[0.24em] font-medium uppercase text-white active:bg-white active:text-[#0a0a0a] transition-colors duration-300"
             >
               <span>{t(`${prefix}.exploreCollection`)}</span>
-              <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
             </button>
-          </motion.div>
-
-          <motion.div
-            className="flex items-center mt-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <div className="flex-1 h-px bg-white/[0.06]" />
-            <div className="w-1.5 h-1.5 bg-white/[0.06] mx-2" style={{ transform: 'rotate(45deg)' }} />
-            <div className="flex-1 h-px bg-white/[0.06]" />
           </motion.div>
         </div>
       </div>
@@ -245,18 +178,7 @@ function ImageHero({ heroRef, config, prefix, imageY }: HeroProps) {
     <div ref={heroRef} className="h-screen relative overflow-hidden bg-[#000000]" data-header-theme="dark">
       {/* DESKTOP */}
       <div className="relative h-full overflow-hidden hidden lg:flex">
-        <div className="w-[52%] relative flex flex-col justify-center pl-10 xl:pl-20 2xl:pl-28 pr-10 xl:pr-12 overflow-hidden">
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            style={{ transformOrigin: 'center' }}
-          >
-            <div className="w-[140%] h-px bg-white/[0.04] rotate-[20deg]" />
-          </motion.div>
-
-
+        <div className="w-[52%] relative flex flex-col justify-center pl-16 xl:pl-32 2xl:pl-44 pr-10 xl:pr-12 overflow-hidden">
           <motion.div
             variants={{
               hidden: {},
@@ -280,8 +202,6 @@ function ImageHero({ heroRef, config, prefix, imageY }: HeroProps) {
               {t(`${prefix}.heroSubtitle`)}
             </motion.p>
 
-            <motion.div variants={fade} className="w-10 h-px bg-bronze/[0.45] mb-6 xl:mb-8" />
-
             <motion.p variants={fade} className="font-sans text-white/[0.62] text-xs xl:text-[13px] 2xl:text-sm leading-[2] font-light max-w-xs mb-8 xl:mb-10">
               {t(`${prefix}.heroDescription`)}
             </motion.p>
@@ -289,31 +209,20 @@ function ImageHero({ heroRef, config, prefix, imageY }: HeroProps) {
             <motion.div variants={fade}>
               <button
                 onClick={scrollToProducts}
-                className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6]"
+                className="group relative overflow-hidden rounded-2xl border border-white/[0.45] px-9 py-4 transition-all duration-500"
               >
-                <span>{t(`${prefix}.exploreCollection`)}</span>
-                <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 group-hover:text-[#0a0a0a]">{t(`${prefix}.exploreCollection`)}</span>
+                <span className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </button>
             </motion.div>
           </motion.div>
 
-          <motion.div
-            className="absolute bottom-10 left-10 xl:left-20 2xl:left-28 flex items-center gap-3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            <div className="w-8 h-px bg-white/[0.15]" />
-            <span className="font-sans text-white/[0.15] text-[9px] tracking-[0.3em] uppercase">{t('scroll')}</span>
-          </motion.div>
         </div>
 
         <motion.div
           className="w-[48%] relative overflow-hidden"
           initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
-          animate={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
+          animate={{ clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0% 100%)' }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.img
@@ -325,52 +234,23 @@ function ImageHero({ heroRef, config, prefix, imageY }: HeroProps) {
             decoding="sync"
             loading="eager"
           />
-          <div
-            className="absolute inset-0 pointer-events-none opacity-100"
-            style={{
-              backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 79px, rgba(255,255,255,0.03) 79px, rgba(255,255,255,0.03) 80px)',
-            }}
-          />
         </motion.div>
 
-        <motion.div
-          className="absolute bottom-20 left-[20%] right-[20%] flex items-center z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          <div className="flex-1 h-px bg-white/[0.06]" />
-          <motion.div
-            className="w-2 h-2 bg-white/[0.06] mx-3"
-            style={{ transform: 'rotate(45deg)' }}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
-          />
-          <div className="flex-1 h-px bg-white/[0.06]" />
-        </motion.div>
       </div>
 
-      {/* MOBILE */}
-      <div className="relative h-full overflow-hidden lg:hidden flex flex-col">
-        <motion.div
-          className="relative h-[50%] overflow-hidden"
-          initial={{ clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
-          animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0% 100%)' }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-        >
-          <img
-            src={config.heroImage}
-            alt={t(`${prefix}.heroImageAlt`)}
-            className="w-full h-full object-cover object-center"
-            fetchpriority="high"
-            decoding="sync"
-            loading="eager"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
-        </motion.div>
+      {/* MOBILE — Image plein cadre + overlay bas + texte centré */}
+      <div className="relative h-full overflow-hidden lg:hidden">
+        <img
+          src={config.heroImage}
+          alt={t(`${prefix}.heroImageAlt`)}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          fetchpriority="high"
+          decoding="sync"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent" />
 
-        <div className="flex-1 px-6 flex flex-col justify-center">
+        <div className="relative h-full flex flex-col items-center text-center justify-end px-6 pb-12">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -382,30 +262,15 @@ function ImageHero({ heroRef, config, prefix, imageY }: HeroProps) {
             <p className="font-display text-lg font-light italic text-white/[0.68] tracking-[-0.02em] mb-4">
               {t(`${prefix}.heroSubtitle`)}
             </p>
-            <div className="w-8 h-px bg-bronze/[0.45] mb-4" />
             <p className="text-white/[0.62] text-sm font-sans leading-relaxed font-light mb-6">
               {t(`${prefix}.heroDescription`)}
             </p>
             <button
               onClick={scrollToProducts}
-              className="group inline-flex items-center gap-3 border-b border-white/[0.4] pb-1.5 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white transition-colors duration-500 hover:text-bronze hover:border-bronze/[0.6] active:text-bronze"
+              className="inline-flex items-center justify-center rounded-2xl border border-white/[0.45] px-7 py-3 font-sans text-[9px] tracking-[0.24em] font-medium uppercase text-white active:bg-white active:text-[#0a0a0a] transition-colors duration-300"
             >
               <span>{t(`${prefix}.exploreCollection`)}</span>
-              <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
             </button>
-          </motion.div>
-
-          <motion.div
-            className="flex items-center mt-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <div className="flex-1 h-px bg-white/[0.06]" />
-            <div className="w-1.5 h-1.5 bg-white/[0.06] mx-2" style={{ transform: 'rotate(45deg)' }} />
-            <div className="flex-1 h-px bg-white/[0.06]" />
           </motion.div>
         </div>
       </div>
@@ -434,7 +299,7 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
       try {
         setLoading(true);
         setError(null);
-        const shopifyProducts = await getProductsByCollection(config.collectionId, shopifyLanguage);
+        const shopifyProducts = await getProducts(shopifyLanguage);
         setProducts(shopifyProducts as Product[]);
       } catch {
         setError(t('errorLoading'));
@@ -446,8 +311,8 @@ export default function CollectionPageTemplate({ config }: { config: CollectionP
   }, [shopifyLanguage, config.collectionId, t]);
 
   const groupedProducts: GroupedProduct[] = useMemo(() => {
-    return getGroupedProducts(products);
-  }, [products]);
+    return getGroupedProductsForCollection(products, config.translationPrefix as CollectionId);
+  }, [products, config.translationPrefix]);
 
   // ============================================================
   // Preload de TOUTES les images hero produit dès que products
