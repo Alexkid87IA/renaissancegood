@@ -269,7 +269,7 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-beige">
       {/* ==================== HEADER ==================== */}
-      <header className="sticky top-0 z-50 bg-transparent md:bg-white/95 md:backdrop-blur-sm md:border-b md:border-bronze/[0.15]">
+      <header className="sticky top-0 z-50 bg-transparent">
         <div className="max-w-[1400px] mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
           <LocaleLink to="/cart" className="flex items-center gap-2 text-dark-text/40 hover:text-dark-text transition-colors">
             <ArrowLeft className="w-4 h-4" />
