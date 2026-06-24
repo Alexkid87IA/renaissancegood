@@ -39,9 +39,15 @@ const ROUTES = [
 ];
 
 const READY = 'html[data-prerender-ready]';
-const NAV_TIMEOUT = 45000;
+const NAV_TIMEOUT = 25000;
 
 async function main() {
+  // Interrupteur : `PRERENDER=0 npm run build` saute le pré-rendu.
+  if (process.env.PRERENDER === '0' || process.env.PRERENDER === 'false') {
+    console.warn('[prerender] désactivé (PRERENDER=0).');
+    return;
+  }
+
   // dist doit exister (build préalable).
   try {
     await fs.access(path.join(DIST, 'index.html'));
@@ -54,7 +60,15 @@ async function main() {
   try {
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--lang=fr-FR'],
+      // Drapeaux CI/conteneur : --disable-dev-shm-usage évite que le rendu
+      // se fige quand /dev/shm est minuscule (cas Netlify/Docker).
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--lang=fr-FR',
+      ],
     });
   } catch (err) {
     console.warn('[prerender] Puppeteer indisponible, pré-rendu ignoré :', err.message);
@@ -91,6 +105,13 @@ async function main() {
       console.warn('[prerender] ÉCHEC ' + route + ' : ' + err.message);
     } finally {
       await page.close();
+    }
+
+    // Si la toute première route échoue, l'environnement ne sait pas rendre
+    // l'app (Chrome CI). Inutile de gâcher ~14 min : on abandonne le pré-rendu.
+    if (route === ROUTES[0] && failures.includes(route)) {
+      console.warn('[prerender] la home n’a pas rendu : environnement incapable de pré-rendre, abandon (rendu JS conservé).');
+      break;
     }
   }
 
