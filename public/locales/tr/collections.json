@@ -12,7 +12,8 @@
     "exploreCollection": "Koleksiyonu keşfet",
     "seoTitle": "Héritage Koleksiyonu",
     "seoDescription": "Renaissance Eyewear Héritage Koleksiyonu. Trident: üç uç, tek sap. Titanyum, 18 ayar altın kaplama. Modalara boyun eğmeden onları aşan biçimler.",
-    "heroImageAlt": "Héritage Koleksiyonu, trident"
+    "heroImageAlt": "Héritage Koleksiyonu, trident",
+    "heroLabel": "Fransız gözlük Maison'u"
   },
   "versailles": {
     "label": "Koleksiyon",
@@ -27,7 +28,8 @@
     "exploreCollection": "Koleksiyonu keşfet",
     "seoTitle": "Versailles Koleksiyonu",
     "seoDescription": "Renaissance Eyewear Versailles Koleksiyonu. Fleur de lys. Titanyum, 18 ayar altın kaplama, elde parlatılmış. Aşırıya kaçmadan parlayan.",
-    "heroImageAlt": "Versailles Koleksiyonu, fleur de lys"
+    "heroImageAlt": "Versailles Koleksiyonu, fleur de lys",
+    "heroLabel": "Fransız gözlük Maison'u"
   },
   "isis": {
     "label": "Koleksiyon",
@@ -46,7 +48,8 @@
     "discoverVersailles": "Versailles'ı keşfet",
     "discoverHeritage": "Héritage'ı keşfet",
     "discover": "Keşfet",
-    "exploreCollection": "Koleksiyonu keşfet"
+    "exploreCollection": "Koleksiyonu keşfet",
+    "heroLabel": "Fransız gözlük Maison'u"
   },
   "allCollections": "Tüm koleksiyonlar",
   "seeAll": "Tümünü gör",

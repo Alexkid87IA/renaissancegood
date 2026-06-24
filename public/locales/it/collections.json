@@ -12,7 +12,8 @@
     "exploreCollection": "Esplora la collezione",
     "seoTitle": "Collezione Héritage",
     "seoDescription": "Collezione Héritage di Renaissance Eyewear. Il tridente: tre punte, un solo manico. Titanio placcato oro 18KT. Forme che attraversano le mode senza sottomettervisi.",
-    "heroImageAlt": "Collezione Héritage, il tridente"
+    "heroImageAlt": "Collezione Héritage, il tridente",
+    "heroLabel": "Maison francese di occhialeria"
   },
   "versailles": {
     "label": "Collezione",
@@ -27,7 +28,8 @@
     "exploreCollection": "Esplora la collezione",
     "seoTitle": "Collezione Versailles",
     "seoDescription": "Collezione Versailles di Renaissance Eyewear. Il giglio. Titanio placcato oro 18KT, lucidato a mano. Il bagliore senza l'eccesso.",
-    "heroImageAlt": "Collezione Versailles, il giglio"
+    "heroImageAlt": "Collezione Versailles, il giglio",
+    "heroLabel": "Maison francese di occhialeria"
   },
   "isis": {
     "label": "Collezione",
@@ -46,7 +48,8 @@
     "discoverVersailles": "Scopri Versailles",
     "discoverHeritage": "Scopri Héritage",
     "discover": "Scopri",
-    "exploreCollection": "Esplora la collezione"
+    "exploreCollection": "Esplora la collezione",
+    "heroLabel": "Maison francese di occhialeria"
   },
   "allCollections": "Tutte le collezioni",
   "seeAll": "Vedi tutto",

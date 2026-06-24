@@ -12,7 +12,8 @@
     "exploreCollection": "Explorer la collection",
     "seoTitle": "Collection Héritage",
     "seoDescription": "Collection Héritage de Renaissance Eyewear. Le trident : trois pointes, un seul manche. Titane plaqué or 18KT. Des formes qui traversent les modes sans s'y soumettre.",
-    "heroImageAlt": "Collection Héritage, le trident"
+    "heroImageAlt": "Collection Héritage, le trident",
+    "heroLabel": "Maison française de lunetterie"
   },
   "versailles": {
     "label": "Collection",
@@ -27,7 +28,8 @@
     "exploreCollection": "Explorer la collection",
     "seoTitle": "Collection Versailles",
     "seoDescription": "Collection Versailles de Renaissance Eyewear. La fleur de lys. Titane plaqué or 18KT, poli à la main. L'éclat sans l'excès.",
-    "heroImageAlt": "Collection Versailles, la fleur de lys"
+    "heroImageAlt": "Collection Versailles, la fleur de lys",
+    "heroLabel": "Maison française de lunetterie"
   },
   "isis": {
     "label": "Collection",
@@ -46,7 +48,8 @@
     "discoverVersailles": "Découvrir Versailles",
     "discoverHeritage": "Découvrir Héritage",
     "discover": "Découvrir",
-    "exploreCollection": "Explorer la collection"
+    "exploreCollection": "Explorer la collection",
+    "heroLabel": "Maison française de lunetterie"
   },
   "allCollections": "Toutes les collections",
   "seeAll": "Voir tout",

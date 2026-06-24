@@ -12,7 +12,8 @@
     "exploreCollection": "Explore the collection",
     "seoTitle": "Heritage Collection",
     "seoDescription": "The Heritage collection by Renaissance Eyewear. The trident: three points, a single shaft. 18KT gold-plated titanium. Shapes that move through the fashions without bending to them.",
-    "heroImageAlt": "Heritage collection, the trident"
+    "heroImageAlt": "Heritage collection, the trident",
+    "heroLabel": "French eyewear maison"
   },
   "versailles": {
     "label": "Collection",
@@ -27,7 +28,8 @@
     "exploreCollection": "Explore the collection",
     "seoTitle": "Versailles Collection",
     "seoDescription": "The Versailles collection by Renaissance Eyewear. The fleur de lys. 18KT gold-plated titanium, hand-polished. Brilliance without excess.",
-    "heroImageAlt": "Versailles collection, the fleur de lys"
+    "heroImageAlt": "Versailles collection, the fleur de lys",
+    "heroLabel": "French eyewear maison"
   },
   "isis": {
     "label": "Collection",
@@ -46,7 +48,8 @@
     "discoverVersailles": "Discover Versailles",
     "discoverHeritage": "Discover Heritage",
     "discover": "Discover",
-    "exploreCollection": "Explore the collection"
+    "exploreCollection": "Explore the collection",
+    "heroLabel": "French eyewear maison"
   },
   "allCollections": "All collections",
   "seeAll": "See all",

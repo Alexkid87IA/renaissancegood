@@ -12,7 +12,8 @@
     "exploreCollection": "Explorar la colección",
     "seoTitle": "Colección Herencia",
     "seoDescription": "Colección Herencia de Renaissance Eyewear. El tridente: tres puntas, un solo mango. Titanio chapado en oro 18KT. Formas que atraviesan las modas sin someterse a ellas.",
-    "heroImageAlt": "Colección Herencia, el tridente"
+    "heroImageAlt": "Colección Herencia, el tridente",
+    "heroLabel": "Casa francesa de óptica"
   },
   "versailles": {
     "label": "Colección",
@@ -27,7 +28,8 @@
     "exploreCollection": "Explorar la colección",
     "seoTitle": "Colección Versailles",
     "seoDescription": "Colección Versailles de Renaissance Eyewear. La flor de lis. Titanio chapado en oro 18KT, pulido a mano. El brillo sin el exceso.",
-    "heroImageAlt": "Colección Versailles, la flor de lis"
+    "heroImageAlt": "Colección Versailles, la flor de lis",
+    "heroLabel": "Casa francesa de óptica"
   },
   "isis": {
     "label": "Colección",
@@ -46,7 +48,8 @@
     "discoverVersailles": "Descubrir Versailles",
     "discoverHeritage": "Descubrir Herencia",
     "discover": "Descubrir",
-    "exploreCollection": "Explorar la colección"
+    "exploreCollection": "Explorar la colección",
+    "heroLabel": "Casa francesa de óptica"
   },
   "allCollections": "Todas las colecciones",
   "seeAll": "Ver todo",

@@ -12,7 +12,8 @@
     "exploreCollection": "Kollektion erkunden",
     "seoTitle": "Kollektion Héritage",
     "seoDescription": "Kollektion Héritage von Renaissance Eyewear. Der Dreizack: drei Spitzen, ein einziger Schaft. Titan mit 18KT-Vergoldung. Formen, die durch die Moden gehen, ohne sich ihnen zu beugen.",
-    "heroImageAlt": "Kollektion Héritage, der Dreizack"
+    "heroImageAlt": "Kollektion Héritage, der Dreizack",
+    "heroLabel": "Französisches Brillenhaus"
   },
   "versailles": {
     "label": "Kollektion",
@@ -27,7 +28,8 @@
     "exploreCollection": "Kollektion erkunden",
     "seoTitle": "Kollektion Versailles",
     "seoDescription": "Kollektion Versailles von Renaissance Eyewear. Die Lilie. Titan mit 18KT-Vergoldung, von Hand poliert. Der Glanz ohne das Zuviel.",
-    "heroImageAlt": "Kollektion Versailles, die Lilie"
+    "heroImageAlt": "Kollektion Versailles, die Lilie",
+    "heroLabel": "Französisches Brillenhaus"
   },
   "isis": {
     "label": "Kollektion",
@@ -46,7 +48,8 @@
     "discoverVersailles": "Versailles entdecken",
     "discoverHeritage": "Héritage entdecken",
     "discover": "Entdecken",
-    "exploreCollection": "Kollektion erkunden"
+    "exploreCollection": "Kollektion erkunden",
+    "heroLabel": "Französisches Brillenhaus"
   },
   "allCollections": "Alle Kollektionen",
   "seeAll": "Alle ansehen",
