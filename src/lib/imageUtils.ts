@@ -29,7 +29,8 @@ const BUNNY_FILES: Record<string, string[]> = {
   'IX-Colori-2': ['1.jpg','2.jpg'],
   'X-Colori-1': ['1.jpg','2.jpg'],
   'X-Colori-2': ['1.jpg','2.jpg'],
-  'X-Colori-3': ['1.jpg','2.jpg'],
+  // 'X-Colori-3' retiré : déclaré mais absent sur Bunny (404). La carte retombe
+  // sur l'image Shopify (10C3FACE.jpg), qui existe. À re-générer si upload Bunny.
   'XI-51-Colori-1': ['1.jpg','2.jpg'],
   'XI-51-Colori-2': ['1.jpg','2.jpg'],
   'XI-51-Colori-3': ['1.jpg','2.jpg'],

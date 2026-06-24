@@ -89,17 +89,6 @@ export default function ExpressCheckoutSection({
             },
           }}
         />
-
-        {/* Divider "OU" with bronze ornament */}
-        <div className="flex items-center gap-4 my-8">
-          <div className="flex-1 h-px bg-dark-text/[0.07]" />
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-px bg-bronze/30" />
-            <span className="font-sans text-[10px] tracking-[0.25em] text-dark-text/25 uppercase">{t('checkoutPage.orDivider')}</span>
-            <div className="w-4 h-px bg-bronze/30" />
-          </div>
-          <div className="flex-1 h-px bg-dark-text/[0.07]" />
-        </div>
       </div>
     </div>
   );

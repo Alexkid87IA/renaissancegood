@@ -70,10 +70,6 @@ export default function OrderSummary({ cartLines, subtotal, shipping, total, dis
         })}
       </div>
 
-      {/* Artisanal message */}
-      <p className="font-display text-[12px] italic text-dark-text/[0.35] leading-relaxed mb-5 border-l-2 border-bronze/20 pl-3">
-        {t('checkoutPage.artisanalMessage')}
-      </p>
 
       {/* Totaux */}
       <div className="border-t border-dark-text/[0.07] pt-5 space-y-2.5">

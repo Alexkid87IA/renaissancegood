@@ -8,7 +8,6 @@ import { Lock, ArrowLeft, AlertCircle, ChevronDown, Shield, Truck, RotateCcw } f
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import LocaleLink from '../components/LocaleLink';
 import { SHIPPING } from '../constants/shipping';
-import { resizeShopifyImage } from '../lib/imageUtils';
 import FloatingInput from '../components/checkout/FloatingInput';
 import FloatingSelect from '../components/checkout/FloatingSelect';
 import StepProgress from '../components/checkout/StepProgress';
@@ -270,7 +269,7 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-beige">
       {/* ==================== HEADER ==================== */}
-      <header className="sticky top-0 bg-white/95 backdrop-blur-sm z-50 border-b border-bronze/[0.15]">
+      <header className="sticky top-0 z-50 bg-transparent md:bg-white/95 md:backdrop-blur-sm md:border-b md:border-bronze/[0.15]">
         <div className="max-w-[1400px] mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
           <LocaleLink to="/cart" className="flex items-center gap-2 text-dark-text/40 hover:text-dark-text transition-colors">
             <ArrowLeft className="w-4 h-4" />
@@ -340,28 +339,6 @@ export default function CheckoutPage() {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  {/* Horizontal scrollable product strip */}
-                  <div className="bg-white border border-t-0 border-dark-text/[0.07] p-4 rounded-b-2xl">
-                    <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide">
-                      {cartLines.map(({ node }) => {
-                        const image = node.merchandise.product.images.edges[0]?.node.url;
-                        return (
-                          <div key={node.id} className="flex-shrink-0 w-20 h-20 bg-[#f5f5f3] border border-dark-text/[0.05] overflow-hidden">
-                            {image && (
-                              <img
-                                src={resizeShopifyImage(image, 160)}
-                                alt={node.merchandise.product.title}
-                                className="w-full h-full object-contain p-2"
-                                loading="lazy"
-                                decoding="async"
-                                sizes="80px"
-                              />
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
                   <OrderSummary cartLines={cartLines} subtotal={subtotal} shipping={shipping} total={total} discount={discount} />
                 </motion.div>
               )}
@@ -385,7 +362,7 @@ export default function CheckoutPage() {
                     </div>
                     {/* Express Checkout Panel */}
                     {clientSecret && stripeOptions && (
-                      <div className="mb-6">
+                      <>
                         <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8 rounded-2xl">
                           <div className="mb-5">
                             <h2 className="font-display text-lg font-medium text-dark-text mb-1">
@@ -401,10 +378,20 @@ export default function CheckoutPage() {
                             />
                           </Elements>
                         </div>
-                      </div>
+                        {/* OU — entre le paiement express et le formulaire */}
+                        <div className="flex items-center gap-4 mt-6">
+                          <div className="flex-1 h-px bg-dark-text/[0.07]" />
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-px bg-bronze/30" />
+                            <span className="font-sans text-[10px] tracking-[0.25em] text-dark-text/25 uppercase">{t('checkoutPage.orDivider')}</span>
+                            <div className="w-4 h-px bg-bronze/30" />
+                          </div>
+                          <div className="flex-1 h-px bg-dark-text/[0.07]" />
+                        </div>
+                      </>
                     )}
 
-                    <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8 rounded-2xl">
+                    <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8 rounded-2xl mt-6">
                       {/* Contact */}
                       <SectionHeader>{t('checkoutPage.yourCoordinates')}</SectionHeader>
                       <div className="space-y-5">
