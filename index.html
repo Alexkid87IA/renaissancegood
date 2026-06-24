@@ -27,10 +27,10 @@
     <meta property="twitter:image" content="https://res.cloudinary.com/dwt7u0azs/image/upload/v1761868999/RENAISSANCE_TRANSPARENT_bbe5d805-70e6-4344-856b-1d8534ad9056_ujgcyh.webp" />
 
     <!-- Additional SEO -->
-    <meta name="robots" content="noindex, follow" />
+    <meta name="robots" content="index, follow" />
     <meta name="language" content="French" />
     <meta name="revisit-after" content="7 days" />
-    <link rel="canonical" href="https://renaissanceeyewear.fr/" />
+    <!-- Pas de canonical statique : il est posé par page dans SEO.tsx (react-helmet). Un canonical racine ici entrerait en conflit sur chaque route. -->
 
     <!-- Google Fonts : preconnect + non-blocking -->
     <!-- Polices auto-hébergées via @fontsource (importées dans src/main.tsx) — plus aucun appel à Google Fonts. -->

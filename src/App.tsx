@@ -15,6 +15,7 @@ import ScrollToTop from './components/ScrollToTop';
 import NavigationProgress from './components/NavigationProgress';
 import LangLayout from './components/LangLayout';
 import ErrorBoundary from './components/ErrorBoundary';
+import PrerenderReady from './components/PrerenderReady';
 import { hasConsent, onConsentChange } from './lib/consent';
 import { loadAnalytics } from './lib/analytics';
 
@@ -200,6 +201,8 @@ function AppContent() {
                   {AppRoutes()}
                 </Route>
               </Routes>
+              {/* Signale au pré-rendu (build) que le contenu de la route est monté. */}
+              <PrerenderReady />
             </Suspense>
           </ErrorBoundary>
         </main>
