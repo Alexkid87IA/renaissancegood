@@ -375,6 +375,14 @@ export default function CheckoutPage() {
             <div>
                 {/* ===== ÉTAPE 1 : INFORMATION + LIVRAISON ===== */}
                 <div className={currentStep === 1 ? '' : 'hidden'}>
+                    {/* Réassurance (paiement sécurisé / chiffré / livraison) — au-dessus du code promo */}
+                    <div className="mb-6">
+                      <TrustBar />
+                    </div>
+                    {/* Code promo — avant le paiement express, pour appliquer la remise d'abord */}
+                    <div className="bg-white border border-dark-text/[0.07] p-6 mb-6 rounded-2xl">
+                      <PromoCodeField />
+                    </div>
                     {/* Express Checkout Panel */}
                     {clientSecret && stripeOptions && (
                       <div className="mb-6">
@@ -393,8 +401,6 @@ export default function CheckoutPage() {
                             />
                           </Elements>
                         </div>
-                        {/* Trust bar under express checkout */}
-                        <TrustBar />
                       </div>
                     )}
 
