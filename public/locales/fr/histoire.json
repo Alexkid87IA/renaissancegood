@@ -63,12 +63,8 @@
   },
   "page": {
     "histoire": {
-      "seoTitle": "Notre Histoire — Lunetterie Renaissance, Paris",
-      "seoDescription": "Renaissance, maison française de lunetterie née en 2019 d'un refus. Montures titane plaquées or 18KT, dessinées à Paris. Trois hommes du métier, frères par choix : ce qui se porte, ce qui se transmet."
-    },
-    "savoirFaire": {
-      "seoTitle": "L'atelier",
-      "seoDescription": "L'atelier Renaissance Eyewear : dessiné à Paris, fabriqué en Corée, acétate d'Italie. Titane plaqué or 18KT, acétate Mazzucchelli."
+      "seoTitle": "Lunettes titane plaqué or 18KT, maison française",
+      "seoDescription": "Renaissance, maison française de lunetterie depuis 2019. Montures titane plaqué or 18KT, un numéro unique gravé au pont. Ce qui se casse, la Maison le répare."
     },
     "manifeste": {
       "seoTitle": "Manifeste",
@@ -115,9 +111,9 @@
     "title": "Le temps fait le tri.",
     "subtitle": "On l'a choisi comme juge.",
     "description": "Le monde va vite, il jette, il recommence. On a choisi l'inverse : des montures faites pour durer, et passer d'une main à l'autre. Ce qui est bien fait, le temps le garde.",
-    "mobileTitle": "Un mot oublié.",
-    "mobileSubtitle": "Parfait pour restaurer.",
-    "mobileDescription": "Un mot trop grand pour ceux qui n'ont rien à dire. Mais parfait pour ceux qui ont quelque chose à restaurer."
+    "mobileTitle": "Le temps fait le tri.",
+    "mobileSubtitle": "On l'a choisi comme juge.",
+    "mobileDescription": "Le monde va vite, il jette. On a choisi l'inverse : des montures faites pour durer, et passer d'une main à l'autre."
   },
   "fondateursSection": {
     "label": "L'Origine",
@@ -178,41 +174,6 @@
     "mobileStat3Label": "Mazzucchelli",
     "cta": "Voir la fabrication"
   },
-  "valeursSection": {
-    "label": "Nos Valeurs",
-    "title": "QUATRE FIBRES. UNE COURONNE.",
-    "subtitle": "Non-négociables.",
-    "valeur1Title": "Le Refus du faux",
-    "valeur1Desc": "Devant chaque mot, chaque image : est-ce que ça prouve, ou est-ce que ça annonce ? Si ça annonce, on coupe.",
-    "valeur1Keyword": "Vrai",
-    "valeur2Title": "La Maîtrise",
-    "valeur2Desc": "Le titane qui ne rouille jamais. L'or qui ne pèle pas. Ce qui n'est pas fait pour durer ne sort pas de l'atelier.",
-    "valeur2Keyword": "Main",
-    "valeur3Title": "La Parole",
-    "valeur3Desc": "On ne promet que ce qu'on sait tenir. Jamais soldé : un prix qui baisse est une parole qu'on retire.",
-    "valeur3Keyword": "Tenue",
-    "valeur4Title": "Le Respect",
-    "valeur4Desc": "On ne mesure pas un homme à ce qu'il possède, mais à ce qu'il honore. Aux images comme au comptoir.",
-    "valeur4Keyword": "Regard",
-    "valeur5Title": "La Transmission",
-    "valeur5Desc": "Ce qui est bien fait se répare ; ce qui se répare se garde ; ce qui se garde se transmet.",
-    "valeur5Keyword": "Couronne"
-  },
-  "collectionsSection": {
-    "label": "Les Collections",
-    "countLabel": "4 Collections",
-    "title": "Une maison. Quatre collections. Zéro hasard.",
-    "collection1Name": "Les Origines",
-    "collection1Desc": "Là où tout commence. Les stries. La signature.",
-    "collection2Name": "Héritage",
-    "collection2Desc": "Le Trident. Ce qu'on transmet.",
-    "collection3Name": "Versailles",
-    "collection3Desc": "La Fleur de Lys. Ce qu'on bâtit.",
-    "collection4Name": "Isis",
-    "collection4Desc": "L'Ankh, le Scarabée, l'Œil. Ce qui traverse 5 000 ans.",
-    "quote": "On ne collectionne pas les modèles. On collectionne les symboles.",
-    "scroll": "Défiler"
-  },
   "engagementSection": {
     "label": "Notre Engagement",
     "title": "CE QUI EST BIEN FAIT SE RÉPARE.",
@@ -231,27 +192,5 @@
     "engagement3Stat": "250+",
     "engagement3StatLabel": "Partenaires",
     "cta": "Découvrir nos créations"
-  },
-  "ambassadeursSection": {
-    "label": "Ambassadeurs",
-    "rightLabel": "Ils portent Renaissance",
-    "title": "Ils portent Renaissance",
-    "description": "Des visages connus. Des parcours différents. Un point commun : ils portent ce qui dure.",
-    "quote": "Ils ne portent pas Renaissance pour se montrer. Ils le portent parce que ça leur ressemble. Parce que ça dit quelque chose d'eux.",
-    "ambassador1Name": "Sophie Marceau",
-    "ambassador1Role": "Actrice & Réalisatrice",
-    "ambassador1Collection": "Collection Héritage",
-    "ambassador2Name": "Omar Sy",
-    "ambassador2Role": "Acteur & Producteur",
-    "ambassador2Collection": "Collection Versailles",
-    "ambassador3Name": "Léa Seydoux",
-    "ambassador3Role": "Actrice",
-    "ambassador3Collection": "Collection Isis",
-    "ambassador4Name": "Vincent Cassel",
-    "ambassador4Role": "Acteur",
-    "ambassador4Collection": "Collection Héritage",
-    "ambassador5Name": "Marion Cotillard",
-    "ambassador5Role": "Actrice",
-    "ambassador5Collection": "Collection Versailles"
   }
 }

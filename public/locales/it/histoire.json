@@ -63,12 +63,8 @@
   },
   "page": {
     "histoire": {
-      "seoTitle": "La nostra storia",
-      "seoDescription": "Nata nel 2019 da un rifiuto: quello di veder sparire ciò che deve durare. Tre uomini del mestiere, fratelli per scelta. Ciò che si porta. Ciò che si trasmette."
-    },
-    "savoirFaire": {
-      "seoTitle": "L'atelier",
-      "seoDescription": "L'atelier Renaissance Eyewear: disegnato a Parigi, prodotto tra Parigi, la Corea e l'Italia. Titanio placcato oro 18KT, acetato Mazzucchelli."
+      "seoTitle": "Occhiali in titanio, placcato oro 18KT, francesi",
+      "seoDescription": "Renaissance, maison francese di occhiali dal 2019. Montature in titanio, placcate oro 18KT, un numero unico inciso sul ponte. Ciò che si rompe, la Maison lo ripara."
     },
     "manifeste": {
       "seoTitle": "Manifesto",
@@ -178,41 +174,6 @@
     "mobileStat3Label": "Mazzucchelli",
     "cta": "Vedi la fabbricazione"
   },
-  "valeursSection": {
-    "label": "I nostri valori",
-    "title": "QUATTRO FIBRE. UNA CORONA.",
-    "subtitle": "Non negoziabili.",
-    "valeur1Title": "Il Rifiuto del falso",
-    "valeur1Desc": "Davanti a ogni parola, ogni immagine: prova o annuncia? Se annuncia, si taglia.",
-    "valeur1Keyword": "Vero",
-    "valeur2Title": "La Maestria",
-    "valeur2Desc": "Il titanio che non arrugginisce mai. L'oro che non si scrosta. Ciò che non è fatto per durare non esce dall'atelier.",
-    "valeur2Keyword": "Mano",
-    "valeur3Title": "La Parola",
-    "valeur3Desc": "Promettiamo solo ciò che sappiamo mantenere. Mai in saldo: un prezzo che scende è una parola ritirata.",
-    "valeur3Keyword": "Mantenuta",
-    "valeur4Title": "Il Rispetto",
-    "valeur4Desc": "Un uomo non si misura da ciò che possiede, ma da ciò che onora. Nelle immagini come al banco.",
-    "valeur4Keyword": "Sguardo",
-    "valeur5Title": "La Trasmissione",
-    "valeur5Desc": "Ciò che è ben fatto si ripara; ciò che si ripara si tiene; ciò che si tiene si trasmette.",
-    "valeur5Keyword": "Corona"
-  },
-  "collectionsSection": {
-    "label": "Le collezioni",
-    "countLabel": "4 collezioni",
-    "title": "Una maison. Quattro collezioni. Zero caso.",
-    "collection1Name": "Les Origines",
-    "collection1Desc": "Dove tutto comincia. Le venature. La firma.",
-    "collection2Name": "Héritage",
-    "collection2Desc": "Il Tridente. Ciò che si trasmette.",
-    "collection3Name": "Versailles",
-    "collection3Desc": "Il Giglio. Ciò che si costruisce.",
-    "collection4Name": "Isis",
-    "collection4Desc": "L'Ankh, lo Scarabeo, l'Occhio. Ciò che attraversa 5.000 anni.",
-    "quote": "Non si collezionano i modelli. Si collezionano i simboli.",
-    "scroll": "Scorri"
-  },
   "engagementSection": {
     "label": "Il nostro impegno",
     "title": "CIÒ CHE È BEN FATTO SI RIPARA.",
@@ -231,27 +192,5 @@
     "engagement3Stat": "250+",
     "engagement3StatLabel": "Partner",
     "cta": "Scopri le nostre creazioni"
-  },
-  "ambassadeursSection": {
-    "label": "Ambasciatori",
-    "rightLabel": "Portano Renaissance",
-    "title": "Portano Renaissance",
-    "description": "Volti noti. Percorsi diversi. Un punto in comune: portano ciò che dura.",
-    "quote": "Non portano Renaissance per mostrarsi. Lo portano perché somiglia a loro. Perché dice qualcosa di loro.",
-    "ambassador1Name": "Sophie Marceau",
-    "ambassador1Role": "Attrice e regista",
-    "ambassador1Collection": "Collezione Héritage",
-    "ambassador2Name": "Omar Sy",
-    "ambassador2Role": "Attore e produttore",
-    "ambassador2Collection": "Collezione Versailles",
-    "ambassador3Name": "Léa Seydoux",
-    "ambassador3Role": "Attrice",
-    "ambassador3Collection": "Collezione Isis",
-    "ambassador4Name": "Vincent Cassel",
-    "ambassador4Role": "Attore",
-    "ambassador4Collection": "Collezione Héritage",
-    "ambassador5Name": "Marion Cotillard",
-    "ambassador5Role": "Attrice",
-    "ambassador5Collection": "Collezione Versailles"
   }
 }

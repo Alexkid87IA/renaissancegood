@@ -63,12 +63,8 @@
   },
   "page": {
     "histoire": {
-      "seoTitle": "Our Story",
-      "seoDescription": "Born in 2019 from a refusal: the refusal to watch what should last disappear. Three men of the trade, brothers by choice. What you wear. What you hand down."
-    },
-    "savoirFaire": {
-      "seoTitle": "The workshop",
-      "seoDescription": "The Renaissance Eyewear workshop: drawn in Paris, made between Paris, Korea and Italy. 18KT gold-plated titanium, Mazzucchelli acetate."
+      "seoTitle": "Titanium glasses, 18KT gold plated, French eyewear",
+      "seoDescription": "Renaissance, French eyewear house since 2019. Titanium frames, 18KT gold plated, a unique number engraved at the bridge. If it breaks, the House repairs it."
     },
     "manifeste": {
       "seoTitle": "Manifesto",
@@ -178,41 +174,6 @@
     "mobileStat3Label": "Mazzucchelli",
     "cta": "See how it's made"
   },
-  "valeursSection": {
-    "label": "Our Values",
-    "title": "FOUR FIBERS. ONE CROWN.",
-    "subtitle": "Non-negotiable.",
-    "valeur1Title": "The Refusal of the false",
-    "valeur1Desc": "In front of every word, every image: does it prove, or does it announce? If it announces, we cut it.",
-    "valeur1Keyword": "True",
-    "valeur2Title": "Mastery",
-    "valeur2Desc": "Titanium that never rusts. Gold that doesn't flake. What isn't made to last never leaves the workshop.",
-    "valeur2Keyword": "Hand",
-    "valeur3Title": "The Word",
-    "valeur3Desc": "We only promise what we can keep. Never on sale: a price that drops is a word taken back.",
-    "valeur3Keyword": "Kept",
-    "valeur4Title": "Respect",
-    "valeur4Desc": "We don't measure a man by what he owns, but by what he honors. In our images as at the counter.",
-    "valeur4Keyword": "Gaze",
-    "valeur5Title": "Transmission",
-    "valeur5Desc": "What is well made can be repaired; what can be repaired is kept; what is kept is handed down.",
-    "valeur5Keyword": "Crown"
-  },
-  "collectionsSection": {
-    "label": "The Collections",
-    "countLabel": "4 Collections",
-    "title": "One house. Four collections. Nothing by chance.",
-    "collection1Name": "The Origins",
-    "collection1Desc": "Where it all begins. The striations. The signature.",
-    "collection2Name": "Heritage",
-    "collection2Desc": "The Trident. What we hand down.",
-    "collection3Name": "Versailles",
-    "collection3Desc": "The Fleur de Lys. What we build.",
-    "collection4Name": "Isis",
-    "collection4Desc": "The Ankh, the Scarab, the Eye. What crosses 5,000 years.",
-    "quote": "We don't collect models. We collect symbols.",
-    "scroll": "Scroll"
-  },
   "engagementSection": {
     "label": "Our Commitment",
     "title": "WHAT IS WELL MADE CAN BE REPAIRED.",
@@ -231,27 +192,5 @@
     "engagement3Stat": "250+",
     "engagement3StatLabel": "Partners",
     "cta": "Discover our creations"
-  },
-  "ambassadeursSection": {
-    "label": "Ambassadors",
-    "rightLabel": "They wear Renaissance",
-    "title": "They wear Renaissance",
-    "description": "Known faces. Different paths. One thing in common: they wear what lasts.",
-    "quote": "They don't wear Renaissance to be seen. They wear it because it's like them. Because it says something about them.",
-    "ambassador1Name": "Sophie Marceau",
-    "ambassador1Role": "Actress & Director",
-    "ambassador1Collection": "Heritage Collection",
-    "ambassador2Name": "Omar Sy",
-    "ambassador2Role": "Actor & Producer",
-    "ambassador2Collection": "Versailles Collection",
-    "ambassador3Name": "Léa Seydoux",
-    "ambassador3Role": "Actress",
-    "ambassador3Collection": "Isis Collection",
-    "ambassador4Name": "Vincent Cassel",
-    "ambassador4Role": "Actor",
-    "ambassador4Collection": "Heritage Collection",
-    "ambassador5Name": "Marion Cotillard",
-    "ambassador5Role": "Actress",
-    "ambassador5Collection": "Versailles Collection"
   }
 }

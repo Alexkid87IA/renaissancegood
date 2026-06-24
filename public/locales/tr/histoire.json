@@ -63,12 +63,8 @@
   },
   "page": {
     "histoire": {
-      "seoTitle": "Hikâyemiz",
-      "seoDescription": "2019'da bir reddedişten doğdu: kalması gerekenin yok olup gitmesine karşı. Üç meslek adamı, kendi seçtikleri kardeşler. Takılan. Devredilen."
-    },
-    "savoirFaire": {
-      "seoTitle": "Atölye",
-      "seoDescription": "Renaissance Eyewear atölyesi: Paris'te çizilir, Paris, Kore ve İtalya arasında yapılır. Titanyum, 18 ayar altın kaplama, Mazzucchelli asetat."
+      "seoTitle": "Titanyum gözlük, 18KT altın kaplama, Fransız evi",
+      "seoDescription": "Renaissance, 2019'dan beri Fransız gözlük evi. Titanyum çerçeveler, 18KT altın kaplama, köprüde kazınmış benzersiz numara. Kırılanı ev onarır."
     },
     "manifeste": {
       "seoTitle": "Manifesto",
@@ -178,41 +174,6 @@
     "mobileStat3Label": "Mazzucchelli",
     "cta": "Nasıl yapıldığını gör"
   },
-  "valeursSection": {
-    "label": "Değerlerimiz",
-    "title": "DÖRT LİF. BİR TAÇ.",
-    "subtitle": "Pazarlık edilmez.",
-    "valeur1Title": "Sahteyi Reddetmek",
-    "valeur1Desc": "Her sözün, her görüntünün önünde: bu kanıtlıyor mu, yoksa ilan mı ediyor? İlan ediyorsa, keseriz.",
-    "valeur1Keyword": "Gerçek",
-    "valeur2Title": "Ustalık",
-    "valeur2Desc": "Paslanmayan titanyum. Soyulmayan altın. Kalmak için yapılmamış olan atölyeden çıkmaz.",
-    "valeur2Keyword": "El",
-    "valeur3Title": "Söz",
-    "valeur3Desc": "Yalnızca tutabileceğimizi söz veririz. Asla indirim yok: düşen bir fiyat, geri alınan bir sözdür.",
-    "valeur3Keyword": "Tutulan",
-    "valeur4Title": "Saygı",
-    "valeur4Desc": "Bir insanı sahip olduklarıyla değil, onurlandırdıklarıyla ölçeriz. Görüntülerde de, tezgâhta da.",
-    "valeur4Keyword": "Bakış",
-    "valeur5Title": "Devir",
-    "valeur5Desc": "İyi yapılan onarılır; onarılan saklanır; saklanan devredilir.",
-    "valeur5Keyword": "Taç"
-  },
-  "collectionsSection": {
-    "label": "Koleksiyonlar",
-    "countLabel": "4 Koleksiyon",
-    "title": "Bir maison. Dört koleksiyon. Sıfır tesadüf.",
-    "collection1Name": "Kökenler",
-    "collection1Desc": "Her şeyin başladığı yer. Çizgiler. İmza.",
-    "collection2Name": "Héritage",
-    "collection2Desc": "Trident. Devredilen.",
-    "collection3Name": "Versailles",
-    "collection3Desc": "Fleur de Lys. İnşa edilen.",
-    "collection4Name": "Isis",
-    "collection4Desc": "Ankh, scarabée, göz. 5.000 yılı aşan.",
-    "quote": "Modeller biriktirilmez. Semboller biriktirilir.",
-    "scroll": "Kaydır"
-  },
   "engagementSection": {
     "label": "Taahhüdümüz",
     "title": "İYİ YAPILAN ONARILIR.",
@@ -231,27 +192,5 @@
     "engagement3Stat": "250+",
     "engagement3StatLabel": "Partner",
     "cta": "Yaratımlarımızı keşfet"
-  },
-  "ambassadeursSection": {
-    "label": "Elçiler",
-    "rightLabel": "Renaissance takıyorlar",
-    "title": "Renaissance takıyorlar",
-    "description": "Tanıdık yüzler. Farklı yollar. Ortak nokta: kalanı takıyorlar.",
-    "quote": "Renaissance'ı gösteriş için takmıyorlar. Kendilerine benzediği için takıyorlar. Onlar hakkında bir şey söylediği için.",
-    "ambassador1Name": "Sophie Marceau",
-    "ambassador1Role": "Oyuncu ve Yönetmen",
-    "ambassador1Collection": "Héritage Koleksiyonu",
-    "ambassador2Name": "Omar Sy",
-    "ambassador2Role": "Oyuncu ve Yapımcı",
-    "ambassador2Collection": "Versailles Koleksiyonu",
-    "ambassador3Name": "Léa Seydoux",
-    "ambassador3Role": "Oyuncu",
-    "ambassador3Collection": "Isis Koleksiyonu",
-    "ambassador4Name": "Vincent Cassel",
-    "ambassador4Role": "Oyuncu",
-    "ambassador4Collection": "Héritage Koleksiyonu",
-    "ambassador5Name": "Marion Cotillard",
-    "ambassador5Role": "Oyuncu",
-    "ambassador5Collection": "Versailles Koleksiyonu"
   }
 }

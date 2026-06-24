@@ -63,12 +63,8 @@
   },
   "page": {
     "histoire": {
-      "seoTitle": "Nuestra Historia",
-      "seoDescription": "Nacida en 2019 de un rechazo: el de ver desaparecer lo que debe durar. Tres hombres del oficio, hermanos por elección. Lo que se lleva. Lo que se transmite."
-    },
-    "savoirFaire": {
-      "seoTitle": "El taller",
-      "seoDescription": "El taller de Renaissance Eyewear: dibujado en París, fabricado entre París, Corea e Italia. Titanio chapado en oro 18KT, acetato Mazzucchelli."
+      "seoTitle": "Gafas de titanio, chapadas en oro 18KT, francesas",
+      "seoDescription": "Renaissance, casa francesa de gafas desde 2019. Monturas de titanio, chapadas en oro 18KT, un número único grabado en el puente. Lo que se rompe, la Casa lo repara."
     },
     "manifeste": {
       "seoTitle": "Manifiesto",
@@ -178,41 +174,6 @@
     "mobileStat3Label": "Mazzucchelli",
     "cta": "Ver la fabricación"
   },
-  "valeursSection": {
-    "label": "Nuestros Valores",
-    "title": "CUATRO FIBRAS. UNA CORONA.",
-    "subtitle": "Innegociables.",
-    "valeur1Title": "El rechazo de lo falso",
-    "valeur1Desc": "Ante cada palabra, cada imagen: ¿prueba, o anuncia? Si anuncia, se corta.",
-    "valeur1Keyword": "Verdadero",
-    "valeur2Title": "La maestría",
-    "valeur2Desc": "El titanio que nunca se oxida. El oro que no se descascarilla. Lo que no está hecho para durar no sale del taller.",
-    "valeur2Keyword": "Mano",
-    "valeur3Title": "La palabra",
-    "valeur3Desc": "Solo prometemos lo que sabemos cumplir. Nunca rebajado: un precio que baja es una palabra que se retira.",
-    "valeur3Keyword": "Cumplida",
-    "valeur4Title": "El respeto",
-    "valeur4Desc": "A un hombre no se le mide por lo que tiene, sino por lo que honra. En las imágenes igual que en el mostrador.",
-    "valeur4Keyword": "Mirada",
-    "valeur5Title": "La transmisión",
-    "valeur5Desc": "Lo que está bien hecho se repara; lo que se repara se guarda; lo que se guarda se transmite.",
-    "valeur5Keyword": "Corona"
-  },
-  "collectionsSection": {
-    "label": "Las Colecciones",
-    "countLabel": "4 Colecciones",
-    "title": "Una casa. Cuatro colecciones. Cero azar.",
-    "collection1Name": "Los Orígenes",
-    "collection1Desc": "Donde todo empieza. Las estrías. La firma.",
-    "collection2Name": "Herencia",
-    "collection2Desc": "El Tridente. Lo que se transmite.",
-    "collection3Name": "Versailles",
-    "collection3Desc": "La Flor de Lis. Lo que se construye.",
-    "collection4Name": "Isis",
-    "collection4Desc": "El Anj, el Escarabajo, el Ojo. Lo que atraviesa 5000 años.",
-    "quote": "No se coleccionan modelos. Se coleccionan símbolos.",
-    "scroll": "Deslizar"
-  },
   "engagementSection": {
     "label": "Nuestro Compromiso",
     "title": "LO QUE ESTÁ BIEN HECHO SE REPARA.",
@@ -231,27 +192,5 @@
     "engagement3Stat": "250+",
     "engagement3StatLabel": "Asociados",
     "cta": "Descubrir nuestras creaciones"
-  },
-  "ambassadeursSection": {
-    "label": "Embajadores",
-    "rightLabel": "Llevan Renaissance",
-    "title": "Llevan Renaissance",
-    "description": "Rostros conocidos. Trayectorias diferentes. Un punto en común: llevan lo que dura.",
-    "quote": "No llevan Renaissance para exhibirse. Lo llevan porque se les parece. Porque dice algo de ellos.",
-    "ambassador1Name": "Sophie Marceau",
-    "ambassador1Role": "Actriz y Directora",
-    "ambassador1Collection": "Colección Herencia",
-    "ambassador2Name": "Omar Sy",
-    "ambassador2Role": "Actor y Productor",
-    "ambassador2Collection": "Colección Versailles",
-    "ambassador3Name": "Léa Seydoux",
-    "ambassador3Role": "Actriz",
-    "ambassador3Collection": "Colección Isis",
-    "ambassador4Name": "Vincent Cassel",
-    "ambassador4Role": "Actor",
-    "ambassador4Collection": "Colección Herencia",
-    "ambassador5Name": "Marion Cotillard",
-    "ambassador5Role": "Actriz",
-    "ambassador5Collection": "Colección Versailles"
   }
 }

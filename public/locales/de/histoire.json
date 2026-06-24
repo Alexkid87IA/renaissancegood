@@ -63,12 +63,8 @@
   },
   "page": {
     "histoire": {
-      "seoTitle": "Unsere Geschichte",
-      "seoDescription": "Entstanden 2019 aus einer Weigerung: zuzusehen, wie verschwindet, was bleiben soll. Drei Männer vom Fach, Brüder aus Wahl. Was man trägt. Was man weitergibt."
-    },
-    "savoirFaire": {
-      "seoTitle": "Die Werkstatt",
-      "seoDescription": "Die Werkstatt von Renaissance Eyewear: in Paris entworfen, gefertigt zwischen Paris, Korea und Italien. Titan mit 18KT-Vergoldung, Mazzucchelli-Acetat."
+      "seoTitle": "Titanbrille, 18KT vergoldet, französisches Haus",
+      "seoDescription": "Renaissance, französische Brillenmanufaktur seit 2019. Titanfassungen, 18KT vergoldet, eine einzige Nummer am Steg eingraviert. Was bricht, repariert das Haus."
     },
     "manifeste": {
       "seoTitle": "Manifest",
@@ -178,41 +174,6 @@
     "mobileStat3Label": "Mazzucchelli",
     "cta": "Die Herstellung ansehen"
   },
-  "valeursSection": {
-    "label": "Unsere Werte",
-    "title": "VIER FASERN. EINE KRONE.",
-    "subtitle": "Nicht verhandelbar.",
-    "valeur1Title": "Die Absage ans Falsche",
-    "valeur1Desc": "Vor jedem Wort, jedem Bild: beweist es, oder kündigt es an? Kündigt es an, streichen wir.",
-    "valeur1Keyword": "Wahr",
-    "valeur2Title": "Die Meisterschaft",
-    "valeur2Desc": "Das Titan, das niemals rostet. Das Gold, das nicht abblättert. Was nicht zum Bleiben gemacht ist, verlässt die Werkstatt nicht.",
-    "valeur2Keyword": "Hand",
-    "valeur3Title": "Das Wort",
-    "valeur3Desc": "Wir versprechen nur, was wir halten können. Nie reduziert: ein Preis, der fällt, ist ein zurückgenommenes Wort.",
-    "valeur3Keyword": "Gehalten",
-    "valeur4Title": "Der Respekt",
-    "valeur4Desc": "Man misst einen Menschen nicht an dem, was er besitzt, sondern an dem, was er achtet. In den Bildern wie am Tresen.",
-    "valeur4Keyword": "Blick",
-    "valeur5Title": "Die Weitergabe",
-    "valeur5Desc": "Was gut gemacht ist, lässt sich reparieren; was sich reparieren lässt, behält man; was man behält, gibt man weiter.",
-    "valeur5Keyword": "Krone"
-  },
-  "collectionsSection": {
-    "label": "Die Kollektionen",
-    "countLabel": "4 Kollektionen",
-    "title": "Ein Haus. Vier Kollektionen. Kein Zufall.",
-    "collection1Name": "Les Origines",
-    "collection1Desc": "Wo alles beginnt. Die Rillen. Die Signatur.",
-    "collection2Name": "Héritage",
-    "collection2Desc": "Der Dreizack. Was man weitergibt.",
-    "collection3Name": "Versailles",
-    "collection3Desc": "Die Lilie. Was man aufbaut.",
-    "collection4Name": "Isis",
-    "collection4Desc": "Das Anch, der Skarabäus, das Auge. Was 5.000 Jahre durchquert.",
-    "quote": "Man sammelt keine Modelle. Man sammelt Symbole.",
-    "scroll": "Scrollen"
-  },
   "engagementSection": {
     "label": "Unser Engagement",
     "title": "WAS GUT GEMACHT IST, LÄSST SICH REPARIEREN.",
@@ -231,27 +192,5 @@
     "engagement3Stat": "250+",
     "engagement3StatLabel": "Partner",
     "cta": "Unsere Kreationen entdecken"
-  },
-  "ambassadeursSection": {
-    "label": "Botschafter",
-    "rightLabel": "Sie tragen Renaissance",
-    "title": "Sie tragen Renaissance",
-    "description": "Bekannte Gesichter. Verschiedene Wege. Eine Gemeinsamkeit: Sie tragen, was bleibt.",
-    "quote": "Sie tragen Renaissance nicht, um sich zu zeigen. Sie tragen es, weil es ihnen gleicht. Weil es etwas über sie sagt.",
-    "ambassador1Name": "Sophie Marceau",
-    "ambassador1Role": "Schauspielerin & Regisseurin",
-    "ambassador1Collection": "Kollektion Héritage",
-    "ambassador2Name": "Omar Sy",
-    "ambassador2Role": "Schauspieler & Produzent",
-    "ambassador2Collection": "Kollektion Versailles",
-    "ambassador3Name": "Léa Seydoux",
-    "ambassador3Role": "Schauspielerin",
-    "ambassador3Collection": "Kollektion Isis",
-    "ambassador4Name": "Vincent Cassel",
-    "ambassador4Role": "Schauspieler",
-    "ambassador4Collection": "Kollektion Héritage",
-    "ambassador5Name": "Marion Cotillard",
-    "ambassador5Role": "Schauspielerin",
-    "ambassador5Collection": "Kollektion Versailles"
   }
 }
