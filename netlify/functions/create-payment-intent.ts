@@ -158,6 +158,9 @@ const handler: Handler = async (event: HandlerEvent) => {
         cart_summary: cartSummary.slice(0, 500),
         items_count: String((cartItems || []).length),
         cart_items: JSON.stringify((cartItems || []).slice(0, 5)),
+        // cartId : le webhook stripe-webhook re-lit ce panier pour créer la
+        // commande Shopify (lignes, remise, total) après paiement validé.
+        cart_id: cartId,
       },
     };
 
