@@ -27,7 +27,7 @@ export default function CartPage() {
 
   if (isLoading && !cart) {
     return (
-      <div className="min-h-screen bg-beige flex items-center justify-center">
+      <div data-header-theme="light" className="min-h-screen bg-beige flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -41,35 +41,21 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-beige pt-24 sm:pt-32 pb-32 lg:pb-20 overflow-x-hidden">
+    <div data-header-theme="light" className="min-h-screen bg-beige pt-24 sm:pt-32 pb-32 lg:pb-20 overflow-x-hidden">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 laptop:px-12 xl:px-16">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8 sm:mb-12"
-        >
-          <h1 className="font-serif text-3xl sm:text-5xl laptop:text-6xl xl:text-7xl text-dark-text mb-2 sm:mb-4 leading-[0.9]">
-            {t('title')}
-          </h1>
-          <div className="flex items-center gap-3">
-            <p className="font-sans text-xs sm:text-sm text-dark-text/60">
-              {t('pieces', { count: cartLines.length })}
-            </p>
-            {cartLines.length > 0 && (
-              <>
-                <span className="text-dark-text/20">•</span>
-                <p className="font-sans text-xs sm:text-sm text-bronze font-medium">
-                  {subtotal.toFixed(0)}€
-                </p>
-              </>
-            )}
-          </div>
-        </motion.div>
-
         {cartLines.length === 0 ? (
           /* Empty Cart — Premium editorial */
+          <>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-8 sm:mb-12"
+          >
+            <h1 className="font-serif text-3xl sm:text-5xl laptop:text-6xl xl:text-7xl text-dark-text leading-[0.9]">
+              {t('title')}
+            </h1>
+          </motion.div>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -145,16 +131,99 @@ export default function CartPage() {
               </div>
             </div>
           </motion.div>
+          </>
         ) : (
           <div className="grid lg:grid-cols-[1fr,420px] xl:grid-cols-[1fr,480px] gap-8 lg:gap-12 xl:gap-16">
             {/* Cart Items */}
             <div className="min-w-0">
-              {/* Free Shipping Progress */}
+              {/* Titre — aligné avec le récap, réduit */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mb-5 sm:mb-7"
+              >
+                <h1 className="font-serif text-2xl sm:text-4xl laptop:text-5xl xl:text-5xl text-dark-text leading-[0.9]">
+                  {t('title')}
+                </h1>
+              </motion.div>
+              {/* Trust Badges (L'engagement) — déplacé en haut */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mb-5 lg:mb-7"
+              >
+                {/* Mobile: 2x2 grid */}
+                <div className="lg:hidden grid grid-cols-2 gap-2">
+                  {[
+                    { icon: Shield, title: t('trustBadgeWarrantyTitle') },
+                    { icon: Truck, title: t('trustBadgeShippingTitle') },
+                    { icon: Award, title: t('trustBadgeParisTitle') },
+                    { icon: Package, title: t('trustBadgeCaseTitle') }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 bg-white border border-dark-text/[0.08] px-3 py-2.5 rounded-xl">
+                      <item.icon size={14} className="text-bronze flex-shrink-0" strokeWidth={1.5} />
+                      <span className="font-sans text-[8px] tracking-[0.05em] font-medium text-dark-text/60 uppercase leading-tight">
+                        {item.title}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                {/* Desktop: full grid */}
+                <div className="hidden lg:grid grid-cols-4 gap-px border-y border-dark-text/[0.08] bg-dark-text/[0.08] rounded-2xl overflow-hidden">
+                  <p className="col-span-4 font-sans text-[9px] tracking-[0.2em] text-dark-text/25 uppercase font-medium text-center mb-1">
+                    {t('checkoutPage.engagementTitle')}
+                  </p>
+                  {[
+                    { icon: Shield, title: t('trustBadgeWarrantyTitle'), description: t('trustBadgeWarrantyDesc') },
+                    { icon: Truck, title: t('trustBadgeShippingTitle'), description: t('trustBadgeShippingDesc') },
+                    { icon: Award, title: t('trustBadgeParisTitle'), description: t('trustBadgeParisDesc') },
+                    { icon: Package, title: t('trustBadgeCaseTitle'), description: t('trustBadgeCaseDesc') }
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 + (i * 0.1) }}
+                      viewport={{ once: true }}
+                      className="bg-beige px-3 py-3.5 text-left transition-colors duration-500 group hover:bg-white"
+                    >
+                      <div className="mb-2 flex justify-start">
+                        <div className="w-6 h-6 border border-bronze/[0.25] flex items-center justify-center rounded-xl transition-colors duration-500 group-hover:border-bronze/60">
+                          <item.icon size={12} className="text-bronze transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} />
+                        </div>
+                      </div>
+                      <h4 className="font-sans text-[9px] tracking-[0.22em] font-bold text-dark-text uppercase mb-1.5 leading-[1.35]">
+                        {item.title}
+                      </h4>
+                      <p className="font-sans text-[10px] leading-[1.45] text-dark-text/55">
+                        {item.description}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <AnimatePresence mode="popLayout">
+                {cartLines.map(({ node }, index) => (
+                  <CartItemWithCarousel
+                    key={node.id}
+                    node={node}
+                    index={index}
+                    isLoading={isLoading}
+                    updateQuantity={updateQuantity}
+                    removeItem={removeItem}
+                  />
+                ))}
+              </AnimatePresence>
+
+              {/* Free Shipping Progress — déplacé en bas */}
               {subtotal < freeShippingThreshold && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-white border border-bronze/20 p-4 sm:p-6 mb-4 sm:mb-8"
+                  className="bg-white border border-bronze/20 p-4 sm:p-6 mt-4 sm:mt-8 rounded-2xl"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <p className="font-sans text-xs text-dark-text">
@@ -173,84 +242,13 @@ export default function CartPage() {
                 </motion.div>
               )}
 
-              <AnimatePresence mode="popLayout">
-                {cartLines.map(({ node }, index) => (
-                  <CartItemWithCarousel
-                    key={node.id}
-                    node={node}
-                    index={index}
-                    isLoading={isLoading}
-                    updateQuantity={updateQuantity}
-                    removeItem={removeItem}
-                  />
-                ))}
-              </AnimatePresence>
-
-              {/* Trust Badges — Mobile: horizontal scroll / Desktop: grid */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="mt-8 lg:mt-12"
-              >
-                {/* Mobile: 2x2 grid */}
-                <div className="lg:hidden grid grid-cols-2 gap-2">
-                  {[
-                    { icon: Shield, title: t('trustBadgeWarrantyTitle') },
-                    { icon: Truck, title: t('trustBadgeShippingTitle') },
-                    { icon: Award, title: t('trustBadgeParisTitle') },
-                    { icon: Package, title: t('trustBadgeCaseTitle') }
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 bg-white border border-dark-text/[0.08] px-3 py-2.5">
-                      <item.icon size={14} className="text-bronze flex-shrink-0" strokeWidth={1.5} />
-                      <span className="font-sans text-[8px] tracking-[0.05em] font-medium text-dark-text/60 uppercase leading-tight">
-                        {item.title}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                {/* Desktop: full grid */}
-                <div className="hidden lg:grid grid-cols-4 gap-px border-y border-dark-text/[0.08] bg-dark-text/[0.08]">
-                  <p className="col-span-4 font-sans text-[9px] tracking-[0.2em] text-dark-text/25 uppercase font-medium text-center mb-1">
-                    {t('checkoutPage.engagementTitle')}
-                  </p>
-                  {[
-                    { icon: Shield, title: t('trustBadgeWarrantyTitle'), description: t('trustBadgeWarrantyDesc') },
-                    { icon: Truck, title: t('trustBadgeShippingTitle'), description: t('trustBadgeShippingDesc') },
-                    { icon: Award, title: t('trustBadgeParisTitle'), description: t('trustBadgeParisDesc') },
-                    { icon: Package, title: t('trustBadgeCaseTitle'), description: t('trustBadgeCaseDesc') }
-                  ].map((item, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.1 + (i * 0.1) }}
-                      viewport={{ once: true }}
-                      className="bg-beige px-6 py-7 text-left transition-colors duration-500 group hover:bg-white"
-                    >
-                      <div className="mb-5 flex justify-start">
-                        <div className="w-8 h-8 border border-bronze/[0.25] flex items-center justify-center transition-colors duration-500 group-hover:border-bronze/60">
-                          <item.icon size={17} className="text-bronze transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} />
-                        </div>
-                      </div>
-                      <h4 className="font-sans text-[11px] tracking-[0.22em] font-bold text-dark-text uppercase mb-3 leading-[1.45]">
-                        {item.title}
-                      </h4>
-                      <p className="font-sans text-xs leading-[1.75] text-dark-text/55">
-                        {item.description}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-
               {/* Order Summary — Mobile inline (simplified) */}
               <div className="lg:hidden mt-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-white border border-dark-text/5 p-5"
+                className="bg-white border border-dark-text/5 p-5 rounded-2xl"
               >
                 <div className="flex justify-between items-baseline mb-3">
                   <span className="font-sans text-xs text-dark-text/60">{t('subtotal')}</span>
@@ -286,19 +284,19 @@ export default function CartPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="hidden lg:block"
             >
-              <div className="bg-white border border-dark-text/5 p-8 lg:p-10 sticky top-32">
-                <h2 className="font-sans text-[10px] tracking-[0.3em] font-bold text-dark-text uppercase mb-8 pb-4 border-b border-dark-text/10">
+              <div className="bg-white border border-dark-text/5 p-5 lg:p-6 sticky top-32 rounded-2xl">
+                <h2 className="font-sans text-[10px] tracking-[0.3em] font-bold text-dark-text uppercase mb-5 pb-3 border-b border-dark-text/10">
                   {t('orderSummary')}
                 </h2>
 
-                <div className="space-y-5 mb-8">
+                <div className="space-y-3.5 mb-5">
                   <div className="flex justify-between items-baseline">
                     <span className="font-sans text-sm text-dark-text/60">{t('subtotal')}</span>
-                    <span className="font-sans text-lg text-dark-text">{subtotal.toFixed(2)}€</span>
+                    <span className="font-sans text-base text-dark-text">{subtotal.toFixed(2)}€</span>
                   </div>
                   <div className="flex justify-between items-baseline">
                     <span className="font-sans text-sm text-dark-text/60">{t('shipping')}</span>
-                    <span className="font-sans text-lg text-dark-text">
+                    <span className="font-sans text-base text-dark-text">
                       {shipping > 0 ? `${shipping.toFixed(2)}€` : (
                         <span className="text-bronze font-medium">{t('shippingFree')}</span>
                       )}
@@ -306,15 +304,15 @@ export default function CartPage() {
                   </div>
                 </div>
 
-                <div className="flex justify-between items-baseline mb-8 pt-6 border-t-2 border-dark-text">
-                  <span className="font-serif text-xl text-dark-text">{t('total')}</span>
-                  <span className="font-serif text-3xl font-bold text-bronze">
+                <div className="flex justify-between items-baseline mb-5 pt-4 border-t-2 border-dark-text">
+                  <span className="font-serif text-lg text-dark-text">{t('total')}</span>
+                  <span className="font-serif text-2xl font-bold text-bronze">
                     {total.toFixed(2)}€
                   </span>
                 </div>
 
                 {/* Value banner */}
-                <div className="mb-4 p-4 bg-bronze/5 border border-bronze/[0.15]">
+                <div className="mb-3 p-3 bg-bronze/5 border border-bronze/[0.15] rounded-2xl">
                   <div className="flex items-center gap-2 justify-center text-dark-text/70">
                     <Package size={14} strokeWidth={1.5} className="text-bronze" />
                     <p className="font-sans text-xs font-medium">
@@ -324,7 +322,7 @@ export default function CartPage() {
                 </div>
 
                 {/* Message de réassurance */}
-                <div className="mb-4 p-4 bg-beige border border-bronze/20">
+                <div className="mb-3 p-3 bg-beige border border-bronze/20 rounded-2xl">
                   <div className="flex items-center gap-2 justify-center text-dark-text/70">
                     <Lock size={14} strokeWidth={2} className="text-bronze" />
                     <p className="font-sans text-xs">
@@ -336,7 +334,7 @@ export default function CartPage() {
                 {/* Bouton vers Checkout — bronze sweep */}
                 <LocaleLink
                   to="/checkout"
-                  className="group relative flex items-center justify-center gap-2 w-full bg-dark-text text-white py-5 px-6 text-center font-sans text-[10px] tracking-[0.3em] font-bold overflow-hidden transition-all duration-300 mb-4"
+                  className="group relative flex items-center justify-center gap-2 w-full bg-dark-text text-white py-4 px-6 text-center font-sans text-[10px] tracking-[0.3em] font-bold overflow-hidden transition-all duration-300 mb-3 rounded-2xl"
                 >
                   <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                   <span className="relative z-10">{t('checkout')}</span>
@@ -344,22 +342,22 @@ export default function CartPage() {
 
                 <LocaleLink
                   to="/shop"
-                  className="block w-full text-center py-4 font-sans text-[9px] tracking-[0.2em] font-bold text-dark-text hover:text-bronze transition-colors duration-300 border border-dark-text/20 hover:border-bronze/40"
+                  className="block w-full text-center py-3.5 font-sans text-[9px] tracking-[0.2em] font-bold text-dark-text hover:text-bronze transition-colors duration-300 border border-dark-text/20 hover:border-bronze/40 rounded-2xl"
                 >
                   {t('continueShopping')}
                 </LocaleLink>
 
                 {/* Satisfaction guarantee */}
-                <p className="text-center mt-3 font-sans text-[10px] text-dark-text/[0.35] tracking-[0.05em]">
+                <p className="text-center mt-2 font-sans text-[10px] text-dark-text/[0.35] tracking-[0.05em]">
                   {t('checkoutPage.satisfactionGuarantee')}
                 </p>
 
                 {/* Trust Indicators */}
-                <div className="mt-8 pt-8 border-t border-dark-text/10">
+                <div className="mt-6 pt-6 border-t border-dark-text/10">
                   <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/25 uppercase font-medium mb-4 text-center">
                     {t('checkoutPage.engagementTitle')}
                   </p>
-                  <div className="space-y-3">
+                  <div className="space-y-2.5">
                     {[
                       { icon: Shield, text: t('trustSecure') },
                       { icon: Truck, text: t('trustFreeShipping') },
@@ -381,7 +379,7 @@ export default function CartPage() {
                 </div>
 
                 {/* Moyens de paiement */}
-                <div className="mt-8 pt-6 border-t border-dark-text/10">
+                <div className="mt-6 pt-5 border-t border-dark-text/10">
                   <p className="text-[9px] text-dark-text/40 uppercase tracking-[0.15em] text-center mb-4">
                     {t('paymentMethods')}
                   </p>
@@ -421,7 +419,7 @@ export default function CartPage() {
             </div>
             <LocaleLink
               to="/checkout"
-              className="flex-1 flex items-center justify-center gap-1.5 bg-dark-text text-white py-3.5 px-4 text-center font-sans text-[9px] tracking-[0.15em] font-bold uppercase active:bg-bronze transition-colors duration-200 min-w-0"
+              className="flex-1 flex items-center justify-center gap-1.5 bg-dark-text text-white py-3.5 px-4 text-center font-sans text-[9px] tracking-[0.15em] font-bold uppercase active:bg-bronze transition-colors duration-200 min-w-0 rounded-xl"
             >
               <Lock size={11} strokeWidth={2} className="flex-shrink-0" />
               <span className="truncate">{t('checkout')}</span>

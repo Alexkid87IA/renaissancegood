@@ -192,7 +192,7 @@ export default function ContactPage() {
                 title: t('contactPage.cards.phoneTitle'),
                 detail: t('contactPage.cards.phoneDetail'),
                 sub: t('contactPage.cards.phoneSub'),
-                href: 'tel:+33142868200'
+                href: 'tel:+33355186684'
               },
               {
                 icon: Clock,

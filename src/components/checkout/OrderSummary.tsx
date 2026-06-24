@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import T from '../TranslatedText';
 import { resizeShopifyImage } from '../../lib/imageUtils';
+import { titleWithArabe } from '../../lib/productTitle';
 
 interface CartLineNode {
   id: string;
@@ -20,12 +21,13 @@ interface OrderSummaryProps {
   subtotal: number;
   shipping: number;
   total: number;
+  discount?: number;
 }
 
-export default function OrderSummary({ cartLines, subtotal, shipping, total }: OrderSummaryProps) {
+export default function OrderSummary({ cartLines, subtotal, shipping, total, discount = 0 }: OrderSummaryProps) {
   const { t } = useTranslation('cart');
   return (
-    <div className="bg-[#f8f6f1] border border-dark-text/[0.07] p-6">
+    <div className="bg-[#f8f6f1] border border-dark-text/[0.07] p-6 rounded-2xl">
       <h2 className="font-sans text-[10px] tracking-[0.25em] text-dark-text/40 uppercase font-medium mb-6">
         {t('checkoutPage.yourOrderSummary')}
       </h2>
@@ -39,7 +41,7 @@ export default function OrderSummary({ cartLines, subtotal, shipping, total }: O
 
           return (
             <div key={node.id} className="flex gap-4 group">
-              <div className="w-28 h-28 bg-white border border-dark-text/[0.05] flex-shrink-0 relative overflow-hidden transition-transform duration-300 group-hover:scale-[1.05]">
+              <div className="w-28 h-28 bg-white border border-dark-text/[0.05] flex-shrink-0 relative overflow-hidden rounded-xl transition-transform duration-300 group-hover:scale-[1.05]">
                 {image && (
                   <img
                     src={resizeShopifyImage(image, 224)}
@@ -56,7 +58,7 @@ export default function OrderSummary({ cartLines, subtotal, shipping, total }: O
               </div>
               <div className="flex-1 min-w-0 flex flex-col justify-center">
                 <p className="font-sans text-sm text-dark-text truncate">
-                  <T>{node.merchandise.product.title}</T>
+                  <T>{titleWithArabe(node.merchandise.product.title)}</T>
                 </p>
                 {node.merchandise.title !== 'Default Title' && (
                   <p className="font-sans text-[11px] text-dark-text/[0.35] mt-0.5"><T>{node.merchandise.title}</T></p>
@@ -79,6 +81,12 @@ export default function OrderSummary({ cartLines, subtotal, shipping, total }: O
           <span className="font-sans text-sm text-dark-text/[0.45]">{t('subtotal')}</span>
           <span className="font-sans text-sm text-dark-text">{subtotal.toFixed(2)}&euro;</span>
         </div>
+        {discount > 0 && (
+          <div className="flex justify-between">
+            <span className="font-sans text-sm text-green-700">Remise</span>
+            <span className="font-sans text-sm text-green-700">&minus;{discount.toFixed(2)}&euro;</span>
+          </div>
+        )}
         <div className="flex justify-between">
           <span className="font-sans text-sm text-dark-text/[0.45]">{t('shipping')}</span>
           <span className="font-sans text-sm text-dark-text">

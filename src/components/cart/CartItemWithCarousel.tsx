@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import LocaleLink from '../LocaleLink';
 import { resizeShopifyImage } from '../../lib/imageUtils';
 import { getProductImages } from '../../lib/shopify';
+import { titleWithArabe } from '../../lib/productTitle';
 
 interface CartLineNode {
   id: string;
@@ -141,7 +142,7 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-white border border-dark-text/5 overflow-hidden mb-4 lg:mb-6"
+      className="bg-white border border-dark-text/5 overflow-hidden mb-4 lg:mb-6 rounded-2xl"
     >
       {/* MOBILE LAYOUT */}
       <div className="lg:hidden">
@@ -156,7 +157,7 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
           ) : allProductImages[currentImageIndex] ? (
             <img
               src={resizeShopifyImage(allProductImages[currentImageIndex], 760)}
-              alt={product?.title || 'Produit'}
+              alt={titleWithArabe(product?.title || 'Produit')}
               className="w-full h-full object-contain p-4"
               loading="lazy"
               decoding="async"
@@ -204,7 +205,7 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
           <div className="flex items-start justify-between gap-3 mb-1">
             <LocaleLink to={`/product/${product?.handle || ''}`} className="flex-1 min-w-0">
               <h3 className="font-serif text-lg text-dark-text leading-tight">
-                {product?.title || 'Produit'}
+                {titleWithArabe(product?.title || 'Produit')}
               </h3>
             </LocaleLink>
             <p className="font-serif text-lg text-bronze flex-shrink-0">
@@ -221,7 +222,7 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
           <div className="w-full h-px bg-dark-text/[0.06] my-3" />
 
           <div className="flex items-center justify-between">
-            <div className="flex items-center border border-dark-text/[0.12]">
+            <div className="flex items-center border border-dark-text/[0.12] rounded-xl">
               <button
                 type="button"
                 onClick={() => {
@@ -281,7 +282,7 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
                     <motion.img
                       key={i}
                       src={resizeShopifyImage(img, 960)}
-                      alt={`${product?.title || 'Produit'} - Image ${i + 1}`}
+                      alt={`${titleWithArabe(product?.title || 'Produit')} - Image ${i + 1}`}
                       className="w-full h-full object-contain p-6 cursor-pointer"
                       loading="lazy"
                       decoding="async"
@@ -344,7 +345,7 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
                   >
                     <img
                       src={resizeShopifyImage(img, 260)}
-                      alt={`${product?.title || 'Produit'} thumbnail ${i + 1}`}
+                      alt={`${titleWithArabe(product?.title || 'Produit')} thumbnail ${i + 1}`}
                       className="w-full h-full object-contain p-2"
                       loading="lazy"
                       decoding="async"
@@ -365,7 +366,7 @@ export default function CartItemWithCarousel({ node, index, isLoading, updateQua
                 <div className="flex-1">
                   <LocaleLink to={`/product/${product?.handle || ''}`}>
                     <h3 className="font-serif text-3xl xl:text-4xl text-dark-text mb-3 leading-tight pr-8 hover:text-bronze transition-colors duration-300 cursor-pointer">
-                      {product?.title || 'Produit'}
+                      {titleWithArabe(product?.title || 'Produit')}
                     </h3>
                   </LocaleLink>
                   {node.merchandise?.title && node.merchandise.title !== 'Default Title' && (

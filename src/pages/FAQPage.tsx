@@ -212,7 +212,7 @@ export default function FAQPage() {
                 <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </LocaleLink>
               <a
-                href="tel:+33142868200"
+                href="tel:+33355186684"
                 className="group border border-white/[0.08] px-10 py-4 transition-all duration-500 hover:border-white/20"
               >
                 <span className="font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white/[0.35] group-hover:text-white/60 transition-colors duration-500">

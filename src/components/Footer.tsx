@@ -7,7 +7,7 @@ import LocaleLink from './LocaleLink';
 import { useLocale } from '../contexts/LocaleContext';
 import { subscribeToKlaviyo } from '../lib/klaviyo';
 
-export default function Footer() {
+export default function Footer({ hideNewsletter = false }: { hideNewsletter?: boolean }) {
   const { t } = useTranslation('common');
   const { locale } = useLocale();
   const [email, setEmail] = useState('');
@@ -50,7 +50,8 @@ export default function Footer() {
       {/* ═══════════════════════════════════════ */}
       <div className="hidden md:block">
 
-        {/* Newsletter */}
+        {/* Newsletter (« La Lettre ») — masquée dans le tunnel (cart/checkout) */}
+        {!hideNewsletter && (
         <div className="relative border-b border-white/[0.06]">
           <div className="max-w-[1600px] mx-auto px-12 lg:px-20 xl:px-28 py-24 lg:py-28">
             <div className="flex items-center gap-16 lg:gap-24">
@@ -135,6 +136,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
+        )}
 
         {/* Main Content */}
         <div className="relative max-w-[1600px] mx-auto px-12 lg:px-20 xl:px-28 pt-16 pb-12">
@@ -157,10 +159,10 @@ export default function Footer() {
                     contact@renaissanceeyewear.com
                   </span>
                 </a>
-                <a href="tel:+33142868200" className="flex items-center gap-3 group">
+                <a href="tel:+33355186684" className="flex items-center gap-3 group">
                   <Phone className="w-3.5 h-3.5 text-white/50 group-hover:text-white/50 transition-colors duration-500" />
                   <span className="font-sans text-[11px] text-white/72 group-hover:text-white/90 transition-colors duration-500">
-                    +33 1 42 86 82 00
+                    +33 (0)3 55 18 66 84
                   </span>
                 </a>
                 <LocaleLink to="/opticiens" className="flex items-center gap-3 group">
@@ -310,7 +312,8 @@ export default function Footer() {
       {/* ═══════════════════════════════════════ */}
       <div className="md:hidden">
 
-        {/* Newsletter — vidéo plein écran + overlay + texte */}
+        {/* Newsletter (« La Lettre ») — masquée dans le tunnel (cart/checkout) */}
+        {!hideNewsletter && (
         <div className="relative min-h-screen flex items-end overflow-hidden">
           <video
             src="https://renaissance-cdn.b-cdn.net/videos/hero-accueil-mobile-v3.mp4"
@@ -373,6 +376,7 @@ export default function Footer() {
             )}
           </div>
         </div>
+        )}
 
         {/* Séparateur doré */}
         <div className="h-px bg-gradient-to-r from-transparent via-bronze/30 to-transparent" />
@@ -480,9 +484,9 @@ export default function Footer() {
                 <Mail className="w-3.5 h-3.5 text-white/50" />
                 <span className="font-sans text-[11px] text-white/50">contact@renaissanceeyewear.com</span>
               </a>
-              <a href="tel:+33142868200" className="flex items-center justify-center gap-2.5">
+              <a href="tel:+33355186684" className="flex items-center justify-center gap-2.5">
                 <Phone className="w-3.5 h-3.5 text-white/50" />
-                <span className="font-sans text-[11px] text-white/50">+33 1 42 86 82 00</span>
+                <span className="font-sans text-[11px] text-white/50">+33 (0)3 55 18 66 84</span>
               </a>
             </div>
           </div>

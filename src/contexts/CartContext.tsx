@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useMemo, useCallback, ReactNode } from 'react';
-import { createCart, addToCart as addToCartAPI, updateCartItem, removeFromCart as removeFromCartAPI, getCart } from '../lib/shopify';
+import { createCart, addToCart as addToCartAPI, updateCartItem, removeFromCart as removeFromCartAPI, getCart, applyCartDiscountCodes } from '../lib/shopify';
 import type { Cart } from '../lib/shopify';
 
 interface CartContextType {
@@ -10,6 +10,8 @@ interface CartContextType {
   addToCart: (variantId: string, quantity?: number) => Promise<void>;
   updateQuantity: (lineId: string, quantity: number) => Promise<void>;
   removeItem: (lineId: string) => Promise<void>;
+  applyPromo: (code: string) => Promise<boolean>;
+  removePromo: () => Promise<void>;
   clearCart: () => Promise<void>;
   openCart: () => void;
   closeCart: () => void;
@@ -113,6 +115,41 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [cart]);
 
+  // Appliquer un code promo (validé par Shopify). Renvoie true si le code est appliqué.
+  const applyPromo = useCallback(async (code: string): Promise<boolean> => {
+    const trimmed = code.trim();
+    if (!cart || !trimmed) return false;
+
+    setIsLoading(true);
+    try {
+      const updatedCart = await applyCartDiscountCodes(cart.id, [trimmed]);
+      setCart(updatedCart);
+      return updatedCart.discountCodes?.some(
+        (d) => d.code.toLowerCase() === trimmed.toLowerCase() && d.applicable
+      ) ?? false;
+    } catch {
+      setError('Impossible d\'appliquer le code. Veuillez réessayer.');
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  }, [cart]);
+
+  // Retirer le(s) code(s) promo
+  const removePromo = useCallback(async () => {
+    if (!cart) return;
+
+    setIsLoading(true);
+    try {
+      const updatedCart = await applyCartDiscountCodes(cart.id, []);
+      setCart(updatedCart);
+    } catch {
+      setError('Impossible de retirer le code. Veuillez réessayer.');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [cart]);
+
   // Vider le panier (après achat)
   const clearCart = useCallback(async () => {
     localStorage.removeItem(CART_ID_KEY);
@@ -137,12 +174,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     addToCart,
     updateQuantity,
     removeItem,
+    applyPromo,
+    removePromo,
     clearCart,
     openCart,
     closeCart,
     error,
     clearError,
-  }), [cart, isLoading, isCartOpen, itemCount, addToCart, updateQuantity, removeItem, clearCart, openCart, closeCart, error, clearError]);
+  }), [cart, isLoading, isCartOpen, itemCount, addToCart, updateQuantity, removeItem, applyPromo, removePromo, clearCart, openCart, closeCart, error, clearError]);
 
   return (
     <CartContext.Provider value={value}>

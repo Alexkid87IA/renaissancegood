@@ -24,3 +24,7 @@ dist-ssr
 netlify.env
 .claude/worktrees/
 public/videos/
+
+# Local Netlify folder
+.netlify
+deno.lock

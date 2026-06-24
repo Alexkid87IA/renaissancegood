@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { loadStripe, type Appearance } from '@stripe/stripe-js';
@@ -16,6 +16,7 @@ import TrustBar from '../components/checkout/TrustBar';
 import SectionHeader from '../components/checkout/SectionHeader';
 import StepSummary from '../components/checkout/StepSummary';
 import OrderSummary from '../components/checkout/OrderSummary';
+import PromoCodeField from '../components/checkout/PromoCodeField';
 import ExpressCheckoutSection from '../components/checkout/ExpressCheckoutSection';
 import StripePaymentForm from '../components/checkout/StripePaymentForm';
 import type { ShippingFormData, FormErrors } from '../components/checkout/types';
@@ -32,7 +33,7 @@ const stripeAppearance: Appearance = {
     colorDanger: '#dc2626',
     fontFamily: '"DM Sans", "Inter", system-ui, sans-serif',
     fontSizeBase: '14px',
-    borderRadius: '0px',
+    borderRadius: '12px',
     spacingUnit: '4px',
     colorTextPlaceholder: 'rgba(26, 26, 26, 0.3)',
   },
@@ -80,6 +81,7 @@ export default function CheckoutPage() {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [paymentError, setPaymentError] = useState<string | null>(null);
   const [orderComplete, setOrderComplete] = useState(false);
+  const [placingFree, setPlacingFree] = useState(false);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [summaryOpen, setSummaryOpen] = useState(false);
 
@@ -105,10 +107,18 @@ export default function CheckoutPage() {
     }
   }, [cartLines, isLoading, navigate, orderComplete]);
 
-  // Calculs
-  const subtotal = cart ? parseFloat(cart.cost.subtotalAmount.amount) : 0;
+  // Total marchandise AVANT remise = somme des lignes. (Pour une remise "montant
+  // sur les produits", Shopify met déjà le prix remisé dans subtotalAmount, donc
+  // on ne peut pas s'y fier pour l'affichage ni le seuil de livraison.)
+  const subtotal = cart
+    ? cart.lines.edges.reduce((s, { node }) => s + parseFloat(node.merchandise.priceV2?.amount || '0') * node.quantity, 0)
+    : 0;
+  const discountedMerch = cart ? parseFloat(cart.cost.totalAmount.amount) : 0; // après toutes remises
+  const discount = Math.max(0, subtotal - discountedMerch);
   const shipping = subtotal >= SHIPPING.FREE_THRESHOLD ? 0 : SHIPPING.STANDARD_RATE;
-  const total = subtotal + shipping;
+  const total = discountedMerch + shipping;
+  // Commande gratuite : total à 0 (ex. remise = prix) ou sous le minimum Stripe (0,50€).
+  const isFreeOrder = total < 0.5;
 
   const createPaymentIntent = useCallback(async () => {
     try {
@@ -116,8 +126,9 @@ export default function CheckoutPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          amount: Math.round(total * 100),
-          currency: 'eur',
+          // Le montant n'est PAS envoyé par le client : la fonction lit le total
+          // faisant autorité (remise comprise) depuis Shopify via ce cartId.
+          cartId: cart?.id,
           metadata: {
             source: 'checkout',
             ...(formData.email && { customerEmail: formData.email }),
@@ -153,6 +164,7 @@ export default function CheckoutPage() {
       setPaymentError(t('checkoutPage.errorServerConnection'));
     }
   }, [
+    cart?.id,
     cartLines,
     formData.address,
     formData.addressComplement,
@@ -163,15 +175,24 @@ export default function CheckoutPage() {
     formData.lastName,
     formData.postalCode,
     t,
-    total,
   ]);
 
-  // Créer le PaymentIntent dès que le total est disponible (pour Express Checkout en étape 1)
+  // (Re)créer le PaymentIntent quand le total change (ex. application d'un code
+  // promo) : Stripe fige le montant à la création, il faut donc le refaire.
+  const intentForTotal = useRef<number>(0);
   useEffect(() => {
-    if (!clientSecret && total > 0) {
+    // Commande gratuite : aucun PaymentIntent (Stripe refuse les montants < 0,50€).
+    if (isFreeOrder) {
+      intentForTotal.current = 0;
+      setClientSecret(null);
+      return;
+    }
+    if (total > 0 && intentForTotal.current !== total) {
+      intentForTotal.current = total;
+      setClientSecret(null);
       void createPaymentIntent();
     }
-  }, [clientSecret, createPaymentIntent, total]);
+  }, [isFreeOrder, total, createPaymentIntent]);
 
   // Validation fusionnée — étape 1 valide contact + adresse
   const validateStep = (step: number): boolean => {
@@ -222,6 +243,16 @@ export default function CheckoutPage() {
     navigate(`/checkout/confirmation?payment_intent=${paymentIntentId}`);
   };
 
+  // Commande gratuite (total à 0) : on finalise sans passer par Stripe.
+  const handleFreeOrder = async () => {
+    setPlacingFree(true);
+    try {
+      await handlePaymentSuccess(`free_${Date.now()}`);
+    } finally {
+      setPlacingFree(false);
+    }
+  };
+
   // Loading
   if (isLoading) {
     return (
@@ -255,7 +286,7 @@ export default function CheckoutPage() {
             />
           </LocaleLink>
 
-          <div className="flex items-center gap-1.5 bg-bronze/[0.06] px-3 py-1.5 border border-bronze/10">
+          <div className="flex items-center gap-1.5 bg-bronze/[0.06] px-3 py-1.5 border border-bronze/10 rounded-full">
             <Lock className="w-3 h-3 text-bronze/60" />
             <span className="font-sans text-[9px] tracking-[0.15em] uppercase text-dark-text/50 hidden sm:inline">
               {t('checkoutPage.sslSecure')}
@@ -290,7 +321,7 @@ export default function CheckoutPage() {
           <div className="lg:hidden mb-8">
             <button
               onClick={() => setSummaryOpen(!summaryOpen)}
-              className="w-full bg-white border border-dark-text/[0.07] p-4 flex items-center justify-between"
+              className="w-full bg-white border border-dark-text/[0.07] p-4 flex items-center justify-between rounded-t-2xl"
             >
               <span className="font-sans text-xs tracking-[0.15em] uppercase text-dark-text/60">
                 {t('checkoutPage.yourOrder')} ({t('checkoutPage.articles', { count: cartLines.length })})
@@ -310,7 +341,7 @@ export default function CheckoutPage() {
                   className="overflow-hidden"
                 >
                   {/* Horizontal scrollable product strip */}
-                  <div className="bg-white border border-t-0 border-dark-text/[0.07] p-4">
+                  <div className="bg-white border border-t-0 border-dark-text/[0.07] p-4 rounded-b-2xl">
                     <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide">
                       {cartLines.map(({ node }) => {
                         const image = node.merchandise.product.images.edges[0]?.node.url;
@@ -331,7 +362,7 @@ export default function CheckoutPage() {
                       })}
                     </div>
                   </div>
-                  <OrderSummary cartLines={cartLines} subtotal={subtotal} shipping={shipping} total={total} />
+                  <OrderSummary cartLines={cartLines} subtotal={subtotal} shipping={shipping} total={total} discount={discount} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -347,7 +378,7 @@ export default function CheckoutPage() {
                     {/* Express Checkout Panel */}
                     {clientSecret && stripeOptions && (
                       <div className="mb-6">
-                        <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8">
+                        <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8 rounded-2xl">
                           <div className="mb-5">
                             <h2 className="font-display text-lg font-medium text-dark-text mb-1">
                               {t('checkoutPage.expressHeadline')}
@@ -367,7 +398,7 @@ export default function CheckoutPage() {
                       </div>
                     )}
 
-                    <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8">
+                    <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8 rounded-2xl">
                       {/* Contact */}
                       <SectionHeader>{t('checkoutPage.yourCoordinates')}</SectionHeader>
                       <div className="space-y-5">
@@ -457,7 +488,7 @@ export default function CheckoutPage() {
                       {/* CTA with bronze sweep */}
                       <button
                         onClick={() => goToStep(2)}
-                        className="group relative w-full mt-8 bg-dark-text text-white py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold overflow-hidden transition-all duration-300"
+                        className="group relative w-full mt-8 bg-dark-text text-white py-5 font-sans text-[10px] tracking-[0.3em] uppercase font-bold overflow-hidden transition-all duration-300 rounded-2xl"
                       >
                         <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                         <span className="relative z-10">{t('checkoutPage.continueToPayment')}</span>
@@ -482,10 +513,30 @@ export default function CheckoutPage() {
                       onEdit={() => setCurrentStep(1)}
                     />
 
-                    <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8 mt-4">
+                    {/* Code promo — toujours visible à l'étape paiement */}
+                    <div className="bg-white border border-dark-text/[0.07] p-6 mt-4 rounded-2xl">
+                      <PromoCodeField />
+                    </div>
+
+                    <div className="bg-white border border-dark-text/[0.07] p-6 md:p-8 rounded-2xl mt-4">
                       <SectionHeader>{t('checkoutPage.securePaymentTitle')}</SectionHeader>
 
-                      {clientSecret && stripeOptions ? (
+                      {isFreeOrder ? (
+                        <div className="text-center py-8">
+                          <p className="font-display text-lg text-dark-text mb-1">Commande offerte</p>
+                          <p className="font-sans text-xs text-dark-text/50 mb-6">
+                            Aucun paiement requis pour ce panier. Confirmez pour valider votre commande.
+                          </p>
+                          <button
+                            type="button"
+                            onClick={() => void handleFreeOrder()}
+                            disabled={placingFree}
+                            className="w-full bg-dark-text text-white font-sans text-xs tracking-[0.15em] uppercase py-4 disabled:opacity-50 transition-opacity rounded-2xl"
+                          >
+                            {placingFree ? '...' : 'Confirmer la commande'}
+                          </button>
+                        </div>
+                      ) : clientSecret && stripeOptions ? (
                         <Elements stripe={stripePromise} options={stripeOptions}>
                           <StripePaymentForm
                             formData={formData}
@@ -535,10 +586,10 @@ export default function CheckoutPage() {
             {/* COLONNE DROITE — Récapitulatif (desktop) */}
             <div className="hidden lg:block">
               <div className="lg:sticky lg:top-24">
-                <OrderSummary cartLines={cartLines} subtotal={subtotal} shipping={shipping} total={total} />
+                <OrderSummary cartLines={cartLines} subtotal={subtotal} shipping={shipping} total={total} discount={discount} />
 
                 {/* Garanties */}
-                <div className="mt-4 bg-white border border-dark-text/[0.07] p-6">
+                <div className="mt-4 bg-white border border-dark-text/[0.07] p-6 rounded-2xl">
                   <div className="space-y-4">
                     {[
                       { Icon: Truck, label: t('checkoutPage.expressDelivery'), desc: t('checkoutPage.expressDeliveryDesc') },
@@ -546,7 +597,7 @@ export default function CheckoutPage() {
                       { Icon: RotateCcw, label: t('checkoutPage.freeReturns'), desc: t('checkoutPage.freeReturnsDesc') },
                     ].map(({ Icon, label, desc }) => (
                       <div key={label} className="flex items-center gap-4">
-                        <div className="w-9 h-9 border border-dark-text/[0.07] flex items-center justify-center flex-shrink-0">
+                        <div className="w-9 h-9 border border-dark-text/[0.07] flex items-center justify-center flex-shrink-0 rounded-xl">
                           <Icon className="w-4 h-4 text-bronze/60" />
                         </div>
                         <div>
@@ -587,7 +638,7 @@ export default function CheckoutPage() {
             </div>
             <button
               onClick={() => goToStep(2)}
-              className="group relative flex-1 flex items-center justify-center gap-1.5 bg-dark-text text-white py-3.5 px-4 text-center font-sans text-[9px] tracking-[0.15em] font-bold uppercase overflow-hidden transition-colors duration-200"
+              className="group relative flex-1 flex items-center justify-center gap-1.5 bg-dark-text text-white py-3.5 px-4 text-center font-sans text-[9px] tracking-[0.15em] font-bold uppercase overflow-hidden transition-colors duration-200 rounded-xl"
             >
               <span className="absolute inset-0 bg-bronze transform scale-x-0 group-active:scale-x-100 transition-transform duration-500 origin-left" />
               <span className="relative z-10">{t('checkoutPage.continueToPayment')}</span>

@@ -154,6 +154,7 @@ function AppContent() {
   // Check for checkout path with or without lang prefix
   const pathParts = useMemo(() => location.pathname.split('/').filter(Boolean), [location.pathname]);
   const isCheckout = pathParts.includes('checkout');
+  const isCart = pathParts.includes('cart');
   // Accueil : le footer est rendu DANS l'empilement (HomePage) pour monter sur Fabrication.
   const isHome = pathParts.length === 0 || (pathParts.length === 1 && isSupportedLocale(pathParts[0]));
 
@@ -208,11 +209,11 @@ function AppContent() {
         </main>
         {!isCheckout && !isHome && (
           <div className="relative z-[100]">
-            <Footer />
+            <Footer hideNewsletter={isCart} />
           </div>
         )}
       </div>
-      <NewsletterPopup />
+      {!isCheckout && !isCart && <NewsletterPopup />}
     </LocaleProvider>
   );
 }

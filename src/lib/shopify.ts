@@ -118,6 +118,10 @@ export interface Cart {
       currencyCode: string;
     };
   };
+  discountCodes?: Array<{
+    applicable: boolean;
+    code: string;
+  }>;
 }
 
 export interface BlogArticle {
@@ -480,6 +484,10 @@ const CART_FRAGMENT = `
         currencyCode
       }
     }
+    discountCodes {
+      applicable
+      code
+    }
   }
 `;
 
@@ -586,6 +594,33 @@ export async function getCart(cartId: string): Promise<Cart | null> {
 
   const data = await shopifyFetch<{ cart: Cart | null }>(query, { cartId });
   return data.cart;
+}
+
+// ========================================
+// APPLIQUER / RETIRER UN CODE PROMO (codes = [] pour retirer)
+// ========================================
+export async function applyCartDiscountCodes(cartId: string, codes: string[]): Promise<Cart> {
+  const query = `
+    ${CART_FRAGMENT}
+    mutation ApplyDiscount($cartId: ID!, $discountCodes: [String!]!) {
+      cartDiscountCodesUpdate(cartId: $cartId, discountCodes: $discountCodes) {
+        cart {
+          ...CartFields
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{ cartDiscountCodesUpdate: { cart: Cart } }>(query, {
+    cartId,
+    discountCodes: codes,
+  });
+
+  return data.cartDiscountCodesUpdate.cart;
 }
 
 // ========================================

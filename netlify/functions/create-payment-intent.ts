@@ -34,6 +34,71 @@ interface ShippingAddress {
   countryCode: string;
 }
 
+// Livraison (doit rester aligné sur src/constants/shipping.ts).
+const SHIPPING_FREE_THRESHOLD = 500;
+const SHIPPING_STANDARD_RATE = 15;
+
+// Montant faisant autorité : lu depuis Shopify par cartId (remise comprise),
+// jamais envoyé par le navigateur. Ferme la fraude au prix.
+async function fetchCartAmount(cartId: string): Promise<{ amountCents: number; currency: string }> {
+  const domain = process.env.VITE_SHOPIFY_STORE_DOMAIN;
+  const token = process.env.VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
+  if (!domain || !token) {
+    throw new Error('Shopify Storefront non configuré (VITE_SHOPIFY_STORE_DOMAIN / VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN).');
+  }
+
+  const query = `
+    query CartCost($cartId: ID!) {
+      cart(id: $cartId) {
+        cost {
+          totalAmount { amount currencyCode }
+        }
+        lines(first: 50) {
+          edges {
+            node {
+              quantity
+              merchandise { ... on ProductVariant { price { amount } } }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const res = await fetch(`https://${domain}/api/2025-07/graphql.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Shopify-Storefront-Access-Token': token,
+    },
+    body: JSON.stringify({ query, variables: { cartId } }),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Shopify HTTP ${res.status}`);
+  }
+
+  const json = await res.json();
+  const cart = json?.data?.cart;
+  if (!cart) {
+    throw new Error('Panier introuvable côté Shopify.');
+  }
+
+  const discountedMerch = parseFloat(cart.cost.totalAmount.amount); // après toutes remises
+  // Total marchandise AVANT remise (somme des lignes) : base du port offert, pour
+  // que la livraison reste gratuite même avec un code promo.
+  const origMerch = (cart.lines?.edges || []).reduce(
+    (sum: number, edge: { node: { quantity: number; merchandise?: { price?: { amount?: string } } } }) =>
+      sum + parseFloat(edge.node.merchandise?.price?.amount || '0') * edge.node.quantity,
+    0,
+  );
+  const currency = (cart.cost.totalAmount.currencyCode || 'EUR').toLowerCase();
+  const shipping = origMerch >= SHIPPING_FREE_THRESHOLD ? 0 : SHIPPING_STANDARD_RATE;
+  const amountCents = Math.round((discountedMerch + shipping) * 100);
+
+  return { amountCents, currency };
+}
+
 const handler: Handler = async (event: HandlerEvent) => {
   const origin = event.headers?.origin || event.headers?.Origin;
   const headers = getCorsHeaders(origin);
@@ -56,10 +121,15 @@ const handler: Handler = async (event: HandlerEvent) => {
 
     const stripe = new Stripe(stripeSecretKey, { apiVersion: '2023-10-16' });
 
-    const { amount, currency, metadata, cartItems, shippingAddress } = JSON.parse(event.body || '{}');
+    const { metadata, cartItems, shippingAddress, cartId } = JSON.parse(event.body || '{}');
 
-    // Validation
-    if (!amount || amount < 50) {
+    if (!cartId) {
+      throw new Error('cartId manquant');
+    }
+
+    // Montant calculé côté serveur depuis le panier Shopify (remise incluse).
+    const { amountCents, currency } = await fetchCartAmount(cartId);
+    if (amountCents < 50) {
       throw new Error('Invalid amount');
     }
 
@@ -76,7 +146,7 @@ const handler: Handler = async (event: HandlerEvent) => {
 
     // Construire les options du PaymentIntent
     const piOptions: Stripe.PaymentIntentCreateParams = {
-      amount,
+      amount: amountCents,
       currency: currency || 'eur',
       automatic_payment_methods: { enabled: true },
       description: `Renaissance Paris — Commande de ${metadata?.customerName || 'client'}`,

@@ -108,7 +108,7 @@
     },
     "contactService": {
       "q": "Comment contacter le service client ?",
-      "a": "Vous pouvez nous contacter par e-mail à contact@renaissanceeyewear.com ou par téléphone au +33 1 42 86 82 00 (Lun-Ven, 9h-18h)."
+      "a": "Vous pouvez nous contacter par e-mail à contact@renaissanceeyewear.com ou par téléphone au +33 (0)3 55 18 66 84 (Lun-Ven, 9h-18h)."
     },
     "responseDelay": {
       "q": "Quel est le délai de réponse du service client ?",
@@ -125,6 +125,6 @@
     "subtitle": "Nous sommes là pour vous.",
     "description": "Notre équipe est à votre disposition pour répondre à toutes vos questions.",
     "contactUs": "Nous contacter",
-    "callUs": "+33 1 42 86 82 00"
+    "callUs": "+33 (0)3 55 18 66 84"
   }
 }

@@ -7,6 +7,7 @@ import T from './TranslatedText';
 import { Shield, Truck, X } from 'lucide-react';
 import { SHIPPING } from '../constants/shipping';
 import { resizeShopifyImage } from '../lib/imageUtils';
+import { titleWithArabe } from '../lib/productTitle';
 
 export default function CartDrawer() {
   const { cart, isCartOpen, isLoading, itemCount, updateQuantity, removeItem, closeCart } = useCart();
@@ -200,7 +201,7 @@ export default function CartDrawer() {
                               className="block mb-2"
                             >
                               <h3 className="font-serif text-base text-dark-text leading-tight hover:text-bronze transition-colors line-clamp-2">
-                                <T>{product.title}</T>
+                                <T>{titleWithArabe(product.title)}</T>
                               </h3>
                             </LocaleLink>
 

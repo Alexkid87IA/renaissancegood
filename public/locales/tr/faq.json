@@ -108,7 +108,7 @@
     },
     "contactService": {
       "q": "Müşteri hizmetlerine nasıl ulaşırım?",
-      "a": "Bize contact@renaissanceeyewear.com adresinden e-postayla ya da +33 1 42 86 82 00 numaralı telefondan (Pzt-Cum, 9.00-18.00) ulaşabilirsin."
+      "a": "Bize contact@renaissanceeyewear.com adresinden e-postayla ya da +33 (0)3 55 18 66 84 numaralı telefondan (Pzt-Cum, 9.00-18.00) ulaşabilirsin."
     },
     "responseDelay": {
       "q": "Müşteri hizmetlerinin yanıt süresi nedir?",
@@ -125,6 +125,6 @@
     "subtitle": "Senin için buradayız.",
     "description": "Ekibimiz, tüm sorularını yanıtlamak için emrinde.",
     "contactUs": "Bize ulaş",
-    "callUs": "+33 1 42 86 82 00"
+    "callUs": "+33 (0)3 55 18 66 84"
   }
 }

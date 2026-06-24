@@ -43,7 +43,7 @@ const LOGO_LIGHT = 'https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT%
 
 // Pages avec un hero plein écran : header transparent (logo seul) en haut,
 // puis header solide dès qu'on scrolle.
-const HERO_ROUTES = ['/', '/shop', '/histoire', '/fabrication', '/manifeste', '/opticiens', '/collections/heritage', '/collections/versailles', '/collections/isis'];
+const HERO_ROUTES = ['/', '/shop', '/histoire', '/fabrication', '/manifeste', '/opticiens', '/collections/heritage', '/collections/versailles', '/collections/isis', '/cart'];
 const MENU_HERO_IMAGES = [
   'https://renaissance-cdn.b-cdn.net/campgane.png',
   'https://renaissance-cdn.b-cdn.net/packshot%202.png',
@@ -231,7 +231,8 @@ export default function Header() {
     if (cooldownRef.current) return;
     if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     if (menu === 'heritage' || menu === 'versailles' || menu === 'isis') fetchCollections();
-    setActiveMenu((current) => current === menu ? current : menu);
+    // Méga-menu désactivé : le survol des onglets n'ouvre plus l'overlay
+    // (on ne met jamais activeMenu sur une collection). Les clics naviguent.
   }, [fetchCollections]);
 
   const handleMenuLeave = useCallback(() => {
