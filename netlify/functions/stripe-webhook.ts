@@ -171,13 +171,18 @@ const handler: Handler = async (event: HandlerEvent) => {
     }
 
     const data = await adminGraphQL(
-      `mutation CreateOrder($order: OrderCreateOrderInput!) {
-        orderCreate(order: $order) {
+      `mutation CreateOrder($order: OrderCreateOrderInput!, $options: OrderCreateOptionsInput) {
+        orderCreate(order: $order, options: $options) {
           order { id name }
           userErrors { field message }
         }
       }`,
-      { order },
+      {
+        order,
+        // sendReceipt : email de confirmation au client. inventoryBehaviour :
+        // décrémente le stock selon la politique du produit (évite la survente).
+        options: { sendReceipt: true, inventoryBehaviour: 'DECREMENT_OBEYING_POLICY' },
+      },
     );
 
     const errs = data?.orderCreate?.userErrors;
