@@ -90,6 +90,14 @@ async function main() {
       Object.defineProperty(navigator, 'language', { get: () => 'fr-FR' });
       Object.defineProperty(navigator, 'languages', { get: () => ['fr-FR', 'fr'] });
     });
+
+    // Sondes de diagnostic : on capture erreurs JS et requêtes échouées pour
+    // savoir POURQUOI une route ne rend pas (au lieu de deviner).
+    const pageErrors = [];
+    const failedReqs = [];
+    page.on('pageerror', (e) => pageErrors.push(e.message));
+    page.on('requestfailed', (r) => failedReqs.push(`${r.url()} (${r.failure()?.errorText ?? '?'})`));
+
     try {
       // domcontentloaded + attente du signal applicatif (data-prerender-ready) :
       // plus robuste que networkidle0, qui ne se déclenche jamais si une connexion
@@ -103,6 +111,23 @@ async function main() {
     } catch (err) {
       failures.push(route);
       console.warn('[prerender] ÉCHEC ' + route + ' : ' + err.message);
+      // Dump du pourquoi : état du DOM + erreurs JS + requêtes échouées.
+      const state = await page
+        .evaluate(() => ({
+          rootLen: document.getElementById('root')?.innerHTML.length ?? -1,
+          ready: document.documentElement.hasAttribute('data-prerender-ready'),
+          loader: !!Array.from(document.querySelectorAll('*')).find((n) => n.textContent === 'Chargement'),
+          bodyText: (document.body?.innerText ?? '').replace(/\s+/g, ' ').trim().slice(0, 160),
+        }))
+        .catch(() => null);
+      if (state) {
+        console.warn(
+          `[prerender]   diag ${route} : root=${state.rootLen}o ready=${state.ready} ` +
+            `loaderVisible=${state.loader} body="${state.bodyText}"`,
+        );
+      }
+      if (pageErrors.length) console.warn('[prerender]   JS-error : ' + pageErrors.slice(0, 3).join(' | '));
+      if (failedReqs.length) console.warn('[prerender]   req-échec : ' + failedReqs.slice(0, 5).join(' | '));
     } finally {
       await page.close();
     }
