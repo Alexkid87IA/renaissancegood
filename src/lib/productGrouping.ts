@@ -4,7 +4,8 @@
 // ========================================
 
 import { Product } from '../components/ProductCard';
-import { getModelEditorial } from '../data/productEditorial';
+import { getModelEditorial, type CollectionId } from '../data/productEditorial';
+import { getBunnyImages } from './imageUtils';
 
 // Type pour un produit groupé avec ses variantes de couleur
 export interface GroupedProduct {
@@ -141,7 +142,7 @@ export function getGroupedProducts(products: Product[]): GroupedProduct[] {
       colorName: getColorNameFromTags(product.tags) || `Coloris ${getColorNumber(product.title)}`,
       product,
       handle: product.handle,
-      thumbnail: getFirstImageUrl(product)
+      thumbnail: getBunnyImages(product.title)?.[0] ?? getFirstImageUrl(product)
     }));
 
     result.push({
@@ -152,6 +153,22 @@ export function getGroupedProducts(products: Product[]): GroupedProduct[] {
   }
 
   return result;
+}
+
+/**
+ * Regroupe le CATALOGUE COMPLET par modèle, puis ne garde que les modèles
+ * rattachés à la collection donnée dans l'éditorial interne (productEditorial =
+ * source de vérité, pas l'appartenance Shopify). Les coloris viennent du
+ * catalogue actif : la carte affiche donc toujours le même nombre que la fiche,
+ * immunisé aux trous d'appartenance, brouillons et archivés côté Shopify.
+ */
+export function getGroupedProductsForCollection(
+  products: Product[],
+  collectionId: CollectionId
+): GroupedProduct[] {
+  return getGroupedProducts(products)
+    .filter((gp) => getModelEditorial(gp.modelName)?.model.collection === collectionId)
+    .sort((a, b) => (getModelArabe(a.modelName) ?? 0) - (getModelArabe(b.modelName) ?? 0));
 }
 
 /**

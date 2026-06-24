@@ -583,6 +583,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance XII': {
     romain: 'Renaissance XII',
     arabe: 12,
+    collection: 'heritage',
     // Copy validée par Yassin le 2026-06-20.
     legende: 'Une adresse vissée sur la branche.',
     // Faits : photos dossier 12 (FACE C1/C2/C3 : rectangulaire massif, acétate
@@ -780,6 +781,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance XX': {
     romain: 'Renaissance XX',
     arabe: 20,
+    collection: 'heritage',
     // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
     legende: 'Huit côtés taillés net dans l\'acétate.',
     // Faits : photos dossier 20 (FACE/TROIS-QUARTS/DETAIL, 3 coloris). Octogone
@@ -831,6 +833,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance XXX': {
     romain: 'Renaissance XXX',
     arabe: 30,
+    collection: 'heritage',
     // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
     legende: 'Une adresse de Paris, vissée sur la tempe.',
     // Faits : photos dossier 30 (plaque « AVENUE DE LA RENAISSANCE » gravée dans
@@ -859,6 +862,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance XXII': {
     romain: 'Renaissance XXII',
     arabe: 22,
+    collection: 'heritage',
     // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
     legende: 'Le haut tenu droit, le verre nu en bas.',
     // Faits : photos dossier 22 (FACE/TROIS-QUARTS/DETAIL, 3 coloris). Grande
@@ -1002,6 +1006,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance XXXVIII': {
     romain: 'Renaissance XXXVIII',
     arabe: 38,
+    collection: 'versailles',
     // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
     legende: "Deux ponts l'un sur l'autre, le métal à nu.",
     // Faits : photos dossier 38 (4 coloris, FACE/TROIS-QUARTS). Double pont
@@ -1049,6 +1054,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance XL': {
     romain: 'Renaissance XL',
     arabe: 40,
+    collection: 'versailles',
     // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
     legende: 'Six angles fins, et pas un qui force la voix.',
     // Faits : photos dossier 40 - XL (C1/C2/C3, FACE/TROIS-QUARTS). SIX côtés
@@ -1072,6 +1078,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance XLIII': {
     romain: 'Renaissance XLIII',
     arabe: 43,
+    collection: 'versailles',
     // Copy intégrée 2026-06-20 (relecture Yassin sur le rendu localhost).
     legende: 'Un rectangle de métal fin, les stries noircies près de la charnière.',
     // Faits : photos dossier 43 - XLIII (4 coloris, FACE/TROIS-QUARTS). Cerclage
@@ -1095,6 +1102,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance XLII': {
     romain: 'Renaissance XLII',
     arabe: 42,
+    collection: 'versailles',
     // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
     legende: 'Le bord du verre taillé à vif, tout le tour.',
     // Faits : photos dossier 42 (4 coloris, FACE/TROIS-QUARTS). Verre rimless,
@@ -1116,6 +1124,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance L': {
     romain: 'Renaissance L',
     arabe: 50,
+    collection: 'versailles',
     // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
     legende: "L'acétate coupé net, l'adresse en or sur la branche.",
     // Faits : photos dossier 50 - L (3 coloris). Plaque d'or « AVENUE DE LA
@@ -1164,6 +1173,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance LII': {
     romain: 'Renaissance LII',
     arabe: 52,
+    collection: 'isis',
     // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
     legende: 'Une barre droite au-dessus du regard, tout s\'aligne dessous.',
     // Faits : photos dossier 52 - LII (4 coloris). Ligne pilote tenue au carré,
@@ -1213,6 +1223,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance LIII': {
     romain: 'Renaissance LIII',
     arabe: 53,
+    collection: 'isis',
     // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
     legende: 'Le nom gravé en haut du verre, il faut s\'approcher pour le lire.',
     // Faits : photos dossier 53 - LIII (5 coloris). Rectangle au fil fin ; pont
@@ -1236,6 +1247,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance LIV': {
     romain: 'Renaissance LIV',
     arabe: 54,
+    collection: 'isis',
     // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
     legende: 'Une plaque au-dessus de chaque verre, comme une enseigne.',
     // Faits : photos dossier 54 - LIV (4 coloris). Demi-cerclé (le cercle tient
@@ -1282,6 +1294,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance LVI': {
     romain: 'Renaissance LVI',
     arabe: 56,
+    collection: 'isis',
     // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
     legende: "Huit côtés taillés net, le jour qui s'accroche au bas du verre.",
     // Faits : photos dossier 56 - LVI (3 coloris). Octogone étiré rimless ; bord
@@ -1304,6 +1317,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance LVII': {
     romain: 'Renaissance LVII',
     arabe: 57,
+    collection: 'isis',
     // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
     legende: "L'adresse en clair, et la même en hiéroglyphes.",
     // Faits : photos dossier 57 - LVII (3 coloris). Petit rectangle cerclé,
@@ -1376,6 +1390,7 @@ export const MODELS: Record<string, ModelEditorial> = {
   'Renaissance LXI': {
     romain: 'Renaissance LXI',
     arabe: 61,
+    collection: 'isis',
     // Copy intégrée 2026-06-21 (relecture Yassin sur le rendu localhost).
     legende: "Le verre facetté, les branches d'acétate qui portent l'or.",
     // Faits : photos dossier 61 - LXI (4 coloris). Rimless, verre facetté tout
