@@ -134,13 +134,28 @@ const handler: Handler = async (event: HandlerEvent) => {
     const discount = Math.max(0, origMerch - discountedMerch);
     const shipping = Math.max(0, chargedTotal - discountedMerch);
 
+    // Coordonnées client : depuis les metadata (paiement par carte, formulaire),
+    // avec repli sur les détails de facturation du charge (paiement express
+    // Apple/Google Pay, où l'info vient du wallet et pas du formulaire).
+    let billing: Stripe.PaymentMethod.BillingDetails | undefined;
+    if (pi.latest_charge) {
+      try {
+        const charge = await stripe.charges.retrieve(pi.latest_charge as string);
+        billing = charge.billing_details;
+      } catch { /* repli silencieux */ }
+    }
+
     const ship = pi.shipping;
-    const nameParts = (ship?.name || pi.metadata?.customer_name || '').trim().split(' ');
+    const email = pi.metadata?.customer_email || billing?.email || pi.receipt_email || undefined;
+    const phone = pi.metadata?.customer_phone || ship?.phone || billing?.phone || undefined;
+    const fullName = (pi.metadata?.customer_name || ship?.name || billing?.name || '').trim();
+    const nameParts = fullName.split(' ');
     const firstName = nameParts.shift() || '';
     const lastName = nameParts.join(' ');
 
     const order: Record<string, unknown> = {
-      email: pi.metadata?.customer_email || pi.receipt_email || undefined,
+      email,
+      phone,
       financialStatus: 'PAID',
       lineItems: lines.map((l) => ({ variantId: l.merchandise?.id, quantity: l.quantity })),
       shippingLines: [{ title: 'Livraison', priceSet: money(shipping, currencyCode) }],

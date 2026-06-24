@@ -132,6 +132,7 @@ export default function CheckoutPage() {
             source: 'checkout',
             ...(formData.email && { customerEmail: formData.email }),
             ...(formData.firstName && { customerName: `${formData.firstName} ${formData.lastName}` }),
+            ...(formData.phone && { customerPhone: formData.phone }),
           },
           cartItems: cartLines.slice(0, 5).map(({ node }) => ({
             id: node.merchandise.product.id,
@@ -217,6 +218,14 @@ export default function CheckoutPage() {
       if (!validateStep(currentStep)) return;
     }
     setCurrentStep(step);
+    // En passant au paiement, on recrée le PaymentIntent avec les coordonnées
+    // désormais remplies (nom/email/téléphone/adresse) pour qu'elles arrivent
+    // sur la commande Shopify créée par le webhook.
+    if (step === 2 && !isFreeOrder) {
+      intentForTotal.current = 0;
+      setClientSecret(null);
+      void createPaymentIntent();
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

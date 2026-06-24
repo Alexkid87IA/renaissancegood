@@ -154,6 +154,7 @@ const handler: Handler = async (event: HandlerEvent) => {
         source: metadata?.source || 'checkout',
         customer_name: metadata?.customerName || '',
         customer_email: metadata?.customerEmail || '',
+        customer_phone: metadata?.customerPhone || '',
         shipping_address: addressLine,
         cart_summary: cartSummary.slice(0, 500),
         items_count: String((cartItems || []).length),
@@ -173,6 +174,7 @@ const handler: Handler = async (event: HandlerEvent) => {
     if (shippingAddress && (shippingAddress as ShippingAddress).address) {
       piOptions.shipping = {
         name: metadata?.customerName || 'Client',
+        phone: metadata?.customerPhone || undefined,
         address: {
           line1: (shippingAddress as ShippingAddress).address,
           line2: (shippingAddress as ShippingAddress).addressComplement || undefined,
