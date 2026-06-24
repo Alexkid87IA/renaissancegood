@@ -33,7 +33,7 @@ export default function EngagementSection() {
   return (
     <motion.section className="snap-section h-[100dvh] lg:h-screen lg:sticky lg:top-0 z-[70] bg-[#000000] overflow-hidden">
       {/* DESKTOP */}
-      <div className="hidden md:flex h-full bg-[#000000]">
+      <div className="hidden md:flex flex-row-reverse h-full bg-[#000000]">
         <div className="w-[46%] h-full relative overflow-hidden">
           <img
             src="https://renaissance-cdn.b-cdn.net/portrait.webp"
@@ -42,7 +42,7 @@ export default function EngagementSection() {
             loading="lazy"
           />
           <div className="absolute inset-0 bg-[#000000]/10" />
-          <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-[#000000] to-transparent" />
+          <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[#000000] to-transparent" />
         </div>
 
         <motion.div

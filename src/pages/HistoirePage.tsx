@@ -9,7 +9,6 @@ import HeroHistoireSection from '../components/histoire/HeroHistoireSection';
 import FondateursSection from '../components/histoire/FondateursSection';
 import SavoirFaireSection from '../components/histoire/SavoirFaireSection';
 import SymbolesSection from '../components/histoire/SymbolesSection';
-import ValeursSection from '../components/histoire/ValeursSection';
 import SignatureSection from '../components/histoire/SignatureSection';
 import EngagementSection from '../components/histoire/EngagementSection';
 
@@ -64,7 +63,6 @@ export default function HistoirePage() {
       <FondateursSection />
       <SavoirFaireSection />
       <SymbolesSection />
-      <ValeursSection />
       <SignatureSection />
       <EngagementSection />
     </div>

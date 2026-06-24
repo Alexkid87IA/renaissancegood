@@ -16,18 +16,18 @@ export default function SavoirFaireSection() {
         <img
           src="https://renaissance-cdn.b-cdn.net/atelier-bw.webp"
           alt="Atelier de fabrication Renaissance"
-          className="absolute inset-0 w-full h-full object-cover object-[left_center]"
+          className="absolute inset-0 w-full h-full object-cover object-[right_center]"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-[#000000]/10" />
-        <div className="absolute inset-0 bg-gradient-to-l from-[#000000]/95 via-[#000000]/68 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000]/95 via-[#000000]/68 to-transparent" />
 
         <motion.div
           ref={contentRef}
           variants={stagger}
           initial="hidden"
           animate={contentInView ? 'visible' : 'hidden'}
-          className="absolute inset-0 flex h-full items-center justify-end px-10 py-24 lg:px-14 xl:px-20"
+          className="absolute inset-0 flex h-full items-center justify-start px-10 py-24 lg:px-14 xl:px-20"
         >
           <div className="w-full max-w-[43rem]">
             <motion.div variants={fade} className="flex items-center gap-5 mb-6">
@@ -62,7 +62,7 @@ export default function SavoirFaireSection() {
               </div>
             </motion.div>
 
-            <motion.div variants={fade} className="mt-9 flex justify-end">
+            <motion.div variants={fade} className="mt-9 flex justify-start">
               <LocaleLink to="/fabrication">
                 <button className="group relative overflow-hidden rounded-2xl border border-white/[0.45] px-9 py-4 transition-all duration-500">
                   <span className="relative z-10 font-sans text-[9px] tracking-[0.3em] font-medium uppercase text-white group-hover:text-[#0a0a0a] transition-colors duration-500">

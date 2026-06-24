@@ -76,7 +76,7 @@ export default function HeroHistoireSection() {
               <br />
               <span className="font-light italic text-white/[0.78]">{t('heroHistoire.mobileSubtitle')}</span>
             </h1>
-            <p className="text-white/72 text-sm font-sans leading-relaxed mb-8">
+            <p className="text-white/[0.85] text-sm font-sans leading-relaxed mb-8">
               {t('heroHistoire.mobileDescription')}
             </p>
           </motion.div>
