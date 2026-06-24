@@ -5,26 +5,12 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Primary Meta Tags -->
+    <!-- Titre de repli uniquement. title/description/og/twitter sont posés par
+         page dans SEO.tsx (react-helmet). On ne les met PAS en statique ici :
+         sur une page prérendue, la version statique apparaîtrait en premier et
+         l'emporterait (og first-wins), écrasant la balise par page. -->
     <title>Renaissance Eyewear. Lunetterie française, titane or 18KT</title>
-    <meta name="title" content="Renaissance Eyewear. Lunetterie française, titane or 18KT" />
-    <meta name="description" content="Maison française de lunetterie, née en 2019 d'un refus. Montures titane plaquées or 18KT, acétate Mazzucchelli. Chaque paire porte son numéro gravé au pont." />
-    <!-- meta keywords retirée (balise ignorée par Google + lexique interdit) -->
     <meta name="author" content="Renaissance Eyewear" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://renaissanceeyewear.fr/" />
-    <meta property="og:title" content="Renaissance Eyewear. Lunetterie française, titane or 18KT" />
-    <meta property="og:description" content="Maison française de lunetterie, née en 2019 d'un refus. Titane plaqué or 18KT, acétate Mazzucchelli." />
-    <meta property="og:image" content="https://res.cloudinary.com/dwt7u0azs/image/upload/v1761868999/RENAISSANCE_TRANSPARENT_bbe5d805-70e6-4344-856b-1d8534ad9056_ujgcyh.webp" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://renaissanceeyewear.fr/" />
-    <meta property="twitter:title" content="Renaissance Eyewear. Lunetterie française, titane or 18KT" />
-    <meta property="twitter:description" content="Maison française de lunetterie, née en 2019 d'un refus. Titane plaqué or 18KT, acétate Mazzucchelli." />
-    <meta property="twitter:image" content="https://res.cloudinary.com/dwt7u0azs/image/upload/v1761868999/RENAISSANCE_TRANSPARENT_bbe5d805-70e6-4344-856b-1d8534ad9056_ujgcyh.webp" />
 
     <!-- Additional SEO -->
     <meta name="robots" content="index, follow" />
