@@ -45,6 +45,7 @@ export default function CheckoutConfirmationPage() {
   const { t } = useTranslation('cart');
   const [searchParams] = useSearchParams();
   const [orderInfo, setOrderInfo] = useState<OrderInfo | null>(null);
+  const [orderName, setOrderName] = useState<string | null>(null);
   const { clearCart } = useCart();
 
   useEffect(() => {
@@ -61,6 +62,35 @@ export default function CheckoutConfirmationPage() {
 
   const paymentIntentId = searchParams.get('payment_intent');
   const orderRef = paymentIntentId ? paymentIntentId.slice(-8).toUpperCase() : null;
+
+  // La commande Shopify est créée par le webhook après le paiement (asynchrone).
+  // On interroge en boucle jusqu'à récupérer le vrai numéro (#1043), avec repli
+  // sur la référence Stripe tant qu'il n'est pas disponible.
+  useEffect(() => {
+    if (!paymentIntentId) return;
+    let cancelled = false;
+    let attempts = 0;
+    const poll = async () => {
+      attempts += 1;
+      try {
+        const res = await fetch(
+          `/.netlify/functions/get-order-number?pi=${encodeURIComponent(paymentIntentId)}`,
+        );
+        const data = await res.json();
+        if (!cancelled && data?.orderName) {
+          setOrderName(data.orderName);
+          return;
+        }
+      } catch {
+        // on réessaie
+      }
+      if (!cancelled && attempts < 15) setTimeout(poll, 2000);
+    };
+    poll();
+    return () => {
+      cancelled = true;
+    };
+  }, [paymentIntentId]);
 
   const orderDate = useMemo(() => {
     if (!orderInfo?.date) return new Date();
@@ -96,22 +126,10 @@ export default function CheckoutConfirmationPage() {
     },
   ];
 
-  // Confetti particles
-  const confettiParticles = useMemo(() => {
-    return Array.from({ length: 14 }, (_, i) => ({
-      id: i,
-      angle: (i / 14) * 360,
-      distance: 60 + Math.random() * 40,
-      size: 4 + Math.random() * 4,
-      delay: Math.random() * 0.3,
-      rotation: Math.random() * 360,
-    }));
-  }, []);
-
   return (
     <div className="min-h-screen bg-beige">
       {/* ==================== HEADER ==================== */}
-      <header className="bg-white/95 backdrop-blur-sm border-b border-bronze/[0.15]">
+      <header className="bg-transparent">
         <div className="max-w-[1400px] mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
           <div className="w-20" />
 
@@ -137,88 +155,51 @@ export default function CheckoutConfirmationPage() {
       <main className="pt-16 md:pt-24 pb-20 md:pb-32">
         <div className="max-w-[680px] mx-auto px-6">
 
-          {/* ==================== CELEBRATION — Logo + Confetti ==================== */}
-          <div className="relative w-24 h-24 mx-auto mb-10">
-            {/* Confetti particles */}
-            {confettiParticles.map((p) => (
-              <motion.div
-                key={p.id}
-                className="absolute left-1/2 top-1/2 rounded-sm bg-bronze"
-                style={{
-                  width: p.size,
-                  height: p.size,
-                  marginLeft: -p.size / 2,
-                  marginTop: -p.size / 2,
-                }}
-                initial={{ opacity: 0, x: 0, y: 0, scale: 0, rotate: 0 }}
-                animate={{
-                  opacity: [0, 1, 1, 0],
-                  x: Math.cos((p.angle * Math.PI) / 180) * p.distance,
-                  y: Math.sin((p.angle * Math.PI) / 180) * p.distance,
-                  scale: [0, 1.2, 1, 0.5],
-                  rotate: p.rotation,
-                }}
-                transition={{
-                  duration: 1.4,
-                  delay: 0.3 + p.delay,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              />
-            ))}
-
-            {/* Logo container with spring */}
+          {/* ==================== CARTE POSTALE — Photo + texte par-dessus ==================== */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: easeOutExpo }}
+            className="relative rounded-2xl overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.12)] mb-10 md:mb-12"
+          >
+            <img
+              src="/carte-remerciement.jpg"
+              alt="Renaissance"
+              className="block w-full h-auto"
+              loading="eager"
+            />
+            {/* voile léger et homogène pour la lisibilité du texte */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  'radial-gradient(ellipse at center, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.24) 55%, rgba(0,0,0,0.16) 100%)',
+              }}
+            />
+            {/* texte écrit sur la photo */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+              <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.35em] text-white/80 uppercase font-medium mb-3 sm:mb-4">
+                {t('confirmationPage.orderConfirmedLabel')}
+              </p>
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl tracking-[0.08em] text-white font-light uppercase drop-shadow-[0_2px_14px_rgba(0,0,0,0.45)]">
+                {firstName
+                  ? t('confirmationPage.greetingPersonalized', { firstName })
+                  : t('confirmationPage.greetingDefault')}
+              </h1>
+              <p className="font-display text-base sm:text-lg md:text-xl italic text-white/90 mt-2 sm:mt-3 drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
+                {t('confirmationPage.subtitleEmotional')}
+              </p>
+            </div>
+            {/* pastille validée */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: 'spring', damping: 15, stiffness: 200, delay: 0.1 }}
-              className="relative w-24 h-24 bg-bronze/10 flex items-center justify-center z-10"
+              transition={{ type: 'spring', damping: 15, stiffness: 250, delay: 0.5 }}
+              className="absolute top-4 right-4 w-9 h-9 bg-bronze rounded-full flex items-center justify-center shadow-lg"
             >
-              <img
-                src="https://renaissance-cdn.b-cdn.net/RENAISSANCE%20TRANSPARENT-Photoroom.png"
-                alt="Renaissance"
-                className="h-8 object-contain"
-              />
-              {/* Checkmark overlay */}
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: 'spring', damping: 15, stiffness: 250, delay: 0.6 }}
-                className="absolute -bottom-2 -right-2 w-8 h-8 bg-bronze rounded-full flex items-center justify-center"
-              >
-                <Check className="w-4 h-4 text-white" strokeWidth={3} />
-              </motion.div>
+              <Check className="w-4 h-4 text-white" strokeWidth={3} />
             </motion.div>
-          </div>
-
-          {/* ==================== PERSONALIZED GREETING ==================== */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            custom={0}
-            variants={fadeIn}
-            className="text-center mb-4"
-          >
-            <p className="font-sans text-[9px] tracking-[0.35em] text-dark-text/30 uppercase font-medium mb-4">
-              {t('confirmationPage.orderConfirmedLabel')}
-            </p>
-            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl tracking-[0.08em] text-dark-text font-light uppercase">
-              {firstName
-                ? t('confirmationPage.greetingPersonalized', { firstName })
-                : t('confirmationPage.greetingDefault')
-              }
-            </h1>
           </motion.div>
-
-          {/* Emotional subtitle */}
-          <motion.p
-            initial="hidden"
-            animate="visible"
-            custom={1}
-            variants={fadeIn}
-            className="text-center font-display text-base md:text-lg italic text-dark-text/40 leading-relaxed mb-4"
-          >
-            {t('confirmationPage.subtitleEmotional')}
-          </motion.p>
 
           {/* Artisanal body */}
           <motion.p
@@ -237,7 +218,7 @@ export default function CheckoutConfirmationPage() {
             animate="visible"
             custom={3}
             variants={fadeIn}
-            className="bg-white border border-dark-text/[0.07] shadow-[0_2px_20px_rgba(0,0,0,0.04)] mb-10 md:mb-14"
+            className="bg-white border border-dark-text/[0.07] shadow-[0_2px_20px_rgba(0,0,0,0.04)] rounded-2xl overflow-hidden mb-10 md:mb-14"
           >
             <div className="px-6 md:px-8 py-5 border-b border-dark-text/[0.05]">
               <h2 className="font-sans text-[9px] tracking-[0.3em] text-dark-text/30 uppercase font-medium">
@@ -245,14 +226,11 @@ export default function CheckoutConfirmationPage() {
               </h2>
             </div>
 
-            {/* Bronze decorative line */}
-            <div className="h-px bg-bronze/20" />
-
             <div className="px-6 md:px-8 py-6 space-y-4">
-              {orderRef && (
+              {(orderName || orderRef) && (
                 <div className="text-center mb-4">
                   <span className="font-sans text-[11px] tracking-[0.1em] text-dark-text/40 uppercase block mb-2">{t('confirmationPage.reference')}</span>
-                  <span className="font-display text-xl tracking-[0.15em] text-dark-text">REN-{orderRef}</span>
+                  <span className="font-display text-xl tracking-[0.15em] text-dark-text">{orderName || `REN-${orderRef}`}</span>
                 </div>
               )}
 
@@ -332,11 +310,11 @@ export default function CheckoutConfirmationPage() {
                       {/* Step indicator */}
                       <div className="relative z-10 flex-shrink-0">
                         {step.status === 'completed' ? (
-                          <div className="w-10 h-10 bg-bronze flex items-center justify-center">
+                          <div className="w-10 h-10 bg-bronze rounded-full flex items-center justify-center">
                             <Check className="w-4 h-4 text-white" strokeWidth={2.5} />
                           </div>
                         ) : step.status === 'current' ? (
-                          <div className="w-10 h-10 bg-white border-2 border-bronze flex items-center justify-center relative">
+                          <div className="w-10 h-10 bg-white border-2 border-bronze rounded-full flex items-center justify-center relative">
                             <motion.div
                               className="w-2.5 h-2.5 rounded-full bg-bronze"
                               animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
@@ -344,7 +322,7 @@ export default function CheckoutConfirmationPage() {
                             />
                           </div>
                         ) : (
-                          <div className="w-10 h-10 bg-white border border-dark-text/[0.12] flex items-center justify-center">
+                          <div className="w-10 h-10 bg-white border border-dark-text/[0.12] rounded-full flex items-center justify-center">
                             <Icon className="w-4 h-4 text-dark-text/30" />
                           </div>
                         )}
@@ -385,8 +363,8 @@ export default function CheckoutConfirmationPage() {
                 { icon: Shield, label: t('confirmationPage.experienceWarranty') },
                 { icon: Award, label: t('confirmationPage.experienceCase') },
               ].map(({ icon: Icon, label }, i) => (
-                <div key={i} className="flex flex-col items-center text-center p-4 border border-dark-text/[0.07]">
-                  <div className="w-10 h-10 border border-dark-text/[0.08] flex items-center justify-center mb-3">
+                <div key={i} className="flex flex-col items-center text-center p-4 border border-dark-text/[0.07] rounded-2xl">
+                  <div className="w-10 h-10 border border-dark-text/[0.08] rounded-xl flex items-center justify-center mb-3">
                     <Icon className="w-4 h-4 text-bronze/60" />
                   </div>
                   <span className="font-sans text-[10px] tracking-[0.05em] text-dark-text/50 uppercase leading-tight">{label}</span>
@@ -394,9 +372,6 @@ export default function CheckoutConfirmationPage() {
               ))}
             </div>
           </motion.div>
-
-          {/* ==================== SEPARATOR ==================== */}
-          <div className="w-10 h-px bg-bronze/20 mx-auto mb-10 md:mb-14" />
 
           {/* ==================== CTAs ==================== */}
           <motion.div
@@ -408,7 +383,7 @@ export default function CheckoutConfirmationPage() {
           >
             <LocaleLink
               to="/shop"
-              className="group relative w-full bg-dark-text text-white text-center font-sans text-[10px] tracking-[0.3em] uppercase py-5 overflow-hidden flex items-center justify-center gap-2.5"
+              className="group relative w-full bg-dark-text text-white text-center font-sans text-[10px] tracking-[0.3em] uppercase py-5 rounded-xl overflow-hidden flex items-center justify-center gap-2.5"
             >
               <span className="absolute inset-0 bg-bronze transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               <span className="relative z-10">{t('confirmationPage.discoverCollections')}</span>
@@ -426,7 +401,7 @@ export default function CheckoutConfirmationPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
-            className="mt-14 md:mt-20 bg-white border border-dark-text/[0.07] p-6 text-center"
+            className="mt-14 md:mt-20 bg-white border border-dark-text/[0.07] rounded-2xl p-6 text-center"
           >
             <p className="font-sans text-[9px] tracking-[0.2em] text-dark-text/25 uppercase font-medium mb-3">
               {t('confirmationPage.contactTitle')}
